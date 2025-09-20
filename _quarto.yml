@@ -1,0 +1,17 @@
+project:
+  type: book
+  output-dir: docs   # good for GitHub Pages
+
+book:
+  title: "Cambridge Supervisions"
+  author: "Camilo Calderon"
+  chapters:
+    - index.qmd
+    - supervision_1.qmd
+    # later you’ll add supervision_2.qmd, supervision_3.qmd, etc.
+
+format:
+  html:
+    theme: cosmo
+  pdf:
+    documentclass: scrreprt

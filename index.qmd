@@ -1,0 +1,9 @@
+---
+title: "Cambridge Supervisions"
+format: html
+---
+
+# Welcome
+
+This site hosts the supervision material for RM01 at the University of Cambridge.  
+Use the sidebar to navigate to each lab.
