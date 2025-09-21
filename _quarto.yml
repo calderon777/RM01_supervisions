@@ -3,7 +3,7 @@ project:
   output-dir: docs   # good for GitHub Pages
 
 book:
-  title: "Research Methods for Land Economy / Interactive Exercises"
+  title: "Research Methods for Land Economy / Interactive Labs"
   author: "Camilo Calderon, PhD"
   chapters:
     - index.qmd
