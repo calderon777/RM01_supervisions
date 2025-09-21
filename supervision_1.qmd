@@ -9,10 +9,15 @@ format: html
 
 ### Learning outcomes
 By the end of this lab you will be able to:
+
 1. Access **LinkedIn Learning** via the University’s UIS portal and sign in with SSO.
+
 2. Select a **beginner‑level R course/learning path** that issues a certificate of completion.
+
 3. Complete the course and **export your certificate** (PDF/share link).
+
 4. Add the certificate to your **CV/LinkedIn profile**.
+
 5. Run a short **tech‑check in RStudio** to prepare for Labs 2–4.
 
 ---
