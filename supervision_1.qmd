@@ -1,13 +1,13 @@
 ---
 title: "Supervision 1"
-output: html_document
+format: html
 ---
 
-# Lab 1 — R Certification (LinkedIn Learning)
+## Lab 1 — R Certification (LinkedIn Learning)
 
 ---
 
-## Learning outcomes
+### Learning outcomes
 By the end of this lab you will be able to:
 1. Access **LinkedIn Learning** via the University’s UIS portal and sign in with SSO.
 2. Select a **beginner‑level R course/learning path** that issues a certificate of completion.
@@ -17,14 +17,14 @@ By the end of this lab you will be able to:
 
 ---
 
-## Prerequisites
+### Prerequisites
 - University credentials for LinkedIn Learning access.  
 - R and RStudio installed (you’ll run a small code check).  
 - Stable internet connection.
 
 ---
 
-## Part A — First‑time access to LinkedIn Learning
+### Part A — First‑time access to LinkedIn Learning
 1. Follow the UIS guidance: **help.uis.cam.ac.uk/service/support/training/linkedin-learning-info** (opens the official instructions).  
 2. Choose **Sign in** with your University account (SSO). If prompted, connect to an existing LinkedIn profile (optional, but helpful for saving certificates).
 
@@ -32,7 +32,7 @@ By the end of this lab you will be able to:
 
 ---
 
-## Part B — Choose a beginner R certificate
+### Part B — Choose a beginner R certificate
 1. In LinkedIn Learning, search for **“R Programming”** or **“R for Data Analysis”**.  
 2. Pick a **Beginner** course or a **Learning Path** that issues a certificate upon completion.  
 3. Skim the syllabus; confirm it covers: R basics (objects, vectors), data frames, importing data, and simple plots.
@@ -43,7 +43,7 @@ By the end of this lab you will be able to:
 
 ---
 
-## Part C — Complete the course effectively
+### Part C — Complete the course effectively
 - Turn on **captions** and adjust playback speed for focus.  
 - Download **exercise files** (if offered) and practice in RStudio.  
 - Take brief notes; collect 3–5 commands you didn’t know before.  
@@ -53,7 +53,7 @@ By the end of this lab you will be able to:
 
 ---
 
-## Part D — Export and submit your certificate
+### Part D — Export and submit your certificate
 1. After finishing, open the course page → **Certificate** → **Download PDF** (or **Copy share link**).  
 2. Save as `data/yourname_r_certificate.pdf`.  
 3. Submit the PDF to the LMS (or share link as instructed in your module).
@@ -62,7 +62,7 @@ By the end of this lab you will be able to:
 
 ---
 
-## Part E — Add to your LinkedIn profile (optional but recommended)
+### Part E — Add to your LinkedIn profile (optional but recommended)
 1. Open your LinkedIn profile → **Add profile section** → **Recommended** → **Licenses & Certifications**.  
 2. **Name:** Course title. **Issuing organization:** LinkedIn Learning. **Credential URL:** paste the certificate share link (if available).  
 3. Save.
@@ -71,7 +71,7 @@ By the end of this lab you will be able to:
 
 ---
 
-## Part F — RStudio tech‑check for upcoming labs
+### Part F — RStudio tech‑check for upcoming labs
 Run these in RStudio to ensure you’re ready for Labs 2–4.
 
 ```{r}
@@ -95,7 +95,7 @@ plot(df$x, df$y, type = "l", main = "Tech‑check: base plot", xlab = "x", ylab 
 
 ---
 
-## Best practices
+### Best practices
 - **Use institutional access** so your progress and certificates are recognized and free to you.  
 - **Timebox** study sessions (e.g., 30–45 min focus blocks).  
 - **Practice while you watch**—replicate examples in RStudio, don’t just watch videos.  
@@ -104,7 +104,7 @@ plot(df$x, df$y, type = "l", main = "Tech‑check: base plot", xlab = "x", ylab 
 
 ---
 
-## Suggested Answers (indicative)
+### Suggested Answers (indicative)
 - **Part A:** Linking accounts preserves learning history and makes sharing easy; a potential risk is mixing personal and institutional data—use privacy settings and review permissions.  
 - **Part B:** Data import and plotting directly support planning/regeneration tasks (e.g., reading ONS data, visualising indicators).  
 - **Part C:** Example new commands: `readr::read_csv()`, `dplyr::mutate()`, `ggplot2::geom_line()`; common error: forgetting to load a package with `library()`.  
@@ -116,11 +116,11 @@ plot(df$x, df$y, type = "l", main = "Tech‑check: base plot", xlab = "x", ylab 
 
 *End of Lab 1*
 
-# Lab 2 — Interactive R Learning (r4ds.tutorials + learnr + swirl)
+## Lab 2 — Interactive R Learning (r4ds.tutorials + learnr + swirl)
 
 ---
 
-## Learning outcomes
+### Learning outcomes
 By the end of this lab you will be able to:
 1. Launch and complete the **r4ds.tutorials** lesson **01-data-visualization** in RStudio.
 2. Run a built‑in **learnr** tutorial (**ex-data-basics**) and submit answers in an interactive pane.
@@ -129,7 +129,7 @@ By the end of this lab you will be able to:
 
 ---
 
-## Prerequisites
+### Prerequisites
 - R (≥ 4.1) and RStudio.
 - Packages (install once):
 
@@ -141,7 +141,7 @@ install.packages(c("learnr", "r4ds.tutorials", "swirl"))
 
 ---
 
-## Part A — r4ds.tutorials: *01-data-visualization*
+### Part A — r4ds.tutorials: *01-data-visualization*
 This runs as an interactive tutorial in RStudio’s **Tutorial** pane.
 
 ```{r, eval=FALSE}
@@ -162,7 +162,7 @@ learnr::available_tutorials("r4ds.tutorials")
 
 ---
 
-## Part B — learnr: *ex-data-basics*
+### Part B — learnr: *ex-data-basics*
 This is a short core tutorial bundled with **learnr**.
 
 ```{r, eval=FALSE}
@@ -179,7 +179,7 @@ learnr::run_tutorial("ex-data-basics", package = "learnr")
 
 ---
 
-## Part C — swirl (console‑based)
+### Part C — swirl (console‑based)
 **swirl** runs entirely in the Console and saves your progress.
 
 ```{r, eval=FALSE}
@@ -211,7 +211,7 @@ swirl::progress()
 
 ---
 
-## Part D — Mini practice (5–10 min)
+### Part D — Mini practice (5–10 min)
 Create a tiny vector and compute a statistic, then plot a quick line:
 
 ```{r}
@@ -227,7 +227,7 @@ abline(h = mean_x, lty = 2)
 
 ---
 
-## Best practices
+### Best practices
 - **Use learnr/r4ds.tutorials for guided practice** with hints, auto‑checks, and saved state.
 - **Use swirl** when you prefer keyboard‑only Console practice or have limited UI.
 - Restart RStudio if tutorials don’t show; list what’s available with `learnr::available_tutorials()`.
@@ -235,7 +235,7 @@ abline(h = mean_x, lty = 2)
 
 ---
 
-## Suggested Answers (indicative)
+### Suggested Answers (indicative)
 - **Part A:** Aesthetics map data → visual channels; geoms are the drawing layers (points, lines, bars). Improvements often include `labs()`, `scale_*_continuous()`, `theme_minimal()`, and `facet_wrap()`.
 - **Part B:** Worked with vectors/data frames; common mistakes include mixing types (character vs numeric) or forgetting `<-`. Hints/feedback indicate expected objects or function names.
 - **Part C:** Console is lightweight but less visual; learnr/r4ds tutorials give more structured feedback. Swirl progress persists via `swirl::progress()`; exit with `bye()`.
@@ -246,11 +246,11 @@ abline(h = mean_x, lty = 2)
 *End of Lab 2*
 
 
-# Lab 3 — Uploading Excel & CSV Files to R (PIPR)
+## Lab 3 — Uploading Excel & CSV Files to R (PIPR)
 
 ---
 
-## Learning outcomes
+### Learning outcomes
 By the end of this lab you will be able to:
 1. Download the **ONS Price Index of Private Rents (PIPR)** monthly workbook and save it in a tidy project structure.
 2. Import **Excel** (`.xlsx/.xls`) and **CSV** files using RStudio’s **Import Dataset** UI **and** reproducible R code.
@@ -260,7 +260,7 @@ By the end of this lab you will be able to:
 
 ---
 
-## Prerequisites
+### Prerequisites
 - R (≥ 4.0) and RStudio.
 - Project folder (e.g., `Rcoding/`) with subfolder `data/`.
 - Packages (install once):
@@ -273,7 +273,7 @@ By the end of this lab you will be able to:
 
 ---
 
-## Part A — Get PIPR monthly from ONS (manual steps)
+### Part A — Get PIPR monthly from ONS (manual steps)
 1. Go to **ONS.gov.uk** and search **Price Index of Private Rents (PIPR)**. This lab is using ONS data on Figure 4: Rent annual inflation slowed across the UK, Private rents annual inflation, across the UK, January 2016 to August 2025.
 
 2. On the dataset page, choose **Data** → **Download monthly workbook** (Excel) or **CSV** if available.
@@ -284,7 +284,7 @@ By the end of this lab you will be able to:
 
 ---
 
-## Part B — Import Excel via code (reproducible)
+### Part B — Import Excel via code (reproducible)
 Use `readxl::read_excel()` and inspect column names to choose the UK series.
 
 ```{r}
@@ -311,7 +311,7 @@ head(pipr, 6)
 
 ---
 
-## Part C — Import via RStudio UI (reference)
+### Part C — Import via RStudio UI (reference)
 - RStudio → **Import Dataset** → **From Excel** → select `data/pipr_monthly.xls`.
 - Choose the relevant **sheet** and, if needed, set **Skip** for metadata rows.
 - Set **Name** to `pipr` and verify column names (e.g., `month`, `uk_index`, `uk_yoy`).
@@ -321,7 +321,7 @@ head(pipr, 6)
 
 ---
 
-## Part D — Basic time‑series line plot (annual % change)
+### Part D — Basic time‑series line plot (annual % change)
 Plot PIPR annual % change for the UK as a line. Label the x‑axis sparsely to keep it readable.
 
 ```{r}
@@ -352,13 +352,13 @@ text(x = min(pipr$month), y = 2, labels = "Inflation target (2%)",
 
 ---
 
-## Part E — Blue reference line at 2% (Inflation Target) & customise
+### Part E — Blue reference line at 2% (Inflation Target) & customise
 
 **Reflect:** What extra annotations (e.g., policy changes, shocks) would make this plot more useful to a local authority audience?
 
 ---
 
-## Part F — Import PIPR as CSV (alternative)
+### Part F — Import PIPR as CSV (alternative)
 Option 1: Download the **CSV** from the PIPR page (if provided) and import with `readr::read_csv()`.
 
 ```{r}
@@ -380,7 +380,7 @@ pipr_from_csv <- read_csv("data/pipr_monthly.csv")
 
 ---
 
-## Part G — Compare UK with a region (optional)
+### Part G — Compare UK with a region (optional)
 If your workbook includes regions (England, Wales, Scotland, Northern Ireland), select one annual % change column and plot together with the UK.
 
 ```{r}
@@ -402,7 +402,7 @@ if(!is.na(reg_yoy_col)){
 
 ---
 
-## Part H — Help pages and plotting extras
+### Part H — Help pages and plotting extras
 Explore `?plot`, `curve()`, and `abline()`.
 
 ```{r}
@@ -416,7 +416,7 @@ abline(h = 0, v = 5, lty = 2)
 
 ---
 
-## Part I — (Optional) Principles of Econometrics data
+### Part I — (Optional) Principles of Econometrics data
 You can also explore textbook datasets with **PoEdata** for practice with scatter plots and `abline(lm())`.
 
 ```{r}
@@ -433,7 +433,7 @@ head(andy)
 
 ---
 
-## Best practices
+### Best practices
 - **Reproducibility:** Prefer code over manual spreadsheet edits; paste RStudio’s generated import code into your script.
 - **Paths & naming:** Use a `data/` subfolder; avoid spaces; use forward slashes.
 - **Types & missing values:** Check with `str()`, `summary()`, `anyNA()`; coerce explicitly when needed.
@@ -442,14 +442,14 @@ head(andy)
 
 ---
 
-## Further resources
+### Further resources
 - ONS **Price Index of Private Rents (PIPR)** — monthly
 - R help: `?read_excel`, `?read_csv`, `?plot`, `?abline`, `?curve`
 - R Data Import/Export manual
 
 ---
 
-## Suggested Answers to Reflection Questions
+### Suggested Answers to Reflection Questions
 
 > Indicative answers; specifics depend on your workbook version and the columns you select.
 
@@ -475,7 +475,7 @@ head(andy)
 
 *End of Lab 3*
 
-# Lab 4 — Data Visualisation
+## Lab 4 — Data Visualisation
 
 *Adapted from: [A Guide to Data Visualisation in R for Beginners](https://towardsdatascience.com/a-guide-to-data-visualisation-in-r-for-beginners-ef6d41a34174)*
 
@@ -483,7 +483,7 @@ Link to files: course folder
 
 ---
 
-## Learning outcomes
+### Learning outcomes
 By the end of this lab you will be able to:
 1. Explore the `state.x77` dataset in R.
 2. Generate basic descriptive statistics.
@@ -494,13 +494,13 @@ By the end of this lab you will be able to:
 
 ---
 
-## Prerequisites
+### Prerequisites
 - R (≥ 4.0) and RStudio.
 - No additional packages required beyond base R (optional: `ggplot2` for comparison).
 
 ---
 
-## Part A — Load dataset
+### Part A — Load dataset
 ```{r}
 library(datasets)
 data("state.x77")
@@ -510,7 +510,7 @@ state_data <- as.data.frame(state.x77)
 
 ---
 
-## Part B — Data exploration
+### Part B — Data exploration
 ```{r}
 str(state_data)
 ```
@@ -518,7 +518,7 @@ str(state_data)
 
 ---
 
-## Part C — Beginning and end of the dataset
+### Part C — Beginning and end of the dataset
 ```{r}
 head(state_data, 7)
 tail(state_data, 5)
@@ -527,7 +527,7 @@ tail(state_data, 5)
 
 ---
 
-## Part D — Descriptive statistics
+### Part D — Descriptive statistics
 ```{r}
 summary(state_data)
 ```
@@ -535,7 +535,7 @@ summary(state_data)
 
 ---
 
-## Part E — Graphics package
+### Part E — Graphics package
 ```{r}
 library(help = "graphics")
 ```
@@ -543,7 +543,7 @@ library(help = "graphics")
 
 ---
 
-## Part F — Plotting a single column
+### Part F — Plotting a single column
 ```{r}
 plot(state_data$Population)
 ```
@@ -551,7 +551,7 @@ plot(state_data$Population)
 
 ---
 
-## Part G — Scatterplots
+### Part G — Scatterplots
 ```{r}
 plot(state_data$Income, state_data$Illiteracy)
 ```
@@ -559,7 +559,7 @@ plot(state_data$Income, state_data$Illiteracy)
 
 ---
 
-## Part H — Entire dataset plot
+### Part H — Entire dataset plot
 ```{r}
 plot(state_data)
 ```
@@ -567,7 +567,7 @@ plot(state_data)
 
 ---
 
-## Part I — Points and lines
+### Part I — Points and lines
 ```{r}
 plot(state_data$`Life Exp`, type = "b")
 plot(state_data$`Life Exp`, type = "h")
@@ -576,7 +576,7 @@ plot(state_data$`Life Exp`, type = "h")
 
 ---
 
-## Part J — Help
+### Part J — Help
 ```{r}
 ?plot
 ```
@@ -584,7 +584,7 @@ plot(state_data$`Life Exp`, type = "h")
 
 ---
 
-## Part K — Labels and titles
+### Part K — Labels and titles
 ```{r}
 plot(state_data$Income,
      xlab = "State Index",
@@ -596,7 +596,7 @@ plot(state_data$Income,
 
 ---
 
-## Part L — Horizontal bar plot
+### Part L — Horizontal bar plot
 ```{r}
 barplot(state_data$Murder,
         main = "Murder Rate by State",
@@ -608,7 +608,7 @@ barplot(state_data$Murder,
 
 ---
 
-## Part M — Vertical bar plot
+### Part M — Vertical bar plot
 ```{r}
 barplot(state_data$Illiteracy,
         main = "Illiteracy Rate by State",
@@ -620,7 +620,7 @@ barplot(state_data$Illiteracy,
 
 ---
 
-## Part N — Histograms
+### Part N — Histograms
 ```{r}
 hist(state_data$Income)
 
@@ -633,7 +633,7 @@ hist(state_data$Income,
 
 ---
 
-## Part O — Boxplots
+### Part O — Boxplots
 ```{r}
 boxplot(state_data$`Life Exp`)
 ```
@@ -641,7 +641,7 @@ boxplot(state_data$`Life Exp`)
 
 ---
 
-## Part P — Multiple boxplots
+### Part P — Multiple boxplots
 ```{r}
 boxplot(state_data[, c("Population", "Income", "Illiteracy", "Life Exp")],
         main = "Socio-economic Indicators across States")
@@ -650,7 +650,7 @@ boxplot(state_data[, c("Population", "Income", "Illiteracy", "Life Exp")],
 
 ---
 
-## Part Q — Grid of charts
+### Part Q — Grid of charts
 ```{r}
 par(mfrow = c(3,3), mar = c(2,5,2,1), las = 1, bty = "n")
 
@@ -669,7 +669,7 @@ boxplot(state_data[, c("Population", "Income", "Illiteracy", "Life Exp")],
 
 ---
 
-## Best practices
+### Best practices
 - Always check the structure of socio-economic data before plotting.
 - Match plot type to variable type.
 - Add descriptive titles and labels.
@@ -678,7 +678,7 @@ boxplot(state_data[, c("Population", "Income", "Illiteracy", "Life Exp")],
 
 ---
 
-## Further visualisation packages
+### Further visualisation packages
 - **lattice**: kernel density plots
 - **ggplot2**: flexible grammar of graphics
 - **plotly**: interactive plots
@@ -688,7 +688,7 @@ More resources: [towardsdatascience.com article](https://towardsdatascience.com/
 
 ---
 
-## Suggested Answers to Reflection Questions
+### Suggested Answers to Reflection Questions
 
 - **Part A:** Variables include Population, Income, Illiteracy, Life Expectancy, Murder rate, HS graduation, Frost, and Area. Most relate directly to planning and socio-economic development.
 - **Part B:** 50 rows (states) and 8 columns. All variables are numeric.
@@ -709,7 +709,7 @@ More resources: [towardsdatascience.com article](https://towardsdatascience.com/
 
 ---
 
-## Suggested Answers to Reflection Questions
+### Suggested Answers to Reflection Questions
 
 > These are concise, indicative answers. Local results may vary slightly depending on plotting parameters and ordering.
 
@@ -779,14 +779,14 @@ More resources: [towardsdatascience.com article](https://towardsdatascience.com/
 
 *End of Lab 4*
 
-# Lab 5 — Using GitHub Copilot in RStudio
+## Lab 5 — Using GitHub Copilot in RStudio
 
-## Goal
+### Goal
 Learn to use GitHub Copilot inside RStudio to speed up routine coding, while staying in control of quality, privacy, and reproducibility.
 
 ---
 
-## Learning outcomes
+### Learning outcomes
 By the end you will be able to:
 1. Enable and sign into GitHub Copilot in RStudio.
 2. Accept, reject, or modify Copilot autocomplete suggestions effectively.
@@ -796,7 +796,7 @@ By the end you will be able to:
 
 ---
 
-## Prerequisites
+### Prerequisites
 - R (≥ 4.3 recommended) and RStudio (a recent version with Copilot support).
 - A GitHub account with Copilot access (student/educator plans are available).
 - Packages: `tidyverse`, `palmerpenguins`, `readxl`, `ggplot2`.
@@ -809,7 +809,7 @@ install.packages(c("tidyverse", "palmerpenguins", "readxl", "ggplot2"))
 
 ---
 
-## Part A — Set up Copilot in RStudio (10–15 min)
+### Part A — Set up Copilot in RStudio (10–15 min)
 1. Open RStudio → Tools → Global Options → Copilot.
 2. Enable GitHub Copilot and sign in with GitHub.
 3. Create a new R Script (`File → New File → R Script`).
@@ -821,7 +821,7 @@ Explain in one sentence the difference between ghost text and code you’ve actu
 
 ---
 
-## Part B — First suggestions with ggplot2 (20 min)
+### Part B — First suggestions with ggplot2 (20 min)
 We’ll use `penguins` to practice.
 
 1. Add a guiding comment:
@@ -859,7 +859,7 @@ When is Copilot faster? When slower?
 
 ---
 
-## Part C — Comment-first prompting for histograms (15 min)
+### Part C — Comment-first prompting for histograms (15 min)
 1. Add a guiding comment:
 ```r
 # Histogram of body mass by species, overlapping with transparency and an accessible palette
@@ -875,7 +875,7 @@ Replace colour with `fill`, adjust legend, apply minimal theme.
 
 ---
 
-## Part D — Loading local data safely (10–15 min)
+### Part D — Loading local data safely (10–15 min)
 Copilot does not know your file system.
 
 1. Save `Scooby.xlsx` in a `data/` folder.
@@ -895,7 +895,7 @@ Why be explicit with data loading and library imports?
 
 ---
 
-## Part E — Boxplots (15 min)
+### Part E — Boxplots (15 min)
 Visualise IMDb ratings by network.
 
 1. Prompt:
@@ -913,7 +913,7 @@ Order networks by median rating.
 
 ---
 
-## Part F — Best practices
+### Part F — Best practices
 - Privacy: Never expose credentials/confidential data.
 - Non-determinism: Review suggestions before accepting.
 - No vibe coding: Don’t accept what you don’t understand.
@@ -927,7 +927,7 @@ renv::init()
 
 ---
 
-## Part G — Check-off & submission
+### Part G — Check-off & submission
 - [ ] Copilot enabled and signed in.
 - [ ] One scatter plot (corrected column names).
 - [ ] One histogram (transparency + accessible palette).
@@ -938,7 +938,7 @@ Export script or Quarto doc → submit.
 
 ---
 
-## TA rubric
+### TA rubric
 - Setup (10%): Copilot enabled; script compiles.
 - Code quality (40%): Reviewed/edited suggestions; correct names.
 - Visuals (30%): Clear labels, sensible themes.
@@ -946,14 +946,14 @@ Export script or Quarto doc → submit.
 
 ---
 
-## Troubleshooting
+### Troubleshooting
 - Suggestions not appearing? Check Global Options → Copilot.
 - Wrong dataset/columns? Run `names()`/`glimpse()`.
 - Overconfident code? Scale back, test small steps.
 
 ---
 
-## Further practice
+### Further practice
 - Rewrite prompts as comments for grouped summaries, joins, faceted plots.
 - Compare Copilot vs manual solutions.
 - Try Quarto docs where each chunk begins with a comment.

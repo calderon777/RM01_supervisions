@@ -1,0 +1,6 @@
+/* Cambridge Supervisions: subtle typography polish */
+h2, h3 { margin-top: 2rem; }
+main ul, main ol { margin-bottom: 1rem; }
+main p { line-height: 1.5; }
+pre code { font-size: 0.9em; }
+.callout { margin: 1rem 0; }
