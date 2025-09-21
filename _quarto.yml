@@ -1,6 +1,6 @@
 project:
   type: book
-  output-dir: docs   # good for GitHub Pages
+  output-dir: docs  
 
 book:
   title: "Research Methods for Land Economy / Interactive Labs"
@@ -16,4 +16,5 @@ format:
     number-sections: false
     code-copy: true
     code-overflow: wrap
+    css: styles.css
 

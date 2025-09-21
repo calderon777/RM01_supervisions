@@ -3,6 +3,8 @@ title: "Interactive Labs"
 format: html
 ---
 
+![](pics/cover.png){width=100% fig-alt=""}
+
 # Welcome
 
 This site hosts the supervision material for RM01 at the University of Cambridge.  
