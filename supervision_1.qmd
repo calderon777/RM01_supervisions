@@ -634,7 +634,7 @@ hist(state_data$Income,
 
 ## Part O — Boxplots
 ```{r}
-boxplot(state_data$Life.Exp)
+boxplot(state_data$`Life Exp`)
 ```
 **Reflect:** What does the boxplot reveal about state-level life expectancy?
 
@@ -642,7 +642,7 @@ boxplot(state_data$Life.Exp)
 
 ## Part P — Multiple boxplots
 ```{r}
-boxplot(state_data[, c("Population", "Income", "Illiteracy", "Life.Exp")],
+boxplot(state_data[, c("Population", "Income", "Illiteracy", "Life Exp")],
         main = "Socio-economic Indicators across States")
 ```
 **Reflect:** Which variable shows the most variability? The least?
@@ -655,13 +655,13 @@ par(mfrow = c(3,3), mar = c(2,5,2,1), las = 1, bty = "n")
 
 plot(state_data$Population)
 plot(state_data$Income, state_data$Illiteracy)
-plot(state_data$Life.Exp, type = "c")
-plot(state_data$Life.Exp, type = "s")
-plot(state_data$Life.Exp, type = "h")
+plot(state_data$`Life Exp`, type = "c")
+plot(state_data$`Life Exp`, type = "s")
+plot(state_data$`Life Exp`, type = "h")
 barplot(state_data$Income, main = "Income levels", col = "blue", horiz = TRUE)
 hist(state_data$Murder)
-boxplot(state_data$HS.Grad)
-boxplot(state_data[, c("Population", "Income", "Illiteracy", "Life.Exp")],
+boxplot(state_data$`HS Grad`)
+boxplot(state_data[, c("Population", "Income", "Illiteracy", "Life Exp")],
         main = "Multiple Box plots")
 ```
 **Reflect:** Which plots are most useful for policy discussions? Which are least useful?

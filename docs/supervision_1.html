@@ -1,0 +1,2020 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.32">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>2&nbsp; Supervision 1 – Cambridge Supervisions</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./index.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-364982630eef5352dd1537128a8ed5cb.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./supervision_1.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Supervision 1</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Cambridge Supervisions</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Cambridge Supervisions</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./supervision_1.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Supervision 1</span></span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#lab-1-r-certification-linkedin-learning" id="toc-lab-1-r-certification-linkedin-learning" class="nav-link active" data-scroll-target="#lab-1-r-certification-linkedin-learning"><span class="header-section-number">2.1</span> # Lab 1 — R Certification (LinkedIn Learning)</a></li>
+  <li><a href="#learning-outcomes" id="toc-learning-outcomes" class="nav-link" data-scroll-target="#learning-outcomes"><span class="header-section-number">2.2</span> Learning outcomes</a></li>
+  <li><a href="#prerequisites" id="toc-prerequisites" class="nav-link" data-scroll-target="#prerequisites"><span class="header-section-number">2.3</span> Prerequisites</a></li>
+  <li><a href="#part-a-firsttime-access-to-linkedin-learning" id="toc-part-a-firsttime-access-to-linkedin-learning" class="nav-link" data-scroll-target="#part-a-firsttime-access-to-linkedin-learning"><span class="header-section-number">2.4</span> Part A — First‑time access to LinkedIn Learning</a></li>
+  <li><a href="#part-b-choose-a-beginner-r-certificate" id="toc-part-b-choose-a-beginner-r-certificate" class="nav-link" data-scroll-target="#part-b-choose-a-beginner-r-certificate"><span class="header-section-number">2.5</span> Part B — Choose a beginner R certificate</a></li>
+  <li><a href="#part-c-complete-the-course-effectively" id="toc-part-c-complete-the-course-effectively" class="nav-link" data-scroll-target="#part-c-complete-the-course-effectively"><span class="header-section-number">2.6</span> Part C — Complete the course effectively</a></li>
+  <li><a href="#part-d-export-and-submit-your-certificate" id="toc-part-d-export-and-submit-your-certificate" class="nav-link" data-scroll-target="#part-d-export-and-submit-your-certificate"><span class="header-section-number">2.7</span> Part D — Export and submit your certificate</a></li>
+  <li><a href="#part-e-add-to-your-linkedin-profile-optional-but-recommended" id="toc-part-e-add-to-your-linkedin-profile-optional-but-recommended" class="nav-link" data-scroll-target="#part-e-add-to-your-linkedin-profile-optional-but-recommended"><span class="header-section-number">2.8</span> Part E — Add to your LinkedIn profile (optional but recommended)</a></li>
+  <li><a href="#part-f-rstudio-techcheck-for-upcoming-labs" id="toc-part-f-rstudio-techcheck-for-upcoming-labs" class="nav-link" data-scroll-target="#part-f-rstudio-techcheck-for-upcoming-labs"><span class="header-section-number">2.9</span> Part F — RStudio tech‑check for upcoming labs</a></li>
+  <li><a href="#best-practices" id="toc-best-practices" class="nav-link" data-scroll-target="#best-practices"><span class="header-section-number">2.10</span> Best practices</a></li>
+  <li><a href="#suggested-answers-indicative" id="toc-suggested-answers-indicative" class="nav-link" data-scroll-target="#suggested-answers-indicative"><span class="header-section-number">2.11</span> Suggested Answers (indicative)</a></li>
+  <li><a href="#lab-2-interactive-r-learning-r4ds.tutorials-learnr-swirl" id="toc-lab-2-interactive-r-learning-r4ds.tutorials-learnr-swirl" class="nav-link" data-scroll-target="#lab-2-interactive-r-learning-r4ds.tutorials-learnr-swirl"><span class="header-section-number">3</span> Lab 2 — Interactive R Learning (r4ds.tutorials + learnr + swirl)</a>
+  <ul class="collapse">
+  <li><a href="#learning-outcomes-1" id="toc-learning-outcomes-1" class="nav-link" data-scroll-target="#learning-outcomes-1"><span class="header-section-number">3.1</span> Learning outcomes</a></li>
+  <li><a href="#prerequisites-1" id="toc-prerequisites-1" class="nav-link" data-scroll-target="#prerequisites-1"><span class="header-section-number">3.2</span> Prerequisites</a></li>
+  <li><a href="#part-a-r4ds.tutorials-01-data-visualization" id="toc-part-a-r4ds.tutorials-01-data-visualization" class="nav-link" data-scroll-target="#part-a-r4ds.tutorials-01-data-visualization"><span class="header-section-number">3.3</span> Part A — r4ds.tutorials: <em>01-data-visualization</em></a></li>
+  <li><a href="#part-b-learnr-ex-data-basics" id="toc-part-b-learnr-ex-data-basics" class="nav-link" data-scroll-target="#part-b-learnr-ex-data-basics"><span class="header-section-number">3.4</span> Part B — learnr: <em>ex-data-basics</em></a></li>
+  <li><a href="#part-c-swirl-consolebased" id="toc-part-c-swirl-consolebased" class="nav-link" data-scroll-target="#part-c-swirl-consolebased"><span class="header-section-number">3.5</span> Part C — swirl (console‑based)</a></li>
+  <li><a href="#part-d-mini-practice-510-min" id="toc-part-d-mini-practice-510-min" class="nav-link" data-scroll-target="#part-d-mini-practice-510-min"><span class="header-section-number">3.6</span> Part D — Mini practice (5–10 min)</a></li>
+  <li><a href="#best-practices-1" id="toc-best-practices-1" class="nav-link" data-scroll-target="#best-practices-1"><span class="header-section-number">3.7</span> Best practices</a></li>
+  <li><a href="#suggested-answers-indicative-1" id="toc-suggested-answers-indicative-1" class="nav-link" data-scroll-target="#suggested-answers-indicative-1"><span class="header-section-number">3.8</span> Suggested Answers (indicative)</a></li>
+  </ul></li>
+  <li><a href="#lab-3-uploading-excel-csv-files-to-r-pipr" id="toc-lab-3-uploading-excel-csv-files-to-r-pipr" class="nav-link" data-scroll-target="#lab-3-uploading-excel-csv-files-to-r-pipr"><span class="header-section-number">4</span> Lab 3 — Uploading Excel &amp; CSV Files to R (PIPR)</a>
+  <ul class="collapse">
+  <li><a href="#learning-outcomes-2" id="toc-learning-outcomes-2" class="nav-link" data-scroll-target="#learning-outcomes-2"><span class="header-section-number">4.1</span> Learning outcomes</a></li>
+  <li><a href="#prerequisites-2" id="toc-prerequisites-2" class="nav-link" data-scroll-target="#prerequisites-2"><span class="header-section-number">4.2</span> Prerequisites</a></li>
+  <li><a href="#part-a-get-pipr-monthly-from-ons-manual-steps" id="toc-part-a-get-pipr-monthly-from-ons-manual-steps" class="nav-link" data-scroll-target="#part-a-get-pipr-monthly-from-ons-manual-steps"><span class="header-section-number">4.3</span> Part A — Get PIPR monthly from ONS (manual steps)</a></li>
+  <li><a href="#part-b-import-excel-via-code-reproducible" id="toc-part-b-import-excel-via-code-reproducible" class="nav-link" data-scroll-target="#part-b-import-excel-via-code-reproducible"><span class="header-section-number">4.4</span> Part B — Import Excel via code (reproducible)</a></li>
+  <li><a href="#part-c-import-via-rstudio-ui-reference" id="toc-part-c-import-via-rstudio-ui-reference" class="nav-link" data-scroll-target="#part-c-import-via-rstudio-ui-reference"><span class="header-section-number">4.5</span> Part C — Import via RStudio UI (reference)</a></li>
+  <li><a href="#part-d-basic-timeseries-line-plot-annual-change" id="toc-part-d-basic-timeseries-line-plot-annual-change" class="nav-link" data-scroll-target="#part-d-basic-timeseries-line-plot-annual-change"><span class="header-section-number">4.6</span> Part D — Basic time‑series line plot (annual % change)</a></li>
+  <li><a href="#part-e-blue-reference-line-at-2-inflation-target-customise" id="toc-part-e-blue-reference-line-at-2-inflation-target-customise" class="nav-link" data-scroll-target="#part-e-blue-reference-line-at-2-inflation-target-customise"><span class="header-section-number">4.7</span> Part E — Blue reference line at 2% (Inflation Target) &amp; customise</a></li>
+  <li><a href="#part-f-import-pipr-as-csv-alternative" id="toc-part-f-import-pipr-as-csv-alternative" class="nav-link" data-scroll-target="#part-f-import-pipr-as-csv-alternative"><span class="header-section-number">4.8</span> Part F — Import PIPR as CSV (alternative)</a></li>
+  <li><a href="#part-g-compare-uk-with-a-region-optional" id="toc-part-g-compare-uk-with-a-region-optional" class="nav-link" data-scroll-target="#part-g-compare-uk-with-a-region-optional"><span class="header-section-number">4.9</span> Part G — Compare UK with a region (optional)</a></li>
+  <li><a href="#part-h-help-pages-and-plotting-extras" id="toc-part-h-help-pages-and-plotting-extras" class="nav-link" data-scroll-target="#part-h-help-pages-and-plotting-extras"><span class="header-section-number">4.10</span> Part H — Help pages and plotting extras</a></li>
+  <li><a href="#part-i-optional-principles-of-econometrics-data" id="toc-part-i-optional-principles-of-econometrics-data" class="nav-link" data-scroll-target="#part-i-optional-principles-of-econometrics-data"><span class="header-section-number">4.11</span> Part I — (Optional) Principles of Econometrics data</a></li>
+  <li><a href="#best-practices-2" id="toc-best-practices-2" class="nav-link" data-scroll-target="#best-practices-2"><span class="header-section-number">4.12</span> Best practices</a></li>
+  <li><a href="#further-resources" id="toc-further-resources" class="nav-link" data-scroll-target="#further-resources"><span class="header-section-number">4.13</span> Further resources</a></li>
+  <li><a href="#suggested-answers-to-reflection-questions" id="toc-suggested-answers-to-reflection-questions" class="nav-link" data-scroll-target="#suggested-answers-to-reflection-questions"><span class="header-section-number">4.14</span> Suggested Answers to Reflection Questions</a></li>
+  </ul></li>
+  <li><a href="#lab-4-data-visualisation" id="toc-lab-4-data-visualisation" class="nav-link" data-scroll-target="#lab-4-data-visualisation"><span class="header-section-number">5</span> Lab 4 — Data Visualisation</a>
+  <ul class="collapse">
+  <li><a href="#learning-outcomes-3" id="toc-learning-outcomes-3" class="nav-link" data-scroll-target="#learning-outcomes-3"><span class="header-section-number">5.1</span> Learning outcomes</a></li>
+  <li><a href="#prerequisites-3" id="toc-prerequisites-3" class="nav-link" data-scroll-target="#prerequisites-3"><span class="header-section-number">5.2</span> Prerequisites</a></li>
+  <li><a href="#part-a-load-dataset" id="toc-part-a-load-dataset" class="nav-link" data-scroll-target="#part-a-load-dataset"><span class="header-section-number">5.3</span> Part A — Load dataset</a></li>
+  <li><a href="#part-b-data-exploration" id="toc-part-b-data-exploration" class="nav-link" data-scroll-target="#part-b-data-exploration"><span class="header-section-number">5.4</span> Part B — Data exploration</a></li>
+  <li><a href="#part-c-beginning-and-end-of-the-dataset" id="toc-part-c-beginning-and-end-of-the-dataset" class="nav-link" data-scroll-target="#part-c-beginning-and-end-of-the-dataset"><span class="header-section-number">5.5</span> Part C — Beginning and end of the dataset</a></li>
+  <li><a href="#part-d-descriptive-statistics" id="toc-part-d-descriptive-statistics" class="nav-link" data-scroll-target="#part-d-descriptive-statistics"><span class="header-section-number">5.6</span> Part D — Descriptive statistics</a></li>
+  <li><a href="#part-e-graphics-package" id="toc-part-e-graphics-package" class="nav-link" data-scroll-target="#part-e-graphics-package"><span class="header-section-number">5.7</span> Part E — Graphics package</a></li>
+  <li><a href="#part-f-plotting-a-single-column" id="toc-part-f-plotting-a-single-column" class="nav-link" data-scroll-target="#part-f-plotting-a-single-column"><span class="header-section-number">5.8</span> Part F — Plotting a single column</a></li>
+  <li><a href="#part-g-scatterplots" id="toc-part-g-scatterplots" class="nav-link" data-scroll-target="#part-g-scatterplots"><span class="header-section-number">5.9</span> Part G — Scatterplots</a></li>
+  <li><a href="#part-h-entire-dataset-plot" id="toc-part-h-entire-dataset-plot" class="nav-link" data-scroll-target="#part-h-entire-dataset-plot"><span class="header-section-number">5.10</span> Part H — Entire dataset plot</a></li>
+  <li><a href="#part-i-points-and-lines" id="toc-part-i-points-and-lines" class="nav-link" data-scroll-target="#part-i-points-and-lines"><span class="header-section-number">5.11</span> Part I — Points and lines</a></li>
+  <li><a href="#part-j-help" id="toc-part-j-help" class="nav-link" data-scroll-target="#part-j-help"><span class="header-section-number">5.12</span> Part J — Help</a></li>
+  <li><a href="#part-k-labels-and-titles" id="toc-part-k-labels-and-titles" class="nav-link" data-scroll-target="#part-k-labels-and-titles"><span class="header-section-number">5.13</span> Part K — Labels and titles</a></li>
+  <li><a href="#part-l-horizontal-bar-plot" id="toc-part-l-horizontal-bar-plot" class="nav-link" data-scroll-target="#part-l-horizontal-bar-plot"><span class="header-section-number">5.14</span> Part L — Horizontal bar plot</a></li>
+  <li><a href="#part-m-vertical-bar-plot" id="toc-part-m-vertical-bar-plot" class="nav-link" data-scroll-target="#part-m-vertical-bar-plot"><span class="header-section-number">5.15</span> Part M — Vertical bar plot</a></li>
+  <li><a href="#part-n-histograms" id="toc-part-n-histograms" class="nav-link" data-scroll-target="#part-n-histograms"><span class="header-section-number">5.16</span> Part N — Histograms</a></li>
+  <li><a href="#part-o-boxplots" id="toc-part-o-boxplots" class="nav-link" data-scroll-target="#part-o-boxplots"><span class="header-section-number">5.17</span> Part O — Boxplots</a></li>
+  <li><a href="#part-p-multiple-boxplots" id="toc-part-p-multiple-boxplots" class="nav-link" data-scroll-target="#part-p-multiple-boxplots"><span class="header-section-number">5.18</span> Part P — Multiple boxplots</a></li>
+  <li><a href="#part-q-grid-of-charts" id="toc-part-q-grid-of-charts" class="nav-link" data-scroll-target="#part-q-grid-of-charts"><span class="header-section-number">5.19</span> Part Q — Grid of charts</a></li>
+  <li><a href="#best-practices-3" id="toc-best-practices-3" class="nav-link" data-scroll-target="#best-practices-3"><span class="header-section-number">5.20</span> Best practices</a></li>
+  <li><a href="#further-visualisation-packages" id="toc-further-visualisation-packages" class="nav-link" data-scroll-target="#further-visualisation-packages"><span class="header-section-number">5.21</span> Further visualisation packages</a></li>
+  <li><a href="#suggested-answers-to-reflection-questions-1" id="toc-suggested-answers-to-reflection-questions-1" class="nav-link" data-scroll-target="#suggested-answers-to-reflection-questions-1"><span class="header-section-number">5.22</span> Suggested Answers to Reflection Questions</a></li>
+  <li><a href="#suggested-answers-to-reflection-questions-2" id="toc-suggested-answers-to-reflection-questions-2" class="nav-link" data-scroll-target="#suggested-answers-to-reflection-questions-2"><span class="header-section-number">5.23</span> Suggested Answers to Reflection Questions</a>
+  <ul class="collapse">
+  <li><a href="#part-a-load-dataset-1" id="toc-part-a-load-dataset-1" class="nav-link" data-scroll-target="#part-a-load-dataset-1"><span class="header-section-number">5.23.1</span> Part A — Load dataset</a></li>
+  <li><a href="#part-b-data-exploration-1" id="toc-part-b-data-exploration-1" class="nav-link" data-scroll-target="#part-b-data-exploration-1"><span class="header-section-number">5.23.2</span> Part B — Data exploration</a></li>
+  <li><a href="#part-c-headtail" id="toc-part-c-headtail" class="nav-link" data-scroll-target="#part-c-headtail"><span class="header-section-number">5.23.3</span> Part C — Head/Tail</a></li>
+  <li><a href="#part-d-descriptive-statistics-1" id="toc-part-d-descriptive-statistics-1" class="nav-link" data-scroll-target="#part-d-descriptive-statistics-1"><span class="header-section-number">5.23.4</span> Part D — Descriptive statistics</a></li>
+  <li><a href="#part-e-graphics-help" id="toc-part-e-graphics-help" class="nav-link" data-scroll-target="#part-e-graphics-help"><span class="header-section-number">5.23.5</span> Part E — Graphics help</a></li>
+  <li><a href="#part-f-single-column-plot-population" id="toc-part-f-single-column-plot-population" class="nav-link" data-scroll-target="#part-f-single-column-plot-population"><span class="header-section-number">5.23.6</span> Part F — Single column plot (Population)</a></li>
+  <li><a href="#part-g-scatter-income-vs-illiteracy" id="toc-part-g-scatter-income-vs-illiteracy" class="nav-link" data-scroll-target="#part-g-scatter-income-vs-illiteracy"><span class="header-section-number">5.23.7</span> Part G — Scatter (Income vs Illiteracy)</a></li>
+  <li><a href="#part-h-pairs-of-entire-dataset" id="toc-part-h-pairs-of-entire-dataset" class="nav-link" data-scroll-target="#part-h-pairs-of-entire-dataset"><span class="header-section-number">5.23.8</span> Part H — <code>pairs()</code> of entire dataset</a></li>
+  <li><a href="#part-i-types-b-vs-h-life.exp" id="toc-part-i-types-b-vs-h-life.exp" class="nav-link" data-scroll-target="#part-i-types-b-vs-h-life.exp"><span class="header-section-number">5.23.9</span> Part I — Types “b” vs “h” (Life.Exp)</a></li>
+  <li><a href="#part-j-help-1" id="toc-part-j-help-1" class="nav-link" data-scroll-target="#part-j-help-1"><span class="header-section-number">5.23.10</span> Part J — Help</a></li>
+  <li><a href="#part-k-labels-and-titles-income" id="toc-part-k-labels-and-titles-income" class="nav-link" data-scroll-target="#part-k-labels-and-titles-income"><span class="header-section-number">5.23.11</span> Part K — Labels and titles (Income)</a></li>
+  <li><a href="#part-l-horizontal-bar-plot-murder" id="toc-part-l-horizontal-bar-plot-murder" class="nav-link" data-scroll-target="#part-l-horizontal-bar-plot-murder"><span class="header-section-number">5.23.12</span> Part L — Horizontal bar plot (Murder)</a></li>
+  <li><a href="#part-m-vertical-bar-plot-illiteracy" id="toc-part-m-vertical-bar-plot-illiteracy" class="nav-link" data-scroll-target="#part-m-vertical-bar-plot-illiteracy"><span class="header-section-number">5.23.13</span> Part M — Vertical bar plot (Illiteracy)</a></li>
+  <li><a href="#part-n-histogram-income" id="toc-part-n-histogram-income" class="nav-link" data-scroll-target="#part-n-histogram-income"><span class="header-section-number">5.23.14</span> Part N — Histogram (Income)</a></li>
+  <li><a href="#part-o-boxplot-life.exp" id="toc-part-o-boxplot-life.exp" class="nav-link" data-scroll-target="#part-o-boxplot-life.exp"><span class="header-section-number">5.23.15</span> Part O — Boxplot (Life.Exp)</a></li>
+  <li><a href="#part-p-multiple-boxplots-1" id="toc-part-p-multiple-boxplots-1" class="nav-link" data-scroll-target="#part-p-multiple-boxplots-1"><span class="header-section-number">5.23.16</span> Part P — Multiple boxplots</a></li>
+  <li><a href="#part-q-grid-of-charts-1" id="toc-part-q-grid-of-charts-1" class="nav-link" data-scroll-target="#part-q-grid-of-charts-1"><span class="header-section-number">5.23.17</span> Part Q — Grid of charts</a></li>
+  <li><a href="#best-practices-summaries" id="toc-best-practices-summaries" class="nav-link" data-scroll-target="#best-practices-summaries"><span class="header-section-number">5.23.18</span> Best practices — summaries</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#lab-5-using-github-copilot-in-rstudio" id="toc-lab-5-using-github-copilot-in-rstudio" class="nav-link" data-scroll-target="#lab-5-using-github-copilot-in-rstudio"><span class="header-section-number">6</span> Lab 5 — Using GitHub Copilot in RStudio</a>
+  <ul class="collapse">
+  <li><a href="#goal" id="toc-goal" class="nav-link" data-scroll-target="#goal"><span class="header-section-number">6.1</span> Goal</a></li>
+  <li><a href="#learning-outcomes-4" id="toc-learning-outcomes-4" class="nav-link" data-scroll-target="#learning-outcomes-4"><span class="header-section-number">6.2</span> Learning outcomes</a></li>
+  <li><a href="#prerequisites-4" id="toc-prerequisites-4" class="nav-link" data-scroll-target="#prerequisites-4"><span class="header-section-number">6.3</span> Prerequisites</a></li>
+  <li><a href="#part-a-set-up-copilot-in-rstudio-1015-min" id="toc-part-a-set-up-copilot-in-rstudio-1015-min" class="nav-link" data-scroll-target="#part-a-set-up-copilot-in-rstudio-1015-min"><span class="header-section-number">6.4</span> Part A — Set up Copilot in RStudio (10–15 min)</a>
+  <ul class="collapse">
+  <li><a href="#reflection-a" id="toc-reflection-a" class="nav-link" data-scroll-target="#reflection-a"><span class="header-section-number">6.4.1</span> Reflection A</a></li>
+  </ul></li>
+  <li><a href="#part-b-first-suggestions-with-ggplot2-20-min" id="toc-part-b-first-suggestions-with-ggplot2-20-min" class="nav-link" data-scroll-target="#part-b-first-suggestions-with-ggplot2-20-min"><span class="header-section-number">6.5</span> Part B — First suggestions with ggplot2 (20 min)</a>
+  <ul class="collapse">
+  <li><a href="#mini-exercises" id="toc-mini-exercises" class="nav-link" data-scroll-target="#mini-exercises"><span class="header-section-number">6.5.1</span> Mini-exercises</a></li>
+  <li><a href="#reflection-b" id="toc-reflection-b" class="nav-link" data-scroll-target="#reflection-b"><span class="header-section-number">6.5.2</span> Reflection B</a></li>
+  </ul></li>
+  <li><a href="#part-c-comment-first-prompting-for-histograms-15-min" id="toc-part-c-comment-first-prompting-for-histograms-15-min" class="nav-link" data-scroll-target="#part-c-comment-first-prompting-for-histograms-15-min"><span class="header-section-number">6.6</span> Part C — Comment-first prompting for histograms (15 min)</a>
+  <ul class="collapse">
+  <li><a href="#reflection-c" id="toc-reflection-c" class="nav-link" data-scroll-target="#reflection-c"><span class="header-section-number">6.6.1</span> Reflection C</a></li>
+  </ul></li>
+  <li><a href="#part-d-loading-local-data-safely-1015-min" id="toc-part-d-loading-local-data-safely-1015-min" class="nav-link" data-scroll-target="#part-d-loading-local-data-safely-1015-min"><span class="header-section-number">6.7</span> Part D — Loading local data safely (10–15 min)</a>
+  <ul class="collapse">
+  <li><a href="#reflection-d" id="toc-reflection-d" class="nav-link" data-scroll-target="#reflection-d"><span class="header-section-number">6.7.1</span> Reflection D</a></li>
+  </ul></li>
+  <li><a href="#part-e-boxplots-15-min" id="toc-part-e-boxplots-15-min" class="nav-link" data-scroll-target="#part-e-boxplots-15-min"><span class="header-section-number">6.8</span> Part E — Boxplots (15 min)</a>
+  <ul class="collapse">
+  <li><a href="#extension-e" id="toc-extension-e" class="nav-link" data-scroll-target="#extension-e"><span class="header-section-number">6.8.1</span> Extension E</a></li>
+  </ul></li>
+  <li><a href="#part-f-best-practices" id="toc-part-f-best-practices" class="nav-link" data-scroll-target="#part-f-best-practices"><span class="header-section-number">6.9</span> Part F — Best practices</a></li>
+  <li><a href="#part-g-check-off-submission" id="toc-part-g-check-off-submission" class="nav-link" data-scroll-target="#part-g-check-off-submission"><span class="header-section-number">6.10</span> Part G — Check-off &amp; submission</a></li>
+  <li><a href="#ta-rubric" id="toc-ta-rubric" class="nav-link" data-scroll-target="#ta-rubric"><span class="header-section-number">6.11</span> TA rubric</a></li>
+  <li><a href="#troubleshooting" id="toc-troubleshooting" class="nav-link" data-scroll-target="#troubleshooting"><span class="header-section-number">6.12</span> Troubleshooting</a></li>
+  <li><a href="#further-practice" id="toc-further-practice" class="nav-link" data-scroll-target="#further-practice"><span class="header-section-number">6.13</span> Further practice</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Supervision 1</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="lab-1-r-certification-linkedin-learning" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="lab-1-r-certification-linkedin-learning"><span class="header-section-number">2.1</span> # Lab 1 — R Certification (LinkedIn Learning)</h2>
+</section>
+<section id="learning-outcomes" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="learning-outcomes"><span class="header-section-number">2.2</span> Learning outcomes</h2>
+<p>By the end of this lab you will be able to: 1. Access <strong>LinkedIn Learning</strong> via the University’s UIS portal and sign in with SSO. 2. Select a <strong>beginner‑level R course/learning path</strong> that issues a certificate of completion. 3. Complete the course and <strong>export your certificate</strong> (PDF/share link). 4. Add the certificate to your <strong>CV/LinkedIn profile</strong>. 5. Run a short <strong>tech‑check in RStudio</strong> to prepare for Labs 2–4.</p>
+<hr>
+</section>
+<section id="prerequisites" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="prerequisites"><span class="header-section-number">2.3</span> Prerequisites</h2>
+<ul>
+<li>University credentials for LinkedIn Learning access.<br>
+</li>
+<li>R and RStudio installed (you’ll run a small code check).<br>
+</li>
+<li>Stable internet connection.</li>
+</ul>
+<hr>
+</section>
+<section id="part-a-firsttime-access-to-linkedin-learning" class="level2" data-number="2.4">
+<h2 data-number="2.4" class="anchored" data-anchor-id="part-a-firsttime-access-to-linkedin-learning"><span class="header-section-number">2.4</span> Part A — First‑time access to LinkedIn Learning</h2>
+<ol type="1">
+<li>Follow the UIS guidance: <strong>help.uis.cam.ac.uk/service/support/training/linkedin-learning-info</strong> (opens the official instructions).<br>
+</li>
+<li>Choose <strong>Sign in</strong> with your University account (SSO). If prompted, connect to an existing LinkedIn profile (optional, but helpful for saving certificates).</li>
+</ol>
+<p><strong>Reflect:</strong> What are the benefits/risks of linking your personal LinkedIn account to the institutional LinkedIn Learning access?</p>
+<hr>
+</section>
+<section id="part-b-choose-a-beginner-r-certificate" class="level2" data-number="2.5">
+<h2 data-number="2.5" class="anchored" data-anchor-id="part-b-choose-a-beginner-r-certificate"><span class="header-section-number">2.5</span> Part B — Choose a beginner R certificate</h2>
+<ol type="1">
+<li>In LinkedIn Learning, search for <strong>“R Programming”</strong> or <strong>“R for Data Analysis”</strong>.<br>
+</li>
+<li>Pick a <strong>Beginner</strong> course or a <strong>Learning Path</strong> that issues a certificate upon completion.<br>
+</li>
+<li>Skim the syllabus; confirm it covers: R basics (objects, vectors), data frames, importing data, and simple plots.</li>
+</ol>
+<p><strong>Tip:</strong> Short beginner certificates often take only a few hours. Pick one you can finish this week.</p>
+<p><strong>Reflect:</strong> Which topics in your chosen course align best with Planning, Growth &amp; Regeneration (e.g., data import, plotting socio‑economic indicators)?</p>
+<hr>
+</section>
+<section id="part-c-complete-the-course-effectively" class="level2" data-number="2.6">
+<h2 data-number="2.6" class="anchored" data-anchor-id="part-c-complete-the-course-effectively"><span class="header-section-number">2.6</span> Part C — Complete the course effectively</h2>
+<ul>
+<li>Turn on <strong>captions</strong> and adjust playback speed for focus.<br>
+</li>
+<li>Download <strong>exercise files</strong> (if offered) and practice in RStudio.<br>
+</li>
+<li>Take brief notes; collect 3–5 commands you didn’t know before.<br>
+</li>
+<li>Mark lessons <strong>Complete</strong> as you go; attempt embedded quizzes.</li>
+</ul>
+<p><strong>Reflect:</strong> List three new R commands you learned and one common error you corrected.</p>
+<hr>
+</section>
+<section id="part-d-export-and-submit-your-certificate" class="level2" data-number="2.7">
+<h2 data-number="2.7" class="anchored" data-anchor-id="part-d-export-and-submit-your-certificate"><span class="header-section-number">2.7</span> Part D — Export and submit your certificate</h2>
+<ol type="1">
+<li>After finishing, open the course page → <strong>Certificate</strong> → <strong>Download PDF</strong> (or <strong>Copy share link</strong>).<br>
+</li>
+<li>Save as <code>data/yourname_r_certificate.pdf</code>.<br>
+</li>
+<li>Submit the PDF to the LMS (or share link as instructed in your module).</li>
+</ol>
+<p><strong>Reflect:</strong> Where will you showcase this credential (CV, LinkedIn, portfolio)? Why?</p>
+<hr>
+</section>
+<section id="part-e-add-to-your-linkedin-profile-optional-but-recommended" class="level2" data-number="2.8">
+<h2 data-number="2.8" class="anchored" data-anchor-id="part-e-add-to-your-linkedin-profile-optional-but-recommended"><span class="header-section-number">2.8</span> Part E — Add to your LinkedIn profile (optional but recommended)</h2>
+<ol type="1">
+<li>Open your LinkedIn profile → <strong>Add profile section</strong> → <strong>Recommended</strong> → <strong>Licenses &amp; Certifications</strong>.<br>
+</li>
+<li><strong>Name:</strong> Course title. <strong>Issuing organization:</strong> LinkedIn Learning. <strong>Credential URL:</strong> paste the certificate share link (if available).<br>
+</li>
+<li>Save.</li>
+</ol>
+<p><strong>Reflect:</strong> How might this certification support applications for placements or research roles in Land Economy?</p>
+<hr>
+</section>
+<section id="part-f-rstudio-techcheck-for-upcoming-labs" class="level2" data-number="2.9">
+<h2 data-number="2.9" class="anchored" data-anchor-id="part-f-rstudio-techcheck-for-upcoming-labs"><span class="header-section-number">2.9</span> Part F — RStudio tech‑check for upcoming labs</h2>
+<p>Run these in RStudio to ensure you’re ready for Labs 2–4.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>R.version.string</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "R version 4.4.2 (2024-10-31 ucrt)"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sessionInfo</span>()<span class="sc">$</span>running</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Windows 10 x64 (build 19045)"</code></pre>
+</div>
+</div>
+<p>Install key packages (run once):</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="fu">c</span>(<span class="st">"learnr"</span>, <span class="st">"r4ds.tutorials"</span>, <span class="st">"readr"</span>, <span class="st">"readxl"</span>, <span class="st">"ggplot2"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Verify they load and basic plotting works:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'ggplot2' was built under R version 4.4.3</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, <span class="at">y =</span> (<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>)<span class="sc">^</span><span class="fl">0.5</span>)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(df<span class="sc">$</span>x, df<span class="sc">$</span>y, <span class="at">type =</span> <span class="st">"l"</span>, <span class="at">main =</span> <span class="st">"Tech‑check: base plot"</span>, <span class="at">xlab =</span> <span class="st">"x"</span>, <span class="at">ylab =</span> <span class="st">"sqrt(x)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="supervision_1_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><strong>Reflect:</strong> Did everything install and run without warnings? Capture any errors so we can fix them in class.</p>
+<hr>
+</section>
+<section id="best-practices" class="level2" data-number="2.10">
+<h2 data-number="2.10" class="anchored" data-anchor-id="best-practices"><span class="header-section-number">2.10</span> Best practices</h2>
+<ul>
+<li><strong>Use institutional access</strong> so your progress and certificates are recognized and free to you.<br>
+</li>
+<li><strong>Timebox</strong> study sessions (e.g., 30–45 min focus blocks).<br>
+</li>
+<li><strong>Practice while you watch</strong>—replicate examples in RStudio, don’t just watch videos.<br>
+</li>
+<li>Keep a <strong>snippets</strong> file (your personal cheat‑sheet) with commands you’ll reuse in Labs 3–4.<br>
+</li>
+<li>Store all artifacts (notes, PDFs) in your course project folder for quick reference.</li>
+</ul>
+<hr>
+</section>
+<section id="suggested-answers-indicative" class="level2" data-number="2.11">
+<h2 data-number="2.11" class="anchored" data-anchor-id="suggested-answers-indicative"><span class="header-section-number">2.11</span> Suggested Answers (indicative)</h2>
+<ul>
+<li><strong>Part A:</strong> Linking accounts preserves learning history and makes sharing easy; a potential risk is mixing personal and institutional data—use privacy settings and review permissions.<br>
+</li>
+<li><strong>Part B:</strong> Data import and plotting directly support planning/regeneration tasks (e.g., reading ONS data, visualising indicators).<br>
+</li>
+<li><strong>Part C:</strong> Example new commands: <code>readr::read_csv()</code>, <code>dplyr::mutate()</code>, <code>ggplot2::geom_line()</code>; common error: forgetting to load a package with <code>library()</code>.<br>
+</li>
+<li><strong>Part D:</strong> Showcase on CV and LinkedIn; it signals foundational competency in R.<br>
+</li>
+<li><strong>Part E:</strong> Certifications can strengthen internship or RA applications by evidencing practical skills.<br>
+</li>
+<li><strong>Part F:</strong> If installs fail, note the exact error message; we’ll address proxies, permissions, or missing system libraries next lab.</li>
+</ul>
+<hr>
+<p><em>End of Lab 1</em></p>
+</section>
+<section id="lab-2-interactive-r-learning-r4ds.tutorials-learnr-swirl" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> Lab 2 — Interactive R Learning (r4ds.tutorials + learnr + swirl)</h1>
+<hr>
+<section id="learning-outcomes-1" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="learning-outcomes-1"><span class="header-section-number">3.1</span> Learning outcomes</h2>
+<p>By the end of this lab you will be able to: 1. Launch and complete the <strong>r4ds.tutorials</strong> lesson <strong>01-data-visualization</strong> in RStudio. 2. Run a built‑in <strong>learnr</strong> tutorial (<strong>ex-data-basics</strong>) and submit answers in an interactive pane. 3. Use <strong>swirl</strong> from the Console (install a course, resume lessons, check progress). 4. Compare the strengths of r4ds.learnr tutorials vs.&nbsp;swirl for your own study plan.</p>
+<hr>
+</section>
+<section id="prerequisites-1" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="prerequisites-1"><span class="header-section-number">3.2</span> Prerequisites</h2>
+<ul>
+<li>R (≥ 4.1) and RStudio.</li>
+<li>Packages (install once):</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="fu">c</span>(<span class="st">"learnr"</span>, <span class="st">"r4ds.tutorials"</span>, <span class="st">"swirl"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<blockquote class="blockquote">
+<p>Tip: If tutorials don’t appear in RStudio’s <strong>Tutorial</strong> tab after installation, restart R.</p>
+</blockquote>
+<hr>
+</section>
+<section id="part-a-r4ds.tutorials-01-data-visualization" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="part-a-r4ds.tutorials-01-data-visualization"><span class="header-section-number">3.3</span> Part A — r4ds.tutorials: <em>01-data-visualization</em></h2>
+<p>This runs as an interactive tutorial in RStudio’s <strong>Tutorial</strong> pane.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Option 1: via code</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>learnr<span class="sc">::</span><span class="fu">run_tutorial</span>(<span class="st">"01-data-visualization"</span>, <span class="at">package =</span> <span class="st">"r4ds.tutorials"</span>)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Option 2: discover tutorials installed on your system</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>learnr<span class="sc">::</span><span class="fu">available_tutorials</span>(<span class="st">"r4ds.tutorials"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>Do this:</strong> 1. Start and complete the tutorial. Use the <em>Show in New Window</em> icon if the pane is small. 2. When you reach the <strong>Submit</strong> page, follow its instructions (we won’t collect submissions in this lab, just finish to the end).</p>
+<p><strong>Reflect:</strong> - What’s the difference between <strong>aesthetics</strong> (e.g., <code>aes(x, y, color)</code>) and <strong>geoms</strong> (e.g., <code>geom_point()</code>, <code>geom_line()</code>)? - Name two plot improvements you used (labels, theme, scales, facets).</p>
+<hr>
+</section>
+<section id="part-b-learnr-ex-data-basics" class="level2" data-number="3.4">
+<h2 data-number="3.4" class="anchored" data-anchor-id="part-b-learnr-ex-data-basics"><span class="header-section-number">3.4</span> Part B — learnr: <em>ex-data-basics</em></h2>
+<p>This is a short core tutorial bundled with <strong>learnr</strong>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>learnr<span class="sc">::</span><span class="fu">run_tutorial</span>(<span class="st">"ex-data-basics"</span>, <span class="at">package =</span> <span class="st">"learnr"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>Do this:</strong> 1. Complete all exercises; click <strong>Run</strong> and <strong>Submit Answer</strong> for each. 2. If you get stuck, open the <strong>Hint</strong> dropdowns.</p>
+<p><strong>Reflect:</strong> - Which data types/structures did you manipulate (vectors, data frames)? - One mistake you made and how the tutorial feedback helped you fix it.</p>
+<hr>
+</section>
+<section id="part-c-swirl-consolebased" class="level2" data-number="3.5">
+<h2 data-number="3.5" class="anchored" data-anchor-id="part-c-swirl-consolebased"><span class="header-section-number">3.5</span> Part C — swirl (console‑based)</h2>
+<p><strong>swirl</strong> runs entirely in the Console and saves your progress.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Install/run swirl</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"swirl"</span>)</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(swirl)</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Start swirl</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="fu">swirl</span>()</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="co"># (enter your name when prompted)</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Install and start a course (first time only)</span></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a><span class="fu">install_from_swirl</span>(<span class="st">"R Programming"</span>)   <span class="co"># or "R_Programming"</span></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a><span class="co"># At any time, leave swirl with</span></span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a><span class="co"># bye()</span></span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Check progress later</span></span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>swirl<span class="sc">::</span><span class="fu">progress</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>Do this:</strong> - Install <strong>R Programming</strong> and complete the first lesson. - Exit with <code>bye()</code> and verify progress with <code>swirl::progress()</code>.</p>
+<p><strong>Reflect:</strong> - How does working in the Console (swirl) feel compared with the GUI tutorials? - Which mode gave you clearer feedback on wrong answers?</p>
+<hr>
+</section>
+<section id="part-d-mini-practice-510-min" class="level2" data-number="3.6">
+<h2 data-number="3.6" class="anchored" data-anchor-id="part-d-mini-practice-510-min"><span class="header-section-number">3.6</span> Part D — Mini practice (5–10 min)</h2>
+<p>Create a tiny vector and compute a statistic, then plot a quick line:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>mean_x <span class="ot">&lt;-</span> <span class="fu">mean</span>(x)</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>mean_x</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 5.5</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x, <span class="at">type =</span> <span class="st">"l"</span>, <span class="at">main =</span> <span class="st">"Quick line"</span>, <span class="at">ylab =</span> <span class="st">"x"</span>)</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h =</span> mean_x, <span class="at">lty =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="supervision_1_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><strong>Reflect:</strong> - Which approach (r4ds.tutorials, learnr, swirl) best prepared you to write and run this code independently?</p>
+<hr>
+</section>
+<section id="best-practices-1" class="level2" data-number="3.7">
+<h2 data-number="3.7" class="anchored" data-anchor-id="best-practices-1"><span class="header-section-number">3.7</span> Best practices</h2>
+<ul>
+<li><strong>Use learnr/r4ds.tutorials for guided practice</strong> with hints, auto‑checks, and saved state.</li>
+<li><strong>Use swirl</strong> when you prefer keyboard‑only Console practice or have limited UI.</li>
+<li>Restart RStudio if tutorials don’t show; list what’s available with <code>learnr::available_tutorials()</code>.</li>
+<li>Keep your scripts open alongside tutorials to copy refined solutions into your own notes.</li>
+</ul>
+<hr>
+</section>
+<section id="suggested-answers-indicative-1" class="level2" data-number="3.8">
+<h2 data-number="3.8" class="anchored" data-anchor-id="suggested-answers-indicative-1"><span class="header-section-number">3.8</span> Suggested Answers (indicative)</h2>
+<ul>
+<li><strong>Part A:</strong> Aesthetics map data → visual channels; geoms are the drawing layers (points, lines, bars). Improvements often include <code>labs()</code>, <code>scale_*_continuous()</code>, <code>theme_minimal()</code>, and <code>facet_wrap()</code>.</li>
+<li><strong>Part B:</strong> Worked with vectors/data frames; common mistakes include mixing types (character vs numeric) or forgetting <code>&lt;-</code>. Hints/feedback indicate expected objects or function names.</li>
+<li><strong>Part C:</strong> Console is lightweight but less visual; learnr/r4ds tutorials give more structured feedback. Swirl progress persists via <code>swirl::progress()</code>; exit with <code>bye()</code>.</li>
+<li><strong>Part D:</strong> Any of the three can help; most students report faster iteration in learnr/r4ds due to inline errors/hints.</li>
+</ul>
+<hr>
+<p><em>End of Lab 2</em></p>
+</section>
+</section>
+<section id="lab-3-uploading-excel-csv-files-to-r-pipr" class="level1" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> Lab 3 — Uploading Excel &amp; CSV Files to R (PIPR)</h1>
+<hr>
+<section id="learning-outcomes-2" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="learning-outcomes-2"><span class="header-section-number">4.1</span> Learning outcomes</h2>
+<p>By the end of this lab you will be able to: 1. Download the <strong>ONS Price Index of Private Rents (PIPR)</strong> monthly workbook and save it in a tidy project structure. 2. Import <strong>Excel</strong> (<code>.xlsx/.xls</code>) and <strong>CSV</strong> files using RStudio’s <strong>Import Dataset</strong> UI <strong>and</strong> reproducible R code. 3. Deal with metadata/header rows via <code>skip</code>, set <code>col_names</code>, and verify column <strong>types</strong>. 4. Plot time series (index and annual % change) with base R and add reference lines. 5. Use help pages (e.g., <code>?plot</code>) and annotate charts for a policy audience.</p>
+<hr>
+</section>
+<section id="prerequisites-2" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="prerequisites-2"><span class="header-section-number">4.2</span> Prerequisites</h2>
+<ul>
+<li>R (≥ 4.0) and RStudio.</li>
+<li>Project folder (e.g., <code>Rcoding/</code>) with subfolder <code>data/</code>.</li>
+<li>Packages (install once):</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages(c("readxl", "readr"))</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<blockquote class="blockquote">
+<p><strong>Tip:</strong> Prefer file names without spaces and lower-cases, e.g.&nbsp;<code>pipr_monthly.xls</code> rather than <code>pipr monthly.xls</code>.</p>
+</blockquote>
+<hr>
+</section>
+<section id="part-a-get-pipr-monthly-from-ons-manual-steps" class="level2" data-number="4.3">
+<h2 data-number="4.3" class="anchored" data-anchor-id="part-a-get-pipr-monthly-from-ons-manual-steps"><span class="header-section-number">4.3</span> Part A — Get PIPR monthly from ONS (manual steps)</h2>
+<ol type="1">
+<li><p>Go to <strong>ONS.gov.uk</strong> and search <strong>Price Index of Private Rents (PIPR)</strong>. This lab is using ONS data on Figure 4: Rent annual inflation slowed across the UK, Private rents annual inflation, across the UK, January 2016 to August 2025.</p></li>
+<li><p>On the dataset page, choose <strong>Data</strong> → <strong>Download monthly workbook</strong> (Excel) or <strong>CSV</strong> if available.</p></li>
+<li><p>Save as <code>data/pipr_monthly.xls</code> inside your project folder (e.g., <code>Rcoding/</code>) with subfolder <code>data/</code>.</p></li>
+<li><p>(Optional) Open the file and identify the sheet that contains the <strong>UK</strong> and <strong>country/regions</strong>.</p></li>
+</ol>
+<p><strong>Reflect:</strong> Why does PIPR (rents) provide a more direct lens on housing affordability and regional pressures than GDP for planning and regeneration?</p>
+<hr>
+</section>
+<section id="part-b-import-excel-via-code-reproducible" class="level2" data-number="4.4">
+<h2 data-number="4.4" class="anchored" data-anchor-id="part-b-import-excel-via-code-reproducible"><span class="header-section-number">4.4</span> Part B — Import Excel via code (reproducible)</h2>
+<p>Use <code>readxl::read_excel()</code> and inspect column names to choose the UK series.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Adjust 'sheet' and 'skip' depending on the workbook structure you download.</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="co"># we use skip = 7 because there are headings in the first 7 rows of the dataset.</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>pipr_raw <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"data/pipr_monthly.xls"</span>, <span class="at">sheet =</span> <span class="dv">1</span>, <span class="at">skip =</span> <span class="dv">7</span>)</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Inspect names to locate the date/month, UK Index, and UK annual % change columns</span></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(pipr_raw)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Date"             "UK"               "England"          "Wales"           
+[5] "Scotland"         "Northern Ireland"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># let's keep a copy of the raw data intact and create a new version of the data.</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>pipr<span class="ot">&lt;-</span>pipr_raw</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a><span class="co"># rename column names for easiness. </span></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(pipr) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"month"</span>, <span class="st">"uk"</span>, <span class="st">"england"</span>, <span class="st">"wales"</span>, <span class="st">"scotland"</span>, <span class="st">"n_ireland"</span>)</span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(pipr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>tibble [116 × 6] (S3: tbl_df/tbl/data.frame)
+ $ month    : POSIXct[1:116], format: "2016-01-01" "2016-02-01" ...
+ $ uk       : num [1:116] 3.3 3.3 3.4 3.3 3.2 3.3 3.4 3.3 3.2 3.3 ...
+ $ england  : num [1:116] 3.5 3.5 3.6 3.5 3.3 3.5 3.7 3.6 3.5 3.6 ...
+ $ wales    : num [1:116] 1.2 0.8 0.8 0.6 0.4 0.3 0.3 0.9 1.4 1.3 ...
+ $ scotland : num [1:116] 2.1 1.8 1.6 1.5 1.4 1.1 1.2 0.9 1.1 1.1 ...
+ $ n_ireland: num [1:116] 1.1 1.3 1.4 1.6 1.6 1.6 1.5 1.5 1 0.9 ...</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(pipr, <span class="dv">6</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 6
+  month                  uk england wales scotland n_ireland
+  &lt;dttm&gt;              &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;
+1 2016-01-01 00:00:00   3.3     3.5   1.2      2.1       1.1
+2 2016-02-01 00:00:00   3.3     3.5   0.8      1.8       1.3
+3 2016-03-01 00:00:00   3.4     3.6   0.8      1.6       1.4
+4 2016-04-01 00:00:00   3.3     3.5   0.6      1.5       1.6
+5 2016-05-01 00:00:00   3.2     3.3   0.4      1.4       1.6
+6 2016-06-01 00:00:00   3.3     3.5   0.3      1.1       1.6</code></pre>
+</div>
+</div>
+<p><strong>Reflect:</strong> Are the three selected columns correct for your workbook version? If not, which names should you use instead?</p>
+<hr>
+</section>
+<section id="part-c-import-via-rstudio-ui-reference" class="level2" data-number="4.5">
+<h2 data-number="4.5" class="anchored" data-anchor-id="part-c-import-via-rstudio-ui-reference"><span class="header-section-number">4.5</span> Part C — Import via RStudio UI (reference)</h2>
+<ul>
+<li>RStudio → <strong>Import Dataset</strong> → <strong>From Excel</strong> → select <code>data/pipr_monthly.xls</code>.</li>
+<li>Choose the relevant <strong>sheet</strong> and, if needed, set <strong>Skip</strong> for metadata rows.</li>
+<li>Set <strong>Name</strong> to <code>pipr</code> and verify column names (e.g., <code>month</code>, <code>uk_index</code>, <code>uk_yoy</code>).</li>
+<li>Click <strong>Copy</strong> to grab the generated R code, then <strong>Import</strong>.</li>
+</ul>
+<blockquote class="blockquote">
+<p>Paste the generated code in your script so your workflow is <strong>reproducible</strong>.</p>
+</blockquote>
+<hr>
+</section>
+<section id="part-d-basic-timeseries-line-plot-annual-change" class="level2" data-number="4.6">
+<h2 data-number="4.6" class="anchored" data-anchor-id="part-d-basic-timeseries-line-plot-annual-change"><span class="header-section-number">4.6</span> Part D — Basic time‑series line plot (annual % change)</h2>
+<p>Plot PIPR annual % change for the UK as a line. Label the x‑axis sparsely to keep it readable.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(pipr<span class="sc">$</span>uk, <span class="at">type =</span> <span class="st">"l"</span>,</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">""</span>,</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="st">"Private rents — annual % change"</span>,</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">"UK private rents (PIPR): annual % change"</span>,</span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>     <span class="at">xaxt =</span> <span class="st">"n"</span>)   <span class="co"># suppress default axis)</span></span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Add sparse x-axis labels</span></span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>labs_every <span class="ot">&lt;-</span> <span class="dv">6</span></span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>at_idx <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">1</span>, <span class="fu">nrow</span>(pipr), <span class="at">by =</span> labs_every)</span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a><span class="fu">axis</span>(<span class="dv">1</span>, <span class="at">at =</span> at_idx, <span class="at">labels =</span> pipr<span class="sc">$</span>month[at_idx],</span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a>     <span class="at">las =</span> <span class="dv">2</span>, <span class="at">cex.axis =</span> <span class="fl">0.7</span>)  <span class="co"># smaller font for ticks</span></span>
+<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Add subtitle (source) directly under the title</span></span>
+<span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span>(<span class="at">sub =</span> <span class="st">"Source: ONS - Index of Private Housing Rental Prices (PIPR)"</span>, </span>
+<span id="cb23-15"><a href="#cb23-15" aria-hidden="true" tabindex="-1"></a>      <span class="at">cex.sub =</span> <span class="fl">0.8</span>, <span class="at">font.sub =</span> <span class="dv">3</span>)  <span class="co"># italic, smaller</span></span>
+<span id="cb23-16"><a href="#cb23-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Reference line at 2% (inflation target)</span></span>
+<span id="cb23-17"><a href="#cb23-17" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h =</span> <span class="dv">2</span>, <span class="at">lty =</span> <span class="dv">2</span>, <span class="at">col =</span> <span class="st">"blue"</span>)</span>
+<span id="cb23-18"><a href="#cb23-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-19"><a href="#cb23-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Label it</span></span>
+<span id="cb23-20"><a href="#cb23-20" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(<span class="at">x =</span> <span class="fu">min</span>(pipr<span class="sc">$</span>month), <span class="at">y =</span> <span class="dv">2</span>, <span class="at">labels =</span> <span class="st">"Inflation target (2%)"</span>,</span>
+<span id="cb23-21"><a href="#cb23-21" aria-hidden="true" tabindex="-1"></a>     <span class="at">pos =</span> <span class="dv">3</span>, <span class="at">col =</span> <span class="st">"blue"</span>, <span class="at">cex =</span> <span class="fl">0.8</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="supervision_1_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><strong>Reflect:</strong> Identify periods of fastest rent inflation and periods of slowdown. What policy or macro factors might line up with these shifts?</p>
+<hr>
+</section>
+<section id="part-e-blue-reference-line-at-2-inflation-target-customise" class="level2" data-number="4.7">
+<h2 data-number="4.7" class="anchored" data-anchor-id="part-e-blue-reference-line-at-2-inflation-target-customise"><span class="header-section-number">4.7</span> Part E — Blue reference line at 2% (Inflation Target) &amp; customise</h2>
+<p><strong>Reflect:</strong> What extra annotations (e.g., policy changes, shocks) would make this plot more useful to a local authority audience?</p>
+<hr>
+</section>
+<section id="part-f-import-pipr-as-csv-alternative" class="level2" data-number="4.8">
+<h2 data-number="4.8" class="anchored" data-anchor-id="part-f-import-pipr-as-csv-alternative"><span class="header-section-number">4.8</span> Part F — Import PIPR as CSV (alternative)</h2>
+<p>Option 1: Download the <strong>CSV</strong> from the PIPR page (if provided) and import with <code>readr::read_csv()</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>pipr_csv <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/pipr_monthly.csv"</span>)  <span class="co"># adjust file name</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>New names:
+Rows: 130 Columns: 9
+── Column specification
+──────────────────────────────────────────────────────── Delimiter: "," chr
+(6): Figure 4: Rent annual inflation slowed across the UK, ...2, ...3, .... lgl
+(3): ...7, ...8, ...9
+ℹ Use `spec()` to retrieve the full column specification for this data. ℹ
+Specify the column types or set `show_col_types = FALSE` to quiet this message.
+• `` -&gt; `...2`
+• `` -&gt; `...3`
+• `` -&gt; `...4`
+• `` -&gt; `...5`
+• `` -&gt; `...6`
+• `` -&gt; `...7`
+• `` -&gt; `...8`
+• `` -&gt; `...9`</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(pipr_csv)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Figure 4: Rent annual inflation slowed across the UK"
+[2] "...2"                                                
+[3] "...3"                                                
+[4] "...4"                                                
+[5] "...5"                                                
+[6] "...6"                                                
+[7] "...7"                                                
+[8] "...8"                                                
+[9] "...9"                                                </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(pipr_csv)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 9
+  Figure 4: Rent annual inflat…¹ ...2  ...3  ...4  ...5  ...6  ...7  ...8  ...9 
+  &lt;chr&gt;                          &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;lgl&gt; &lt;lgl&gt; &lt;lgl&gt;
+1 Private rents annual inflatio…  &lt;NA&gt; &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  NA    NA    NA   
+2 &lt;NA&gt;                            &lt;NA&gt; &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  NA    NA    NA   
+3 Notes                          "1. … &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  NA    NA    NA   
+4 Unit                           "Per… &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  NA    NA    NA   
+5 Source                         "Pri… &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  NA    NA    NA   
+6 &lt;NA&gt;                            &lt;NA&gt; &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  NA    NA    NA   
+# ℹ abbreviated name: ¹​`Figure 4: Rent annual inflation slowed across the UK`</code></pre>
+</div>
+</div>
+<p>Option 2: If a CSV isn’t provided, <strong>save the relevant sheet as CSV</strong> from Excel and import it.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example: write out the subset you prepared, then re-import it</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="co"># write_csv(pipr, "data/pipr_monthly_subset.csv")</span></span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>pipr_from_csv <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/pipr_monthly.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>New names:
+Rows: 130 Columns: 9
+── Column specification
+──────────────────────────────────────────────────────── Delimiter: "," chr
+(6): Figure 4: Rent annual inflation slowed across the UK, ...2, ...3, .... lgl
+(3): ...7, ...8, ...9
+ℹ Use `spec()` to retrieve the full column specification for this data. ℹ
+Specify the column types or set `show_col_types = FALSE` to quiet this message.
+• `` -&gt; `...2`
+• `` -&gt; `...3`
+• `` -&gt; `...4`
+• `` -&gt; `...5`
+• `` -&gt; `...6`
+• `` -&gt; `...7`
+• `` -&gt; `...8`
+• `` -&gt; `...9`</code></pre>
+</div>
+</div>
+<p><strong>Reflect:</strong> Are types preserved across Excel vs CSV imports? Which route is more reliable/reproducible on your machine?</p>
+<hr>
+</section>
+<section id="part-g-compare-uk-with-a-region-optional" class="level2" data-number="4.9">
+<h2 data-number="4.9" class="anchored" data-anchor-id="part-g-compare-uk-with-a-region-optional"><span class="header-section-number">4.9</span> Part G — Compare UK with a region (optional)</h2>
+<p>If your workbook includes regions (England, Wales, Scotland, Northern Ireland), select one annual % change column and plot together with the UK.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Attempt to find a regional YoY column (edit the pattern or use exact name after checking names())</span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>reg_yoy_col <span class="ot">&lt;-</span> <span class="fu">grep</span>(<span class="st">"England.*Annual|Annual.*England|England.*%"</span>, <span class="fu">names</span>(pipr_raw), <span class="at">ignore.case =</span> <span class="cn">TRUE</span>)[<span class="dv">1</span>]</span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="sc">!</span><span class="fu">is.na</span>(reg_yoy_col)){</span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>  reg_yoy <span class="ot">&lt;-</span> <span class="fu">suppressWarnings</span>(<span class="fu">as.numeric</span>(pipr_raw[[reg_yoy_col]]))</span>
+<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(pipr<span class="sc">$</span>uk_yoy, <span class="at">type =</span> <span class="st">"l"</span>, <span class="at">xlab =</span> <span class="st">"Month"</span>, <span class="at">ylab =</span> <span class="st">"Annual % change"</span>,</span>
+<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">main =</span> <span class="st">"PIPR annual % change: UK vs England"</span>)</span>
+<span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">lines</span>(reg_yoy, <span class="at">lty =</span> <span class="dv">3</span>)</span>
+<span id="cb32-9"><a href="#cb32-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">legend</span>(<span class="st">"topleft"</span>, <span class="at">legend =</span> <span class="fu">c</span>(<span class="st">"UK"</span>, <span class="st">"England"</span>), <span class="at">lty =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">3</span>), <span class="at">bty =</span> <span class="st">"n"</span>)</span>
+<span id="cb32-10"><a href="#cb32-10" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> {</span>
+<span id="cb32-11"><a href="#cb32-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">message</span>(<span class="st">"No matching regional column automatically detected — inspect names() and set reg_yoy_col manually."</span>)</span>
+<span id="cb32-12"><a href="#cb32-12" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>No matching regional column automatically detected — inspect names() and set reg_yoy_col manually.</code></pre>
+</div>
+</div>
+<p><strong>Reflect:</strong> Does the region move broadly with the UK or diverge materially? What local factors could explain divergence?</p>
+<hr>
+</section>
+<section id="part-h-help-pages-and-plotting-extras" class="level2" data-number="4.10">
+<h2 data-number="4.10" class="anchored" data-anchor-id="part-h-help-pages-and-plotting-extras"><span class="header-section-number">4.10</span> Part H — Help pages and plotting extras</h2>
+<p>Explore <code>?plot</code>, <code>curve()</code>, and <code>abline()</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ?plot   # open during interactive session</span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">sin</span>(x), <span class="at">from =</span> <span class="dv">0</span>, <span class="at">to =</span> <span class="fl">6.28</span>, <span class="at">xlab =</span> <span class="st">"x"</span>, <span class="at">ylab =</span> <span class="st">"y = sin(x)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="supervision_1_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, <span class="at">type =</span> <span class="st">"n"</span>, <span class="at">xlab =</span> <span class="st">"x"</span>, <span class="at">ylab =</span> <span class="st">"y"</span>)</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h =</span> <span class="dv">0</span>, <span class="at">v =</span> <span class="dv">5</span>, <span class="at">lty =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="supervision_1_files/figure-html/unnamed-chunk-15-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><strong>Reflect:</strong> Which <code>plot()</code> arguments improved readability most (e.g., <code>las</code>, <code>xaxt</code>, <code>lwd</code>, <code>xlim</code>)?</p>
+<hr>
+</section>
+<section id="part-i-optional-principles-of-econometrics-data" class="level2" data-number="4.11">
+<h2 data-number="4.11" class="anchored" data-anchor-id="part-i-optional-principles-of-econometrics-data"><span class="header-section-number">4.11</span> Part I — (Optional) Principles of Econometrics data</h2>
+<p>You can also explore textbook datasets with <strong>PoEdata</strong> for practice with scatter plots and <code>abline(lm())</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co">#install.packages(c("remotes", "pkgbuild"))   # helper packages</span></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="co">#pkgbuild::has_build_tools(debug = TRUE)       # should say TRUE on Windows</span></span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a><span class="co">#remotes::install_github("ccolonescu/PoEdata")</span></span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(PoEdata)</span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">"andy"</span>)</span>
+<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(andy)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  sales price advert
+1  73.2  5.69    1.3
+2  71.8  6.49    2.9
+3  62.4  5.63    0.8
+4  67.4  6.22    0.7
+5  89.3  5.02    1.5
+6  70.3  6.41    1.3</code></pre>
+</div>
+</div>
+<p><strong>Reflect:</strong> Which numeric pairs in <code>andy</code> would make a sensible policy-relevant scatter (e.g., income vs expenditure)?</p>
+<hr>
+</section>
+<section id="best-practices-2" class="level2" data-number="4.12">
+<h2 data-number="4.12" class="anchored" data-anchor-id="best-practices-2"><span class="header-section-number">4.12</span> Best practices</h2>
+<ul>
+<li><strong>Reproducibility:</strong> Prefer code over manual spreadsheet edits; paste RStudio’s generated import code into your script.</li>
+<li><strong>Paths &amp; naming:</strong> Use a <code>data/</code> subfolder; avoid spaces; use forward slashes.</li>
+<li><strong>Types &amp; missing values:</strong> Check with <code>str()</code>, <code>summary()</code>, <code>anyNA()</code>; coerce explicitly when needed.</li>
+<li><strong>Axis labelling:</strong> Sparse, rotated labels help on monthly series.</li>
+<li><strong>Versioning:</strong> Save dated copies of raw downloads (e.g., <code>pipr_monthly_2025-09-19.xlsx</code>).</li>
+</ul>
+<hr>
+</section>
+<section id="further-resources" class="level2" data-number="4.13">
+<h2 data-number="4.13" class="anchored" data-anchor-id="further-resources"><span class="header-section-number">4.13</span> Further resources</h2>
+<ul>
+<li>ONS <strong>Price Index of Private Rents (PIPR)</strong> — monthly</li>
+<li>R help: <code>?read_excel</code>, <code>?read_csv</code>, <code>?plot</code>, <code>?abline</code>, <code>?curve</code></li>
+<li>R Data Import/Export manual</li>
+</ul>
+<hr>
+</section>
+<section id="suggested-answers-to-reflection-questions" class="level2" data-number="4.14">
+<h2 data-number="4.14" class="anchored" data-anchor-id="suggested-answers-to-reflection-questions"><span class="header-section-number">4.14</span> Suggested Answers to Reflection Questions</h2>
+<blockquote class="blockquote">
+<p>Indicative answers; specifics depend on your workbook version and the columns you select.</p>
+</blockquote>
+<p><strong>Part A</strong> — PIPR directly tracks private rents, aligning with housing affordability, regional pressures, and regeneration aims; GDP is broader and less targeted.</p>
+<p><strong>Part B</strong> — Correct columns usually include a date/month field plus UK Index and UK annual % change. Adjust <code>sheet/skip</code> and pick exact names after inspecting <code>names()</code>.</p>
+<p><strong>Part C</strong> — Pasting the generated code ensures others (and future you) can reproduce the import without the UI.</p>
+<p><strong>Part D</strong> — Rent inflation tends to cluster in waves; periods of rapid increases are visible as peaks, slowdowns as troughs. Index-by-month labelling clarifies timing.</p>
+<p><strong>Part E</strong> — Add a zero line; annotate notable policy changes or shocks; consider shading for periods of sustained acceleration.</p>
+<p><strong>Part F</strong> — CSV imports avoid Excel formatting quirks but require careful type checks. Both routes can be reproducible if code-driven.</p>
+<p><strong>Part G</strong> — Regions often co-move with the UK but can diverge due to local supply constraints, policy differences, or demand shocks.</p>
+<p><strong>Part H</strong> — Useful <code>plot()</code> args: <code>las</code> (label orientation), <code>xaxt/yaxt</code> (axis toggles), <code>lwd</code> (line width), <code>xlab/ylab</code> (clear labels), <code>xlim/ylim</code> (focus range).</p>
+<p><strong>Part I</strong> — Any sensible numeric pair (e.g., household income vs spending) supports regression line illustrations with <code>abline(lm(y ~ x, data = andy))</code>.</p>
+<hr>
+<p><em>End of Lab 3</em></p>
+</section>
+</section>
+<section id="lab-4-data-visualisation" class="level1" data-number="5">
+<h1 data-number="5"><span class="header-section-number">5</span> Lab 4 — Data Visualisation</h1>
+<p><em>Adapted from: <a href="https://towardsdatascience.com/a-guide-to-data-visualisation-in-r-for-beginners-ef6d41a34174">A Guide to Data Visualisation in R for Beginners</a></em></p>
+<p>Link to files: course folder</p>
+<hr>
+<section id="learning-outcomes-3" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="learning-outcomes-3"><span class="header-section-number">5.1</span> Learning outcomes</h2>
+<p>By the end of this lab you will be able to: 1. Explore the <code>state.x77</code> dataset in R. 2. Generate basic descriptive statistics. 3. Create simple plots using base R graphics. 4. Add labels, titles, and colours to plots. 5. Compare different chart types (scatter, bar, histogram, boxplot). 6. Use multi-panel displays to visualise multiple plots at once.</p>
+<hr>
+</section>
+<section id="prerequisites-3" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="prerequisites-3"><span class="header-section-number">5.2</span> Prerequisites</h2>
+<ul>
+<li>R (≥ 4.0) and RStudio.</li>
+<li>No additional packages required beyond base R (optional: <code>ggplot2</code> for comparison).</li>
+</ul>
+<hr>
+</section>
+<section id="part-a-load-dataset" class="level2" data-number="5.3">
+<h2 data-number="5.3" class="anchored" data-anchor-id="part-a-load-dataset"><span class="header-section-number">5.3</span> Part A — Load dataset</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(datasets)</span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">"state.x77"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in data("state.x77"): data set 'state.x77' not found</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>state_data <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(state.x77)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>Reflect:</strong> What variables are present in <code>state.x77</code>? Which relate most to planning and regeneration?</p>
+<hr>
+</section>
+<section id="part-b-data-exploration" class="level2" data-number="5.4">
+<h2 data-number="5.4" class="anchored" data-anchor-id="part-b-data-exploration"><span class="header-section-number">5.4</span> Part B — Data exploration</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(state_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>'data.frame':   50 obs. of  8 variables:
+ $ Population: num  3615 365 2212 2110 21198 ...
+ $ Income    : num  3624 6315 4530 3378 5114 ...
+ $ Illiteracy: num  2.1 1.5 1.8 1.9 1.1 0.7 1.1 0.9 1.3 2 ...
+ $ Life Exp  : num  69 69.3 70.5 70.7 71.7 ...
+ $ Murder    : num  15.1 11.3 7.8 10.1 10.3 6.8 3.1 6.2 10.7 13.9 ...
+ $ HS Grad   : num  41.3 66.7 58.1 39.9 62.6 63.9 56 54.6 52.6 40.6 ...
+ $ Frost     : num  20 152 15 65 20 166 139 103 11 60 ...
+ $ Area      : num  50708 566432 113417 51945 156361 ...</code></pre>
+</div>
+</div>
+<p><strong>Reflect:</strong> How many states (rows) and variables (columns) are there? Which are continuous, and which categorical (if any)?</p>
+<hr>
+</section>
+<section id="part-c-beginning-and-end-of-the-dataset" class="level2" data-number="5.5">
+<h2 data-number="5.5" class="anchored" data-anchor-id="part-c-beginning-and-end-of-the-dataset"><span class="header-section-number">5.5</span> Part C — Beginning and end of the dataset</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(state_data, <span class="dv">7</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>            Population Income Illiteracy Life Exp Murder HS Grad Frost   Area
+Alabama           3615   3624        2.1    69.05   15.1    41.3    20  50708
+Alaska             365   6315        1.5    69.31   11.3    66.7   152 566432
+Arizona           2212   4530        1.8    70.55    7.8    58.1    15 113417
+Arkansas          2110   3378        1.9    70.66   10.1    39.9    65  51945
+California       21198   5114        1.1    71.71   10.3    62.6    20 156361
+Colorado          2541   4884        0.7    72.06    6.8    63.9   166 103766
+Connecticut       3100   5348        1.1    72.48    3.1    56.0   139   4862</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tail</span>(state_data, <span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>              Population Income Illiteracy Life Exp Murder HS Grad Frost  Area
+Virginia            4981   4701        1.4    70.08    9.5    47.8    85 39780
+Washington          3559   4864        0.6    71.72    4.3    63.5    32 66570
+West Virginia       1799   3617        1.4    69.48    6.7    41.6   100 24070
+Wisconsin           4589   4468        0.7    72.48    3.0    54.5   149 54464
+Wyoming              376   4566        0.6    70.29    6.9    62.9   173 97203</code></pre>
+</div>
+</div>
+<p><strong>Reflect:</strong> What differences do you see between the early and later rows?</p>
+<hr>
+</section>
+<section id="part-d-descriptive-statistics" class="level2" data-number="5.6">
+<h2 data-number="5.6" class="anchored" data-anchor-id="part-d-descriptive-statistics"><span class="header-section-number">5.6</span> Part D — Descriptive statistics</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(state_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   Population        Income       Illiteracy       Life Exp    
+ Min.   :  365   Min.   :3098   Min.   :0.500   Min.   :67.96  
+ 1st Qu.: 1080   1st Qu.:3993   1st Qu.:0.625   1st Qu.:70.12  
+ Median : 2838   Median :4519   Median :0.950   Median :70.67  
+ Mean   : 4246   Mean   :4436   Mean   :1.170   Mean   :70.88  
+ 3rd Qu.: 4968   3rd Qu.:4814   3rd Qu.:1.575   3rd Qu.:71.89  
+ Max.   :21198   Max.   :6315   Max.   :2.800   Max.   :73.60  
+     Murder          HS Grad          Frost             Area       
+ Min.   : 1.400   Min.   :37.80   Min.   :  0.00   Min.   :  1049  
+ 1st Qu.: 4.350   1st Qu.:48.05   1st Qu.: 66.25   1st Qu.: 36985  
+ Median : 6.850   Median :53.25   Median :114.50   Median : 54277  
+ Mean   : 7.378   Mean   :53.11   Mean   :104.46   Mean   : 70736  
+ 3rd Qu.:10.675   3rd Qu.:59.15   3rd Qu.:139.75   3rd Qu.: 81163  
+ Max.   :15.100   Max.   :67.30   Max.   :188.00   Max.   :566432  </code></pre>
+</div>
+</div>
+<p><strong>Reflect:</strong> Which socio-economic indicators show the widest spread?</p>
+<hr>
+</section>
+<section id="part-e-graphics-package" class="level2" data-number="5.7">
+<h2 data-number="5.7" class="anchored" data-anchor-id="part-e-graphics-package"><span class="header-section-number">5.7</span> Part E — Graphics package</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="at">help =</span> <span class="st">"graphics"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>Reflect:</strong> From the help index, which plotting functions could be useful for socio-economic indicators?</p>
+<hr>
+</section>
+<section id="part-f-plotting-a-single-column" class="level2" data-number="5.8">
+<h2 data-number="5.8" class="anchored" data-anchor-id="part-f-plotting-a-single-column"><span class="header-section-number">5.8</span> Part F — Plotting a single column</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(state_data<span class="sc">$</span>Population)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="supervision_1_files/figure-html/unnamed-chunk-22-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><strong>Reflect:</strong> What does this reveal about the distribution of state populations?</p>
+<hr>
+</section>
+<section id="part-g-scatterplots" class="level2" data-number="5.9">
+<h2 data-number="5.9" class="anchored" data-anchor-id="part-g-scatterplots"><span class="header-section-number">5.9</span> Part G — Scatterplots</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(state_data<span class="sc">$</span>Income, state_data<span class="sc">$</span>Illiteracy)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="supervision_1_files/figure-html/unnamed-chunk-23-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><strong>Reflect:</strong> Do states with higher income tend to have lower illiteracy rates?</p>
+<hr>
+</section>
+<section id="part-h-entire-dataset-plot" class="level2" data-number="5.10">
+<h2 data-number="5.10" class="anchored" data-anchor-id="part-h-entire-dataset-plot"><span class="header-section-number">5.10</span> Part H — Entire dataset plot</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(state_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="supervision_1_files/figure-html/unnamed-chunk-24-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><strong>Reflect:</strong> Which pairs of socio-economic indicators appear strongly related?</p>
+<hr>
+</section>
+<section id="part-i-points-and-lines" class="level2" data-number="5.11">
+<h2 data-number="5.11" class="anchored" data-anchor-id="part-i-points-and-lines"><span class="header-section-number">5.11</span> Part I — Points and lines</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(state_data<span class="sc">$</span><span class="st">`</span><span class="at">Life Exp</span><span class="st">`</span>, <span class="at">type =</span> <span class="st">"b"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="supervision_1_files/figure-html/unnamed-chunk-25-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(state_data<span class="sc">$</span><span class="st">`</span><span class="at">Life Exp</span><span class="st">`</span>, <span class="at">type =</span> <span class="st">"h"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="supervision_1_files/figure-html/unnamed-chunk-25-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><strong>Reflect:</strong> Which representation communicates variation in life expectancy more clearly?</p>
+<hr>
+</section>
+<section id="part-j-help" class="level2" data-number="5.12">
+<h2 data-number="5.12" class="anchored" data-anchor-id="part-j-help"><span class="header-section-number">5.12</span> Part J — Help</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a>?plot</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>starting httpd help server ... done</code></pre>
+</div>
+</div>
+<p><strong>Reflect:</strong> Identify one new argument from the help page that could improve your plot.</p>
+<hr>
+</section>
+<section id="part-k-labels-and-titles" class="level2" data-number="5.13">
+<h2 data-number="5.13" class="anchored" data-anchor-id="part-k-labels-and-titles"><span class="header-section-number">5.13</span> Part K — Labels and titles</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(state_data<span class="sc">$</span>Income,</span>
+<span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">"State Index"</span>,</span>
+<span id="cb57-3"><a href="#cb57-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="st">"Per Capita Income"</span>,</span>
+<span id="cb57-4"><a href="#cb57-4" aria-hidden="true" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">"Income levels across US states"</span>,</span>
+<span id="cb57-5"><a href="#cb57-5" aria-hidden="true" tabindex="-1"></a>     <span class="at">col =</span> <span class="st">"blue"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="supervision_1_files/figure-html/unnamed-chunk-27-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><strong>Reflect:</strong> Do the labels improve clarity? Suggest improvements if needed.</p>
+<hr>
+</section>
+<section id="part-l-horizontal-bar-plot" class="level2" data-number="5.14">
+<h2 data-number="5.14" class="anchored" data-anchor-id="part-l-horizontal-bar-plot"><span class="header-section-number">5.14</span> Part L — Horizontal bar plot</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(state_data<span class="sc">$</span>Murder,</span>
+<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a>        <span class="at">main =</span> <span class="st">"Murder Rate by State"</span>,</span>
+<span id="cb58-3"><a href="#cb58-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">xlab =</span> <span class="st">"Murder arrests per 100,000"</span>,</span>
+<span id="cb58-4"><a href="#cb58-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">col =</span> <span class="st">"purple"</span>,</span>
+<span id="cb58-5"><a href="#cb58-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">horiz =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="supervision_1_files/figure-html/unnamed-chunk-28-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><strong>Reflect:</strong> Which states stand out with particularly high murder rates?</p>
+<hr>
+</section>
+<section id="part-m-vertical-bar-plot" class="level2" data-number="5.15">
+<h2 data-number="5.15" class="anchored" data-anchor-id="part-m-vertical-bar-plot"><span class="header-section-number">5.15</span> Part M — Vertical bar plot</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(state_data<span class="sc">$</span>Illiteracy,</span>
+<span id="cb59-2"><a href="#cb59-2" aria-hidden="true" tabindex="-1"></a>        <span class="at">main =</span> <span class="st">"Illiteracy Rate by State"</span>,</span>
+<span id="cb59-3"><a href="#cb59-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">xlab =</span> <span class="st">"% Illiteracy"</span>,</span>
+<span id="cb59-4"><a href="#cb59-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">col =</span> <span class="st">"orange"</span>,</span>
+<span id="cb59-5"><a href="#cb59-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">horiz =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="supervision_1_files/figure-html/unnamed-chunk-29-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><strong>Reflect:</strong> How might this plot inform discussions on educational policy?</p>
+<hr>
+</section>
+<section id="part-n-histograms" class="level2" data-number="5.16">
+<h2 data-number="5.16" class="anchored" data-anchor-id="part-n-histograms"><span class="header-section-number">5.16</span> Part N — Histograms</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(state_data<span class="sc">$</span>Income)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="supervision_1_files/figure-html/unnamed-chunk-30-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb61"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(state_data<span class="sc">$</span>Income,</span>
+<span id="cb61-2"><a href="#cb61-2" aria-hidden="true" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">"Distribution of State Incomes"</span>,</span>
+<span id="cb61-3"><a href="#cb61-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">"Per Capita Income"</span>,</span>
+<span id="cb61-4"><a href="#cb61-4" aria-hidden="true" tabindex="-1"></a>     <span class="at">col =</span> <span class="st">"green"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="supervision_1_files/figure-html/unnamed-chunk-30-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><strong>Reflect:</strong> Is the income distribution symmetric, skewed, or multi-modal?</p>
+<hr>
+</section>
+<section id="part-o-boxplots" class="level2" data-number="5.17">
+<h2 data-number="5.17" class="anchored" data-anchor-id="part-o-boxplots"><span class="header-section-number">5.17</span> Part O — Boxplots</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(state_data<span class="sc">$</span><span class="st">`</span><span class="at">Life Exp</span><span class="st">`</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="supervision_1_files/figure-html/unnamed-chunk-31-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><strong>Reflect:</strong> What does the boxplot reveal about state-level life expectancy?</p>
+<hr>
+</section>
+<section id="part-p-multiple-boxplots" class="level2" data-number="5.18">
+<h2 data-number="5.18" class="anchored" data-anchor-id="part-p-multiple-boxplots"><span class="header-section-number">5.18</span> Part P — Multiple boxplots</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(state_data[, <span class="fu">c</span>(<span class="st">"Population"</span>, <span class="st">"Income"</span>, <span class="st">"Illiteracy"</span>, <span class="st">"Life Exp"</span>)],</span>
+<span id="cb63-2"><a href="#cb63-2" aria-hidden="true" tabindex="-1"></a>        <span class="at">main =</span> <span class="st">"Socio-economic Indicators across States"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="supervision_1_files/figure-html/unnamed-chunk-32-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><strong>Reflect:</strong> Which variable shows the most variability? The least?</p>
+<hr>
+</section>
+<section id="part-q-grid-of-charts" class="level2" data-number="5.19">
+<h2 data-number="5.19" class="anchored" data-anchor-id="part-q-grid-of-charts"><span class="header-section-number">5.19</span> Part Q — Grid of charts</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">3</span>), <span class="at">mar =</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">5</span>,<span class="dv">2</span>,<span class="dv">1</span>), <span class="at">las =</span> <span class="dv">1</span>, <span class="at">bty =</span> <span class="st">"n"</span>)</span>
+<span id="cb64-2"><a href="#cb64-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-3"><a href="#cb64-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(state_data<span class="sc">$</span>Population)</span>
+<span id="cb64-4"><a href="#cb64-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(state_data<span class="sc">$</span>Income, state_data<span class="sc">$</span>Illiteracy)</span>
+<span id="cb64-5"><a href="#cb64-5" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(state_data<span class="sc">$</span><span class="st">`</span><span class="at">Life Exp</span><span class="st">`</span>, <span class="at">type =</span> <span class="st">"c"</span>)</span>
+<span id="cb64-6"><a href="#cb64-6" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(state_data<span class="sc">$</span><span class="st">`</span><span class="at">Life Exp</span><span class="st">`</span>, <span class="at">type =</span> <span class="st">"s"</span>)</span>
+<span id="cb64-7"><a href="#cb64-7" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(state_data<span class="sc">$</span><span class="st">`</span><span class="at">Life Exp</span><span class="st">`</span>, <span class="at">type =</span> <span class="st">"h"</span>)</span>
+<span id="cb64-8"><a href="#cb64-8" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(state_data<span class="sc">$</span>Income, <span class="at">main =</span> <span class="st">"Income levels"</span>, <span class="at">col =</span> <span class="st">"blue"</span>, <span class="at">horiz =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb64-9"><a href="#cb64-9" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(state_data<span class="sc">$</span>Murder)</span>
+<span id="cb64-10"><a href="#cb64-10" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(state_data<span class="sc">$</span><span class="st">`</span><span class="at">HS Grad</span><span class="st">`</span>)</span>
+<span id="cb64-11"><a href="#cb64-11" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(state_data[, <span class="fu">c</span>(<span class="st">"Population"</span>, <span class="st">"Income"</span>, <span class="st">"Illiteracy"</span>, <span class="st">"Life Exp"</span>)],</span>
+<span id="cb64-12"><a href="#cb64-12" aria-hidden="true" tabindex="-1"></a>        <span class="at">main =</span> <span class="st">"Multiple Box plots"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="supervision_1_files/figure-html/unnamed-chunk-33-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><strong>Reflect:</strong> Which plots are most useful for policy discussions? Which are least useful?</p>
+<hr>
+</section>
+<section id="best-practices-3" class="level2" data-number="5.20">
+<h2 data-number="5.20" class="anchored" data-anchor-id="best-practices-3"><span class="header-section-number">5.20</span> Best practices</h2>
+<ul>
+<li>Always check the structure of socio-economic data before plotting.</li>
+<li>Match plot type to variable type.</li>
+<li>Add descriptive titles and labels.</li>
+<li>Avoid misleading graphics (bar plots for continuous data should be used cautiously).</li>
+<li>Visualise relationships before modelling.</li>
+</ul>
+<hr>
+</section>
+<section id="further-visualisation-packages" class="level2" data-number="5.21">
+<h2 data-number="5.21" class="anchored" data-anchor-id="further-visualisation-packages"><span class="header-section-number">5.21</span> Further visualisation packages</h2>
+<ul>
+<li><strong>lattice</strong>: kernel density plots</li>
+<li><strong>ggplot2</strong>: flexible grammar of graphics</li>
+<li><strong>plotly</strong>: interactive plots</li>
+<li><strong>maps</strong>: plot country maps</li>
+</ul>
+<p>More resources: <a href="https://towardsdatascience.com/a-guide-to-data-visualisation-in-r-for-beginners-ef6d41a34174">towardsdatascience.com article</a></p>
+<hr>
+</section>
+<section id="suggested-answers-to-reflection-questions-1" class="level2" data-number="5.22">
+<h2 data-number="5.22" class="anchored" data-anchor-id="suggested-answers-to-reflection-questions-1"><span class="header-section-number">5.22</span> Suggested Answers to Reflection Questions</h2>
+<ul>
+<li><strong>Part A:</strong> Variables include Population, Income, Illiteracy, Life Expectancy, Murder rate, HS graduation, Frost, and Area. Most relate directly to planning and socio-economic development.</li>
+<li><strong>Part B:</strong> 50 rows (states) and 8 columns. All variables are numeric.</li>
+<li><strong>Part C:</strong> States differ widely in population and area; later rows (western states) often have larger land areas.</li>
+<li><strong>Part D:</strong> Population and Area show the widest spread.</li>
+<li><strong>Part F:</strong> Populations vary dramatically; California, New York, Texas are clear outliers.</li>
+<li><strong>Part G:</strong> Clear negative relationship: higher income states tend to have lower illiteracy.</li>
+<li><strong>Part H:</strong> Income vs Illiteracy, Life Expectancy vs Murder, and Population vs Area show strong patterns.</li>
+<li><strong>Part I:</strong> Type “b” (points and lines) is clearer for showing gradual variation than type “h” (histogram-like lines).</li>
+<li><strong>Part J:</strong> Useful arguments include <code>pch</code> (point type) and <code>col</code> (colour).</li>
+<li><strong>Part K:</strong> Labels help; better axis labels might specify units (e.g., dollars, years).</li>
+<li><strong>Part L:</strong> Southern states often stand out with higher murder rates.</li>
+<li><strong>Part M:</strong> Highlights disparities in illiteracy across regions; relevant to education policy.</li>
+<li><strong>Part N:</strong> Income is slightly right-skewed; most states cluster around the middle with a few richer outliers.</li>
+<li><strong>Part O:</strong> Median life expectancy around 70 years; some outliers with lower values.</li>
+<li><strong>Part P:</strong> Population and Area show the most variability; Life Expectancy the least.</li>
+<li><strong>Part Q:</strong> Scatterplot of Income vs Illiteracy and histogram of Murder are most useful for policy; line-type plots of Life Expectancy less so.</li>
+</ul>
+<hr>
+</section>
+<section id="suggested-answers-to-reflection-questions-2" class="level2" data-number="5.23">
+<h2 data-number="5.23" class="anchored" data-anchor-id="suggested-answers-to-reflection-questions-2"><span class="header-section-number">5.23</span> Suggested Answers to Reflection Questions</h2>
+<blockquote class="blockquote">
+<p>These are concise, indicative answers. Local results may vary slightly depending on plotting parameters and ordering.</p>
+</blockquote>
+<section id="part-a-load-dataset-1" class="level3" data-number="5.23.1">
+<h3 data-number="5.23.1" class="anchored" data-anchor-id="part-a-load-dataset-1"><span class="header-section-number">5.23.1</span> Part A — Load dataset</h3>
+<ul>
+<li>Variables in <code>state.x77</code>: <code>Population</code> (thousands), <code>Income</code> (per-capita, USD), <code>Illiteracy</code> (% age ≥25 illiterate), <code>Life.Exp</code> (years), <code>Murder</code> (per 100,000), <code>HS.Grad</code> (% high-school graduates), <code>Frost</code> (mean days ≤ 0°C), <code>Area</code> (square miles).<br>
+</li>
+<li>Planning relevance: population size/density, income, education, crime, longevity connect to regional disparities and regeneration priorities.</li>
+</ul>
+</section>
+<section id="part-b-data-exploration-1" class="level3" data-number="5.23.2">
+<h3 data-number="5.23.2" class="anchored" data-anchor-id="part-b-data-exploration-1"><span class="header-section-number">5.23.2</span> Part B — Data exploration</h3>
+<ul>
+<li>Dimensions: <strong>50 rows × 8 columns</strong>.<br>
+</li>
+<li>All columns are numeric/continuous; state names are row names (categorical identifier).</li>
+</ul>
+</section>
+<section id="part-c-headtail" class="level3" data-number="5.23.3">
+<h3 data-number="5.23.3" class="anchored" data-anchor-id="part-c-headtail"><span class="header-section-number">5.23.3</span> Part C — Head/Tail</h3>
+<ul>
+<li>Early vs late rows simply reflect alphabetical state ordering; no time component. Values vary widely (e.g., <code>Area</code>, <code>Population</code>).</li>
+</ul>
+</section>
+<section id="part-d-descriptive-statistics-1" class="level3" data-number="5.23.4">
+<h3 data-number="5.23.4" class="anchored" data-anchor-id="part-d-descriptive-statistics-1"><span class="header-section-number">5.23.4</span> Part D — Descriptive statistics</h3>
+<ul>
+<li>Widest spreads typically in <code>Area</code> and <code>Population</code> (large range, right-skew).<br>
+</li>
+<li><code>Murder</code> and <code>Illiteracy</code> show noticeable skew and outliers.</li>
+</ul>
+</section>
+<section id="part-e-graphics-help" class="level3" data-number="5.23.5">
+<h3 data-number="5.23.5" class="anchored" data-anchor-id="part-e-graphics-help"><span class="header-section-number">5.23.5</span> Part E — Graphics help</h3>
+<ul>
+<li>Useful base functions: <code>pairs()</code>, <code>boxplot()</code>, <code>hist()</code>, <code>barplot()</code>, <code>stripchart()</code>, <code>dotchart()</code>, <code>qqnorm()</code>/<code>qqline()</code>.</li>
+</ul>
+</section>
+<section id="part-f-single-column-plot-population" class="level3" data-number="5.23.6">
+<h3 data-number="5.23.6" class="anchored" data-anchor-id="part-f-single-column-plot-population"><span class="header-section-number">5.23.6</span> Part F — Single column plot (Population)</h3>
+<ul>
+<li>Strong right-skew: a few very populous states (CA, NY, TX) vs many smaller states. Outliers at the high end.</li>
+</ul>
+</section>
+<section id="part-g-scatter-income-vs-illiteracy" class="level3" data-number="5.23.7">
+<h3 data-number="5.23.7" class="anchored" data-anchor-id="part-g-scatter-income-vs-illiteracy"><span class="header-section-number">5.23.7</span> Part G — Scatter (Income vs Illiteracy)</h3>
+<ul>
+<li>Clear <strong>negative</strong> association: higher income correlates with lower illiteracy.<br>
+</li>
+<li>Some states deviate from the trend but pattern holds overall.</li>
+</ul>
+</section>
+<section id="part-h-pairs-of-entire-dataset" class="level3" data-number="5.23.8">
+<h3 data-number="5.23.8" class="anchored" data-anchor-id="part-h-pairs-of-entire-dataset"><span class="header-section-number">5.23.8</span> Part H — <code>pairs()</code> of entire dataset</h3>
+<ul>
+<li>Notable patterns often seen:
+<ul>
+<li><code>Income</code> ↑ with <code>HS.Grad</code> and <code>Life.Exp</code>.<br>
+</li>
+<li><code>Murder</code> tends to be higher where <code>Illiteracy</code> is higher and <code>HS.Grad</code> is lower.<br>
+</li>
+<li><code>Area</code> weakly related to socio-economic outcomes (size ≠ prosperity).</li>
+</ul></li>
+</ul>
+</section>
+<section id="part-i-types-b-vs-h-life.exp" class="level3" data-number="5.23.9">
+<h3 data-number="5.23.9" class="anchored" data-anchor-id="part-i-types-b-vs-h-life.exp"><span class="header-section-number">5.23.9</span> Part I — Types “b” vs “h” (Life.Exp)</h3>
+<ul>
+<li><code>type="b"</code> conveys point-to-point variability; <code>type="h"</code> emphasizes magnitudes from baseline.<br>
+</li>
+<li>For life expectancy, <code>"b"</code> is generally clearer.</li>
+</ul>
+</section>
+<section id="part-j-help-1" class="level3" data-number="5.23.10">
+<h3 data-number="5.23.10" class="anchored" data-anchor-id="part-j-help-1"><span class="header-section-number">5.23.10</span> Part J — Help</h3>
+<ul>
+<li>Examples of useful args: <code>pch</code> (point symbol), <code>cex</code> (size), <code>col</code> (colour), <code>xlim</code>/<code>ylim</code> (ranges), <code>main</code>/<code>sub</code> (titles/subtitles).</li>
+</ul>
+</section>
+<section id="part-k-labels-and-titles-income" class="level3" data-number="5.23.11">
+<h3 data-number="5.23.11" class="anchored" data-anchor-id="part-k-labels-and-titles-income"><span class="header-section-number">5.23.11</span> Part K — Labels and titles (Income)</h3>
+<ul>
+<li>Better labels: x = “State (index)”, y = “Per-capita income (USD)”, title = “Per-capita income by state”.<br>
+</li>
+<li>Colour is decorative here unless encoding a grouping.</li>
+</ul>
+</section>
+<section id="part-l-horizontal-bar-plot-murder" class="level3" data-number="5.23.12">
+<h3 data-number="5.23.12" class="anchored" data-anchor-id="part-l-horizontal-bar-plot-murder"><span class="header-section-number">5.23.12</span> Part L — Horizontal bar plot (Murder)</h3>
+<ul>
+<li>States with higher values stand out (exact names depend on ordering). For rigorous identification, sort with <code>order()</code> or use a dotchart.</li>
+</ul>
+</section>
+<section id="part-m-vertical-bar-plot-illiteracy" class="level3" data-number="5.23.13">
+<h3 data-number="5.23.13" class="anchored" data-anchor-id="part-m-vertical-bar-plot-illiteracy"><span class="header-section-number">5.23.13</span> Part M — Vertical bar plot (Illiteracy)</h3>
+<ul>
+<li>Helps compare education disparities. Policy angle: target states with highest illiteracy for adult education and schooling investment.</li>
+</ul>
+</section>
+<section id="part-n-histogram-income" class="level3" data-number="5.23.14">
+<h3 data-number="5.23.14" class="anchored" data-anchor-id="part-n-histogram-income"><span class="header-section-number">5.23.14</span> Part N — Histogram (Income)</h3>
+<ul>
+<li>Typically unimodal, mild right-skew. Most states cluster around mid-income; a few richer states in the right tail. Bin choice affects apparent shape.</li>
+</ul>
+</section>
+<section id="part-o-boxplot-life.exp" class="level3" data-number="5.23.15">
+<h3 data-number="5.23.15" class="anchored" data-anchor-id="part-o-boxplot-life.exp"><span class="header-section-number">5.23.15</span> Part O — Boxplot (Life.Exp)</h3>
+<ul>
+<li>Median around ~70 years, relatively tight IQR; lower outliers indicate states with comparatively worse health outcomes.</li>
+</ul>
+</section>
+<section id="part-p-multiple-boxplots-1" class="level3" data-number="5.23.16">
+<h3 data-number="5.23.16" class="anchored" data-anchor-id="part-p-multiple-boxplots-1"><span class="header-section-number">5.23.16</span> Part P — Multiple boxplots</h3>
+<ul>
+<li><code>Population</code> shows largest spread; <code>Life.Exp</code> the tightest. Outliers are more common in <code>Murder</code> and <code>Illiteracy</code>.</li>
+</ul>
+</section>
+<section id="part-q-grid-of-charts-1" class="level3" data-number="5.23.17">
+<h3 data-number="5.23.17" class="anchored" data-anchor-id="part-q-grid-of-charts-1"><span class="header-section-number">5.23.17</span> Part Q — Grid of charts</h3>
+<ul>
+<li>Most informative: scatterplots for relationships (e.g., <code>Income</code> vs <code>Illiteracy</code>), and boxplots/histograms for distributions.<br>
+</li>
+<li>Least informative: unsorted barplots of continuous variables.</li>
+</ul>
+</section>
+<section id="best-practices-summaries" class="level3" data-number="5.23.18">
+<h3 data-number="5.23.18" class="anchored" data-anchor-id="best-practices-summaries"><span class="header-section-number">5.23.18</span> Best practices — summaries</h3>
+<ul>
+<li>Inspect structure first; match plot to variable type; label clearly; avoid misleading encodings; explore visually before modelling.</li>
+</ul>
+<p><em>End of Lab 4</em></p>
+</section>
+</section>
+</section>
+<section id="lab-5-using-github-copilot-in-rstudio" class="level1" data-number="6">
+<h1 data-number="6"><span class="header-section-number">6</span> Lab 5 — Using GitHub Copilot in RStudio</h1>
+<section id="goal" class="level2" data-number="6.1">
+<h2 data-number="6.1" class="anchored" data-anchor-id="goal"><span class="header-section-number">6.1</span> Goal</h2>
+<p>Learn to use GitHub Copilot inside RStudio to speed up routine coding, while staying in control of quality, privacy, and reproducibility.</p>
+<hr>
+</section>
+<section id="learning-outcomes-4" class="level2" data-number="6.2">
+<h2 data-number="6.2" class="anchored" data-anchor-id="learning-outcomes-4"><span class="header-section-number">6.2</span> Learning outcomes</h2>
+<p>By the end you will be able to: 1. Enable and sign into GitHub Copilot in RStudio. 2. Accept, reject, or modify Copilot autocomplete suggestions effectively. 3. Use comment-first prompting to steer suggestions. 4. Diagnose and fix typical Copilot mistakes (wrong column names, redundant args, etc.). 5. Apply safe-use practices (privacy, determinism, avoiding “vibe coding”).</p>
+<hr>
+</section>
+<section id="prerequisites-4" class="level2" data-number="6.3">
+<h2 data-number="6.3" class="anchored" data-anchor-id="prerequisites-4"><span class="header-section-number">6.3</span> Prerequisites</h2>
+<ul>
+<li>R (≥ 4.3 recommended) and RStudio (a recent version with Copilot support).</li>
+<li>A GitHub account with Copilot access (student/educator plans are available).</li>
+<li>Packages: <code>tidyverse</code>, <code>palmerpenguins</code>, <code>readxl</code>, <code>ggplot2</code>.</li>
+</ul>
+<div class="sourceCode" id="cb65"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="fu">c</span>(<span class="st">"tidyverse"</span>, <span class="st">"palmerpenguins"</span>, <span class="st">"readxl"</span>, <span class="st">"ggplot2"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<blockquote class="blockquote">
+<p>Note: Column names for the <code>penguins</code> dataset may differ depending on source. Treat this as a feature to practice Copilot-aware debugging.</p>
+</blockquote>
+<hr>
+</section>
+<section id="part-a-set-up-copilot-in-rstudio-1015-min" class="level2" data-number="6.4">
+<h2 data-number="6.4" class="anchored" data-anchor-id="part-a-set-up-copilot-in-rstudio-1015-min"><span class="header-section-number">6.4</span> Part A — Set up Copilot in RStudio (10–15 min)</h2>
+<ol type="1">
+<li>Open RStudio → Tools → Global Options → Copilot.</li>
+<li>Enable GitHub Copilot and sign in with GitHub.</li>
+<li>Create a new R Script (<code>File → New File → R Script</code>).</li>
+<li>Type some characters to see ghost text suggestions.
+<ul>
+<li>Tab to accept, Esc to dismiss, or keep typing to ignore.</li>
+</ul></li>
+</ol>
+<section id="reflection-a" class="level3" data-number="6.4.1">
+<h3 data-number="6.4.1" class="anchored" data-anchor-id="reflection-a"><span class="header-section-number">6.4.1</span> Reflection A</h3>
+<p>Explain in one sentence the difference between ghost text and code you’ve actually inserted.</p>
+<hr>
+</section>
+</section>
+<section id="part-b-first-suggestions-with-ggplot2-20-min" class="level2" data-number="6.5">
+<h2 data-number="6.5" class="anchored" data-anchor-id="part-b-first-suggestions-with-ggplot2-20-min"><span class="header-section-number">6.5</span> Part B — First suggestions with ggplot2 (20 min)</h2>
+<p>We’ll use <code>penguins</code> to practice.</p>
+<ol type="1">
+<li>Add a guiding comment:</li>
+</ol>
+<div class="sourceCode" id="cb66"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Task: scatter plot of bill length (x) vs body mass (y), colour by species</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ol start="2" type="1">
+<li>Start a plot:</li>
+</ol>
+<div class="sourceCode" id="cb67"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb67-2"><a href="#cb67-2" aria-hidden="true" tabindex="-1"></a><span class="co"># library(palmerpenguins)</span></span>
+<span id="cb67-3"><a href="#cb67-3" aria-hidden="true" tabindex="-1"></a><span class="co"># penguins &lt;- palmerpenguins::penguins</span></span>
+<span id="cb67-4"><a href="#cb67-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb67-5"><a href="#cb67-5" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> bill_length_mm, <span class="at">y =</span> body_mass_g, <span class="at">colour =</span> species)) <span class="sc">+</span></span>
+<span id="cb67-6"><a href="#cb67-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ol start="3" type="1">
+<li>Run and, if errors occur, inspect:</li>
+</ol>
+<div class="sourceCode" id="cb68"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(penguins)</span>
+<span id="cb68-2"><a href="#cb68-2" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(penguins)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ol start="4" type="1">
+<li>Fix names if needed (<code>bill_length_mm</code> → <code>bill_len</code>).</li>
+</ol>
+<section id="mini-exercises" class="level3" data-number="6.5.1">
+<h3 data-number="6.5.1" class="anchored" data-anchor-id="mini-exercises"><span class="header-section-number">6.5.1</span> Mini-exercises</h3>
+<ul>
+<li>Add title, caption, and axis labels:</li>
+</ul>
+<div class="sourceCode" id="cb69"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Add a title, caption, and nicer axis labels</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>Add smoother:</li>
+</ul>
+<div class="sourceCode" id="cb70"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Add a loess smoother without confidence band</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="reflection-b" class="level3" data-number="6.5.2">
+<h3 data-number="6.5.2" class="anchored" data-anchor-id="reflection-b"><span class="header-section-number">6.5.2</span> Reflection B</h3>
+<p>When is Copilot faster? When slower?</p>
+<hr>
+</section>
+</section>
+<section id="part-c-comment-first-prompting-for-histograms-15-min" class="level2" data-number="6.6">
+<h2 data-number="6.6" class="anchored" data-anchor-id="part-c-comment-first-prompting-for-histograms-15-min"><span class="header-section-number">6.6</span> Part C — Comment-first prompting for histograms (15 min)</h2>
+<ol type="1">
+<li>Add a guiding comment:</li>
+</ol>
+<div class="sourceCode" id="cb71"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Histogram of body mass by species, overlapping with transparency and an accessible palette</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ol start="2" type="1">
+<li>Inspect Copilot’s suggestion, remove redundant arguments, and adjust to:</li>
+</ol>
+<div class="sourceCode" id="cb72"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a><span class="fu">geom_histogram</span>(<span class="at">position =</span> <span class="st">"identity"</span>, <span class="at">alpha =</span> <span class="fl">0.5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ol start="3" type="1">
+<li>Commit the cleaned version.</li>
+</ol>
+<section id="reflection-c" class="level3" data-number="6.6.1">
+<h3 data-number="6.6.1" class="anchored" data-anchor-id="reflection-c"><span class="header-section-number">6.6.1</span> Reflection C</h3>
+<p>Replace colour with <code>fill</code>, adjust legend, apply minimal theme.</p>
+<hr>
+</section>
+</section>
+<section id="part-d-loading-local-data-safely-1015-min" class="level2" data-number="6.7">
+<h2 data-number="6.7" class="anchored" data-anchor-id="part-d-loading-local-data-safely-1015-min"><span class="header-section-number">6.7</span> Part D — Loading local data safely (10–15 min)</h2>
+<p>Copilot does not know your file system.</p>
+<ol type="1">
+<li>Save <code>Scooby.xlsx</code> in a <code>data/</code> folder.</li>
+<li>Load explicitly:</li>
+</ol>
+<div class="sourceCode" id="cb73"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb73-2"><a href="#cb73-2" aria-hidden="true" tabindex="-1"></a>scooby <span class="ot">&lt;-</span> <span class="fu">read_xlsx</span>(<span class="st">"data/Scooby.xlsx"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ol start="3" type="1">
+<li>Add prompt:</li>
+</ol>
+<div class="sourceCode" id="cb74"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Quick EDA: glimpse, summary, and count episodes by network</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ol start="4" type="1">
+<li>Edit Copilot’s code before running.</li>
+</ol>
+<section id="reflection-d" class="level3" data-number="6.7.1">
+<h3 data-number="6.7.1" class="anchored" data-anchor-id="reflection-d"><span class="header-section-number">6.7.1</span> Reflection D</h3>
+<p>Why be explicit with data loading and library imports?</p>
+<hr>
+</section>
+</section>
+<section id="part-e-boxplots-15-min" class="level2" data-number="6.8">
+<h2 data-number="6.8" class="anchored" data-anchor-id="part-e-boxplots-15-min"><span class="header-section-number">6.8</span> Part E — Boxplots (15 min)</h2>
+<p>Visualise IMDb ratings by network.</p>
+<ol type="1">
+<li>Prompt:</li>
+</ol>
+<div class="sourceCode" id="cb75"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb75-1"><a href="#cb75-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Boxplot of IMDb (y) by network (x); tilt x labels; use fill instead of colour</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ol start="2" type="1">
+<li>Edit column names if needed.</li>
+<li>Add improvements:</li>
+</ol>
+<div class="sourceCode" id="cb76"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb76-1"><a href="#cb76-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Make it horizontal, tidy legend, and add labs</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="extension-e" class="level3" data-number="6.8.1">
+<h3 data-number="6.8.1" class="anchored" data-anchor-id="extension-e"><span class="header-section-number">6.8.1</span> Extension E</h3>
+<p>Order networks by median rating.</p>
+<hr>
+</section>
+</section>
+<section id="part-f-best-practices" class="level2" data-number="6.9">
+<h2 data-number="6.9" class="anchored" data-anchor-id="part-f-best-practices"><span class="header-section-number">6.9</span> Part F — Best practices</h2>
+<ul>
+<li>Privacy: Never expose credentials/confidential data.</li>
+<li>Non-determinism: Review suggestions before accepting.</li>
+<li>No vibe coding: Don’t accept what you don’t understand.</li>
+<li>Context helps: Use clean code and comments.</li>
+<li>Reproducibility: Remove redundant args, consider <code>renv</code>.</li>
+</ul>
+<div class="sourceCode" id="cb77"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb77-1"><a href="#cb77-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"renv"</span>)</span>
+<span id="cb77-2"><a href="#cb77-2" aria-hidden="true" tabindex="-1"></a>renv<span class="sc">::</span><span class="fu">init</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<hr>
+</section>
+<section id="part-g-check-off-submission" class="level2" data-number="6.10">
+<h2 data-number="6.10" class="anchored" data-anchor-id="part-g-check-off-submission"><span class="header-section-number">6.10</span> Part G — Check-off &amp; submission</h2>
+<ul class="task-list">
+<li><label><input type="checkbox">Copilot enabled and signed in.</label></li>
+<li><label><input type="checkbox">One scatter plot (corrected column names).</label></li>
+<li><label><input type="checkbox">One histogram (transparency + accessible palette).</label></li>
+<li><label><input type="checkbox">One boxplot (labels/theme improved).</label></li>
+<li><label><input type="checkbox">Reflection paragraph on Copilot.</label></li>
+</ul>
+<p>Export script or Quarto doc → submit.</p>
+<hr>
+</section>
+<section id="ta-rubric" class="level2" data-number="6.11">
+<h2 data-number="6.11" class="anchored" data-anchor-id="ta-rubric"><span class="header-section-number">6.11</span> TA rubric</h2>
+<ul>
+<li>Setup (10%): Copilot enabled; script compiles.</li>
+<li>Code quality (40%): Reviewed/edited suggestions; correct names.</li>
+<li>Visuals (30%): Clear labels, sensible themes.</li>
+<li>Reflection (20%): Insightful, acknowledges limits.</li>
+</ul>
+<hr>
+</section>
+<section id="troubleshooting" class="level2" data-number="6.12">
+<h2 data-number="6.12" class="anchored" data-anchor-id="troubleshooting"><span class="header-section-number">6.12</span> Troubleshooting</h2>
+<ul>
+<li>Suggestions not appearing? Check Global Options → Copilot.</li>
+<li>Wrong dataset/columns? Run <code>names()</code>/<code>glimpse()</code>.</li>
+<li>Overconfident code? Scale back, test small steps.</li>
+</ul>
+<hr>
+</section>
+<section id="further-practice" class="level2" data-number="6.13">
+<h2 data-number="6.13" class="anchored" data-anchor-id="further-practice"><span class="header-section-number">6.13</span> Further practice</h2>
+<ul>
+<li>Rewrite prompts as comments for grouped summaries, joins, faceted plots.</li>
+<li>Compare Copilot vs manual solutions.</li>
+<li>Try Quarto docs where each chunk begins with a comment.</li>
+</ul>
+<hr>
+<p>End of lab</p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./index.html" class="pagination-link" aria-label="Cambridge Supervisions">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Cambridge Supervisions</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
