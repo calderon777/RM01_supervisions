@@ -3,8 +3,8 @@ project:
   output-dir: docs   # good for GitHub Pages
 
 book:
-  title: "Cambridge Supervisions"
-  author: "Camilo Calderon"
+  title: "Research Methods for Land Economy an interactive Supervisions"
+  author: "Camilo Calderon, PhD"
   chapters:
     - index.qmd
     - supervision_1.qmd
@@ -12,6 +12,8 @@ book:
 
 format:
   html:
-    theme: cosmo
-  pdf:
-    documentclass: scrreprt
+    theme: litera
+    number-sections: false
+    code-copy: true
+    code-overflow: wrap
+

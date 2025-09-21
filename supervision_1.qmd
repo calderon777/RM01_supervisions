@@ -4,6 +4,7 @@ output: html_document
 ---
 
 # Lab 1 — R Certification (LinkedIn Learning)
+
 ---
 
 ## Learning outcomes
