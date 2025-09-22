@@ -89,6 +89,29 @@ df <- data.frame(x = 1:10, y = (1:10)^0.5)
 plot(df$x, df$y, type = "l", main = "Tech‑check: base plot", xlab = "x", ylab = "sqrt(x)")
 ```
 
+```{r}
+# Test basic plotting capability
+library(ggplot2)
+test_data <- data.frame(
+  year = 2010:2020,
+  house_prices = c(250000, 260000, 275000, 285000, 290000, 
+                   310000, 325000, 340000, 355000, 370000, 385000)
+)
+
+ggplot(test_data, aes(x = year, y = house_prices)) +
+  geom_line(colour = "steelblue", size = 1.2) +
+  geom_point(colour = "darkred", size = 2) +
+  scale_y_continuous(labels = scales::comma_format()) +
+  labs(
+    title = "Hypothetical House Price Trends",
+    subtitle = "System functionality test",
+    x = "Year",
+    y = "Average House Price (£)",
+    caption = "Test data for R/RStudio verification"
+  ) +
+  theme_minimal()
+```
+
 **Reflect:** Did everything install and run without warnings? Capture any errors so we can fix them in class.
 
 ---
