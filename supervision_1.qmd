@@ -5,7 +5,7 @@ format: html
 
 ## Lab 1 — Professional Development: R Certification via LinkedIn Learning
 
-Professional certifications complement academic learning by providing industry-recognised credentials. For land economy graduates entering consultancy, government, or research roles, demonstrating quantitative competency through multiple channels strengthens your professional profile and evidences commitment to continuous learning. 
+Professional certifications complement academic learning by providing industry-recognised credentials. For land economy graduates leading industries and entering consultancy, government, or research roles, demonstrating quantitative competency through multiple channels strengthens your professional profile and evidences commitment to continuous learning. 
 
 ---
 
@@ -16,7 +16,7 @@ By the end of this lab you will be able to:
 1. Access institutional resources / **LinkedIn Learning** for continuous professional development
 2. Complete a **certified R programming course** that demonstrates foundational competency
 3. Document your learning through **professional certification** pathways
-4. Prepare your technical environment for advanced coursework
+4. Prepare your technical environment for **advanced coursework**
 5. **Reflect critically** on skill acquisition in academic and professional contexts
 
 ---
@@ -48,46 +48,29 @@ Establish access to University-provided LinkedIn Learning resources.
 ### Part B — Course Selection and Academic Alignment (30 minutes)
 1. In LinkedIn Learning, search for **“R Programming”** or **“R for Data Analysis”**.  
 2. Pick a **Beginner** course or a **Learning Path** that issues a certificate upon completion.  
-3. Skim the syllabus; confirm it covers: R basics (objects, vectors), data frames, importing data, and simple plots.
+3. Skim the syllabus; confirm it covers: R basics (e.g. objects, vectors), data frames, importing data, and simple plots.
 
 ::: Tip 
 Short beginner certificates often take only a few hours. Pick one you can finish this week.
 :::
 
-**Reflect:** Provide a **certificate/enrolment URL** or a screenshot proving enrolment. What challenges do you anticipate in acquiring programming skills alongside your substantive coursework?
+**Reflect:** a) Provide a **certificate/enrolment URL** or a screenshot proving enrolment. What challenges do you anticipate in acquiring programming skills alongside your substantive coursework? b) List three new R commands and three packages you learned and one common error you corrected.
 
 ---
 
-### Part C — Complete the course effectively
-- Turn on **captions** and adjust playback speed for focus.  
-- Download **exercise files** (if offered) and practice in RStudio.  
-- Take brief notes; collect 3–5 commands you didn’t know before.  
-- Mark lessons **Complete** as you go; attempt embedded quizzes.
-
-**Reflect:** List three new R commands you learned and one common error you corrected.
-
----
-
-### Part D — Export and submit your certificate
-1. After finishing, open the course page → **Certificate** → **Download PDF** (or **Copy share link**).  
-2. Save as `data/yourname_r_certificate.pdf`.  
-3. Submit the PDF to the LMS (or share link as instructed in your module).
-
-**Reflect:** Where will you showcase this credential (CV, LinkedIn, portfolio)? Why?
-
----
-
-### Part E — Add to your LinkedIn profile (optional but recommended)
+### Part C — Add to your LinkedIn profile (optional but recommended)
 1. Open your LinkedIn profile → **Add profile section** → **Recommended** → **Licenses & Certifications**.  
 2. **Name:** Course title. **Issuing organization:** LinkedIn Learning. **Credential URL:** paste the certificate share link (if available).  
 3. Save.
 
-**Reflect:** How might this certification support applications for placements or research roles in Land Economy?
-
 ---
 
-### Part F — RStudio tech‑check for upcoming labs
+### Part D — RStudio tech‑check for upcoming labs
 Run these in RStudio to ensure you’re ready for Labs 2–4.
+
+::: Tip
+Recall you can run lines of code in R by hitting the keys ctrl+enter (commad+enter for Mac)
+:::
 
 ```{r}
 R.version.string
