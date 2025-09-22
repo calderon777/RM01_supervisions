@@ -171,7 +171,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#part-c-add-to-your-linkedin-profile-optional-but-recommended" id="toc-part-c-add-to-your-linkedin-profile-optional-but-recommended" class="nav-link" data-scroll-target="#part-c-add-to-your-linkedin-profile-optional-but-recommended">Part C — Add to your LinkedIn profile (optional but recommended)</a></li>
   <li><a href="#part-d-rstudio-techcheck-for-upcoming-labs" id="toc-part-d-rstudio-techcheck-for-upcoming-labs" class="nav-link" data-scroll-target="#part-d-rstudio-techcheck-for-upcoming-labs">Part D — RStudio tech‑check for upcoming labs</a></li>
   <li><a href="#best-practices" id="toc-best-practices" class="nav-link" data-scroll-target="#best-practices">Best practices</a></li>
-  <li><a href="#suggested-answers-indicative" id="toc-suggested-answers-indicative" class="nav-link" data-scroll-target="#suggested-answers-indicative">Suggested Answers (indicative)</a></li>
   </ul></li>
   <li><a href="#lab-2-interactive-r-learning-r4ds.tutorials-learnr-swirl" id="toc-lab-2-interactive-r-learning-r4ds.tutorials-learnr-swirl" class="nav-link" data-scroll-target="#lab-2-interactive-r-learning-r4ds.tutorials-learnr-swirl">Lab 2 — Interactive R Learning (r4ds.tutorials + learnr + swirl)</a>
   <ul class="collapse">
@@ -182,7 +181,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#part-c-swirl-consolebased" id="toc-part-c-swirl-consolebased" class="nav-link" data-scroll-target="#part-c-swirl-consolebased">Part C — swirl (console‑based)</a></li>
   <li><a href="#part-d-mini-practice-510-min" id="toc-part-d-mini-practice-510-min" class="nav-link" data-scroll-target="#part-d-mini-practice-510-min">Part D — Mini practice (5–10 min)</a></li>
   <li><a href="#best-practices-1" id="toc-best-practices-1" class="nav-link" data-scroll-target="#best-practices-1">Best practices</a></li>
-  <li><a href="#suggested-answers-indicative-1" id="toc-suggested-answers-indicative-1" class="nav-link" data-scroll-target="#suggested-answers-indicative-1">Suggested Answers (indicative)</a></li>
+  <li><a href="#suggested-answers-indicative" id="toc-suggested-answers-indicative" class="nav-link" data-scroll-target="#suggested-answers-indicative">Suggested Answers (indicative)</a></li>
   </ul></li>
   <li><a href="#lab-3-uploading-excel-csv-files-to-r-pipr" id="toc-lab-3-uploading-excel-csv-files-to-r-pipr" class="nav-link" data-scroll-target="#lab-3-uploading-excel-csv-files-to-r-pipr">Lab 3 — Uploading Excel &amp; CSV Files to R (PIPR)</a>
   <ul class="collapse">
@@ -366,7 +365,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="part-d-rstudio-techcheck-for-upcoming-labs" class="level3">
 <h3 class="anchored" data-anchor-id="part-d-rstudio-techcheck-for-upcoming-labs">Part D — RStudio tech‑check for upcoming labs</h3>
-<p>Run these in RStudio to ensure you’re ready for Labs 2–4.</p>
+<p>Run the following lines in RStudio to ensure you’re ready for the following Labs.</p>
 <div class="Tip">
 <p>Recall you can run lines of code in R by hitting the keys ctrl+enter (commad+enter for Mac)</p>
 </div>
@@ -406,32 +405,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="best-practices" class="level3">
 <h3 class="anchored" data-anchor-id="best-practices">Best practices</h3>
 <ul>
-<li><strong>Use institutional access</strong> so your progress and certificates are recognized and free to you.<br>
-</li>
-<li><strong>Timebox</strong> study sessions (e.g., 30–45 min focus blocks).<br>
-</li>
 <li><strong>Practice while you watch</strong>—replicate examples in RStudio, don’t just watch videos.<br>
 </li>
-<li>Keep a <strong>snippets</strong> file (your personal cheat‑sheet) with commands you’ll reuse in Labs 3–4.<br>
+<li>Keep a <strong>snippets</strong> file (your personal cheat‑sheet) with commands you’ll reuse.<br>
 </li>
 <li>Store all artifacts (notes, PDFs) in your course project folder for quick reference.</li>
-</ul>
-<hr>
-</section>
-<section id="suggested-answers-indicative" class="level3">
-<h3 class="anchored" data-anchor-id="suggested-answers-indicative">Suggested Answers (indicative)</h3>
-<ul>
-<li><strong>Part A:</strong> Linking accounts preserves learning history and makes sharing easy; a potential risk is mixing personal and institutional data—use privacy settings and review permissions.<br>
-</li>
-<li><strong>Part B:</strong> Data import and plotting directly support planning/regeneration tasks (e.g., reading ONS data, visualising indicators).<br>
-</li>
-<li><strong>Part C:</strong> Example new commands: <code>readr::read_csv()</code>, <code>dplyr::mutate()</code>, <code>ggplot2::geom_line()</code>; common error: forgetting to load a package with <code>library()</code>.<br>
-</li>
-<li><strong>Part D:</strong> Showcase on CV and LinkedIn; it signals foundational competency in R.<br>
-</li>
-<li><strong>Part E:</strong> Certifications can strengthen internship or RA applications by evidencing practical skills.<br>
-</li>
-<li><strong>Part F:</strong> If installs fail, note the exact error message; we’ll address proxies, permissions, or missing system libraries next lab.</li>
 </ul>
 <hr>
 <p><em>End of Lab 1</em></p>
@@ -442,7 +420,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <hr>
 <section id="learning-outcomes-1" class="level3">
 <h3 class="anchored" data-anchor-id="learning-outcomes-1">Learning outcomes</h3>
-<p>By the end of this lab you will be able to: 1. Launch and complete the <strong>r4ds.tutorials</strong> lesson <strong>01-data-visualization</strong> in RStudio. 2. Run a built‑in <strong>learnr</strong> tutorial (<strong>ex-data-basics</strong>) and submit answers in an interactive pane. 3. Use <strong>swirl</strong> from the Console (install a course, resume lessons, check progress). 4. Compare the strengths of r4ds.learnr tutorials vs.&nbsp;swirl for your own study plan.</p>
+<p>By the end of this lab you will be able to: 1. Launch and complete the <strong>r4ds.tutorials</strong> lesson <strong>01-data-visualization</strong> in RStudio. 2. Run a built‑in <strong>learnr</strong> tutorial (<strong>ex-data-basics</strong>) and submit answers in an interactive pane. 3. Use <strong>swirl</strong> from the Console (install a course, resume lessons, check progress). 4. Acquire <strong>multiple ways of self-development</strong> for your own study plan.</p>
 <hr>
 </section>
 <section id="prerequisites-1" class="level3">
@@ -454,9 +432,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="fu">c</span>(<span class="st">"learnr"</span>, <span class="st">"r4ds.tutorials"</span>, <span class="st">"swirl"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<blockquote class="blockquote">
-<p>Tip: If tutorials don’t appear in RStudio’s <strong>Tutorial</strong> tab after installation, restart R.</p>
-</blockquote>
+<div class="Tip">
+<p>If tutorials don’t appear in RStudio’s <strong>Tutorial</strong> tab after installation, restart R.</p>
+</div>
 <hr>
 </section>
 <section id="part-a-r4ds.tutorials-01-data-visualization" class="level3">
@@ -541,8 +519,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 <hr>
 </section>
-<section id="suggested-answers-indicative-1" class="level3">
-<h3 class="anchored" data-anchor-id="suggested-answers-indicative-1">Suggested Answers (indicative)</h3>
+<section id="suggested-answers-indicative" class="level3">
+<h3 class="anchored" data-anchor-id="suggested-answers-indicative">Suggested Answers (indicative)</h3>
 <ul>
 <li><strong>Part A:</strong> Aesthetics map data → visual channels; geoms are the drawing layers (points, lines, bars). Improvements often include <code>labs()</code>, <code>scale_*_continuous()</code>, <code>theme_minimal()</code>, and <code>facet_wrap()</code>.</li>
 <li><strong>Part B:</strong> Worked with vectors/data frames; common mistakes include mixing types (character vs numeric) or forgetting <code>&lt;-</code>. Hints/feedback indicate expected objects or function names.</li>

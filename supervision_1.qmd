@@ -66,7 +66,7 @@ Short beginner certificates often take only a few hours. Pick one you can finish
 ---
 
 ### Part D — RStudio tech‑check for upcoming labs
-Run these in RStudio to ensure you’re ready for Labs 2–4.
+Run the following lines in RStudio to ensure you’re ready for the following Labs.
 
 ::: Tip
 Recall you can run lines of code in R by hitting the keys ctrl+enter (commad+enter for Mac)
@@ -94,21 +94,10 @@ plot(df$x, df$y, type = "l", main = "Tech‑check: base plot", xlab = "x", ylab 
 ---
 
 ### Best practices
-- **Use institutional access** so your progress and certificates are recognized and free to you.  
-- **Timebox** study sessions (e.g., 30–45 min focus blocks).  
+
 - **Practice while you watch**—replicate examples in RStudio, don’t just watch videos.  
-- Keep a **snippets** file (your personal cheat‑sheet) with commands you’ll reuse in Labs 3–4.  
+- Keep a **snippets** file (your personal cheat‑sheet) with commands you’ll reuse.  
 - Store all artifacts (notes, PDFs) in your course project folder for quick reference.
-
----
-
-### Suggested Answers (indicative)
-- **Part A:** Linking accounts preserves learning history and makes sharing easy; a potential risk is mixing personal and institutional data—use privacy settings and review permissions.  
-- **Part B:** Data import and plotting directly support planning/regeneration tasks (e.g., reading ONS data, visualising indicators).  
-- **Part C:** Example new commands: `readr::read_csv()`, `dplyr::mutate()`, `ggplot2::geom_line()`; common error: forgetting to load a package with `library()`.  
-- **Part D:** Showcase on CV and LinkedIn; it signals foundational competency in R.  
-- **Part E:** Certifications can strengthen internship or RA applications by evidencing practical skills.  
-- **Part F:** If installs fail, note the exact error message; we’ll address proxies, permissions, or missing system libraries next lab.
 
 ---
 
@@ -123,7 +112,7 @@ By the end of this lab you will be able to:
 1. Launch and complete the **r4ds.tutorials** lesson **01-data-visualization** in RStudio.
 2. Run a built‑in **learnr** tutorial (**ex-data-basics**) and submit answers in an interactive pane.
 3. Use **swirl** from the Console (install a course, resume lessons, check progress).
-4. Compare the strengths of r4ds.learnr tutorials vs. swirl for your own study plan.
+4. Acquire **multiple ways of self-development** for your own study plan.
 
 ---
 
@@ -135,7 +124,9 @@ By the end of this lab you will be able to:
 install.packages(c("learnr", "r4ds.tutorials", "swirl"))
 ```
 
-> Tip: If tutorials don’t appear in RStudio’s **Tutorial** tab after installation, restart R.
+::: Tip
+If tutorials don’t appear in RStudio’s **Tutorial** tab after installation, restart R.
+:::
 
 ---
 
