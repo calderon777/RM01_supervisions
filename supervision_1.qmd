@@ -6,6 +6,7 @@ format: html
 ## Lab 1 — Professional Development: R Certification via LinkedIn Learning
 
 Professional certifications complement academic learning by providing industry-recognised credentials. For land economy graduates entering consultancy, government, or research roles, demonstrating quantitative competency through multiple channels strengthens your professional profile and evidences commitment to continuous learning. 
+
 ---
 
 ### Learning outcomes
