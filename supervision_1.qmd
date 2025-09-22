@@ -4,10 +4,12 @@ format: html
 ---
 
 ## Lab 1 — Professional Development: R Certification via LinkedIn Learning
+
 Professional certifications complement academic learning by providing industry-recognised credentials. For land economy graduates entering consultancy, government, or research roles, demonstrating quantitative competency through multiple channels strengthens your professional profile and evidences commitment to continuous learning. 
 ---
 
 ### Learning outcomes
+
 By the end of this lab you will be able to:
 
 1. Access institutional resources / **LinkedIn Learning** for continuous professional development
@@ -31,20 +33,27 @@ Establish access to University-provided LinkedIn Learning resources.
 
 ![](pics/uis_linkedin.PNG){width=100% fig-alt="login to LinkedIn Learning"}
 
-2. Choose **Sign in** with your University account (SSO). If prompted, connect to an existing LinkedIn profile (optional, but helpful for saving certificates).
+2. Choose **Login** with your University account (SSO). If prompted, connect to an existing LinkedIn profile (optional, but helpful for saving certificates).
 
-**Reflect:** What are the benefits/risks of linking your personal LinkedIn account to the institutional LinkedIn Learning access?
+**Reflect:** Write bulletpoints that cover:
+
+- **Role alignment.** Name two **job roles** relevant to Land Economy and state **one task per role** that this R certificate prepares you for.
+- **Evidence & signalling.** How will you **showcase the skill**?
+- **What are the next steps (4–6 weeks).** A mini-pathway after this certificate, e.g.:  
+  1) R basics → 2) data wrangling/visualisation → 3) simple econometrics for policy/housing → 4) spatial basics (e.g., shapefiles) → 5) mini-project relevant to Land Economy.
 
 ---
 
-### Part B — Choose a beginner R certificate
+### Part B — Course Selection and Academic Alignment (30 minutes)
 1. In LinkedIn Learning, search for **“R Programming”** or **“R for Data Analysis”**.  
 2. Pick a **Beginner** course or a **Learning Path** that issues a certificate upon completion.  
 3. Skim the syllabus; confirm it covers: R basics (objects, vectors), data frames, importing data, and simple plots.
 
-**Tip:** Short beginner certificates often take only a few hours. Pick one you can finish this week.
+::: Tip 
+Short beginner certificates often take only a few hours. Pick one you can finish this week.
+:::
 
-**Reflect:** Which topics in your chosen course align best with Planning, Growth & Regeneration (e.g., data import, plotting socio‑economic indicators)?
+**Reflect:** Provide a **certificate/enrolment URL** or a screenshot proving enrolment. What challenges do you anticipate in acquiring programming skills alongside your substantive coursework?
 
 ---
 
