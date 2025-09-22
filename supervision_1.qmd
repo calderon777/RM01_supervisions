@@ -3,34 +3,34 @@ title: "Supervision 1"
 format: html
 ---
 
-## Lab 1 — R Certification (LinkedIn Learning)
-
+## Lab 1 — Professional Development: R Certification via LinkedIn Learning
+Professional certifications complement academic learning by providing industry-recognised credentials. For land economy graduates entering consultancy, government, or research roles, demonstrating quantitative competency through multiple channels strengthens your professional profile and evidences commitment to continuous learning. 
 ---
 
 ### Learning outcomes
 By the end of this lab you will be able to:
 
-1. Access **LinkedIn Learning** via the University’s UIS portal and sign in with SSO.
-
-2. Select a **beginner‑level R course/learning path** that issues a certificate of completion.
-
-3. Complete the course and **export your certificate** (PDF/share link).
-
-4. Add the certificate to your **CV/LinkedIn profile**.
-
-5. Run a short **tech‑check in RStudio** to prepare for Labs 2–4.
+1. Access institutional resources / **LinkedIn Learning** for continuous professional development
+2. Complete a **certified R programming course** that demonstrates foundational competency
+3. Document your learning through **professional certification** pathways
+4. Prepare your technical environment for advanced coursework
+5. **Reflect critically** on skill acquisition in academic and professional contexts
 
 ---
 
 ### Prerequisites
 - University credentials for LinkedIn Learning access.  
 - R and RStudio installed (you’ll run a small code check).  
-- Stable internet connection.
 
 ---
 
-### Part A — First‑time access to LinkedIn Learning
-1. Follow the UIS guidance: **help.uis.cam.ac.uk/service/support/training/linkedin-learning-info** (opens the official instructions).  
+### Part A — First‑time access to LinkedIn Learning (20 minutes)
+Establish access to University-provided LinkedIn Learning resources.
+
+1. Follow the UIS guidance: **help.uis.cam.ac.uk/service/support/training/linkedin-learning-info** (opens the official instructions).
+
+![](pics/uis_linkedin.PNG){width=100% fig-alt="login to LinkedIn Learning"}
+
 2. Choose **Sign in** with your University account (SSO). If prompted, connect to an existing LinkedIn profile (optional, but helpful for saving certificates).
 
 **Reflect:** What are the benefits/risks of linking your personal LinkedIn account to the institutional LinkedIn Learning access?
