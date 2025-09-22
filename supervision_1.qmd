@@ -86,7 +86,7 @@ Verify they load and basic plotting works:
 ```{r}
 library(ggplot2)
 df <- data.frame(x = 1:10, y = (1:10)^0.5)
-plot(df$x, df$y, type = "l", main = "Tech‑check: base plot", xlab = "x", ylab = "sqrt(x)")
+plot(df$x, df$y, type = "l", main = "Tech check: base plot", xlab = "x", ylab = "sqrt(x)")
 ```
 
 ```{r}
@@ -99,8 +99,8 @@ test_data <- data.frame(
 )
 
 ggplot(test_data, aes(x = year, y = house_prices)) +
-  geom_line(colour = "steelblue", size = 1.2) +
-  geom_point(colour = "darkred", size = 2) +
+  geom_line(colour = "steelblue", linewidth = 1.2) +
+  geom_point(colour = "darkred", linewidth = 2) +
   scale_y_continuous(labels = scales::comma_format()) +
   labs(
     title = "Hypothetical House Price Trends",
@@ -118,7 +118,7 @@ ggplot(test_data, aes(x = year, y = house_prices)) +
 
 ### Best practices
 
-- **Practice while you watch**—replicate examples in RStudio, don’t just watch videos.  
+- **Practice while you watch**—replicate examples in RStudio, don’t just read the labs and watch videos.  
 - Keep a **snippets** file (your personal cheat‑sheet) with commands you’ll reuse.  
 - Store all artifacts (notes, PDFs) in your course project folder for quick reference.
 
@@ -126,15 +126,19 @@ ggplot(test_data, aes(x = year, y = house_prices)) +
 
 *End of Lab 1*
 
-## Lab 2 — Interactive R Learning (r4ds.tutorials + learnr + swirl)
+## Lab 2 — Interactive R Learning: Building Programming Competency
 
 ---
 
 ### Learning outcomes
+
+This lab exposes you to different pedagogical approaches in quantitative methods education while building the practical skills necessary for data-driven research in land economy.
+
 By the end of this lab you will be able to:
-1. Launch and complete the **r4ds.tutorials** lesson **01-data-visualization** in RStudio.
-2. Run a built‑in **learnr** tutorial (**ex-data-basics**) and submit answers in an interactive pane.
-3. Use **swirl** from the Console (install a course, resume lessons, check progress).
+
+1. Navigate **multiple R learning platforms** with different pedagogical approaches
+2. Complete structured programming exercises with **immediate feedback**
+3. Develop **troubleshooting skills** through guided problem-solving
 4. Acquire **multiple ways of self-development** for your own study plan.
 
 ---

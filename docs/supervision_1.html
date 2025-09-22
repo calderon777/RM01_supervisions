@@ -172,7 +172,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#part-d-rstudio-techcheck-for-upcoming-labs" id="toc-part-d-rstudio-techcheck-for-upcoming-labs" class="nav-link" data-scroll-target="#part-d-rstudio-techcheck-for-upcoming-labs">Part D — RStudio tech‑check for upcoming labs</a></li>
   <li><a href="#best-practices" id="toc-best-practices" class="nav-link" data-scroll-target="#best-practices">Best practices</a></li>
   </ul></li>
-  <li><a href="#lab-2-interactive-r-learning-r4ds.tutorials-learnr-swirl" id="toc-lab-2-interactive-r-learning-r4ds.tutorials-learnr-swirl" class="nav-link" data-scroll-target="#lab-2-interactive-r-learning-r4ds.tutorials-learnr-swirl">Lab 2 — Interactive R Learning (r4ds.tutorials + learnr + swirl)</a>
+  <li><a href="#lab-2-interactive-r-learning-building-programming-competency" id="toc-lab-2-interactive-r-learning-building-programming-competency" class="nav-link" data-scroll-target="#lab-2-interactive-r-learning-building-programming-competency">Lab 2 — Interactive R Learning: Building Programming Competency</a>
   <ul class="collapse">
   <li><a href="#learning-outcomes-1" id="toc-learning-outcomes-1" class="nav-link" data-scroll-target="#learning-outcomes-1">Learning outcomes</a></li>
   <li><a href="#prerequisites-1" id="toc-prerequisites-1" class="nav-link" data-scroll-target="#prerequisites-1">Prerequisites</a></li>
@@ -390,7 +390,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <pre><code>Warning: package 'ggplot2' was built under R version 4.4.3</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, <span class="at">y =</span> (<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>)<span class="sc">^</span><span class="fl">0.5</span>)</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(df<span class="sc">$</span>x, df<span class="sc">$</span>y, <span class="at">type =</span> <span class="st">"l"</span>, <span class="at">main =</span> <span class="st">"Tech‑check: base plot"</span>, <span class="at">xlab =</span> <span class="st">"x"</span>, <span class="at">ylab =</span> <span class="st">"sqrt(x)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(df<span class="sc">$</span>x, df<span class="sc">$</span>y, <span class="at">type =</span> <span class="st">"l"</span>, <span class="at">main =</span> <span class="st">"Tech check: base plot"</span>, <span class="at">xlab =</span> <span class="st">"x"</span>, <span class="at">ylab =</span> <span class="st">"sqrt(x)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -409,8 +409,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(test_data, <span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> house_prices)) <span class="sc">+</span></span>
-<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">colour =</span> <span class="st">"steelblue"</span>, <span class="at">size =</span> <span class="fl">1.2</span>) <span class="sc">+</span></span>
-<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">colour =</span> <span class="st">"darkred"</span>, <span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">colour =</span> <span class="st">"steelblue"</span>, <span class="at">linewidth =</span> <span class="fl">1.2</span>) <span class="sc">+</span></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">colour =</span> <span class="st">"darkred"</span>, <span class="at">linewidth =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
 <span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">comma_format</span>()) <span class="sc">+</span></span>
 <span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
 <span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Hypothetical House Price Trends"</span>,</span>
@@ -421,8 +421,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
 <span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>Warning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.
-ℹ Please use `linewidth` instead.</code></pre>
+<pre><code>Warning in geom_point(colour = "darkred", linewidth = 2): Ignoring unknown
+parameters: `linewidth`</code></pre>
 </div>
 <div class="cell-output-display">
 <div>
@@ -438,7 +438,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="best-practices" class="level3">
 <h3 class="anchored" data-anchor-id="best-practices">Best practices</h3>
 <ul>
-<li><strong>Practice while you watch</strong>—replicate examples in RStudio, don’t just watch videos.<br>
+<li><strong>Practice while you watch</strong>—replicate examples in RStudio, don’t just read the labs and watch videos.<br>
 </li>
 <li>Keep a <strong>snippets</strong> file (your personal cheat‑sheet) with commands you’ll reuse.<br>
 </li>
@@ -448,12 +448,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><em>End of Lab 1</em></p>
 </section>
 </section>
-<section id="lab-2-interactive-r-learning-r4ds.tutorials-learnr-swirl" class="level2">
-<h2 class="anchored" data-anchor-id="lab-2-interactive-r-learning-r4ds.tutorials-learnr-swirl">Lab 2 — Interactive R Learning (r4ds.tutorials + learnr + swirl)</h2>
+<section id="lab-2-interactive-r-learning-building-programming-competency" class="level2">
+<h2 class="anchored" data-anchor-id="lab-2-interactive-r-learning-building-programming-competency">Lab 2 — Interactive R Learning: Building Programming Competency</h2>
 <hr>
 <section id="learning-outcomes-1" class="level3">
 <h3 class="anchored" data-anchor-id="learning-outcomes-1">Learning outcomes</h3>
-<p>By the end of this lab you will be able to: 1. Launch and complete the <strong>r4ds.tutorials</strong> lesson <strong>01-data-visualization</strong> in RStudio. 2. Run a built‑in <strong>learnr</strong> tutorial (<strong>ex-data-basics</strong>) and submit answers in an interactive pane. 3. Use <strong>swirl</strong> from the Console (install a course, resume lessons, check progress). 4. Acquire <strong>multiple ways of self-development</strong> for your own study plan.</p>
+<p>This lab exposes you to different pedagogical approaches in quantitative methods education while building the practical skills necessary for data-driven research in land economy.</p>
+<p>By the end of this lab you will be able to:</p>
+<ol type="1">
+<li>Navigate <strong>multiple R learning platforms</strong> with different pedagogical approaches</li>
+<li>Complete structured programming exercises with <strong>immediate feedback</strong></li>
+<li>Develop <strong>troubleshooting skills</strong> through guided problem-solving</li>
+<li>Acquire <strong>multiple ways of self-development</strong> for your own study plan.</li>
+</ol>
 <hr>
 </section>
 <section id="prerequisites-1" class="level3">
