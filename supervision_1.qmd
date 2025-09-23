@@ -3,7 +3,121 @@ title: "Supervision 1"
 format: html
 ---
 
-## Lab 1 — Professional Development: R Certification via LinkedIn Learning
+## Lab 1 - A Quick Intro to R
+
+### 📘 Introduction to R
+After downloading and installing open RStudio, we will cover now some tutorials. 
+
+👨‍💻 **Long Tutorial**
+
+We would cover a brief introduction on this labs, students would like to cover a longer tutorial to get use to R quickly. Click on this link: https://cran.r-project.org/doc/manuals/r-release/R-intro.pdf
+
+
+👨‍💻 **Quick tutorial - RStudio Screen**
+
+You need to have installed R and RStudio to continue with this lab. 
+
+- Open Rstudio in your computer.
+
+![On this picture, there are three panels 'the Console', 'The Environment', and 'The Plots, Help and Files' panel.](/pics/image7a.png)
+
+- Let's choose a better appeareance for our RStudio. Click on "Tools" and then "Global Options."
+
+![In RStudio, click on 'Tools' and 'Global Options'](/pics/image8.png)
+
+- Afterwards, in the window "Options", click on "Appearance", RStudio theme: "Modern", Editor font: "Courier", Editor theme: Cobalt. Finally, click on "Apply"
+
+![You are here by clicking on Tools>Global Options..>Appereance>Modern>Courier>Cobalt>Apply](/pics/image9.png)
+
+- Now, we want to open a file to save the code that we are learning during this session. Click on 'File', 'New File', and 'R Script'; or simply press Ctrl+Shift+N; this will open a new panel called 'Script' where we are going to write the commands for R. The name of the script is Untitled 1. At the end of this session save the script in a folder for this module.
+
+![Click on File>New File>R Script](/pics/image10.png)
+
+Let's learn how to write our own comments in our R code/ script. 
+
+- On the script panel, type the caracter `#` and then write `'LAB ONE AND TODAY'S DATE'`. 
+
+R will ignore any line of command starting with `#`. You can use `#` to add comments, titles, reminders within your R code/ R Script. If you did it right, your R Script shall look like this:
+
+![Comments are crucial to learn R](/pics/image11.png)
+
+The Rstudio screen has four windows or panels: 1. Console. 2. Environment and history. 3. Files, plots, packages and help. 4. The R script(s) and data view. The R script is where you keep a record of your work or commands - in a line by line basis. For Stata users this would be like the do-file, for SPSS users is like the syntax and for SAS users the SAS program.
+
+- Let's type `getwd()` in line number '2' and hit the keys 'ctrl+enter' in your keyboard at the same time - The + indicates 'do it at the same time', you dont need to press the key '+'  . If you did this correctly you will see in the console panel the folder or working directory that R is using to download and upload data.
+
+![This image shows how your R Script should look and the outcome in the console -bottom panel after using ctrl+enter](/pics/image12.png)
+
+Let's create a folder in Windows for your course using 📁 File Explorer. I called my folder 'R code – LABs'. Afterwards, in RStudio' go to 'Session', 'Set Working Directory', 'Choose Directory', and select the folder 'R code – LABs' or the name you used.
+
+![Create your folder and then click on Session>Set Working Directory>Choose Directory](/pics/image13.png)
+
+The above will render a result within the 'Console' panel, this is the code `setwd(and a path/directory to your chosen folder in your computer)`. Copy and paste that in your R code; next time you will only need to hit 'ctrl+enter' on 'setwd(your directory)' to set the directory or folder where you are going to work in R.
+
+![This is the code you shall copy and paste in your R Script, ignore '>'](/pics/image14.png)
+
+- Copy and paste the outcome of you console in your R code; next time you will only need to hit 'ctrl' and 'enter' to set working directory.
+
+![setwd() example in your R Script](/pics/image15.png)
+
+- In line number 4, type `5*5` and hit 'ctrl' and 'enter', the console will show the code and the result, 25.
+
+- Let's also create a matrix. Use the in the picture below -lines 5 and 6, put them on your script and hit ctrl+enter to line 5 and then 6.
+
+![A multiplication and your first matrix](/pics/image16.png)
+
+If you did it correctly, the outcome in the console will be as follows:
+
+![Multiplication and matrix output in your Console](/pics/image17.png)
+
+- In the line 5, you asked R to create a matrix called 'A', with numbers from 1 to 8, with four rows and two columns.
+
+Have a look at the 'Environment' panel, you can see in there all active objects(e.g. matrix A), and the panel 'History' shows a list of commands used do far.
+
+![Environment Panel](/pics/image18.png)
+
+- To see the matrix A in a new window, type the command `View(A)` in line 7 and hit the keys 'ctrl+enter' to run line 7, this will send you to a different tab. Afterwards, come back to your R script by clicking on 'Untitled 1'.
+
+![Sample of function View()](/pics/image19.png)
+
+**Packages tab**
+
+The package tab shows the list of add-ons included in the installation of RStudio. If checked, the package is loaded into R, if not, any command related to that package won't work, you will need select it. You can also install other add-ons by clicking on the 'Install Packages' icon.
+
+Another way to install add-ons is to type the function `install.packages("name of the package")`, and then you will be able to open the library of commands of that package.
+
+- In line 8, to install the package forecast, type `install.packages(“forecast”)` and hit ctrl+enter. In the next window, you can hit yes to restart RStudio. See the picture below, you shall not get errors in the console, and at the end, the sign '>' will let you know the instalation run OK.
+
+![Function install.packages() and installing package 'forecast'](/pics/image20.png)
+
+You must activate the package by typing 'library(the package)', for example, `library(forecast)` and ctrl+enter. In this case, this will automatically open all functions within the 'forecast' package.
+
+![library() function and sample with package 'forecast'](/pics/image21.png)
+
+![The Console will show this result after 'running' library("forecast")](/pics/image22.png)
+
+We will use the package forecast in this course to analyse and predict economic time series.
+
+**Script/Data View Window:**
+
+•	Begin scripts with a comment for title and description using the hash character (#). Anything after the hash on the same line is considered a comment and is ignored by R.
+•	Code can continue to the next line without a special character, but only if the previous line ends in a way that suggests continuation (e.g., a comma or unclosed brackets).
+•	To run a line of code, position the cursor on the line and press Ctrl+Enter. For multiple lines, select them and press Ctrl+Enter.
+
+
+**Console/Output Window:**
+
+•	It's recommended to work in script mode for reusability.
+•	Commands outside the script context can be typed at the bottom of the console, indicated by the ">" sign.
+•	Press Enter to execute a command.
+•	Use the up and down arrows to revisit and edit older lines of code previously typed into the console.
+
+
+**Do not forget** to 💾 save your R script in your own course folder! Use the icon to save, I called my file "lab001" and now is available , folder 'R code – LABs'
+
+![Remember to save your R Scripts, this will save you a lot time!](/pics/image23.png)
+
+
+## Lab 2 — Professional Development: R Certification via LinkedIn Learning
 
 Professional certifications complement academic learning by providing industry-recognised credentials. For land economy graduates leading industries and entering consultancy, government, or research roles, demonstrating quantitative competency through multiple channels strengthens your professional profile and evidences commitment to continuous learning. 
 
@@ -126,7 +240,7 @@ ggplot(test_data, aes(x = year, y = house_prices)) +
 
 *End of Lab 1*
 
-## Lab 2 — Interactive R Learning: Building Programming Competency
+## Lab 3 — Interactive R Learning: Building Programming Competency
 
 ---
 
@@ -262,7 +376,7 @@ abline(h = mean_x, lty = 2)
 *End of Lab 2*
 
 
-## Lab 3 — Uploading Excel & CSV Files to R (PIPR)
+## Lab 4 — Uploading Excel & CSV Files to R (PIPR)
 
 ---
 
@@ -491,7 +605,7 @@ head(andy)
 
 *End of Lab 3*
 
-## Lab 4 — Data Visualisation
+## Lab 5 — Data Visualisation
 
 *Adapted from: [A Guide to Data Visualisation in R for Beginners](https://towardsdatascience.com/a-guide-to-data-visualisation-in-r-for-beginners-ef6d41a34174)*
 
@@ -795,7 +909,7 @@ More resources: [towardsdatascience.com article](https://towardsdatascience.com/
 
 *End of Lab 4*
 
-## Lab 5 — Using GitHub Copilot in RStudio
+## Lab 6 — Using GitHub Copilot in RStudio
 
 ### Goal
 Learn to use GitHub Copilot inside RStudio to speed up routine coding, while staying in control of quality, privacy, and reproducibility.

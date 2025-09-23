@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Supervision 1 – Research Methods for Land Economy / Interactive Labs</title>
+<title>Supervision 1 – Research Methods for Land Economy</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -132,7 +132,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="./">Research Methods for Land Economy / Interactive Labs</a> 
+      <a href="./">Research Methods for Land Economy</a> 
     </div>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
@@ -144,7 +144,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Research Methods for Land Economy Research</span></a>
+  <a href="./index.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Research Methods for Land Economy Topics</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -162,7 +162,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#lab-1-professional-development-r-certification-via-linkedin-learning" id="toc-lab-1-professional-development-r-certification-via-linkedin-learning" class="nav-link active" data-scroll-target="#lab-1-professional-development-r-certification-via-linkedin-learning">Lab 1 — Professional Development: R Certification via LinkedIn Learning</a>
+  <li><a href="#lab-1---a-quick-intro-to-r" id="toc-lab-1---a-quick-intro-to-r" class="nav-link active" data-scroll-target="#lab-1---a-quick-intro-to-r">Lab 1 - A Quick Intro to R</a>
+  <ul class="collapse">
+  <li><a href="#introduction-to-r" id="toc-introduction-to-r" class="nav-link" data-scroll-target="#introduction-to-r">📘 Introduction to R</a></li>
+  </ul></li>
+  <li><a href="#lab-2-professional-development-r-certification-via-linkedin-learning" id="toc-lab-2-professional-development-r-certification-via-linkedin-learning" class="nav-link" data-scroll-target="#lab-2-professional-development-r-certification-via-linkedin-learning">Lab 2 — Professional Development: R Certification via LinkedIn Learning</a>
   <ul class="collapse">
   <li><a href="#learning-outcomes" id="toc-learning-outcomes" class="nav-link" data-scroll-target="#learning-outcomes">Learning outcomes</a></li>
   <li><a href="#prerequisites" id="toc-prerequisites" class="nav-link" data-scroll-target="#prerequisites">Prerequisites</a></li>
@@ -172,7 +176,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#part-d-rstudio-techcheck-for-upcoming-labs" id="toc-part-d-rstudio-techcheck-for-upcoming-labs" class="nav-link" data-scroll-target="#part-d-rstudio-techcheck-for-upcoming-labs">Part D — RStudio tech‑check for upcoming labs</a></li>
   <li><a href="#best-practices" id="toc-best-practices" class="nav-link" data-scroll-target="#best-practices">Best practices</a></li>
   </ul></li>
-  <li><a href="#lab-2-interactive-r-learning-building-programming-competency" id="toc-lab-2-interactive-r-learning-building-programming-competency" class="nav-link" data-scroll-target="#lab-2-interactive-r-learning-building-programming-competency">Lab 2 — Interactive R Learning: Building Programming Competency</a>
+  <li><a href="#lab-3-interactive-r-learning-building-programming-competency" id="toc-lab-3-interactive-r-learning-building-programming-competency" class="nav-link" data-scroll-target="#lab-3-interactive-r-learning-building-programming-competency">Lab 3 — Interactive R Learning: Building Programming Competency</a>
   <ul class="collapse">
   <li><a href="#learning-outcomes-1" id="toc-learning-outcomes-1" class="nav-link" data-scroll-target="#learning-outcomes-1">Learning outcomes</a></li>
   <li><a href="#prerequisites-1" id="toc-prerequisites-1" class="nav-link" data-scroll-target="#prerequisites-1">Prerequisites</a></li>
@@ -183,7 +187,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#best-practices-1" id="toc-best-practices-1" class="nav-link" data-scroll-target="#best-practices-1">Best practices</a></li>
   <li><a href="#suggested-answers-indicative" id="toc-suggested-answers-indicative" class="nav-link" data-scroll-target="#suggested-answers-indicative">Suggested Answers (indicative)</a></li>
   </ul></li>
-  <li><a href="#lab-3-uploading-excel-csv-files-to-r-pipr" id="toc-lab-3-uploading-excel-csv-files-to-r-pipr" class="nav-link" data-scroll-target="#lab-3-uploading-excel-csv-files-to-r-pipr">Lab 3 — Uploading Excel &amp; CSV Files to R (PIPR)</a>
+  <li><a href="#lab-4-uploading-excel-csv-files-to-r-pipr" id="toc-lab-4-uploading-excel-csv-files-to-r-pipr" class="nav-link" data-scroll-target="#lab-4-uploading-excel-csv-files-to-r-pipr">Lab 4 — Uploading Excel &amp; CSV Files to R (PIPR)</a>
   <ul class="collapse">
   <li><a href="#learning-outcomes-2" id="toc-learning-outcomes-2" class="nav-link" data-scroll-target="#learning-outcomes-2">Learning outcomes</a></li>
   <li><a href="#prerequisites-2" id="toc-prerequisites-2" class="nav-link" data-scroll-target="#prerequisites-2">Prerequisites</a></li>
@@ -200,7 +204,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#further-resources" id="toc-further-resources" class="nav-link" data-scroll-target="#further-resources">Further resources</a></li>
   <li><a href="#suggested-answers-to-reflection-questions" id="toc-suggested-answers-to-reflection-questions" class="nav-link" data-scroll-target="#suggested-answers-to-reflection-questions">Suggested Answers to Reflection Questions</a></li>
   </ul></li>
-  <li><a href="#lab-4-data-visualisation" id="toc-lab-4-data-visualisation" class="nav-link" data-scroll-target="#lab-4-data-visualisation">Lab 4 — Data Visualisation</a>
+  <li><a href="#lab-5-data-visualisation" id="toc-lab-5-data-visualisation" class="nav-link" data-scroll-target="#lab-5-data-visualisation">Lab 5 — Data Visualisation</a>
   <ul class="collapse">
   <li><a href="#learning-outcomes-3" id="toc-learning-outcomes-3" class="nav-link" data-scroll-target="#learning-outcomes-3">Learning outcomes</a></li>
   <li><a href="#prerequisites-3" id="toc-prerequisites-3" class="nav-link" data-scroll-target="#prerequisites-3">Prerequisites</a></li>
@@ -244,7 +248,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#part-q-grid-of-charts-1" id="toc-part-q-grid-of-charts-1" class="nav-link" data-scroll-target="#part-q-grid-of-charts-1">Part Q — Grid of charts</a></li>
   <li><a href="#best-practices-summaries" id="toc-best-practices-summaries" class="nav-link" data-scroll-target="#best-practices-summaries">Best practices — summaries</a></li>
   </ul></li>
-  <li><a href="#lab-5-using-github-copilot-in-rstudio" id="toc-lab-5-using-github-copilot-in-rstudio" class="nav-link" data-scroll-target="#lab-5-using-github-copilot-in-rstudio">Lab 5 — Using GitHub Copilot in RStudio</a>
+  <li><a href="#lab-6-using-github-copilot-in-rstudio" id="toc-lab-6-using-github-copilot-in-rstudio" class="nav-link" data-scroll-target="#lab-6-using-github-copilot-in-rstudio">Lab 6 — Using GitHub Copilot in RStudio</a>
   <ul class="collapse">
   <li><a href="#goal" id="toc-goal" class="nav-link" data-scroll-target="#goal">Goal</a></li>
   <li><a href="#learning-outcomes-4" id="toc-learning-outcomes-4" class="nav-link" data-scroll-target="#learning-outcomes-4">Learning outcomes</a></li>
@@ -291,8 +295,172 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="lab-1-professional-development-r-certification-via-linkedin-learning" class="level2">
-<h2 class="anchored" data-anchor-id="lab-1-professional-development-r-certification-via-linkedin-learning">Lab 1 — Professional Development: R Certification via LinkedIn Learning</h2>
+<section id="lab-1---a-quick-intro-to-r" class="level2">
+<h2 class="anchored" data-anchor-id="lab-1---a-quick-intro-to-r">Lab 1 - A Quick Intro to R</h2>
+<section id="introduction-to-r" class="level3">
+<h3 class="anchored" data-anchor-id="introduction-to-r">📘 Introduction to R</h3>
+<p>After downloading and installing open RStudio, we will cover now some tutorials.</p>
+<p>👨‍💻 <strong>Long Tutorial</strong></p>
+<p>We would cover a brief introduction on this labs, students would like to cover a longer tutorial to get use to R quickly. Click on this link: https://cran.r-project.org/doc/manuals/r-release/R-intro.pdf</p>
+<p>👨‍💻 <strong>Quick tutorial - RStudio Screen</strong></p>
+<p>You need to have installed R and RStudio to continue with this lab.</p>
+<ul>
+<li>Open Rstudio in your computer.</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src=".\pics/image7a.png" class="img-fluid figure-img"></p>
+<figcaption>On this picture, there are three panels ‘the Console’, ‘The Environment’, and ‘The Plots, Help and Files’ panel.</figcaption>
+</figure>
+</div>
+<ul>
+<li>Let’s choose a better appeareance for our RStudio. Click on “Tools” and then “Global Options.”</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src=".\pics/image8.png" class="img-fluid figure-img"></p>
+<figcaption>In RStudio, click on ‘Tools’ and ‘Global Options’</figcaption>
+</figure>
+</div>
+<ul>
+<li>Afterwards, in the window “Options”, click on “Appearance”, RStudio theme: “Modern”, Editor font: “Courier”, Editor theme: Cobalt. Finally, click on “Apply”</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src=".\pics/image9.png" class="img-fluid figure-img"></p>
+<figcaption>You are here by clicking on Tools&gt;Global Options..&gt;Appereance&gt;Modern&gt;Courier&gt;Cobalt&gt;Apply</figcaption>
+</figure>
+</div>
+<ul>
+<li>Now, we want to open a file to save the code that we are learning during this session. Click on ‘File’, ‘New File’, and ‘R Script’; or simply press Ctrl+Shift+N; this will open a new panel called ‘Script’ where we are going to write the commands for R. The name of the script is Untitled 1. At the end of this session save the script in a folder for this module.</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src=".\pics/image10.png" class="img-fluid figure-img"></p>
+<figcaption>Click on File&gt;New File&gt;R Script</figcaption>
+</figure>
+</div>
+<p>Let’s learn how to write our own comments in our R code/ script.</p>
+<ul>
+<li>On the script panel, type the caracter <code>#</code> and then write <code>'LAB ONE AND TODAY'S DATE'</code>.</li>
+</ul>
+<p>R will ignore any line of command starting with <code>#</code>. You can use <code>#</code> to add comments, titles, reminders within your R code/ R Script. If you did it right, your R Script shall look like this:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src=".\pics/image11.png" class="img-fluid figure-img"></p>
+<figcaption>Comments are crucial to learn R</figcaption>
+</figure>
+</div>
+<p>The Rstudio screen has four windows or panels: 1. Console. 2. Environment and history. 3. Files, plots, packages and help. 4. The R script(s) and data view. The R script is where you keep a record of your work or commands - in a line by line basis. For Stata users this would be like the do-file, for SPSS users is like the syntax and for SAS users the SAS program.</p>
+<ul>
+<li>Let’s type <code>getwd()</code> in line number ‘2’ and hit the keys ‘ctrl+enter’ in your keyboard at the same time - The + indicates ‘do it at the same time’, you dont need to press the key ‘+’ . If you did this correctly you will see in the console panel the folder or working directory that R is using to download and upload data.</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src=".\pics/image12.png" class="img-fluid figure-img"></p>
+<figcaption>This image shows how your R Script should look and the outcome in the console -bottom panel after using ctrl+enter</figcaption>
+</figure>
+</div>
+<p>Let’s create a folder in Windows for your course using 📁 File Explorer. I called my folder ‘R code – LABs’. Afterwards, in RStudio’ go to ‘Session’, ‘Set Working Directory’, ‘Choose Directory’, and select the folder ‘R code – LABs’ or the name you used.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src=".\pics/image13.png" class="img-fluid figure-img"></p>
+<figcaption>Create your folder and then click on Session&gt;Set Working Directory&gt;Choose Directory</figcaption>
+</figure>
+</div>
+<p>The above will render a result within the ‘Console’ panel, this is the code <code>setwd(and a path/directory to your chosen folder in your computer)</code>. Copy and paste that in your R code; next time you will only need to hit ‘ctrl+enter’ on ‘setwd(your directory)’ to set the directory or folder where you are going to work in R.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src=".\pics/image14.png" class="img-fluid figure-img"></p>
+<figcaption>This is the code you shall copy and paste in your R Script, ignore ‘&gt;’</figcaption>
+</figure>
+</div>
+<ul>
+<li>Copy and paste the outcome of you console in your R code; next time you will only need to hit ‘ctrl’ and ‘enter’ to set working directory.</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src=".\pics/image15.png" class="img-fluid figure-img"></p>
+<figcaption>setwd() example in your R Script</figcaption>
+</figure>
+</div>
+<ul>
+<li><p>In line number 4, type <code>5*5</code> and hit ‘ctrl’ and ‘enter’, the console will show the code and the result, 25.</p></li>
+<li><p>Let’s also create a matrix. Use the in the picture below -lines 5 and 6, put them on your script and hit ctrl+enter to line 5 and then 6.</p></li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src=".\pics/image16.png" class="img-fluid figure-img"></p>
+<figcaption>A multiplication and your first matrix</figcaption>
+</figure>
+</div>
+<p>If you did it correctly, the outcome in the console will be as follows:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src=".\pics/image17.png" class="img-fluid figure-img"></p>
+<figcaption>Multiplication and matrix output in your Console</figcaption>
+</figure>
+</div>
+<ul>
+<li>In the line 5, you asked R to create a matrix called ‘A’, with numbers from 1 to 8, with four rows and two columns.</li>
+</ul>
+<p>Have a look at the ‘Environment’ panel, you can see in there all active objects(e.g.&nbsp;matrix A), and the panel ‘History’ shows a list of commands used do far.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src=".\pics/image18.png" class="img-fluid figure-img"></p>
+<figcaption>Environment Panel</figcaption>
+</figure>
+</div>
+<ul>
+<li>To see the matrix A in a new window, type the command <code>View(A)</code> in line 7 and hit the keys ‘ctrl+enter’ to run line 7, this will send you to a different tab. Afterwards, come back to your R script by clicking on ‘Untitled 1’.</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src=".\pics/image19.png" class="img-fluid figure-img"></p>
+<figcaption>Sample of function View()</figcaption>
+</figure>
+</div>
+<p><strong>Packages tab</strong></p>
+<p>The package tab shows the list of add-ons included in the installation of RStudio. If checked, the package is loaded into R, if not, any command related to that package won’t work, you will need select it. You can also install other add-ons by clicking on the ‘Install Packages’ icon.</p>
+<p>Another way to install add-ons is to type the function <code>install.packages("name of the package")</code>, and then you will be able to open the library of commands of that package.</p>
+<ul>
+<li>In line 8, to install the package forecast, type <code>install.packages(“forecast”)</code> and hit ctrl+enter. In the next window, you can hit yes to restart RStudio. See the picture below, you shall not get errors in the console, and at the end, the sign ‘&gt;’ will let you know the instalation run OK.</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src=".\pics/image20.png" class="img-fluid figure-img"></p>
+<figcaption>Function install.packages() and installing package ‘forecast’</figcaption>
+</figure>
+</div>
+<p>You must activate the package by typing ‘library(the package)’, for example, <code>library(forecast)</code> and ctrl+enter. In this case, this will automatically open all functions within the ‘forecast’ package.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src=".\pics/image21.png" class="img-fluid figure-img"></p>
+<figcaption>library() function and sample with package ‘forecast’</figcaption>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src=".\pics/image22.png" class="img-fluid figure-img"></p>
+<figcaption>The Console will show this result after ‘running’ library(“forecast”)</figcaption>
+</figure>
+</div>
+<p>We will use the package forecast in this course to analyse and predict economic time series.</p>
+<p><strong>Script/Data View Window:</strong></p>
+<p>• Begin scripts with a comment for title and description using the hash character (#). Anything after the hash on the same line is considered a comment and is ignored by R. • Code can continue to the next line without a special character, but only if the previous line ends in a way that suggests continuation (e.g., a comma or unclosed brackets). • To run a line of code, position the cursor on the line and press Ctrl+Enter. For multiple lines, select them and press Ctrl+Enter.</p>
+<p><strong>Console/Output Window:</strong></p>
+<p>• It’s recommended to work in script mode for reusability. • Commands outside the script context can be typed at the bottom of the console, indicated by the “&gt;” sign. • Press Enter to execute a command. • Use the up and down arrows to revisit and edit older lines of code previously typed into the console.</p>
+<p><strong>Do not forget</strong> to 💾 save your R script in your own course folder! Use the icon to save, I called my file “lab001” and now is available , folder ‘R code – LABs’</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src=".\pics/image23.png" class="img-fluid figure-img"></p>
+<figcaption>Remember to save your R Scripts, this will save you a lot time!</figcaption>
+</figure>
+</div>
+</section>
+</section>
+<section id="lab-2-professional-development-r-certification-via-linkedin-learning" class="level2">
+<h2 class="anchored" data-anchor-id="lab-2-professional-development-r-certification-via-linkedin-learning">Lab 2 — Professional Development: R Certification via LinkedIn Learning</h2>
 <p>Professional certifications complement academic learning by providing industry-recognised credentials. For land economy graduates leading industries and entering consultancy, government, or research roles, demonstrating quantitative competency through multiple channels strengthens your professional profile and evidences commitment to continuous learning.</p>
 <hr>
 <section id="learning-outcomes" class="level3">
@@ -444,8 +612,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><em>End of Lab 1</em></p>
 </section>
 </section>
-<section id="lab-2-interactive-r-learning-building-programming-competency" class="level2">
-<h2 class="anchored" data-anchor-id="lab-2-interactive-r-learning-building-programming-competency">Lab 2 — Interactive R Learning: Building Programming Competency</h2>
+<section id="lab-3-interactive-r-learning-building-programming-competency" class="level2">
+<h2 class="anchored" data-anchor-id="lab-3-interactive-r-learning-building-programming-competency">Lab 3 — Interactive R Learning: Building Programming Competency</h2>
 <hr>
 <section id="learning-outcomes-1" class="level3">
 <h3 class="anchored" data-anchor-id="learning-outcomes-1">Learning outcomes</h3>
@@ -567,8 +735,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><em>End of Lab 2</em></p>
 </section>
 </section>
-<section id="lab-3-uploading-excel-csv-files-to-r-pipr" class="level2">
-<h2 class="anchored" data-anchor-id="lab-3-uploading-excel-csv-files-to-r-pipr">Lab 3 — Uploading Excel &amp; CSV Files to R (PIPR)</h2>
+<section id="lab-4-uploading-excel-csv-files-to-r-pipr" class="level2">
+<h2 class="anchored" data-anchor-id="lab-4-uploading-excel-csv-files-to-r-pipr">Lab 4 — Uploading Excel &amp; CSV Files to R (PIPR)</h2>
 <hr>
 <section id="learning-outcomes-2" class="level3">
 <h3 class="anchored" data-anchor-id="learning-outcomes-2">Learning outcomes</h3>
@@ -891,8 +1059,8 @@ Specify the column types or set `show_col_types = FALSE` to quiet this message.
 <p><em>End of Lab 3</em></p>
 </section>
 </section>
-<section id="lab-4-data-visualisation" class="level2">
-<h2 class="anchored" data-anchor-id="lab-4-data-visualisation">Lab 4 — Data Visualisation</h2>
+<section id="lab-5-data-visualisation" class="level2">
+<h2 class="anchored" data-anchor-id="lab-5-data-visualisation">Lab 5 — Data Visualisation</h2>
 <p><em>Adapted from: <a href="https://towardsdatascience.com/a-guide-to-data-visualisation-in-r-for-beginners-ef6d41a34174">A Guide to Data Visualisation in R for Beginners</a></em></p>
 <p>Link to files: course folder</p>
 <hr>
@@ -1400,8 +1568,8 @@ Wyoming              376   4566        0.6    70.29    6.9    62.9   173 97203</
 <p><em>End of Lab 4</em></p>
 </section>
 </section>
-<section id="lab-5-using-github-copilot-in-rstudio" class="level2">
-<h2 class="anchored" data-anchor-id="lab-5-using-github-copilot-in-rstudio">Lab 5 — Using GitHub Copilot in RStudio</h2>
+<section id="lab-6-using-github-copilot-in-rstudio" class="level2">
+<h2 class="anchored" data-anchor-id="lab-6-using-github-copilot-in-rstudio">Lab 6 — Using GitHub Copilot in RStudio</h2>
 <section id="goal" class="level3">
 <h3 class="anchored" data-anchor-id="goal">Goal</h3>
 <p>Learn to use GitHub Copilot inside RStudio to speed up routine coding, while staying in control of quality, privacy, and reproducibility.</p>
@@ -2002,8 +2170,8 @@ Wyoming              376   4566        0.6    70.29    6.9    62.9   173 97203</
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./index.html" class="pagination-link" aria-label="Research Methods for Land Economy Research">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">Research Methods for Land Economy Research</span></span>
+      <a href="./index.html" class="pagination-link" aria-label="Research Methods for Land Economy Topics">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">Research Methods for Land Economy Topics</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
