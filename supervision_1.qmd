@@ -100,7 +100,7 @@ test_data <- data.frame(
 
 ggplot(test_data, aes(x = year, y = house_prices)) +
   geom_line(colour = "steelblue", linewidth = 1.2) +
-  geom_point(colour = "darkred", linewidth = 2) +
+  geom_point(colour = "darkred", size = 2) +
   scale_y_continuous(labels = scales::comma_format()) +
   labs(
     title = "Hypothetical House Price Trends",

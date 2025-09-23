@@ -21,6 +21,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -83,7 +118,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html"><span class="chapter-title">Interactive Labs</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html"><span class="chapter-title">Research Methods for Land Economy Research</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -110,7 +145,7 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">Interactive Labs</span></a>
+  <a href="./index.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">Research Methods for Land Economy Research</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -128,7 +163,52 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#welcome" id="toc-welcome" class="nav-link active" data-scroll-target="#welcome">Welcome</a></li>
+  <li><a href="#welcome-to-rm01-interactive-labs" id="toc-welcome-to-rm01-interactive-labs" class="nav-link active" data-scroll-target="#welcome-to-rm01-interactive-labs">Welcome to RM01 Interactive Labs</a>
+  <ul class="collapse">
+  <li><a href="#course-overview" id="toc-course-overview" class="nav-link" data-scroll-target="#course-overview">Course Overview</a>
+  <ul class="collapse">
+  <li><a href="#learning-journey" id="toc-learning-journey" class="nav-link" data-scroll-target="#learning-journey">Learning Journey</a></li>
+  <li><a href="#academic-integration" id="toc-academic-integration" class="nav-link" data-scroll-target="#academic-integration">Academic Integration</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#how-to-use-this-interactive-workbook" id="toc-how-to-use-this-interactive-workbook" class="nav-link" data-scroll-target="#how-to-use-this-interactive-workbook">How to Use This Interactive Workbook</a>
+  <ul class="collapse">
+  <li><a href="#essential-setup" id="toc-essential-setup" class="nav-link" data-scroll-target="#essential-setup">Essential Setup</a>
+  <ul class="collapse">
+  <li><a href="#technical-requirements" id="toc-technical-requirements" class="nav-link" data-scroll-target="#technical-requirements">Technical Requirements</a></li>
+  <li><a href="#project-organisation" id="toc-project-organisation" class="nav-link" data-scroll-target="#project-organisation">Project Organisation</a></li>
+  </ul></li>
+  <li><a href="#active-learning-protocol" id="toc-active-learning-protocol" class="nav-link" data-scroll-target="#active-learning-protocol">Active Learning Protocol</a>
+  <ul class="collapse">
+  <li><a href="#read-code-reflect" id="toc-read-code-reflect" class="nav-link" data-scroll-target="#read-code-reflect">1. <strong>Read → Code → Reflect</strong></a></li>
+  <li><a href="#hands-on-replication" id="toc-hands-on-replication" class="nav-link" data-scroll-target="#hands-on-replication">2. <strong>Hands-On Replication</strong></a></li>
+  <li><a href="#documentation-standards" id="toc-documentation-standards" class="nav-link" data-scroll-target="#documentation-standards">3. <strong>Documentation Standards</strong></a></li>
+  <li><a href="#reflection-requirements" id="toc-reflection-requirements" class="nav-link" data-scroll-target="#reflection-requirements">4. <strong>Reflection Requirements</strong></a></li>
+  </ul></li>
+  <li><a href="#assessment-and-deliverables" id="toc-assessment-and-deliverables" class="nav-link" data-scroll-target="#assessment-and-deliverables">Assessment and Deliverables</a>
+  <ul class="collapse">
+  <li><a href="#continuous-assessment" id="toc-continuous-assessment" class="nav-link" data-scroll-target="#continuous-assessment">Continuous Assessment</a></li>
+  <li><a href="#quality-standards" id="toc-quality-standards" class="nav-link" data-scroll-target="#quality-standards">Quality Standards</a></li>
+  <li><a href="#submission-guidelines" id="toc-submission-guidelines" class="nav-link" data-scroll-target="#submission-guidelines">Submission Guidelines</a></li>
+  </ul></li>
+  <li><a href="#learning-support" id="toc-learning-support" class="nav-link" data-scroll-target="#learning-support">Learning Support</a>
+  <ul class="collapse">
+  <li><a href="#getting-help" id="toc-getting-help" class="nav-link" data-scroll-target="#getting-help">Getting Help</a></li>
+  <li><a href="#common-pitfalls-to-avoid" id="toc-common-pitfalls-to-avoid" class="nav-link" data-scroll-target="#common-pitfalls-to-avoid">Common Pitfalls to Avoid</a></li>
+  </ul></li>
+  <li><a href="#professional-development-context" id="toc-professional-development-context" class="nav-link" data-scroll-target="#professional-development-context">Professional Development Context</a>
+  <ul class="collapse">
+  <li><a href="#academic-career-preparation" id="toc-academic-career-preparation" class="nav-link" data-scroll-target="#academic-career-preparation">Academic Career Preparation</a></li>
+  <li><a href="#industry-applications" id="toc-industry-applications" class="nav-link" data-scroll-target="#industry-applications">Industry Applications</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#technical-notes" id="toc-technical-notes" class="nav-link" data-scroll-target="#technical-notes">Technical Notes</a>
+  <ul class="collapse">
+  <li><a href="#package-management" id="toc-package-management" class="nav-link" data-scroll-target="#package-management">Package Management</a></li>
+  <li><a href="#data-sources" id="toc-data-sources" class="nav-link" data-scroll-target="#data-sources">Data Sources</a></li>
+  <li><a href="#reproducibility-standards" id="toc-reproducibility-standards" class="nav-link" data-scroll-target="#reproducibility-standards">Reproducibility Standards</a></li>
+  </ul></li>
+  <li><a href="#getting-started" id="toc-getting-started" class="nav-link" data-scroll-target="#getting-started">Getting Started</a></li>
   </ul>
 </nav>
     </div>
@@ -138,6 +218,7 @@ ul.task-list li input[type="checkbox"] {
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
 <h1 class="title">Research Methods for Land Economy / Interactive Labs</h1>
+<p class="subtitle lead">Interactive Labs</p>
 </div>
 
 
@@ -160,11 +241,145 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p><img src="pics/cover.png" class="img-fluid" style="width:100.0%" alt=""></p>
-<section id="welcome" class="level1">
-<h1>Welcome</h1>
-<p>This site hosts the supervision material for RM01 at the University of Cambridge.<br>
-Use the sidebar to navigate to each lab.</p>
+<p><img src="pics/cover.png" class="img-fluid" style="width:70.0%" alt="Course cover image"></p>
+<section id="welcome-to-rm01-interactive-labs" class="level1">
+<h1>Welcome to RM01 Interactive Labs</h1>
+<p>Welcome to the interactive laboratory sessions for <strong>RM01: Research Methods in Land Economy</strong>. This digital workbook provides hands-on experience with R programming, statistical analysis, and data visualisation techniques essential for contemporary research in land economy, planning, and housing studies.</p>
+<section id="course-overview" class="level2">
+<h2 class="anchored" data-anchor-id="course-overview">Course Overview</h2>
+<p>These supervised laboratory sessions are designed for MPhil students beginning their quantitative research journey. Over five progressive labs, you will develop from complete programming novice to confident data analyst, working with real-world datasets from UK government sources and applying cutting-edge analytical techniques to substantive research questions in your field.</p>
+<section id="learning-journey" class="level3">
+<h3 class="anchored" data-anchor-id="learning-journey">Learning Journey</h3>
+<ul>
+<li><strong>Lab 1:</strong> Professional development through certified R programming courses</li>
+<li><strong>Lab 2:</strong> Interactive programming fundamentals using multiple learning platforms<br>
+</li>
+<li><strong>Lab 3:</strong> Real-world data analysis with UK housing market data</li>
+<li><strong>Lab 4:</strong> Advanced data visualisation for academic and policy audiences</li>
+<li><strong>Lab 5:</strong> AI-assisted programming with GitHub Copilot integration</li>
+</ul>
+</section>
+<section id="academic-integration" class="level3">
+<h3 class="anchored" data-anchor-id="academic-integration">Academic Integration</h3>
+<p>Each lab connects technical skill development with substantive research applications, ensuring that programming competency serves your broader academic and professional objectives. You’ll work with datasets relevant to housing policy, regional development, and planning analysis while developing reproducible research workflows used in leading academic institutions and policy organisations.</p>
+<hr>
+</section>
+</section>
+</section>
+<section id="how-to-use-this-interactive-workbook" class="level1">
+<h1>How to Use This Interactive Workbook</h1>
+<p>This workbook is designed as a <strong>practical, hands-on learning experience</strong> that requires active engagement with both the content and your RStudio environment. Success depends on following the structured approach outlined below.</p>
+<section id="essential-setup" class="level2">
+<h2 class="anchored" data-anchor-id="essential-setup">Essential Setup</h2>
+<section id="technical-requirements" class="level3">
+<h3 class="anchored" data-anchor-id="technical-requirements">Technical Requirements</h3>
+<p>Before beginning, ensure you have: - <strong>R</strong> (version ≥ 4.3) installed from <a href="https://www.r-project.org/">r-project.org</a> - <strong>RStudio Desktop</strong> (latest version) from <a href="https://posit.co/products/open-source/rstudio/">posit.co</a> - A stable internet connection for package installation and data downloads - Sufficient disk space (≥ 2GB) for datasets and outputs</p>
+</section>
+<section id="project-organisation" class="level3">
+<h3 class="anchored" data-anchor-id="project-organisation">Project Organisation</h3>
+<p>Create a dedicated folder structure for the course:</p>
+<pre><code>RM01_Labs/
+├── data/           # Raw datasets and imports
+├── scripts/        # Your R code files  
+├── outputs/        # Generated plots, tables, reports
+├── certificates/   # Professional development documentation
+└── reflections/    # Written responses to critical questions</code></pre>
+</section>
+</section>
+<section id="active-learning-protocol" class="level2">
+<h2 class="anchored" data-anchor-id="active-learning-protocol">Active Learning Protocol</h2>
+<section id="read-code-reflect" class="level3">
+<h3 class="anchored" data-anchor-id="read-code-reflect">1. <strong>Read → Code → Reflect</strong></h3>
+<p>Each lab section follows this essential pattern: - <strong>Read</strong> the contextual material and instructions carefully - <strong>Code</strong> by replicating all examples in your RStudio session - <strong>Reflect</strong> by answering critical thinking questions in writing</p>
+</section>
+<section id="hands-on-replication" class="level3">
+<h3 class="anchored" data-anchor-id="hands-on-replication">2. <strong>Hands-On Replication</strong></h3>
+<p><strong>Critical:</strong> Do not simply read the code examples. You must: - Type (don’t copy-paste) all code into RStudio scripts - Execute each code block and verify the outputs - Experiment with variations and modifications - Debug any errors before proceeding</p>
+</section>
+<section id="documentation-standards" class="level3">
+<h3 class="anchored" data-anchor-id="documentation-standards">3. <strong>Documentation Standards</strong></h3>
+<p>Maintain professional documentation practices: - Save each lab as a separate R script (e.g., <code>lab01_certification.R</code>) - Comment your code extensively using <code># explanatory text</code> - Include session information and package versions - Date and version your files systematically</p>
+</section>
+<section id="reflection-requirements" class="level3">
+<h3 class="anchored" data-anchor-id="reflection-requirements">4. <strong>Reflection Requirements</strong></h3>
+<p>Critical reflection questions require substantial, written responses: - <strong>Length:</strong> 150-300 words per question minimum - <strong>Depth:</strong> Connect technical concepts to research applications - <strong>Evidence:</strong> Reference specific code examples and outputs - <strong>Integration:</strong> Link to broader methodological and theoretical frameworks</p>
+</section>
+</section>
+<section id="assessment-and-deliverables" class="level2">
+<h2 class="anchored" data-anchor-id="assessment-and-deliverables">Assessment and Deliverables</h2>
+<section id="continuous-assessment" class="level3">
+<h3 class="anchored" data-anchor-id="continuous-assessment">Continuous Assessment</h3>
+<p>Each lab includes specific deliverables: - <strong>Technical:</strong> Working R scripts with documented code - <strong>Visual:</strong> Publication-quality plots and analytical outputs<br>
+- <strong>Written:</strong> Responses to all critical reflection questions - <strong>Professional:</strong> Certificates, portfolios, and documentation</p>
+</section>
+<section id="quality-standards" class="level3">
+<h3 class="anchored" data-anchor-id="quality-standards">Quality Standards</h3>
+<p>Your work will be evaluated on: - <strong>Technical Competency:</strong> Code executes correctly and efficiently - <strong>Research Integration:</strong> Clear connections to land economy applications - <strong>Professional Development:</strong> Evidence of skill progression and documentation - <strong>Critical Analysis:</strong> Thoughtful engagement with methodological questions</p>
+</section>
+<section id="submission-guidelines" class="level3">
+<h3 class="anchored" data-anchor-id="submission-guidelines">Submission Guidelines</h3>
+<ul>
+<li>Submit all materials through the designated course management system</li>
+<li>Use clear, professional file naming conventions</li>
+<li>Include session information and technical environment documentation</li>
+<li>Provide complete, self-contained submissions that others could reproduce</li>
+</ul>
+</section>
+</section>
+<section id="learning-support" class="level2">
+<h2 class="anchored" data-anchor-id="learning-support">Learning Support</h2>
+<section id="getting-help" class="level3">
+<h3 class="anchored" data-anchor-id="getting-help">Getting Help</h3>
+<p>When you encounter difficulties: 1. <strong>Review the relevant section</strong> carefully for missed details 2. <strong>Check R documentation</strong> using <code>?function_name</code> or <code>help(function_name)</code> 3. <strong>Examine error messages</strong> systematically—they often provide clear guidance 4. <strong>Consult peers</strong> through appropriate academic channels 5. <strong>Attend supervision sessions</strong> prepared with specific questions</p>
+</section>
+<section id="common-pitfalls-to-avoid" class="level3">
+<h3 class="anchored" data-anchor-id="common-pitfalls-to-avoid">Common Pitfalls to Avoid</h3>
+<ul>
+<li><strong>Passive reading:</strong> You must actively code to learn programming</li>
+<li><strong>Copy-paste coding:</strong> Type examples yourself to build muscle memory</li>
+<li><strong>Ignoring errors:</strong> Always resolve issues before proceeding</li>
+<li><strong>Superficial reflections:</strong> Engage deeply with methodological questions</li>
+<li><strong>Poor organisation:</strong> Maintain systematic file and folder structures</li>
+</ul>
+</section>
+</section>
+<section id="professional-development-context" class="level2">
+<h2 class="anchored" data-anchor-id="professional-development-context">Professional Development Context</h2>
+<section id="academic-career-preparation" class="level3">
+<h3 class="anchored" data-anchor-id="academic-career-preparation">Academic Career Preparation</h3>
+<p>These technical skills directly support: - <strong>Thesis Research:</strong> Quantitative analysis capabilities for original research - <strong>Publication:</strong> Reproducible workflows and professional visualisation - <strong>Collaboration:</strong> Industry-standard tools used across academic institutions - <strong>Grant Applications:</strong> Demonstrated methodological competency</p>
+</section>
+<section id="industry-applications" class="level3">
+<h3 class="anchored" data-anchor-id="industry-applications">Industry Applications</h3>
+<p>R programming competency is increasingly valued in: - <strong>Policy Analysis:</strong> Government departments and think tanks - <strong>Consultancy:</strong> Urban planning, housing, and development firms - <strong>Research Organisations:</strong> Academic institutions and policy institutes - <strong>Data Science:</strong> Emerging opportunities across multiple sectors</p>
+<hr>
+</section>
+</section>
+</section>
+<section id="technical-notes" class="level1">
+<h1>Technical Notes</h1>
+<section id="package-management" class="level3">
+<h3 class="anchored" data-anchor-id="package-management">Package Management</h3>
+<p>Labs will introduce packages progressively. Install required packages as indicated in each session, and maintain a record of your technical environment using:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Document your session for reproducibility</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="data-sources" class="level3">
+<h3 class="anchored" data-anchor-id="data-sources">Data Sources</h3>
+<p>You’ll work with authentic datasets from: - <strong>ONS:</strong> Office for National Statistics housing and planning data - <strong>Government Departments:</strong> Policy-relevant administrative datasets - <strong>Academic Sources:</strong> Peer-reviewed research data and examples</p>
+</section>
+<section id="reproducibility-standards" class="level3">
+<h3 class="anchored" data-anchor-id="reproducibility-standards">Reproducibility Standards</h3>
+<p>Follow reproducible research practices throughout: - Use relative file paths (never absolute paths) - Document package versions and R version - Include complete code that others could execute - Maintain clear project organisation</p>
+<hr>
+</section>
+</section>
+<section id="getting-started" class="level1">
+<h1>Getting Started</h1>
+<p>Navigate to <strong>Lab 1</strong> using the sidebar to begin your journey into R programming for land economy research. Remember: this is an interactive learning experience that requires your active participation, critical thinking, and professional engagement.</p>
+<p><strong>Success in these labs depends not just on following instructions, but on developing the analytical thinking skills that will serve your research career.</strong></p>
+<hr>
+<p><em>For technical support or academic guidance, consult your supervision team or attend designated office hours with specific questions prepared.</em></p>
 
 
 </section>

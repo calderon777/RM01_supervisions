@@ -1,11 +1,171 @@
 ---
-title: "Interactive Labs"
+title: "Research Methods for Land Economy Research"
+subtitle: "Interactive Labs"
 format: html
 ---
 
-![](pics/cover.png){width=100% fig-alt=""}
+![](pics/cover.png){width=70% fig-alt="Course cover image"}
 
-# Welcome
+# Welcome to RM01 Interactive Labs
 
-This site hosts the supervision material for RM01 at the University of Cambridge.  
-Use the sidebar to navigate to each lab.
+Welcome to the interactive laboratory sessions for **RM01: Research Methods in Land Economy**. This digital workbook provides hands-on experience with R programming, statistical analysis, and data visualisation techniques essential for contemporary research in land economy, planning, and housing studies.
+
+## Course Overview
+
+These supervised laboratory sessions are designed for MPhil students beginning their quantitative research journey. Over five progressive labs, you will develop from complete programming novice to confident data analyst, working with real-world datasets from UK government sources and applying cutting-edge analytical techniques to substantive research questions in your field.
+
+### Learning Journey
+- **Lab 1:** Professional development through certified R programming courses
+- **Lab 2:** Interactive programming fundamentals using multiple learning platforms  
+- **Lab 3:** Real-world data analysis with UK housing market data
+- **Lab 4:** Advanced data visualisation for academic and policy audiences
+- **Lab 5:** AI-assisted programming with GitHub Copilot integration
+
+### Academic Integration
+Each lab connects technical skill development with substantive research applications, ensuring that programming competency serves your broader academic and professional objectives. You'll work with datasets relevant to housing policy, regional development, and planning analysis while developing reproducible research workflows used in leading academic institutions and policy organisations.
+
+---
+
+# How to Use This Interactive Workbook
+
+This workbook is designed as a **practical, hands-on learning experience** that requires active engagement with both the content and your RStudio environment. Success depends on following the structured approach outlined below.
+
+## Essential Setup
+
+### Technical Requirements
+Before beginning, ensure you have:
+- **R** (version ≥ 4.3) installed from [r-project.org](https://www.r-project.org/)
+- **RStudio Desktop** (latest version) from [posit.co](https://posit.co/products/open-source/rstudio/)
+- A stable internet connection for package installation and data downloads
+- Sufficient disk space (≥ 2GB) for datasets and outputs
+
+### Project Organisation
+Create a dedicated folder structure for the course:
+```
+RM01_Labs/
+├── data/           # Raw datasets and imports
+├── scripts/        # Your R code files  
+├── outputs/        # Generated plots, tables, reports
+├── certificates/   # Professional development documentation
+└── reflections/    # Written responses to critical questions
+```
+
+## Active Learning Protocol
+
+### 1. **Read → Code → Reflect**
+Each lab section follows this essential pattern:
+- **Read** the contextual material and instructions carefully
+- **Code** by replicating all examples in your RStudio session
+- **Reflect** by answering critical thinking questions in writing
+
+### 2. **Hands-On Replication**
+**Critical:** Do not simply read the code examples. You must:
+- Type (don't copy-paste) all code into RStudio scripts
+- Execute each code block and verify the outputs
+- Experiment with variations and modifications
+- Debug any errors before proceeding
+
+### 3. **Documentation Standards**
+Maintain professional documentation practices:
+- Save each lab as a separate R script (e.g., `lab01_certification.R`)
+- Comment your code extensively using `# explanatory text`
+- Include session information and package versions
+- Date and version your files systematically
+
+### 4. **Reflection Requirements**
+Critical reflection questions require substantial, written responses:
+- **Length:** 150-300 words per question minimum
+- **Depth:** Connect technical concepts to research applications
+- **Evidence:** Reference specific code examples and outputs
+- **Integration:** Link to broader methodological and theoretical frameworks
+
+## Assessment and Deliverables
+
+### Continuous Assessment
+Each lab includes specific deliverables:
+- **Technical:** Working R scripts with documented code
+- **Visual:** Publication-quality plots and analytical outputs  
+- **Written:** Responses to all critical reflection questions
+- **Professional:** Certificates, portfolios, and documentation
+
+### Quality Standards
+Your work will be evaluated on:
+- **Technical Competency:** Code executes correctly and efficiently
+- **Research Integration:** Clear connections to land economy applications
+- **Professional Development:** Evidence of skill progression and documentation
+- **Critical Analysis:** Thoughtful engagement with methodological questions
+
+### Submission Guidelines
+- Submit all materials through the designated course management system
+- Use clear, professional file naming conventions
+- Include session information and technical environment documentation
+- Provide complete, self-contained submissions that others could reproduce
+
+## Learning Support
+
+### Getting Help
+When you encounter difficulties:
+1. **Review the relevant section** carefully for missed details
+2. **Check R documentation** using `?function_name` or `help(function_name)`
+3. **Examine error messages** systematically—they often provide clear guidance
+4. **Consult peers** through appropriate academic channels
+5. **Attend supervision sessions** prepared with specific questions
+
+### Common Pitfalls to Avoid
+- **Passive reading:** You must actively code to learn programming
+- **Copy-paste coding:** Type examples yourself to build muscle memory
+- **Ignoring errors:** Always resolve issues before proceeding
+- **Superficial reflections:** Engage deeply with methodological questions
+- **Poor organisation:** Maintain systematic file and folder structures
+
+## Professional Development Context
+
+### Academic Career Preparation
+These technical skills directly support:
+- **Thesis Research:** Quantitative analysis capabilities for original research
+- **Publication:** Reproducible workflows and professional visualisation
+- **Collaboration:** Industry-standard tools used across academic institutions
+- **Grant Applications:** Demonstrated methodological competency
+
+### Industry Applications
+R programming competency is increasingly valued in:
+- **Policy Analysis:** Government departments and think tanks
+- **Consultancy:** Urban planning, housing, and development firms
+- **Research Organisations:** Academic institutions and policy institutes
+- **Data Science:** Emerging opportunities across multiple sectors
+
+---
+
+# Technical Notes
+
+### Package Management
+Labs will introduce packages progressively. Install required packages as indicated in each session, and maintain a record of your technical environment using:
+```r
+# Document your session for reproducibility
+sessionInfo()
+```
+
+### Data Sources
+You'll work with authentic datasets from:
+- **ONS:** Office for National Statistics housing and planning data
+- **Government Departments:** Policy-relevant administrative datasets
+- **Academic Sources:** Peer-reviewed research data and examples
+
+### Reproducibility Standards
+Follow reproducible research practices throughout:
+- Use relative file paths (never absolute paths)
+- Document package versions and R version
+- Include complete code that others could execute
+- Maintain clear project organisation
+
+---
+
+# Getting Started
+
+Navigate to **Lab 1** using the sidebar to begin your journey into R programming for land economy research. Remember: this is an interactive learning experience that requires your active participation, critical thinking, and professional engagement.
+
+**Success in these labs depends not just on following instructions, but on developing the analytical thinking skills that will serve your research career.**
+
+---
+
+*For technical support or academic guidance, consult your supervision team or attend designated office hours with specific questions prepared.*
