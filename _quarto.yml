@@ -16,5 +16,6 @@ format:
     number-sections: false
     code-copy: true
     code-overflow: wrap
-    css: styles.css
-
+    css: 
+    - styles.css
+    - icons.css     # the new emoji polish

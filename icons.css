@@ -1,0 +1,6 @@
+
+/* Consistent emoji/icon look */
+h2, h3, h4 { line-height: 1.25; }
+main ul, main ol { margin-bottom: 1rem; }
+main p { line-height: 1.6; }
+pre code { font-size: 0.9em; }
