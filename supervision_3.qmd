@@ -1,0 +1,176 @@
+---
+title: "Supervision 3"
+format: html
+---
+
+## Lab 1 — Data Prep for Variable Selection (Hitters)
+
+### 🎯 Learning outcomes
+- Load the **Hitters** data and inspect dimensions.
+- Handle **missing values** (Salary) to avoid errors in model fitting.
+- Get comfortable with the packages we'll use: **ISLR** and **leaps**.
+
+### 🧰 Prerequisites
+- R and RStudio installed.
+- Packages: `ISLR`, `leaps`.
+
+```{r}
+# install.packages(c("ISLR","leaps")) # if needed
+library(ISLR)
+data(Hitters)
+
+# Inspect
+names(Hitters)
+dim(Hitters)          # rows x columns
+sum(is.na(Hitters$Salary))
+
+# Drop rows with any NA (Salary has some NAs)
+Hitters <- na.omit(Hitters)
+dim(Hitters)
+sum(is.na(Hitters))
+```
+::: callout-note
+We remove rows with missing **Salary** because selection routines (like `regsubsets`) require complete cases.
+:::
+
+---
+
+## Lab 2 — Best Subset Selection
+
+### 🎯 Learning outcomes
+- Fit **best subset** models with `regsubsets()`.
+- Retrieve the **best model** for each size.
+- Inspect classical metrics: **RSS**, **R²**, **Adjusted R²**, **Cp**, **BIC**.
+
+```{r}
+library(leaps)
+
+# Exhaustive search over all subsets
+regfit.full <- regsubsets(Salary ~ ., data = Hitters, nvmax = 19)
+reg.summary <- summary(regfit.full)
+
+# What does summary() return?
+names(reg.summary)
+
+# Quick look at R^2 growth as we add variables
+reg.summary$rsq
+```
+
+::: callout-tip
+`regsubsets()` searches the model space and stores the *best* model for each size (1..nvmax). Use `summary()` to see a **which** matrix and metrics across sizes.
+:::
+
+### Visual diagnostics for choosing model size
+
+```{r}
+par(mfrow = c(2,2))
+
+# RSS
+plot(reg.summary$rss, xlab = "Number of Variables", ylab = "RSS", type = "l")
+
+# Adjusted R^2 (highlight maximum)
+plot(reg.summary$adjr2, xlab = "Number of Variables", ylab = "Adjusted R^2", type = "l")
+best.adjr2 <- which.max(reg.summary$adjr2)
+points(best.adjr2, reg.summary$adjr2[best.adjr2], col = "red", cex = 2, pch = 20)
+
+# Cp (highlight minimum)
+plot(reg.summary$cp, xlab = "Number of Variables", ylab = "Cp", type = "l")
+best.cp <- which.min(reg.summary$cp)
+points(best.cp, reg.summary$cp[best.cp], col = "red", cex = 2, pch = 20)
+
+# BIC (highlight minimum)
+plot(reg.summary$bic, xlab = "Number of Variables", ylab = "BIC", type = "l")
+best.bic <- which.min(reg.summary$bic)
+points(best.bic, reg.summary$bic[best.bic], col = "red", cex = 2, pch = 20)
+```
+
+::: callout-note
+**Rule of thumb:** prefer the model size where **Adjusted R²** peaks, or **Cp/BIC** are minimized. These are proxies for **test error**.
+:::
+
+### Inspect variables in the chosen model(s)
+
+```{r}
+# Example: variables in the BIC-optimal model
+coef(regfit.full, best.bic)
+
+# regsubsets has its own plot helper:
+plot(regfit.full, scale = "bic")
+plot(regfit.full, scale = "adjr2")
+plot(regfit.full, scale = "Cp")
+plot(regfit.full, scale = "r2")
+```
+
+---
+
+## Lab 3 — Forward Stepwise Selection
+
+### 🎯 Learning outcomes
+- Run **forward stepwise** selection using `method = "forward"`.
+- Compare chosen variables to **best subset** at the same size.
+
+```{r}
+regfit.fwd <- regsubsets(Salary ~ ., data = Hitters, nvmax = 19, method = "forward")
+summary(regfit.fwd)
+
+# Compare a specific size (e.g., 7 variables) across methods
+coef(regfit.full, 7)  # best subset
+coef(regfit.fwd, 7)   # forward stepwise
+```
+
+::: callout-warning
+Forward stepwise is **greedy**: after a variable enters, it **stays**. It evaluates far fewer models than best subset—great for speed—but it may miss the global optimum.
+:::
+
+---
+
+## Lab 4 — Backward Stepwise Selection
+
+### 🎯 Learning outcomes
+- Run **backward stepwise** selection using `method = "backward"`.
+- Understand when backward is **not** applicable.
+
+```{r}
+regfit.bwd <- regsubsets(Salary ~ ., data = Hitters, nvmax = 19, method = "backward")
+summary(regfit.bwd)
+
+# Compare at size 7 again
+coef(regfit.bwd, 7)   # backward stepwise
+```
+
+::: callout-important
+Backward stepwise starts from the **full model** and removes variables. It requires **n > p** so that the full least squares fit exists.
+:::
+
+---
+
+## Lab 5 — Reading the Plots & Coefficients Like a Pro
+
+### 🎯 Learning outcomes
+- Interpret **selection plots** (BIC, Cp, Adjusted R² panels).
+- Extract and report the **final model** clearly.
+
+```{r}
+# Choose a final size by any one of the criteria
+k_final <- best.bic     # example: BIC-minimizer
+
+# Coefficients and variables
+final_coef <- coef(regfit.full, k_final)
+final_coef
+
+# A compact report
+data.frame(term = names(final_coef), estimate = as.numeric(final_coef))
+```
+
+::: callout-tip
+**Reporting tip:** Always state (i) the **criterion** used (e.g., BIC), (ii) the **model size**, and (iii) the **selected variables** with their **coefficients**. Avoid training **R²** alone—prefer Cp/BIC/Adjusted R².
+:::
+
+---
+
+### ✅ What you should now be able to do
+- Prepare data and run **best subset** and **stepwise** selection.
+- Use **Adjusted R²**, **Cp**, and **BIC** to choose model size.
+- Extract and communicate the **chosen variables** and **coefficients**.
+
+> Next session we’ll compare these selections using a **validation set and cross‑validation**, and then move to **ridge** and **lasso**.
