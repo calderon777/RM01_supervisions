@@ -10,6 +10,7 @@ book:
     - supervision_1.qmd
     - supervision_2.qmd
     - supervision_3.qmd
+    - supervision_4.qmd
     # later you’ll add supervision_2.qmd, supervision_3.qmd, etc.
 
 format:

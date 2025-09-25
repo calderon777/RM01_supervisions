@@ -1,0 +1,293 @@
+---
+title: "Supervision 4"
+format: html
+---
+
+## Lab 1 — Collinearity
+
+Collinearity (multicollinearity) among regressors occurs when two or more move closely together or have limited variability. It **inflates the variance** of estimated parameters (less precise \(t\)-tests), even though OLS estimates remain unbiased. As a result, a model may have a high \(R^2\) or a large F‑statistic but **insignificant individual coefficients**.
+
+### 🧰 Packages
+`PoEdata`, `broom`, `knitr`, `car`
+
+```{r}
+# install.packages(c("PoEdata","broom","knitr","car"))  # if needed
+library(PoEdata); library(broom); library(knitr); library(car)
+
+# Example data: cars (mpg = miles per gallon; cyl = cylinders; eng = engine displacement; wgt = weight)
+data("cars", package = "PoEdata")
+
+# Simple model
+mod1 <- lm(mpg ~ cyl, data = cars)
+kable(tidy(mod1), caption = "A simple linear 'mpg' model")
+```
+
+Now add more regressors:
+
+```{r}
+mod2 <- lm(mpg ~ cyl + eng + wgt, data = cars)
+kable(tidy(mod2), caption = "Multivariate 'mpg' model")
+```
+
+::: callout-note
+When adding **eng** and **wgt**, the coefficient for **cyl** can turn **insignificant**—a classic sign of collinearity because these vehicle traits tend to move together.
+:::
+
+### Variance Inflation Factor (VIF)
+
+The VIF for regressor \(x_k\) is \(\text{VIF}_k = \dfrac{1}{1-R_k^2}\), where \(R_k^2\) is from regressing \(x_k\) on the other regressors.
+
+```{r}
+v <- car::vif(mod2)
+tab <- data.frame(regressor = names(v), VIF = as.numeric(v), row.names = NULL)
+kable(tab, caption = "Variance inflation factors for the 'mpg' regression model")
+```
+
+::: callout-tip
+**Rules of thumb**  
+- **VIF > 10** → strong collinearity (commonly used cutoff)  
+- **VIF > 5** → moderate collinearity (early warning)
+:::
+
+### Mitigations (when VIFs are high)
+- Remove or combine collinear variables (e.g., combine **cyl** and **eng** into a power index).  
+- Use **PCA** to produce orthogonal components.  
+- **Standardise/centre** variables (helps especially with interactions/polynomials).  
+- Use **Ridge regression** if retaining all variables is preferred.  
+- Consider **transformations** (e.g., logs).
+
+---
+
+## Lab 2 — Heteroskedasticity
+
+The Gauss–Markov theorem assumes **homoskedasticity** (constant error variance \(\sigma^2\)). In many economic datasets, variance grows with some regressors (e.g., higher‑income households show more dispersion in expenditure). With heteroskedasticity, OLS coefficients remain unbiased, but **standard errors** and therefore **inference** are wrong unless corrected.
+
+### 🧰 Packages
+`lmtest`, `broom`, `PoEdata`, `car`, `sandwich`, `knitr`
+
+```{r}
+# install.packages(c("lmtest","broom","PoEdata","car","sandwich","knitr"))  # if needed
+library(lmtest); library(broom); library(PoEdata); library(car); library(sandwich); library(knitr)
+
+data("food", package="PoEdata")
+mod1 <- lm(food_exp ~ income, data = food)
+
+# Scatter and fitted line
+plot(food$income, food$food_exp, xlab="income", ylab="food expenditure", pch=19, col="grey")
+abline(mod1, lwd=2)
+```
+
+### Spotting heteroskedasticity with residual plots
+
+```{r}
+res <- residuals(mod1); yhat <- fitted(mod1)
+plot(food$income, res, xlab="income", ylab="residuals", pch=19, col="grey")
+abline(h=0, lty=2)
+plot(yhat, res, xlab="fitted values", ylab="residuals", pch=19, col="grey")
+abline(h=0, lty=2)
+```
+
+### Breusch–Pagan test (manual construction)
+
+```{r}
+alpha <- 0.05
+ressq <- resid(mod1)^2
+modres <- lm(ressq ~ income, data = food)       # auxiliary regression
+N <- nobs(modres)
+S <- summary(modres)$df[2]                       # df for regression (k)
+chisqcr <- qchisq(1 - alpha, S)                  # critical value (right-tail)
+Rsqres <- summary(modres)$r.squared
+chisq <- N * Rsqres
+pval <- 1 - pchisq(chisq, S)
+c(statistic = chisq, crit = chisqcr, p.value = pval)
+```
+
+### White (quadratic) version
+
+```{r}
+modres2 <- lm(ressq ~ income + I(income^2), data = food)
+Rsq2 <- summary(modres2)$r.squared
+S2 <- summary(modres2)$df[2]
+chisq2 <- N * Rsq2
+pval2 <- 1 - pchisq(chisq2, S2)
+c(statistic = chisq2, df = S2, p.value = pval2)
+```
+
+### Breusch–Pagan with `bptest()`
+
+```{r}
+kable(tidy(bptest(mod1)), caption = "Breusch–Pagan heteroskedasticity test")
+```
+
+### Goldfeld–Quandt test (indicator split: metro vs rural)
+
+```{r}
+alpha <- 0.05
+data("cps2", package="PoEdata")
+m <- cps2[cps2$metro==1, ]
+r <- cps2[cps2$metro==0, ]
+
+wg1 <- lm(wage ~ educ + exper, data = m)
+wg0 <- lm(wage ~ educ + exper, data = r)
+
+df1 <- wg1$df.residual; df0 <- wg0$df.residual
+sig1 <- summary(wg1)$sigma^2; sig0 <- summary(wg0)$sigma^2
+fstat <- sig1/sig0
+Flc <- qf(alpha/2, df1, df0); Fuc <- qf(1-alpha/2, df1, df0)
+c(F = fstat, Flc = Flc, Fuc = Fuc)
+```
+
+Goldfeld–Quandt without an indicator (split by median income):
+
+```{r}
+alpha <- 0.05
+medianincome <- median(food$income)
+li <- food[food$income <= medianincome, ]
+hi <- food[food$income >= medianincome, ]
+
+eqli <- lm(food_exp ~ income, data = li)
+eqhi <- lm(food_exp ~ income, data = hi)
+
+dfli <- eqli$df.residual; dfhi <- eqhi$df.residual
+sqli <- summary(eqli)$sigma^2; sqhi <- summary(eqhi)$sigma^2
+
+fstat <- sqhi/sqli
+Fc <- qf(1 - alpha, dfhi, dfli)
+pval <- 1 - pf(fstat, dfhi, dfli)
+c(F = fstat, Fcrit = Fc, p.value = pval)
+```
+
+Or use `gqtest()` directly:
+
+```{r}
+foodeq <- lm(food_exp ~ income, data = food)
+tst <- lmtest::gqtest(foodeq, point = 0.5, alternative = "greater", order.by = food$income)
+kable(tidy(tst), caption = "R function `gqtest()` with the 'food' equation")
+```
+
+### Heteroskedasticity‑consistent (HC) standard errors
+
+```{r}
+foodeq <- lm(food_exp ~ income, data = food)
+kable(tidy(foodeq), caption = "Regular standard errors in the 'food' equation")
+
+cov1 <- car::hccm(foodeq, type = "hc1")
+food.HC1 <- lmtest::coeftest(foodeq, vcov. = cov1)
+kable(tidy(food.HC1), caption = "Robust (HC1) standard errors in the 'food' equation")
+```
+
+::: callout-important
+Robust (HC) errors **fix inference** under heteroskedasticity, but the **point estimates are unchanged**.
+:::
+
+---
+
+## Lab 3 — Serial Correlation (Autocorrelation)
+
+Serial correlation is correlation across time in a series. In regression, **autocorrelated errors** lead to **incorrect standard errors** (and misleading \(t\)-tests).
+
+### Example: growth vs unemployment (Okun’s data)
+
+```{r}
+data("okun", package="PoEdata")
+okun.ts <- ts(okun, start=c(1948,1), frequency=4)
+
+plot(okun.ts[,"g"], ylab="growth")
+plot(okun.ts[,"u"], ylab="unemployment")
+
+# Scatter with lags
+ggL1 <- data.frame(g = okun.ts[,"g"], gL1 = stats::lag(okun.ts[,"g"], -1))
+plot(ggL1); abline(h=mean(ggL1$gL1, na.rm=TRUE), v=mean(ggL1$g, na.rm=TRUE), lty=2)
+
+ggL2 <- data.frame(g = okun.ts[,"g"], gL2 = stats::lag(okun.ts[,"g"], -2))
+plot(ggL2); abline(h=mean(ggL2$gL2, na.rm=TRUE), v=mean(ggL2$g, na.rm=TRUE), lty=2)
+
+# Correlogram
+acf(okun.ts[,"g"])
+```
+
+### Phillips curve example and BG/DW tests
+
+```{r}
+library(dynlm)
+
+data("phillips_aus", package="PoEdata")
+phill.ts <- ts(phillips_aus, start=c(1987,1), end=c(2009,3), frequency=4)
+inflation <- phill.ts[,"inf"]
+Du <- diff(phill.ts[,"u"])
+
+# FDL model: inf_t = beta1 + beta2 * diff(u_t) + e_t
+phill.dyn <- dynlm(inf ~ diff(u), data = phill.ts)
+kable(tidy(phill.dyn), caption="Summary of the `phillips` model")
+
+# Residual plot and correlogram
+ehat <- resid(phill.dyn)
+plot(ehat); abline(h=0, lty=2)
+acf(ehat)
+```
+
+Breusch–Godfrey tests (different orders/statistics):
+
+```{r}
+# NOTE: preserving your object names a, b, c, d and test types.
+# (We only use base::c() below to avoid masking by object 'c')
+a <- lmtest::bgtest(phill.dyn, order=1, type="F",    fill=0)
+b <- lmtest::bgtest(phill.dyn, order=1, type="F",    fill=NA)
+c <- lmtest::bgtest(phill.dyn, order=4, type="Chisq",fill=0)
+d <- lmtest::bgtest(phill.dyn, order=4, type="Chisq",fill=NA)
+
+dfr <- data.frame(
+  Method    = base::c("1, F, 0","1, F, NA","4, Chisq, 0","4, Chisq, NA"),
+  Statistic = base::c(unname(a$statistic), unname(b$statistic), unname(c$statistic), unname(d$statistic)),
+  Parameters= base::c(sprintf("df1=%g, df2=%g", a$parameter[1], a$parameter[2]),
+                      sprintf("df1=%g, df2=%g", b$parameter[1], b$parameter[2]),
+                      sprintf("df=%g",          c$parameter),
+                      sprintf("df=%g",          d$parameter)),
+  p_value   = base::c(a$p.value, b$p.value, c$p.value, d$p.value)
+)
+knitr::kable(dfr, caption="Breusch–Godfrey test for the Phillips example")
+```
+
+Durbin–Watson (legacy but useful for small samples):
+
+```{r}
+lmtest::dwtest(phill.dyn)
+```
+
+---
+
+## Lab 4 — HAC (Newey–West) Standard Errors
+
+Correct standard errors under autocorrelation (and heteroskedasticity) using **HAC** estimators.
+
+```{r}
+library(sandwich); library(lmtest)
+
+s0 <- coeftest(phill.dyn)                              # incorrect under AC
+s1 <- coeftest(phill.dyn, vcov.=vcovHAC(phill.dyn))    # HAC
+s2 <- coeftest(phill.dyn, vcov.=NeweyWest(phill.dyn))  # Newey–West
+s3 <- coeftest(phill.dyn, vcov.=kernHAC(phill.dyn))    # kernel HAC
+
+tbl <- data.frame(cbind(s0[c(3,4)], s1[c(3,4)], s2[c(3,4)], s3[c(3,4)]))
+names(tbl) <- c("Incorrect","vcovHAC","NeweyWest","kernHAC")
+row.names(tbl) <- c("(Intercept)","Du")
+kable(tbl, digits=3, caption="Comparing standard errors for the Phillips model")
+```
+
+::: callout-warning
+HAC fixes **inference** but not **efficiency**: OLS with HAC is still not minimum‑variance when errors are autocorrelated.
+:::
+
+---
+
+## Lab 5 — AR(1) Error Structure (Diagnostics)
+
+Assume errors follow an **AR(1)** process \(e_t = \rho e_{t-1} + \nu_t\), with \(|\rho|<1\). A quick diagnostic is to inspect the first few **autocorrelations** of residuals.
+
+```{r}
+ehat <- resid(phill.dyn)
+ac <- acf(ehat, plot = FALSE)
+ac$acf[2:6]   # autocorrelations at lags 1..5
+```
+
+The first‑lag correlation is a simple estimate of \(\rho\) (\(\hat\rho = r_1\)). If large and significant, consider modelling errors explicitly (e.g., GLS/AR models) or using **HAC** for valid inference when staying with OLS.
