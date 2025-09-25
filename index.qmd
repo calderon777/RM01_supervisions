@@ -1,5 +1,5 @@
 ---
-title: "Research Methods for Land Economy Topics"
+title: "Welcome and Supervision Overview"
 subtitle: "Interactive Labs"
 format: html
 ---
@@ -10,16 +10,16 @@ format: html
 
 Welcome to these interactive laboratory sessions for **Research Methods in Land Economy**. This digital workbook provides hands-on experience with R programming, quantitative analysis, and data visualisation techniques essential for contemporary research in land economy, finance, planning, and environmental housing studies.
 
-### Supervisions Overview
+## Supervisions Overview
 
 These supervised laboratory sessions are designed for MPhil students beginning their quantitative research journey. Over several progressive supervision, you will develop from complete programming novice to confident data analysis skills, working with appropriate real-world land economy datasets from institutional sources and applying cutting-edge analytical techniques to substantive research questions in your field.
 
-#### Academic Integration
+### Academic Integration
 Each lab connects technical skill development with substantive research applications, ensuring that programming competency serves your broader academic and professional objectives. You'll work with datasets relevant to housing policy, regional development, and planning analysis while developing reproducible research workflows used in leading academic institutions and policy organisations.
 
 ---
 
-## How to Use This Interactive Workbook
+### How to Use This Interactive Workbook
 
 This workbook is designed as a **practical, hands-on learning experience** that requires active engagement with both the content and your RStudio environment. Success depends on following the structured approach outlined below.
 
@@ -130,7 +130,7 @@ R programming competency is increasingly valued in:
 
 ---
 
-## Technical Notes
+### Technical Notes
 Labs will introduce packages progressively. Install required packages as indicated in each session, and maintain a record of your technical environment using:
 ```r
 # Document your session for reproducibility
@@ -138,7 +138,7 @@ sessionInfo()
 ```
 ---
 
-## Getting Started
+### Getting Started
 
 Navigate to **Supervision 1** using the link to begin your journey into R programming for land economy research. Remember: this is an interactive learning experience that requires preparation before attending supervisions, your active participation, critical thinking, and professional engagement.
 

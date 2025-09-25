@@ -13,11 +13,12 @@ format: html
 - Save your script for the next supervision.
 
 ### 🧰 Prerequisites
+- Read "Welcome & Supervision Overview" section.
 - R and RStudio installed.
-- A course folder on your machine where you will save scripts. 
+- A course folder and subfolders on your machine where you will save scripts and other files: 
 ```
-RM01_Labs/
-├── data/           # Raw datasets and imports
+RM01_labs/
+├── data/           # For raw datasets and imports
 ├── scripts/        # Your R code files  
 ├── outputs/        # Generated plots, tables, reports
 ├── certificates/   # Professional development documentation
@@ -30,10 +31,10 @@ After downloading and installing open RStudio, we will cover now some tutorials.
 
 👨‍💻 **Long Tutorial**
 
-We would cover a brief introduction on this labs, students would like to cover a longer tutorial to get use to R quickly. Click on this link: https://cran.r-project.org/doc/manuals/r-release/R-intro.pdf
+We would cover a brief introduction on this labs, students can use a longer tutorial for detailed learning at <https://cran.r-project.org/doc/manuals/r-release/R-intro.pdf>
 
 
-### A. Get oriented in RStudio (2–3 min)
+### A. Get oriented in RStudio
 
 You need to have installed R and RStudio to continue with this lab. 
 
@@ -41,7 +42,7 @@ You need to have installed R and RStudio to continue with this lab.
 
 ![On this picture, there are three panels 'the Console', 'The Environment', and 'The Plots, Help and Files' panel.](/pics/image7a.png)
 
-- Let's choose a better appeareance for our RStudio.
+- Let's choose a better appeareance for our RStudio. Click on Tools>Global Options.
 
 ![In RStudio, click on 'Tools' and 'Global Options'](/pics/image8.png)
 
@@ -51,18 +52,15 @@ You need to have installed R and RStudio to continue with this lab.
 
 ---
 
-### B. Your first script (3–5 min)
+### B. Your first script
 
-1. Open a file to save the code for this session. Click on **File → New File → R Script**; or simply press Ctrl+Shift+N (command+shift+enter in Mac); this will open a new panel called 'Script' where we are going to write the commands for R. Change the name of the script, saving the script in the folder RM01_Labs/scripts/.
+1. Open a file to save the code for this session. Click on **File → New File → R Script**; or simply press Ctrl+Shift+N (command+shift+enter in Mac); this will open a new panel called 'Script' where we are going to write the commands for R. Change the name of the script to "lab_1", saving the script in the folder RM01_Labs/scripts/ **File → Save As → "lab_1"**
 
 ![Click on File>New File>R Script](/pics/image10.png)
 
 2. Add a comment (starts with `#`.) On the script panel, type the caracter `#` and then write `'LAB ONE AND TODAY'S DATE'`. R will ignore any line of command starting with `#`. You can use `#` to add comments, titles, reminders within your R code/ R Script. 
 
-![Comments are crucial to learn R](/pics/image11.png)
-
-
- Your R Script shall look like this:
+Your R Script now shall look similar to this:
 
 ![Comments are crucial to learn R](/pics/image11.png)
 
@@ -70,36 +68,87 @@ The Rstudio screen has four windows or panels: 1. Console. 2. Environment and hi
 
 - On your script, type `getwd()` in line number '2' and hit the keys 'ctrl+enter' in your keyboard (The + indicates 'do it at the same time'), you dont need to press the key '+'. After 'running' line 2, you will see in the console panel the working directory (or folder) that R is using to download and upload files.
 
-![This image shows how your R Script should look and the outcome in the console -bottom panel after getwd()](/pics/image12.png)
+![This image shows how your R Script should look](/pics/image12.png)
+
+![The outcome in the console -bottom panel after getwd()](/pics/image12a.png)
+
 
 ---
 
-### C. Set your working directory (3–4 min)
-Choose your course file folder 📁. Recall we called the working folder  folder 'RM01_Labs'. Afterwards, in RStudio' go to 'Session', 'Set Working Directory', 'Choose Directory', and select this folder.
+### C. Set your working directory
+Choose your course file folder 📁. Recall we called the working folder  folder 'RM01_labs'. In RStudio' go to 'Session', 'Set Working Directory', 'Choose Directory', and select this folder.
 
 ![Create your folder and then click on Session>Set Working Directory>Choose Directory](/pics/image13.png)
 
-The 'Console' panel renders `setwd(and a path/directory to your chosen folder in your computer)`. 
-
-- Copy and paste this output in line 3 in your R code. This will save you time as you will only need to run line 3 (ctrl+enter) to set the directory or folder where you are going to work in R.
+The 'Console' panel renders `setwd(and a path/directory to your chosen folder in your computer)`. Copy and paste this output in line 3 from your Console to your R Script. Setting the directory with code and not 'clicks' will save you time.
 
 ![This is the code you shall copy and paste in your R Script, ignore '>'](/pics/image14.png)
 
-![setwd() example in your R Script](/pics/image15.png)
+![setwd() in your R Script](/pics/image15.png)
+
+So far, we have created the following script:
+```r
+# LAB ONE 25/09/2025
+getwd()
+setwd("C:/Users/YOUR DIRECTORY/RM01_labs")
+```
+and this is the Console output:
+
+```text
+> # LAB ONE 25/09/2025
+> getwd()
+[1] "C:/Users/YOUR DIRECTORY/Documents"
+> setwd("C:/Users/YOUT DIRECTORY/RM01_labs")
+```
 
 ### D. First calculations & a matrix (3–4 min)
 
 1. In your script, run: `5 * 5` (result should be `25` in the Console).
-2. Create a small matrix and run it:
+
+```{r}
+#| label: console-demo
+#| prompt: true     # show "> " before code lines
+#| comment: ""      # no "##" before output lines
+#| collapse: true   # interleave code and output like a console
+#| echo: true
+#| warning: false
+#| message: false
+
+5*5
+```
+
+2. Create a small matrix and run it. Use the following code, explanatory comments are written with #:
    ```r
-   5*5
+   # A is an object, 
+   # <- is similar to equal
+   # 1:8 are the numbers from 1 to 8
+   # nrow is the matrix number of rows = 4
+   # ncol is the matrix number of columns = 2 
    A <- matrix(1:8, nrow = 4, ncol = 2)
+   # The object A now has a matrix. Run the object A
    A
    ```
-
-![A multiplication and your first matrix](/pics/image16.png)
-
 The outcome in the console shall be as follows:
+
+```{r}
+#| label: console-demo
+#| prompt: true     # show "> " before code lines
+#| comment: ""      # no "##" before output lines
+#| collapse: true   # interleave code and output like a console
+#| echo: true
+#| warning: false
+#| message: false
+
+# A is an object, 
+   # <- is similar to equal
+   # 1:8 are the numbers from 1 to 8
+   # nrow is the matrix number of rows = 4
+   # ncol is the matrix number of columns = 2 
+   A <- matrix(1:8, nrow = 4, ncol = 2)
+   # The object A now has a matrix. Run the object A
+   A
+
+```
 
 ![Multiplication and matrix output in your Console](/pics/image17.png)
 
