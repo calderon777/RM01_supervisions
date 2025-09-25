@@ -1,9 +1,9 @@
 ---
 title: "Supervision 1"
 format: html
----
+--- 
 
-## Lab 1 — R Quickstart
+## 🧪 Lab 1 — R Quickstart
 
 ### 🎯 Learning outcomes (you will be able to)
 - Open RStudio and recognise the **Console, Script, Environment/History, Files/Plots/Help** panes.
@@ -131,7 +131,7 @@ and this is the Console output:
 The outcome in the console shall be as follows:
 
 ```{r}
-#| label: console-demo
+#| label: console-matrix
 #| prompt: true     # show "> " before code lines
 #| comment: ""      # no "##" before output lines
 #| collapse: true   # interleave code and output like a console
@@ -150,44 +150,55 @@ The outcome in the console shall be as follows:
 
 ```
 
-![Multiplication and matrix output in your Console](/pics/image17.png)
-
-- In the line 5, you asked R to create a matrix called 'A', with numbers from 1 to 8, with four rows and two columns.
+- In brief, you created a matrix called 'A', with numbers from 1 to 8, with four rows and two columns.
 
 ---
 
-### E. Inspect objects & view data (2–3 min)
+### E. Inspect objects & view data
 
 - Check the **Environment** tab to see objects you’ve created. 
 - The tab **History** shows a list of commands used do far.
 
 ![Environment Panel](/pics/image18.png)
 
-- To see the matrix A in a new window, type the command `View(A)` in line 7 and hit the keys 'ctrl+enter' to run line 7, this will send you to a different tab. Afterwards, click on your R script tab. 
+- To see the matrix A in a new window, type the command `View(A)` in your script and hit the keys 'ctrl+enter' to run that line , this will send you to a different tab. Afterwards, click on your R script to come back. 
 
-![Sample of function View()](/pics/image19.png)
+```r
+# LAB ONE 25/09/2025
+getwd()
+setwd("C:/Users/Cam/OneDrive - University of Cambridge/Cambridge 2025-26/RM01_labs")
+5*5
+# A is an object, 
+# <- is similar to equal
+# 1:8 are the numbers from 1 to 8
+# nrow is the matrix number of rows = 4
+# ncol is the matrix number of columns = 2 
+A <- matrix(1:8, nrow = 4, ncol = 2)
+# The object A now has a matrix. Run the object A
+A
+View(A)
+```
 
-### F. (Optional) Install and load a package (2–3 min)
 
-**The tab 'Packages'** shows the list of add-ons included in the installation of RStudio. If checked, the package is loaded into R, if not, any command related to that package won't work, you will need select it. You can also install other add-ons by clicking on the 'Install Packages' icon.
+### F. (Optional) Install and load a package
+
+**The tab 'Packages'** shows the list of add-ons included in the installation of RStudio. Click on the tab 'Packages', if you check a box next to a package, that package is loaded into R, if not, any command related to that package won't work, you will need select it. You can also install other add-ons by clicking on the 'Install' icon.
 
 Another way to install add-ons is to type the function `install.packages("name of the package")`, and then you will be able to open the library of commands of that package.
 
 - In line 8, to install the package forecast, type `install.packages(“forecast”)` and hit ctrl+enter. If a window opens, you can hit yes to restart RStudio. See the picture below, make sure you do not get errors in the console. The sign '>' will show when R finishes running a line.
 
-![Function install.packages() and installing package 'forecast'](/pics/image20.png)
-
-You must activate the package by typing 'library(the package)', for example, `library(forecast)` and ctrl+enter. This will activate all functions within the 'forecast' package.
-
 ```r
-library(forecast)
+# the function to install packages in R
+# we use "forecast" as example
+install.packages("forecast") # to install the package
+library(forecast) # to activate the package 'forecast'
 ```
+Remember to activate the package by typing 'library(the package)', for example, `library(forecast)` and ctrl+enter. This will activate all functions within the 'forecast' package.
 
-![library() function and sample with package 'forecast'](/pics/image21.png)
+Make sure there are no error messages in the installation, and if so, make sure to solve the issue before continuing.
 
-![The Console will show this result after 'running' library("forecast")](/pics/image22.png)
-
-The package forecast is activated to analyse and predict time series (e.g. yearly house prices during the last 20 years).
+The package forecast is used to analyse and predict time series (e.g. yearly house prices during the last 20 years).
 
 **Script/Data View Window:**
 
@@ -205,10 +216,8 @@ The package forecast is activated to analyse and predict time series (e.g. yearl
 
 ---
 
-### 💾 Save your script (1 min)
-
-**File → Save** (e.g., `lab1_quickstart.R`) into your course folder.
-![Remember to save your R Scripts, this will save you a lot time!](/pics/image23.png)
+### 💾 Save your script
+**File → Save** (e.g., `lab_1`) into your 'script' folder. **Remember to save your R Scripts after each supervision**, this will save you a lot time!
 
 ### ✅ Check‑off
 - [ ] I can run code from a script (Ctrl+Enter).
@@ -217,9 +226,15 @@ The package forecast is activated to analyse and predict time series (e.g. yearl
 - [ ] Script saved.
 
 
-*End of Lab 1*
 
-## Lab 2 — Professional Development: R Certification via LinkedIn Learning
+---
+
+🏁 *End of Lab 1*
+
+---
+
+
+## 🧪 Lab 2 — Professional Development: R Certification via LinkedIn Learning
 
 Professional certifications complement academic learning by providing industry-recognised credentials. For land economy graduates leading industries and entering consultancy, government, or research roles, demonstrating quantitative competency through multiple channels strengthens your professional profile and evidences commitment to continuous learning. 
 
@@ -340,9 +355,11 @@ ggplot(test_data, aes(x = year, y = house_prices)) +
 
 ---
 
-*End of Lab 2*
+🏁 *End of Lab 2*
 
-## Lab 3 — Interactive R Learning: Building Programming Competency
+---
+
+## 🧪 Lab 3 — Interactive R Learning: Building Programming Competency
 
 ---
 
@@ -373,7 +390,7 @@ If tutorials don’t appear in RStudio’s **Tutorial** tab after installation, 
 
 ---
 
-### 🧪 Part A — r4ds.tutorials: *01-data-visualization*
+### Part A — r4ds.tutorials: *01-data-visualization*
 This runs as an interactive tutorial in RStudio’s **Tutorial** pane.
 
 ```{r, eval=FALSE}
@@ -394,7 +411,7 @@ learnr::available_tutorials("r4ds.tutorials")
 
 ---
 
-### 🧪 Part B — learnr: *ex-data-basics*
+### Part B — learnr: *ex-data-basics*
 This is a short core tutorial bundled with **learnr**.
 
 ```{r, eval=FALSE}
@@ -411,7 +428,7 @@ learnr::run_tutorial("ex-data-basics", package = "learnr")
 
 ---
 
-### 🧪 Part C — swirl (console‑based)
+### Part C — swirl (console‑based)
 **swirl** runs entirely in the Console and saves your progress.
 
 ```{r, eval=FALSE}
@@ -443,7 +460,7 @@ swirl::progress()
 
 ---
 
-### 🧪 Part D — Mini practice (5–10 min)
+### Part D — Mini practice (5–10 min)
 Create a tiny vector and compute a statistic, then plot a quick line:
 
 ```{r}
@@ -475,10 +492,11 @@ abline(h = mean_x, lty = 2)
 
 ---
 
-*End of Lab 3*
+🏁 *End of Lab 3*
 
+---
 
-## Lab 4 — Uploading Excel & CSV Files to R (PIPR)
+## 🧪 Lab 4 — Uploading Excel & CSV Files to R (PIPR)
 
 ---
 
@@ -505,7 +523,7 @@ By the end of this lab you will be able to:
 
 ---
 
-### 🧪 Part A — Get PIPR monthly from ONS (manual steps)
+### Part A — Get PIPR monthly from ONS (manual steps)
 1. Go to **ONS.gov.uk** and search **Price Index of Private Rents (PIPR)**. This lab is using ONS data on Figure 4: Rent annual inflation slowed across the UK, Private rents annual inflation, across the UK, January 2016 to August 2025.
 
 2. On the dataset page, choose **Data** → **Download monthly workbook** (Excel) or **CSV** if available.
@@ -516,7 +534,7 @@ By the end of this lab you will be able to:
 
 ---
 
-### 🧪 Part B — Import Excel via code (reproducible)
+### Part B — Import Excel via code (reproducible)
 Use `readxl::read_excel()` and inspect column names to choose the UK series.
 
 ```{r}
@@ -543,7 +561,7 @@ head(pipr, 6)
 
 ---
 
-### 🧪 Part C — Import via RStudio UI (reference)
+### Part C — Import via RStudio UI (reference)
 - RStudio → **Import Dataset** → **From Excel** → select `data/pipr_monthly.xls`.
 - Choose the relevant **sheet** and, if needed, set **Skip** for metadata rows.
 - Set **Name** to `pipr` and verify column names (e.g., `month`, `uk_index`, `uk_yoy`).
@@ -553,7 +571,7 @@ head(pipr, 6)
 
 ---
 
-### 🧪 Part D — Basic time‑series line plot (annual % change)
+### Part D — Basic time‑series line plot (annual % change)
 Plot PIPR annual % change for the UK as a line. Label the x‑axis sparsely to keep it readable.
 
 ```{r}
@@ -584,13 +602,13 @@ text(x = min(pipr$month), y = 2, labels = "Inflation target (2%)",
 
 ---
 
-### 🧪 Part E — Blue reference line at 2% (Inflation Target) & customise
+### Part E — Blue reference line at 2% (Inflation Target) & customise
 
 **💭 Reflect:** What extra annotations (e.g., policy changes, shocks) would make this plot more useful to a local authority audience?
 
 ---
 
-### 🧪 Part F — Import PIPR as CSV (alternative)
+### Part F — Import PIPR as CSV (alternative)
 Option 1: Download the **CSV** from the PIPR page (if provided) and import with `readr::read_csv()`.
 
 ```{r}
@@ -612,7 +630,7 @@ pipr_from_csv <- read_csv("data/pipr_monthly.csv")
 
 ---
 
-### 🧪 Part G — Compare UK with a region (optional)
+### Part G — Compare UK with a region (optional)
 If your workbook includes regions (England, Wales, Scotland, Northern Ireland), select one annual % change column and plot together with the UK.
 
 ```{r}
@@ -634,7 +652,7 @@ if(!is.na(reg_yoy_col)){
 
 ---
 
-### 🧪 Part H — Help pages and plotting extras
+### Part H — Help pages and plotting extras
 Explore `?plot`, `curve()`, and `abline()`.
 
 ```{r}
@@ -648,7 +666,7 @@ abline(h = 0, v = 5, lty = 2)
 
 ---
 
-### 🧪 Part I — (Optional) Principles of Econometrics data
+### Part I — (Optional) Principles of Econometrics data
 You can also explore textbook datasets with **PoEdata** for practice with scatter plots and `abline(lm())`.
 
 ```{r}
@@ -705,9 +723,11 @@ head(andy)
 
 ---
 
-*End of Lab 4*
+🏁 *End of Lab 4*
 
-## Lab 5 — Data Visualisation
+---
+
+## 🧪 Lab 5 — Data Visualisation
 
 *Adapted from: [A Guide to Data Visualisation in R for Beginners](https://towardsdatascience.com/a-guide-to-data-visualisation-in-r-for-beginners-ef6d41a34174)*
 
@@ -732,7 +752,7 @@ By the end of this lab you will be able to:
 
 ---
 
-### 🧪 Part A — Load dataset
+### Part A — Load dataset
 ```{r}
 library(datasets)
 data("state.x77")
@@ -742,7 +762,7 @@ state_data <- as.data.frame(state.x77)
 
 ---
 
-### 🧪 Part B — Data exploration
+### Part B — Data exploration
 ```{r}
 str(state_data)
 ```
@@ -750,7 +770,7 @@ str(state_data)
 
 ---
 
-### 🧪 Part C — Beginning and end of the dataset
+### Part C — Beginning and end of the dataset
 ```{r}
 head(state_data, 7)
 tail(state_data, 5)
@@ -759,7 +779,7 @@ tail(state_data, 5)
 
 ---
 
-### 🧪 Part D — Descriptive statistics
+### Part D — Descriptive statistics
 ```{r}
 summary(state_data)
 ```
@@ -767,7 +787,7 @@ summary(state_data)
 
 ---
 
-### 🧪 Part E — Graphics package
+### Part E — Graphics package
 ```{r}
 library(help = "graphics")
 ```
@@ -775,7 +795,7 @@ library(help = "graphics")
 
 ---
 
-### 🧪 Part F — Plotting a single column
+### Part F — Plotting a single column
 ```{r}
 plot(state_data$Population)
 ```
@@ -783,7 +803,7 @@ plot(state_data$Population)
 
 ---
 
-### 🧪 Part G — Scatterplots
+### Part G — Scatterplots
 ```{r}
 plot(state_data$Income, state_data$Illiteracy)
 ```
@@ -791,7 +811,7 @@ plot(state_data$Income, state_data$Illiteracy)
 
 ---
 
-### 🧪 Part H — Entire dataset plot
+### Part H — Entire dataset plot
 ```{r}
 plot(state_data)
 ```
@@ -799,7 +819,7 @@ plot(state_data)
 
 ---
 
-### 🧪 Part I — Points and lines
+### Part I — Points and lines
 ```{r}
 plot(state_data$`Life Exp`, type = "b")
 plot(state_data$`Life Exp`, type = "h")
@@ -808,7 +828,7 @@ plot(state_data$`Life Exp`, type = "h")
 
 ---
 
-### 🧪 Part J — Help
+### Part J — Help
 ```{r}
 ?plot
 ```
@@ -816,7 +836,7 @@ plot(state_data$`Life Exp`, type = "h")
 
 ---
 
-### 🧪 Part K — Labels and titles
+### Part K — Labels and titles
 ```{r}
 plot(state_data$Income,
      xlab = "State Index",
@@ -828,7 +848,7 @@ plot(state_data$Income,
 
 ---
 
-### 🧪 Part L — Horizontal bar plot
+### Part L — Horizontal bar plot
 ```{r}
 barplot(state_data$Murder,
         main = "Murder Rate by State",
@@ -840,7 +860,7 @@ barplot(state_data$Murder,
 
 ---
 
-### 🧪 Part M — Vertical bar plot
+### Part M — Vertical bar plot
 ```{r}
 barplot(state_data$Illiteracy,
         main = "Illiteracy Rate by State",
@@ -852,7 +872,7 @@ barplot(state_data$Illiteracy,
 
 ---
 
-### 🧪 Part N — Histograms
+### Part N — Histograms
 ```{r}
 hist(state_data$Income)
 
@@ -865,7 +885,7 @@ hist(state_data$Income,
 
 ---
 
-### 🧪 Part O — Boxplots
+### Part O — Boxplots
 ```{r}
 boxplot(state_data$`Life Exp`)
 ```
@@ -873,7 +893,7 @@ boxplot(state_data$`Life Exp`)
 
 ---
 
-### 🧪 Part P — Multiple boxplots
+### Part P — Multiple boxplots
 ```{r}
 boxplot(state_data[, c("Population", "Income", "Illiteracy", "Life Exp")],
         main = "Socio-economic Indicators across States")
@@ -882,7 +902,7 @@ boxplot(state_data[, c("Population", "Income", "Illiteracy", "Life Exp")],
 
 ---
 
-### 🧪 Part Q — Grid of charts
+### Part Q — Grid of charts
 ```{r}
 par(mfrow = c(3,3), mar = c(2,5,2,1), las = 1, bty = "n")
 
@@ -945,73 +965,77 @@ More resources: [towardsdatascience.com article](https://towardsdatascience.com/
 
 > These are concise, indicative answers. Local results may vary slightly depending on plotting parameters and ordering.
 
-### 🧪 Part A — Load dataset
+### Part A — Load dataset
 - Variables in `state.x77`: `Population` (thousands), `Income` (per-capita, USD), `Illiteracy` (% age ≥25 illiterate), `Life.Exp` (years), `Murder` (per 100,000), `HS.Grad` (% high-school graduates), `Frost` (mean days ≤ 0°C), `Area` (square miles).  
 - Planning relevance: population size/density, income, education, crime, longevity connect to regional disparities and regeneration priorities.
 
-### 🧪 Part B — Data exploration
+### Part B — Data exploration
 - Dimensions: **50 rows × 8 columns**.  
 - All columns are numeric/continuous; state names are row names (categorical identifier).
 
-### 🧪 Part C — Head/Tail
+### Part C — Head/Tail
 - Early vs late rows simply reflect alphabetical state ordering; no time component. Values vary widely (e.g., `Area`, `Population`).
 
-### 🧪 Part D — Descriptive statistics
+### Part D — Descriptive statistics
 - Widest spreads typically in `Area` and `Population` (large range, right-skew).  
 - `Murder` and `Illiteracy` show noticeable skew and outliers.
 
-### 🧪 Part E — Graphics help
+### Part E — Graphics help
 - Useful base functions: `pairs()`, `boxplot()`, `hist()`, `barplot()`, `stripchart()`, `dotchart()`, `qqnorm()`/`qqline()`.
 
-### 🧪 Part F — Single column plot (Population)
+### Part F — Single column plot (Population)
 - Strong right-skew: a few very populous states (CA, NY, TX) vs many smaller states. Outliers at the high end.
 
-### 🧪 Part G — Scatter (Income vs Illiteracy)
+### Part G — Scatter (Income vs Illiteracy)
 - Clear **negative** association: higher income correlates with lower illiteracy.  
 - Some states deviate from the trend but pattern holds overall.
 
-### 🧪 Part H — `pairs()` of entire dataset
+### Part H — `pairs()` of entire dataset
 - Notable patterns often seen:  
   - `Income` ↑ with `HS.Grad` and `Life.Exp`.  
   - `Murder` tends to be higher where `Illiteracy` is higher and `HS.Grad` is lower.  
   - `Area` weakly related to socio-economic outcomes (size ≠ prosperity).
 
-### 🧪 Part I — Types "b" vs "h" (Life.Exp)
+### Part I — Types "b" vs "h" (Life.Exp)
 - `type="b"` conveys point-to-point variability; `type="h"` emphasizes magnitudes from baseline.  
 - For life expectancy, `"b"` is generally clearer.
 
-### 🧪 Part J — Help
+### Part J — Help
 - Examples of useful args: `pch` (point symbol), `cex` (size), `col` (colour), `xlim`/`ylim` (ranges), `main`/`sub` (titles/subtitles).
 
-### 🧪 Part K — Labels and titles (Income)
+### Part K — Labels and titles (Income)
 - Better labels: x = "State (index)", y = "Per-capita income (USD)", title = "Per-capita income by state".  
 - Colour is decorative here unless encoding a grouping.
 
-### 🧪 Part L — Horizontal bar plot (Murder)
+### Part L — Horizontal bar plot (Murder)
 - States with higher values stand out (exact names depend on ordering). For rigorous identification, sort with `order()` or use a dotchart.
 
-### 🧪 Part M — Vertical bar plot (Illiteracy)
+### Part M — Vertical bar plot (Illiteracy)
 - Helps compare education disparities. Policy angle: target states with highest illiteracy for adult education and schooling investment.
 
-### 🧪 Part N — Histogram (Income)
+### Part N — Histogram (Income)
 - Typically unimodal, mild right-skew. Most states cluster around mid-income; a few richer states in the right tail. Bin choice affects apparent shape.
 
-### 🧪 Part O — Boxplot (Life.Exp)
+### Part O — Boxplot (Life.Exp)
 - Median around ~70 years, relatively tight IQR; lower outliers indicate states with comparatively worse health outcomes.
 
-### 🧪 Part P — Multiple boxplots
+### Part P — Multiple boxplots
 - `Population` shows largest spread; `Life.Exp` the tightest. Outliers are more common in `Murder` and `Illiteracy`.
 
-### 🧪 Part Q — Grid of charts
+### Part Q — Grid of charts
 - Most informative: scatterplots for relationships (e.g., `Income` vs `Illiteracy`), and boxplots/histograms for distributions.  
 - Least informative: unsorted barplots of continuous variables.
 
 ### Best practices — summaries
 - Inspect structure first; match plot to variable type; label clearly; avoid misleading encodings; explore visually before modelling.
 
-*End of Lab 5*
+---
 
-## Lab 6 — Using GitHub Copilot in RStudio
+🏁 *End of Lab 5*
+
+---
+
+## 🧪 Lab 6 — Using GitHub Copilot in RStudio
 
 ### Goal
 Learn to use GitHub Copilot inside RStudio to speed up routine coding, while staying in control of quality, privacy, and reproducibility.
@@ -1041,7 +1065,7 @@ install.packages(c("tidyverse", "palmerpenguins", "readxl", "ggplot2"))
 
 ---
 
-### 🧪 Part A — Set up Copilot in RStudio (10–15 min)
+### Part A — Set up Copilot in RStudio (10–15 min)
 1. Open RStudio → Tools → Global Options → Copilot.
 2. Enable GitHub Copilot and sign in with GitHub.
 3. Create a new R Script (`File → New File → R Script`).
@@ -1053,7 +1077,7 @@ Explain in one sentence the difference between ghost text and code you’ve actu
 
 ---
 
-### 🧪 Part B — First suggestions with ggplot2 (20 min)
+### Part B — First suggestions with ggplot2 (20 min)
 We’ll use `penguins` to practice.
 
 1. Add a guiding comment:
@@ -1091,7 +1115,7 @@ When is Copilot faster? When slower?
 
 ---
 
-### 🧪 Part C — Comment-first prompting for histograms (15 min)
+### Part C — Comment-first prompting for histograms (15 min)
 1. Add a guiding comment:
 ```r
 # Histogram of body mass by species, overlapping with transparency and an accessible palette
@@ -1107,7 +1131,7 @@ Replace colour with `fill`, adjust legend, apply minimal theme.
 
 ---
 
-### 🧪 Part D — Loading local data safely (10–15 min)
+### Part D — Loading local data safely (10–15 min)
 Copilot does not know your file system.
 
 1. Save `Scooby.xlsx` in a `data/` folder.
@@ -1127,7 +1151,7 @@ Why be explicit with data loading and library imports?
 
 ---
 
-### 🧪 Part E — Boxplots (15 min)
+### Part E — Boxplots (15 min)
 Visualise IMDb ratings by network.
 
 1. Prompt:
@@ -1145,7 +1169,7 @@ Order networks by median rating.
 
 ---
 
-### 🧪 Part F — Best practices
+### Part F — Best practices
 - Privacy: Never expose credentials/confidential data.
 - Non-determinism: Review suggestions before accepting.
 - No vibe coding: Don’t accept what you don’t understand.
@@ -1159,7 +1183,7 @@ renv::init()
 
 ---
 
-### 🧪 Part G — Check-off & submission
+### Part G — Check-off & submission
 - [ ] Copilot enabled and signed in.
 - [ ] One scatter plot (corrected column names).
 - [ ] One histogram (transparency + accessible palette).
@@ -1192,4 +1216,6 @@ Export script or Quarto doc → submit.
 
 ---
 
-*End of lab 6*
+🏁  *End of lab 6*
+
+---
