@@ -267,16 +267,10 @@ Establish access to University-provided LinkedIn Learning resources.
 
 2. Choose **Login** with your University account (SSO). If prompted, connect to an existing LinkedIn profile (optional, but helpful for saving certificates).
 
-**💭 Reflect:** Write bulletpoints that cover:
-
-- **Role alignment.** Name two **job roles** relevant to Land Economy and state **one task per role** that this R certificate prepares you for.
-- **Evidence & signalling.** How will you **showcase the skill**?
-- **What are the next steps (4–6 weeks).** A mini-pathway after this certificate, e.g.:  
-  1) R basics → 2) data wrangling/visualisation → 3) simple econometrics for policy/housing → 4) spatial basics (e.g., shapefiles) → 5) mini-project relevant to Land Economy.
-
 ---
 
-### 🧪 Part B — Course Selection and Academic Alignment (30 minutes)
+### 🧪 Part B — Course Selection and Academic Alignment 
+
 1. In LinkedIn Learning, search for **“R Programming”** or **“R for Data Analysis”**.  
 2. Pick a **Beginner** course or a **Learning Path** that issues a certificate upon completion.  
 3. Skim the syllabus; confirm it covers: R basics (e.g. objects, vectors), data frames, importing data, and simple plots.
@@ -310,37 +304,63 @@ sessionInfo()$running
 
 Install key packages (run once):
 ```{r, eval=FALSE}
+# install all packages at once
 install.packages(c("learnr", "r4ds.tutorials", "readr", "readxl", "ggplot2"))
 ```
 
 Verify they load and basic plotting works:
 ```{r}
-library(ggplot2)
+# Create a small data frame with x = 1,...,10 and y = sqrt(x).
+# We'll use this to do a quick "tech check" with a base R plot.
 df <- data.frame(x = 1:10, y = (1:10)^0.5)
-plot(df$x, df$y, type = "l", main = "Tech check: base plot", xlab = "x", ylab = "sqrt(x)")
+
+# Base R line plot:
+# - type = "l" draws a line (instead of points).
+# - main/xlab/ylab set the title and axis labels.
+# This confirms base graphics are working and shows a concave curve of sqrt(x).
+plot(df$x, df$y, type = "l",
+     main = "Tech check: base plot",
+     xlab = "x",
+     ylab = "sqrt(x)")
 ```
 
 ```{r}
-# Test basic plotting capability
+#| warning: false
+
+# -----------------------------------------------
+# Test basic plotting capability with ggplot2
+# -----------------------------------------------
+
+# Load ggplot2 (grammar of graphics) for layered, customizable plots.
 library(ggplot2)
+
+# Create a toy dataset: yearly "average house prices" (hypothetical numbers).
+# This lets us test lines, points, labels, and themes in ggplot2.
 test_data <- data.frame(
   year = 2010:2020,
   house_prices = c(250000, 260000, 275000, 285000, 290000, 
                    310000, 325000, 340000, 355000, 370000, 385000)
 )
 
+# Start a ggplot:
+# - aes(x = year, y = house_prices) maps variables to axes.
+# - geom_line() draws the trend line; linewidth controls thickness.
+# - geom_point() adds markers at each year.
+# - scale_y_continuous(labels = scales::comma_format()) formats y-axis with commas (e.g., 310,000).
+# - labs() sets a clear title, subtitle, axis labels, and a caption.
+# - theme_minimal() gives a clean, publication-style look.
 ggplot(test_data, aes(x = year, y = house_prices)) +
-  geom_line(colour = "steelblue", linewidth = 1.2) +
-  geom_point(colour = "darkred", size = 2) +
-  scale_y_continuous(labels = scales::comma_format()) +
+  geom_line(colour = "steelblue", linewidth = 1.2) +   # trend line
+  geom_point(colour = "darkred", size = 2) +           # points on each year
+  scale_y_continuous(labels = scales::comma_format()) +# pretty y-axis labels
   labs(
-    title = "Hypothetical House Price Trends",
-    subtitle = "System functionality test",
-    x = "Year",
-    y = "Average House Price (£)",
-    caption = "Test data for R/RStudio verification"
+    title = "Hypothetical House Price Trends",         # main title
+    subtitle = "System functionality test",            # context/subtitle
+    x = "Year",                                        # x-axis label
+    y = "Average House Price (£)",                     # y-axis label
+    caption = "Test data for R/RStudio verification"   # caption under the plot
   ) +
-  theme_minimal()
+  theme_minimal()                                      # clean theme
 ```
 
 **💭 Reflect:** Did everything install and run without warnings? Capture any errors so we can fix them in class.
@@ -402,12 +422,11 @@ learnr::available_tutorials("r4ds.tutorials")
 ```
 
 **Do this:**
-1. Start and complete the tutorial. Use the *Show in New Window* icon if the pane is small.
-2. When you reach the **Submit** page, follow its instructions (we won’t collect submissions in this lab, just finish to the end).
+1. Start and complete the tutorial on data visualization. Use the *Show in New Window* icon if the pane is small.
+2. When you reach the **Submit** page, follow its instructions and save the html (we won’t collect submissions in this lab, just finish to the end).
 
 **💭 Reflect:**
-- What’s the difference between **aesthetics** (e.g., `aes(x, y, color)`) and **geoms** (e.g., `geom_point()`, `geom_line()`)?
-- Name two plot improvements you used (labels, theme, scales, facets).
+- What topic would benefit from additional practice or explanation? e.g. **aesthetics** (e.g., `aes(x, y, color)`) and **geoms** (e.g., `geom_point()`, `geom_line()`)
 
 ---
 
@@ -415,16 +434,20 @@ learnr::available_tutorials("r4ds.tutorials")
 This is a short core tutorial bundled with **learnr**.
 
 ```{r, eval=FALSE}
+# open interactive tutorial in the package 'learnr'
 learnr::run_tutorial("ex-data-basics", package = "learnr")
+
+# Explore other tutorials
+learnr::run_tutorial(, package = "learnr")
 ```
 
 **Do this:**
-1. Complete all exercises; click **Run** and **Submit Answer** for each.
-2. If you get stuck, open the **Hint** dropdowns.
+Complete all exercises for the tutorial 'ex-data-basics'..
+
 
 **💭 Reflect:**
-- Which data types/structures did you manipulate (vectors, data frames)?
-- One mistake you made and how the tutorial feedback helped you fix it.
+- What is the difference between a tibble and a data frame?
+- Why might tibbles be preferred in modern R workflows?
 
 ---
 
@@ -455,24 +478,28 @@ swirl::progress()
 - Exit with `bye()` and verify progress with `swirl::progress()`.
 
 **💭 Reflect:**
-- How does working in the Console (swirl) feel compared with the GUI tutorials? 
-- Which mode gave you clearer feedback on wrong answers?
+- How does working in the Console (swirl) feel compared with the GUI tutorials?
 
 ---
 
-### Part D — Mini practice (5–10 min)
+### Part D — Mini practice
 Create a tiny vector and compute a statistic, then plot a quick line:
 
 ```{r}
+# create variable x
 x <- 1:10
+#calculate the mean and asign it to mean_x
 mean_x <- mean(x)
+# review mean_x
 mean_x
+# quick plotting function
 plot(x, type = "l", main = "Quick line", ylab = "x")
+# abline adds horizontal (h) or vertical (v) lines.
 abline(h = mean_x, lty = 2)
 ```
 
 **💭 Reflect:**
-- Which approach (r4ds.tutorials, learnr, swirl) best prepared you to write and run this code independently?
+- Which approach (r4ds.tutorials, learnr, swirl) best prepared you to learn R coding independently?
 
 ---
 
@@ -481,14 +508,6 @@ abline(h = mean_x, lty = 2)
 - **Use swirl** when you prefer keyboard‑only Console practice or have limited UI.
 - Restart RStudio if tutorials don’t show; list what’s available with `learnr::available_tutorials()`.
 - Keep your scripts open alongside tutorials to copy refined solutions into your own notes.
-
----
-
-### Suggested Answers (indicative)
-- **Part A:** Aesthetics map data → visual channels; geoms are the drawing layers (points, lines, bars). Improvements often include `labs()`, `scale_*_continuous()`, `theme_minimal()`, and `facet_wrap()`.
-- **Part B:** Worked with vectors/data frames; common mistakes include mixing types (character vs numeric) or forgetting `<-`. Hints/feedback indicate expected objects or function names.
-- **Part C:** Console is lightweight but less visual; learnr/r4ds tutorials give more structured feedback. Swirl progress persists via `swirl::progress()`; exit with `bye()`.
-- **Part D:** Any of the three can help; most students report faster iteration in learnr/r4ds due to inline errors/hints.
 
 ---
 
@@ -502,7 +521,7 @@ abline(h = mean_x, lty = 2)
 
 ### Learning outcomes
 By the end of this lab you will be able to:
-1. Download the **ONS Price Index of Private Rents (PIPR)** monthly workbook and save it in a tidy project structure.
+1. Download the **Private rents annual inflation to August 2024** monthly workbook and save it in a tidy project structure.
 2. Import **Excel** (`.xlsx/.xls`) and **CSV** files using RStudio’s **Import Dataset** UI **and** reproducible R code.
 3. Deal with metadata/header rows via `skip`, set `col_names`, and verify column **types**.
 4. Plot time series (index and annual % change) with base R and add reference lines.
@@ -512,10 +531,11 @@ By the end of this lab you will be able to:
 
 ### Prerequisites
 - R (≥ 4.0) and RStudio.
-- Project folder (e.g., `Rcoding/`) with subfolder `data/`.
+- Project folder (e.g., `RM01_labs/`) with subfolder `data/`.
 - Packages (install once):
 
 ```{r}
+# Make sure to install the packages.
 # install.packages(c("readxl", "readr"))
 ```
 
@@ -524,7 +544,11 @@ By the end of this lab you will be able to:
 ---
 
 ### Part A — Get PIPR monthly from ONS (manual steps)
-1. Go to **ONS.gov.uk** and search **Price Index of Private Rents (PIPR)**. This lab is using ONS data on Figure 4: Rent annual inflation slowed across the UK, Private rents annual inflation, across the UK, January 2016 to August 2025.
+1. Go to **ONS.gov.uk** and search **Private rents annual inflation, UK countries, January 2016 to August 2024**. This lab is using ONS data on Figure 4: Rent annual inflation slowed across the UK, Private rents annual inflation, across the UK, January 2016 to August 2025.
+
+![This is the website / data source.](/pics/pipr1.PNG)
+
+![This is the the data we used in the tutorial.](/pics/pipr2.PNG)
 
 2. On the dataset page, choose **Data** → **Download monthly workbook** (Excel) or **CSV** if available.
 3. Save as `data/pipr_monthly.xls` inside your project folder (e.g., `Rcoding/`) with subfolder `data/`.
