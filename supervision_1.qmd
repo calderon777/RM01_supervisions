@@ -230,6 +230,7 @@ The package forecast is used to analyse and predict time series (e.g. yearly hou
 ---
 
 🏁 *End of Lab 1*
+🛑 Remember to save your script 💾
 
 ---
 
@@ -376,6 +377,7 @@ ggplot(test_data, aes(x = year, y = house_prices)) +
 ---
 
 🏁 *End of Lab 2*
+🛑 Remember to save your script 💾
 
 ---
 
@@ -512,6 +514,7 @@ abline(h = mean_x, lty = 2)
 ---
 
 🏁 *End of Lab 3*
+🛑 Remember to save your script 💾
 
 ---
 
@@ -550,8 +553,8 @@ By the end of this lab you will be able to:
 
 ![This is the the data we used in the tutorial.](/pics/pipr2.PNG)
 
-2. On the dataset page, choose **Data** → **Download monthly workbook** (Excel) or **CSV** if available.
-3. Save as `data/pipr_monthly.xls` inside your project folder (e.g., `Rcoding/`) with subfolder `data/`.
+2. On the dataset page, choose **Data** → **Download monthly workbook**. Save the file as **Excel** and **CSV Comma delimited**.
+3. Save as `data/pipr_monthly.xls` inside your project folder (e.g., `RM01_labs/`) with subfolder `data/`.
 4. (Optional) Open the file and identify the sheet that contains the **UK** and **country/regions**.
 
 **💭 Reflect:** Why does PIPR (rents) provide a more direct lens on housing affordability and regional pressures than GDP for planning and regeneration?
@@ -570,7 +573,7 @@ pipr_raw <- read_excel("data/pipr_monthly.xls", sheet = 1, skip = 7)
 # Inspect names to locate the date/month, UK Index, and UK annual % change columns
 names(pipr_raw)
 
-# let's keep a copy of the raw data intact and create a new version of the data.
+# A good practice is to keep a copy of the raw data and create a new version of the data for manipulation.
 
 pipr<-pipr_raw
 
@@ -581,116 +584,133 @@ str(pipr)
 head(pipr, 6)
 ```
 
-**💭 Reflect:** Are the three selected columns correct for your workbook version? If not, which names should you use instead?
-
 ---
 
 ### Part C — Import via RStudio UI (reference)
-- RStudio → **Import Dataset** → **From Excel** → select `data/pipr_monthly.xls`.
-- Choose the relevant **sheet** and, if needed, set **Skip** for metadata rows.
-- Set **Name** to `pipr` and verify column names (e.g., `month`, `uk_index`, `uk_yoy`).
+- Go to RStudio → **Import Dataset** → **From Excel** → select `data/pipr_monthly.xls`.
+
+![importing from Rstudio with 'import dataset'](/pics/import1.PNG)
+
+- Choose the relevant **sheet** and, if needed, set **Skip** for metadata rows (recall we used skip = 7 in Part B).
+
+![Import Ecvel data window](/pics/import2.PNG)
+
+- Set **Name** to `pipr_monthly` and verify column names (e.g., `month`, `uk_index`, `uk_yoy`).
 - Click **Copy** to grab the generated R code, then **Import**.
 
-> Paste the generated code in your script so your workflow is **reproducible**.
+Paste the generated code **in your R script** so your workflow is **reproducible**.
+
+
 
 ---
 
 ### Part D — Basic time‑series line plot (annual % change)
-Plot PIPR annual % change for the UK as a line. Label the x‑axis sparsely to keep it readable.
+The following code plots PIPR annual % change for the UK as a line. Label the x‑axis sparsely to keep it readable.
 
 ```{r}
-plot(pipr$uk, type = "l",
-     xlab = "",
-     ylab = "Private rents — annual % change",
-     main = "UK private rents (PIPR): annual % change",
-     xaxt = "n")   # suppress default axis)
+# Create a line plot of UK private rent annual % changes
+plot(pipr$uk, type = "l",  # type = "l" means line plot
+     xlab = "",  # empty x-axis label (we'll customize it below)
+     ylab = "Private rents — annual % change",  # y-axis label
+     main = "UK private rents (PIPR): annual % change",  # chart title
+     xaxt = "n")  # suppress default x-axis (we'll add custom labels)
 
-# Add sparse x-axis labels
-labs_every <- 6
-at_idx <- seq(1, nrow(pipr), by = labs_every)
-axis(1, at = at_idx, labels = pipr$month[at_idx],
-     las = 2, cex.axis = 0.7)  # smaller font for ticks
+# Add sparse x-axis labels (every 6th data point to avoid overcrowding)
+labs_every <- 6  # show a label every 6 months
+at_idx <- seq(1, nrow(pipr), by = labs_every)  # create sequence of index positions
+axis(1,  # 1 means x-axis (bottom)
+     at = at_idx,  # positions where labels appear
+     labels = pipr$month[at_idx],  # the actual month labels
+     las = 2,  # rotate labels perpendicular to axis
+     cex.axis = 0.7)  # make label font smaller (70% of default)
 
-# Add subtitle (source) directly under the title
+# Add subtitle showing data source directly under the title
 title(sub = "Source: ONS - Index of Private Housing Rental Prices (PIPR)", 
-      cex.sub = 0.8, font.sub = 3)  # italic, smaller
-# Reference line at 2% (inflation target)
-abline(h = 2, lty = 2, col = "blue")
+      cex.sub = 0.8,  # 80% of normal text size
+      font.sub = 3)  # 3 means italic font
 
-# Label it
-text(x = min(pipr$month), y = 2, labels = "Inflation target (2%)",
-     pos = 3, col = "blue", cex = 0.8)
+# Add horizontal reference line at 2% (Bank of England inflation target)
+abline(h = 2,  # horizontal line at y = 2
+       lty = 2,  # line type 2 = dashed
+       col = "blue")  # blue color
+
+# Add text label for the reference line
+text(x = min(pipr$month),  # position at start of time series
+     y = 2,  # at the 2% level
+     labels = "Inflation target (2%)",  # the text to display
+     pos = 3,  # position 3 = above the point
+     col = "blue",  # match the line color
+     cex = 0.8)  # slightly smaller text (80% of default)
 ```
 
-**💭 Reflect:** Identify periods of fastest rent inflation and periods of slowdown. What policy or macro factors might line up with these shifts?
+
+**💭 Reflect:** Identify periods of fastest rent inflation and periods of slowdown. What macro factors might line up with these shifts?
 
 ---
 
-### Part E — Blue reference line at 2% (Inflation Target) & customise
-
-**💭 Reflect:** What extra annotations (e.g., policy changes, shocks) would make this plot more useful to a local authority audience?
-
----
-
-### Part F — Import PIPR as CSV (alternative)
-Option 1: Download the **CSV** from the PIPR page (if provided) and import with `readr::read_csv()`.
+### Part E — Import PIPR as CSV (alternative)
+Recall we downloaded the **CSV** version from the PIPR page. Import the file with `readr::read_csv()`.
 
 ```{r}
+# Open the library to read csv comma delimited files.
 library(readr)
-pipr_csv <- read_csv("data/pipr_monthly.csv")  # adjust file name
+# Create the object pipr_csv to store the data
+pipr_csv <- read_csv("data/pipr_monthly.csv", skip =7)  # adjust file name
+# colums/variable names
 names(pipr_csv)
+# quick overview of the data (tibble)
 head(pipr_csv)
 ```
 
-Option 2: If a CSV isn’t provided, **save the relevant sheet as CSV** from Excel and import it.
-
-```{r}
-# Example: write out the subset you prepared, then re-import it
-# write_csv(pipr, "data/pipr_monthly_subset.csv")
-pipr_from_csv <- read_csv("data/pipr_monthly.csv")
-```
-
-**💭 Reflect:** Are types preserved across Excel vs CSV imports? Which route is more reliable/reproducible on your machine?
-
 ---
 
-### Part G — Compare UK with a region (optional)
-If your workbook includes regions (England, Wales, Scotland, Northern Ireland), select one annual % change column and plot together with the UK.
+### Part G — Compare UK with a region
+The workbook includes regions (England, Wales, Scotland, Northern Ireland), select one annual % change column and plot together with the UK.
 
 ```{r}
-# Attempt to find a regional YoY column (edit the pattern or use exact name after checking names())
-reg_yoy_col <- grep("England.*Annual|Annual.*England|England.*%", names(pipr_raw), ignore.case = TRUE)[1]
+plot(
+    pipr$uk, type = "l", lwd = 2,
+    xlab = "Month", ylab = "Annual % change",
+    main = "PIPR annual % change: UK vs UK countries to Aug 2025",
+    ylim = c(0,12)
+  )
+# Use the function 'lines' to add the time series to the initial plot.
+lines(pipr$england, lwd= 1, col="red")
+lines(pipr$scotland, lwd= 1, col="blue")
+lines(pipr$wales, lwd= 1, col="green")
+lines(pipr$n_ireland, lwd= 1, col="grey")
 
-if(!is.na(reg_yoy_col)){
-  reg_yoy <- suppressWarnings(as.numeric(pipr_raw[[reg_yoy_col]]))
-  plot(pipr$uk_yoy, type = "l", xlab = "Month", ylab = "Annual % change",
-       main = "PIPR annual % change: UK vs England")
-  lines(reg_yoy, lty = 3)
-  legend("topleft", legend = c("UK", "England"), lty = c(1,3), bty = "n")
-} else {
-  message("No matching regional column automatically detected — inspect names() and set reg_yoy_col manually.")
-}
+legend(
+  "topleft",
+  legend = c("UK", "England", "Scotland", "Wales", "N. Ireland"),
+  col    = c("black", "red", "blue", "green", "grey"),
+  lwd    = c(2, 1, 1, 1, 1),
+  lty    = 1,
+  bty    = "n"       # no box around legend (optional)
+  # inset = 0.02     # nudge inward if needed
+)
 ```
 
-**💭 Reflect:** Does the region move broadly with the UK or diverge materially? What local factors could explain divergence?
+**💭 Reflect:** Did the countries move broadly with the UK or diverge materially? What local factors could explain divergence?
 
 ---
 
 ### Part H — Help pages and plotting extras
-Explore `?plot`, `curve()`, and `abline()`.
+Let's explore `?plot` in the console. This will launch a help page in the help tab. 
+
+We also explore `curve()` and `abline()`.
 
 ```{r}
 # ?plot   # open during interactive session
 curve(sin(x), from = 0, to = 6.28, xlab = "x", ylab = "y = sin(x)")
-plot(1:10, type = "n", xlab = "x", ylab = "y")
 abline(h = 0, v = 5, lty = 2)
 ```
 
-**💭 Reflect:** Which `plot()` arguments improved readability most (e.g., `las`, `xaxt`, `lwd`, `xlim`)?
+**💭 Reflect:** Which `plot()` arguments improved readability most? Explain the use of `las`, `xaxt`, `lwd`, and `xlim`.
 
 ---
 
-### Part I — (Optional) Principles of Econometrics data
+### Part I — Access the data of 'Principles of Econometrics'
 You can also explore textbook datasets with **PoEdata** for practice with scatter plots and `abline(lm())`.
 
 ```{r}
@@ -698,12 +718,10 @@ You can also explore textbook datasets with **PoEdata** for practice with scatte
 #pkgbuild::has_build_tools(debug = TRUE)       # should say TRUE on Windows
 #remotes::install_github("ccolonescu/PoEdata")
 library(PoEdata)
-
+data()
 data("andy")
 head(andy)
 ```
-
-**💭 Reflect:** Which numeric pairs in `andy` would make a sensible policy-relevant scatter (e.g., income vs expenditure)?
 
 ---
 
@@ -716,38 +734,9 @@ head(andy)
 
 ---
 
-### Further resources
-- ONS **Price Index of Private Rents (PIPR)** — monthly
-- R help: `?read_excel`, `?read_csv`, `?plot`, `?abline`, `?curve`
-- R Data Import/Export manual
-
----
-
-### Suggested Answers to Reflection Questions
-
-> Indicative answers; specifics depend on your workbook version and the columns you select.
-
-**Part A** — PIPR directly tracks private rents, aligning with housing affordability, regional pressures, and regeneration aims; GDP is broader and less targeted.
-
-**Part B** — Correct columns usually include a date/month field plus UK Index and UK annual % change. Adjust `sheet/skip` and pick exact names after inspecting `names()`.
-
-**Part C** — Pasting the generated code ensures others (and future you) can reproduce the import without the UI.
-
-**Part D** — Rent inflation tends to cluster in waves; periods of rapid increases are visible as peaks, slowdowns as troughs. Index-by-month labelling clarifies timing.
-
-**Part E** — Add a zero line; annotate notable policy changes or shocks; consider shading for periods of sustained acceleration.
-
-**Part F** — CSV imports avoid Excel formatting quirks but require careful type checks. Both routes can be reproducible if code-driven.
-
-**Part G** — Regions often co-move with the UK but can diverge due to local supply constraints, policy differences, or demand shocks.
-
-**Part H** — Useful `plot()` args: `las` (label orientation), `xaxt/yaxt` (axis toggles), `lwd` (line width), `xlab/ylab` (clear labels), `xlim/ylim` (focus range).
-
-**Part I** — Any sensible numeric pair (e.g., household income vs spending) supports regression line illustrations with `abline(lm(y ~ x, data = andy))`.
-
----
-
 🏁 *End of Lab 4*
+
+🛑 Remember to save your script 💾
 
 ---
 
@@ -755,12 +744,11 @@ head(andy)
 
 *Adapted from: [A Guide to Data Visualisation in R for Beginners](https://towardsdatascience.com/a-guide-to-data-visualisation-in-r-for-beginners-ef6d41a34174)*
 
-Link to files: course folder
-
 ---
 
 ### Learning outcomes
 By the end of this lab you will be able to:
+
 1. Explore the `state.x77` dataset in R.
 2. Generate basic descriptive statistics.
 3. Create simple plots using base R graphics.
@@ -1056,6 +1044,7 @@ More resources: [towardsdatascience.com article](https://towardsdatascience.com/
 ---
 
 🏁 *End of Lab 5*
+🛑 Remember to save your script 💾
 
 ---
 
@@ -1241,5 +1230,6 @@ Export script or Quarto doc → submit.
 ---
 
 🏁  *End of lab 6*
+🛑 Remember to save your script 💾
 
 ---
