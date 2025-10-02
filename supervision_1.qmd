@@ -740,6 +740,8 @@ head(andy)
 
 ---
 
+
+
 ## 🧪 Lab 5 — Data Visualisation
 
 *Adapted from: [A Guide to Data Visualisation in R for Beginners](https://towardsdatascience.com/a-guide-to-data-visualisation-in-r-for-beginners-ef6d41a34174)*
@@ -767,18 +769,17 @@ By the end of this lab you will be able to:
 ### Part A — Load dataset
 ```{r}
 library(datasets)
-data("state.x77")
-state_data <- as.data.frame(state.x77)
-```
-**💭 Reflect:** What variables are present in `state.x77`? Which relate most to planning and regeneration?
+state_data <- as.data.frame(datasets::state.x77)
+View(state_data)
 
+```
 ---
 
 ### Part B — Data exploration
 ```{r}
 str(state_data)
 ```
-**💭 Reflect:** How many states (rows) and variables (columns) are there? Which are continuous, and which categorical (if any)?
+**💭 Reflect:** Explore possible research aims from the state.x77 dataset. What variables are present in `state.x77`? How many states (rows) and variables (columns) are there? Which are continuous, and which categorical (if any)?  
 
 ---
 
@@ -787,43 +788,96 @@ str(state_data)
 head(state_data, 7)
 tail(state_data, 5)
 ```
-**💭 Reflect:** What differences do you see between the early and later rows?
 
 ---
 
 ### Part D — Descriptive statistics
+
+There are several functions to obtain descriptive statistics, `summary`, `psych`, `skimr`, etc. 
+
+Here is an example with summary.
 ```{r}
 summary(state_data)
 ```
+
+And, another example with the package `psych`.
+
+```{r}
+#| warning: false
+#install.packages("psych")   # if not already installed
+library(psych)
+
+describe(state_data)
+```
+
+However, some users writing research might want more elaborated outputs.
+```{r}
+#| label: tbl-summary
+#| message: false
+#| warning: false
+
+library(dplyr)
+library(gtsummary)
+library(flextable)
+
+# Recreate data inside this chunk (Quarto runs in a clean session)
+state_data <- as.data.frame(datasets::state.x77)
+state_data$region <- factor(datasets::state.region)  # add stratifier
+names(state_data) <- make.names(names(state_data))   # Life.Exp, HS.Grad, etc.
+
+tbl <- state_data |>
+  gtsummary::tbl_summary(
+    by = region,
+    type = gtsummary::all_continuous() ~ "continuous2",
+    statistic = gtsummary::all_continuous() ~ c("{mean} ({sd})", "{median} [{p25}, {p75}]"),
+    digits = gtsummary::all_continuous() ~ 1,
+    missing = "ifany",
+    label = list(
+      Income ~ "Per-capita Income",
+      Illiteracy ~ "Illiteracy (%)",
+      Life.Exp ~ "Life Expectancy",
+      Murder ~ "Murder Rate",
+      HS.Grad ~ "High-School Grad (%)",
+      Frost ~ "Frost Days",
+      Area ~ "Area (sq mi)"
+    )
+  ) |>
+  gtsummary::add_overall(last = TRUE) |>
+  gtsummary::add_p() |>
+  gtsummary::bold_labels() |>
+  gtsummary::modify_caption("**Table: Descriptive statistics by region**")
+
+tbl
+```
+
+
 **💭 Reflect:** Which socio-economic indicators show the widest spread?
 
 ---
 
 ### Part E — Graphics package
+
+Review other type of graphics or plotting functions that can be useful for land economy research. The folloging code opens a new tab with more details.
+
 ```{r}
+#| echo: true
+#| message: true
 library(help = "graphics")
 ```
-**💭 Reflect:** From the help index, which plotting functions could be useful for socio-economic indicators?
+
 
 ---
 
-### Part F — Plotting a single column
-```{r}
-plot(state_data$Population)
-```
-**💭 Reflect:** What does this reveal about the distribution of state populations?
-
----
-
-### Part G — Scatterplots
+### Part F — Scatterplots
 ```{r}
 plot(state_data$Income, state_data$Illiteracy)
 ```
+
 **💭 Reflect:** Do states with higher income tend to have lower illiteracy rates?
 
 ---
 
-### Part H — Entire dataset plot
+### Part G — Entire dataset plot
 ```{r}
 plot(state_data)
 ```
@@ -831,11 +885,12 @@ plot(state_data)
 
 ---
 
-### Part I — Points and lines
+### Part H — Points and lines
 ```{r}
-plot(state_data$`Life Exp`, type = "b")
-plot(state_data$`Life Exp`, type = "h")
+plot(state_data$Life.Exp, type = "b")
+plot(state_data$Life.Exp, type = "h")
 ```
+
 **💭 Reflect:** Which representation communicates variation in life expectancy more clearly?
 
 ---
@@ -862,17 +917,37 @@ plot(state_data$Income,
 
 ### Part L — Horizontal bar plot
 ```{r}
-barplot(state_data$Murder,
-        main = "Murder Rate by State",
-        xlab = "Murder arrests per 100,000",
-        col = "purple",
-        horiz = TRUE)
+# Take the Murder column as a named vector (names = state names)
+m <- state_data$Murder
+names(m) <- rownames(state_data)
+
+# Pick the top 10 states by murder rate (highest first)…
+m_top <- sort(m, decreasing = TRUE)[1:10]
+# …then re-sort ascending so the biggest bar appears at the TOP in a horizontal plot
+m_top <- sort(m_top)
+
+# Make the plot: horizontal bars, tidy labels
+bp <- barplot(
+  m_top,                                # bar heights (uses names(m_top) as labels)
+  horiz = TRUE,                         # horizontal bars
+  las = 1,                              # horizontal axis labels
+  cex.names = 0.8,                      # slightly smaller labels
+  space = 0.02,                         # small gaps between bars
+  col = rainbow(length(m_top)),         # one colour per bar (top 10 only)
+  main = "Top 10 States by Murder Rate",
+  xlab = "Murder arrests per 100,000",
+  xlim = c(0, max(m_top) * 1.1)         # a bit of right padding
+)
 ```
-**💭 Reflect:** Which states stand out with particularly high murder rates?
+**💭 Reflect:** 
+- Which states stand out with particularly high murder rates?
+- Can you adapt the script to barplot the 10 states with lower murder rates?
 
 ---
 
 ### Part M — Vertical bar plot
+
+We could use the previous script to `barplot` vertically by changing the option from `horiz = TRUE` to `horiz = FALSE`as in the following routine/code.
 ```{r}
 barplot(state_data$Illiteracy,
         main = "Illiteracy Rate by State",
@@ -886,8 +961,6 @@ barplot(state_data$Illiteracy,
 
 ### Part N — Histograms
 ```{r}
-hist(state_data$Income)
-
 hist(state_data$Income,
      main = "Distribution of State Incomes",
      xlab = "Per Capita Income",
@@ -899,7 +972,7 @@ hist(state_data$Income,
 
 ### Part O — Boxplots
 ```{r}
-boxplot(state_data$`Life Exp`)
+boxplot(state_data$Life.Exp)
 ```
 **💭 Reflect:** What does the boxplot reveal about state-level life expectancy?
 
@@ -907,7 +980,7 @@ boxplot(state_data$`Life Exp`)
 
 ### Part P — Multiple boxplots
 ```{r}
-boxplot(state_data[, c("Population", "Income", "Illiteracy", "Life Exp")],
+boxplot(state_data[, c("Life.Exp", "Murder", "HS.Grad", "Frost")],
         main = "Socio-economic Indicators across States")
 ```
 **💭 Reflect:** Which variable shows the most variability? The least?
@@ -915,21 +988,23 @@ boxplot(state_data[, c("Population", "Income", "Illiteracy", "Life Exp")],
 ---
 
 ### Part Q — Grid of charts
+
+We can create a grid of charts with the function `par`; (3,3) means a grid made of 3 rows x 3 columns.
 ```{r}
 par(mfrow = c(3,3), mar = c(2,5,2,1), las = 1, bty = "n")
 
 plot(state_data$Population)
 plot(state_data$Income, state_data$Illiteracy)
-plot(state_data$`Life Exp`, type = "c")
-plot(state_data$`Life Exp`, type = "s")
-plot(state_data$`Life Exp`, type = "h")
+plot(state_data$Life.Exp, type = "c")
+plot(state_data$Life.Exp, type = "s")
+plot(state_data$Life.Exp, type = "h")
+
 barplot(state_data$Income, main = "Income levels", col = "blue", horiz = TRUE)
 hist(state_data$Murder)
-boxplot(state_data$`HS Grad`)
-boxplot(state_data[, c("Population", "Income", "Illiteracy", "Life Exp")],
-        main = "Multiple Box plots")
+boxplot(state_data$HS.Grad)
+boxplot(state_data[, c("Population", "Income", "Illiteracy", 
+"Life.Exp")], main = "Multiple Box plots")
 ```
-**💭 Reflect:** Which plots are most useful for policy discussions? Which are least useful?
 
 ---
 
@@ -950,96 +1025,7 @@ boxplot(state_data[, c("Population", "Income", "Illiteracy", "Life Exp")],
 
 More resources: [towardsdatascience.com article](https://towardsdatascience.com/a-guide-to-data-visualisation-in-r-for-beginners-ef6d41a34174)
 
----
 
-### Suggested Answers to Reflection Questions
-
-- **Part A:** Variables include Population, Income, Illiteracy, Life Expectancy, Murder rate, HS graduation, Frost, and Area. Most relate directly to planning and socio-economic development.
-- **Part B:** 50 rows (states) and 8 columns. All variables are numeric.
-- **Part C:** States differ widely in population and area; later rows (western states) often have larger land areas.
-- **Part D:** Population and Area show the widest spread.
-- **Part F:** Populations vary dramatically; California, New York, Texas are clear outliers.
-- **Part G:** Clear negative relationship: higher income states tend to have lower illiteracy.
-- **Part H:** Income vs Illiteracy, Life Expectancy vs Murder, and Population vs Area show strong patterns.
-- **Part I:** Type "b" (points and lines) is clearer for showing gradual variation than type "h" (histogram-like lines).
-- **Part J:** Useful arguments include `pch` (point type) and `col` (colour).
-- **Part K:** Labels help; better axis labels might specify units (e.g., dollars, years).
-- **Part L:** Southern states often stand out with higher murder rates.
-- **Part M:** Highlights disparities in illiteracy across regions; relevant to education policy.
-- **Part N:** Income is slightly right-skewed; most states cluster around the middle with a few richer outliers.
-- **Part O:** Median life expectancy around 70 years; some outliers with lower values.
-- **Part P:** Population and Area show the most variability; Life Expectancy the least.
-- **Part Q:** Scatterplot of Income vs Illiteracy and histogram of Murder are most useful for policy; line-type plots of Life Expectancy less so.
-
----
-
-### Suggested Answers to Reflection Questions
-
-> These are concise, indicative answers. Local results may vary slightly depending on plotting parameters and ordering.
-
-### Part A — Load dataset
-- Variables in `state.x77`: `Population` (thousands), `Income` (per-capita, USD), `Illiteracy` (% age ≥25 illiterate), `Life.Exp` (years), `Murder` (per 100,000), `HS.Grad` (% high-school graduates), `Frost` (mean days ≤ 0°C), `Area` (square miles).  
-- Planning relevance: population size/density, income, education, crime, longevity connect to regional disparities and regeneration priorities.
-
-### Part B — Data exploration
-- Dimensions: **50 rows × 8 columns**.  
-- All columns are numeric/continuous; state names are row names (categorical identifier).
-
-### Part C — Head/Tail
-- Early vs late rows simply reflect alphabetical state ordering; no time component. Values vary widely (e.g., `Area`, `Population`).
-
-### Part D — Descriptive statistics
-- Widest spreads typically in `Area` and `Population` (large range, right-skew).  
-- `Murder` and `Illiteracy` show noticeable skew and outliers.
-
-### Part E — Graphics help
-- Useful base functions: `pairs()`, `boxplot()`, `hist()`, `barplot()`, `stripchart()`, `dotchart()`, `qqnorm()`/`qqline()`.
-
-### Part F — Single column plot (Population)
-- Strong right-skew: a few very populous states (CA, NY, TX) vs many smaller states. Outliers at the high end.
-
-### Part G — Scatter (Income vs Illiteracy)
-- Clear **negative** association: higher income correlates with lower illiteracy.  
-- Some states deviate from the trend but pattern holds overall.
-
-### Part H — `pairs()` of entire dataset
-- Notable patterns often seen:  
-  - `Income` ↑ with `HS.Grad` and `Life.Exp`.  
-  - `Murder` tends to be higher where `Illiteracy` is higher and `HS.Grad` is lower.  
-  - `Area` weakly related to socio-economic outcomes (size ≠ prosperity).
-
-### Part I — Types "b" vs "h" (Life.Exp)
-- `type="b"` conveys point-to-point variability; `type="h"` emphasizes magnitudes from baseline.  
-- For life expectancy, `"b"` is generally clearer.
-
-### Part J — Help
-- Examples of useful args: `pch` (point symbol), `cex` (size), `col` (colour), `xlim`/`ylim` (ranges), `main`/`sub` (titles/subtitles).
-
-### Part K — Labels and titles (Income)
-- Better labels: x = "State (index)", y = "Per-capita income (USD)", title = "Per-capita income by state".  
-- Colour is decorative here unless encoding a grouping.
-
-### Part L — Horizontal bar plot (Murder)
-- States with higher values stand out (exact names depend on ordering). For rigorous identification, sort with `order()` or use a dotchart.
-
-### Part M — Vertical bar plot (Illiteracy)
-- Helps compare education disparities. Policy angle: target states with highest illiteracy for adult education and schooling investment.
-
-### Part N — Histogram (Income)
-- Typically unimodal, mild right-skew. Most states cluster around mid-income; a few richer states in the right tail. Bin choice affects apparent shape.
-
-### Part O — Boxplot (Life.Exp)
-- Median around ~70 years, relatively tight IQR; lower outliers indicate states with comparatively worse health outcomes.
-
-### Part P — Multiple boxplots
-- `Population` shows largest spread; `Life.Exp` the tightest. Outliers are more common in `Murder` and `Illiteracy`.
-
-### Part Q — Grid of charts
-- Most informative: scatterplots for relationships (e.g., `Income` vs `Illiteracy`), and boxplots/histograms for distributions.  
-- Least informative: unsorted barplots of continuous variables.
-
-### Best practices — summaries
-- Inspect structure first; match plot to variable type; label clearly; avoid misleading encodings; explore visually before modelling.
 
 ---
 
@@ -1047,6 +1033,8 @@ More resources: [towardsdatascience.com article](https://towardsdatascience.com/
 🛑 Remember to save your script 💾
 
 ---
+
+
 
 ## 🧪 Lab 6 — Using GitHub Copilot in RStudio
 
@@ -1057,6 +1045,7 @@ Learn to use GitHub Copilot inside RStudio to speed up routine coding, while sta
 
 ### Learning outcomes
 By the end you will be able to:
+
 1. Enable and sign into GitHub Copilot in RStudio.
 2. Accept, reject, or modify Copilot autocomplete suggestions effectively.
 3. Use comment-first prompting to steer suggestions.
@@ -1078,7 +1067,7 @@ install.packages(c("tidyverse", "palmerpenguins", "readxl", "ggplot2"))
 
 ---
 
-### Part A — Set up Copilot in RStudio (10–15 min)
+### Part A — Set up Copilot in RStudio
 1. Open RStudio → Tools → Global Options → Copilot.
 2. Enable GitHub Copilot and sign in with GitHub.
 3. Create a new R Script (`File → New File → R Script`).
@@ -1128,7 +1117,7 @@ When is Copilot faster? When slower?
 
 ---
 
-### Part C — Comment-first prompting for histograms (15 min)
+### Part C — Comment-first prompting for histograms
 1. Add a guiding comment:
 ```r
 # Histogram of body mass by species, overlapping with transparency and an accessible palette
@@ -1144,7 +1133,7 @@ Replace colour with `fill`, adjust legend, apply minimal theme.
 
 ---
 
-### Part D — Loading local data safely (10–15 min)
+### Part D — Loading local data safely
 Copilot does not know your file system.
 
 1. Save `Scooby.xlsx` in a `data/` folder.
@@ -1164,7 +1153,7 @@ Why be explicit with data loading and library imports?
 
 ---
 
-### Part E — Boxplots (15 min)
+### Part E — Boxplots
 Visualise IMDb ratings by network.
 
 1. Prompt:
@@ -1203,8 +1192,6 @@ renv::init()
 - [ ] One boxplot (labels/theme improved).
 - [ ] Reflection paragraph on Copilot.
 
-Export script or Quarto doc → submit.
-
 ---
 
 ### TA rubric
@@ -1225,7 +1212,6 @@ Export script or Quarto doc → submit.
 ### Further practice
 - Rewrite prompts as comments for grouped summaries, joins, faceted plots.
 - Compare Copilot vs manual solutions.
-- Try Quarto docs where each chunk begins with a comment.
 
 ---
 
