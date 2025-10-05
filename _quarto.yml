@@ -22,3 +22,4 @@ format:
     css: 
     - styles.css
     - icons.css     # the new emoji polish
+    html-math-method: mathjax

@@ -5,7 +5,28 @@ format: html
 
 ## 🧪 Lab 7 — The Simple Linear Regression Model
 
-> 💡 **Note.** Students can adapt these R scripts to **UK rents annual inflation** and **UK house prices**.
+### 🎯 Learning outcomes
+By the end of this lab you will be able to:
+
+1. Understand the mathematical formulation of the simple linear regression model
+2. Estimate regression coefficients using `lm()` in R
+3. Interpret the intercept and slope parameters in an applied context
+4. Extract and examine regression output using `summary()` and related functions
+5. Visualize the fitted regression line on a scatter plot
+6. Assess the quality of model fit using residuals and R-squared
+
+---
+
+### 🧰 Prerequisites
+- R (≥ 4.0) and RStudio installed
+- Completed Labs 1-6
+- Packages (install once):
+```r
+install.packages(c("remotes", "PoEdata"))
+remotes::install_github("ccolonescu/PoEdata")
+```
+
+---
 
 **Summary.** In simple linear regression, we use **one independent variable** to predict a **dependent variable**. The relationship is represented by a straight line with an intercept and a slope.
 
@@ -18,22 +39,23 @@ format: html
 Assume a linear relationship between the conditional expectation of \(y\) and \(x\):
 
 $$
-y_i = \beta_1 + \beta_2 x_i + e_i.\tag{1}
+y_i = \beta_1 + \beta_2 x_i + e_i \tag{1}
 $$
 
-- \(\beta_1\): intercept, \(\beta_2\): slope  
+- \(\beta_1\): intercept 
+- \(\beta_2\): slope  
 - \(e_i\): error term with variance \(\sigma^2\)  
 - \(i=1,\dots,N\): observation index
 
 The predicted (estimated) value of \(y\) given \(x\) is:
 
 $$
-\hat y = b_1 + b_2 x.\tag{2}
+\hat{y} = b_1 + b_2 x \tag{2}
 $$
 
-Assumptions: (i) non-random \(x\); (ii) constant error variance (homoskedasticity); (iii) errors uncorrelated across observations; (iv) \(E[e_i\mid x_i]=0\).
+Assumptions: (i) non-random \(x\); (ii) constant error variance (homoskedasticity); (iii) errors uncorrelated across observations; (iv) \(E[e_i \mid x_i]=0\).
 
-#### Example: Food Expenditure vs Income
+#### PART A. Example: Food Expenditure vs Income
 
 ```{r}
 # Install once if needed:
@@ -54,7 +76,7 @@ plot(food$income, food$food_exp,
      type="p")
 ```
 
-#### Estimating a Linear Regression
+#### PART B. Estimating a Linear Regression
 
 For the food data the model is
 
@@ -92,7 +114,7 @@ mod1$coefficients
 smod1$coefficients
 ```
 
-#### MCQs
+#### PART C. MCQs
 
 1. What relationship does the simple linear regression assume between \(y\) and \(x\)?  
    A. Quadratic &nbsp;&nbsp; B. Logarithmic &nbsp;&nbsp; **C. Linear** &nbsp;&nbsp; D. Exponential
@@ -363,7 +385,7 @@ c(t=t, p_value=p_value)
 
 ---
 
-## Lab 10 — The p‑Value (Recap)
+## 🧪 Lab 10 — The p‑Value (Recap)
 
 - **Right‑tail:** \(p=1-pt(t,\,df)\)  
 - **Left‑tail:** \(p=pt(t,\,df)\)  
