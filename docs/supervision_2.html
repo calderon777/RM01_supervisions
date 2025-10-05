@@ -208,34 +208,26 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#lab-1-the-simple-linear-regression-model" id="toc-lab-1-the-simple-linear-regression-model" class="nav-link active" data-scroll-target="#lab-1-the-simple-linear-regression-model">Lab 1 — The Simple Linear Regression Model</a>
+  <li><a href="#lab-7-the-simple-linear-regression-model" id="toc-lab-7-the-simple-linear-regression-model" class="nav-link active" data-scroll-target="#lab-7-the-simple-linear-regression-model">🧪 Lab 7 — The Simple Linear Regression Model</a>
   <ul class="collapse">
-  <li><a href="#the-general-model" id="toc-the-general-model" class="nav-link" data-scroll-target="#the-general-model">The General Model</a>
-  <ul class="collapse">
-  <li><a href="#example-food-expenditure-vs-income" id="toc-example-food-expenditure-vs-income" class="nav-link" data-scroll-target="#example-food-expenditure-vs-income">Example: Food Expenditure vs Income</a></li>
-  <li><a href="#estimating-a-linear-regression" id="toc-estimating-a-linear-regression" class="nav-link" data-scroll-target="#estimating-a-linear-regression">Estimating a Linear Regression</a></li>
-  <li><a href="#mcqs" id="toc-mcqs" class="nav-link" data-scroll-target="#mcqs">MCQs</a></li>
+  <li><a href="#the-general-model" id="toc-the-general-model" class="nav-link" data-scroll-target="#the-general-model">The General Model</a></li>
   </ul></li>
-  </ul></li>
-  <li><a href="#lab-2-prediction-with-the-linear-regression-model" id="toc-lab-2-prediction-with-the-linear-regression-model" class="nav-link" data-scroll-target="#lab-2-prediction-with-the-linear-regression-model">Lab 2 — Prediction with the Linear Regression Model</a>
+  <li><a href="#lab-8-prediction-with-the-linear-regression-model" id="toc-lab-8-prediction-with-the-linear-regression-model" class="nav-link" data-scroll-target="#lab-8-prediction-with-the-linear-regression-model">🧪 Lab 8 — Prediction with the Linear Regression Model</a>
   <ul class="collapse">
   <li><a href="#repeated-samples-to-assess-regression-coefficients" id="toc-repeated-samples-to-assess-regression-coefficients" class="nav-link" data-scroll-target="#repeated-samples-to-assess-regression-coefficients">Repeated Samples to Assess Regression Coefficients</a></li>
   <li><a href="#estimated-variances-and-covariance-of-coefficients" id="toc-estimated-variances-and-covariance-of-coefficients" class="nav-link" data-scroll-target="#estimated-variances-and-covariance-of-coefficients">Estimated Variances and Covariance of Coefficients</a></li>
-  <li><a href="#non-linear-relationships" id="toc-non-linear-relationships" class="nav-link" data-scroll-target="#non-linear-relationships">Non-Linear Relationships</a>
-  <ul class="collapse">
-  <li><a href="#quadratic-model" id="toc-quadratic-model" class="nav-link" data-scroll-target="#quadratic-model">Quadratic model</a></li>
-  <li><a href="#log-linear-model" id="toc-log-linear-model" class="nav-link" data-scroll-target="#log-linear-model">Log-linear model</a></li>
-  <li><a href="#mcqs-1" id="toc-mcqs-1" class="nav-link" data-scroll-target="#mcqs-1">MCQs</a></li>
+  <li><a href="#non-linear-relationships" id="toc-non-linear-relationships" class="nav-link" data-scroll-target="#non-linear-relationships">Non-Linear Relationships</a></li>
   </ul></li>
-  </ul></li>
-  <li><a href="#lab-5-hypothesis-test-pvalue-testing-linear-combinations" id="toc-lab-5-hypothesis-test-pvalue-testing-linear-combinations" class="nav-link" data-scroll-target="#lab-5-hypothesis-test-pvalue-testing-linear-combinations">Lab 5 — Hypothesis Test, p‑Value &amp; Testing Linear Combinations</a>
+  <li><a href="#lab-9-hypothesis-test-pvalue-testing-linear-combinations" id="toc-lab-9-hypothesis-test-pvalue-testing-linear-combinations" class="nav-link" data-scroll-target="#lab-9-hypothesis-test-pvalue-testing-linear-combinations">🧪 Lab 9 — Hypothesis Test, p‑Value &amp; Testing Linear Combinations</a>
   <ul class="collapse">
   <li><a href="#hypothesis-tests" id="toc-hypothesis-tests" class="nav-link" data-scroll-target="#hypothesis-tests">Hypothesis Tests</a></li>
   <li><a href="#the-pvalue" id="toc-the-pvalue" class="nav-link" data-scroll-target="#the-pvalue">The p‑Value</a></li>
   <li><a href="#testing-linear-combinations-of-parameters" id="toc-testing-linear-combinations-of-parameters" class="nav-link" data-scroll-target="#testing-linear-combinations-of-parameters">Testing Linear Combinations of Parameters</a></li>
   </ul></li>
-  <li><a href="#lab-6-the-pvalue-recap" id="toc-lab-6-the-pvalue-recap" class="nav-link" data-scroll-target="#lab-6-the-pvalue-recap">Lab 6 — The p‑Value (Recap)</a></li>
+  <li><a href="#lab-10-the-pvalue-recap" id="toc-lab-10-the-pvalue-recap" class="nav-link" data-scroll-target="#lab-10-the-pvalue-recap">Lab 10 — The p‑Value (Recap)</a>
+  <ul class="collapse">
   <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -261,16 +253,16 @@ window.Quarto = {
 </header>
 
 
-<section id="lab-1-the-simple-linear-regression-model" class="level1">
-<h1>Lab 1 — The Simple Linear Regression Model</h1>
+<section id="lab-7-the-simple-linear-regression-model" class="level2">
+<h2 class="anchored" data-anchor-id="lab-7-the-simple-linear-regression-model">🧪 Lab 7 — The Simple Linear Regression Model</h2>
 <blockquote class="blockquote">
 <p>💡 <strong>Note.</strong> Students can adapt these R scripts to <strong>UK rents annual inflation</strong> and <strong>UK house prices</strong>.</p>
 </blockquote>
 <p><strong>Summary.</strong> In simple linear regression, we use <strong>one independent variable</strong> to predict a <strong>dependent variable</strong>. The relationship is represented by a straight line with an intercept and a slope.</p>
 <p><strong>Introduction.</strong> We explore the fundamentals of the Simple Linear Regression Model, a method to understand the relationship between two variables. This model is foundational for more advanced analyses.</p>
 <p><strong>Key terms.</strong> The <strong>dependent variable</strong> ((y)) is what we aim to predict; the <strong>independent variable</strong> ((x)) explains (y).</p>
-<section id="the-general-model" class="level2">
-<h2 class="anchored" data-anchor-id="the-general-model">The General Model</h2>
+<section id="the-general-model" class="level3">
+<h3 class="anchored" data-anchor-id="the-general-model">The General Model</h3>
 <p>Assume a linear relationship between the conditional expectation of (y) and (x):</p>
 <p><span class="math display">\[
 y_i = \beta_1 + \beta_2 x_i + e_i.\tag{1}
@@ -287,8 +279,8 @@ y_i = \beta_1 + \beta_2 x_i + e_i.\tag{1}
 \hat y = b_1 + b_2 x.\tag{2}
 \]</span></p>
 <p>Assumptions: (i) non-random (x); (ii) constant error variance (homoskedasticity); (iii) errors uncorrelated across observations; (iv) (E[e_ix_i]=0).</p>
-<section id="example-food-expenditure-vs-income" class="level3">
-<h3 class="anchored" data-anchor-id="example-food-expenditure-vs-income">Example: Food Expenditure vs Income</h3>
+<section id="example-food-expenditure-vs-income" class="level4">
+<h4 class="anchored" data-anchor-id="example-food-expenditure-vs-income">Example: Food Expenditure vs Income</h4>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Install once if needed:</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages("remotes")</span></span>
@@ -330,8 +322,8 @@ y_i = \beta_1 + \beta_2 x_i + e_i.\tag{1}
 </div>
 </div>
 </section>
-<section id="estimating-a-linear-regression" class="level3">
-<h3 class="anchored" data-anchor-id="estimating-a-linear-regression">Estimating a Linear Regression</h3>
+<section id="estimating-a-linear-regression" class="level4">
+<h4 class="anchored" data-anchor-id="estimating-a-linear-regression">Estimating a Linear Regression</h4>
 <p>For the food data the model is</p>
 <p><span class="math display">\[
 \text{food\_exp}_i = \beta_1 + \beta_2\,\text{income}_i + e_i.\tag{3}
@@ -407,8 +399,8 @@ income      10.20964   2.093264 4.877381 1.945862e-05</code></pre>
 </div>
 </div>
 </section>
-<section id="mcqs" class="level3">
-<h3 class="anchored" data-anchor-id="mcqs">MCQs</h3>
+<section id="mcqs" class="level4">
+<h4 class="anchored" data-anchor-id="mcqs">MCQs</h4>
 <ol type="1">
 <li><p>What relationship does the simple linear regression assume between (y) and (x)?<br>
 A. Quadratic &nbsp;&nbsp; B. Logarithmic &nbsp;&nbsp; <strong>C. Linear</strong> &nbsp;&nbsp; D. Exponential</p></li>
@@ -429,8 +421,8 @@ A. Number of observations &nbsp;&nbsp; B. Precision of intercept &nbsp;&nbsp; <s
 </section>
 </section>
 </section>
-<section id="lab-2-prediction-with-the-linear-regression-model" class="level1">
-<h1>Lab 2 — Prediction with the Linear Regression Model</h1>
+<section id="lab-8-prediction-with-the-linear-regression-model" class="level2">
+<h2 class="anchored" data-anchor-id="lab-8-prediction-with-the-linear-regression-model">🧪 Lab 8 — Prediction with the Linear Regression Model</h2>
 <p>The estimates (b_1) and (b_2) allow prediction via Eq. (2). Example: income = $2000 → <strong>income = 20</strong> (hundreds of dollars).</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Model</span></span>
@@ -446,8 +438,8 @@ A. Number of observations &nbsp;&nbsp; B. Precision of intercept &nbsp;&nbsp; <s
     287.6089     338.6571     359.0764 </code></pre>
 </div>
 </div>
-<section id="repeated-samples-to-assess-regression-coefficients" class="level2">
-<h2 class="anchored" data-anchor-id="repeated-samples-to-assess-regression-coefficients">Repeated Samples to Assess Regression Coefficients</h2>
+<section id="repeated-samples-to-assess-regression-coefficients" class="level3">
+<h3 class="anchored" data-anchor-id="repeated-samples-to-assess-regression-coefficients">Repeated Samples to Assess Regression Coefficients</h3>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>N <span class="ot">&lt;-</span> <span class="fu">nrow</span>(food) <span class="co"># number of observations</span></span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>C <span class="ot">&lt;-</span> <span class="dv">50</span>         <span class="co"># number of subsamples</span></span>
@@ -466,8 +458,8 @@ A. Number of observations &nbsp;&nbsp; B. Precision of intercept &nbsp;&nbsp; <s
 </div>
 </div>
 </section>
-<section id="estimated-variances-and-covariance-of-coefficients" class="level2">
-<h2 class="anchored" data-anchor-id="estimated-variances-and-covariance-of-coefficients">Estimated Variances and Covariance of Coefficients</h2>
+<section id="estimated-variances-and-covariance-of-coefficients" class="level3">
+<h3 class="anchored" data-anchor-id="estimated-variances-and-covariance-of-coefficients">Estimated Variances and Covariance of Coefficients</h3>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>(varb1 <span class="ot">&lt;-</span> <span class="fu">vcov</span>(mod1)[<span class="dv">1</span>, <span class="dv">1</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -483,10 +475,10 @@ A. Number of observations &nbsp;&nbsp; B. Precision of intercept &nbsp;&nbsp; <s
 </div>
 </div>
 </section>
-<section id="non-linear-relationships" class="level2">
-<h2 class="anchored" data-anchor-id="non-linear-relationships">Non-Linear Relationships</h2>
-<section id="quadratic-model" class="level3">
-<h3 class="anchored" data-anchor-id="quadratic-model">Quadratic model</h3>
+<section id="non-linear-relationships" class="level3">
+<h3 class="anchored" data-anchor-id="non-linear-relationships">Non-Linear Relationships</h3>
+<section id="quadratic-model" class="level4">
+<h4 class="anchored" data-anchor-id="quadratic-model">Quadratic model</h4>
 <p><span class="math display">\[
 y_i = \beta_1 + \beta_2 x_i^2 + e_i.\tag{5}
 \]</span></p>
@@ -544,8 +536,8 @@ y_i = \beta_1 + \beta_2 x_i^2 + e_i.\tag{5}
 </div>
 </div>
 </section>
-<section id="log-linear-model" class="level3">
-<h3 class="anchored" data-anchor-id="log-linear-model">Log-linear model</h3>
+<section id="log-linear-model" class="level4">
+<h4 class="anchored" data-anchor-id="log-linear-model">Log-linear model</h4>
 <p><span class="math display">\[
 \log(y_i) = \beta_1 + \beta_2 x_i + e_i.\tag{6}
 \]</span></p>
@@ -609,8 +601,8 @@ y_i = \beta_1 + \beta_2 x_i^2 + e_i.\tag{5}
 </div>
 </div>
 </section>
-<section id="mcqs-1" class="level3">
-<h3 class="anchored" data-anchor-id="mcqs-1">MCQs</h3>
+<section id="mcqs-1" class="level4">
+<h4 class="anchored" data-anchor-id="mcqs-1">MCQs</h4>
 <ol type="1">
 <li>Using (b_1) and (b_2) primarily helps to: <strong>B. Predict (E[yx])</strong><br>
 </li>
@@ -630,10 +622,10 @@ y_i = \beta_1 + \beta_2 x_i^2 + e_i.\tag{5}
 </section>
 </section>
 </section>
-<section id="lab-5-hypothesis-test-pvalue-testing-linear-combinations" class="level1">
-<h1>Lab 5 — Hypothesis Test, p‑Value &amp; Testing Linear Combinations</h1>
-<section id="hypothesis-tests" class="level2">
-<h2 class="anchored" data-anchor-id="hypothesis-tests">Hypothesis Tests</h2>
+<section id="lab-9-hypothesis-test-pvalue-testing-linear-combinations" class="level2">
+<h2 class="anchored" data-anchor-id="lab-9-hypothesis-test-pvalue-testing-linear-combinations">🧪 Lab 9 — Hypothesis Test, p‑Value &amp; Testing Linear Combinations</h2>
+<section id="hypothesis-tests" class="level3">
+<h3 class="anchored" data-anchor-id="hypothesis-tests">Hypothesis Tests</h3>
 <p>Null vs alternative for a coefficient (_k):</p>
 <p><span class="math display">\[
 H_0: \beta_k = c, \qquad H_A: \beta_k \ne c.
@@ -719,8 +711,8 @@ t = \frac{b_k - c}{\operatorname{se}(b_k)},\quad t \sim t_{N-2}.\tag{6}
 </div>
 </div>
 </section>
-<section id="the-pvalue" class="level2">
-<h2 class="anchored" data-anchor-id="the-pvalue">The p‑Value</h2>
+<section id="the-pvalue" class="level3">
+<h3 class="anchored" data-anchor-id="the-pvalue">The p‑Value</h3>
 <p>Right‑tail: (p = 1 - F_t(t)). Left‑tail: (p = F_t(t)). Two‑tail: (p = 2(1-F_t(|t|))).</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Right tail</span></span>
@@ -739,8 +731,8 @@ t = \frac{b_k - c}{\operatorname{se}(b_k)},\quad t \sim t_{N-2}.\tag{6}
 </div>
 </div>
 </section>
-<section id="testing-linear-combinations-of-parameters" class="level2">
-<h2 class="anchored" data-anchor-id="testing-linear-combinations-of-parameters">Testing Linear Combinations of Parameters</h2>
+<section id="testing-linear-combinations-of-parameters" class="level3">
+<h3 class="anchored" data-anchor-id="testing-linear-combinations-of-parameters">Testing Linear Combinations of Parameters</h3>
 <p>Expected food expenditure at income = $2000 (i.e.&nbsp;(x=20)):</p>
 <p><span class="math display">\[
 L = E(\text{food\_exp}\mid \text{income}=20) = \beta_1 + 20\,\beta_2.\tag{3.7}
@@ -786,8 +778,8 @@ L = E(\text{food\_exp}\mid \text{income}=20) = \beta_1 + 20\,\beta_2.\tag{3.7}
 <hr>
 </section>
 </section>
-<section id="lab-6-the-pvalue-recap" class="level1">
-<h1>Lab 6 — The p‑Value (Recap)</h1>
+<section id="lab-10-the-pvalue-recap" class="level2">
+<h2 class="anchored" data-anchor-id="lab-10-the-pvalue-recap">Lab 10 — The p‑Value (Recap)</h2>
 <ul>
 <li><strong>Right‑tail:</strong> (p=1-pt(t,,df))<br>
 </li>
@@ -804,12 +796,12 @@ L = E(\text{food\_exp}\mid \text{income}=20) = \beta_1 + 20\,\beta_2.\tag{3.7}
 </div>
 </div>
 <hr>
-</section>
-<section id="references" class="level1">
-<h1>References</h1>
+<section id="references" class="level3">
+<h3 class="anchored" data-anchor-id="references">References</h3>
 <p>Adkins (2014); Allaire et al.&nbsp;(2016); Colonescu (2016); Croissant &amp; Millo (2015); Dahl (2016); Fox &amp; Weisberg (2016); Fox et al.&nbsp;(2016); Ghalanos (2015); Graves (2014); Grolemund &amp; Wickham (2016); Henningsen &amp; Hamann (2015); Hill, Griffiths &amp; Lim (2011); Hlavac (2015); Hothorn et al.&nbsp;(2015); Hyndman (2016); Kleiber &amp; Zeileis (2015); Komashko (2016); Lander (2013); Lumley &amp; Zeileis (2015); Pfaff (2013); R Core Team (2008); Reinhart (2015); Robinson (2016); RStudio Team (2015); Spada et al.&nbsp;(2012); Trapletti &amp; Hornik (2016); Wickham &amp; Chang (2016); Xie (2014, 2016a, 2016b); Zeileis (2016).</p>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->

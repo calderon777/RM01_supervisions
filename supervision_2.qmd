@@ -3,7 +3,7 @@ title: "Supervision 2"
 format: html
 ---
 
-# Lab 1 — The Simple Linear Regression Model
+## 🧪 Lab 7 — The Simple Linear Regression Model
 
 > 💡 **Note.** Students can adapt these R scripts to **UK rents annual inflation** and **UK house prices**.
 
@@ -13,7 +13,7 @@ format: html
 
 **Key terms.** The **dependent variable** (\(y\)) is what we aim to predict; the **independent variable** (\(x\)) explains \(y\).
 
-## The General Model
+### The General Model
 
 Assume a linear relationship between the conditional expectation of \(y\) and \(x\):
 
@@ -33,7 +33,7 @@ $$
 
 Assumptions: (i) non-random \(x\); (ii) constant error variance (homoskedasticity); (iii) errors uncorrelated across observations; (iv) \(E[e_i\mid x_i]=0\).
 
-### Example: Food Expenditure vs Income
+#### Example: Food Expenditure vs Income
 
 ```{r}
 # Install once if needed:
@@ -54,7 +54,7 @@ plot(food$income, food$food_exp,
      type="p")
 ```
 
-### Estimating a Linear Regression
+#### Estimating a Linear Regression
 
 For the food data the model is
 
@@ -92,7 +92,7 @@ mod1$coefficients
 smod1$coefficients
 ```
 
-### MCQs
+#### MCQs
 
 1. What relationship does the simple linear regression assume between \(y\) and \(x\)?  
    A. Quadratic &nbsp;&nbsp; B. Logarithmic &nbsp;&nbsp; **C. Linear** &nbsp;&nbsp; D. Exponential
@@ -117,7 +117,7 @@ smod1$coefficients
 
 ---
 
-# Lab 2 — Prediction with the Linear Regression Model
+## 🧪 Lab 8 — Prediction with the Linear Regression Model
 
 The estimates \(b_1\) and \(b_2\) allow prediction via Eq. (2). Example: income = \$2000 → **income = 20** (hundreds of dollars).
 
@@ -132,7 +132,7 @@ names(yhat) <- c("income=$2000", "$2500", "$2700")
 yhat
 ```
 
-## Repeated Samples to Assess Regression Coefficients
+### Repeated Samples to Assess Regression Coefficients
 
 ```{r}
 N <- nrow(food) # number of observations
@@ -149,7 +149,7 @@ for (i in 1:C){
 print(sumb2/C, digits = 3)
 ```
 
-## Estimated Variances and Covariance of Coefficients
+### Estimated Variances and Covariance of Coefficients
 
 ```{r}
 (varb1 <- vcov(mod1)[1, 1])
@@ -157,9 +157,9 @@ print(sumb2/C, digits = 3)
 (covb1b2 <- vcov(mod1)[1, 2])
 ```
 
-## Non-Linear Relationships
+### Non-Linear Relationships
 
-### Quadratic model
+#### Quadratic model
 
 $$
 y_i = \beta_1 + \beta_2 x_i^2 + e_i.\tag{5}
@@ -196,7 +196,7 @@ plot(br$sqft, br$price, main="Dataset ordered after 'sqft'",
 lines(fitted(mod31) ~ ordat$sqft)
 ```
 
-### Log-linear model
+#### Log-linear model
 
 $$
 \log(y_i) = \beta_1 + \beta_2 x_i + e_i.\tag{6}
@@ -237,7 +237,7 @@ sqftx <- (log(pricex) - b1)/b2
 (elasticities <- b2*sqftx)
 ```
 
-### MCQs
+#### MCQs
 
 1. Using \(b_1\) and \(b_2\) primarily helps to: **B. Predict \(E[y\mid x]\)**  
 2. `lm()` is used to: **C. Estimate a linear model**  
@@ -249,9 +249,9 @@ sqftx <- (log(pricex) - b1)/b2
 
 ---
 
-# Lab 5 — Hypothesis Test, p‑Value & Testing Linear Combinations
+## 🧪 Lab 9 — Hypothesis Test, p‑Value & Testing Linear Combinations
 
-## Hypothesis Tests
+### Hypothesis Tests
 
 Null vs alternative for a coefficient \(\beta_k\):
 
@@ -300,7 +300,7 @@ tcr_left <- qt(alpha, df)
 c(t_right=t_right, tcr_right=tcr_right, t_left=t_left, tcr_left=tcr_left)
 ```
 
-## The p‑Value
+### The p‑Value
 
 Right‑tail: \(p = 1 - F_t(t)\). Left‑tail: \(p = F_t(t)\). Two‑tail: \(p = 2\big(1-F_t(|t|)\big)\).
 
@@ -317,7 +317,7 @@ c <- 0;  t <- (b2-c)/seb2; p_two <- 2*(1-pt(abs(t), df))
 c(p_right=p_right, p_left=p_left, p_two=p_two)
 ```
 
-## Testing Linear Combinations of Parameters
+### Testing Linear Combinations of Parameters
 
 Expected food expenditure at income = \$2000 (i.e. \(x=20\)):
 
@@ -363,7 +363,7 @@ c(t=t, p_value=p_value)
 
 ---
 
-# Lab 6 — The p‑Value (Recap)
+## Lab 10 — The p‑Value (Recap)
 
 - **Right‑tail:** \(p=1-pt(t,\,df)\)  
 - **Left‑tail:** \(p=pt(t,\,df)\)  
@@ -376,6 +376,6 @@ c(p_right=p_right, p_left=p_left, p_two=p_two)
 
 ---
 
-# References
+### References
 
 Adkins (2014); Allaire et al. (2016); Colonescu (2016); Croissant & Millo (2015); Dahl (2016); Fox & Weisberg (2016); Fox et al. (2016); Ghalanos (2015); Graves (2014); Grolemund & Wickham (2016); Henningsen & Hamann (2015); Hill, Griffiths & Lim (2011); Hlavac (2015); Hothorn et al. (2015); Hyndman (2016); Kleiber & Zeileis (2015); Komashko (2016); Lander (2013); Lumley & Zeileis (2015); Pfaff (2013); R Core Team (2008); Reinhart (2015); Robinson (2016); RStudio Team (2015); Spada et al. (2012); Trapletti & Hornik (2016); Wickham & Chang (2016); Xie (2014, 2016a, 2016b); Zeileis (2016).
