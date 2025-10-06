@@ -32,7 +32,7 @@ remotes::install_github("ccolonescu/PoEdata")
 
 **Introduction.** We explore the fundamentals of the Simple Linear Regression Model, a method to understand the relationship between two variables. This model is foundational for more advanced analyses.
 
-**Key terms.** The **dependent variable** (\(y\)) is what we aim to predict; the **independent variable** (\(x\)) explains \(y\).
+**Key terms.** The **dependent variable** $(y)$ is what we aim to predict; the **independent variable**, $x$, explains $y$.
 
 ### The General Model
 
@@ -42,29 +42,36 @@ $$
 y_i = \beta_1 + \beta_2 x_i + e_i \tag{1}
 $$
 
-- \(\beta_1\): intercept 
-- \(\beta_2\): slope  
-- \(e_i\): error term with variance \(\sigma^2\)  
-- \(i=1,\dots,N\): observation index
+- $\beta_1$: intercept 
+- $\beta_2$: slope  
+- $e_i$: error term with variance $\sigma^2$  
+- $i=1,\dots,N$: observation index
 
-The predicted (estimated) value of \(y\) given \(x\) is:
+The predicted (estimated) value of $y$ given $x$ is:
 
 $$
 \hat{y} = b_1 + b_2 x \tag{2}
 $$
 
-Assumptions: (i) non-random \(x\); (ii) constant error variance (homoskedasticity); (iii) errors uncorrelated across observations; (iv) \(E[e_i \mid x_i]=0\).
+Assumptions: 
+
+(i) non-random \(x\); 
+(ii) constant error variance (homoskedasticity); 
+(iii) errors uncorrelated across observations; 
+(iv) $E[e_i \mid x_i]=0$.
 
 #### PART A. Example: Food Expenditure vs Income
 
-```{r}
-# Install once if needed:
-# install.packages("remotes")
-# remotes::install_github("ccolonescu/PoEdata")
+```r
+# Recall to install the package PoEdata once if needed:
+install.packages("remotes")
+remotes::install_github("ccolonescu/PoEdata")
+```
 
+```{r}
 library(PoEdata)
 data("cps_small")
-plot(cps_small$educ, cps_small$wage, xlab="education", ylab="wage")
+plot(cps_small$educ, cps_small$wage, xlab="Education", ylab="Wage")
 
 # Food data
 data("food")
