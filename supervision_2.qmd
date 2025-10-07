@@ -1,6 +1,8 @@
 ---
 title: "Supervision 2"
-format: html
+date-modified: last-modified
+date-format: "D MMM YYYY, HH:mm"   # e.g., 07 Oct 2025, 14:32
+
 ---
 
 ## 🧪 Lab 7 — The Simple Linear Regression Model
@@ -121,61 +123,225 @@ mod1$coefficients
 smod1$coefficients
 ```
 
+
 #### PART C. MCQs
 
-1. What relationship does the simple linear regression assume between \(y\) and \(x\)?  
-   A. Quadratic &nbsp;&nbsp; B. Logarithmic &nbsp;&nbsp; **C. Linear** &nbsp;&nbsp; D. Exponential
+<!-- FEEDBACK SCRIPT: sets .is-correct / .is-incorrect on the clicked label -->
+<script>
+(function () {
+  const norm = s => (s || "").replace(/\s+/g, " ").trim();
+  document.addEventListener("change", function (e) {
+    const input = e.target.closest('.mcq-we-q input[type="radio"]');
+    if (!input) return;
 
-2. In Eq. (1), what is \(\beta_1\)?  
-   A. Slope &nbsp;&nbsp; B. Error term &nbsp;&nbsp; **C. Intercept** &nbsp;&nbsp; D. Dependent variable
+    // find the corresponding label (works for both nested and for= cases)
+    const label = input.closest('label') || document.querySelector(`label[for="${input.id}"]`);
+    if (!label) return;
 
-3. The slope parameter indicates:  
-   A. Error variance &nbsp;&nbsp; **B. Change in \(y\) for a one-unit change in \(x\)** &nbsp;&nbsp; C. Intercept &nbsp;&nbsp; D. Sample size
+    const q = label.closest(".mcq-we-q") || input.closest(".mcq-we-q");
+    if (!q) return;
 
-4. "Residuals" are:  
-   A. Predicted \(y\) &nbsp;&nbsp; B. \(x\) values &nbsp;&nbsp; **C. Observed minus predicted \(y\)** &nbsp;&nbsp; D. Coefficients
+    const keyEl = q.querySelector(".mcq-key");
+    if (!keyEl) return;
 
-5. `summary(mod1)` is used to:  
-   A. List object names &nbsp;&nbsp; B. Change coefficients &nbsp;&nbsp; C. Plot the line &nbsp;&nbsp; **D. Display regression results**
+    const key = norm(keyEl.getAttribute("data-correct"));
+    const choice = norm(label.textContent);
 
-6. Estimating with random subsamples primarily helps to:  
-   A. Change coefficients &nbsp;&nbsp; **B. Assess variability of coefficients** &nbsp;&nbsp; C. Increase N &nbsp;&nbsp; D. Make the model non‑linear
+    // reset previous feedback in this question
+    q.querySelectorAll("label").forEach(l => l.classList.remove("is-correct","is-incorrect"));
 
-7. Adjusted \(R^2\) measures:  
-   A. Number of observations &nbsp;&nbsp; B. Precision of intercept &nbsp;&nbsp; **C. Proportion of variance explained (adjusted)** &nbsp;&nbsp; D. SE of coefficients
+    // add feedback to the chosen option
+    label.classList.add(choice === key ? "is-correct" : "is-incorrect");
+  });
+})();
+</script>
+
+
+
+
+<div class="mcq-we">
+
+<div class="mcq-we-q">
+**1) What relationship does simple linear regression assume between y and x?**  
+`r webexercises::longmcq(c("Quadratic", "Logarithmic", answer = "Linear", "Exponential"))`
+<span class="mcq-key" data-correct="Linear"></span>
+<details class="hint"><summary>Hint</summary> Think straight line: one slope + one intercept.</details>β
+</div>
+
+<div class="mcq-we-q">
+**2) In the model y = β₀ + β₁ x + ε, what does β₁ represent?**  
+`r webexercises::longmcq(c("The average of y", "The error variance", answer = "Expected change in y for a one-unit increase in x", "The intercept"))`
+<span class="mcq-key" data-correct="Expected change in y for a one-unit increase in x"></span>
+<details class="hint"><summary>Hint</summary> Δy for +1 in x.</details>
+</div>
+
+<div class="mcq-we-q">
+**3) In the model y = β₀ + β₁ x + ε, what does β₀ represent?**  
+`r webexercises::longmcq(c("The slope of x", answer = "The expected value of y when x = 0", "The variance of ε", "Correlation between x and y"))`
+<span class="mcq-key" data-correct="The expected value of y when x = 0"></span>
+<details class="hint"><summary>Hint</summary> Value of y at x = 0.</details>
+</div>
+
+<div class="mcq-we-q">
+**4) A residual is defined as:**  
+`r webexercises::longmcq(c("Predicted y minus observed y", "Observed x minus predicted x", answer = "Observed y minus predicted y", "The fitted value"))`
+<span class="mcq-key" data-correct="Observed y minus predicted y"></span>
+<details class="hint"><summary>Hint</summary> Actual − fitted.</details>
+</div>
+
+<div class="mcq-we-q">
+**5) Ordinary Least Squares (OLS) chooses coefficients to:**  
+`r webexercises::longmcq(c("Maximize R²", "Minimize the sum of absolute residuals", answer = "Minimize the sum of squared residuals", "Maximize the likelihood under normal errors only"))`
+<span class="mcq-key" data-correct="Minimize the sum of squared residuals"></span>
+<details class="hint"><summary>Hint</summary> Squares penalize big errors more.</details>
+</div>
+
+<div class="mcq-we-q">
+**6) With an intercept in the model, OLS residuals:**  
+`r webexercises::longmcq(c("Sum to a positive number", "Sum to a negative number", answer = "Sum to zero", "Sum to the sample mean of y"))`
+<span class="mcq-key" data-correct="Sum to zero"></span>
+</div>
+
+<div class="mcq-we-q">
+**7) The OLS regression line passes through:**  
+`r webexercises::longmcq(c("The origin (0,0)", answer = "The point (x̄, ȳ)", "The median of x and y", "The maximum of y"))`
+<span class="mcq-key" data-correct="The point (x̄, ȳ)"></span>
+<details class="hint"><summary>Hint</summary> It goes through the means.</details>
+</div>
+
+<div class="mcq-we-q">
+**8) Which R function fits a simple linear regression model?**  
+`r webexercises::longmcq(c("plot()", "cor()", answer = "lm()", "predict()"))`
+<span class="mcq-key" data-correct="lm()"></span>
+</div>
+
+<div class="mcq-we-q">
+**9) In `summary(mod)`, the p-value for the slope tests:**  
+`r webexercises::longmcq(c("H₀: β₁ ≠ 0", answer = "H₀: β₁ = 0", "H₀: β₀ = 0", "H₀: errors are normal"))`
+<span class="mcq-key" data-correct="H0: B₁ = 0"></span>
+</div>
+
+<div class="mcq-we-q">
+**10) The p-value is best described as:**  
+`r webexercises::longmcq(c("The probability H₁ is true", "The probability the estimate is correct", answer = "The probability (under H₀) of a result at least as extreme as observed", "The Type II error rate"))`
+<span class="mcq-key" data-correct="The probability (under H0) of a result at least as extreme as observed"></span>
+</div>
+
+<div class="mcq-we-q">
+**11) A 95% confidence interval for β₁ is generally:**  
+`r webexercises::longmcq(c("Estimate ± 1.96 × σ of y", answer = "Estimate ± critical t × SE(β₁)", "Estimate ± 2 × residual SD", "SE(β₁) ± estimate"))`
+<span class="mcq-key" data-correct="Estimate ± critical t × SE(B₁)"></span>
+</div>
+
+<div class="mcq-we-q">
+**12) R² measures:**  
+`r webexercises::longmcq(c("The correlation between x and y", answer = "Proportion of variance in y explained by x", "The average residual size", "The probability the model is correct"))`
+<span class="mcq-key" data-correct="Proportion of variance in y explained by x"></span>
+</div>
+
+<div class="mcq-we-q">
+**13) Adjusted R² differs from R² because it:**  
+`r webexercises::longmcq(c("Ignores sample size", "Is always larger than R²", answer = "Penalizes adding predictors relative to sample size", "Equals 1 − R²"))`
+<span class="mcq-key" data-correct="Penalizes adding predictors relative to sample size"></span>
+</div>
+
+<div class="mcq-we-q">
+**14) To make a prediction at x = x₀, you use:**  
+`r webexercises::longmcq(c("β₁ × x₀", "β₀ ÷ x₀", answer = "ŷ = β₀ + β₁ × x₀", "SE(β₁) × x₀"))`
+<span class="mcq-key" data-correct="ŷ = β₀ + β₁ × x₀"></span>
+<details class="hint"><summary>Hint</summary> Plug x₀ into the fitted line.</details>
+</div>
+
+<div class="mcq-we-q">
+**15) For OLS to be unbiased, a key assumption is:**  
+`r webexercises::longmcq(c("x is normally distributed", "Errors have zero variance", answer = "E[ε | x] = 0 (errors have zero mean conditional on x)", "y is standardized"))`
+<span class="mcq-key" data-correct="E[ε | x] = 0 (errors have zero mean conditional on x)"></span>
+</div>
+
+<div class="mcq-we-q">
+**16) Homoskedasticity means:**  
+`r webexercises::longmcq(c("Errors are perfectly correlated", answer = "Variance of errors is constant across x", "Mean of errors is zero only at x̄", "x has constant variance"))`
+<span class="mcq-key" data-correct="Variance of errors is constant across x"></span>
+</div>
+
+<div class="mcq-we-q">
+**17) In `summary(mod)`, the t value for β₁ equals:**  
+`r webexercises::longmcq(c("β₁", "SE(β₁)", answer = "Estimate(β₁) / SE(β₁)", "1 − p-value"))`
+<span class="mcq-key" data-correct="Estimate(β₁) / SE(β₁)"></span>
+<details class="hint"><summary>Hint</summary> Signal ÷ noise for the slope estimate.</details>
+</div>
+
+<div class="mcq-we-q">
+**18) The units of β₁ are best described as:**  
+`r webexercises::longmcq(c("Units of y", answer = "Units of y per unit of x", "Unitless", "Units of x per unit of y"))`
+<span class="mcq-key" data-correct="Units of y per unit of x"></span>
+</div>
+
+<div class="mcq-we-q">
+**19) Rescaling x from dollars to hundreds of dollars will:**  
+`r webexercises::longmcq(c("Leave β₁ unchanged", answer = "Rescale β₁ numerically but leave R² and the t-test for β₁ unchanged", "Change the data but not the model", "Invalidate OLS"))`
+<span class="mcq-key" data-correct="Rescale β₁ numerically but leave R² and the t-test for β₁ essentially unchanged"></span>
+</div>
+
+<div class="mcq-we-q">
+**20) After fitting `mod <- lm(y ~ x, d)`, the fitted value at x₀ is:**  
+`r webexercises::longmcq(c("residuals(mod)[x==x₀]", answer = "predict(mod, newdata = data.frame(x = x₀))", "coef(mod)['x']", "fitted(mod)[1] always"))`
+<span class="mcq-key" data-correct="predict(mod, newdata = data.frame(x = x₀))"></span>
+<details class="hint"><summary>Hint</summary> Use <code>predict()</code> with a small data frame for x₀.</details>
+</div>
+
+</div>
+
+
 
 ---
 
 ## 🧪 Lab 8 — Prediction with the Linear Regression Model
 
-The estimates \(b_1\) and \(b_2\) allow prediction via Eq. (2). Example: income = \$2000 → **income = 20** (hundreds of dollars).
+The estimates $b_1$ and $b_2$ allow prediction via Eq. (2). In the following R script "income = \$2000" is **"income = 20"** (the data is in hundreds of dollars).
 
 ```{r}
-# Model
-mod1 <- lm(food_exp ~ income, data=food)
+# Fit a simple linear regression: food_exp (response) on income (predictor)
+# 'food' is the data frame that contains the variables
+mod1 <- lm(food_exp ~ income, data = food)
 
-# Predict at incomes = 2000, 2500, 2700 USD
+mod1
+
+# Build a small data frame with the x-values where we want predictions.
+# NOTE: if 'income' is measured in HUNDREDS of dollars in your dataset,
+# then $2000 -> 20, $2500 -> 25, $2700 -> 27 (adjust if your units differ).
 newx <- data.frame(income = c(20, 25, 27))
+
+# Use the fitted model to predict food_exp at those income values
 yhat <- predict(mod1, newx)
-names(yhat) <- c("income=$2000", "$2500", "$2700")
+
+# Give friendly names to each prediction so the output is easy to read
+names(yhat) <- c("income = $2000", "income = $2500", "income = $2700")
+
+# Show the predictions
 yhat
+
 ```
+
+Compare the repeated samples witht the original regression output for $beta_1$
+
 
 ### Repeated Samples to Assess Regression Coefficients
 
 ```{r}
-N <- nrow(food) # number of observations
-C <- 50         # number of subsamples
-S <- 38         # subsample size
+N <- nrow(food)   # observations
+C <- 50           # repeats
+S <- 38           # subsample size
 
-sumb2 <- 0
+sumb2 <- 0        # sum of slopes
 for (i in 1:C){
-  set.seed(3*i)
-  subsample <- food[sample(1:N, size=S, replace=TRUE), ]
-  mod2 <- lm(food_exp ~ income, data=subsample)
-  sumb2 <- sumb2 + coef(mod2)[[2]]
+  set.seed(3*i)   # reproducible
+  subsample <- food[sample(1:N, S, replace = TRUE), ]  # bootstrap draw
+  mod2 <- lm(food_exp ~ income, data = subsample)      # fit model
+  sumb2 <- sumb2 + coef(mod2)[2]                       # add slope β₁
 }
-print(sumb2/C, digits = 3)
+
+print(sumb2 / C, digits = 3)   # average slope
 ```
 
 ### Estimated Variances and Covariance of Coefficients
