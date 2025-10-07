@@ -216,9 +216,11 @@ window.Quarto = {
   </ul></li>
   <li><a href="#lab-8-prediction-with-the-linear-regression-model" id="toc-lab-8-prediction-with-the-linear-regression-model" class="nav-link" data-scroll-target="#lab-8-prediction-with-the-linear-regression-model">🧪 Lab 8 — Prediction with the Linear Regression Model</a>
   <ul class="collapse">
-  <li><a href="#repeated-samples-to-assess-regression-coefficients" id="toc-repeated-samples-to-assess-regression-coefficients" class="nav-link" data-scroll-target="#repeated-samples-to-assess-regression-coefficients">Repeated Samples to Assess Regression Coefficients</a></li>
+  <li><a href="#learning-outcomes-1" id="toc-learning-outcomes-1" class="nav-link" data-scroll-target="#learning-outcomes-1">🎯 Learning outcomes</a></li>
+  <li><a href="#prerequisites-1" id="toc-prerequisites-1" class="nav-link" data-scroll-target="#prerequisites-1">🧰 Prerequisites</a></li>
+  <li><a href="#understanding-prediction-uncertainty-through-sampling-variability" id="toc-understanding-prediction-uncertainty-through-sampling-variability" class="nav-link" data-scroll-target="#understanding-prediction-uncertainty-through-sampling-variability">Understanding Prediction Uncertainty Through Sampling Variability</a></li>
   <li><a href="#estimated-variances-and-covariance-of-coefficients" id="toc-estimated-variances-and-covariance-of-coefficients" class="nav-link" data-scroll-target="#estimated-variances-and-covariance-of-coefficients">Estimated Variances and Covariance of Coefficients</a></li>
-  <li><a href="#non-linear-relationships" id="toc-non-linear-relationships" class="nav-link" data-scroll-target="#non-linear-relationships">Non-Linear Relationships</a></li>
+  <li><a href="#non-linear-relationships---when-straight-lines-dont-fit" id="toc-non-linear-relationships---when-straight-lines-dont-fit" class="nav-link" data-scroll-target="#non-linear-relationships---when-straight-lines-dont-fit">Non-Linear Relationships - When Straight Lines Don’t Fit</a></li>
   </ul></li>
   <li><a href="#lab-9-hypothesis-test-pvalue-testing-linear-combinations" id="toc-lab-9-hypothesis-test-pvalue-testing-linear-combinations" class="nav-link" data-scroll-target="#lab-9-hypothesis-test-pvalue-testing-linear-combinations">🧪 Lab 9 — Hypothesis Test, p‑Value &amp; Testing Linear Combinations</a>
   <ul class="collapse">
@@ -250,7 +252,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">7 Oct 2025, 16:12</p>
+      <p class="date-modified">7 Oct 2025, 22:32</p>
     </div>
   </div>
     
@@ -469,8 +471,8 @@ income      10.20964   2.093264 4.877381 1.945862e-05</code></pre>
 <div class="mcq-we-q">
 <strong>1) What relationship does simple linear regression assume between y and x?</strong><br>
 
-<div id="radio_BYUAMLYKNH" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_BYUAMLYKNH" value=""> <span>Quadratic</span></label><label><input type="radio" autocomplete="off" name="radio_BYUAMLYKNH" value=""> <span>Logarithmic</span></label><label><input type="radio" autocomplete="off" name="radio_BYUAMLYKNH" value="answer"> <span>Linear</span></label><label><input type="radio" autocomplete="off" name="radio_BYUAMLYKNH" value=""> <span>Exponential</span></label>
+<div id="radio_ELALWKHPXL" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_ELALWKHPXL" value=""> <span>Quadratic</span></label><label><input type="radio" autocomplete="off" name="radio_ELALWKHPXL" value=""> <span>Logarithmic</span></label><label><input type="radio" autocomplete="off" name="radio_ELALWKHPXL" value="answer"> <span>Linear</span></label><label><input type="radio" autocomplete="off" name="radio_ELALWKHPXL" value=""> <span>Exponential</span></label>
 </div>
 <span class="mcq-key" data-correct="Linear"></span>
 <details class="hint">
@@ -484,8 +486,8 @@ Think straight line: one slope + one intercept.
 <div class="mcq-we-q">
 <strong>2) In the model y = β₀ + β₁ x + ε, what does β₁ represent?</strong><br>
 
-<div id="radio_FFHWTCWEML" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_FFHWTCWEML" value=""> <span>The average of y</span></label><label><input type="radio" autocomplete="off" name="radio_FFHWTCWEML" value=""> <span>The error variance</span></label><label><input type="radio" autocomplete="off" name="radio_FFHWTCWEML" value="answer"> <span>Expected change in y for a one-unit increase in x</span></label><label><input type="radio" autocomplete="off" name="radio_FFHWTCWEML" value=""> <span>The intercept</span></label>
+<div id="radio_AAMWUMXSIH" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_AAMWUMXSIH" value=""> <span>The average of y</span></label><label><input type="radio" autocomplete="off" name="radio_AAMWUMXSIH" value=""> <span>The error variance</span></label><label><input type="radio" autocomplete="off" name="radio_AAMWUMXSIH" value="answer"> <span>Expected change in y for a one-unit increase in x</span></label><label><input type="radio" autocomplete="off" name="radio_AAMWUMXSIH" value=""> <span>The intercept</span></label>
 </div>
 <span class="mcq-key" data-correct="Expected change in y for a one-unit increase in x"></span>
 <details class="hint">
@@ -498,8 +500,8 @@ Hint
 <div class="mcq-we-q">
 <strong>3) In the model y = β₀ + β₁ x + ε, what does β₀ represent?</strong><br>
 
-<div id="radio_LWACEBZRYA" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_LWACEBZRYA" value=""> <span>The slope of x</span></label><label><input type="radio" autocomplete="off" name="radio_LWACEBZRYA" value="answer"> <span>The expected value of y when x = 0</span></label><label><input type="radio" autocomplete="off" name="radio_LWACEBZRYA" value=""> <span>The variance of ε</span></label><label><input type="radio" autocomplete="off" name="radio_LWACEBZRYA" value=""> <span>Correlation between x and y</span></label>
+<div id="radio_XBOZZOOTEM" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_XBOZZOOTEM" value=""> <span>The slope of x</span></label><label><input type="radio" autocomplete="off" name="radio_XBOZZOOTEM" value="answer"> <span>The expected value of y when x = 0</span></label><label><input type="radio" autocomplete="off" name="radio_XBOZZOOTEM" value=""> <span>The variance of ε</span></label><label><input type="radio" autocomplete="off" name="radio_XBOZZOOTEM" value=""> <span>Correlation between x and y</span></label>
 </div>
 <span class="mcq-key" data-correct="The expected value of y when x = 0"></span>
 <details class="hint">
@@ -512,8 +514,8 @@ Value of y at x = 0.
 <div class="mcq-we-q">
 <strong>4) A residual is defined as:</strong><br>
 
-<div id="radio_YKFHQGUXYN" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_YKFHQGUXYN" value=""> <span>Predicted y minus observed y</span></label><label><input type="radio" autocomplete="off" name="radio_YKFHQGUXYN" value=""> <span>Observed x minus predicted x</span></label><label><input type="radio" autocomplete="off" name="radio_YKFHQGUXYN" value="answer"> <span>Observed y minus predicted y</span></label><label><input type="radio" autocomplete="off" name="radio_YKFHQGUXYN" value=""> <span>The fitted value</span></label>
+<div id="radio_QPZZFECUBJ" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_QPZZFECUBJ" value=""> <span>Predicted y minus observed y</span></label><label><input type="radio" autocomplete="off" name="radio_QPZZFECUBJ" value=""> <span>Observed x minus predicted x</span></label><label><input type="radio" autocomplete="off" name="radio_QPZZFECUBJ" value="answer"> <span>Observed y minus predicted y</span></label><label><input type="radio" autocomplete="off" name="radio_QPZZFECUBJ" value=""> <span>The fitted value</span></label>
 </div>
 <span class="mcq-key" data-correct="Observed y minus predicted y"></span>
 <details class="hint">
@@ -526,8 +528,8 @@ Actual − fitted.
 <div class="mcq-we-q">
 <strong>5) Ordinary Least Squares (OLS) chooses coefficients to:</strong><br>
 
-<div id="radio_QTNMYKMJFT" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_QTNMYKMJFT" value=""> <span>Maximize R²</span></label><label><input type="radio" autocomplete="off" name="radio_QTNMYKMJFT" value=""> <span>Minimize the sum of absolute residuals</span></label><label><input type="radio" autocomplete="off" name="radio_QTNMYKMJFT" value="answer"> <span>Minimize the sum of squared residuals</span></label><label><input type="radio" autocomplete="off" name="radio_QTNMYKMJFT" value=""> <span>Maximize the likelihood under normal errors only</span></label>
+<div id="radio_UBDQPXZGDS" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_UBDQPXZGDS" value=""> <span>Maximize R²</span></label><label><input type="radio" autocomplete="off" name="radio_UBDQPXZGDS" value=""> <span>Minimize the sum of absolute residuals</span></label><label><input type="radio" autocomplete="off" name="radio_UBDQPXZGDS" value="answer"> <span>Minimize the sum of squared residuals</span></label><label><input type="radio" autocomplete="off" name="radio_UBDQPXZGDS" value=""> <span>Maximize the likelihood under normal errors only</span></label>
 </div>
 <span class="mcq-key" data-correct="Minimize the sum of squared residuals"></span>
 <details class="hint">
@@ -540,16 +542,16 @@ Squares penalize big errors more.
 <div class="mcq-we-q">
 <strong>6) With an intercept in the model, OLS residuals:</strong><br>
 
-<div id="radio_GGKYKOBUKU" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_GGKYKOBUKU" value=""> <span>Sum to a positive number</span></label><label><input type="radio" autocomplete="off" name="radio_GGKYKOBUKU" value=""> <span>Sum to a negative number</span></label><label><input type="radio" autocomplete="off" name="radio_GGKYKOBUKU" value="answer"> <span>Sum to zero</span></label><label><input type="radio" autocomplete="off" name="radio_GGKYKOBUKU" value=""> <span>Sum to the sample mean of y</span></label>
+<div id="radio_KRNADGOZJW" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_KRNADGOZJW" value=""> <span>Sum to a positive number</span></label><label><input type="radio" autocomplete="off" name="radio_KRNADGOZJW" value=""> <span>Sum to a negative number</span></label><label><input type="radio" autocomplete="off" name="radio_KRNADGOZJW" value="answer"> <span>Sum to zero</span></label><label><input type="radio" autocomplete="off" name="radio_KRNADGOZJW" value=""> <span>Sum to the sample mean of y</span></label>
 </div>
 <p><span class="mcq-key" data-correct="Sum to zero"></span></p>
 </div>
 <div class="mcq-we-q">
 <strong>7) The OLS regression line passes through:</strong><br>
 
-<div id="radio_YMIOKCQIDK" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_YMIOKCQIDK" value=""> <span>The origin (0,0)</span></label><label><input type="radio" autocomplete="off" name="radio_YMIOKCQIDK" value="answer"> <span>The point (x̄, ȳ)</span></label><label><input type="radio" autocomplete="off" name="radio_YMIOKCQIDK" value=""> <span>The median of x and y</span></label><label><input type="radio" autocomplete="off" name="radio_YMIOKCQIDK" value=""> <span>The maximum of y</span></label>
+<div id="radio_AGEDTIEJZP" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_AGEDTIEJZP" value=""> <span>The origin (0,0)</span></label><label><input type="radio" autocomplete="off" name="radio_AGEDTIEJZP" value="answer"> <span>The point (x̄, ȳ)</span></label><label><input type="radio" autocomplete="off" name="radio_AGEDTIEJZP" value=""> <span>The median of x and y</span></label><label><input type="radio" autocomplete="off" name="radio_AGEDTIEJZP" value=""> <span>The maximum of y</span></label>
 </div>
 <span class="mcq-key" data-correct="The point (x̄, ȳ)"></span>
 <details class="hint">
@@ -562,56 +564,56 @@ It goes through the means.
 <div class="mcq-we-q">
 <strong>8) Which R function fits a simple linear regression model?</strong><br>
 
-<div id="radio_PAQXRHVJXM" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_PAQXRHVJXM" value=""> <span>plot()</span></label><label><input type="radio" autocomplete="off" name="radio_PAQXRHVJXM" value=""> <span>cor()</span></label><label><input type="radio" autocomplete="off" name="radio_PAQXRHVJXM" value="answer"> <span>lm()</span></label><label><input type="radio" autocomplete="off" name="radio_PAQXRHVJXM" value=""> <span>predict()</span></label>
+<div id="radio_BOUGVVZWWD" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_BOUGVVZWWD" value=""> <span>plot()</span></label><label><input type="radio" autocomplete="off" name="radio_BOUGVVZWWD" value=""> <span>cor()</span></label><label><input type="radio" autocomplete="off" name="radio_BOUGVVZWWD" value="answer"> <span>lm()</span></label><label><input type="radio" autocomplete="off" name="radio_BOUGVVZWWD" value=""> <span>predict()</span></label>
 </div>
 <p><span class="mcq-key" data-correct="lm()"></span></p>
 </div>
 <div class="mcq-we-q">
 <strong>9) In <code>summary(mod)</code>, the p-value for the slope tests:</strong><br>
 
-<div id="radio_IXGZHSJVQX" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_IXGZHSJVQX" value=""> <span>H₀: β₁ ≠ 0</span></label><label><input type="radio" autocomplete="off" name="radio_IXGZHSJVQX" value="answer"> <span>H₀: β₁ = 0</span></label><label><input type="radio" autocomplete="off" name="radio_IXGZHSJVQX" value=""> <span>H₀: β₀ = 0</span></label><label><input type="radio" autocomplete="off" name="radio_IXGZHSJVQX" value=""> <span>H₀: errors are normal</span></label>
+<div id="radio_OUZEKZKQGG" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_OUZEKZKQGG" value=""> <span>H₀: β₁ ≠ 0</span></label><label><input type="radio" autocomplete="off" name="radio_OUZEKZKQGG" value="answer"> <span>H₀: β₁ = 0</span></label><label><input type="radio" autocomplete="off" name="radio_OUZEKZKQGG" value=""> <span>H₀: β₀ = 0</span></label><label><input type="radio" autocomplete="off" name="radio_OUZEKZKQGG" value=""> <span>H₀: errors are normal</span></label>
 </div>
 <p><span class="mcq-key" data-correct="H0: B₁ = 0"></span></p>
 </div>
 <div class="mcq-we-q">
 <strong>10) The p-value is best described as:</strong><br>
 
-<div id="radio_LDWJILCLQH" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_LDWJILCLQH" value=""> <span>The probability H₁ is true</span></label><label><input type="radio" autocomplete="off" name="radio_LDWJILCLQH" value=""> <span>The probability the estimate is correct</span></label><label><input type="radio" autocomplete="off" name="radio_LDWJILCLQH" value="answer"> <span>The probability (under H₀) of a result at least as extreme as observed</span></label><label><input type="radio" autocomplete="off" name="radio_LDWJILCLQH" value=""> <span>The Type II error rate</span></label>
+<div id="radio_DWMPPEFGEU" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_DWMPPEFGEU" value=""> <span>The probability H₁ is true</span></label><label><input type="radio" autocomplete="off" name="radio_DWMPPEFGEU" value=""> <span>The probability the estimate is correct</span></label><label><input type="radio" autocomplete="off" name="radio_DWMPPEFGEU" value="answer"> <span>The probability (under H₀) of a result at least as extreme as observed</span></label><label><input type="radio" autocomplete="off" name="radio_DWMPPEFGEU" value=""> <span>The Type II error rate</span></label>
 </div>
 <p><span class="mcq-key" data-correct="The probability (under H0) of a result at least as extreme as observed"></span></p>
 </div>
 <div class="mcq-we-q">
 <strong>11) A 95% confidence interval for β₁ is generally:</strong><br>
 
-<div id="radio_FFDUFVFLEZ" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_FFDUFVFLEZ" value=""> <span>Estimate ± 1.96 × σ of y</span></label><label><input type="radio" autocomplete="off" name="radio_FFDUFVFLEZ" value="answer"> <span>Estimate ± critical t × SE(β₁)</span></label><label><input type="radio" autocomplete="off" name="radio_FFDUFVFLEZ" value=""> <span>Estimate ± 2 × residual SD</span></label><label><input type="radio" autocomplete="off" name="radio_FFDUFVFLEZ" value=""> <span>SE(β₁) ± estimate</span></label>
+<div id="radio_SDGODIOHJO" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_SDGODIOHJO" value=""> <span>Estimate ± 1.96 × σ of y</span></label><label><input type="radio" autocomplete="off" name="radio_SDGODIOHJO" value="answer"> <span>Estimate ± critical t × SE(β₁)</span></label><label><input type="radio" autocomplete="off" name="radio_SDGODIOHJO" value=""> <span>Estimate ± 2 × residual SD</span></label><label><input type="radio" autocomplete="off" name="radio_SDGODIOHJO" value=""> <span>SE(β₁) ± estimate</span></label>
 </div>
 <p><span class="mcq-key" data-correct="Estimate ± critical t × SE(B₁)"></span></p>
 </div>
 <div class="mcq-we-q">
 <strong>12) R² measures:</strong><br>
 
-<div id="radio_CKRDSMPOMT" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_CKRDSMPOMT" value=""> <span>The correlation between x and y</span></label><label><input type="radio" autocomplete="off" name="radio_CKRDSMPOMT" value="answer"> <span>Proportion of variance in y explained by x</span></label><label><input type="radio" autocomplete="off" name="radio_CKRDSMPOMT" value=""> <span>The average residual size</span></label><label><input type="radio" autocomplete="off" name="radio_CKRDSMPOMT" value=""> <span>The probability the model is correct</span></label>
+<div id="radio_AVTXZJPKWB" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_AVTXZJPKWB" value=""> <span>The correlation between x and y</span></label><label><input type="radio" autocomplete="off" name="radio_AVTXZJPKWB" value="answer"> <span>Proportion of variance in y explained by x</span></label><label><input type="radio" autocomplete="off" name="radio_AVTXZJPKWB" value=""> <span>The average residual size</span></label><label><input type="radio" autocomplete="off" name="radio_AVTXZJPKWB" value=""> <span>The probability the model is correct</span></label>
 </div>
 <p><span class="mcq-key" data-correct="Proportion of variance in y explained by x"></span></p>
 </div>
 <div class="mcq-we-q">
 <strong>13) Adjusted R² differs from R² because it:</strong><br>
 
-<div id="radio_YJGNUJFNSX" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_YJGNUJFNSX" value=""> <span>Ignores sample size</span></label><label><input type="radio" autocomplete="off" name="radio_YJGNUJFNSX" value=""> <span>Is always larger than R²</span></label><label><input type="radio" autocomplete="off" name="radio_YJGNUJFNSX" value="answer"> <span>Penalizes adding predictors relative to sample size</span></label><label><input type="radio" autocomplete="off" name="radio_YJGNUJFNSX" value=""> <span>Equals 1 − R²</span></label>
+<div id="radio_SVDXKVTRCO" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_SVDXKVTRCO" value=""> <span>Ignores sample size</span></label><label><input type="radio" autocomplete="off" name="radio_SVDXKVTRCO" value=""> <span>Is always larger than R²</span></label><label><input type="radio" autocomplete="off" name="radio_SVDXKVTRCO" value="answer"> <span>Penalizes adding predictors relative to sample size</span></label><label><input type="radio" autocomplete="off" name="radio_SVDXKVTRCO" value=""> <span>Equals 1 − R²</span></label>
 </div>
 <p><span class="mcq-key" data-correct="Penalizes adding predictors relative to sample size"></span></p>
 </div>
 <div class="mcq-we-q">
 <strong>14) To make a prediction at x = x₀, you use:</strong><br>
 
-<div id="radio_RVNZVSLTFM" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_RVNZVSLTFM" value=""> <span>β₁ × x₀</span></label><label><input type="radio" autocomplete="off" name="radio_RVNZVSLTFM" value=""> <span>β₀ ÷ x₀</span></label><label><input type="radio" autocomplete="off" name="radio_RVNZVSLTFM" value="answer"> <span>ŷ = β₀ + β₁ × x₀</span></label><label><input type="radio" autocomplete="off" name="radio_RVNZVSLTFM" value=""> <span>SE(β₁) × x₀</span></label>
+<div id="radio_ESPDPCKWNN" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_ESPDPCKWNN" value=""> <span>β₁ × x₀</span></label><label><input type="radio" autocomplete="off" name="radio_ESPDPCKWNN" value=""> <span>β₀ ÷ x₀</span></label><label><input type="radio" autocomplete="off" name="radio_ESPDPCKWNN" value="answer"> <span>ŷ = β₀ + β₁ × x₀</span></label><label><input type="radio" autocomplete="off" name="radio_ESPDPCKWNN" value=""> <span>SE(β₁) × x₀</span></label>
 </div>
 <span class="mcq-key" data-correct="ŷ = β₀ + β₁ × x₀"></span>
 <details class="hint">
@@ -624,24 +626,24 @@ Plug x₀ into the fitted line.
 <div class="mcq-we-q">
 <strong>15) For OLS to be unbiased, a key assumption is:</strong><br>
 
-<div id="radio_RDNPQZPWTA" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_RDNPQZPWTA" value=""> <span>x is normally distributed</span></label><label><input type="radio" autocomplete="off" name="radio_RDNPQZPWTA" value=""> <span>Errors have zero variance</span></label><label><input type="radio" autocomplete="off" name="radio_RDNPQZPWTA" value="answer"> <span>E[ε | x] = 0 (errors have zero mean conditional on x)</span></label><label><input type="radio" autocomplete="off" name="radio_RDNPQZPWTA" value=""> <span>y is standardized</span></label>
+<div id="radio_FKCNJTRBRI" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_FKCNJTRBRI" value=""> <span>x is normally distributed</span></label><label><input type="radio" autocomplete="off" name="radio_FKCNJTRBRI" value=""> <span>Errors have zero variance</span></label><label><input type="radio" autocomplete="off" name="radio_FKCNJTRBRI" value="answer"> <span>E[ε | x] = 0 (errors have zero mean conditional on x)</span></label><label><input type="radio" autocomplete="off" name="radio_FKCNJTRBRI" value=""> <span>y is standardized</span></label>
 </div>
 <p><span class="mcq-key" data-correct="E[ε | x] = 0 (errors have zero mean conditional on x)"></span></p>
 </div>
 <div class="mcq-we-q">
 <strong>16) Homoskedasticity means:</strong><br>
 
-<div id="radio_XKYJGKNCNG" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_XKYJGKNCNG" value=""> <span>Errors are perfectly correlated</span></label><label><input type="radio" autocomplete="off" name="radio_XKYJGKNCNG" value="answer"> <span>Variance of errors is constant across x</span></label><label><input type="radio" autocomplete="off" name="radio_XKYJGKNCNG" value=""> <span>Mean of errors is zero only at x̄</span></label><label><input type="radio" autocomplete="off" name="radio_XKYJGKNCNG" value=""> <span>x has constant variance</span></label>
+<div id="radio_IMVRTUTITG" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_IMVRTUTITG" value=""> <span>Errors are perfectly correlated</span></label><label><input type="radio" autocomplete="off" name="radio_IMVRTUTITG" value="answer"> <span>Variance of errors is constant across x</span></label><label><input type="radio" autocomplete="off" name="radio_IMVRTUTITG" value=""> <span>Mean of errors is zero only at x̄</span></label><label><input type="radio" autocomplete="off" name="radio_IMVRTUTITG" value=""> <span>x has constant variance</span></label>
 </div>
 <p><span class="mcq-key" data-correct="Variance of errors is constant across x"></span></p>
 </div>
 <div class="mcq-we-q">
 <strong>17) In <code>summary(mod)</code>, the t value for β₁ equals:</strong><br>
 
-<div id="radio_FCPVCBAGBA" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_FCPVCBAGBA" value=""> <span>β₁</span></label><label><input type="radio" autocomplete="off" name="radio_FCPVCBAGBA" value=""> <span>SE(β₁)</span></label><label><input type="radio" autocomplete="off" name="radio_FCPVCBAGBA" value="answer"> <span>Estimate(β₁) / SE(β₁)</span></label><label><input type="radio" autocomplete="off" name="radio_FCPVCBAGBA" value=""> <span>1 − p-value</span></label>
+<div id="radio_AVEWFYFMSP" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_AVEWFYFMSP" value=""> <span>β₁</span></label><label><input type="radio" autocomplete="off" name="radio_AVEWFYFMSP" value=""> <span>SE(β₁)</span></label><label><input type="radio" autocomplete="off" name="radio_AVEWFYFMSP" value="answer"> <span>Estimate(β₁) / SE(β₁)</span></label><label><input type="radio" autocomplete="off" name="radio_AVEWFYFMSP" value=""> <span>1 − p-value</span></label>
 </div>
 <span class="mcq-key" data-correct="Estimate(β₁) / SE(β₁)"></span>
 <details class="hint">
@@ -654,24 +656,24 @@ Signal ÷ noise for the slope estimate.
 <div class="mcq-we-q">
 <strong>18) The units of β₁ are best described as:</strong><br>
 
-<div id="radio_LGTRESFTDV" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_LGTRESFTDV" value=""> <span>Units of y</span></label><label><input type="radio" autocomplete="off" name="radio_LGTRESFTDV" value="answer"> <span>Units of y per unit of x</span></label><label><input type="radio" autocomplete="off" name="radio_LGTRESFTDV" value=""> <span>Unitless</span></label><label><input type="radio" autocomplete="off" name="radio_LGTRESFTDV" value=""> <span>Units of x per unit of y</span></label>
+<div id="radio_MPZDUAROMZ" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_MPZDUAROMZ" value=""> <span>Units of y</span></label><label><input type="radio" autocomplete="off" name="radio_MPZDUAROMZ" value="answer"> <span>Units of y per unit of x</span></label><label><input type="radio" autocomplete="off" name="radio_MPZDUAROMZ" value=""> <span>Unitless</span></label><label><input type="radio" autocomplete="off" name="radio_MPZDUAROMZ" value=""> <span>Units of x per unit of y</span></label>
 </div>
 <p><span class="mcq-key" data-correct="Units of y per unit of x"></span></p>
 </div>
 <div class="mcq-we-q">
 <strong>19) Rescaling x from dollars to hundreds of dollars will:</strong><br>
 
-<div id="radio_YXDWVKAODK" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_YXDWVKAODK" value=""> <span>Leave β₁ unchanged</span></label><label><input type="radio" autocomplete="off" name="radio_YXDWVKAODK" value="answer"> <span>Rescale β₁ numerically but leave R² and the t-test for β₁ unchanged</span></label><label><input type="radio" autocomplete="off" name="radio_YXDWVKAODK" value=""> <span>Change the data but not the model</span></label><label><input type="radio" autocomplete="off" name="radio_YXDWVKAODK" value=""> <span>Invalidate OLS</span></label>
+<div id="radio_KGOOGDEFFB" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_KGOOGDEFFB" value=""> <span>Leave β₁ unchanged</span></label><label><input type="radio" autocomplete="off" name="radio_KGOOGDEFFB" value="answer"> <span>Rescale β₁ numerically but leave R² and the t-test for β₁ unchanged</span></label><label><input type="radio" autocomplete="off" name="radio_KGOOGDEFFB" value=""> <span>Change the data but not the model</span></label><label><input type="radio" autocomplete="off" name="radio_KGOOGDEFFB" value=""> <span>Invalidate OLS</span></label>
 </div>
 <p><span class="mcq-key" data-correct="Rescale β₁ numerically but leave R² and the t-test for β₁ essentially unchanged"></span></p>
 </div>
 <div class="mcq-we-q">
 <strong>20) After fitting <code>mod &lt;- lm(y ~ x, d)</code>, the fitted value at x₀ is:</strong><br>
 
-<div id="radio_EJVMDECDUU" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_EJVMDECDUU" value=""> <span>residuals(mod)[x==x₀]</span></label><label><input type="radio" autocomplete="off" name="radio_EJVMDECDUU" value="answer"> <span>predict(mod, newdata = data.frame(x = x₀))</span></label><label><input type="radio" autocomplete="off" name="radio_EJVMDECDUU" value=""> <span>coef(mod)['x']</span></label><label><input type="radio" autocomplete="off" name="radio_EJVMDECDUU" value=""> <span>fitted(mod)[1] always</span></label>
+<div id="radio_VNNPRHDIDW" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_VNNPRHDIDW" value=""> <span>residuals(mod)[x==x₀]</span></label><label><input type="radio" autocomplete="off" name="radio_VNNPRHDIDW" value="answer"> <span>predict(mod, newdata = data.frame(x = x₀))</span></label><label><input type="radio" autocomplete="off" name="radio_VNNPRHDIDW" value=""> <span>coef(mod)['x']</span></label><label><input type="radio" autocomplete="off" name="radio_VNNPRHDIDW" value=""> <span>fitted(mod)[1] always</span></label>
 </div>
 <span class="mcq-key" data-correct="predict(mod, newdata = data.frame(x = x₀))"></span>
 <details class="hint">
@@ -688,105 +690,239 @@ Use <code>predict()</code> with a small data frame for x₀.
 </section>
 <section id="lab-8-prediction-with-the-linear-regression-model" class="level2">
 <h2 class="anchored" data-anchor-id="lab-8-prediction-with-the-linear-regression-model">🧪 Lab 8 — Prediction with the Linear Regression Model</h2>
-<p>The estimates <span class="math inline">\(b_1\)</span> and <span class="math inline">\(b_2\)</span> allow prediction via Eq. (2). In the following R script “income = $2000” is <strong>“income = 20”</strong> (the data is in hundreds of dollars).</p>
+<section id="learning-outcomes-1" class="level3">
+<h3 class="anchored" data-anchor-id="learning-outcomes-1">🎯 Learning outcomes</h3>
+<p>By the end of this lab you will be able to:</p>
+<ol type="1">
+<li>Generate point predictions and quantify their uncertainty using R’s prediction framework</li>
+<li>Distinguish between confidence intervals for average outcomes and prediction intervals for individual cases, and select the appropriate interval for applied research contexts</li>
+<li>Assess the reliability of coefficient estimates through their variance-covariance structure</li>
+<li>Recognize when predictions involve extrapolation beyond observed data and understand the associated risks</li>
+<li>Handle non-linear relationships through quadratic and log-linear specifications</li>
+</ol>
+<hr>
+</section>
+<section id="prerequisites-1" class="level3">
+<h3 class="anchored" data-anchor-id="prerequisites-1">🧰 Prerequisites</h3>
+<p><strong>Knowledge:</strong> - Understanding of simple linear regression (Lab 7) - Familiarity with residuals, fitted values, and R² - Basic probability concepts (sampling distributions, standard errors)</p>
+<p><strong>Technical:</strong> - R (≥ 4.0) and RStudio installed - Completed Labs 1-7 - Required packages (install if needed):</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="fu">c</span>(<span class="st">"remotes"</span>, <span class="st">"PoEdata"</span>)) </span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>remotes<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"ccolonescu/PoEdata"</span>)</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(PoEdata)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Datasets:</strong></p>
+<p>food - household food expenditure and income (40 observations) br - Baton Rouge house prices and characteristics (1,080 observations) —</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Notation reminder: We use Greek letters (β1,β2​) for true population parameters and Latin letters (b1,b2​) for their sample estimates.</p>
+<p>ŷ: predicted y value</p>
+<p><span class="math inline">\(\hat{\beta}\)</span> or <span class="math inline">\(\hat{b}\)</span> are sometimes used interchangeably with b for estimates</p>
+</div>
+</div>
+<p>In Lab 7, we learned how to estimate relationships, But estimation is only half the story. In applied research, we often need to make predictions. In applied land economics research, prediction is crucial—whether forecasting property values, estimating rental yields, or projecting land use changes. This lab equips you with the tools to make robust predictions and quantify their uncertainty. Let’s begin with the basic prediction workflow.</p>
+<p>Once we have estimated our regression coefficients <span class="math inline">\(b_1\)</span> (intercept) and <span class="math inline">\(b_2\)</span> (slope), we can use them to predict food expenditure for any given income level using the fitted regression equation (Eq. 2).</p>
+<p><span class="math display">\[
+\hat{y} = b_1 + b_2 x \tag{2}
+\]</span></p>
+<p>⚠️<strong>Unit conversion:</strong> In the following R script “income = $2000” is <strong>“income = 20”</strong> (the data is in hundreds of dollars).</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit a simple linear regression: food_exp (response) on income (predictor)</span></span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 'food' is the data frame that contains the variables</span></span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>mod1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(food_exp <span class="sc">~</span> income, <span class="at">data =</span> food)</span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>mod1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="do">#### Step 1: Fit the model (recap from Lab 7)</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(PoEdata)</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">"food"</span>)</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Estimate the food expenditure model</span></span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>mod1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(food_exp <span class="sc">~</span> income, <span class="at">data =</span> food)</span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Review estimates</span></span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mod1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
 lm(formula = food_exp ~ income, data = food)
 
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-223.025  -50.816   -6.324   67.879  212.044 
+
 Coefficients:
-(Intercept)       income  
-      83.42        10.21  </code></pre>
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)   83.416     43.410   1.922   0.0622 .  
+income        10.210      2.093   4.877 1.95e-05 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 89.52 on 38 degrees of freedom
+Multiple R-squared:  0.385, Adjusted R-squared:  0.3688 
+F-statistic: 23.79 on 1 and 38 DF,  p-value: 1.946e-05</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Build a small data frame with the x-values where we want predictions.</span></span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">NOTE</span><span class="co">: if 'income' is measured in HUNDREDS of dollars in your dataset,</span></span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="co"># then $2000 -&gt; 20, $2500 -&gt; 25, $2700 -&gt; 27 (adjust if your units differ).</span></span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>newx <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">income =</span> <span class="fu">c</span>(<span class="dv">20</span>, <span class="dv">25</span>, <span class="dv">27</span>))</span>
-<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Use the fitted model to predict food_exp at those income values</span></span>
-<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>yhat <span class="ot">&lt;-</span> <span class="fu">predict</span>(mod1, newx)</span>
-<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Give friendly names to each prediction so the output is easy to read</span></span>
-<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(yhat) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"income = $2000"</span>, <span class="st">"income = $2500"</span>, <span class="st">"income = $2700"</span>)</span>
-<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Show the predictions</span></span>
-<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a>yhat</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="do">#### Step 2: Create a data frame with target income values</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Scenario: Predict food expenditure for three household types</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Note: income is in $100s, so divide actual income by 100</span></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>newx <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">income =</span> <span class="fu">c</span>(<span class="dv">20</span>, <span class="dv">25</span>, <span class="dv">27</span>))</span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a><span class="do">#### Step 3: Generate predictions</span></span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a><span class="co"># The predict() function takes two arguments:</span></span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a><span class="co">#   1. A fitted model object (mod1)</span></span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a><span class="co">#   2. A data frame with new x-values (must have same column names as original data)</span></span>
+<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a>yhat <span class="ot">&lt;-</span> <span class="fu">predict</span>(mod1, newx)</span>
+<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Give friendly names to each prediction so the output is   easy to read</span></span>
+<span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(yhat) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Low income = $2000"</span>, <span class="st">"Median income = $2500"</span>, <span class="st">"High income = $2700"</span>)</span>
+<span id="cb21-16"><a href="#cb21-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-17"><a href="#cb21-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Show the predictions</span></span>
+<span id="cb21-18"><a href="#cb21-18" aria-hidden="true" tabindex="-1"></a>yhat</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>income = $2000 income = $2500 income = $2700 
-      287.6089       338.6571       359.0764 </code></pre>
+<pre><code>   Low income = $2000 Median income = $2500   High income = $2700 
+             287.6089              338.6571              359.0764 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="do">#### Step 4: Interpret the results</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="co"># A household earning $2,000/week is predicted to spend $287.60 on food per week.</span></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="co"># This represents about 14.4% of their income (287.6/2000).</span></span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a><span class="co"># For the median household ($2,500/week), predicted food expenditure is $338.70,</span></span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a><span class="co"># or about 13.5% of income.</span></span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Observation: The proportion of income spent on food decreases as income rises—</span></span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a><span class="co"># this is consistent with Engel's Law from economics.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>What’s Missing? Uncertainty!</strong></p>
+<p>These are <strong>point predictions</strong>—our single best guess at each income level. But how confident are we?</p>
+<p>Consider the household earning $2,000/week: - We predict they’ll spend $287.60 on food - But there’s sampling uncertainty (our <span class="math inline">\(b_1\)</span> and <span class="math inline">\(b_2\)</span> are estimates) - And individual variation (not all $2,000/week households spend exactly $287.60)</p>
+<p><strong>Two types of intervals address these concerns:</strong></p>
+<ol type="1">
+<li><strong>Confidence intervals</strong> answer: “What’s the average food expenditure for <em>all</em> households at this income level?”</li>
+<li><strong>Prediction intervals</strong> answer: “What might <em>one specific</em> household at this income level spend?”</li>
+</ol>
+<hr>
+</section>
+<section id="understanding-prediction-uncertainty-through-sampling-variability" class="level3">
+<h3 class="anchored" data-anchor-id="understanding-prediction-uncertainty-through-sampling-variability">Understanding Prediction Uncertainty Through Sampling Variability</h3>
+<p>Our predictions depend entirely on our estimated coefficients (<span class="math inline">\(b_1, b_2\)</span>). But these are <em>sample estimates</em>—if we collected a different dataset, we’d get different values and therefore different predictions.</p>
+<p>Before making predictions, it’s important to understand that our coefficient estimates vary across samples. This matters for land economics applications: if we’re advising on property valuations, we need to know how sensitive our predictions are to sampling variation.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+What is “sampling with replacement”?
 </div>
 </div>
-<p>Compare the repeated samples witht the original regression output for <span class="math inline">\(beta_1\)</span></p>
-<section id="repeated-samples-to-assess-regression-coefficients" class="level3">
-<h3 class="anchored" data-anchor-id="repeated-samples-to-assess-regression-coefficients">Repeated Samples to Assess Regression Coefficients</h3>
+<div class="callout-body-container callout-body">
+<p>Imagine our 40 observations are numbered balls in an urn. We draw a ball, record its data, <strong>put it back</strong>, then draw again. Some observations may appear multiple times in a bootstrap sample; others not at all. This mimics the randomness of drawing a new sample from the population.</p>
+</div>
+</div>
+<p>The following bootstrap exercise (simulating sampling variability) demonstrates this variability by repeatedly resampling our data and re-estimating the model:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>N <span class="ot">&lt;-</span> <span class="fu">nrow</span>(food)   <span class="co"># observations</span></span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>C <span class="ot">&lt;-</span> <span class="dv">50</span>           <span class="co"># repeats</span></span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>S <span class="ot">&lt;-</span> <span class="dv">38</span>           <span class="co"># subsample size</span></span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>sumb2 <span class="ot">&lt;-</span> <span class="dv">0</span>        <span class="co"># sum of slopes</span></span>
-<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>C){</span>
-<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set.seed</span>(<span class="dv">3</span><span class="sc">*</span>i)   <span class="co"># reproducible</span></span>
-<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>  subsample <span class="ot">&lt;-</span> food[<span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span>N, S, <span class="at">replace =</span> <span class="cn">TRUE</span>), ]  <span class="co"># bootstrap draw</span></span>
-<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>  mod2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(food_exp <span class="sc">~</span> income, <span class="at">data =</span> subsample)      <span class="co"># fit model</span></span>
-<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a>  sumb2 <span class="ot">&lt;-</span> sumb2 <span class="sc">+</span> <span class="fu">coef</span>(mod2)[<span class="dv">2</span>]                       <span class="co"># add slope β₁</span></span>
-<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(sumb2 <span class="sc">/</span> C, <span class="at">digits =</span> <span class="dv">3</span>)   <span class="co"># average slope</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>N <span class="ot">&lt;-</span> <span class="fu">nrow</span>(food)   <span class="co"># observations</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>C <span class="ot">&lt;-</span> <span class="dv">50</span>           <span class="co"># repeats</span></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>S <span class="ot">&lt;-</span> <span class="dv">38</span>           <span class="co"># subsample size</span></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>sumb2 <span class="ot">&lt;-</span> <span class="dv">0</span>        <span class="co"># sum of slopes</span></span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>C){</span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set.seed</span>(<span class="dv">3</span><span class="sc">*</span>i)   <span class="co"># reproducible</span></span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Draw a bootstrap sample (with replacement)</span></span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a>  subsample <span class="ot">&lt;-</span> food[<span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span>N, S, <span class="at">replace =</span> <span class="cn">TRUE</span>), ]  <span class="co"># bootstrap draw</span></span>
+<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Fit the model on this bootstrap sample</span></span>
+<span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a>  mod2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(food_exp <span class="sc">~</span> income, <span class="at">data =</span> subsample)      </span>
+<span id="cb24-12"><a href="#cb24-12" aria-hidden="true" tabindex="-1"></a>  sumb2 <span class="ot">&lt;-</span> sumb2 <span class="sc">+</span> <span class="fu">coef</span>(mod2)[<span class="dv">2</span>]                       <span class="co"># store slope β2</span></span>
+<span id="cb24-13"><a href="#cb24-13" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb24-14"><a href="#cb24-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-15"><a href="#cb24-15" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(sumb2 <span class="sc">/</span> C, <span class="at">digits =</span> <span class="dv">3</span>)   <span class="co"># average slope</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>income 
   9.89 </code></pre>
 </div>
 </div>
+<p>Compare this bootsrap average (repeated samples) witht the original OLS regression output (from <code>mod1</code>) for <span class="math inline">\(b_2\)</span>. They should be similar, confirming that OLS is unbiased.</p>
 </section>
 <section id="estimated-variances-and-covariance-of-coefficients" class="level3">
 <h3 class="anchored" data-anchor-id="estimated-variances-and-covariance-of-coefficients">Estimated Variances and Covariance of Coefficients</h3>
+<p>The variance-covariance matrix tells us two crucial things: 1. <strong>Variances (diagonal):</strong> How much each coefficient estimate varies 2. <strong>Covariances (off-diagonal):</strong> How the estimates move together</p>
+<p>This matters for prediction because uncertainty in <span class="math inline">\(\hat{y}\)</span> depends on uncertainty in <em>both</em> coefficients <em>and</em> their correlation. For land valuation models, ignoring this covariance can lead to overconfident predictions.</p>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Common Error in Applied Work
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Many analysts incorrectly calculate prediction variance as just <span class="math inline">\(\text{Var}(b_1) + x_0^2 \cdot \text{Var}(b_2)\)</span>, omitting the covariance term. This can make predictions appear less precise than they actually are.</p>
+</div>
+</div>
+<p>The following R script extracts estimated variances and covariances from the object <code>mod 1</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>(varb1 <span class="ot">&lt;-</span> <span class="fu">vcov</span>(mod1)[<span class="dv">1</span>, <span class="dv">1</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># coef variance–covariance matrix.</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="co"># This is a 2×2 symmetric matrix:</span></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="co"># - Top-left (1884.44): Var(b₁), variance of intercept</span></span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a><span class="co"># - Bottom-right (4.38): Var(b₂), variance of slope  </span></span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a><span class="co"># - Off-diagonals (-87.78): Cov(b₁,b₂), covariance between coefficients</span></span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a><span class="fu">vcov</span>(mod1)                       </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>            (Intercept)     income
+(Intercept)  1884.44226 -85.903157
+income        -85.90316   4.381752</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="do">#### Extract individual components</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>(varb1   <span class="ot">&lt;-</span> <span class="fu">vcov</span>(mod1)[<span class="dv">1</span>, <span class="dv">1</span>])        <span class="co"># Var(B1), intercept variance</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 1884.442</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>(varb2 <span class="ot">&lt;-</span> <span class="fu">vcov</span>(mod1)[<span class="dv">2</span>, <span class="dv">2</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>(varb2   <span class="ot">&lt;-</span> <span class="fu">vcov</span>(mod1)[<span class="dv">2</span>, <span class="dv">2</span>])        <span class="co"># Var(B2), slope variance</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 4.381752</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>(covb1b2 <span class="ot">&lt;-</span> <span class="fu">vcov</span>(mod1)[<span class="dv">1</span>, <span class="dv">2</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>(covb1b2 <span class="ot">&lt;-</span> <span class="fu">vcov</span>(mod1)[<span class="dv">1</span>, <span class="dv">2</span>])        <span class="co"># Cov(B1, B2), covariance</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] -85.90316</code></pre>
 </div>
 </div>
+<p>Having established how to assess coefficient stability, we now turn to cases where linear relationships are insufficient to capture real-world patterns in land markets.</p>
 </section>
-<section id="non-linear-relationships" class="level3">
-<h3 class="anchored" data-anchor-id="non-linear-relationships">Non-Linear Relationships</h3>
-<section id="quadratic-model" class="level4">
-<h4 class="anchored" data-anchor-id="quadratic-model">Quadratic model</h4>
+<section id="non-linear-relationships---when-straight-lines-dont-fit" class="level3">
+<h3 class="anchored" data-anchor-id="non-linear-relationships---when-straight-lines-dont-fit">Non-Linear Relationships - When Straight Lines Don’t Fit</h3>
+<p>In practice, many land economic relationships are non-linear: - Property prices don’t increase linearly with size (diminishing returns to scale) - Land values may have threshold effects near transport nodes - Agricultural productivity often follows diminishing returns</p>
+<p>We’ll explore two common approaches <strong>Quadratic Models</strong> and <strong>Log-Linear Models</strong>.</p>
+<section id="part-a.-quadratic-model---for-u-shaped-or-inverted-u-relationships" class="level4">
+<h4 class="anchored" data-anchor-id="part-a.-quadratic-model---for-u-shaped-or-inverted-u-relationships">PART A. Quadratic model - for U-shaped or inverted-U relationships</h4>
 <p><span class="math display">\[
 y_i = \beta_1 + \beta_2 x_i^2 + e_i.\tag{5}
 \]</span></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(PoEdata)</span>
-<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(br)</span>
-<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>mod3 <span class="ot">&lt;-</span> <span class="fu">lm</span>(price <span class="sc">~</span> <span class="fu">I</span>(sqft<span class="sc">^</span><span class="dv">2</span>), <span class="at">data=</span>br)</span>
-<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>b1 <span class="ot">&lt;-</span> <span class="fu">coef</span>(mod3)[[<span class="dv">1</span>]]</span>
-<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>b2 <span class="ot">&lt;-</span> <span class="fu">coef</span>(mod3)[[<span class="dv">2</span>]]</span>
-<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a>sqftx <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">2000</span>, <span class="dv">4000</span>, <span class="dv">6000</span>)</span>
-<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a>pricex <span class="ot">&lt;-</span> b1 <span class="sc">+</span> b2<span class="sc">*</span>sqftx<span class="sc">^</span><span class="dv">2</span></span>
-<span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a>DpriceDsqft <span class="ot">&lt;-</span> <span class="dv">2</span><span class="sc">*</span>b2<span class="sc">*</span>sqftx</span>
-<span id="cb30-10"><a href="#cb30-10" aria-hidden="true" tabindex="-1"></a>elasticity <span class="ot">&lt;-</span> DpriceDsqft<span class="sc">*</span>sqftx<span class="sc">/</span>pricex</span>
-<span id="cb30-11"><a href="#cb30-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-12"><a href="#cb30-12" aria-hidden="true" tabindex="-1"></a>b1; b2; DpriceDsqft; elasticity</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(PoEdata)            <span class="co"># load package</span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(br)                    <span class="co"># dataset</span></span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>mod3 <span class="ot">&lt;-</span> <span class="fu">lm</span>(price <span class="sc">~</span> <span class="fu">I</span>(sqft<span class="sc">^</span><span class="dv">2</span>), <span class="at">data =</span> br)  <span class="co"># fit model</span></span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>b1 <span class="ot">&lt;-</span> <span class="fu">coef</span>(mod3)[<span class="dv">1</span>]        <span class="co"># intercept</span></span>
+<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a>b2 <span class="ot">&lt;-</span> <span class="fu">coef</span>(mod3)[<span class="dv">2</span>]        <span class="co"># coeff on sqft^2</span></span>
+<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-8"><a href="#cb34-8" aria-hidden="true" tabindex="-1"></a>sqftx <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">2000</span>, <span class="dv">4000</span>, <span class="dv">6000</span>)              <span class="co"># evaluation points</span></span>
+<span id="cb34-9"><a href="#cb34-9" aria-hidden="true" tabindex="-1"></a>pricex <span class="ot">&lt;-</span> b1 <span class="sc">+</span> b2 <span class="sc">*</span> sqftx<span class="sc">^</span><span class="dv">2</span>               <span class="co"># predicted price</span></span>
+<span id="cb34-10"><a href="#cb34-10" aria-hidden="true" tabindex="-1"></a>DpriceDsqft <span class="ot">&lt;-</span> <span class="dv">2</span> <span class="sc">*</span> b2 <span class="sc">*</span> sqftx             <span class="co"># marginal effect d(price)/d(sqft)</span></span>
+<span id="cb34-11"><a href="#cb34-11" aria-hidden="true" tabindex="-1"></a>elasticity <span class="ot">&lt;-</span> (DpriceDsqft <span class="sc">*</span> sqftx) <span class="sc">/</span> pricex  <span class="co"># elasticity</span></span>
+<span id="cb34-12"><a href="#cb34-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-13"><a href="#cb34-13" aria-hidden="true" tabindex="-1"></a>b1; b2; DpriceDsqft; elasticity           <span class="co"># output</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 55776.57</code></pre>
+<pre><code>(Intercept) 
+   55776.57 </code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.0154213</code></pre>
+<pre><code>I(sqft^2) 
+0.0154213 </code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1]  61.68521 123.37041 185.05562</code></pre>
@@ -795,11 +931,16 @@ y_i = \beta_1 + \beta_2 x_i^2 + e_i.\tag{5}
 <pre><code>[1] 1.050303 1.631251 1.817408</code></pre>
 </div>
 </div>
-<p>Plotting alternatives:</p>
+<p>Plotting two alternatives for the quadratic fit:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>mod31 <span class="ot">&lt;-</span> <span class="fu">lm</span>(price <span class="sc">~</span> <span class="fu">I</span>(sqft<span class="sc">^</span><span class="dv">2</span>), <span class="at">data=</span>br)</span>
-<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(br<span class="sc">$</span>sqft, br<span class="sc">$</span>price, <span class="at">xlab=</span><span class="st">"Total square feet"</span>, <span class="at">ylab=</span><span class="st">"Sale price, $"</span>, <span class="at">col=</span><span class="st">"grey"</span>)</span>
-<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(b1 <span class="sc">+</span> b2<span class="sc">*</span>x<span class="sc">^</span><span class="dv">2</span>, <span class="at">add=</span><span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>mod31 <span class="ot">&lt;-</span> <span class="fu">lm</span>(price <span class="sc">~</span> <span class="fu">I</span>(sqft<span class="sc">^</span><span class="dv">2</span>), <span class="at">data =</span> br)                <span class="co"># fit</span></span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(br<span class="sc">$</span>sqft, br<span class="sc">$</span>price, <span class="at">col =</span> <span class="st">"grey"</span>,</span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">"Total square feet"</span>, <span class="at">ylab =</span> <span class="st">"Sale price, $"</span>) <span class="co"># scatter</span></span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="fu">coef</span>(mod31)                                         <span class="co"># [intercept], sqft^2</span></span>
+<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(b[<span class="dv">1</span>] <span class="sc">+</span> b[<span class="dv">2</span>]<span class="sc">*</span>x<span class="sc">^</span><span class="dv">2</span>,</span>
+<span id="cb39-7"><a href="#cb39-7" aria-hidden="true" tabindex="-1"></a>      <span class="at">from =</span> <span class="fu">min</span>(br<span class="sc">$</span>sqft), <span class="at">to =</span> <span class="fu">max</span>(br<span class="sc">$</span>sqft),            <span class="co"># range</span></span>
+<span id="cb39-8"><a href="#cb39-8" aria-hidden="true" tabindex="-1"></a>      <span class="at">add =</span> <span class="cn">TRUE</span>, <span class="at">lwd =</span> <span class="dv">2</span>)                               <span class="co"># fitted curve</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -809,11 +950,14 @@ y_i = \beta_1 + \beta_2 x_i^2 + e_i.\tag{5}
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>ordat <span class="ot">&lt;-</span> br[<span class="fu">order</span>(br<span class="sc">$</span>sqft), ]</span>
-<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>mod31 <span class="ot">&lt;-</span> <span class="fu">lm</span>(price <span class="sc">~</span> <span class="fu">I</span>(sqft<span class="sc">^</span><span class="dv">2</span>), <span class="at">data=</span>ordat)</span>
-<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(br<span class="sc">$</span>sqft, br<span class="sc">$</span>price, <span class="at">main=</span><span class="st">"Dataset ordered after 'sqft'"</span>,</span>
-<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab=</span><span class="st">"Total square feet"</span>, <span class="at">ylab=</span><span class="st">"Sale price, $"</span>, <span class="at">col=</span><span class="st">"grey"</span>)</span>
-<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(<span class="fu">fitted</span>(mod31) <span class="sc">~</span> ordat<span class="sc">$</span>sqft)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>ordat <span class="ot">&lt;-</span> br[<span class="fu">order</span>(br<span class="sc">$</span>sqft), ]                             <span class="co"># sort by sqft</span></span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>mod31 <span class="ot">&lt;-</span> <span class="fu">lm</span>(price <span class="sc">~</span> <span class="fu">I</span>(sqft<span class="sc">^</span><span class="dv">2</span>), <span class="at">data =</span> ordat)              <span class="co"># fit model on sorted data</span></span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(br<span class="sc">$</span>sqft, br<span class="sc">$</span>price, <span class="at">col =</span> <span class="st">"grey"</span>,                     <span class="co"># scatter</span></span>
+<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">"Dataset ordered by 'sqft'"</span>,</span>
+<span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">"Total square feet"</span>, <span class="at">ylab =</span> <span class="st">"Sale price, $"</span>)</span>
+<span id="cb40-7"><a href="#cb40-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-8"><a href="#cb40-8" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(<span class="fu">fitted</span>(mod31) <span class="sc">~</span> ordat<span class="sc">$</span>sqft)                         <span class="co"># add fitted curve</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -823,13 +967,13 @@ y_i = \beta_1 + \beta_2 x_i^2 + e_i.\tag{5}
 </div>
 </div>
 </section>
-<section id="log-linear-model" class="level4">
-<h4 class="anchored" data-anchor-id="log-linear-model">Log-linear model</h4>
+<section id="part-b.-log-linear-models---for-proportional-percentage-relationships" class="level4">
+<h4 class="anchored" data-anchor-id="part-b.-log-linear-models---for-proportional-percentage-relationships">PART B. Log-Linear Models - for proportional (percentage) relationships</h4>
 <p><span class="math display">\[
 \log(y_i) = \beta_1 + \beta_2 x_i + e_i.\tag{6}
 \]</span></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(br<span class="sc">$</span>price)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(br<span class="sc">$</span>price)                <span class="co"># price distribution</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -837,7 +981,7 @@ y_i = \beta_1 + \beta_2 x_i^2 + e_i.\tag{5}
 </figure>
 </div>
 </div>
-<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(<span class="fu">log</span>(br<span class="sc">$</span>price))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(<span class="fu">log</span>(br<span class="sc">$</span>price))           <span class="co"># log-price distribution</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -845,15 +989,16 @@ y_i = \beta_1 + \beta_2 x_i^2 + e_i.\tag{5}
 </figure>
 </div>
 </div>
-<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>mod4 <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="fu">log</span>(price) <span class="sc">~</span> sqft, <span class="at">data=</span>br)</span>
-<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>b1 <span class="ot">&lt;-</span> <span class="fu">coef</span>(mod4)[[<span class="dv">1</span>]]</span>
-<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>b2 <span class="ot">&lt;-</span> <span class="fu">coef</span>(mod4)[[<span class="dv">2</span>]]</span>
-<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Fitted curve on original price scale</span></span>
-<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a>ordat <span class="ot">&lt;-</span> br[<span class="fu">order</span>(br<span class="sc">$</span>sqft), ]</span>
-<span id="cb39-7"><a href="#cb39-7" aria-hidden="true" tabindex="-1"></a>mod4 <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="fu">log</span>(price) <span class="sc">~</span> sqft, <span class="at">data=</span>ordat)</span>
-<span id="cb39-8"><a href="#cb39-8" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(br<span class="sc">$</span>sqft, br<span class="sc">$</span>price, <span class="at">col=</span><span class="st">"grey"</span>)</span>
-<span id="cb39-9"><a href="#cb39-9" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(<span class="fu">exp</span>(<span class="fu">fitted</span>(mod4)) <span class="sc">~</span> ordat<span class="sc">$</span>sqft)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>mod4 <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="fu">log</span>(price) <span class="sc">~</span> sqft, <span class="at">data =</span> br)  <span class="co"># log-linear fit</span></span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>b1 <span class="ot">&lt;-</span> <span class="fu">coef</span>(mod4)[<span class="dv">1</span>]          <span class="co"># intercept</span></span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>b2 <span class="ot">&lt;-</span> <span class="fu">coef</span>(mod4)[<span class="dv">2</span>]          <span class="co"># slope</span></span>
+<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Back-transform fitted curve to price scale</span></span>
+<span id="cb43-6"><a href="#cb43-6" aria-hidden="true" tabindex="-1"></a>ordat <span class="ot">&lt;-</span> br[<span class="fu">order</span>(br<span class="sc">$</span>sqft), ]                     <span class="co"># sort by sqft</span></span>
+<span id="cb43-7"><a href="#cb43-7" aria-hidden="true" tabindex="-1"></a>mod4  <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="fu">log</span>(price) <span class="sc">~</span> sqft, <span class="at">data =</span> ordat)      <span class="co"># refit (ordered)</span></span>
+<span id="cb43-8"><a href="#cb43-8" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(br<span class="sc">$</span>sqft, br<span class="sc">$</span>price, <span class="at">col =</span> <span class="st">"grey"</span>,</span>
+<span id="cb43-9"><a href="#cb43-9" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">"Total square feet"</span>, <span class="at">ylab =</span> <span class="st">"Sale price, $"</span>)  <span class="co"># scatter</span></span>
+<span id="cb43-10"><a href="#cb43-10" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(<span class="fu">exp</span>(<span class="fu">fitted</span>(mod4)) <span class="sc">~</span> ordat<span class="sc">$</span>sqft, <span class="at">lwd =</span> <span class="dv">2</span>)    <span class="co"># exp of fitted log-price</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -861,50 +1006,270 @@ y_i = \beta_1 + \beta_2 x_i^2 + e_i.\tag{5}
 </figure>
 </div>
 </div>
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ⚠️ Important: Simply exponentiating log predictions (exp(fitted)) gives the median, not the mean. For mean predictions, apply a smearing correction</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Elasticity and marginal effect at the median price:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>pricex <span class="ot">&lt;-</span> <span class="fu">median</span>(br<span class="sc">$</span>price)</span>
-<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>sqftx <span class="ot">&lt;-</span> (<span class="fu">log</span>(pricex) <span class="sc">-</span> <span class="fu">coef</span>(mod4)[[<span class="dv">1</span>]])<span class="sc">/</span><span class="fu">coef</span>(mod4)[[<span class="dv">2</span>]]</span>
-<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>(DyDx <span class="ot">&lt;-</span> pricex<span class="sc">*</span><span class="fu">coef</span>(mod4)[[<span class="dv">2</span>]])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>pricex <span class="ot">&lt;-</span> <span class="fu">median</span>(br<span class="sc">$</span>price)                                   <span class="co"># target price (median)</span></span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>sqftx  <span class="ot">&lt;-</span> (<span class="fu">log</span>(pricex) <span class="sc">-</span> <span class="fu">coef</span>(mod4)[<span class="dv">1</span>]) <span class="sc">/</span> <span class="fu">coef</span>(mod4)[<span class="dv">2</span>]      <span class="co"># back out sqft from log model</span></span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>(DyDx <span class="ot">&lt;-</span> pricex <span class="sc">*</span> <span class="fu">coef</span>(mod4)[<span class="dv">2</span>])                              <span class="co"># marginal effect d(price)/d(sqft) = b2 * price</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 53.46495</code></pre>
+<pre><code>    sqft 
+53.46495 </code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>(elasticity <span class="ot">&lt;-</span> sqftx<span class="sc">*</span><span class="fu">coef</span>(mod4)[[<span class="dv">2</span>]])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>(elasticity <span class="ot">&lt;-</span> sqftx <span class="sc">*</span> <span class="fu">coef</span>(mod4)[<span class="dv">2</span>])                         <span class="co"># elasticity = (dP/dx)*(x/P) = b2 * sqft</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.9366934</code></pre>
+<pre><code>(Intercept) 
+  0.9366934 </code></pre>
 </div>
 </div>
 <p>Multiple points:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>b1 <span class="ot">&lt;-</span> <span class="fu">coef</span>(mod4)[[<span class="dv">1</span>]]</span>
-<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>b2 <span class="ot">&lt;-</span> <span class="fu">coef</span>(mod4)[[<span class="dv">2</span>]]</span>
-<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>sqftx <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">2000</span>, <span class="dv">3000</span>, <span class="dv">4000</span>)</span>
-<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a>pricex <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">100000</span>, <span class="fu">exp</span>(b1 <span class="sc">+</span> b2<span class="sc">*</span>sqftx))</span>
-<span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a>sqftx <span class="ot">&lt;-</span> (<span class="fu">log</span>(pricex) <span class="sc">-</span> b1)<span class="sc">/</span>b2</span>
-<span id="cb44-6"><a href="#cb44-6" aria-hidden="true" tabindex="-1"></a>(elasticities <span class="ot">&lt;-</span> b2<span class="sc">*</span>sqftx)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>b1 <span class="ot">&lt;-</span> <span class="fu">coef</span>(mod4)[<span class="dv">1</span>]                     <span class="co"># intercept of log(price) ~ sqft</span></span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>b2 <span class="ot">&lt;-</span> <span class="fu">coef</span>(mod4)[<span class="dv">2</span>]                     <span class="co"># slope wrt sqft</span></span>
+<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a>sqftx  <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">2000</span>, <span class="dv">3000</span>, <span class="dv">4000</span>)           <span class="co"># sqft points</span></span>
+<span id="cb49-5"><a href="#cb49-5" aria-hidden="true" tabindex="-1"></a>pricex <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">100000</span>, <span class="fu">exp</span>(b1 <span class="sc">+</span> b2<span class="sc">*</span>sqftx)) <span class="co"># prices: first fixed at 100k; others from model</span></span>
+<span id="cb49-6"><a href="#cb49-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-7"><a href="#cb49-7" aria-hidden="true" tabindex="-1"></a>sqftx  <span class="ot">&lt;-</span> (<span class="fu">log</span>(pricex) <span class="sc">-</span> b1) <span class="sc">/</span> b2       <span class="co"># implied sqft from each price (now length = length(pricex))</span></span>
+<span id="cb49-8"><a href="#cb49-8" aria-hidden="true" tabindex="-1"></a>(elasticities <span class="ot">&lt;-</span> b2 <span class="sc">*</span> sqftx)            <span class="co"># elasticity = (dP/dx)*(x/P) = b2 * sqft</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.6743291 0.8225377 1.2338066 1.6450754</code></pre>
 </div>
 </div>
+<p>💡 <strong>Land Economics Application</strong> In rental valuation, we rarely observe rental income for vacant plots. Prediction intervals help quantify the uncertainty in forecasted rents, which is crucial for development feasibility analysis.</p>
+<p>⚠️ <strong>Common Mistake</strong> Students often confuse confidence intervals (for the average) with prediction intervals (for individuals). In property valuation, this distinction matters: are you estimating the average price for houses of this type, or the likely sale price of one specific house?</p>
 </section>
-<section id="mcqs" class="level4">
-<h4 class="anchored" data-anchor-id="mcqs">MCQs</h4>
-<ol type="1">
-<li>Using (b_1) and (b_2) primarily helps to: <strong>B. Predict (E[yx])</strong><br>
-</li>
-<li><code>lm()</code> is used to: <strong>C. Estimate a linear model</strong><br>
-</li>
-<li><code>predict()</code> mainly: <strong>B. Estimates (y) for new data</strong><br>
-</li>
-<li>Coefficients are random because: <strong>C. They depend on the sample</strong><br>
-</li>
-<li>Random subsamples help: <strong>C. Evaluate stability/variability</strong><br>
-</li>
-<li><code>vcov()</code> is for: <strong>B. Variances and covariances of coefficients</strong><br>
-</li>
-<li><code>data.frame()</code> with <code>predict()</code> to: <strong>A. Format new (x) values</strong></li>
-</ol>
+<section id="part-c.-mcqs-1" class="level4">
+<h4 class="anchored" data-anchor-id="part-c.-mcqs-1">PART C. MCQs</h4>
+<div class="mcq-we">
+<div class="mcq-we-q">
+<strong>1) Using B₀ and B₁ primarily helps to:</strong><br>
+
+<div id="radio_WPGHGLJCCK" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_WPGHGLJCCK" value=""> <span>Test normality of residuals</span></label><label><input type="radio" autocomplete="off" name="radio_WPGHGLJCCK" value=""> <span>Estimate σ²</span></label><label><input type="radio" autocomplete="off" name="radio_WPGHGLJCCK" value="answer"> <span>Predict E[y|x]</span></label><label><input type="radio" autocomplete="off" name="radio_WPGHGLJCCK" value=""> <span>Standardize x and y</span></label>
+</div>
+<span class="mcq-key" data-correct="Predict E[y|x]"></span>
+<details class="hint">
+<summary>
+Hint
+</summary>
+Plug x into the fitted line.
+</details>
+</div>
+<div class="mcq-we-q">
+<strong>2) The function lm() is used to:</strong><br>
+
+<div id="radio_ZNFURPXKLP" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_ZNFURPXKLP" value=""> <span>Simulate data</span></label><label><input type="radio" autocomplete="off" name="radio_ZNFURPXKLP" value=""> <span>Draw histograms</span></label><label><input type="radio" autocomplete="off" name="radio_ZNFURPXKLP" value="answer"> <span>Estimate a linear model</span></label><label><input type="radio" autocomplete="off" name="radio_ZNFURPXKLP" value=""> <span>Compute correlation only</span></label>
+</div>
+<span class="mcq-key" data-correct="Estimate a linear model"></span>
+<details class="hint">
+<summary>
+Hint
+</summary>
+It returns coefficients and a model object.
+</details>
+</div>
+<div class="mcq-we-q">
+<strong>3) The function predict() mainly:</strong><br>
+
+<div id="radio_VNINESMRUF" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_VNINESMRUF" value=""> <span>Fits a model</span></label><label><input type="radio" autocomplete="off" name="radio_VNINESMRUF" value=""> <span>Computes residuals only</span></label><label><input type="radio" autocomplete="off" name="radio_VNINESMRUF" value="answer"> <span>Estimates y-hat for new data</span></label><label><input type="radio" autocomplete="off" name="radio_VNINESMRUF" value=""> <span>Sorts a data frame</span></label>
+</div>
+<span class="mcq-key" data-correct="Estimates y-hat for new data"></span>
+<details class="hint">
+<summary>
+Hint
+</summary>
+You pass newdata.
+</details>
+</div>
+<div class="mcq-we-q">
+<strong>4) Coefficients are random because they:</strong><br>
+
+<div id="radio_FNIMCAIYSF" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_FNIMCAIYSF" value=""> <span>Depend only on fixed formulas</span></label><label><input type="radio" autocomplete="off" name="radio_FNIMCAIYSF" value=""> <span>Are set by the user</span></label><label><input type="radio" autocomplete="off" name="radio_FNIMCAIYSF" value="answer"> <span>Depend on the sample</span></label><label><input type="radio" autocomplete="off" name="radio_FNIMCAIYSF" value=""> <span>Don’t change across samples</span></label>
+</div>
+<p><span class="mcq-key" data-correct="Depend on the sample"></span></p>
+</div>
+<div class="mcq-we-q">
+<strong>5) Random subsamples help to:</strong><br>
+
+<div id="radio_HYYXPJZNCZ" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_HYYXPJZNCZ" value=""> <span>Reduce file size</span></label><label><input type="radio" autocomplete="off" name="radio_HYYXPJZNCZ" value=""> <span>Guarantee higher R²</span></label><label><input type="radio" autocomplete="off" name="radio_HYYXPJZNCZ" value="answer"> <span>Evaluate stability/variability</span></label><label><input type="radio" autocomplete="off" name="radio_HYYXPJZNCZ" value=""> <span>Eliminate outliers always</span></label>
+</div>
+<p><span class="mcq-key" data-correct="Evaluate stability/variability"></span></p>
+</div>
+<div class="mcq-we-q">
+<strong>6) vcov(model) returns:</strong><br>
+
+<div id="radio_PSSTXEYBCI" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_PSSTXEYBCI" value=""> <span>Residuals</span></label><label><input type="radio" autocomplete="off" name="radio_PSSTXEYBCI" value=""> <span>Fitted values</span></label><label><input type="radio" autocomplete="off" name="radio_PSSTXEYBCI" value="answer"> <span>Variances and covariances of coefficients</span></label><label><input type="radio" autocomplete="off" name="radio_PSSTXEYBCI" value=""> <span>Confidence intervals for y-hat</span></label>
+</div>
+<p><span class="mcq-key" data-correct="Variances and covariances of coefficients"></span></p>
+</div>
+<div class="mcq-we-q">
+<strong>7) Using data.frame() with predict() is to:</strong><br>
+
+<div id="radio_RXDDNJOIJN" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_RXDDNJOIJN" value="answer"> <span>Provide new x values with correct column names</span></label><label><input type="radio" autocomplete="off" name="radio_RXDDNJOIJN" value=""> <span>Shuffle the rows</span></label><label><input type="radio" autocomplete="off" name="radio_RXDDNJOIJN" value=""> <span>Change variable types to character</span></label><label><input type="radio" autocomplete="off" name="radio_RXDDNJOIJN" value=""> <span>Compute R²</span></label>
+</div>
+<p><span class="mcq-key" data-correct="Provide new x values with correct column names"></span></p>
+</div>
+<div class="mcq-we-q">
+<strong>8) To request standard errors from predict.lm you set:</strong><br>
+
+<div id="radio_MQNTZAJYZT" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_MQNTZAJYZT" value=""> <span>stderr = TRUE</span></label><label><input type="radio" autocomplete="off" name="radio_MQNTZAJYZT" value=""> <span>se = TRUE</span></label><label><input type="radio" autocomplete="off" name="radio_MQNTZAJYZT" value="answer"> <span>se.fit = TRUE</span></label><label><input type="radio" autocomplete="off" name="radio_MQNTZAJYZT" value=""> <span>ci = TRUE</span></label>
+</div>
+<span class="mcq-key" data-correct="se.fit = TRUE"></span>
+<details class="hint">
+<summary>
+Hint
+</summary>
+It returns fit and se.fit.
+</details>
+</div>
+<div class="mcq-we-q">
+<strong>9) For a confidence interval for the mean response at x₀, use:</strong><br>
+
+<div id="radio_FTMLTBLYUG" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_FTMLTBLYUG" value=""> <span>interval = 'pi'</span></label><label><input type="radio" autocomplete="off" name="radio_FTMLTBLYUG" value=""> <span>bands = 'mean'</span></label><label><input type="radio" autocomplete="off" name="radio_FTMLTBLYUG" value="answer"> <span>interval = 'confidence'</span></label><label><input type="radio" autocomplete="off" name="radio_FTMLTBLYUG" value=""> <span>type = 'mean'</span></label>
+</div>
+<span class="mcq-key" data-correct="interval = 'confidence'"></span>
+<details class="hint">
+<summary>
+Hint
+</summary>
+CI for E[y|x₀].
+</details>
+</div>
+<div class="mcq-we-q">
+<strong>10) For an interval predicting an individual future y at x₀, use:</strong><br>
+
+<div id="radio_NZHIDGZHHQ" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_NZHIDGZHHQ" value=""> <span>interval = 'confidence'</span></label><label><input type="radio" autocomplete="off" name="radio_NZHIDGZHHQ" value="answer"> <span>interval = 'prediction'</span></label><label><input type="radio" autocomplete="off" name="radio_NZHIDGZHHQ" value=""> <span>level = 'future'</span></label><label><input type="radio" autocomplete="off" name="radio_NZHIDGZHHQ" value=""> <span>type = 'response'</span></label>
+</div>
+<span class="mcq-key" data-correct="interval = 'prediction'"></span>
+<details class="hint">
+<summary>
+Hint
+</summary>
+Includes error variance.
+</details>
+</div>
+<div class="mcq-we-q">
+<strong>11) Prediction intervals are typically:</strong><br>
+
+<div id="radio_WHPQKTCCPA" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_WHPQKTCCPA" value=""> <span>Narrower than confidence intervals</span></label><label><input type="radio" autocomplete="off" name="radio_WHPQKTCCPA" value="answer"> <span>Wider than confidence intervals</span></label><label><input type="radio" autocomplete="off" name="radio_WHPQKTCCPA" value=""> <span>Identical to confidence intervals</span></label><label><input type="radio" autocomplete="off" name="radio_WHPQKTCCPA" value=""> <span>Unrelated to residual variance</span></label>
+</div>
+<p><span class="mcq-key" data-correct="Wider than confidence intervals"></span></p>
+</div>
+<div class="mcq-we-q">
+<strong>12) confint(model) returns:</strong><br>
+
+<div id="radio_RPLEGRMQXV" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_RPLEGRMQXV" value=""> <span>Intervals for y-hat</span></label><label><input type="radio" autocomplete="off" name="radio_RPLEGRMQXV" value="answer"> <span>Confidence intervals for coefficients</span></label><label><input type="radio" autocomplete="off" name="radio_RPLEGRMQXV" value=""> <span>Prediction intervals for new y</span></label><label><input type="radio" autocomplete="off" name="radio_RPLEGRMQXV" value=""> <span>Variance of residuals</span></label>
+</div>
+<p><span class="mcq-key" data-correct="Confidence intervals for coefficients"></span></p>
+</div>
+<div class="mcq-we-q">
+<strong>13) For models with multiple predictors, newdata must:</strong><br>
+
+<div id="radio_PGIACUQWQY" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_PGIACUQWQY" value="answer"> <span>Contain columns matching model terms and types</span></label><label><input type="radio" autocomplete="off" name="radio_PGIACUQWQY" value=""> <span>Be a vector in any order</span></label><label><input type="radio" autocomplete="off" name="radio_PGIACUQWQY" value=""> <span>Include only the response</span></label><label><input type="radio" autocomplete="off" name="radio_PGIACUQWQY" value=""> <span>Be sorted by the response</span></label>
+</div>
+<span class="mcq-key" data-correct="Contain columns matching model terms and types"></span>
+<details class="hint">
+<summary>
+Hint
+</summary>
+Names must match the formula’s variables.
+</details>
+</div>
+<div class="mcq-we-q">
+<strong>14) In a log-linear model log(y) ~ x, to back-transform the mean prediction you should:</strong><br>
+
+<div id="radio_ILMUPAUCFP" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_ILMUPAUCFP" value=""> <span>Use only exp(eta)</span></label><label><input type="radio" autocomplete="off" name="radio_ILMUPAUCFP" value="answer"> <span>Multiply exp(eta) by a smearing factor</span></label><label><input type="radio" autocomplete="off" name="radio_ILMUPAUCFP" value=""> <span>Square the fitted values</span></label><label><input type="radio" autocomplete="off" name="radio_ILMUPAUCFP" value=""> <span>Add residual SD then exponentiate</span></label>
+</div>
+<span class="mcq-key" data-correct="Multiply exp(eta) by a smearing factor"></span>
+<details class="hint">
+<summary>
+Hint
+</summary>
+Duan’s correction: mean(exp(ε̂)).
+</details>
+</div>
+<div class="mcq-we-q">
+<strong>15) A bootstrap (or resampling with replacement) in R uses:</strong><br>
+
+<div id="radio_ARJRUZLMTD" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_ARJRUZLMTD" value=""> <span>sample(…, replace = FALSE)</span></label><label><input type="radio" autocomplete="off" name="radio_ARJRUZLMTD" value="answer"> <span>sample(…, replace = TRUE)</span></label><label><input type="radio" autocomplete="off" name="radio_ARJRUZLMTD" value=""> <span>sort(…)</span></label><label><input type="radio" autocomplete="off" name="radio_ARJRUZLMTD" value=""> <span>order(…)</span></label>
+</div>
+<p><span class="mcq-key" data-correct="sample(..., replace = TRUE)"></span></p>
+</div>
+<div class="mcq-we-q">
+<strong>16) set.seed(123) is used to:</strong><br>
+
+<div id="radio_CLNLZIHFPL" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_CLNLZIHFPL" value=""> <span>Speed up lm()</span></label><label><input type="radio" autocomplete="off" name="radio_CLNLZIHFPL" value=""> <span>Normalize variables</span></label><label><input type="radio" autocomplete="off" name="radio_CLNLZIHFPL" value="answer"> <span>Make random subsamples reproducible</span></label><label><input type="radio" autocomplete="off" name="radio_CLNLZIHFPL" value=""> <span>Center predictors</span></label>
+</div>
+<p><span class="mcq-key" data-correct="Make random subsamples reproducible"></span></p>
+</div>
+<div class="mcq-we-q">
+<strong>17) For out-of-sample performance, a good metric is:</strong><br>
+
+<div id="radio_ICGDIAQARW" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_ICGDIAQARW" value=""> <span>Training R²</span></label><label><input type="radio" autocomplete="off" name="radio_ICGDIAQARW" value="answer"> <span>Test RMSE</span></label><label><input type="radio" autocomplete="off" name="radio_ICGDIAQARW" value=""> <span>Number of predictors</span></label><label><input type="radio" autocomplete="off" name="radio_ICGDIAQARW" value=""> <span>Intercept size</span></label>
+</div>
+<span class="mcq-key" data-correct="Test RMSE"></span>
+<details class="hint">
+<summary>
+Hint
+</summary>
+Evaluate on held-out data.
+</details>
+</div>
+<div class="mcq-we-q">
+<strong>18) Extrapolation risk means:</strong><br>
+
+<div id="radio_KGZOKZFIFN" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_KGZOKZFIFN" value=""> <span>Predictions are always unbiased</span></label><label><input type="radio" autocomplete="off" name="radio_KGZOKZFIFN" value="answer"> <span>x₀ lies outside the observed x range so predictions can be unreliable</span></label><label><input type="radio" autocomplete="off" name="radio_KGZOKZFIFN" value=""> <span>R² increases automatically</span></label><label><input type="radio" autocomplete="off" name="radio_KGZOKZFIFN" value=""> <span>CI and PI become identical</span></label>
+</div>
+<p><span class="mcq-key" data-correct="x₀ lies outside the observed x range so predictions can be unreliable"></span></p>
+</div>
+<div class="mcq-we-q">
+<strong>19) Variance of the predicted mean at x₀ depends on:</strong><br>
+
+<div id="radio_HCWMTQQENZ" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_HCWMTQQENZ" value=""> <span>Only σ²</span></label><label><input type="radio" autocomplete="off" name="radio_HCWMTQQENZ" value=""> <span>Only the intercept</span></label><label><input type="radio" autocomplete="off" name="radio_HCWMTQQENZ" value="answer"> <span>x₀ᵀ Var(B̂) x₀</span></label><label><input type="radio" autocomplete="off" name="radio_HCWMTQQENZ" value=""> <span>Only sample size</span></label>
+</div>
+<span class="mcq-key" data-correct="x₀ᵀ Var(B̂) x₀"></span>
+<details class="hint">
+<summary>
+Hint
+</summary>
+Use the variance–covariance of coefficients.
+</details>
+</div>
+<div class="mcq-we-q">
+<strong>20) When predicting with factors, newdata must:</strong><br>
+
+<div id="radio_CROAHKCLEC" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_CROAHKCLEC" value="answer"> <span>Use levels seen in the training data</span></label><label><input type="radio" autocomplete="off" name="radio_CROAHKCLEC" value=""> <span>Introduce new unseen levels freely</span></label><label><input type="radio" autocomplete="off" name="radio_CROAHKCLEC" value=""> <span>Coerce factors to numeric</span></label><label><input type="radio" autocomplete="off" name="radio_CROAHKCLEC" value=""> <span>Omit the factor columns</span></label>
+</div>
+<span class="mcq-key" data-correct="Use levels seen in the training data"></span>
+<details class="hint">
+<summary>
+Hint
+</summary>
+Unseen levels cause errors in predict().
+</details>
+</div>
+</div>
 <hr>
 </section>
 </section>
@@ -922,19 +1287,19 @@ t = \frac{b_k - c}{\operatorname{se}(b_k)},\quad t \sim t_{N-2}.\tag{6}
 \]</span></p>
 <p>Example for (b_2) in the food model:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>alpha <span class="ot">&lt;-</span> <span class="fl">0.05</span></span>
-<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(PoEdata); <span class="fu">library</span>(xtable); <span class="fu">library</span>(knitr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>alpha <span class="ot">&lt;-</span> <span class="fl">0.05</span></span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(PoEdata); <span class="fu">library</span>(xtable); <span class="fu">library</span>(knitr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning: package 'xtable' was built under R version 4.4.3</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning: package 'knitr' was built under R version 4.4.3</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">"food"</span>)</span>
-<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>mod1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(food_exp <span class="sc">~</span> income, <span class="at">data=</span>food); smod1 <span class="ot">&lt;-</span> <span class="fu">summary</span>(mod1)</span>
-<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a>table <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="fu">xtable</span>(mod1))</span>
-<span id="cb49-5"><a href="#cb49-5" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(table, <span class="at">caption=</span><span class="st">"Regression output showing the coefficients"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">"food"</span>)</span>
+<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a>mod1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(food_exp <span class="sc">~</span> income, <span class="at">data=</span>food); smod1 <span class="ot">&lt;-</span> <span class="fu">summary</span>(mod1)</span>
+<span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb54-4"><a href="#cb54-4" aria-hidden="true" tabindex="-1"></a>table <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="fu">xtable</span>(mod1))</span>
+<span id="cb54-5"><a href="#cb54-5" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(table, <span class="at">caption=</span><span class="st">"Regression output showing the coefficients"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <table class="caption-top table table-sm table-striped small">
 <caption>Regression output showing the coefficients</caption>
@@ -965,13 +1330,13 @@ t = \frac{b_k - c}{\operatorname{se}(b_k)},\quad t \sim t_{N-2}.\tag{6}
 </tbody>
 </table>
 </div>
-<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>b2 <span class="ot">&lt;-</span> <span class="fu">coef</span>(mod1)[[<span class="st">"income"</span>]]</span>
-<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>seb2 <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(<span class="fu">vcov</span>(mod1)[<span class="dv">2</span>,<span class="dv">2</span>])</span>
-<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a>df  <span class="ot">&lt;-</span> <span class="fu">df.residual</span>(mod1)</span>
-<span id="cb50-4"><a href="#cb50-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb50-5"><a href="#cb50-5" aria-hidden="true" tabindex="-1"></a>t   <span class="ot">&lt;-</span> b2<span class="sc">/</span>seb2</span>
-<span id="cb50-6"><a href="#cb50-6" aria-hidden="true" tabindex="-1"></a>tcr <span class="ot">&lt;-</span> <span class="fu">qt</span>(<span class="dv">1</span><span class="sc">-</span>alpha<span class="sc">/</span><span class="dv">2</span>, df)</span>
-<span id="cb50-7"><a href="#cb50-7" aria-hidden="true" tabindex="-1"></a>t; tcr</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a>b2 <span class="ot">&lt;-</span> <span class="fu">coef</span>(mod1)[[<span class="st">"income"</span>]]</span>
+<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a>seb2 <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(<span class="fu">vcov</span>(mod1)[<span class="dv">2</span>,<span class="dv">2</span>])</span>
+<span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a>df  <span class="ot">&lt;-</span> <span class="fu">df.residual</span>(mod1)</span>
+<span id="cb55-4"><a href="#cb55-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-5"><a href="#cb55-5" aria-hidden="true" tabindex="-1"></a>t   <span class="ot">&lt;-</span> b2<span class="sc">/</span>seb2</span>
+<span id="cb55-6"><a href="#cb55-6" aria-hidden="true" tabindex="-1"></a>tcr <span class="ot">&lt;-</span> <span class="fu">qt</span>(<span class="dv">1</span><span class="sc">-</span>alpha<span class="sc">/</span><span class="dv">2</span>, df)</span>
+<span id="cb55-7"><a href="#cb55-7" aria-hidden="true" tabindex="-1"></a>t; tcr</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 4.877381</code></pre>
 </div>
@@ -981,17 +1346,17 @@ t = \frac{b_k - c}{\operatorname{se}(b_k)},\quad t \sim t_{N-2}.\tag{6}
 </div>
 <p>Right‑tail and left‑tail versions:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Right-tail: H0: beta2 &lt;= 5.5; HA: beta2 &gt; 5.5</span></span>
-<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a>c <span class="ot">&lt;-</span> <span class="fl">5.5</span></span>
-<span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a>t_right <span class="ot">&lt;-</span> (b2 <span class="sc">-</span> c)<span class="sc">/</span>seb2</span>
-<span id="cb53-4"><a href="#cb53-4" aria-hidden="true" tabindex="-1"></a>tcr_right <span class="ot">&lt;-</span> <span class="fu">qt</span>(<span class="dv">1</span><span class="sc">-</span>alpha, df)</span>
-<span id="cb53-5"><a href="#cb53-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb53-6"><a href="#cb53-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Left-tail: H0: beta2 &gt;= 15; HA: beta2 &lt; 15</span></span>
-<span id="cb53-7"><a href="#cb53-7" aria-hidden="true" tabindex="-1"></a>c <span class="ot">&lt;-</span> <span class="dv">15</span></span>
-<span id="cb53-8"><a href="#cb53-8" aria-hidden="true" tabindex="-1"></a>t_left <span class="ot">&lt;-</span> (b2 <span class="sc">-</span> c)<span class="sc">/</span>seb2</span>
-<span id="cb53-9"><a href="#cb53-9" aria-hidden="true" tabindex="-1"></a>tcr_left <span class="ot">&lt;-</span> <span class="fu">qt</span>(alpha, df)</span>
-<span id="cb53-10"><a href="#cb53-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb53-11"><a href="#cb53-11" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="at">t_right=</span>t_right, <span class="at">tcr_right=</span>tcr_right, <span class="at">t_left=</span>t_left, <span class="at">tcr_left=</span>tcr_left)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Right-tail: H0: beta2 &lt;= 5.5; HA: beta2 &gt; 5.5</span></span>
+<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a>c <span class="ot">&lt;-</span> <span class="fl">5.5</span></span>
+<span id="cb58-3"><a href="#cb58-3" aria-hidden="true" tabindex="-1"></a>t_right <span class="ot">&lt;-</span> (b2 <span class="sc">-</span> c)<span class="sc">/</span>seb2</span>
+<span id="cb58-4"><a href="#cb58-4" aria-hidden="true" tabindex="-1"></a>tcr_right <span class="ot">&lt;-</span> <span class="fu">qt</span>(<span class="dv">1</span><span class="sc">-</span>alpha, df)</span>
+<span id="cb58-5"><a href="#cb58-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-6"><a href="#cb58-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Left-tail: H0: beta2 &gt;= 15; HA: beta2 &lt; 15</span></span>
+<span id="cb58-7"><a href="#cb58-7" aria-hidden="true" tabindex="-1"></a>c <span class="ot">&lt;-</span> <span class="dv">15</span></span>
+<span id="cb58-8"><a href="#cb58-8" aria-hidden="true" tabindex="-1"></a>t_left <span class="ot">&lt;-</span> (b2 <span class="sc">-</span> c)<span class="sc">/</span>seb2</span>
+<span id="cb58-9"><a href="#cb58-9" aria-hidden="true" tabindex="-1"></a>tcr_left <span class="ot">&lt;-</span> <span class="fu">qt</span>(alpha, df)</span>
+<span id="cb58-10"><a href="#cb58-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-11"><a href="#cb58-11" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="at">t_right=</span>t_right, <span class="at">tcr_right=</span>tcr_right, <span class="at">t_left=</span>t_left, <span class="at">tcr_left=</span>tcr_left)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  t_right tcr_right    t_left  tcr_left 
  2.249904  1.685954 -2.288463 -1.685954 </code></pre>
@@ -1002,16 +1367,16 @@ t = \frac{b_k - c}{\operatorname{se}(b_k)},\quad t \sim t_{N-2}.\tag{6}
 <h3 class="anchored" data-anchor-id="the-pvalue">The p‑Value</h3>
 <p>Right‑tail: (p = 1 - F_t(t)). Left‑tail: (p = F_t(t)). Two‑tail: (p = 2(1-F_t(|t|))).</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Right tail</span></span>
-<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a>c <span class="ot">&lt;-</span> <span class="fl">5.5</span>; t <span class="ot">&lt;-</span> (b2<span class="sc">-</span>c)<span class="sc">/</span>seb2; p_right <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">-</span><span class="fu">pt</span>(t, df)</span>
-<span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-4"><a href="#cb55-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Left tail</span></span>
-<span id="cb55-5"><a href="#cb55-5" aria-hidden="true" tabindex="-1"></a>c <span class="ot">&lt;-</span> <span class="dv">15</span>; t <span class="ot">&lt;-</span> (b2<span class="sc">-</span>c)<span class="sc">/</span>seb2; p_left <span class="ot">&lt;-</span> <span class="fu">pt</span>(t, df)</span>
-<span id="cb55-6"><a href="#cb55-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-7"><a href="#cb55-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Two tail</span></span>
-<span id="cb55-8"><a href="#cb55-8" aria-hidden="true" tabindex="-1"></a>c <span class="ot">&lt;-</span> <span class="dv">0</span>;  t <span class="ot">&lt;-</span> (b2<span class="sc">-</span>c)<span class="sc">/</span>seb2; p_two <span class="ot">&lt;-</span> <span class="dv">2</span><span class="sc">*</span>(<span class="dv">1</span><span class="sc">-</span><span class="fu">pt</span>(<span class="fu">abs</span>(t), df))</span>
-<span id="cb55-9"><a href="#cb55-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-10"><a href="#cb55-10" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="at">p_right=</span>p_right, <span class="at">p_left=</span>p_left, <span class="at">p_two=</span>p_two)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Right tail</span></span>
+<span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a>c <span class="ot">&lt;-</span> <span class="fl">5.5</span>; t <span class="ot">&lt;-</span> (b2<span class="sc">-</span>c)<span class="sc">/</span>seb2; p_right <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">-</span><span class="fu">pt</span>(t, df)</span>
+<span id="cb60-3"><a href="#cb60-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-4"><a href="#cb60-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Left tail</span></span>
+<span id="cb60-5"><a href="#cb60-5" aria-hidden="true" tabindex="-1"></a>c <span class="ot">&lt;-</span> <span class="dv">15</span>; t <span class="ot">&lt;-</span> (b2<span class="sc">-</span>c)<span class="sc">/</span>seb2; p_left <span class="ot">&lt;-</span> <span class="fu">pt</span>(t, df)</span>
+<span id="cb60-6"><a href="#cb60-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-7"><a href="#cb60-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Two tail</span></span>
+<span id="cb60-8"><a href="#cb60-8" aria-hidden="true" tabindex="-1"></a>c <span class="ot">&lt;-</span> <span class="dv">0</span>;  t <span class="ot">&lt;-</span> (b2<span class="sc">-</span>c)<span class="sc">/</span>seb2; p_two <span class="ot">&lt;-</span> <span class="dv">2</span><span class="sc">*</span>(<span class="dv">1</span><span class="sc">-</span><span class="fu">pt</span>(<span class="fu">abs</span>(t), df))</span>
+<span id="cb60-9"><a href="#cb60-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-10"><a href="#cb60-10" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="at">p_right=</span>p_right, <span class="at">p_left=</span>p_left, <span class="at">p_two=</span>p_two)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>     p_right       p_left        p_two 
 1.516329e-02 1.388071e-02 1.945862e-05 </code></pre>
@@ -1032,20 +1397,20 @@ L = E(\text{food\_exp}\mid \text{income}=20) = \beta_1 + 20\,\beta_2.\tag{3.7}
 \operatorname{var}(b_1+20b_2) = \operatorname{var}(b_1) + 20^2\operatorname{var}(b_2) + 2\cdot20\operatorname{cov}(b_1,b_2).\tag{3.9}
 \]</span></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a>alpha <span class="ot">&lt;-</span> <span class="fl">0.05</span>; x <span class="ot">&lt;-</span> <span class="dv">20</span></span>
-<span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a>m1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(food_exp <span class="sc">~</span> income, <span class="at">data=</span>food)</span>
-<span id="cb57-3"><a href="#cb57-3" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">df.residual</span>(m1)</span>
-<span id="cb57-4"><a href="#cb57-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb57-5"><a href="#cb57-5" aria-hidden="true" tabindex="-1"></a>b1 <span class="ot">&lt;-</span> m1<span class="sc">$</span>coef[<span class="dv">1</span>]; b2 <span class="ot">&lt;-</span> m1<span class="sc">$</span>coef[<span class="dv">2</span>]</span>
-<span id="cb57-6"><a href="#cb57-6" aria-hidden="true" tabindex="-1"></a>varb1 <span class="ot">&lt;-</span> <span class="fu">vcov</span>(m1)[<span class="dv">1</span>,<span class="dv">1</span>]; varb2 <span class="ot">&lt;-</span> <span class="fu">vcov</span>(m1)[<span class="dv">2</span>,<span class="dv">2</span>]; covb1b2 <span class="ot">&lt;-</span> <span class="fu">vcov</span>(m1)[<span class="dv">1</span>,<span class="dv">2</span>]</span>
-<span id="cb57-7"><a href="#cb57-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb57-8"><a href="#cb57-8" aria-hidden="true" tabindex="-1"></a>L <span class="ot">&lt;-</span> b1 <span class="sc">+</span> b2<span class="sc">*</span>x</span>
-<span id="cb57-9"><a href="#cb57-9" aria-hidden="true" tabindex="-1"></a>varL <span class="ot">&lt;-</span> varb1 <span class="sc">+</span> x<span class="sc">^</span><span class="dv">2</span> <span class="sc">*</span> varb2 <span class="sc">+</span> <span class="dv">2</span><span class="sc">*</span>x<span class="sc">*</span>covb1b2</span>
-<span id="cb57-10"><a href="#cb57-10" aria-hidden="true" tabindex="-1"></a>seL <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(varL)</span>
-<span id="cb57-11"><a href="#cb57-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb57-12"><a href="#cb57-12" aria-hidden="true" tabindex="-1"></a>tcr <span class="ot">&lt;-</span> <span class="fu">qt</span>(<span class="dv">1</span><span class="sc">-</span>alpha<span class="sc">/</span><span class="dv">2</span>, df)</span>
-<span id="cb57-13"><a href="#cb57-13" aria-hidden="true" tabindex="-1"></a>lowbL <span class="ot">&lt;-</span> L <span class="sc">-</span> tcr<span class="sc">*</span>seL; upbL <span class="ot">&lt;-</span> L <span class="sc">+</span> tcr<span class="sc">*</span>seL</span>
-<span id="cb57-14"><a href="#cb57-14" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="at">L=</span>L, <span class="at">seL=</span>seL, <span class="at">low=</span>lowbL, <span class="at">up=</span>upbL)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a>alpha <span class="ot">&lt;-</span> <span class="fl">0.05</span>; x <span class="ot">&lt;-</span> <span class="dv">20</span></span>
+<span id="cb62-2"><a href="#cb62-2" aria-hidden="true" tabindex="-1"></a>m1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(food_exp <span class="sc">~</span> income, <span class="at">data=</span>food)</span>
+<span id="cb62-3"><a href="#cb62-3" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">df.residual</span>(m1)</span>
+<span id="cb62-4"><a href="#cb62-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb62-5"><a href="#cb62-5" aria-hidden="true" tabindex="-1"></a>b1 <span class="ot">&lt;-</span> m1<span class="sc">$</span>coef[<span class="dv">1</span>]; b2 <span class="ot">&lt;-</span> m1<span class="sc">$</span>coef[<span class="dv">2</span>]</span>
+<span id="cb62-6"><a href="#cb62-6" aria-hidden="true" tabindex="-1"></a>varb1 <span class="ot">&lt;-</span> <span class="fu">vcov</span>(m1)[<span class="dv">1</span>,<span class="dv">1</span>]; varb2 <span class="ot">&lt;-</span> <span class="fu">vcov</span>(m1)[<span class="dv">2</span>,<span class="dv">2</span>]; covb1b2 <span class="ot">&lt;-</span> <span class="fu">vcov</span>(m1)[<span class="dv">1</span>,<span class="dv">2</span>]</span>
+<span id="cb62-7"><a href="#cb62-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb62-8"><a href="#cb62-8" aria-hidden="true" tabindex="-1"></a>L <span class="ot">&lt;-</span> b1 <span class="sc">+</span> b2<span class="sc">*</span>x</span>
+<span id="cb62-9"><a href="#cb62-9" aria-hidden="true" tabindex="-1"></a>varL <span class="ot">&lt;-</span> varb1 <span class="sc">+</span> x<span class="sc">^</span><span class="dv">2</span> <span class="sc">*</span> varb2 <span class="sc">+</span> <span class="dv">2</span><span class="sc">*</span>x<span class="sc">*</span>covb1b2</span>
+<span id="cb62-10"><a href="#cb62-10" aria-hidden="true" tabindex="-1"></a>seL <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(varL)</span>
+<span id="cb62-11"><a href="#cb62-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb62-12"><a href="#cb62-12" aria-hidden="true" tabindex="-1"></a>tcr <span class="ot">&lt;-</span> <span class="fu">qt</span>(<span class="dv">1</span><span class="sc">-</span>alpha<span class="sc">/</span><span class="dv">2</span>, df)</span>
+<span id="cb62-13"><a href="#cb62-13" aria-hidden="true" tabindex="-1"></a>lowbL <span class="ot">&lt;-</span> L <span class="sc">-</span> tcr<span class="sc">*</span>seL; upbL <span class="ot">&lt;-</span> L <span class="sc">+</span> tcr<span class="sc">*</span>seL</span>
+<span id="cb62-14"><a href="#cb62-14" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="at">L=</span>L, <span class="at">seL=</span>seL, <span class="at">low=</span>lowbL, <span class="at">up=</span>upbL)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  L.(Intercept)             seL low.(Intercept)  up.(Intercept) 
       287.60886        14.17804       258.90692       316.31081 </code></pre>
@@ -1053,10 +1418,10 @@ L = E(\text{food\_exp}\mid \text{income}=20) = \beta_1 + 20\,\beta_2.\tag{3.7}
 </div>
 <p>Two‑tail, left‑tail, right‑tail tests for (L):</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a>c <span class="ot">&lt;-</span> <span class="dv">250</span></span>
-<span id="cb59-2"><a href="#cb59-2" aria-hidden="true" tabindex="-1"></a>t <span class="ot">&lt;-</span> (L <span class="sc">-</span> c)<span class="sc">/</span>seL</span>
-<span id="cb59-3"><a href="#cb59-3" aria-hidden="true" tabindex="-1"></a>p_value <span class="ot">&lt;-</span> <span class="dv">2</span><span class="sc">*</span>(<span class="dv">1</span><span class="sc">-</span><span class="fu">pt</span>(<span class="fu">abs</span>(t), df))</span>
-<span id="cb59-4"><a href="#cb59-4" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="at">t=</span>t, <span class="at">p_value=</span>p_value)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a>c <span class="ot">&lt;-</span> <span class="dv">250</span></span>
+<span id="cb64-2"><a href="#cb64-2" aria-hidden="true" tabindex="-1"></a>t <span class="ot">&lt;-</span> (L <span class="sc">-</span> c)<span class="sc">/</span>seL</span>
+<span id="cb64-3"><a href="#cb64-3" aria-hidden="true" tabindex="-1"></a>p_value <span class="ot">&lt;-</span> <span class="dv">2</span><span class="sc">*</span>(<span class="dv">1</span><span class="sc">-</span><span class="fu">pt</span>(<span class="fu">abs</span>(t), df))</span>
+<span id="cb64-4"><a href="#cb64-4" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="at">t=</span>t, <span class="at">p_value=</span>p_value)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>      t.(Intercept) p_value.(Intercept) 
          2.65261316          0.01159078 </code></pre>
@@ -1075,8 +1440,8 @@ L = E(\text{food\_exp}\mid \text{income}=20) = \beta_1 + 20\,\beta_2.\tag{3.7}
 <li><strong>Two‑tail:</strong> (p=2(1-pt(|t|,,df)))</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb61"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Examples computed earlier are reproduced here:</span></span>
-<span id="cb61-2"><a href="#cb61-2" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="at">p_right=</span>p_right, <span class="at">p_left=</span>p_left, <span class="at">p_two=</span>p_two)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Examples computed earlier are reproduced here:</span></span>
+<span id="cb66-2"><a href="#cb66-2" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="at">p_right=</span>p_right, <span class="at">p_left=</span>p_left, <span class="at">p_two=</span>p_two)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>     p_right       p_left        p_two 
 1.516329e-02 1.388071e-02 1.945862e-05 </code></pre>
