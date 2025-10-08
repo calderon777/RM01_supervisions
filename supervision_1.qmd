@@ -1192,13 +1192,7 @@ renv::init()
 - [ ] One boxplot (labels/theme improved).
 - [ ] Reflection paragraph on Copilot.
 
----
 
-### TA rubric
-- Setup (10%): Copilot enabled; script compiles.
-- Code quality (40%): Reviewed/edited suggestions; correct names.
-- Visuals (30%): Clear labels, sensible themes.
-- Reflection (20%): Insightful, acknowledges limits.
 
 ---
 
