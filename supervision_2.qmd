@@ -293,6 +293,10 @@ smod1$coefficients
 </div>
 
 
+---
+
+🏁  *End of lab 7*
+🛑 Remember to save your script 💾
 
 ---
 
@@ -416,7 +420,7 @@ Our predictions depend entirely on our estimated coefficients ($b_1, b_2$). But 
 Before making predictions, it's important to understand that our coefficient estimates vary across samples. This matters for land economics applications: if we're advising on property valuations, we need to know how sensitive our predictions are to sampling variation.
 
 ::: {.callout-tip}
-## What is "sampling with replacement"?
+### What is "sampling with replacement"?
 Imagine our 40 observations are numbered balls in an urn. We draw a ball, record its data, **put it back**, then draw again. Some observations may appear multiple times in a bootstrap sample; others not at all. This mimics the randomness of drawing a new sample from the population.
 :::
 
@@ -452,7 +456,7 @@ The variance-covariance matrix tells us two crucial things:
 This matters for prediction because uncertainty in $\hat{y}$ depends on uncertainty in *both* coefficients *and* their correlation. For land valuation models, ignoring this covariance can lead to overconfident predictions.
 
 ::: {.callout-warning}
-## Common Error in Applied Work
+**Common Error in Applied Work**
 Many analysts incorrectly calculate prediction variance as just $\text{Var}(b_1) + x_0^2 \cdot \text{Var}(b_2)$, omitting the covariance term. This can make predictions appear less precise than they actually are.
 :::
 
@@ -722,6 +726,10 @@ Students often confuse confidence intervals (for the average) with prediction in
 
 </div>
 
+---
+
+🏁  *End of lab 8*
+🛑 Remember to save your script 💾
 
 ---
 
@@ -837,7 +845,15 @@ p_value <- 2*(1-pt(abs(t), df))
 c(t=t, p_value=p_value)
 ```
 
+
 ---
+
+🏁  *End of lab 9*
+🛑 Remember to save your script 💾
+
+---
+
+
 
 ## 🧪 Lab 10 — The p‑Value (Recap)
 
@@ -855,3 +871,10 @@ c(p_right=p_right, p_left=p_left, p_two=p_two)
 ### References
 
 Adkins (2014); Allaire et al. (2016); Colonescu (2016); Croissant & Millo (2015); Dahl (2016); Fox & Weisberg (2016); Fox et al. (2016); Ghalanos (2015); Graves (2014); Grolemund & Wickham (2016); Henningsen & Hamann (2015); Hill, Griffiths & Lim (2011); Hlavac (2015); Hothorn et al. (2015); Hyndman (2016); Kleiber & Zeileis (2015); Komashko (2016); Lander (2013); Lumley & Zeileis (2015); Pfaff (2013); R Core Team (2008); Reinhart (2015); Robinson (2016); RStudio Team (2015); Spada et al. (2012); Trapletti & Hornik (2016); Wickham & Chang (2016); Xie (2014, 2016a, 2016b); Zeileis (2016).
+
+---
+
+🏁  *End of lab 10*
+🛑 Remember to save your script 💾
+
+---

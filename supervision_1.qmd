@@ -1136,7 +1136,10 @@ Replace colour with `fill`, adjust legend, apply minimal theme.
 ### Part D — Loading local data safely
 Copilot does not know your file system.
 
-1. Save `Scooby.xlsx` in a `data/` folder.
+1. Save `Scooby.xlsx` in your `data/` folder.
+
+<a href="data/scooby-doo.csv" download target="_blank">Download Scooby-doo.csv</a>
+
 2. Load explicitly:
 ```r
 library(readxl)

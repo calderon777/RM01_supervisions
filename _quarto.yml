@@ -1,6 +1,8 @@
 project:
   type: book
-  output-dir: docs  
+  output-dir: docs
+  resources:
+    - data/Scooby.xlsx  
 
 book:
   title: "Research Methods for Land Economy"
