@@ -1192,8 +1192,6 @@ renv::init()
 - [ ] One boxplot (labels/theme improved).
 - [ ] Reflection paragraph on Copilot.
 
-
-
 ---
 
 ### Troubleshooting
