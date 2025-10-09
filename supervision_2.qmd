@@ -200,10 +200,11 @@ smod1$coefficients
 **6) With an intercept in the model, OLS residuals:**  
 `r webexercises::longmcq(c("Sum to a positive number", "Sum to a negative number", answer = "Sum to zero", "Sum to the sample mean of y"))`
 <span class="mcq-key" data-correct="Sum to zero"></span>
+<details class="hint"><summary>Hint</summary> ∑eᵢ = 0 and Xᵀe = 0 when an intercept is included.</details>
 </div>
 
 <div class="mcq-we-q">
-**7) The OLS regression line passes through:**  
+**7) In simple OLS with an intercept, the fitted line passes through...**  
 `r webexercises::longmcq(c("The origin (0,0)", answer = "The point (x̄, ȳ)", "The median of x and y", "The maximum of y"))`
 <span class="mcq-key" data-correct="The point (x̄, ȳ)"></span>
 <details class="hint"><summary>Hint</summary> It goes through the means.</details>
@@ -218,19 +219,19 @@ smod1$coefficients
 <div class="mcq-we-q">
 **9) In `summary(mod)`, the p-value for the slope tests:**  
 `r webexercises::longmcq(c("H₀: β₁ ≠ 0", answer = "H₀: β₁ = 0", "H₀: β₀ = 0", "H₀: errors are normal"))`
-<span class="mcq-key" data-correct="H0: B₁ = 0"></span>
+<span class="mcq-key" data-correct="H₀: β₁ = 0"></span>
 </div>
 
 <div class="mcq-we-q">
 **10) The p-value is best described as:**  
 `r webexercises::longmcq(c("The probability H₁ is true", "The probability the estimate is correct", answer = "The probability (under H₀) of a result at least as extreme as observed", "The Type II error rate"))`
-<span class="mcq-key" data-correct="The probability (under H0) of a result at least as extreme as observed"></span>
+<span class="mcq-key" data-correct="The probability (under H₀) of a result at least as extreme as observed"></span>
 </div>
 
 <div class="mcq-we-q">
 **11) A 95% confidence interval for β₁ is generally:**  
 `r webexercises::longmcq(c("Estimate ± 1.96 × σ of y", answer = "Estimate ± critical t × SE(β₁)", "Estimate ± 2 × residual SD", "SE(β₁) ± estimate"))`
-<span class="mcq-key" data-correct="Estimate ± critical t × SE(B₁)"></span>
+<span class="mcq-key" data-correct="Estimate ± critical t × SE(β₁)"></span>
 </div>
 
 <div class="mcq-we-q">
@@ -280,7 +281,7 @@ smod1$coefficients
 <div class="mcq-we-q">
 **19) Rescaling x from dollars to hundreds of dollars will:**  
 `r webexercises::longmcq(c("Leave β₁ unchanged", answer = "Rescale β₁ numerically but leave R² and the t-test for β₁ unchanged", "Change the data but not the model", "Invalidate OLS"))`
-<span class="mcq-key" data-correct="Rescale β₁ numerically but leave R² and the t-test for β₁ essentially unchanged"></span>
+<span class="mcq-key" data-correct="Rescale β₁ numerically but leave R² and the t-test for β₁ unchanged"></span>
 </div>
 
 <div class="mcq-we-q">
