@@ -1083,6 +1083,131 @@ cat("  p-value:", round(p_value, 4), "\n")
 cat("  Decision at α=0.05:", ifelse(p_value < 0.05, "Reject H0", "Fail to reject H0"), "\n")
 ```
 
+**Interpretation:** We fail to reject the null hypothesis. There is insufficient evidence that expected food expenditure differs from $250 for households earning $2,000/week.
+
+#### PART D - MCQs
+<div class="mcq-we">
+<div class="mcq-we-q">
+**1) In hypothesis testing, H₀ represents:**  
+`r webexercises::longmcq(c("The research hypothesis", "What we hope to prove", answer = "The status quo or claim being tested", "The alternative explanation"))`
+<span class="mcq-key" data-correct="The status quo or claim being tested"></span>
+<details class="hint"><summary>Hint</summary>Think of it as the "innocent until proven guilty" claim.</details>
+</div>
+<div class="mcq-we-q">
+**2) The test statistic t = (b - c) / se(b) measures:**  
+`r webexercises::longmcq(c("The absolute error", "The confidence level", answer = "How many standard errors b is from c", "The sample size"))`
+<span class="mcq-key" data-correct="How many standard errors b is from c"></span>
+<details class="hint"><summary>Hint</summary>It's a standardized distance.</details>
+</div>
+<div class="mcq-we-q">
+**3) For a two-tailed test at α = 0.05 with df = 38, the critical value is approximately:**  
+`r webexercises::longmcq(c("1.645", "1.686", answer = "±2.024", "±1.96"))`
+<span class="mcq-key" data-correct="±2.024"></span>
+<details class="hint"><summary>Hint</summary>Use qt(0.975, 38) for the upper tail.</details>
+</div>
+<div class="mcq-we-q">
+**4) A p-value of 0.03 means:**  
+`r webexercises::longmcq(c("H₀ has 3% chance of being true", "There's a 3% chance the result is wrong", answer = "If H₀ were true, there's a 3% chance of results this extreme", "The effect size is 3%"))`
+<span class="mcq-key" data-correct="If H₀ were true, there's a 3% chance of results this extreme"></span>
+</div>
+<div class="mcq-we-q">
+**5) We reject H₀ when:**  
+`r webexercises::longmcq(c(answer = "p-value < α", "p-value > α", "t-statistic < 0", "Confidence interval includes zero"))`
+<span class="mcq-key" data-correct="p-value < α"></span>
+</div>
+<div class="mcq-we-q">
+**6) For a right-tailed test, the p-value is calculated as:**  
+`r webexercises::longmcq(c("pt(t, df)", "2 * pt(abs(t), df)", answer = "1 - pt(t, df)", "pt(-t, df)"))`
+<span class="mcq-key" data-correct="1 - pt(t, df)"></span>
+<details class="hint"><summary>Hint</summary>We want the upper tail probability.</details>
+</div>
+<div class="mcq-we-q">
+**7) A 95% confidence interval for β₂ is [3, 8]. In a two-tailed test at α = 0.05, we would:**  
+`r webexercises::longmcq(c("Reject H₀: β₂ = 5", answer = "Fail to reject H₀: β₂ = 5", "Reject H₀: β₂ = 0", "Need more information"))`
+<span class="mcq-key" data-correct="Fail to reject H₀: β₂ = 5"></span>
+<details class="hint"><summary>Hint</summary>5 is inside the interval.</details>
+</div>
+<div class="mcq-we-q">
+**8) The same confidence interval [3, 8] tells us we would:**  
+`r webexercises::longmcq(c("Fail to reject H₀: β₂ = 0", answer = "Reject H₀: β₂ = 0", "Accept H₀: β₂ = 10", "Reject H₀: β₂ = 6"))`
+<span class="mcq-key" data-correct="Reject H₀: β₂ = 0"></span>
+<details class="hint"><summary>Hint</summary>0 is outside the interval.</details>
+</div>
+<div class="mcq-we-q">
+**9) To test L = β₁ + 20β₂, we need:**  
+`r webexercises::longmcq(c("Only var(β₁) and var(β₂)", "Only the covariance", answer = "Var(β₁), var(β₂), and cov(β₁, β₂)", "Just the point estimate"))`
+<span class="mcq-key" data-correct="Var(β₁), var(β₂), and cov(β₁, β₂)"></span>
+</div>
+<div class="mcq-we-q">
+**10) The variance of L = a·X + b·Y includes the term:**  
+`r webexercises::longmcq(c("ab · var(X)", "ab · var(Y)", answer = "2ab · cov(X,Y)", "(a+b)² · var(X)"))`
+<span class="mcq-key" data-correct="2ab · cov(X,Y)"></span>
+<details class="hint"><summary>Hint</summary>Don't forget the "2" and the product ab.</details>
+</div>
+<div class="mcq-we-q">
+**11) vcov(model) returns:**  
+`r webexercises::longmcq(c("Only variances", "Only covariances", answer = "A matrix with variances on diagonal and covariances off-diagonal", "Confidence intervals"))`
+<span class="mcq-key" data-correct="A matrix with variances on diagonal and covariances off-diagonal"></span>
+</div>
+<div class="mcq-we-q">
+**12) A Type I error occurs when:**  
+`r webexercises::longmcq(c("We fail to reject a false H₀", answer = "We reject a true H₀", "Our sample size is too small", "The p-value is large"))`
+<span class="mcq-key" data-correct="We reject a true H₀"></span>
+<details class="hint"><summary>Hint</summary>It's controlled by α.</details>
+</div>
+<div class="mcq-we-q">
+**13) The significance level α represents:**  
+`r webexercises::longmcq(c("The p-value", "The probability H₀ is true", answer = "The probability of Type I error", "The power of the test"))`
+<span class="mcq-key" data-correct="The probability of Type I error"></span>
+</div>
+<div class="mcq-we-q">
+**14) For H₀: β₂ = 0, if the 95% CI is [2.5, 7.5], then:**  
+`r webexercises::longmcq(c("p-value > 0.05", answer = "p-value < 0.05", "We cannot reject H₀", "The estimate is unbiased"))`
+<span class="mcq-key" data-correct="p-value < 0.05"></span>
+<details class="hint"><summary>Hint</summary>0 is not in the interval, so we reject.</details>
+</div>
+<div class="mcq-we-q">
+**15) In R, to get the p-value for a right-tailed test with t = 2.5 and df = 30:**  
+`r webexercises::longmcq(c("pt(2.5, 30)", "2*pt(2.5, 30)", answer = "1 - pt(2.5, 30)", "pt(2.5, 30, lower.tail=TRUE)"))`
+<span class="mcq-key" data-correct="1 - pt(2.5, 30)"></span>
+</div>
+<div class="mcq-we-q">
+**16) A larger sample size generally:**  
+`r webexercises::longmcq(c("Increases standard errors", answer = "Decreases standard errors", "Doesn't affect hypothesis tests", "Increases the critical value"))`
+<span class="mcq-key" data-correct="Decreases standard errors"></span>
+<details class="hint"><summary>Hint</summary>More data = more precision.</details>
+</div>
+<div class="mcq-we-q">
+**17) The degrees of freedom for a simple regression (N=40) is:**  
+`r webexercises::longmcq(c("40", "39", answer = "38", "37"))`
+<span class="mcq-key" data-correct="38"></span>
+<details class="hint"><summary>Hint</summary>df = N - K where K=2 (intercept + slope).</details>
+</div>
+<div class="mcq-we-q">
+**18) If |t| < t_critical, we:**  
+`r webexercises::longmcq(c("Reject H₀", answer = "Fail to reject H₀", "Accept H₁", "Recalculate the test"))`
+<span class="mcq-key" data-correct="Fail to reject H₀"></span>
+</div>
+<div class="mcq-we-q">
+**19) A one-tailed test is appropriate when:**  
+`r webexercises::longmcq(c("We don't know the direction", "We want more power", answer = "Theory predicts a specific direction", "The sample size is small"))`
+<span class="mcq-key" data-correct="Theory predicts a specific direction"></span>
+</div>
+<div class="mcq-we-q">
+**20) The t-distribution approaches the normal distribution as:**  
+`r webexercises::longmcq(c("α decreases", "α increases", "n decreases", answer = "n increases"))`
+<span class="mcq-key" data-correct="n increases"></span>
+<details class="hint"><summary>Hint</summary>With large df, t ≈ z.</details>
+</div>
+</div>
+
+### Summary
+
+- Hypothesis testing provides a formal framework for evaluating claims about parameters
+- Test statistics measure how far estimates are from hypothesized values in standard error units
+- p-values quantify the strength of evidence against H₀
+- Confidence intervals and hypothesis tests are mathematically equivalent
+- Linear combinations require accounting for covariances in variance calculations
 
 ---
 
@@ -1090,7 +1215,6 @@ cat("  Decision at α=0.05:", ifelse(p_value < 0.05, "Reject H0", "Fail to rejec
 🛑 Remember to save your script 💾
 
 ---
-
 
 ---
 
