@@ -224,12 +224,9 @@ window.Quarto = {
   </ul></li>
   <li><a href="#lab-9-hypothesis-test-pvalue-testing-linear-combinations" id="toc-lab-9-hypothesis-test-pvalue-testing-linear-combinations" class="nav-link" data-scroll-target="#lab-9-hypothesis-test-pvalue-testing-linear-combinations">🧪 Lab 9 — Hypothesis Test, p‑Value &amp; Testing Linear Combinations</a>
   <ul class="collapse">
+  <li><a href="#learning-outcomes-2" id="toc-learning-outcomes-2" class="nav-link" data-scroll-target="#learning-outcomes-2">🎯 Learning Outcomes</a></li>
   <li><a href="#hypothesis-tests" id="toc-hypothesis-tests" class="nav-link" data-scroll-target="#hypothesis-tests">Hypothesis Tests</a></li>
-  <li><a href="#the-pvalue" id="toc-the-pvalue" class="nav-link" data-scroll-target="#the-pvalue">The p‑Value</a></li>
-  <li><a href="#testing-linear-combinations-of-parameters" id="toc-testing-linear-combinations-of-parameters" class="nav-link" data-scroll-target="#testing-linear-combinations-of-parameters">Testing Linear Combinations of Parameters</a></li>
-  </ul></li>
-  <li><a href="#lab-10-the-pvalue-recap" id="toc-lab-10-the-pvalue-recap" class="nav-link" data-scroll-target="#lab-10-the-pvalue-recap">🧪 Lab 10 — The p‑Value (Recap)</a>
-  <ul class="collapse">
+  <li><a href="#introduction-why-hypothesis-testing-matters" id="toc-introduction-why-hypothesis-testing-matters" class="nav-link" data-scroll-target="#introduction-why-hypothesis-testing-matters">Introduction: Why Hypothesis Testing Matters</a></li>
   <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
   </ul></li>
   </ul>
@@ -252,7 +249,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">9 Oct 2025, 01:04</p>
+      <p class="date-modified">10 Oct 2025, 15:52</p>
     </div>
   </div>
     
@@ -471,8 +468,8 @@ income      10.20964   2.093264 4.877381 1.945862e-05</code></pre>
 <div class="mcq-we-q">
 <strong>1) What relationship does simple linear regression assume between y and x?</strong><br>
 
-<div id="radio_ENHWCFVBQJ" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_ENHWCFVBQJ" value=""> <span>Quadratic</span></label><label><input type="radio" autocomplete="off" name="radio_ENHWCFVBQJ" value=""> <span>Logarithmic</span></label><label><input type="radio" autocomplete="off" name="radio_ENHWCFVBQJ" value="answer"> <span>Linear</span></label><label><input type="radio" autocomplete="off" name="radio_ENHWCFVBQJ" value=""> <span>Exponential</span></label>
+<div id="radio_BFFCWHBAVX" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_BFFCWHBAVX" value=""> <span>Quadratic</span></label><label><input type="radio" autocomplete="off" name="radio_BFFCWHBAVX" value=""> <span>Logarithmic</span></label><label><input type="radio" autocomplete="off" name="radio_BFFCWHBAVX" value="answer"> <span>Linear</span></label><label><input type="radio" autocomplete="off" name="radio_BFFCWHBAVX" value=""> <span>Exponential</span></label>
 </div>
 <span class="mcq-key" data-correct="Linear"></span>
 <details class="hint">
@@ -486,8 +483,8 @@ Think straight line: one slope + one intercept.
 <div class="mcq-we-q">
 <strong>2) In the model y = β₀ + β₁ x + ε, what does β₁ represent?</strong><br>
 
-<div id="radio_MKIMRSHASF" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_MKIMRSHASF" value=""> <span>The average of y</span></label><label><input type="radio" autocomplete="off" name="radio_MKIMRSHASF" value=""> <span>The error variance</span></label><label><input type="radio" autocomplete="off" name="radio_MKIMRSHASF" value="answer"> <span>Expected change in y for a one-unit increase in x</span></label><label><input type="radio" autocomplete="off" name="radio_MKIMRSHASF" value=""> <span>The intercept</span></label>
+<div id="radio_MRYINUOBIN" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_MRYINUOBIN" value=""> <span>The average of y</span></label><label><input type="radio" autocomplete="off" name="radio_MRYINUOBIN" value=""> <span>The error variance</span></label><label><input type="radio" autocomplete="off" name="radio_MRYINUOBIN" value="answer"> <span>Expected change in y for a one-unit increase in x</span></label><label><input type="radio" autocomplete="off" name="radio_MRYINUOBIN" value=""> <span>The intercept</span></label>
 </div>
 <span class="mcq-key" data-correct="Expected change in y for a one-unit increase in x"></span>
 <details class="hint">
@@ -500,8 +497,8 @@ Hint
 <div class="mcq-we-q">
 <strong>3) In the model y = β₀ + β₁ x + ε, what does β₀ represent?</strong><br>
 
-<div id="radio_GYDFIPEJHE" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_GYDFIPEJHE" value=""> <span>The slope of x</span></label><label><input type="radio" autocomplete="off" name="radio_GYDFIPEJHE" value="answer"> <span>The expected value of y when x = 0</span></label><label><input type="radio" autocomplete="off" name="radio_GYDFIPEJHE" value=""> <span>The variance of ε</span></label><label><input type="radio" autocomplete="off" name="radio_GYDFIPEJHE" value=""> <span>Correlation between x and y</span></label>
+<div id="radio_BMRZSBUAQT" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_BMRZSBUAQT" value=""> <span>The slope of x</span></label><label><input type="radio" autocomplete="off" name="radio_BMRZSBUAQT" value="answer"> <span>The expected value of y when x = 0</span></label><label><input type="radio" autocomplete="off" name="radio_BMRZSBUAQT" value=""> <span>The variance of ε</span></label><label><input type="radio" autocomplete="off" name="radio_BMRZSBUAQT" value=""> <span>Correlation between x and y</span></label>
 </div>
 <span class="mcq-key" data-correct="The expected value of y when x = 0"></span>
 <details class="hint">
@@ -514,8 +511,8 @@ Value of y at x = 0.
 <div class="mcq-we-q">
 <strong>4) A residual is defined as:</strong><br>
 
-<div id="radio_VKFSIVRZVA" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_VKFSIVRZVA" value=""> <span>Predicted y minus observed y</span></label><label><input type="radio" autocomplete="off" name="radio_VKFSIVRZVA" value=""> <span>Observed x minus predicted x</span></label><label><input type="radio" autocomplete="off" name="radio_VKFSIVRZVA" value="answer"> <span>Observed y minus predicted y</span></label><label><input type="radio" autocomplete="off" name="radio_VKFSIVRZVA" value=""> <span>The fitted value</span></label>
+<div id="radio_ATEHXSTCST" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_ATEHXSTCST" value=""> <span>Predicted y minus observed y</span></label><label><input type="radio" autocomplete="off" name="radio_ATEHXSTCST" value=""> <span>Observed x minus predicted x</span></label><label><input type="radio" autocomplete="off" name="radio_ATEHXSTCST" value="answer"> <span>Observed y minus predicted y</span></label><label><input type="radio" autocomplete="off" name="radio_ATEHXSTCST" value=""> <span>The fitted value</span></label>
 </div>
 <span class="mcq-key" data-correct="Observed y minus predicted y"></span>
 <details class="hint">
@@ -528,8 +525,8 @@ Actual − fitted.
 <div class="mcq-we-q">
 <strong>5) Ordinary Least Squares (OLS) chooses coefficients to:</strong><br>
 
-<div id="radio_KAUMZWSFLE" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_KAUMZWSFLE" value=""> <span>Maximize R²</span></label><label><input type="radio" autocomplete="off" name="radio_KAUMZWSFLE" value=""> <span>Minimize the sum of absolute residuals</span></label><label><input type="radio" autocomplete="off" name="radio_KAUMZWSFLE" value="answer"> <span>Minimize the sum of squared residuals</span></label><label><input type="radio" autocomplete="off" name="radio_KAUMZWSFLE" value=""> <span>Maximize the likelihood under normal errors only</span></label>
+<div id="radio_JUNIHPYRYT" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_JUNIHPYRYT" value=""> <span>Maximize R²</span></label><label><input type="radio" autocomplete="off" name="radio_JUNIHPYRYT" value=""> <span>Minimize the sum of absolute residuals</span></label><label><input type="radio" autocomplete="off" name="radio_JUNIHPYRYT" value="answer"> <span>Minimize the sum of squared residuals</span></label><label><input type="radio" autocomplete="off" name="radio_JUNIHPYRYT" value=""> <span>Maximize the likelihood under normal errors only</span></label>
 </div>
 <span class="mcq-key" data-correct="Minimize the sum of squared residuals"></span>
 <details class="hint">
@@ -542,8 +539,8 @@ Squares penalize big errors more.
 <div class="mcq-we-q">
 <strong>6) With an intercept in the model, OLS residuals:</strong><br>
 
-<div id="radio_EPMBSHVWAH" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_EPMBSHVWAH" value=""> <span>Sum to a positive number</span></label><label><input type="radio" autocomplete="off" name="radio_EPMBSHVWAH" value=""> <span>Sum to a negative number</span></label><label><input type="radio" autocomplete="off" name="radio_EPMBSHVWAH" value="answer"> <span>Sum to zero</span></label><label><input type="radio" autocomplete="off" name="radio_EPMBSHVWAH" value=""> <span>Sum to the sample mean of y</span></label>
+<div id="radio_HPHBPXGJCI" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_HPHBPXGJCI" value=""> <span>Sum to a positive number</span></label><label><input type="radio" autocomplete="off" name="radio_HPHBPXGJCI" value=""> <span>Sum to a negative number</span></label><label><input type="radio" autocomplete="off" name="radio_HPHBPXGJCI" value="answer"> <span>Sum to zero</span></label><label><input type="radio" autocomplete="off" name="radio_HPHBPXGJCI" value=""> <span>Sum to the sample mean of y</span></label>
 </div>
 <span class="mcq-key" data-correct="Sum to zero"></span>
 <details class="hint">
@@ -556,8 +553,8 @@ Hint
 <div class="mcq-we-q">
 <strong>7) In simple OLS with an intercept, the fitted line passes through…</strong><br>
 
-<div id="radio_YEXGHWMYEP" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_YEXGHWMYEP" value=""> <span>The origin (0,0)</span></label><label><input type="radio" autocomplete="off" name="radio_YEXGHWMYEP" value="answer"> <span>The point (x̄, ȳ)</span></label><label><input type="radio" autocomplete="off" name="radio_YEXGHWMYEP" value=""> <span>The median of x and y</span></label><label><input type="radio" autocomplete="off" name="radio_YEXGHWMYEP" value=""> <span>The maximum of y</span></label>
+<div id="radio_SNKSFSULHR" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_SNKSFSULHR" value=""> <span>The origin (0,0)</span></label><label><input type="radio" autocomplete="off" name="radio_SNKSFSULHR" value="answer"> <span>The point (x̄, ȳ)</span></label><label><input type="radio" autocomplete="off" name="radio_SNKSFSULHR" value=""> <span>The median of x and y</span></label><label><input type="radio" autocomplete="off" name="radio_SNKSFSULHR" value=""> <span>The maximum of y</span></label>
 </div>
 <span class="mcq-key" data-correct="The point (x̄, ȳ)"></span>
 <details class="hint">
@@ -570,56 +567,56 @@ It goes through the means.
 <div class="mcq-we-q">
 <strong>8) Which R function fits a simple linear regression model?</strong><br>
 
-<div id="radio_ZCBZKCRDUE" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_ZCBZKCRDUE" value=""> <span>plot()</span></label><label><input type="radio" autocomplete="off" name="radio_ZCBZKCRDUE" value=""> <span>cor()</span></label><label><input type="radio" autocomplete="off" name="radio_ZCBZKCRDUE" value="answer"> <span>lm()</span></label><label><input type="radio" autocomplete="off" name="radio_ZCBZKCRDUE" value=""> <span>predict()</span></label>
+<div id="radio_DCFPESPNOC" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_DCFPESPNOC" value=""> <span>plot()</span></label><label><input type="radio" autocomplete="off" name="radio_DCFPESPNOC" value=""> <span>cor()</span></label><label><input type="radio" autocomplete="off" name="radio_DCFPESPNOC" value="answer"> <span>lm()</span></label><label><input type="radio" autocomplete="off" name="radio_DCFPESPNOC" value=""> <span>predict()</span></label>
 </div>
 <p><span class="mcq-key" data-correct="lm()"></span></p>
 </div>
 <div class="mcq-we-q">
 <strong>9) In <code>summary(mod)</code>, the p-value for the slope tests:</strong><br>
 
-<div id="radio_QANANWYMXH" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_QANANWYMXH" value=""> <span>H₀: β₁ ≠ 0</span></label><label><input type="radio" autocomplete="off" name="radio_QANANWYMXH" value="answer"> <span>H₀: β₁ = 0</span></label><label><input type="radio" autocomplete="off" name="radio_QANANWYMXH" value=""> <span>H₀: β₀ = 0</span></label><label><input type="radio" autocomplete="off" name="radio_QANANWYMXH" value=""> <span>H₀: errors are normal</span></label>
+<div id="radio_TNFBZAIDIQ" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_TNFBZAIDIQ" value=""> <span>H₀: β₁ ≠ 0</span></label><label><input type="radio" autocomplete="off" name="radio_TNFBZAIDIQ" value="answer"> <span>H₀: β₁ = 0</span></label><label><input type="radio" autocomplete="off" name="radio_TNFBZAIDIQ" value=""> <span>H₀: β₀ = 0</span></label><label><input type="radio" autocomplete="off" name="radio_TNFBZAIDIQ" value=""> <span>H₀: errors are normal</span></label>
 </div>
 <p><span class="mcq-key" data-correct="H₀: β₁ = 0"></span></p>
 </div>
 <div class="mcq-we-q">
 <strong>10) The p-value is best described as:</strong><br>
 
-<div id="radio_TTLQFAOUBX" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_TTLQFAOUBX" value=""> <span>The probability H₁ is true</span></label><label><input type="radio" autocomplete="off" name="radio_TTLQFAOUBX" value=""> <span>The probability the estimate is correct</span></label><label><input type="radio" autocomplete="off" name="radio_TTLQFAOUBX" value="answer"> <span>The probability (under H₀) of a result at least as extreme as observed</span></label><label><input type="radio" autocomplete="off" name="radio_TTLQFAOUBX" value=""> <span>The Type II error rate</span></label>
+<div id="radio_HXMJDNUOFI" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_HXMJDNUOFI" value=""> <span>The probability H₁ is true</span></label><label><input type="radio" autocomplete="off" name="radio_HXMJDNUOFI" value=""> <span>The probability the estimate is correct</span></label><label><input type="radio" autocomplete="off" name="radio_HXMJDNUOFI" value="answer"> <span>The probability (under H₀) of a result at least as extreme as observed</span></label><label><input type="radio" autocomplete="off" name="radio_HXMJDNUOFI" value=""> <span>The Type II error rate</span></label>
 </div>
 <p><span class="mcq-key" data-correct="The probability (under H₀) of a result at least as extreme as observed"></span></p>
 </div>
 <div class="mcq-we-q">
 <strong>11) A 95% confidence interval for β₁ is generally:</strong><br>
 
-<div id="radio_ASHPBPTWWD" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_ASHPBPTWWD" value=""> <span>Estimate ± 1.96 × σ of y</span></label><label><input type="radio" autocomplete="off" name="radio_ASHPBPTWWD" value="answer"> <span>Estimate ± critical t × SE(β₁)</span></label><label><input type="radio" autocomplete="off" name="radio_ASHPBPTWWD" value=""> <span>Estimate ± 2 × residual SD</span></label><label><input type="radio" autocomplete="off" name="radio_ASHPBPTWWD" value=""> <span>SE(β₁) ± estimate</span></label>
+<div id="radio_OYEFUHNDWJ" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_OYEFUHNDWJ" value=""> <span>Estimate ± 1.96 × σ of y</span></label><label><input type="radio" autocomplete="off" name="radio_OYEFUHNDWJ" value="answer"> <span>Estimate ± critical t × SE(β₁)</span></label><label><input type="radio" autocomplete="off" name="radio_OYEFUHNDWJ" value=""> <span>Estimate ± 2 × residual SD</span></label><label><input type="radio" autocomplete="off" name="radio_OYEFUHNDWJ" value=""> <span>SE(β₁) ± estimate</span></label>
 </div>
 <p><span class="mcq-key" data-correct="Estimate ± critical t × SE(β₁)"></span></p>
 </div>
 <div class="mcq-we-q">
 <strong>12) R² measures:</strong><br>
 
-<div id="radio_UTAAXRXUTY" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_UTAAXRXUTY" value=""> <span>The correlation between x and y</span></label><label><input type="radio" autocomplete="off" name="radio_UTAAXRXUTY" value="answer"> <span>Proportion of variance in y explained by x</span></label><label><input type="radio" autocomplete="off" name="radio_UTAAXRXUTY" value=""> <span>The average residual size</span></label><label><input type="radio" autocomplete="off" name="radio_UTAAXRXUTY" value=""> <span>The probability the model is correct</span></label>
+<div id="radio_KNTNRLAOUP" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_KNTNRLAOUP" value=""> <span>The correlation between x and y</span></label><label><input type="radio" autocomplete="off" name="radio_KNTNRLAOUP" value="answer"> <span>Proportion of variance in y explained by x</span></label><label><input type="radio" autocomplete="off" name="radio_KNTNRLAOUP" value=""> <span>The average residual size</span></label><label><input type="radio" autocomplete="off" name="radio_KNTNRLAOUP" value=""> <span>The probability the model is correct</span></label>
 </div>
 <p><span class="mcq-key" data-correct="Proportion of variance in y explained by x"></span></p>
 </div>
 <div class="mcq-we-q">
 <strong>13) Adjusted R² differs from R² because it:</strong><br>
 
-<div id="radio_UOCRQSIXIN" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_UOCRQSIXIN" value=""> <span>Ignores sample size</span></label><label><input type="radio" autocomplete="off" name="radio_UOCRQSIXIN" value=""> <span>Is always larger than R²</span></label><label><input type="radio" autocomplete="off" name="radio_UOCRQSIXIN" value="answer"> <span>Penalizes adding predictors relative to sample size</span></label><label><input type="radio" autocomplete="off" name="radio_UOCRQSIXIN" value=""> <span>Equals 1 − R²</span></label>
+<div id="radio_FYXHGUVOEH" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_FYXHGUVOEH" value=""> <span>Ignores sample size</span></label><label><input type="radio" autocomplete="off" name="radio_FYXHGUVOEH" value=""> <span>Is always larger than R²</span></label><label><input type="radio" autocomplete="off" name="radio_FYXHGUVOEH" value="answer"> <span>Penalizes adding predictors relative to sample size</span></label><label><input type="radio" autocomplete="off" name="radio_FYXHGUVOEH" value=""> <span>Equals 1 − R²</span></label>
 </div>
 <p><span class="mcq-key" data-correct="Penalizes adding predictors relative to sample size"></span></p>
 </div>
 <div class="mcq-we-q">
 <strong>14) To make a prediction at x = x₀, you use:</strong><br>
 
-<div id="radio_WCDAOCZRPD" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_WCDAOCZRPD" value=""> <span>β₁ × x₀</span></label><label><input type="radio" autocomplete="off" name="radio_WCDAOCZRPD" value=""> <span>β₀ ÷ x₀</span></label><label><input type="radio" autocomplete="off" name="radio_WCDAOCZRPD" value="answer"> <span>ŷ = β₀ + β₁ × x₀</span></label><label><input type="radio" autocomplete="off" name="radio_WCDAOCZRPD" value=""> <span>SE(β₁) × x₀</span></label>
+<div id="radio_LSJEONQBHO" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_LSJEONQBHO" value=""> <span>β₁ × x₀</span></label><label><input type="radio" autocomplete="off" name="radio_LSJEONQBHO" value=""> <span>β₀ ÷ x₀</span></label><label><input type="radio" autocomplete="off" name="radio_LSJEONQBHO" value="answer"> <span>ŷ = β₀ + β₁ × x₀</span></label><label><input type="radio" autocomplete="off" name="radio_LSJEONQBHO" value=""> <span>SE(β₁) × x₀</span></label>
 </div>
 <span class="mcq-key" data-correct="ŷ = β₀ + β₁ × x₀"></span>
 <details class="hint">
@@ -632,24 +629,24 @@ Plug x₀ into the fitted line.
 <div class="mcq-we-q">
 <strong>15) For OLS to be unbiased, a key assumption is:</strong><br>
 
-<div id="radio_DWRDDGYSLI" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_DWRDDGYSLI" value=""> <span>x is normally distributed</span></label><label><input type="radio" autocomplete="off" name="radio_DWRDDGYSLI" value=""> <span>Errors have zero variance</span></label><label><input type="radio" autocomplete="off" name="radio_DWRDDGYSLI" value="answer"> <span>E[ε | x] = 0 (errors have zero mean conditional on x)</span></label><label><input type="radio" autocomplete="off" name="radio_DWRDDGYSLI" value=""> <span>y is standardized</span></label>
+<div id="radio_YKBOLTGNLO" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_YKBOLTGNLO" value=""> <span>x is normally distributed</span></label><label><input type="radio" autocomplete="off" name="radio_YKBOLTGNLO" value=""> <span>Errors have zero variance</span></label><label><input type="radio" autocomplete="off" name="radio_YKBOLTGNLO" value="answer"> <span>E[ε | x] = 0 (errors have zero mean conditional on x)</span></label><label><input type="radio" autocomplete="off" name="radio_YKBOLTGNLO" value=""> <span>y is standardized</span></label>
 </div>
 <p><span class="mcq-key" data-correct="E[ε | x] = 0 (errors have zero mean conditional on x)"></span></p>
 </div>
 <div class="mcq-we-q">
 <strong>16) Homoskedasticity means:</strong><br>
 
-<div id="radio_XGXGDDPIDA" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_XGXGDDPIDA" value=""> <span>Errors are perfectly correlated</span></label><label><input type="radio" autocomplete="off" name="radio_XGXGDDPIDA" value="answer"> <span>Variance of errors is constant across x</span></label><label><input type="radio" autocomplete="off" name="radio_XGXGDDPIDA" value=""> <span>Mean of errors is zero only at x̄</span></label><label><input type="radio" autocomplete="off" name="radio_XGXGDDPIDA" value=""> <span>x has constant variance</span></label>
+<div id="radio_UEZQLXCXRD" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_UEZQLXCXRD" value=""> <span>Errors are perfectly correlated</span></label><label><input type="radio" autocomplete="off" name="radio_UEZQLXCXRD" value="answer"> <span>Variance of errors is constant across x</span></label><label><input type="radio" autocomplete="off" name="radio_UEZQLXCXRD" value=""> <span>Mean of errors is zero only at x̄</span></label><label><input type="radio" autocomplete="off" name="radio_UEZQLXCXRD" value=""> <span>x has constant variance</span></label>
 </div>
 <p><span class="mcq-key" data-correct="Variance of errors is constant across x"></span></p>
 </div>
 <div class="mcq-we-q">
 <strong>17) In <code>summary(mod)</code>, the t value for β₁ equals:</strong><br>
 
-<div id="radio_CRFLQSJCWC" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_CRFLQSJCWC" value=""> <span>β₁</span></label><label><input type="radio" autocomplete="off" name="radio_CRFLQSJCWC" value=""> <span>SE(β₁)</span></label><label><input type="radio" autocomplete="off" name="radio_CRFLQSJCWC" value="answer"> <span>Estimate(β₁) / SE(β₁)</span></label><label><input type="radio" autocomplete="off" name="radio_CRFLQSJCWC" value=""> <span>1 − p-value</span></label>
+<div id="radio_YGKYXXXETE" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_YGKYXXXETE" value=""> <span>β₁</span></label><label><input type="radio" autocomplete="off" name="radio_YGKYXXXETE" value=""> <span>SE(β₁)</span></label><label><input type="radio" autocomplete="off" name="radio_YGKYXXXETE" value="answer"> <span>Estimate(β₁) / SE(β₁)</span></label><label><input type="radio" autocomplete="off" name="radio_YGKYXXXETE" value=""> <span>1 − p-value</span></label>
 </div>
 <span class="mcq-key" data-correct="Estimate(β₁) / SE(β₁)"></span>
 <details class="hint">
@@ -662,24 +659,24 @@ Signal ÷ noise for the slope estimate.
 <div class="mcq-we-q">
 <strong>18) The units of β₁ are best described as:</strong><br>
 
-<div id="radio_TZKAGRJOFI" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_TZKAGRJOFI" value=""> <span>Units of y</span></label><label><input type="radio" autocomplete="off" name="radio_TZKAGRJOFI" value="answer"> <span>Units of y per unit of x</span></label><label><input type="radio" autocomplete="off" name="radio_TZKAGRJOFI" value=""> <span>Unitless</span></label><label><input type="radio" autocomplete="off" name="radio_TZKAGRJOFI" value=""> <span>Units of x per unit of y</span></label>
+<div id="radio_OTFVQRBUIJ" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_OTFVQRBUIJ" value=""> <span>Units of y</span></label><label><input type="radio" autocomplete="off" name="radio_OTFVQRBUIJ" value="answer"> <span>Units of y per unit of x</span></label><label><input type="radio" autocomplete="off" name="radio_OTFVQRBUIJ" value=""> <span>Unitless</span></label><label><input type="radio" autocomplete="off" name="radio_OTFVQRBUIJ" value=""> <span>Units of x per unit of y</span></label>
 </div>
 <p><span class="mcq-key" data-correct="Units of y per unit of x"></span></p>
 </div>
 <div class="mcq-we-q">
 <strong>19) Rescaling x from dollars to hundreds of dollars will:</strong><br>
 
-<div id="radio_GVHVPVLPRZ" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_GVHVPVLPRZ" value=""> <span>Leave β₁ unchanged</span></label><label><input type="radio" autocomplete="off" name="radio_GVHVPVLPRZ" value="answer"> <span>Rescale β₁ numerically but leave R² and the t-test for β₁ unchanged</span></label><label><input type="radio" autocomplete="off" name="radio_GVHVPVLPRZ" value=""> <span>Change the data but not the model</span></label><label><input type="radio" autocomplete="off" name="radio_GVHVPVLPRZ" value=""> <span>Invalidate OLS</span></label>
+<div id="radio_DBEZGWOZKB" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_DBEZGWOZKB" value=""> <span>Leave β₁ unchanged</span></label><label><input type="radio" autocomplete="off" name="radio_DBEZGWOZKB" value="answer"> <span>Rescale β₁ numerically but leave R² and the t-test for β₁ unchanged</span></label><label><input type="radio" autocomplete="off" name="radio_DBEZGWOZKB" value=""> <span>Change the data but not the model</span></label><label><input type="radio" autocomplete="off" name="radio_DBEZGWOZKB" value=""> <span>Invalidate OLS</span></label>
 </div>
 <p><span class="mcq-key" data-correct="Rescale β₁ numerically but leave R² and the t-test for β₁ unchanged"></span></p>
 </div>
 <div class="mcq-we-q">
 <strong>20) After fitting <code>mod &lt;- lm(y ~ x, d)</code>, the fitted value at x₀ is:</strong><br>
 
-<div id="radio_PHQSWHODGE" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_PHQSWHODGE" value=""> <span>residuals(mod)[x==x₀]</span></label><label><input type="radio" autocomplete="off" name="radio_PHQSWHODGE" value="answer"> <span>predict(mod, newdata = data.frame(x = x₀))</span></label><label><input type="radio" autocomplete="off" name="radio_PHQSWHODGE" value=""> <span>coef(mod)['x']</span></label><label><input type="radio" autocomplete="off" name="radio_PHQSWHODGE" value=""> <span>fitted(mod)[1] always</span></label>
+<div id="radio_PAOKHFJCDA" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_PAOKHFJCDA" value=""> <span>residuals(mod)[x==x₀]</span></label><label><input type="radio" autocomplete="off" name="radio_PAOKHFJCDA" value="answer"> <span>predict(mod, newdata = data.frame(x = x₀))</span></label><label><input type="radio" autocomplete="off" name="radio_PAOKHFJCDA" value=""> <span>coef(mod)['x']</span></label><label><input type="radio" autocomplete="off" name="radio_PAOKHFJCDA" value=""> <span>fitted(mod)[1] always</span></label>
 </div>
 <span class="mcq-key" data-correct="predict(mod, newdata = data.frame(x = x₀))"></span>
 <details class="hint">
@@ -1286,30 +1283,70 @@ Unseen levels cause errors in predict().
 </section>
 <section id="lab-9-hypothesis-test-pvalue-testing-linear-combinations" class="level2">
 <h2 class="anchored" data-anchor-id="lab-9-hypothesis-test-pvalue-testing-linear-combinations">🧪 Lab 9 — Hypothesis Test, p‑Value &amp; Testing Linear Combinations</h2>
+<section id="learning-outcomes-2" class="level3">
+<h3 class="anchored" data-anchor-id="learning-outcomes-2">🎯 Learning Outcomes</h3>
+<p>By the end of this lab you will be able to:</p>
+<ul>
+<li>Formulate null and alternative hypotheses for regression coefficients</li>
+<li>Compute test statistics and compare them to critical values</li>
+<li>Calculate and interpret p-values for one-tailed and two-tailed tests</li>
+<li>Understand the relationship between confidence intervals and hypothesis tests</li>
+<li>Test linear combinations of parameters (e.g., predictions at specific x values)</li>
+<li>Apply hypothesis testing to real-world land economics questions</li>
+</ul>
+</section>
 <section id="hypothesis-tests" class="level3">
 <h3 class="anchored" data-anchor-id="hypothesis-tests">Hypothesis Tests</h3>
-<p>Null vs alternative for a coefficient (_k):</p>
-<p><span class="math display">\[
+<p>🧰 Prerequisites Knowledge:</p>
+<p>Understanding of simple linear regression (Lab 7) Familiarity with coefficient estimates and standard errors (Lab 8) Basic understanding of statistical inference (confidence intervals, significance levels)</p>
+<p>Technical:</p>
+<p>R (≥ 4.0) and RStudio installed Completed Labs 1-8 Required packages:</p>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="fu">c</span>(<span class="st">"remotes"</span>, <span class="st">"PoEdata"</span>)) </span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a>remotes<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"ccolonescu/PoEdata"</span>)</span>
+<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(PoEdata)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<hr>
+</section>
+<section id="introduction-why-hypothesis-testing-matters" class="level3">
+<h3 class="anchored" data-anchor-id="introduction-why-hypothesis-testing-matters">Introduction: Why Hypothesis Testing Matters</h3>
+<p>In Lab 7, we estimated relationships. In Lab 8, we made predictions. But how do we know if our findings are statistically meaningful? Consider our food expenditure model:</p>
+<p>We estimated that food spending increases by $10.21 for every $100 increase in income But is this effect real, or could it be due to random chance? Could the true effect actually be zero (no relationship)?</p>
+<p>Hypothesis testing provides a formal framework to answer these questions.</p>
+<p>💡 Land Economics Application When valuing agricultural land, we might find that proximity to roads increases land value by £500 per meter. But before advising clients, we need to know: Is this effect statistically significant, or could it be sampling noise?</p>
+<section id="part-a---hypothesis-tests-for-individual-coefficients" class="level4">
+<h4 class="anchored" data-anchor-id="part-a---hypothesis-tests-for-individual-coefficients">PART A - Hypothesis Tests for Individual Coefficients</h4>
+<p>We start with two competing claims: <span class="math display">\[
 H_0: \beta_k = c, \qquad H_A: \beta_k \ne c.
 \]</span></p>
-<p>Test statistic: <span class="math display">\[
+<p><strong>Test statistic:</strong></p>
+<p>Under the null hypothesis, the test statistic follows a t-distribution: <span class="math display">\[
 t = \frac{b_k - c}{\operatorname{se}(b_k)},\quad t \sim t_{N-2}.\tag{6}
 \]</span></p>
-<p>Example for (b_2) in the food model:</p>
+<p>where:</p>
+<p><span class="math inline">\(b_k\)</span>​ is our estimated coefficient</p>
+<p><span class="math inline">\(c\)</span> is the hypothesized value (zero in our case)</p>
+<p><span class="math inline">\(\operatorname{se}(b_k)\)</span> is the standard error of <span class="math inline">\(b_k\)</span></p>
+<p><span class="math inline">\(N−K\)</span> is degrees of freedom (N observations, K parameters)</p>
+<p><strong>Intuition:</strong> This ratio measures how many standard errors our estimate is away from the hypothesized value.</p>
+<p><strong>Example 1:</strong> Two-Tailed Test (Is there any effect?) <strong>Question:</strong> Does income affect food expenditure? (i.e., is <span class="math inline">\(β2≠0\)</span>?)</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>alpha <span class="ot">&lt;-</span> <span class="fl">0.05</span></span>
-<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(PoEdata); <span class="fu">library</span>(xtable); <span class="fu">library</span>(knitr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Set significance level</span></span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>alpha <span class="ot">&lt;-</span> <span class="fl">0.05</span></span>
+<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-4"><a href="#cb52-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Load data and estimate model</span></span>
+<span id="cb52-5"><a href="#cb52-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(PoEdata); <span class="fu">library</span>(xtable); <span class="fu">library</span>(knitr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning: package 'xtable' was built under R version 4.4.3</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning: package 'knitr' was built under R version 4.4.3</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">"food"</span>)</span>
-<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a>mod1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(food_exp <span class="sc">~</span> income, <span class="at">data=</span>food); smod1 <span class="ot">&lt;-</span> <span class="fu">summary</span>(mod1)</span>
-<span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb54-4"><a href="#cb54-4" aria-hidden="true" tabindex="-1"></a>table <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="fu">xtable</span>(mod1))</span>
-<span id="cb54-5"><a href="#cb54-5" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(table, <span class="at">caption=</span><span class="st">"Regression output showing the coefficients"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">"food"</span>)</span>
+<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a>mod1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(food_exp <span class="sc">~</span> income, <span class="at">data=</span>food)</span>
+<span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a>smod1 <span class="ot">&lt;-</span> <span class="fu">summary</span>(mod1)</span>
+<span id="cb55-4"><a href="#cb55-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-5"><a href="#cb55-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Regression output</span></span>
+<span id="cb55-6"><a href="#cb55-6" aria-hidden="true" tabindex="-1"></a>table <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="fu">xtable</span>(mod1))</span>
+<span id="cb55-7"><a href="#cb55-7" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(table, <span class="at">caption=</span><span class="st">"Regression output showing the coefficients"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <table class="caption-top table table-sm table-striped small">
 <caption>Regression output showing the coefficients</caption>
@@ -1340,131 +1377,345 @@ t = \frac{b_k - c}{\operatorname{se}(b_k)},\quad t \sim t_{N-2}.\tag{6}
 </tbody>
 </table>
 </div>
-<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a>b2 <span class="ot">&lt;-</span> <span class="fu">coef</span>(mod1)[[<span class="st">"income"</span>]]</span>
-<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a>seb2 <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(<span class="fu">vcov</span>(mod1)[<span class="dv">2</span>,<span class="dv">2</span>])</span>
-<span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a>df  <span class="ot">&lt;-</span> <span class="fu">df.residual</span>(mod1)</span>
-<span id="cb55-4"><a href="#cb55-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-5"><a href="#cb55-5" aria-hidden="true" tabindex="-1"></a>t   <span class="ot">&lt;-</span> b2<span class="sc">/</span>seb2</span>
-<span id="cb55-6"><a href="#cb55-6" aria-hidden="true" tabindex="-1"></a>tcr <span class="ot">&lt;-</span> <span class="fu">qt</span>(<span class="dv">1</span><span class="sc">-</span>alpha<span class="sc">/</span><span class="dv">2</span>, df)</span>
-<span id="cb55-7"><a href="#cb55-7" aria-hidden="true" tabindex="-1"></a>t; tcr</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract coefficient and standard error</span></span>
+<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a>b2 <span class="ot">&lt;-</span> <span class="fu">coef</span>(mod1)[[<span class="st">"income"</span>]]</span>
+<span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a>seb2 <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(<span class="fu">vcov</span>(mod1)[<span class="dv">2</span>,<span class="dv">2</span>])</span>
+<span id="cb56-4"><a href="#cb56-4" aria-hidden="true" tabindex="-1"></a>df  <span class="ot">&lt;-</span> <span class="fu">df.residual</span>(mod1)</span>
+<span id="cb56-5"><a href="#cb56-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb56-6"><a href="#cb56-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute test statistic</span></span>
+<span id="cb56-7"><a href="#cb56-7" aria-hidden="true" tabindex="-1"></a>t   <span class="ot">&lt;-</span> b2<span class="sc">/</span>seb2</span>
+<span id="cb56-8"><a href="#cb56-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb56-9"><a href="#cb56-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Find critical value for two-tailed test</span></span>
+<span id="cb56-10"><a href="#cb56-10" aria-hidden="true" tabindex="-1"></a>tcr <span class="ot">&lt;-</span> <span class="fu">qt</span>(<span class="dv">1</span><span class="sc">-</span>alpha<span class="sc">/</span><span class="dv">2</span>, df)</span>
+<span id="cb56-11"><a href="#cb56-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb56-12"><a href="#cb56-12" aria-hidden="true" tabindex="-1"></a>t; tcr</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 4.877381</code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 2.024394</code></pre>
 </div>
+<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Display results</span></span>
+<span id="cb59-2"><a href="#cb59-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Test statistic:"</span>, <span class="fu">round</span>(t, <span class="dv">3</span>), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Test statistic: 4.877 </code></pre>
 </div>
-<p>Right‑tail and left‑tail versions:</p>
+<div class="sourceCode cell-code" id="cb61"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Critical value (±):"</span>, <span class="fu">round</span>(tcr, <span class="dv">3</span>), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Critical value (±): 2.024 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Decision:"</span>, <span class="fu">ifelse</span>(<span class="fu">abs</span>(t) <span class="sc">&gt;</span> tcr, <span class="st">"Reject H0"</span>, <span class="st">"Fail to reject H0"</span>), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Decision: Reject H0 </code></pre>
+</div>
+</div>
+<p><strong>Interpretation:</strong></p>
+<ul>
+<li><p>Our test statistic is r round(t, 2), which is much larger than the critical value ±r round(tcr, 2)</p></li>
+<li><p>We reject the null hypothesis</p></li>
+<li><p>There is strong evidence that income affects food expenditure</p></li>
+<li><p>Right‑tail and left‑tail versions:</p></li>
+</ul>
+<p><strong>Optional:</strong> 📊 Visualizing the Test:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Right-tail: H0: beta2 &lt;= 5.5; HA: beta2 &gt; 5.5</span></span>
-<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a>c <span class="ot">&lt;-</span> <span class="fl">5.5</span></span>
-<span id="cb58-3"><a href="#cb58-3" aria-hidden="true" tabindex="-1"></a>t_right <span class="ot">&lt;-</span> (b2 <span class="sc">-</span> c)<span class="sc">/</span>seb2</span>
-<span id="cb58-4"><a href="#cb58-4" aria-hidden="true" tabindex="-1"></a>tcr_right <span class="ot">&lt;-</span> <span class="fu">qt</span>(<span class="dv">1</span><span class="sc">-</span>alpha, df)</span>
-<span id="cb58-5"><a href="#cb58-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb58-6"><a href="#cb58-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Left-tail: H0: beta2 &gt;= 15; HA: beta2 &lt; 15</span></span>
-<span id="cb58-7"><a href="#cb58-7" aria-hidden="true" tabindex="-1"></a>c <span class="ot">&lt;-</span> <span class="dv">15</span></span>
-<span id="cb58-8"><a href="#cb58-8" aria-hidden="true" tabindex="-1"></a>t_left <span class="ot">&lt;-</span> (b2 <span class="sc">-</span> c)<span class="sc">/</span>seb2</span>
-<span id="cb58-9"><a href="#cb58-9" aria-hidden="true" tabindex="-1"></a>tcr_left <span class="ot">&lt;-</span> <span class="fu">qt</span>(alpha, df)</span>
-<span id="cb58-10"><a href="#cb58-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb58-11"><a href="#cb58-11" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="at">t_right=</span>t_right, <span class="at">tcr_right=</span>tcr_right, <span class="at">t_left=</span>t_left, <span class="at">tcr_left=</span>tcr_left)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb65"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create visualization of t-distribution and test</span></span>
+<span id="cb65-2"><a href="#cb65-2" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dt</span>(x, df), <span class="at">from =</span> <span class="sc">-</span><span class="dv">5</span>, <span class="at">to =</span> <span class="dv">5</span>, </span>
+<span id="cb65-3"><a href="#cb65-3" aria-hidden="true" tabindex="-1"></a>      <span class="at">main =</span> <span class="st">"Two-Tailed Hypothesis Test"</span>,</span>
+<span id="cb65-4"><a href="#cb65-4" aria-hidden="true" tabindex="-1"></a>      <span class="at">xlab =</span> <span class="st">"t-value"</span>, <span class="at">ylab =</span> <span class="st">"Density"</span>,</span>
+<span id="cb65-5"><a href="#cb65-5" aria-hidden="true" tabindex="-1"></a>      <span class="at">lwd =</span> <span class="dv">2</span>)</span>
+<span id="cb65-6"><a href="#cb65-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb65-7"><a href="#cb65-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Shade rejection regions</span></span>
+<span id="cb65-8"><a href="#cb65-8" aria-hidden="true" tabindex="-1"></a><span class="fu">polygon</span>(<span class="fu">c</span>(<span class="sc">-</span><span class="dv">4</span>, <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">4</span>, <span class="sc">-</span>tcr, <span class="fl">0.01</span>), <span class="sc">-</span>tcr),</span>
+<span id="cb65-9"><a href="#cb65-9" aria-hidden="true" tabindex="-1"></a>        <span class="fu">c</span>(<span class="dv">0</span>, <span class="fu">dt</span>(<span class="fu">seq</span>(<span class="sc">-</span><span class="dv">4</span>, <span class="sc">-</span>tcr, <span class="fl">0.01</span>), df), <span class="dv">0</span>),</span>
+<span id="cb65-10"><a href="#cb65-10" aria-hidden="true" tabindex="-1"></a>        <span class="at">col =</span> <span class="st">"red"</span>, <span class="at">border =</span> <span class="cn">NA</span>, <span class="at">density =</span> <span class="dv">20</span>)</span>
+<span id="cb65-11"><a href="#cb65-11" aria-hidden="true" tabindex="-1"></a><span class="fu">polygon</span>(<span class="fu">c</span>(tcr, <span class="fu">seq</span>(tcr, <span class="dv">4</span>, <span class="fl">0.01</span>), <span class="dv">4</span>),</span>
+<span id="cb65-12"><a href="#cb65-12" aria-hidden="true" tabindex="-1"></a>        <span class="fu">c</span>(<span class="dv">0</span>, <span class="fu">dt</span>(<span class="fu">seq</span>(tcr, <span class="dv">4</span>, <span class="fl">0.01</span>), df), <span class="dv">0</span>),</span>
+<span id="cb65-13"><a href="#cb65-13" aria-hidden="true" tabindex="-1"></a>        <span class="at">col =</span> <span class="st">"red"</span>, <span class="at">border =</span> <span class="cn">NA</span>, <span class="at">density =</span> <span class="dv">20</span>)</span>
+<span id="cb65-14"><a href="#cb65-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb65-15"><a href="#cb65-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Mark critical values and test statistic</span></span>
+<span id="cb65-16"><a href="#cb65-16" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v =</span> <span class="fu">c</span>(<span class="sc">-</span>tcr, tcr), <span class="at">col =</span> <span class="st">"red"</span>, <span class="at">lty =</span> <span class="dv">2</span>, <span class="at">lwd =</span> <span class="dv">2</span>)</span>
+<span id="cb65-17"><a href="#cb65-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb65-18"><a href="#cb65-18" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v =</span> t, <span class="at">col =</span> <span class="st">"blue"</span>, <span class="at">lwd =</span> <span class="dv">2</span>)</span>
+<span id="cb65-19"><a href="#cb65-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb65-20"><a href="#cb65-20" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">"topright"</span>, </span>
+<span id="cb65-21"><a href="#cb65-21" aria-hidden="true" tabindex="-1"></a>       <span class="at">legend =</span> <span class="fu">c</span>(<span class="st">"Rejection region (α/2 each)"</span>, </span>
+<span id="cb65-22"><a href="#cb65-22" aria-hidden="true" tabindex="-1"></a>                  <span class="st">"Critical values"</span>, </span>
+<span id="cb65-23"><a href="#cb65-23" aria-hidden="true" tabindex="-1"></a>                  <span class="st">"Test statistic"</span>),</span>
+<span id="cb65-24"><a href="#cb65-24" aria-hidden="true" tabindex="-1"></a>       <span class="at">col =</span> <span class="fu">c</span>(<span class="st">"red"</span>, <span class="st">"red"</span>, <span class="st">"blue"</span>),</span>
+<span id="cb65-25"><a href="#cb65-25" aria-hidden="true" tabindex="-1"></a>       <span class="at">lty =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">1</span>), <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">bty =</span> <span class="st">"n"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="supervision_2_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><strong>Example 2:</strong> One-Tailed Tests Sometimes we have a directional hypothesis based on economic theory. <strong>Right-Tailed Test:</strong> Is the effect of income on food expenditure greater than $5.50?</p>
+<p><span class="math display">\[
+H_0: \beta_2 ≤ 5.5, \qquad H_A: \beta_2 &gt; 5.5.
+\]</span></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Hypothesized value</span></span>
+<span id="cb66-2"><a href="#cb66-2" aria-hidden="true" tabindex="-1"></a>c <span class="ot">&lt;-</span> <span class="fl">5.5</span></span>
+<span id="cb66-3"><a href="#cb66-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb66-4"><a href="#cb66-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute test statistic</span></span>
+<span id="cb66-5"><a href="#cb66-5" aria-hidden="true" tabindex="-1"></a>t_right <span class="ot">&lt;-</span> (b2 <span class="sc">-</span> c)<span class="sc">/</span>seb2</span>
+<span id="cb66-6"><a href="#cb66-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb66-7"><a href="#cb66-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Critical value (right tail only)</span></span>
+<span id="cb66-8"><a href="#cb66-8" aria-hidden="true" tabindex="-1"></a>tcr_right <span class="ot">&lt;-</span> <span class="fu">qt</span>(<span class="dv">1</span><span class="sc">-</span>alpha, df)</span>
+<span id="cb66-9"><a href="#cb66-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb66-10"><a href="#cb66-10" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Test statistic:"</span>, <span class="fu">round</span>(t_right, <span class="dv">3</span>), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Test statistic: 2.25 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb68"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Critical value:"</span>, <span class="fu">round</span>(tcr_right, <span class="dv">3</span>), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Critical value: 1.686 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb70"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Decision:"</span>, <span class="fu">ifelse</span>(t_right <span class="sc">&gt;</span> tcr_right, <span class="st">"Reject H0"</span>, <span class="st">"Fail to reject H0"</span>), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Decision: Reject H0 </code></pre>
+</div>
+</div>
+<p><strong>Left-Tailed Test:</strong> Is the effect of income on food expenditure less than $15?</p>
+<p><span class="math display">\[
+H_0: \beta_2 ≥ 15, \qquad H_A: \beta_2 &lt; 15.
+\]</span></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb72"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Left-tail: H0: beta2 &gt;= 15; HA: beta2 &lt; 15</span></span>
+<span id="cb72-2"><a href="#cb72-2" aria-hidden="true" tabindex="-1"></a>c <span class="ot">&lt;-</span> <span class="dv">15</span></span>
+<span id="cb72-3"><a href="#cb72-3" aria-hidden="true" tabindex="-1"></a>t_left <span class="ot">&lt;-</span> (b2 <span class="sc">-</span> c)<span class="sc">/</span>seb2</span>
+<span id="cb72-4"><a href="#cb72-4" aria-hidden="true" tabindex="-1"></a>tcr_left <span class="ot">&lt;-</span> <span class="fu">qt</span>(alpha, df)</span>
+<span id="cb72-5"><a href="#cb72-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb72-6"><a href="#cb72-6" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="at">t_right=</span>t_right, <span class="at">tcr_right=</span>tcr_right, <span class="at">t_left=</span>t_left, <span class="at">tcr_left=</span>tcr_left)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  t_right tcr_right    t_left  tcr_left 
  2.249904  1.685954 -2.288463 -1.685954 </code></pre>
 </div>
+<div class="sourceCode cell-code" id="cb74"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Test statistic:"</span>, <span class="fu">round</span>(t_left, <span class="dv">3</span>), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Test statistic: -2.288 </code></pre>
 </div>
+<div class="sourceCode cell-code" id="cb76"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb76-1"><a href="#cb76-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Critical value:"</span>, <span class="fu">round</span>(tcr_left, <span class="dv">3</span>), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Critical value: -1.686 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb78"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb78-1"><a href="#cb78-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Decision:"</span>, <span class="fu">ifelse</span>(t_left <span class="sc">&lt;</span> tcr_left, <span class="st">"Reject H0"</span>, <span class="st">"Fail to reject H0"</span>), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Decision: Reject H0 </code></pre>
+</div>
+</div>
+<p>⚠️ <strong>Common Mistake:</strong> Students often confuse the direction of the inequality in <span class="math inline">\(H_0\)</span>​ and <span class="math inline">\(H_A\)</span>. Remember: the alternative hypothesis represents what you’re trying to find evidence <em>for</em>.</p>
+<hr>
 </section>
-<section id="the-pvalue" class="level3">
-<h3 class="anchored" data-anchor-id="the-pvalue">The p‑Value</h3>
-<p>Right‑tail: (p = 1 - F_t(t)). Left‑tail: (p = F_t(t)). Two‑tail: (p = 2(1-F_t(|t|))).</p>
+<section id="part-b---the-pvalue-approach" class="level4">
+<h4 class="anchored" data-anchor-id="part-b---the-pvalue-approach">PART B - The p‑Value Approach</h4>
+<p>The p-value is the probability of observing a test statistic at least as extreme as the one computed, assuming the null hypothesis is true.</p>
+<p><em>Decision rule:</em> Reject <span class="math inline">\(H_0\)</span>​ if <span class="math inline">\(p&lt;αp\)</span></p>
+<p><strong>Computing p-Values:</strong> <span class="math inline">\(F_t\)</span> stands for the cumulative distribution function (CDF) of the t-distribution.</p>
+<p>Right‑tail: <span class="math inline">\(p = 1 - F_t(t)\)</span></p>
+<p>Left‑tail: <span class="math inline">\(p = F_t(t)\)</span></p>
+<p>Two‑tail: <span class="math inline">\(p = 2 * (1-F_t(|t|)\)</span></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Right tail</span></span>
-<span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a>c <span class="ot">&lt;-</span> <span class="fl">5.5</span>; t <span class="ot">&lt;-</span> (b2<span class="sc">-</span>c)<span class="sc">/</span>seb2; p_right <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">-</span><span class="fu">pt</span>(t, df)</span>
-<span id="cb60-3"><a href="#cb60-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb60-4"><a href="#cb60-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Left tail</span></span>
-<span id="cb60-5"><a href="#cb60-5" aria-hidden="true" tabindex="-1"></a>c <span class="ot">&lt;-</span> <span class="dv">15</span>; t <span class="ot">&lt;-</span> (b2<span class="sc">-</span>c)<span class="sc">/</span>seb2; p_left <span class="ot">&lt;-</span> <span class="fu">pt</span>(t, df)</span>
-<span id="cb60-6"><a href="#cb60-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb60-7"><a href="#cb60-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Two tail</span></span>
-<span id="cb60-8"><a href="#cb60-8" aria-hidden="true" tabindex="-1"></a>c <span class="ot">&lt;-</span> <span class="dv">0</span>;  t <span class="ot">&lt;-</span> (b2<span class="sc">-</span>c)<span class="sc">/</span>seb2; p_two <span class="ot">&lt;-</span> <span class="dv">2</span><span class="sc">*</span>(<span class="dv">1</span><span class="sc">-</span><span class="fu">pt</span>(<span class="fu">abs</span>(t), df))</span>
-<span id="cb60-9"><a href="#cb60-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb60-10"><a href="#cb60-10" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="at">p_right=</span>p_right, <span class="at">p_left=</span>p_left, <span class="at">p_two=</span>p_two)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb80"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb80-1"><a href="#cb80-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Right-tail test (H0: β2 ≤ 5.5)</span></span>
+<span id="cb80-2"><a href="#cb80-2" aria-hidden="true" tabindex="-1"></a>c <span class="ot">&lt;-</span> <span class="fl">5.5</span></span>
+<span id="cb80-3"><a href="#cb80-3" aria-hidden="true" tabindex="-1"></a>t <span class="ot">&lt;-</span> (b2<span class="sc">-</span>c)<span class="sc">/</span>seb2</span>
+<span id="cb80-4"><a href="#cb80-4" aria-hidden="true" tabindex="-1"></a>p_right <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">-</span><span class="fu">pt</span>(t, df)</span>
+<span id="cb80-5"><a href="#cb80-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb80-6"><a href="#cb80-6" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Right-tail test:</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Right-tail test:</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb82"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb82-1"><a href="#cb82-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"  H0: β2 ≤"</span>, c, <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  H0: β2 ≤ 5.5 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb84"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb84-1"><a href="#cb84-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"  Test statistic:"</span>, <span class="fu">round</span>(t, <span class="dv">3</span>), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  Test statistic: 2.25 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb86"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb86-1"><a href="#cb86-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"  p-value:"</span>, <span class="fu">round</span>(p_right, <span class="dv">4</span>), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  p-value: 0.0152 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb88"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb88-1"><a href="#cb88-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"  Decision at α=0.05:"</span>, <span class="fu">ifelse</span>(p_right <span class="sc">&lt;</span> <span class="fl">0.05</span>, <span class="st">"Reject H0"</span>, <span class="st">"Fail to reject H0"</span>), <span class="st">"</span><span class="sc">\n\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  Decision at α=0.05: Reject H0 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb90"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb90-1"><a href="#cb90-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Left-tail test (H0: β2 ≥ 15)</span></span>
+<span id="cb90-2"><a href="#cb90-2" aria-hidden="true" tabindex="-1"></a>c <span class="ot">&lt;-</span> <span class="dv">15</span></span>
+<span id="cb90-3"><a href="#cb90-3" aria-hidden="true" tabindex="-1"></a>t <span class="ot">&lt;-</span> (b2<span class="sc">-</span>c)<span class="sc">/</span>seb2</span>
+<span id="cb90-4"><a href="#cb90-4" aria-hidden="true" tabindex="-1"></a>p_left <span class="ot">&lt;-</span> <span class="fu">pt</span>(t, df)</span>
+<span id="cb90-5"><a href="#cb90-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb90-6"><a href="#cb90-6" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Left-tail test:</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Left-tail test:</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb92"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb92-1"><a href="#cb92-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"  H0: β2 ≥"</span>, c, <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  H0: β2 ≥ 15 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb94"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb94-1"><a href="#cb94-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"  Test statistic:"</span>, <span class="fu">round</span>(t, <span class="dv">3</span>), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  Test statistic: -2.288 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb96"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb96-1"><a href="#cb96-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"  p-value:"</span>, <span class="fu">round</span>(p_left, <span class="dv">4</span>), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  p-value: 0.0139 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb98"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb98-1"><a href="#cb98-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"  Decision at α=0.05:"</span>, <span class="fu">ifelse</span>(p_left <span class="sc">&lt;</span> <span class="fl">0.05</span>, <span class="st">"Reject H0"</span>, <span class="st">"Fail to reject H0"</span>), <span class="st">"</span><span class="sc">\n\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  Decision at α=0.05: Reject H0 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb100"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb100-1"><a href="#cb100-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Two-tail test (H0: β2 = 0)</span></span>
+<span id="cb100-2"><a href="#cb100-2" aria-hidden="true" tabindex="-1"></a>c <span class="ot">&lt;-</span> <span class="dv">0</span>  </span>
+<span id="cb100-3"><a href="#cb100-3" aria-hidden="true" tabindex="-1"></a>t <span class="ot">&lt;-</span> (b2<span class="sc">-</span>c)<span class="sc">/</span>seb2</span>
+<span id="cb100-4"><a href="#cb100-4" aria-hidden="true" tabindex="-1"></a>p_two <span class="ot">&lt;-</span> <span class="dv">2</span><span class="sc">*</span>(<span class="dv">1</span><span class="sc">-</span><span class="fu">pt</span>(<span class="fu">abs</span>(t), df))</span>
+<span id="cb100-5"><a href="#cb100-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb100-6"><a href="#cb100-6" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="at">p_right=</span>p_right, <span class="at">p_left=</span>p_left, <span class="at">p_two=</span>p_two)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>     p_right       p_left        p_two 
 1.516329e-02 1.388071e-02 1.945862e-05 </code></pre>
 </div>
+<div class="sourceCode cell-code" id="cb102"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb102-1"><a href="#cb102-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Two-tail test:</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Two-tail test:</code></pre>
 </div>
+<div class="sourceCode cell-code" id="cb104"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb104-1"><a href="#cb104-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"  H0: β2 ="</span>, c, <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  H0: β2 = 0 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb106"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb106-1"><a href="#cb106-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"  Test statistic:"</span>, <span class="fu">round</span>(t, <span class="dv">3</span>), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  Test statistic: 4.877 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb108"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb108-1"><a href="#cb108-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"  p-value:"</span>, <span class="fu">format.pval</span>(p_two, <span class="at">digits =</span> <span class="dv">4</span>), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  p-value: 1.946e-05 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb110"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb110-1"><a href="#cb110-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"  Decision at α=0.05:"</span>, <span class="fu">ifelse</span>(p_two <span class="sc">&lt;</span> <span class="fl">0.05</span>, <span class="st">"Reject H0"</span>, <span class="st">"Fail to reject H0"</span>), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  Decision at α=0.05: Reject H0 </code></pre>
+</div>
+</div>
+<p>💡 Interpretation Guide:</p>
+<p><span class="math inline">\(p &lt; 0.01\)</span>: Very strong evidence against <span class="math inline">\(H_0\)</span></p>
+<p>​ <span class="math inline">\(0.01 ≤ p &lt; 0.05\)</span>: Strong evidence against <span class="math inline">\(H_0\)</span></p>
+<p>​ <span class="math inline">\(0.05 ≤ p &lt; 0.10\)</span>: Weak evidence against <span class="math inline">\(H_0\)</span></p>
+<p>​ <span class="math inline">\(p ≥ 0.10\)</span>: Insufficient evidence against <span class="math inline">\(H_0\)</span></p>
 </section>
-<section id="testing-linear-combinations-of-parameters" class="level3">
-<h3 class="anchored" data-anchor-id="testing-linear-combinations-of-parameters">Testing Linear Combinations of Parameters</h3>
-<p>Expected food expenditure at income = $2000 (i.e.&nbsp;(x=20)):</p>
+<section id="part-c---testing-linear-combinations-of-parameters" class="level4">
+<h4 class="anchored" data-anchor-id="part-c---testing-linear-combinations-of-parameters">PART C - Testing Linear Combinations of Parameters</h4>
+<p>We want to test hypotheses about combinations of parameters, not individual coefficients.<strong>Example:</strong> What is the expected food expenditure for a household earning $2,000/week (income = 20 in our units)?</p>
 <p><span class="math display">\[
-L = E(\text{food\_exp}\mid \text{income}=20) = \beta_1 + 20\,\beta_2.\tag{3.7}
+L = E(\text{food\_exp}\mid \text{income}=20) = \beta_1 + 20\,\beta_2
 \]</span></p>
 <p>Variance identities:</p>
 <p><span class="math display">\[
-\operatorname{var}(aX+bY) = a^2\,\operatorname{var}(X) + b^2\,\operatorname{var}(Y) + 2ab\,\operatorname{cov}(X,Y).\tag{3.8}
+\operatorname{var}(aX+bY) = a^2\,\operatorname{var}(X) + b^2\,\operatorname{var}(Y) + 2ab\,\operatorname{cov}(X,Y)
 \]</span></p>
 <p><span class="math display">\[
-\operatorname{var}(b_1+20b_2) = \operatorname{var}(b_1) + 20^2\operatorname{var}(b_2) + 2\cdot20\operatorname{cov}(b_1,b_2).\tag{3.9}
+\operatorname{var}(b_1+20b_2) = \operatorname{var}(b_1) + 20^2\operatorname{var}(b_2) + 2\cdot20\operatorname{cov}(b_1,b_2)
 \]</span></p>
+<p>⚠️ Critical Point: Many students forget the covariance term! Omitting it leads to incorrect standard errors.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a>alpha <span class="ot">&lt;-</span> <span class="fl">0.05</span>; x <span class="ot">&lt;-</span> <span class="dv">20</span></span>
-<span id="cb62-2"><a href="#cb62-2" aria-hidden="true" tabindex="-1"></a>m1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(food_exp <span class="sc">~</span> income, <span class="at">data=</span>food)</span>
-<span id="cb62-3"><a href="#cb62-3" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">df.residual</span>(m1)</span>
-<span id="cb62-4"><a href="#cb62-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb62-5"><a href="#cb62-5" aria-hidden="true" tabindex="-1"></a>b1 <span class="ot">&lt;-</span> m1<span class="sc">$</span>coef[<span class="dv">1</span>]; b2 <span class="ot">&lt;-</span> m1<span class="sc">$</span>coef[<span class="dv">2</span>]</span>
-<span id="cb62-6"><a href="#cb62-6" aria-hidden="true" tabindex="-1"></a>varb1 <span class="ot">&lt;-</span> <span class="fu">vcov</span>(m1)[<span class="dv">1</span>,<span class="dv">1</span>]; varb2 <span class="ot">&lt;-</span> <span class="fu">vcov</span>(m1)[<span class="dv">2</span>,<span class="dv">2</span>]; covb1b2 <span class="ot">&lt;-</span> <span class="fu">vcov</span>(m1)[<span class="dv">1</span>,<span class="dv">2</span>]</span>
-<span id="cb62-7"><a href="#cb62-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb62-8"><a href="#cb62-8" aria-hidden="true" tabindex="-1"></a>L <span class="ot">&lt;-</span> b1 <span class="sc">+</span> b2<span class="sc">*</span>x</span>
-<span id="cb62-9"><a href="#cb62-9" aria-hidden="true" tabindex="-1"></a>varL <span class="ot">&lt;-</span> varb1 <span class="sc">+</span> x<span class="sc">^</span><span class="dv">2</span> <span class="sc">*</span> varb2 <span class="sc">+</span> <span class="dv">2</span><span class="sc">*</span>x<span class="sc">*</span>covb1b2</span>
-<span id="cb62-10"><a href="#cb62-10" aria-hidden="true" tabindex="-1"></a>seL <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(varL)</span>
-<span id="cb62-11"><a href="#cb62-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb62-12"><a href="#cb62-12" aria-hidden="true" tabindex="-1"></a>tcr <span class="ot">&lt;-</span> <span class="fu">qt</span>(<span class="dv">1</span><span class="sc">-</span>alpha<span class="sc">/</span><span class="dv">2</span>, df)</span>
-<span id="cb62-13"><a href="#cb62-13" aria-hidden="true" tabindex="-1"></a>lowbL <span class="ot">&lt;-</span> L <span class="sc">-</span> tcr<span class="sc">*</span>seL; upbL <span class="ot">&lt;-</span> L <span class="sc">+</span> tcr<span class="sc">*</span>seL</span>
-<span id="cb62-14"><a href="#cb62-14" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="at">L=</span>L, <span class="at">seL=</span>seL, <span class="at">low=</span>lowbL, <span class="at">up=</span>upbL)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb112"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb112-1"><a href="#cb112-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Significance level and x-value of interest</span></span>
+<span id="cb112-2"><a href="#cb112-2" aria-hidden="true" tabindex="-1"></a>alpha <span class="ot">&lt;-</span> <span class="fl">0.05</span></span>
+<span id="cb112-3"><a href="#cb112-3" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">20</span></span>
+<span id="cb112-4"><a href="#cb112-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb112-5"><a href="#cb112-5" aria-hidden="true" tabindex="-1"></a><span class="co"># the model</span></span>
+<span id="cb112-6"><a href="#cb112-6" aria-hidden="true" tabindex="-1"></a>m1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(food_exp <span class="sc">~</span> income, <span class="at">data=</span>food)</span>
+<span id="cb112-7"><a href="#cb112-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb112-8"><a href="#cb112-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb112-9"><a href="#cb112-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract coefficients and variance-covariance matrix</span></span>
+<span id="cb112-10"><a href="#cb112-10" aria-hidden="true" tabindex="-1"></a>b1 <span class="ot">&lt;-</span> m1<span class="sc">$</span>coef[<span class="dv">1</span>]</span>
+<span id="cb112-11"><a href="#cb112-11" aria-hidden="true" tabindex="-1"></a>b2 <span class="ot">&lt;-</span> m1<span class="sc">$</span>coef[<span class="dv">2</span>]</span>
+<span id="cb112-12"><a href="#cb112-12" aria-hidden="true" tabindex="-1"></a>varb1 <span class="ot">&lt;-</span> <span class="fu">vcov</span>(m1)[<span class="dv">1</span>,<span class="dv">1</span>]</span>
+<span id="cb112-13"><a href="#cb112-13" aria-hidden="true" tabindex="-1"></a>varb2 <span class="ot">&lt;-</span> <span class="fu">vcov</span>(m1)[<span class="dv">2</span>,<span class="dv">2</span>]</span>
+<span id="cb112-14"><a href="#cb112-14" aria-hidden="true" tabindex="-1"></a>covb1b2 <span class="ot">&lt;-</span> <span class="fu">vcov</span>(m1)[<span class="dv">1</span>,<span class="dv">2</span>]</span>
+<span id="cb112-15"><a href="#cb112-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb112-16"><a href="#cb112-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute the linear combination and its variance</span></span>
+<span id="cb112-17"><a href="#cb112-17" aria-hidden="true" tabindex="-1"></a>L <span class="ot">&lt;-</span> b1 <span class="sc">+</span> b2<span class="sc">*</span>x</span>
+<span id="cb112-18"><a href="#cb112-18" aria-hidden="true" tabindex="-1"></a>varL <span class="ot">&lt;-</span> varb1 <span class="sc">+</span> x<span class="sc">^</span><span class="dv">2</span> <span class="sc">*</span> varb2 <span class="sc">+</span> <span class="dv">2</span><span class="sc">*</span>x<span class="sc">*</span>covb1b2</span>
+<span id="cb112-19"><a href="#cb112-19" aria-hidden="true" tabindex="-1"></a>seL <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(varL)</span>
+<span id="cb112-20"><a href="#cb112-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb112-21"><a href="#cb112-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Confidence interval for L</span></span>
+<span id="cb112-22"><a href="#cb112-22" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">df.residual</span>(m1)</span>
+<span id="cb112-23"><a href="#cb112-23" aria-hidden="true" tabindex="-1"></a>tcr <span class="ot">&lt;-</span> <span class="fu">qt</span>(<span class="dv">1</span><span class="sc">-</span>alpha<span class="sc">/</span><span class="dv">2</span>, df)</span>
+<span id="cb112-24"><a href="#cb112-24" aria-hidden="true" tabindex="-1"></a>lowbL <span class="ot">&lt;-</span> L <span class="sc">-</span> tcr<span class="sc">*</span>seL; upbL <span class="ot">&lt;-</span> L <span class="sc">+</span> tcr<span class="sc">*</span>seL</span>
+<span id="cb112-25"><a href="#cb112-25" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="at">L=</span>L, <span class="at">seL=</span>seL, <span class="at">low=</span>lowbL, <span class="at">up=</span>upbL)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  L.(Intercept)             seL low.(Intercept)  up.(Intercept) 
       287.60886        14.17804       258.90692       316.31081 </code></pre>
 </div>
+<div class="sourceCode cell-code" id="cb114"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb114-1"><a href="#cb114-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Expected food expenditure at income = $2000:</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Expected food expenditure at income = $2000:</code></pre>
 </div>
-<p>Two‑tail, left‑tail, right‑tail tests for (L):</p>
+<div class="sourceCode cell-code" id="cb116"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb116-1"><a href="#cb116-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"  Point estimate:"</span>, <span class="fu">round</span>(L, <span class="dv">2</span>), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  Point estimate: 287.61 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb118"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb118-1"><a href="#cb118-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"  Standard error:"</span>, <span class="fu">round</span>(seL, <span class="dv">2</span>), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  Standard error: 14.18 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb120"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb120-1"><a href="#cb120-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"  95% CI: ["</span>, <span class="fu">round</span>(lowbL, <span class="dv">2</span>), <span class="st">","</span>, <span class="fu">round</span>(upbL, <span class="dv">2</span>), <span class="st">"]</span><span class="sc">\n\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  95% CI: [ 258.91 , 316.31 ]</code></pre>
+</div>
+</div>
+</section>
+<section id="hypothesis-test-for-linear-combination" class="level4">
+<h4 class="anchored" data-anchor-id="hypothesis-test-for-linear-combination">Hypothesis Test for Linear Combination</h4>
+<p><strong>Question:</strong> Is expected food expenditure significantly different from $250 at this income level?</p>
+<p><span class="math display">\[
+H_0: L = 250, \qquad H_A: L \ne 250.
+\]</span></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a>c <span class="ot">&lt;-</span> <span class="dv">250</span></span>
-<span id="cb64-2"><a href="#cb64-2" aria-hidden="true" tabindex="-1"></a>t <span class="ot">&lt;-</span> (L <span class="sc">-</span> c)<span class="sc">/</span>seL</span>
-<span id="cb64-3"><a href="#cb64-3" aria-hidden="true" tabindex="-1"></a>p_value <span class="ot">&lt;-</span> <span class="dv">2</span><span class="sc">*</span>(<span class="dv">1</span><span class="sc">-</span><span class="fu">pt</span>(<span class="fu">abs</span>(t), df))</span>
-<span id="cb64-4"><a href="#cb64-4" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="at">t=</span>t, <span class="at">p_value=</span>p_value)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb122"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb122-1"><a href="#cb122-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Hypothesized value</span></span>
+<span id="cb122-2"><a href="#cb122-2" aria-hidden="true" tabindex="-1"></a>c <span class="ot">&lt;-</span> <span class="dv">250</span></span>
+<span id="cb122-3"><a href="#cb122-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb122-4"><a href="#cb122-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Test statistic</span></span>
+<span id="cb122-5"><a href="#cb122-5" aria-hidden="true" tabindex="-1"></a>t <span class="ot">&lt;-</span> (L <span class="sc">-</span> c)<span class="sc">/</span>seL</span>
+<span id="cb122-6"><a href="#cb122-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb122-7"><a href="#cb122-7" aria-hidden="true" tabindex="-1"></a><span class="co"># p-value (two-tailed)</span></span>
+<span id="cb122-8"><a href="#cb122-8" aria-hidden="true" tabindex="-1"></a>p_value <span class="ot">&lt;-</span> <span class="dv">2</span><span class="sc">*</span>(<span class="dv">1</span><span class="sc">-</span><span class="fu">pt</span>(<span class="fu">abs</span>(t), df))</span>
+<span id="cb122-9"><a href="#cb122-9" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="at">t=</span>t, <span class="at">p_value=</span>p_value)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>      t.(Intercept) p_value.(Intercept) 
          2.65261316          0.01159078 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb124"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb124-1"><a href="#cb124-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Hypothesis test: H0: L = 250</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Hypothesis test: H0: L = 250</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb126"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb126-1"><a href="#cb126-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"  Test statistic:"</span>, <span class="fu">round</span>(t, <span class="dv">3</span>), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  Test statistic: 2.653 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb128"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb128-1"><a href="#cb128-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"  p-value:"</span>, <span class="fu">round</span>(p_value, <span class="dv">4</span>), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  p-value: 0.0116 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb130"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb130-1"><a href="#cb130-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"  Decision at α=0.05:"</span>, <span class="fu">ifelse</span>(p_value <span class="sc">&lt;</span> <span class="fl">0.05</span>, <span class="st">"Reject H0"</span>, <span class="st">"Fail to reject H0"</span>), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  Decision at α=0.05: Reject H0 </code></pre>
 </div>
 </div>
 <hr>
 <p>🏁 <em>End of lab 9</em> 🛑 Remember to save your script 💾</p>
 <hr>
-</section>
-</section>
-<section id="lab-10-the-pvalue-recap" class="level2">
-<h2 class="anchored" data-anchor-id="lab-10-the-pvalue-recap">🧪 Lab 10 — The p‑Value (Recap)</h2>
-<ul>
-<li><strong>Right‑tail:</strong> (p=1-pt(t,,df))<br>
-</li>
-<li><strong>Left‑tail:</strong> (p=pt(t,,df))<br>
-</li>
-<li><strong>Two‑tail:</strong> (p=2(1-pt(|t|,,df)))</li>
-</ul>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Examples computed earlier are reproduced here:</span></span>
-<span id="cb66-2"><a href="#cb66-2" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="at">p_right=</span>p_right, <span class="at">p_left=</span>p_left, <span class="at">p_two=</span>p_two)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>     p_right       p_left        p_two 
-1.516329e-02 1.388071e-02 1.945862e-05 </code></pre>
-</div>
-</div>
 <hr>
+</section>
+</section>
 <section id="references" class="level3">
 <h3 class="anchored" data-anchor-id="references">References</h3>
-<p>Adkins (2014); Allaire et al.&nbsp;(2016); Colonescu (2016); Croissant &amp; Millo (2015); Dahl (2016); Fox &amp; Weisberg (2016); Fox et al.&nbsp;(2016); Ghalanos (2015); Graves (2014); Grolemund &amp; Wickham (2016); Henningsen &amp; Hamann (2015); Hill, Griffiths &amp; Lim (2011); Hlavac (2015); Hothorn et al.&nbsp;(2015); Hyndman (2016); Kleiber &amp; Zeileis (2015); Komashko (2016); Lander (2013); Lumley &amp; Zeileis (2015); Pfaff (2013); R Core Team (2008); Reinhart (2015); Robinson (2016); RStudio Team (2015); Spada et al.&nbsp;(2012); Trapletti &amp; Hornik (2016); Wickham &amp; Chang (2016); Xie (2014, 2016a, 2016b); Zeileis (2016).</p>
-<hr>
-<p>🏁 <em>End of lab 10</em> 🛑 Remember to save your script 💾</p>
+<p>Acemoglu, D., Laibson, D., &amp; List, J. A. (2015). Microeconomics (2nd ed.). Pearson. pp.&nbsp;512–530. (For conceptual understanding of regression interpretation and causal inference basics.)</p>
+<p>Colonescu, C. (2022). Principles of Econometrics with R (Version 2.0). Open Textbook Library. Chapters 7–9. (Used directly in labs, matches the PoEdata package and R examples.)</p>
+<p>Gujarati, D. N., Porter, D. C., &amp; Gunasekar, S. (2017). Basic Econometrics (5th ed.). McGraw-Hill Education. pp.&nbsp;126–150, 175–195. (For theory and assumptions behind simple and multiple linear regression.)</p>
+<p>Stock, J. H., &amp; Watson, M. W. (2020). Introduction to Econometrics (4th ed.). Pearson. pp.&nbsp;97–121, 145–165. (For hypothesis testing, p-values, and model diagnostics.)</p>
 <hr>
 
 

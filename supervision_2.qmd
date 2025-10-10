@@ -736,114 +736,351 @@ Students often confuse confidence intervals (for the average) with prediction in
 
 ## 🧪 Lab 9 — Hypothesis Test, p‑Value & Testing Linear Combinations
 
+### 🎯 Learning Outcomes
+By the end of this lab you will be able to:
+
+- Formulate null and alternative hypotheses for regression coefficients
+- Compute test statistics and compare them to critical values
+- Calculate and interpret p-values for one-tailed and two-tailed tests
+- Understand the relationship between confidence intervals and hypothesis tests
+- Test linear combinations of parameters (e.g., predictions at specific x values)
+- Apply hypothesis testing to real-world land economics questions
+
 ### Hypothesis Tests
+🧰 Prerequisites
+Knowledge:
 
-Null vs alternative for a coefficient \(\beta_k\):
+Understanding of simple linear regression (Lab 7)
+Familiarity with coefficient estimates and standard errors (Lab 8)
+Basic understanding of statistical inference (confidence intervals, significance levels)
 
+Technical:
+
+R (≥ 4.0) and RStudio installed
+Completed Labs 1-8
+Required packages:
+
+```r
+install.packages(c("remotes", "PoEdata")) 
+remotes::install_github("ccolonescu/PoEdata")
+library(PoEdata)
+```
+
+---
+
+### Introduction: Why Hypothesis Testing Matters
+
+In Lab 7, we estimated relationships. In Lab 8, we made predictions. But how do we know if our findings are statistically meaningful?
+Consider our food expenditure model:
+
+We estimated that food spending increases by $10.21 for every $100 increase in income
+But is this effect real, or could it be due to random chance?
+Could the true effect actually be zero (no relationship)?
+
+Hypothesis testing provides a formal framework to answer these questions.
+
+💡 Land Economics Application
+When valuing agricultural land, we might find that proximity to roads increases land value by £500 per meter. But before advising clients, we need to know: Is this effect statistically significant, or could it be sampling noise?
+
+
+#### PART A - Hypothesis Tests for Individual Coefficients
+
+We start with two competing claims:
 $$
 H_0: \beta_k = c, \qquad H_A: \beta_k \ne c.
 $$
 
-Test statistic:
+**Test statistic:**
+
+Under the null hypothesis, the test statistic follows a t-distribution:
 $$
 t = \frac{b_k - c}{\operatorname{se}(b_k)},\quad t \sim t_{N-2}.\tag{6}
 $$
 
-Example for \(b_2\) in the food model:
+where:
+
+$b_k$​ is our estimated coefficient
+
+$c$ is the hypothesized value (zero in our case)
+
+$\operatorname{se}(b_k)$ is the standard error of $b_k$
+
+$N−K$ is degrees of freedom (N observations, K parameters)
+
+**Intuition:** This ratio measures how many standard errors our estimate is away from the hypothesized value.
+
+**Example 1:** Two-Tailed Test (Is there any effect?) 
+**Question:** Does income affect food expenditure? (i.e., is $β2≠0$?)
+
 
 ```{r}
+# Set significance level
 alpha <- 0.05
+
+# Load data and estimate model
 library(PoEdata); library(xtable); library(knitr)
 data("food")
-mod1 <- lm(food_exp ~ income, data=food); smod1 <- summary(mod1)
+mod1 <- lm(food_exp ~ income, data=food)
+smod1 <- summary(mod1)
 
+# Regression output
 table <- data.frame(xtable(mod1))
 kable(table, caption="Regression output showing the coefficients")
 
+# Extract coefficient and standard error
 b2 <- coef(mod1)[["income"]]
 seb2 <- sqrt(vcov(mod1)[2,2])
 df  <- df.residual(mod1)
 
+# Compute test statistic
 t   <- b2/seb2
+
+# Find critical value for two-tailed test
 tcr <- qt(1-alpha/2, df)
+
 t; tcr
+
+# Display results
+cat("Test statistic:", round(t, 3), "\n")
+cat("Critical value (±):", round(tcr, 3), "\n")
+cat("Decision:", ifelse(abs(t) > tcr, "Reject H0", "Fail to reject H0"), "\n")
 ```
 
-Right‑tail and left‑tail versions:
+**Interpretation:**
+
+- Our test statistic is r round(t, 2), which is much larger than the critical value ±r round(tcr, 2)
+
+- We reject the null hypothesis
+
+- There is strong evidence that income affects food expenditure
+
+- Right‑tail and left‑tail versions:
+
+**Optional:** 📊 Visualizing the Test:
 
 ```{r}
-# Right-tail: H0: beta2 <= 5.5; HA: beta2 > 5.5
+# Create visualization of t-distribution and test
+curve(dt(x, df), from = -5, to = 5, 
+      main = "Two-Tailed Hypothesis Test",
+      xlab = "t-value", ylab = "Density",
+      lwd = 2)
+
+# Shade rejection regions
+polygon(c(-4, seq(-4, -tcr, 0.01), -tcr),
+        c(0, dt(seq(-4, -tcr, 0.01), df), 0),
+        col = "red", border = NA, density = 20)
+polygon(c(tcr, seq(tcr, 4, 0.01), 4),
+        c(0, dt(seq(tcr, 4, 0.01), df), 0),
+        col = "red", border = NA, density = 20)
+
+# Mark critical values and test statistic
+abline(v = c(-tcr, tcr), col = "red", lty = 2, lwd = 2)
+
+abline(v = t, col = "blue", lwd = 2)
+
+legend("topright", 
+       legend = c("Rejection region (α/2 each)", 
+                  "Critical values", 
+                  "Test statistic"),
+       col = c("red", "red", "blue"),
+       lty = c(1, 2, 1), lwd = 2, bty = "n")
+```
+
+**Example 2:** One-Tailed Tests
+Sometimes we have a directional hypothesis based on economic theory.
+**Right-Tailed Test:** Is the effect of income on food expenditure greater than $5.50?
+
+$$
+H_0: \beta_2 ≤ 5.5, \qquad H_A: \beta_2 > 5.5.
+$$
+
+
+```{r}
+# Hypothesized value
 c <- 5.5
+
+# Compute test statistic
 t_right <- (b2 - c)/seb2
+
+# Critical value (right tail only)
 tcr_right <- qt(1-alpha, df)
 
+cat("Test statistic:", round(t_right, 3), "\n")
+cat("Critical value:", round(tcr_right, 3), "\n")
+cat("Decision:", ifelse(t_right > tcr_right, "Reject H0", "Fail to reject H0"), "\n")
+```
+
+**Left-Tailed Test:** Is the effect of income on food expenditure less than $15?
+
+$$
+H_0: \beta_2 ≥ 15, \qquad H_A: \beta_2 < 15.
+$$
+
+
+```{r}
 # Left-tail: H0: beta2 >= 15; HA: beta2 < 15
 c <- 15
 t_left <- (b2 - c)/seb2
 tcr_left <- qt(alpha, df)
 
 c(t_right=t_right, tcr_right=tcr_right, t_left=t_left, tcr_left=tcr_left)
+
+cat("Test statistic:", round(t_left, 3), "\n")
+cat("Critical value:", round(tcr_left, 3), "\n")
+cat("Decision:", ifelse(t_left < tcr_left, "Reject H0", "Fail to reject H0"), "\n")
 ```
 
-### The p‑Value
+⚠️ **Common Mistake:** Students often confuse the direction of the inequality in $H_0$​ and $H_A$. Remember: the alternative hypothesis represents what you're trying to find evidence *for*.
 
-Right‑tail: \(p = 1 - F_t(t)\). Left‑tail: \(p = F_t(t)\). Two‑tail: \(p = 2\big(1-F_t(|t|)\big)\).
+---
+
+
+#### PART B - The p‑Value Approach
+The p-value is the probability of observing a test statistic at least as extreme as the one computed, assuming the null hypothesis is true.
+
+*Decision rule:* Reject $H_0$​ if $p<αp$
+
+**Computing p-Values:**
+$F_t$ stands for the cumulative distribution function (CDF) of the t-distribution.
+
+Right‑tail: $p = 1 - F_t(t)$ 
+
+Left‑tail: $p = F_t(t)$ 
+
+Two‑tail: $p = 2 * (1-F_t(|t|)$
 
 ```{r}
-# Right tail
-c <- 5.5; t <- (b2-c)/seb2; p_right <- 1-pt(t, df)
+# Right-tail test (H0: β2 ≤ 5.5)
+c <- 5.5
+t <- (b2-c)/seb2
+p_right <- 1-pt(t, df)
 
-# Left tail
-c <- 15; t <- (b2-c)/seb2; p_left <- pt(t, df)
+cat("Right-tail test:\n")
+cat("  H0: β2 ≤", c, "\n")
+cat("  Test statistic:", round(t, 3), "\n")
+cat("  p-value:", round(p_right, 4), "\n")
+cat("  Decision at α=0.05:", ifelse(p_right < 0.05, "Reject H0", "Fail to reject H0"), "\n\n")
 
-# Two tail
-c <- 0;  t <- (b2-c)/seb2; p_two <- 2*(1-pt(abs(t), df))
+
+# Left-tail test (H0: β2 ≥ 15)
+c <- 15
+t <- (b2-c)/seb2
+p_left <- pt(t, df)
+
+cat("Left-tail test:\n")
+cat("  H0: β2 ≥", c, "\n")
+cat("  Test statistic:", round(t, 3), "\n")
+cat("  p-value:", round(p_left, 4), "\n")
+cat("  Decision at α=0.05:", ifelse(p_left < 0.05, "Reject H0", "Fail to reject H0"), "\n\n")
+
+# Two-tail test (H0: β2 = 0)
+c <- 0  
+t <- (b2-c)/seb2
+p_two <- 2*(1-pt(abs(t), df))
 
 c(p_right=p_right, p_left=p_left, p_two=p_two)
+
+cat("Two-tail test:\n")
+cat("  H0: β2 =", c, "\n")
+cat("  Test statistic:", round(t, 3), "\n")
+cat("  p-value:", format.pval(p_two, digits = 4), "\n")
+cat("  Decision at α=0.05:", ifelse(p_two < 0.05, "Reject H0", "Fail to reject H0"), "\n")
+
 ```
 
-### Testing Linear Combinations of Parameters
+💡 Interpretation Guide:
 
-Expected food expenditure at income = \$2000 (i.e. \(x=20\)):
+$p < 0.01$: Very strong evidence against $H_0$
+
+​
+$0.01 ≤ p < 0.05$: Strong evidence against $H_0$
+
+​
+$0.05 ≤ p < 0.10$: Weak evidence against $H_0$
+
+​
+$p ≥ 0.10$: Insufficient evidence against $H_0$
+
+
+#### PART C - Testing Linear Combinations of Parameters
+
+We want to test hypotheses about combinations of parameters, not individual coefficients.**Example:** What is the expected food expenditure for a household earning $2,000/week (income = 20 in our units)?
 
 $$
-L = E(\text{food\_exp}\mid \text{income}=20) = \beta_1 + 20\,\beta_2.\tag{3.7}
+L = E(\text{food\_exp}\mid \text{income}=20) = \beta_1 + 20\,\beta_2
 $$
 
 Variance identities:
 
 $$
-\operatorname{var}(aX+bY) = a^2\,\operatorname{var}(X) + b^2\,\operatorname{var}(Y) + 2ab\,\operatorname{cov}(X,Y).\tag{3.8}
+\operatorname{var}(aX+bY) = a^2\,\operatorname{var}(X) + b^2\,\operatorname{var}(Y) + 2ab\,\operatorname{cov}(X,Y)
 $$
 
 $$
-\operatorname{var}(b_1+20b_2) = \operatorname{var}(b_1) + 20^2\operatorname{var}(b_2) + 2\cdot20\operatorname{cov}(b_1,b_2).\tag{3.9}
+\operatorname{var}(b_1+20b_2) = \operatorname{var}(b_1) + 20^2\operatorname{var}(b_2) + 2\cdot20\operatorname{cov}(b_1,b_2)
 $$
+
+
+⚠️ Critical Point: Many students forget the covariance term! Omitting it leads to incorrect standard errors.
 
 ```{r}
-alpha <- 0.05; x <- 20
+# Significance level and x-value of interest
+alpha <- 0.05
+x <- 20
+
+# the model
 m1 <- lm(food_exp ~ income, data=food)
-df <- df.residual(m1)
 
-b1 <- m1$coef[1]; b2 <- m1$coef[2]
-varb1 <- vcov(m1)[1,1]; varb2 <- vcov(m1)[2,2]; covb1b2 <- vcov(m1)[1,2]
 
+# Extract coefficients and variance-covariance matrix
+b1 <- m1$coef[1]
+b2 <- m1$coef[2]
+varb1 <- vcov(m1)[1,1]
+varb2 <- vcov(m1)[2,2]
+covb1b2 <- vcov(m1)[1,2]
+
+# Compute the linear combination and its variance
 L <- b1 + b2*x
 varL <- varb1 + x^2 * varb2 + 2*x*covb1b2
 seL <- sqrt(varL)
 
+# Confidence interval for L
+df <- df.residual(m1)
 tcr <- qt(1-alpha/2, df)
 lowbL <- L - tcr*seL; upbL <- L + tcr*seL
 c(L=L, seL=seL, low=lowbL, up=upbL)
+
+cat("Expected food expenditure at income = $2000:\n")
+cat("  Point estimate:", round(L, 2), "\n")
+cat("  Standard error:", round(seL, 2), "\n")
+cat("  95% CI: [", round(lowbL, 2), ",", round(upbL, 2), "]\n\n")
 ```
 
-Two‑tail, left‑tail, right‑tail tests for \(L\):
+#### Hypothesis Test for Linear Combination
+
+**Question:** Is expected food expenditure significantly different from $250 at this income level?
+
+$$
+H_0: L = 250, \qquad H_A: L \ne 250.
+$$
+
+
 
 ```{r}
+# Hypothesized value
 c <- 250
+
+# Test statistic
 t <- (L - c)/seL
+
+# p-value (two-tailed)
 p_value <- 2*(1-pt(abs(t), df))
 c(t=t, p_value=p_value)
+
+cat("Hypothesis test: H0: L = 250\n")
+cat("  Test statistic:", round(t, 3), "\n")
+cat("  p-value:", round(p_value, 4), "\n")
+cat("  Decision at α=0.05:", ifelse(p_value < 0.05, "Reject H0", "Fail to reject H0"), "\n")
 ```
 
 
@@ -855,27 +1092,17 @@ c(t=t, p_value=p_value)
 ---
 
 
-
-## 🧪 Lab 10 — The p‑Value (Recap)
-
-- **Right‑tail:** \(p=1-pt(t,\,df)\)  
-- **Left‑tail:** \(p=pt(t,\,df)\)  
-- **Two‑tail:** \(p=2(1-pt(|t|,\,df))\)
-
-```{r}
-# Examples computed earlier are reproduced here:
-c(p_right=p_right, p_left=p_left, p_two=p_two)
-```
-
 ---
 
 ### References
 
-Adkins (2014); Allaire et al. (2016); Colonescu (2016); Croissant & Millo (2015); Dahl (2016); Fox & Weisberg (2016); Fox et al. (2016); Ghalanos (2015); Graves (2014); Grolemund & Wickham (2016); Henningsen & Hamann (2015); Hill, Griffiths & Lim (2011); Hlavac (2015); Hothorn et al. (2015); Hyndman (2016); Kleiber & Zeileis (2015); Komashko (2016); Lander (2013); Lumley & Zeileis (2015); Pfaff (2013); R Core Team (2008); Reinhart (2015); Robinson (2016); RStudio Team (2015); Spada et al. (2012); Trapletti & Hornik (2016); Wickham & Chang (2016); Xie (2014, 2016a, 2016b); Zeileis (2016).
+Acemoglu, D., Laibson, D., & List, J. A. (2015). Microeconomics (2nd ed.). Pearson. pp. 512–530.
+(For conceptual understanding of regression interpretation and causal inference basics.)
 
----
+Colonescu, C. (2022). Principles of Econometrics with R (Version 2.0). Open Textbook Library. Chapters 7–9. (Used directly in labs, matches the PoEdata package and R examples.)
 
-🏁  *End of lab 10*
-🛑 Remember to save your script 💾
+Gujarati, D. N., Porter, D. C., & Gunasekar, S. (2017). Basic Econometrics (5th ed.). McGraw-Hill Education. pp. 126–150, 175–195. (For theory and assumptions behind simple and multiple linear regression.)
+
+Stock, J. H., & Watson, M. W. (2020). Introduction to Econometrics (4th ed.). Pearson. pp. 97–121, 145–165. (For hypothesis testing, p-values, and model diagnostics.)
 
 ---
