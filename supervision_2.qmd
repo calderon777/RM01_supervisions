@@ -688,8 +688,8 @@ Students often confuse confidence intervals (for the average) with prediction in
 
 <div class="mcq-we-q">
 **15) A bootstrap (or resampling with replacement) in R uses:**  
-`r webexercises::longmcq(c("sample(..., replace = FALSE)", answer = "sample(..., replace = TRUE)", "sort(...)", "order(...)"))`
-<span class="mcq-key" data-correct="sample(..., replace = TRUE)"></span>
+`r webexercises::longmcq(c("sample(x, replace = FALSE)", answer = "sample(x, replace = TRUE)", "sort(x)", "order(x)"))`
+<span class="mcq-key" data-correct="sample(x, replace = TRUE)"></span>
 </div>
 
 <div class="mcq-we-q">
