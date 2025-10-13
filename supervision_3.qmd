@@ -3,53 +3,83 @@ title: "Supervision 3"
 format: html
 ---
 
-## Lab 1 — Data Prep for Variable Selection (Hitters)
+## Lab 10 — Data Prep and Best Variable Selection 
 
 ### 🎯 Learning outcomes
 - Load the **Hitters** data and inspect dimensions.
 - Handle **missing values** (Salary) to avoid errors in model fitting.
 - Get comfortable with the packages we'll use: **ISLR** and **leaps**.
+- Fit **best subset** models with `regsubsets()`.
+- Retrieve the **best model** for each size.
+- Inspect classical metrics: **RSS**, **R²**, **Adjusted R²**, **Cp**, **BIC**.
+
+---
 
 ### 🧰 Prerequisites
 - R and RStudio installed.
 - Packages: `ISLR`, `leaps`.
 
+---
+
+### Overview: Why Variable Selection Matters
+In regression modeling, we often face a critical question: Which variables should we include?
+
+**The Problem:**
+
+- Include too few variables → underfitting (bias, missing important relationships)
+- Include too many variables → overfitting (poor predictions, unstable estimates)
+
+When valuing agricultural land, we might have 20+ potential predictors: soil quality, rainfall, distance to markets, elevation, slope, nearby infrastructure, etc. Which combination best predicts land value without overfitting?
+
 ```{r}
-# install.packages(c("ISLR","leaps")) # if needed
+# install.packages(c("ISLR", "leaps", "ggplot2", "dplyr")) if needed
 library(ISLR)
+library(leaps)
+library(ggplot2)
+library(dplyr)
+
+# Load the baseball players dataset
 data(Hitters)
 
+# Understanding the Dataset
 # Inspect
-names(Hitters)
+str(Hitters)
 dim(Hitters)          # rows x columns
 sum(is.na(Hitters$Salary))
 
-# Drop rows with any NA (Salary has some NAs)
+# What are we predicting?
+cat("Response variable: Salary (1987 annual salary in thousands of dollars)\n\n")
+
+# Predictor variables
+cat("Predictor variables:\n")
+names(Hitters)[-19]   # All except Salary
+
+# Handling Missing Values, drop rows with any NA (Salary has some NAs)
 Hitters <- na.omit(Hitters)
 dim(Hitters)
 sum(is.na(Hitters))
 ```
+
 ::: callout-note
 We remove rows with missing **Salary** because selection routines (like `regsubsets`) require complete cases.
+Alternative approaches (not covered here): imputation, missing data models
 :::
 
----
+### PART A - Best Subset Selection
+**Concept:** Fit every possible combination of predictors and choose the best according to some criterion.
 
-## Lab 2 — Best Subset Selection
-
-### 🎯 Learning outcomes
-- Fit **best subset** models with `regsubsets()`.
-- Retrieve the **best model** for each size.
-- Inspect classical metrics: **RSS**, **R²**, **Adjusted R²**, **Cp**, **BIC**.
+**Computational Reality:** With p predictors, there are 2^p possible models. For Hitters (19 predictors): 2^19 = 524,288 models! Feasible for p ≤ 20-30, but impractical for larger p.
 
 ```{r}
-library(leaps)
+#library(leaps)
 
 # Exhaustive search over all subsets
 regfit.full <- regsubsets(Salary ~ ., data = Hitters, nvmax = 19)
+
+# Extract summary information
 reg.summary <- summary(regfit.full)
 
-# What does summary() return?
+# What does summary() return? What information is available?
 names(reg.summary)
 
 # Quick look at R^2 growth as we add variables
@@ -60,40 +90,105 @@ reg.summary$rsq
 `regsubsets()` searches the model space and stores the *best* model for each size (1..nvmax). Use `summary()` to see a **which** matrix and metrics across sizes.
 :::
 
+**Understanding the ouptut**: The 'which' matrix shows selected variables for each model size; TRUE = variable included, FALSE = excluded.
+
+```{r}
+head(reg.summary$which, 10)
+```
+
+For each model size (1 to 19 variables), regsubsets finds the BEST model according to RSS (equivalently, training R²)
+
+**Model Selection Criteria Explained**
+
+1. RSS (Residual Sum of Squares)
+
+- Measures training error
+- Always decreases as we add variables
+- Problem: Will always prefer the full model (overfitting)
+
+2. R² (R-squared)
+
+- Proportion of variance explained
+- Always increases with more variables
+- Problem: Same as RSS - no penalty for complexity
+
+3. Adjusted R²
+
+- Penalizes model complexity
+- Accounts for degrees of freedom
+- Use: Prefer model where this peaks
+
+4. Cp (Mallow's Cp)
+
+- Estimates test error, penalizes complexity
+- Small Cp indicates good model
+- Use: Minimize Cp
+
+5. BIC (Bayesian Information Criterion)
+
+- Similar to Cp but with stronger penalty: $BIC=nlog⁡(RSS/n)+plog⁡(n)$
+- Tends to select smaller models than Cp
+- Use: Minimize BIC
+
 ### Visual diagnostics for choosing model size
 
 ```{r}
 par(mfrow = c(2,2))
 
-# RSS
+# 1. RSS - always decreases
 plot(reg.summary$rss, xlab = "Number of Variables", ylab = "RSS", type = "l")
+title("Training RSS (not useful for selection)")
 
 # Adjusted R^2 (highlight maximum)
 plot(reg.summary$adjr2, xlab = "Number of Variables", ylab = "Adjusted R^2", type = "l")
 best.adjr2 <- which.max(reg.summary$adjr2)
 points(best.adjr2, reg.summary$adjr2[best.adjr2], col = "red", cex = 2, pch = 20)
+title("Adjusted R² (maximize)")
 
 # Cp (highlight minimum)
 plot(reg.summary$cp, xlab = "Number of Variables", ylab = "Cp", type = "l")
 best.cp <- which.min(reg.summary$cp)
 points(best.cp, reg.summary$cp[best.cp], col = "red", cex = 2, pch = 20)
+title("Mallow's Cp (minimize)")
 
 # BIC (highlight minimum)
 plot(reg.summary$bic, xlab = "Number of Variables", ylab = "BIC", type = "l")
 best.bic <- which.min(reg.summary$bic)
 points(best.bic, reg.summary$bic[best.bic], col = "red", cex = 2, pch = 20)
+title("BIC (minimize)")
+
+par(mfrow = c(1, 1))
+
+# Interpretation
+cat("Optimal model sizes according to different criteria:\n")
+cat("  Adjusted R²:", best.adjr2, "variables\n")
+cat("  Cp:        ", best.cp, "variables\n")
+cat("  BIC:       ", best.bic, "variables\n\n")
+
+cat("Note: BIC typically selects the most parsimonious (smallest) model\n")
+
 ```
 
 ::: callout-note
 **Rule of thumb:** prefer the model size where **Adjusted R²** peaks, or **Cp/BIC** are minimized. These are proxies for **test error**.
 :::
 
-### Inspect variables in the chosen model(s)
+#### Inspect variables in the chosen model(s)
 
 ```{r}
 # Example: variables in the BIC-optimal model
 coef(regfit.full, best.bic)
+```
+::: {.callout-tip}
+Reading the leaps Plots
 
+Black squares = variable included in model
+Top row = model with best (minimum/maximum) criterion value
+Each row = one model size
+Look for consistent variables that appear across different model sizes
+:::
+
+```{r}
 # regsubsets has its own plot helper:
 plot(regfit.full, scale = "bic")
 plot(regfit.full, scale = "adjr2")
@@ -101,16 +196,46 @@ plot(regfit.full, scale = "Cp")
 plot(regfit.full, scale = "r2")
 ```
 
+::: {.callout-warning}
+Common Mistake
+Don't use training R² to select model size! It will always prefer the full model. Use Adjusted R², Cp, or BIC instead.
+:::
+
 ---
 
-## Lab 3 — Forward Stepwise Selection
+## Lab 11 — Forward Stepwise Selection
 
 ### 🎯 Learning outcomes
-- Run **forward stepwise** selection using `method = "forward"`.
-- Compare chosen variables to **best subset** at the same size.
+By the end of this lab you will be able to:
+
+- Understand the greedy algorithm behind forward selection
+- Implement forward stepwise using method = "forward"
+- Compare results with best subset selection
+- Recognize when forward stepwise is preferable (computational constraints)
+
+---
+
+### The Forward Stepwise Algorithm
+
+**Step-by-step process:**
+
+- Start with null model (intercept only)
+- For each of p predictors, fit a model adding that predictor
+- Add the predictor that most improves the model (lowest RSS)
+- Repeat: given k variables, try adding each of the (p-k) remaining
+- Continue until all p predictors are included
+
+**Key Properties:**
+
+- Evaluates only 1 + p(p+1)/2 models (vs. 2^p for best subset)
+- For p=19: 191 models (vs. 524,288!)
+- Greedy: Once a variable enters, it stays
+- May not find the globally optimal model
 
 ```{r}
+# Forward stepwise selection
 regfit.fwd <- regsubsets(Salary ~ ., data = Hitters, nvmax = 19, method = "forward")
+
 summary(regfit.fwd)
 
 # Compare a specific size (e.g., 7 variables) across methods
@@ -118,24 +243,69 @@ coef(regfit.full, 7)  # best subset
 coef(regfit.fwd, 7)   # forward stepwise
 ```
 
+- Are the 7-variable-models identical?
+- Which variables differ?
+
 ::: callout-warning
 Forward stepwise is **greedy**: after a variable enters, it **stays**. It evaluates far fewer models than best subset—great for speed—but it may miss the global optimum.
 :::
 
+#### When to Use Forward Stepwise
+
+**Advantages:**
+
+- Much faster than best subset (critical for p > 20)
+- Often finds nearly optimal solutions
+- Required when n < p (best subset impossible)
+
+**Disadvantages:**
+
+- Not guaranteed to find global optimum
+- Order of variable entry matters
+- Cannot remove variables once added
+
+
 ---
 
-## Lab 4 — Backward Stepwise Selection
+## Lab 12 — Backward Stepwise Selection
 
 ### 🎯 Learning outcomes
-- Run **backward stepwise** selection using `method = "backward"`.
-- Understand when backward is **not** applicable.
+
+By the end of this lab you will be able to:
+
+- Understand the backward elimination algorithm
+- Implement backward stepwise using method = "backward"
+- Recognize the n > p requirement
+- Compare all three methods systematically
+
+---
+
+### The Backward Stepwise Selection
+
+**Step-by-step process:**
+
+Start with full model (all p predictors)
+Remove the predictor with smallest contribution (largest p-value)
+Fit all (p-1) models with one variable removed
+Choose model with lowest RSS (or highest R²)
+Repeat until intercept-only model
+
+**Key Properties:**
+
+Also evaluates 1 + p(p+1)/2 models
+Requires n > p (must fit full model first)
+Greedy: Once removed, variable cannot re-enter
+May differ from forward stepwise
 
 ```{r}
+# Backward stepwise selection
 regfit.bwd <- regsubsets(Salary ~ ., data = Hitters, nvmax = 19, method = "backward")
 summary(regfit.bwd)
 
 # Compare at size 7 again
 coef(regfit.bwd, 7)   # backward stepwise
+
+
 ```
 
 ::: callout-important
@@ -144,11 +314,17 @@ Backward stepwise starts from the **full model** and removes variables. It requi
 
 ---
 
-## Lab 5 — Reading the Plots & Coefficients Like a Pro
+## Lab 13 — Validation Set Approach, Reading the Plots & Coefficients 
 
 ### 🎯 Learning outcomes
-- Interpret **selection plots** (BIC, Cp, Adjusted R² panels).
-- Extract and report the **final model** clearly.
+
+By the end of this lab you will be able to:
+
+- Split data into training and test sets
+- Fit models on training data only
+- Evaluate test set performance (true prediction error)
+- Understand why training error is optimistic
+- Select model size based on test error.
 
 ```{r}
 # Choose a final size by any one of the criteria

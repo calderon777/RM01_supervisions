@@ -635,7 +635,7 @@ abline(h = 2,  # horizontal line at y = 2
        col = "blue")  # blue color
 
 # Add text label for the reference line
-text(x = min(pipr$month),  # position at start of time series
+text(x = 40,  # position at start of time series
      y = 2,  # at the 2% level
      labels = "Inflation target (2%)",  # the text to display
      pos = 3,  # position 3 = above the point
