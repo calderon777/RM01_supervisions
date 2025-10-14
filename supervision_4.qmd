@@ -3,7 +3,29 @@ title: "Supervision 4"
 format: html
 ---
 
-## Lab 1 — Collinearity
+## Lab 14 — Collinearity
+
+
+### 🎯 Learning outcomes
+- Understand what **collinearity (multicollinearity)** is and why it matters for regression inference.
+- Recognise how collinearity inflates **standard errors**, weakening **t‑tests** for individual coefficients.
+- Diagnose collinearity using the **Variance Inflation Factor (VIF)** and interpret typical thresholds.
+- Implement VIF diagnostics in R with `car::vif()` and report results clearly (tables, captions).
+- Consider practical remedies (drop variables, transform/aggregate predictors, or rethink specification).
+
+---
+
+### 🧰 Prerequisites
+- Multiple regression basics (OLS, \(R^2\), F‑test, t‑tests).
+- R and RStudio installed.
+- Packages: `PoEdata`, `broom`, `knitr`, `car`.
+
+---
+
+### Overview: why collinearity matters
+Collinearity does **not bias** OLS, but it **inflates the variance** of estimated coefficients. As a result, t‑tests lose power and coefficient signs may look unstable across specifications—even when the model has a high \(R^2\). Diagnostics such as **VIF** help decide whether variables overlap so much that individual effects are hard to interpret.
+
+---
 
 Collinearity (multicollinearity) among regressors occurs when two or more move closely together or have limited variability. It **inflates the variance** of estimated parameters (less precise \(t\)-tests), even though OLS estimates remain unbiased. As a result, a model may have a high \(R^2\) or a large F‑statistic but **insignificant individual coefficients**.
 
@@ -35,12 +57,12 @@ When adding **eng** and **wgt**, the coefficient for **cyl** can turn **insignif
 
 ### Variance Inflation Factor (VIF)
 
-The VIF for regressor \(x_k\) is \(\text{VIF}_k = \dfrac{1}{1-R_k^2}\), where \(R_k^2\) is from regressing \(x_k\) on the other regressors.
+The VIF for regressor $x_k$ is $VIF_k = \dfrac{1}{1-R_k^2}$, where $R_k^2$ is from regressing $x_k$ on the other regressors.
 
 ```{r}
 v <- car::vif(mod2)
 tab <- data.frame(regressor = names(v), VIF = as.numeric(v), row.names = NULL)
-kable(tab, caption = "Variance inflation factors for the 'mpg' regression model")
+kable(tab, caption = "Variance inflation factors for the 'mpg' regression model.")
 ```
 
 ::: callout-tip
@@ -58,7 +80,39 @@ kable(tab, caption = "Variance inflation factors for the 'mpg' regression model"
 
 ---
 
-## Lab 2 — Heteroskedasticity
+
+### Summary
+- Collinearity leaves OLS **unbiased** but makes estimates **imprecise**.
+- Always check **VIFs** when several predictors are conceptually related.
+- If VIFs are high, consider **dropping**, **combining**, or **re‑specifying** predictors—and justify choices with theory.
+
+
+
+---
+
+
+## Lab 15 — Heteroskedasticity
+
+### 🎯 Learning outcomes
+- Understand the key concept(s) introduced in this lab and their purpose in empirical analysis.
+- Correctly implement the core R workflow for this topic and present clean, well-captioned results.
+- Interpret model output in context and link diagnostics to modeling choices.
+- Recognise common pitfalls and apply simple robustness checks.
+
+---
+
+### 🧰 Prerequisites
+- Prior exposure to multiple regression and basic inference (t-tests, F-tests).
+- R and RStudio installed.
+- Packages: `PoEdata`, `broom`, `knitr`, plus any additional packages used in this lab.
+
+---
+
+### Overview
+This lab introduces the core idea, why it matters for inference and decision-making, and where it fits in the broader modeling workflow. You will practise the implementation in R, interpret outputs carefully, and connect diagnostics back to modeling decisions.
+
+---
+
 
 The Gauss–Markov theorem assumes **homoskedasticity** (constant error variance \(\sigma^2\)). In many economic datasets, variance grows with some regressors (e.g., higher‑income households show more dispersion in expenditure). With heteroskedasticity, OLS coefficients remain unbiased, but **standard errors** and therefore **inference** are wrong unless corrected.
 
@@ -182,7 +236,38 @@ Robust (HC) errors **fix inference** under heteroskedasticity, but the **point e
 
 ---
 
-## Lab 3 — Serial Correlation (Autocorrelation)
+
+### Summary
+- You applied the technique in R, produced tidy outputs, and interpreted them in context.
+- Keep focusing on clean tables, explicit assumptions, and diagnostics that justify your specification.
+- Use the provided patterns as a template for future empirical work.
+
+
+
+---
+
+## Lab 16 — Serial Correlation (Autocorrelation)
+
+### 🎯 Learning outcomes
+- Understand the core ideas and assumptions for this lab's topic.
+- Implement the workflow in R and create tidy outputs with clear captions.
+- Interpret results in context and connect diagnostics to modeling decisions.
+- Recognise common pitfalls and perform basic robustness checks.
+
+---
+
+### 🧰 Prerequisites
+- Multiple regression and inference (t-tests, F-tests).
+- R and RStudio installed.
+- Packages: `broom`, `knitr`, and any other packages used in the lab code.
+
+---
+
+### Overview
+This lab situates the technique within the broader econometric workflow, explaining why it matters for inference and decision‑making. You will implement it in R, assess assumptions/diagnostics, and justify specification choices.
+
+---
+
 
 Serial correlation is correlation across time in a series. In regression, **autocorrelated errors** lead to **incorrect standard errors** (and misleading \(t\)-tests).
 
@@ -245,7 +330,7 @@ dfr <- data.frame(
                       sprintf("df=%g",          d$parameter)),
   p_value   = base::c(a$p.value, b$p.value, c$p.value, d$p.value)
 )
-knitr::kable(dfr, caption="Breusch–Godfrey test for the Phillips example")
+knitr::kable(dfr, caption = "Breusch–Godfrey test for the Phillips example.")
 ```
 
 Durbin–Watson (legacy but useful for small samples):
@@ -256,7 +341,37 @@ lmtest::dwtest(phill.dyn)
 
 ---
 
-## Lab 4 — HAC (Newey–West) Standard Errors
+
+### Summary
+- You implemented the method in R and produced clean, well‑captioned outputs.
+- Diagnostics and assumptions inform how you specify and interpret the model.
+- Use these patterns as a template for future empirical work.
+
+
+---
+
+## Lab 17 — HAC (Newey–West) Standard Errors
+
+### 🎯 Learning outcomes
+- Grasp the core concept(s) of this lab and where they fit in the modelling workflow.
+- Implement the R workflow cleanly, producing tidy outputs with clear captions.
+- Interpret results carefully and connect diagnostics/assumptions to modelling choices.
+- Identify pitfalls and perform simple robustness checks.
+
+---
+
+### 🧰 Prerequisites
+- Multiple regression, inference (t-tests, F-tests), and model diagnostics basics.
+- R and RStudio installed.
+- Packages: `broom`, `knitr`, plus any additional packages used in this lab.
+
+---
+
+### Overview
+This lab introduces the concept, explains why it matters for inference and decision‑making, and demonstrates implementation in R. You will interpret results in context and motivate specification choices using diagnostics.
+
+---
+
 
 Correct standard errors under autocorrelation (and heteroskedasticity) using **HAC** estimators.
 
@@ -271,7 +386,7 @@ s3 <- coeftest(phill.dyn, vcov.=kernHAC(phill.dyn))    # kernel HAC
 tbl <- data.frame(cbind(s0[c(3,4)], s1[c(3,4)], s2[c(3,4)], s3[c(3,4)]))
 names(tbl) <- c("Incorrect","vcovHAC","NeweyWest","kernHAC")
 row.names(tbl) <- c("(Intercept)","Du")
-kable(tbl, digits=3, caption="Comparing standard errors for the Phillips model")
+kable(tbl, digits=3, caption = "Comparing standard errors for the Phillips model.")
 ```
 
 ::: callout-warning
@@ -280,14 +395,9 @@ HAC fixes **inference** but not **efficiency**: OLS with HAC is still not minimu
 
 ---
 
-## Lab 5 — AR(1) Error Structure (Diagnostics)
 
-Assume errors follow an **AR(1)** process \(e_t = \rho e_{t-1} + \nu_t\), with \(|\rho|<1\). A quick diagnostic is to inspect the first few **autocorrelations** of residuals.
+### Summary
+- You implemented the method in R, produced clean outputs, and interpreted them in context.
+- Diagnostics/assumptions inform specification choices and robustness checks.
+- Reuse this structure as a template for future empirical work.
 
-```{r}
-ehat <- resid(phill.dyn)
-ac <- acf(ehat, plot = FALSE)
-ac$acf[2:6]   # autocorrelations at lags 1..5
-```
-
-The first‑lag correlation is a simple estimate of \(\rho\) (\(\hat\rho = r_1\)). If large and significant, consider modelling errors explicitly (e.g., GLS/AR models) or using **HAC** for valid inference when staying with OLS.

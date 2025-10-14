@@ -104,6 +104,35 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="styles.css">
 <link rel="stylesheet" href="icons.css">
@@ -178,14 +207,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#lab-1-collinearity" id="toc-lab-1-collinearity" class="nav-link active" data-scroll-target="#lab-1-collinearity">Lab 1 — Collinearity</a>
+  <li><a href="#lab-14-collinearity" id="toc-lab-14-collinearity" class="nav-link active" data-scroll-target="#lab-14-collinearity">Lab 14 — Collinearity</a>
   <ul class="collapse">
+  <li><a href="#learning-outcomes" id="toc-learning-outcomes" class="nav-link" data-scroll-target="#learning-outcomes">🎯 Learning outcomes</a></li>
+  <li><a href="#prerequisites" id="toc-prerequisites" class="nav-link" data-scroll-target="#prerequisites">🧰 Prerequisites</a></li>
+  <li><a href="#overview-why-collinearity-matters" id="toc-overview-why-collinearity-matters" class="nav-link" data-scroll-target="#overview-why-collinearity-matters">Overview: why collinearity matters</a></li>
   <li><a href="#packages" id="toc-packages" class="nav-link" data-scroll-target="#packages">🧰 Packages</a></li>
   <li><a href="#variance-inflation-factor-vif" id="toc-variance-inflation-factor-vif" class="nav-link" data-scroll-target="#variance-inflation-factor-vif">Variance Inflation Factor (VIF)</a></li>
   <li><a href="#mitigations-when-vifs-are-high" id="toc-mitigations-when-vifs-are-high" class="nav-link" data-scroll-target="#mitigations-when-vifs-are-high">Mitigations (when VIFs are high)</a></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary">Summary</a></li>
   </ul></li>
-  <li><a href="#lab-2-heteroskedasticity" id="toc-lab-2-heteroskedasticity" class="nav-link" data-scroll-target="#lab-2-heteroskedasticity">Lab 2 — Heteroskedasticity</a>
+  <li><a href="#lab-15-heteroskedasticity" id="toc-lab-15-heteroskedasticity" class="nav-link" data-scroll-target="#lab-15-heteroskedasticity">Lab 15 — Heteroskedasticity</a>
   <ul class="collapse">
+  <li><a href="#learning-outcomes-1" id="toc-learning-outcomes-1" class="nav-link" data-scroll-target="#learning-outcomes-1">🎯 Learning outcomes</a></li>
+  <li><a href="#prerequisites-1" id="toc-prerequisites-1" class="nav-link" data-scroll-target="#prerequisites-1">🧰 Prerequisites</a></li>
+  <li><a href="#overview" id="toc-overview" class="nav-link" data-scroll-target="#overview">Overview</a></li>
   <li><a href="#packages-1" id="toc-packages-1" class="nav-link" data-scroll-target="#packages-1">🧰 Packages</a></li>
   <li><a href="#spotting-heteroskedasticity-with-residual-plots" id="toc-spotting-heteroskedasticity-with-residual-plots" class="nav-link" data-scroll-target="#spotting-heteroskedasticity-with-residual-plots">Spotting heteroskedasticity with residual plots</a></li>
   <li><a href="#breuschpagan-test-manual-construction" id="toc-breuschpagan-test-manual-construction" class="nav-link" data-scroll-target="#breuschpagan-test-manual-construction">Breusch–Pagan test (manual construction)</a></li>
@@ -193,14 +229,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#breuschpagan-with-bptest" id="toc-breuschpagan-with-bptest" class="nav-link" data-scroll-target="#breuschpagan-with-bptest">Breusch–Pagan with <code>bptest()</code></a></li>
   <li><a href="#goldfeldquandt-test-indicator-split-metro-vs-rural" id="toc-goldfeldquandt-test-indicator-split-metro-vs-rural" class="nav-link" data-scroll-target="#goldfeldquandt-test-indicator-split-metro-vs-rural">Goldfeld–Quandt test (indicator split: metro vs rural)</a></li>
   <li><a href="#heteroskedasticityconsistent-hc-standard-errors" id="toc-heteroskedasticityconsistent-hc-standard-errors" class="nav-link" data-scroll-target="#heteroskedasticityconsistent-hc-standard-errors">Heteroskedasticity‑consistent (HC) standard errors</a></li>
+  <li><a href="#summary-1" id="toc-summary-1" class="nav-link" data-scroll-target="#summary-1">Summary</a></li>
   </ul></li>
-  <li><a href="#lab-3-serial-correlation-autocorrelation" id="toc-lab-3-serial-correlation-autocorrelation" class="nav-link" data-scroll-target="#lab-3-serial-correlation-autocorrelation">Lab 3 — Serial Correlation (Autocorrelation)</a>
+  <li><a href="#lab-16-serial-correlation-autocorrelation" id="toc-lab-16-serial-correlation-autocorrelation" class="nav-link" data-scroll-target="#lab-16-serial-correlation-autocorrelation">Lab 16 — Serial Correlation (Autocorrelation)</a>
   <ul class="collapse">
+  <li><a href="#learning-outcomes-2" id="toc-learning-outcomes-2" class="nav-link" data-scroll-target="#learning-outcomes-2">🎯 Learning outcomes</a></li>
+  <li><a href="#prerequisites-2" id="toc-prerequisites-2" class="nav-link" data-scroll-target="#prerequisites-2">🧰 Prerequisites</a></li>
+  <li><a href="#overview-1" id="toc-overview-1" class="nav-link" data-scroll-target="#overview-1">Overview</a></li>
   <li><a href="#example-growth-vs-unemployment-okuns-data" id="toc-example-growth-vs-unemployment-okuns-data" class="nav-link" data-scroll-target="#example-growth-vs-unemployment-okuns-data">Example: growth vs unemployment (Okun’s data)</a></li>
   <li><a href="#phillips-curve-example-and-bgdw-tests" id="toc-phillips-curve-example-and-bgdw-tests" class="nav-link" data-scroll-target="#phillips-curve-example-and-bgdw-tests">Phillips curve example and BG/DW tests</a></li>
+  <li><a href="#summary-2" id="toc-summary-2" class="nav-link" data-scroll-target="#summary-2">Summary</a></li>
   </ul></li>
-  <li><a href="#lab-4-hac-neweywest-standard-errors" id="toc-lab-4-hac-neweywest-standard-errors" class="nav-link" data-scroll-target="#lab-4-hac-neweywest-standard-errors">Lab 4 — HAC (Newey–West) Standard Errors</a></li>
-  <li><a href="#lab-5-ar1-error-structure-diagnostics" id="toc-lab-5-ar1-error-structure-diagnostics" class="nav-link" data-scroll-target="#lab-5-ar1-error-structure-diagnostics">Lab 5 — AR(1) Error Structure (Diagnostics)</a></li>
+  <li><a href="#lab-17-hac-neweywest-standard-errors" id="toc-lab-17-hac-neweywest-standard-errors" class="nav-link" data-scroll-target="#lab-17-hac-neweywest-standard-errors">Lab 17 — HAC (Newey–West) Standard Errors</a>
+  <ul class="collapse">
+  <li><a href="#learning-outcomes-3" id="toc-learning-outcomes-3" class="nav-link" data-scroll-target="#learning-outcomes-3">🎯 Learning outcomes</a></li>
+  <li><a href="#prerequisites-3" id="toc-prerequisites-3" class="nav-link" data-scroll-target="#prerequisites-3">🧰 Prerequisites</a></li>
+  <li><a href="#overview-2" id="toc-overview-2" class="nav-link" data-scroll-target="#overview-2">Overview</a></li>
+  <li><a href="#summary-3" id="toc-summary-3" class="nav-link" data-scroll-target="#summary-3">Summary</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -226,9 +272,34 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="lab-1-collinearity" class="level2">
-<h2 class="anchored" data-anchor-id="lab-1-collinearity">Lab 1 — Collinearity</h2>
+<section id="lab-14-collinearity" class="level2">
+<h2 class="anchored" data-anchor-id="lab-14-collinearity">Lab 14 — Collinearity</h2>
+<section id="learning-outcomes" class="level3">
+<h3 class="anchored" data-anchor-id="learning-outcomes">🎯 Learning outcomes</h3>
+<ul>
+<li>Understand what <strong>collinearity (multicollinearity)</strong> is and why it matters for regression inference.</li>
+<li>Recognise how collinearity inflates <strong>standard errors</strong>, weakening <strong>t‑tests</strong> for individual coefficients.</li>
+<li>Diagnose collinearity using the <strong>Variance Inflation Factor (VIF)</strong> and interpret typical thresholds.</li>
+<li>Implement VIF diagnostics in R with <code>car::vif()</code> and report results clearly (tables, captions).</li>
+<li>Consider practical remedies (drop variables, transform/aggregate predictors, or rethink specification).</li>
+</ul>
+<hr>
+</section>
+<section id="prerequisites" class="level3">
+<h3 class="anchored" data-anchor-id="prerequisites">🧰 Prerequisites</h3>
+<ul>
+<li>Multiple regression basics (OLS, (R^2), F‑test, t‑tests).</li>
+<li>R and RStudio installed.</li>
+<li>Packages: <code>PoEdata</code>, <code>broom</code>, <code>knitr</code>, <code>car</code>.</li>
+</ul>
+<hr>
+</section>
+<section id="overview-why-collinearity-matters" class="level3">
+<h3 class="anchored" data-anchor-id="overview-why-collinearity-matters">Overview: why collinearity matters</h3>
+<p>Collinearity does <strong>not bias</strong> OLS, but it <strong>inflates the variance</strong> of estimated coefficients. As a result, t‑tests lose power and coefficient signs may look unstable across specifications—even when the model has a high (R^2). Diagnostics such as <strong>VIF</strong> help decide whether variables overlap so much that individual effects are hard to interpret.</p>
+<hr>
 <p>Collinearity (multicollinearity) among regressors occurs when two or more move closely together or have limited variability. It <strong>inflates the variance</strong> of estimated parameters (less precise (t)-tests), even though OLS estimates remain unbiased. As a result, a model may have a high (R^2) or a large F‑statistic but <strong>insignificant individual coefficients</strong>.</p>
+</section>
 <section id="packages" class="level3">
 <h3 class="anchored" data-anchor-id="packages">🧰 Packages</h3>
 <p><code>PoEdata</code>, <code>broom</code>, <code>knitr</code>, <code>car</code></p>
@@ -346,14 +417,14 @@ Note
 </section>
 <section id="variance-inflation-factor-vif" class="level3">
 <h3 class="anchored" data-anchor-id="variance-inflation-factor-vif">Variance Inflation Factor (VIF)</h3>
-<p>The VIF for regressor (x_k) is (_k = ), where (R_k^2) is from regressing (x_k) on the other regressors.</p>
+<p>The VIF for regressor <span class="math inline">\(x_k\)</span> is <span class="math inline">\(VIF_k = \dfrac{1}{1-R_k^2}\)</span>, where <span class="math inline">\(R_k^2\)</span> is from regressing <span class="math inline">\(x_k\)</span> on the other regressors.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>v <span class="ot">&lt;-</span> car<span class="sc">::</span><span class="fu">vif</span>(mod2)</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>tab <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">regressor =</span> <span class="fu">names</span>(v), <span class="at">VIF =</span> <span class="fu">as.numeric</span>(v), <span class="at">row.names =</span> <span class="cn">NULL</span>)</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(tab, <span class="at">caption =</span> <span class="st">"Variance inflation factors for the 'mpg' regression model"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(tab, <span class="at">caption =</span> <span class="st">"Variance inflation factors for the 'mpg' regression model."</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <table class="caption-top table table-sm table-striped small">
-<caption>Variance inflation factors for the ‘mpg’ regression model</caption>
+<caption>Variance inflation factors for the ‘mpg’ regression model.</caption>
 <thead>
 <tr class="header">
 <th style="text-align: left;">regressor</th>
@@ -408,10 +479,43 @@ Tip
 </ul>
 <hr>
 </section>
+<section id="summary" class="level3">
+<h3 class="anchored" data-anchor-id="summary">Summary</h3>
+<ul>
+<li>Collinearity leaves OLS <strong>unbiased</strong> but makes estimates <strong>imprecise</strong>.</li>
+<li>Always check <strong>VIFs</strong> when several predictors are conceptually related.</li>
+<li>If VIFs are high, consider <strong>dropping</strong>, <strong>combining</strong>, or <strong>re‑specifying</strong> predictors—and justify choices with theory.</li>
+</ul>
+<hr>
 </section>
-<section id="lab-2-heteroskedasticity" class="level2">
-<h2 class="anchored" data-anchor-id="lab-2-heteroskedasticity">Lab 2 — Heteroskedasticity</h2>
+</section>
+<section id="lab-15-heteroskedasticity" class="level2">
+<h2 class="anchored" data-anchor-id="lab-15-heteroskedasticity">Lab 15 — Heteroskedasticity</h2>
+<section id="learning-outcomes-1" class="level3">
+<h3 class="anchored" data-anchor-id="learning-outcomes-1">🎯 Learning outcomes</h3>
+<ul>
+<li>Understand the key concept(s) introduced in this lab and their purpose in empirical analysis.</li>
+<li>Correctly implement the core R workflow for this topic and present clean, well-captioned results.</li>
+<li>Interpret model output in context and link diagnostics to modeling choices.</li>
+<li>Recognise common pitfalls and apply simple robustness checks.</li>
+</ul>
+<hr>
+</section>
+<section id="prerequisites-1" class="level3">
+<h3 class="anchored" data-anchor-id="prerequisites-1">🧰 Prerequisites</h3>
+<ul>
+<li>Prior exposure to multiple regression and basic inference (t-tests, F-tests).</li>
+<li>R and RStudio installed.</li>
+<li>Packages: <code>PoEdata</code>, <code>broom</code>, <code>knitr</code>, plus any additional packages used in this lab.</li>
+</ul>
+<hr>
+</section>
+<section id="overview" class="level3">
+<h3 class="anchored" data-anchor-id="overview">Overview</h3>
+<p>This lab introduces the core idea, why it matters for inference and decision-making, and where it fits in the broader modeling workflow. You will practise the implementation in R, interpret outputs carefully, and connect diagnostics back to modeling decisions.</p>
+<hr>
 <p>The Gauss–Markov theorem assumes <strong>homoskedasticity</strong> (constant error variance (^2)). In many economic datasets, variance grows with some regressors (e.g., higher‑income households show more dispersion in expenditure). With heteroskedasticity, OLS coefficients remain unbiased, but <strong>standard errors</strong> and therefore <strong>inference</strong> are wrong unless corrected.</p>
+</section>
 <section id="packages-1" class="level3">
 <h3 class="anchored" data-anchor-id="packages-1">🧰 Packages</h3>
 <p><code>lmtest</code>, <code>broom</code>, <code>PoEdata</code>, <code>car</code>, <code>sandwich</code>, <code>knitr</code></p>
@@ -700,10 +804,43 @@ Important
 </div>
 <hr>
 </section>
+<section id="summary-1" class="level3">
+<h3 class="anchored" data-anchor-id="summary-1">Summary</h3>
+<ul>
+<li>You applied the technique in R, produced tidy outputs, and interpreted them in context.</li>
+<li>Keep focusing on clean tables, explicit assumptions, and diagnostics that justify your specification.</li>
+<li>Use the provided patterns as a template for future empirical work.</li>
+</ul>
+<hr>
 </section>
-<section id="lab-3-serial-correlation-autocorrelation" class="level2">
-<h2 class="anchored" data-anchor-id="lab-3-serial-correlation-autocorrelation">Lab 3 — Serial Correlation (Autocorrelation)</h2>
+</section>
+<section id="lab-16-serial-correlation-autocorrelation" class="level2">
+<h2 class="anchored" data-anchor-id="lab-16-serial-correlation-autocorrelation">Lab 16 — Serial Correlation (Autocorrelation)</h2>
+<section id="learning-outcomes-2" class="level3">
+<h3 class="anchored" data-anchor-id="learning-outcomes-2">🎯 Learning outcomes</h3>
+<ul>
+<li>Understand the core ideas and assumptions for this lab’s topic.</li>
+<li>Implement the workflow in R and create tidy outputs with clear captions.</li>
+<li>Interpret results in context and connect diagnostics to modeling decisions.</li>
+<li>Recognise common pitfalls and perform basic robustness checks.</li>
+</ul>
+<hr>
+</section>
+<section id="prerequisites-2" class="level3">
+<h3 class="anchored" data-anchor-id="prerequisites-2">🧰 Prerequisites</h3>
+<ul>
+<li>Multiple regression and inference (t-tests, F-tests).</li>
+<li>R and RStudio installed.</li>
+<li>Packages: <code>broom</code>, <code>knitr</code>, and any other packages used in the lab code.</li>
+</ul>
+<hr>
+</section>
+<section id="overview-1" class="level3">
+<h3 class="anchored" data-anchor-id="overview-1">Overview</h3>
+<p>This lab situates the technique within the broader econometric workflow, explaining why it matters for inference and decision‑making. You will implement it in R, assess assumptions/diagnostics, and justify specification choices.</p>
+<hr>
 <p>Serial correlation is correlation across time in a series. In regression, <strong>autocorrelated errors</strong> lead to <strong>incorrect standard errors</strong> (and misleading (t)-tests).</p>
+</section>
 <section id="example-growth-vs-unemployment-okuns-data" class="level3">
 <h3 class="anchored" data-anchor-id="example-growth-vs-unemployment-okuns-data">Example: growth vs unemployment (Okun’s data)</h3>
 <div class="cell">
@@ -843,10 +980,10 @@ This warning is displayed once per session.</code></pre>
 <span id="cb39-14"><a href="#cb39-14" aria-hidden="true" tabindex="-1"></a>                      <span class="fu">sprintf</span>(<span class="st">"df=%g"</span>,          d<span class="sc">$</span>parameter)),</span>
 <span id="cb39-15"><a href="#cb39-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">p_value   =</span> base<span class="sc">::</span><span class="fu">c</span>(a<span class="sc">$</span>p.value, b<span class="sc">$</span>p.value, c<span class="sc">$</span>p.value, d<span class="sc">$</span>p.value)</span>
 <span id="cb39-16"><a href="#cb39-16" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb39-17"><a href="#cb39-17" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(dfr, <span class="at">caption=</span><span class="st">"Breusch–Godfrey test for the Phillips example"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb39-17"><a href="#cb39-17" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(dfr, <span class="at">caption =</span> <span class="st">"Breusch–Godfrey test for the Phillips example."</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <table class="caption-top table table-sm table-striped small">
-<caption>Breusch–Godfrey test for the Phillips example</caption>
+<caption>Breusch–Godfrey test for the Phillips example.</caption>
 <thead>
 <tr class="header">
 <th style="text-align: left;">Method</th>
@@ -898,9 +1035,41 @@ alternative hypothesis: true autocorrelation is greater than 0</code></pre>
 </div>
 <hr>
 </section>
+<section id="summary-2" class="level3">
+<h3 class="anchored" data-anchor-id="summary-2">Summary</h3>
+<ul>
+<li>You implemented the method in R and produced clean, well‑captioned outputs.</li>
+<li>Diagnostics and assumptions inform how you specify and interpret the model.</li>
+<li>Use these patterns as a template for future empirical work.</li>
+</ul>
+<hr>
 </section>
-<section id="lab-4-hac-neweywest-standard-errors" class="level2">
-<h2 class="anchored" data-anchor-id="lab-4-hac-neweywest-standard-errors">Lab 4 — HAC (Newey–West) Standard Errors</h2>
+</section>
+<section id="lab-17-hac-neweywest-standard-errors" class="level2">
+<h2 class="anchored" data-anchor-id="lab-17-hac-neweywest-standard-errors">Lab 17 — HAC (Newey–West) Standard Errors</h2>
+<section id="learning-outcomes-3" class="level3">
+<h3 class="anchored" data-anchor-id="learning-outcomes-3">🎯 Learning outcomes</h3>
+<ul>
+<li>Grasp the core concept(s) of this lab and where they fit in the modelling workflow.</li>
+<li>Implement the R workflow cleanly, producing tidy outputs with clear captions.</li>
+<li>Interpret results carefully and connect diagnostics/assumptions to modelling choices.</li>
+<li>Identify pitfalls and perform simple robustness checks.</li>
+</ul>
+<hr>
+</section>
+<section id="prerequisites-3" class="level3">
+<h3 class="anchored" data-anchor-id="prerequisites-3">🧰 Prerequisites</h3>
+<ul>
+<li>Multiple regression, inference (t-tests, F-tests), and model diagnostics basics.</li>
+<li>R and RStudio installed.</li>
+<li>Packages: <code>broom</code>, <code>knitr</code>, plus any additional packages used in this lab.</li>
+</ul>
+<hr>
+</section>
+<section id="overview-2" class="level3">
+<h3 class="anchored" data-anchor-id="overview-2">Overview</h3>
+<p>This lab introduces the concept, explains why it matters for inference and decision‑making, and demonstrates implementation in R. You will interpret results in context and motivate specification choices using diagnostics.</p>
+<hr>
 <p>Correct standard errors under autocorrelation (and heteroskedasticity) using <strong>HAC</strong> estimators.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sandwich); <span class="fu">library</span>(lmtest)</span>
@@ -913,10 +1082,10 @@ alternative hypothesis: true autocorrelation is greater than 0</code></pre>
 <span id="cb42-8"><a href="#cb42-8" aria-hidden="true" tabindex="-1"></a>tbl <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="fu">cbind</span>(s0[<span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">4</span>)], s1[<span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">4</span>)], s2[<span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">4</span>)], s3[<span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">4</span>)]))</span>
 <span id="cb42-9"><a href="#cb42-9" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(tbl) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Incorrect"</span>,<span class="st">"vcovHAC"</span>,<span class="st">"NeweyWest"</span>,<span class="st">"kernHAC"</span>)</span>
 <span id="cb42-10"><a href="#cb42-10" aria-hidden="true" tabindex="-1"></a><span class="fu">row.names</span>(tbl) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"(Intercept)"</span>,<span class="st">"Du"</span>)</span>
-<span id="cb42-11"><a href="#cb42-11" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(tbl, <span class="at">digits=</span><span class="dv">3</span>, <span class="at">caption=</span><span class="st">"Comparing standard errors for the Phillips model"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb42-11"><a href="#cb42-11" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(tbl, <span class="at">digits=</span><span class="dv">3</span>, <span class="at">caption =</span> <span class="st">"Comparing standard errors for the Phillips model."</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <table class="caption-top table table-sm table-striped small">
-<caption>Comparing standard errors for the Phillips model</caption>
+<caption>Comparing standard errors for the Phillips model.</caption>
 <thead>
 <tr class="header">
 <th style="text-align: left;"></th>
@@ -960,20 +1129,16 @@ Warning
 </div>
 <hr>
 </section>
-<section id="lab-5-ar1-error-structure-diagnostics" class="level2">
-<h2 class="anchored" data-anchor-id="lab-5-ar1-error-structure-diagnostics">Lab 5 — AR(1) Error Structure (Diagnostics)</h2>
-<p>Assume errors follow an <strong>AR(1)</strong> process (e_t = e_{t-1} + _t), with (||&lt;1). A quick diagnostic is to inspect the first few <strong>autocorrelations</strong> of residuals.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>ehat <span class="ot">&lt;-</span> <span class="fu">resid</span>(phill.dyn)</span>
-<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>ac <span class="ot">&lt;-</span> <span class="fu">acf</span>(ehat, <span class="at">plot =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>ac<span class="sc">$</span>acf[<span class="dv">2</span><span class="sc">:</span><span class="dv">6</span>]   <span class="co"># autocorrelations at lags 1..5</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.5486586 0.4557325 0.4332158 0.4204936 0.3390342</code></pre>
-</div>
-</div>
-<p>The first‑lag correlation is a simple estimate of () ((= r_1)). If large and significant, consider modelling errors explicitly (e.g., GLS/AR models) or using <strong>HAC</strong> for valid inference when staying with OLS.</p>
+<section id="summary-3" class="level3">
+<h3 class="anchored" data-anchor-id="summary-3">Summary</h3>
+<ul>
+<li>You implemented the method in R, produced clean outputs, and interpreted them in context.</li>
+<li>Diagnostics/assumptions inform specification choices and robustness checks.</li>
+<li>Reuse this structure as a template for future empirical work.</li>
+</ul>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->

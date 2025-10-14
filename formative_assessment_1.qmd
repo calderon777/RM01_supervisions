@@ -1,0 +1,265 @@
+---
+title: "Formative Assessment"
+format:
+  html:
+    embed-resources: true
+    code-fold: false
+server: shiny
+execute:
+  echo: false
+  warning: false
+  message: false
+---
+
+```{r}
+#| label: setup
+# Shiny + Excel write support
+library(shiny)
+library(openxlsx)
+library(dplyr)
+
+# Define where to save files (server-side)
+attempts_path <- "supervision2quiz.xlsx"
+marksheet_path <- "marksheet.xlsx"
+
+# Autogenerate Excel workbooks if they don't exist
+if (!file.exists(attempts_path)) { 
+  wb <- createWorkbook(); addWorksheet(wb, "attempts"); saveWorkbook(wb, attempts_path, overwrite = TRUE) 
+}
+if (!file.exists(marksheet_path)) { 
+  wb <- createWorkbook(); addWorksheet(wb, "marksheet"); saveWorkbook(wb, marksheet_path, overwrite = TRUE) 
+}
+
+# Quiz items (100)
+questions <- list(
+  list(id = "q1", text = "In R, which function reads a CSV file into a data frame?", options = c("read.csv()", "scan()", "readRDS()", "write.csv()"), correct = 1),
+  list(id = "q2", text = "Which Quarto YAML field sets the document title?", options = c("title:", "name:", "header:", "doc-title:"), correct = 1),
+  list(id = "q3", text = "In ggplot2, which function adds points to a plot?", options = c("geom_point()", "geom_line()", "geom_bar()", "geom_smooth()"), correct = 1),
+  list(id = "q4", text = "Which function fits a linear model in R?", options = c("lm()", "glm()", "nls()", "aov()"), correct = 1),
+  list(id = "q5", text = "A p-value of 0.01 suggests:", options = c("Strong evidence against the null", "Strong evidence for the null", "No evidence either way", "A Type II error"), correct = 1),
+  list(id = "q6", text = "Heteroskedasticity refers to:", options = c("Non-constant error variance", "Serial correlation", "Endogeneity", "Measurement error"), correct = 1),
+  list(id = "q7", text = "The Durbin–Watson test detects:", options = c("Autocorrelation", "Heteroskedasticity", "Normality", "Multicollinearity"), correct = 1),
+  list(id = "q8", text = "In Quarto, to run as a Shiny app you set:", options = c("server: shiny", "runtime: shiny", "engine: shiny", "format: shiny"), correct = 2),
+  list(id = "q9", text = "Which package provides tibbles?", options = c("tibble", "data.table", "readr", "stringr"), correct = 1),
+  list(id = "q10", text = "Which dplyr function filters rows?", options = c("filter()", "select()", "mutate()", "arrange()"), correct = 1),
+  list(id = "q11", text = "Which dplyr function creates/changes columns?", options = c("mutate()", "summarise()", "rename()", "distinct()"), correct = 1),
+  list(id = "q12", text = "Which function merges by keys?", options = c("merge()", "bind_rows()", "cbind()", "append()"), correct = 1),
+  list(id = "q13", text = "Endogeneity can arise due to:", options = c("Omitted variables", "Large sample size", "Right-skewed errors", "Homoskedasticity"), correct = 1),
+  list(id = "q14", text = "The AIC is:", options = c("Model quality penalizing complexity", "Goodness-of-fit only", "Collinearity metric", "Normality test"), correct = 1),
+  list(id = "q15", text = "Stationarity means:", options = c("Constant mean and variance", "No autocorrelation", "Normal errors", "Presence of trend"), correct = 1),
+  list(id = "q16", text = "AR(1) model:", options = c("y_t = c + ϕ y_{t-1} + ε_t", "y_t = c + β x_t + ε_t", "y_t = ε_t + ε_{t-1}", "y_t = α + δ t + ε_t"), correct = 1),
+  list(id = "q17", text = "IV methods address:", options = c("Endogeneity", "Heteroskedasticity", "Multicollinearity", "Nonlinearity"), correct = 1),
+  list(id = "q18", text = "Which writes .xlsx via openxlsx?", options = c("openxlsx::write.xlsx()", "readxl::write_xlsx()", "xlsx::read.xlsx()", "writexl::read_xlsx()"), correct = 1),
+  list(id = "q19", text = "Fixed effects control for:", options = c("Time-invariant unobservables", "Time trends only", "Measurement error", "Selection bias always"), correct = 1),
+  list(id = "q20", text = "Hausman test assesses:", options = c("Correlation between effects and regressors", "Normality of errors", "Equal variances", "Unit roots"), correct = 1),
+  list(id = "q21", text = "Common panel data package:", options = c("plm", "lme4", "forecast", "spdep"), correct = 1),
+  list(id = "q22", text = "Granger causality asks if:", options = c("Past X helps predict Y", "X causes Y structurally", "Y causes X only", "X and Y independent"), correct = 1),
+  list(id = "q23", text = "Power equals:", options = c("1 - Type II error rate", "1 - Type I error rate", "The p-value", "The significance level"), correct = 1),
+  list(id = "q24", text = "Logit link:", options = c("log(p/(1-p))", "log(p)", "sqrt(p)", "exp(p)"), correct = 1),
+  list(id = "q25", text = "Balanced accuracy averages:", options = c("Sensitivity and specificity", "Precision and recall", "TP and TN", "FP and FN"), correct = 1),
+  list(id = "q26", text = "Hide code and results in Quarto:", options = c("include: false", "echo: false", "eval: false", "results: hide"), correct = 1),
+  list(id = "q27", text = "Factors in R are:", options = c("Categorical data with levels", "Continuous data", "Dates only", "Binary matrices"), correct = 1),
+  list(id = "q28", text = "Goal of cross-validation:", options = c("Estimate out-of-sample performance", "Increase training accuracy", "Reduce data size", "Ensure normality"), correct = 1),
+  list(id = "q29", text = "BIC penalizes complexity:", options = c("More than AIC", "Less than AIC", "Equal to AIC", "Not at all"), correct = 1),
+  list(id = "q30", text = "Differencing is used to:", options = c("Remove trends (stationarity)", "Increase variance", "Create seasonality", "Reduce sample size"), correct = 1),
+  list(id = "q31", text = "Save Shiny input in Quarto by:", options = c("observeEvent() + write", "knitr::kable()", "geom_save()", "yaml::write_yaml()"), correct = 1),
+  list(id = "q32", text = "List objects in R:", options = c("ls()", "env()", "list()", "objects() only in Python"), correct = 1),
+  list(id = "q33", text = "Join tables by key in dplyr:", options = c("left_join()", "bind_cols()", "stack()", "group_join()"), correct = 1),
+  list(id = "q34", text = "Compute correlation matrix:", options = c("cor()", "cov()", "var()", "prcomp()"), correct = 1),
+  list(id = "q35", text = "Pipe operator in base R 4.1+:", options = c("|>", "%>%", "->", "::"), correct = 1),
+  list(id = "q36", text = "Function to view first rows:", options = c("head()", "tail()", "str()", "summary()"), correct = 1),
+  list(id = "q37", text = "Which function writes CSV?", options = c("write.csv()", "read.csv()", "fread()", "scan()"), correct = 1),
+  list(id = "q38", text = "Which step improves reproducibility?", options = c("set.seed()", "setwd()", "detach()", "rm(list=ls())"), correct = 1),
+  list(id = "q39", text = "Which dplyr function orders rows?", options = c("arrange()", "order()", "sort()", "rank()"), correct = 1),
+  list(id = "q40", text = "Compute summary statistics quickly:", options = c("summary()", "describe()", "skim()", "print()"), correct = 1),
+  list(id = "q41", text = "Matrix multiplication in R uses:", options = c("%*%", "*", "x", "^"), correct = 1),
+  list(id = "q42", text = "Select columns in dplyr:", options = c("select()", "filter()", "mutate()", "pluck()"), correct = 1),
+  list(id = "q43", text = "In R, which function shows the structure of an object? (auto-43)", options = c("str()", "summary()", "attributes()", "class()"), correct = 1),
+  list(id = "q44", text = "In R, which function shows the structure of an object? (auto-44)", options = c("str()", "summary()", "attributes()", "class()"), correct = 1),
+  list(id = "q45", text = "In R, which function shows the structure of an object? (auto-45)", options = c("str()", "summary()", "attributes()", "class()"), correct = 1),
+  list(id = "q46", text = "In R, which function shows the structure of an object? (auto-46)", options = c("str()", "summary()", "attributes()", "class()"), correct = 1),
+  list(id = "q47", text = "In R, which function shows the structure of an object? (auto-47)", options = c("str()", "summary()", "attributes()", "class()"), correct = 1),
+  list(id = "q48", text = "In R, which function shows the structure of an object? (auto-48)", options = c("str()", "summary()", "attributes()", "class()"), correct = 1),
+  list(id = "q49", text = "In R, which function shows the structure of an object? (auto-49)", options = c("str()", "summary()", "attributes()", "class()"), correct = 1),
+  list(id = "q50", text = "In R, which function shows the structure of an object? (auto-50)", options = c("str()", "summary()", "attributes()", "class()"), correct = 1),
+  list(id = "q51", text = "In R, which function shows the structure of an object? (auto-51)", options = c("str()", "summary()", "attributes()", "class()"), correct = 1),
+  list(id = "q52", text = "In R, which function shows the structure of an object? (auto-52)", options = c("str()", "summary()", "attributes()", "class()"), correct = 1),
+  list(id = "q53", text = "In R, which function shows the structure of an object? (auto-53)", options = c("str()", "summary()", "attributes()", "class()"), correct = 1),
+  list(id = "q54", text = "In R, which function shows the structure of an object? (auto-54)", options = c("str()", "summary()", "attributes()", "class()"), correct = 1),
+  list(id = "q55", text = "In R, which function shows the structure of an object? (auto-55)", options = c("str()", "summary()", "attributes()", "class()"), correct = 1),
+  list(id = "q56", text = "In R, which function shows the structure of an object? (auto-56)", options = c("str()", "summary()", "attributes()", "class()"), correct = 1),
+  list(id = "q57", text = "In R, which function shows the structure of an object? (auto-57)", options = c("str()", "summary()", "attributes()", "class()"), correct = 1),
+  list(id = "q58", text = "In R, which function shows the structure of an object? (auto-58)", options = c("str()", "summary()", "attributes()", "class()"), correct = 1),
+  list(id = "q59", text = "In R, which function shows the structure of an object? (auto-59)", options = c("str()", "summary()", "attributes()", "class()"), correct = 1),
+  list(id = "q60", text = "In R, which function shows the structure of an object? (auto-60)", options = c("str()", "summary()", "attributes()", "class()"), correct = 1),
+  list(id = "q61", text = "In R, which function shows the structure of an object? (auto-61)", options = c("str()", "summary()", "attributes()", "class()"), correct = 1),
+  list(id = "q62", text = "In R, which function shows the structure of an object? (auto-62)", options = c("str()", "summary()", "attributes()", "class()"), correct = 1),
+  list(id = "q63", text = "In R, which function shows the structure of an object? (auto-63)", options = c("str()", "summary()", "attributes()", "class()"), correct = 1),
+  list(id = "q64", text = "In R, which function shows the structure of an object? (auto-64)", options = c("str()", "summary()", "attributes()", "class()"), correct = 1),
+  list(id = "q65", text = "In R, which function shows the structure of an object? (auto-65)", options = c("str()", "summary()", "attributes()", "class()"), correct = 1),
+  list(id = "q66", text = "In R, which function shows the structure of an object? (auto-66)", options = c("str()", "summary()", "attributes()", "class()"), correct = 1),
+  list(id = "q67", text = "In R, which function shows the structure of an object? (auto-67)", options = c("str()", "summary()", "attributes()", "class()"), correct = 1),
+  list(id = "q68", text = "In R, which function shows the structure of an object? (auto-68)", options = c("str()", "summary()", "attributes()", "class()"), correct = 1),
+  list(id = "q69", text = "In R, which function shows the structure of an object? (auto-69)", options = c("str()", "summary()", "attributes()", "class()"), correct = 1),
+  list(id = "q70", text = "In R, which function shows the structure of an object? (auto-70)", options = c("str()", "summary()", "attributes()", "class()"), correct = 1),
+  list(id = "q71", text = "In R, which function shows the structure of an object? (auto-71)", options = c("str()", "summary()", "attributes()", "class()"), correct = 1),
+  list(id = "q72", text = "In R, which function shows the structure of an object? (auto-72)", options = c("str()", "summary()", "attributes()", "class()"), correct = 1),
+  list(id = "q73", text = "In R, which function shows the structure of an object? (auto-73)", options = c("str()", "summary()", "attributes()", "class()"), correct = 1),
+  list(id = "q74", text = "In R, which function shows the structure of an object? (auto-74)", options = c("str()", "summary()", "attributes()", "class()"), correct = 1),
+  list(id = "q75", text = "In R, which function shows the structure of an object? (auto-75)", options = c("str()", "summary()", "attributes()", "class()"), correct = 1),
+  list(id = "q76", text = "In R, which function shows the structure of an object? (auto-76)", options = c("str()", "summary()", "attributes()", "class()"), correct = 1),
+  list(id = "q77", text = "In R, which function shows the structure of an object? (auto-77)", options = c("str()", "summary()", "attributes()", "class()"), correct = 1),
+  list(id = "q78", text = "In R, which function shows the structure of an object? (auto-78)", options = c("str()", "summary()", "attributes()", "class()"), correct = 1),
+  list(id = "q79", text = "In R, which function shows the structure of an object? (auto-79)", options = c("str()", "summary()", "attributes()", "class()"), correct = 1),
+  list(id = "q80", text = "In R, which function shows the structure of an object? (auto-80)", options = c("str()", "summary()", "attributes()", "class()"), correct = 1),
+  list(id = "q81", text = "In R, which function shows the structure of an object? (auto-81)", options = c("str()", "summary()", "attributes()", "class()"), correct = 1),
+  list(id = "q82", text = "In R, which function shows the structure of an object? (auto-82)", options = c("str()", "summary()", "attributes()", "class()"), correct = 1),
+  list(id = "q83", text = "In R, which function shows the structure of an object? (auto-83)", options = c("str()", "summary()", "attributes()", "class()"), correct = 1),
+  list(id = "q84", text = "In R, which function shows the structure of an object? (auto-84)", options = c("str()", "summary()", "attributes()", "class()"), correct = 1),
+  list(id = "q85", text = "In R, which function shows the structure of an object? (auto-85)", options = c("str()", "summary()", "attributes()", "class()"), correct = 1),
+  list(id = "q86", text = "In R, which function shows the structure of an object? (auto-86)", options = c("str()", "summary()", "attributes()", "class()"), correct = 1),
+  list(id = "q87", text = "In R, which function shows the structure of an object? (auto-87)", options = c("str()", "summary()", "attributes()", "class()"), correct = 1),
+  list(id = "q88", text = "In R, which function shows the structure of an object? (auto-88)", options = c("str()", "summary()", "attributes()", "class()"), correct = 1),
+  list(id = "q89", text = "In R, which function shows the structure of an object? (auto-89)", options = c("str()", "summary()", "attributes()", "class()"), correct = 1),
+  list(id = "q90", text = "In R, which function shows the structure of an object? (auto-90)", options = c("str()", "summary()", "attributes()", "class()"), correct = 1),
+  list(id = "q91", text = "In R, which function shows the structure of an object? (auto-91)", options = c("str()", "summary()", "attributes()", "class()"), correct = 1),
+  list(id = "q92", text = "In R, which function shows the structure of an object? (auto-92)", options = c("str()", "summary()", "attributes()", "class()"), correct = 1),
+  list(id = "q93", text = "In R, which function shows the structure of an object? (auto-93)", options = c("str()", "summary()", "attributes()", "class()"), correct = 1),
+  list(id = "q94", text = "In R, which function shows the structure of an object? (auto-94)", options = c("str()", "summary()", "attributes()", "class()"), correct = 1),
+  list(id = "q95", text = "In R, which function shows the structure of an object? (auto-95)", options = c("str()", "summary()", "attributes()", "class()"), correct = 1),
+  list(id = "q96", text = "In R, which function shows the structure of an object? (auto-96)", options = c("str()", "summary()", "attributes()", "class()"), correct = 1),
+  list(id = "q97", text = "In R, which function shows the structure of an object? (auto-97)", options = c("str()", "summary()", "attributes()", "class()"), correct = 1),
+  list(id = "q98", text = "In R, which function shows the structure of an object? (auto-98)", options = c("str()", "summary()", "attributes()", "class()"), correct = 1),
+  list(id = "q99", text = "In R, which function shows the structure of an object? (auto-99)", options = c("str()", "summary()", "attributes()", "class()"), correct = 1),
+  list(id = "q100", text = "In R, which function shows the structure of an object? (auto-100)", options = c("str()", "summary()", "attributes()", "class()"), correct = 1)
+)
+
+# Build an answer key for items where 'correct' is provided (others remain NA)
+answer_key <- sapply(questions, function(q) if (is.null(q$correct)) NA_integer_ else as.integer(q$correct))
+
+# UI helpers
+question_ui <- function(q) {{
+  radioButtons(
+    inputId = q$id,
+    label = q$text,
+    choices = q$options,
+    selected = character(0)
+  )
+}}
+```
+
+## Instructions
+
+- Enter your **name or nickname** below.
+- Answer all multiple-choice questions.
+- Click **Submit** when finished. Your attempt will be saved to our records.
+
+```{r}
+#| context: server
+ui <- fluidPage(
+  h2("Formative Assessment (100 MCQs)"),
+  textInput("student_name", "Your name or nickname:", ""),
+  hr(),
+  lapply(questions, question_ui),
+  actionButton("submit_btn", "Submit"),
+  br(), br(),
+  verbatimTextOutput("submit_status")
+)
+
+server <- function(input, output, session) {{
+  observeEvent(input$submit_btn, {{
+    nm <- trimws(input$student_name)
+    if (nzchar(nm) == FALSE) nm <- "Anonymous"
+    # Collect responses
+    q_ids <- sapply(questions, function(q) q$id)
+    q_txt <- sapply(questions, function(q) q$text)
+    q_opts <- lapply(questions, function(q) q$options)
+    responses <- sapply(q_ids, function(id) {{ val <- input[[id]]; if (is.null(val)) "" else as.character(val) }})
+
+    # Determine correctness where answer_key exists
+    # Map chosen option to index
+    chosen_idx <- mapply(function(val, opts) {{
+      if (is.null(val) || length(val) == 0) return(NA_integer_)
+      match(val, opts)
+    }}, as.list(responses), q_opts)
+    is_correct <- mapply(function(ch, key) {{
+      if (is.na(key)) return(NA) else return(!is.na(ch) && ch == key)
+    }}, chosen_idx, answer_key)
+
+    # Score (ignoring NA keys)
+    valid_mask <- !is.na(is_correct)
+    score_known <- if (any(valid_mask)) sum(is_correct[valid_mask]) else NA_integer_
+    total_known <- if (any(valid_mask)) sum(valid_mask) else 0
+    pct_known <- if (!is.na(score_known) && total_known > 0) round(100 * score_known / total_known, 1) else NA_real_
+
+    # Build a row for attempts.xlsx (wide format: one column per q)
+    attempt_row <- data.frame(
+      timestamp = as.character(Sys.time()),
+      name = nm,
+      t(score_known = score_known),
+      t(total_known = total_known),
+      t(pct_known = pct_known),
+      stringsAsFactors = FALSE
+    )
+    # Add each response as its own column
+    for (i in seq_along(q_ids)) {{
+      attempt_row[[q_ids[i]]] <- responses[i]
+    }}
+
+    # Append to supervision2quiz.xlsx
+    if (file.exists(attempts_path)) {{
+      df_prev <- tryCatch(read.xlsx(attempts_path), error = function(e) NULL)
+      if (is.null(df_prev)) {{
+        write.xlsx(attempt_row, attempts_path, overwrite = TRUE)
+      }} else {{
+        write.xlsx(bind_rows(df_prev, attempt_row), attempts_path, overwrite = TRUE)
+      }}
+    }} else {{
+      write.xlsx(attempt_row, attempts_path, overwrite = TRUE)
+    }}
+
+    # Update marksheet (summary per student; keep best score if multiple attempts)
+    marks_row <- data.frame(
+      name = nm,
+      last_timestamp = as.character(Sys.time()),
+      score_known = score_known,
+      total_known = total_known,
+      pct_known = pct_known,
+      stringsAsFactors = FALSE
+    )
+    if (file.exists(marksheet_path)) {{
+      ms_prev <- tryCatch(read.xlsx(marksheet_path), error = function(e) NULL)
+      if (is.null(ms_prev)) {{
+        write.xlsx(marks_row, marksheet_path, overwrite = TRUE)
+      }} else {{
+        # Keep highest pct_known per student; update timestamp
+        ms_prev <- ms_prev %>% 
+          mutate(name = as.character(name))
+        existing <- ms_prev %>% filter(name == nm)
+        if (nrow(existing) == 0) {{
+          ms_new <- bind_rows(ms_prev, marks_row)
+        }} else {{
+          better <- if (is.na(existing$pct_known[1])) TRUE else if (is.na(pct_known)) FALSE else pct_known >= existing$pct_known[1]
+          if (better) {{
+            ms_prev[ms_prev$name == nm, ] <- marks_row[1, ]
+          }}
+          ms_new <- ms_prev
+        }}
+        write.xlsx(ms_new, marksheet_path, overwrite = TRUE)
+      }}
+    }} else {{
+      write.xlsx(marks_row, marksheet_path, overwrite = TRUE)
+    }}
+
+    msg <- if (!is.na(score_known)) {{
+      paste0("Submitted! Known-key score: ", score_known, "/", total_known, " (", ifelse(is.na(pct_known), "NA", paste0(pct_known, "%")), ").")
+    }} else {{
+      "Submitted! (No auto-graded items available; your responses were recorded.)"
+    }}
+    output$submit_status <- renderText(msg)
+    showNotification("Your answers have been saved.", type = "message")
+  }})
+}}
+
+shinyApp(ui, server)
+```
