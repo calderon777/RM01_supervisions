@@ -16,18 +16,18 @@ format: html
 ---
 
 ### 🧰 Prerequisites
-- Multiple regression basics (OLS, \(R^2\), F‑test, t‑tests).
+- Multiple regression basics (OLS, $R^2$, F‑test, t‑tests).
 - R and RStudio installed.
 - Packages: `PoEdata`, `broom`, `knitr`, `car`.
 
 ---
 
 ### Overview: why collinearity matters
-Collinearity does **not bias** OLS, but it **inflates the variance** of estimated coefficients. As a result, t‑tests lose power and coefficient signs may look unstable across specifications—even when the model has a high \(R^2\). Diagnostics such as **VIF** help decide whether variables overlap so much that individual effects are hard to interpret.
+Collinearity does **not bias** OLS, but it **inflates the variance** of estimated coefficients. As a result, t‑tests lose power and coefficient signs may look unstable across specifications—even when the model has a high $R^2$. Diagnostics such as **VIF** help decide whether variables overlap so much that individual effects are hard to interpret.
 
 ---
 
-Collinearity (multicollinearity) among regressors occurs when two or more move closely together or have limited variability. It **inflates the variance** of estimated parameters (less precise \(t\)-tests), even though OLS estimates remain unbiased. As a result, a model may have a high \(R^2\) or a large F‑statistic but **insignificant individual coefficients**.
+Collinearity (multicollinearity) among regressors occurs when two or more move closely together or have limited variability. It **inflates the variance** of estimated parameters (less precise t-tests), even though OLS estimates remain unbiased. As a result, a model may have a high $R^2$ or a large F‑statistic but **insignificant individual coefficients**.
 
 ### 🧰 Packages
 `PoEdata`, `broom`, `knitr`, `car`
@@ -114,7 +114,7 @@ This lab introduces the core idea, why it matters for inference and decision-mak
 ---
 
 
-The Gauss–Markov theorem assumes **homoskedasticity** (constant error variance \(\sigma^2\)). In many economic datasets, variance grows with some regressors (e.g., higher‑income households show more dispersion in expenditure). With heteroskedasticity, OLS coefficients remain unbiased, but **standard errors** and therefore **inference** are wrong unless corrected.
+The Gauss–Markov theorem assumes **homoskedasticity** (constant error variance $\sigma^2$). In many economic datasets, variance grows with some regressors (e.g., higher‑income households show more dispersion in expenditure). With heteroskedasticity, OLS coefficients remain unbiased, but **standard errors** and therefore **inference** are wrong unless corrected.
 
 ### 🧰 Packages
 `lmtest`, `broom`, `PoEdata`, `car`, `sandwich`, `knitr`

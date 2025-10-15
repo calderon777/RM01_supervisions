@@ -65,6 +65,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
+<link href="./supervision_5.html" rel="next">
 <link href="./supervision_3.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -197,6 +198,11 @@ window.Quarto = {
   <a href="./supervision_4.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">Supervision 4</span></a>
   </div>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./supervision_5.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Supervision 5 — Hedonic House Prices (Ames, Iowa — real data)</span></a>
+  </div>
+</li>
     </ul>
     </div>
 </nav>
@@ -288,7 +294,7 @@ window.Quarto = {
 <section id="prerequisites" class="level3">
 <h3 class="anchored" data-anchor-id="prerequisites">🧰 Prerequisites</h3>
 <ul>
-<li>Multiple regression basics (OLS, (R^2), F‑test, t‑tests).</li>
+<li>Multiple regression basics (OLS, <span class="math inline">\(R^2\)</span>, F‑test, t‑tests).</li>
 <li>R and RStudio installed.</li>
 <li>Packages: <code>PoEdata</code>, <code>broom</code>, <code>knitr</code>, <code>car</code>.</li>
 </ul>
@@ -296,9 +302,9 @@ window.Quarto = {
 </section>
 <section id="overview-why-collinearity-matters" class="level3">
 <h3 class="anchored" data-anchor-id="overview-why-collinearity-matters">Overview: why collinearity matters</h3>
-<p>Collinearity does <strong>not bias</strong> OLS, but it <strong>inflates the variance</strong> of estimated coefficients. As a result, t‑tests lose power and coefficient signs may look unstable across specifications—even when the model has a high (R^2). Diagnostics such as <strong>VIF</strong> help decide whether variables overlap so much that individual effects are hard to interpret.</p>
+<p>Collinearity does <strong>not bias</strong> OLS, but it <strong>inflates the variance</strong> of estimated coefficients. As a result, t‑tests lose power and coefficient signs may look unstable across specifications—even when the model has a high <span class="math inline">\(R^2\)</span>. Diagnostics such as <strong>VIF</strong> help decide whether variables overlap so much that individual effects are hard to interpret.</p>
 <hr>
-<p>Collinearity (multicollinearity) among regressors occurs when two or more move closely together or have limited variability. It <strong>inflates the variance</strong> of estimated parameters (less precise (t)-tests), even though OLS estimates remain unbiased. As a result, a model may have a high (R^2) or a large F‑statistic but <strong>insignificant individual coefficients</strong>.</p>
+<p>Collinearity (multicollinearity) among regressors occurs when two or more move closely together or have limited variability. It <strong>inflates the variance</strong> of estimated parameters (less precise t-tests), even though OLS estimates remain unbiased. As a result, a model may have a high <span class="math inline">\(R^2\)</span> or a large F‑statistic but <strong>insignificant individual coefficients</strong>.</p>
 </section>
 <section id="packages" class="level3">
 <h3 class="anchored" data-anchor-id="packages">🧰 Packages</h3>
@@ -514,7 +520,7 @@ Tip
 <h3 class="anchored" data-anchor-id="overview">Overview</h3>
 <p>This lab introduces the core idea, why it matters for inference and decision-making, and where it fits in the broader modeling workflow. You will practise the implementation in R, interpret outputs carefully, and connect diagnostics back to modeling decisions.</p>
 <hr>
-<p>The Gauss–Markov theorem assumes <strong>homoskedasticity</strong> (constant error variance (^2)). In many economic datasets, variance grows with some regressors (e.g., higher‑income households show more dispersion in expenditure). With heteroskedasticity, OLS coefficients remain unbiased, but <strong>standard errors</strong> and therefore <strong>inference</strong> are wrong unless corrected.</p>
+<p>The Gauss–Markov theorem assumes <strong>homoskedasticity</strong> (constant error variance <span class="math inline">\(\sigma^2\)</span>). In many economic datasets, variance grows with some regressors (e.g., higher‑income households show more dispersion in expenditure). With heteroskedasticity, OLS coefficients remain unbiased, but <strong>standard errors</strong> and therefore <strong>inference</strong> are wrong unless corrected.</p>
 </section>
 <section id="packages-1" class="level3">
 <h3 class="anchored" data-anchor-id="packages-1">🧰 Packages</h3>
@@ -1548,6 +1554,9 @@ Warning
       </a>          
   </div>
   <div class="nav-page nav-page-next">
+      <a href="./supervision_5.html" class="pagination-link" aria-label="Supervision 5 — Hedonic House Prices (Ames, Iowa — real data)">
+        <span class="nav-page-text"><span class="chapter-title">Supervision 5 — Hedonic House Prices (Ames, Iowa — real data)</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
   </div>
 </nav>
 </div> <!-- /content -->
