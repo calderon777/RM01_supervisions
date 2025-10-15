@@ -6,9 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="BECS2002">
 
-<title>Supervision 5 — Hedonic House Prices (Ames, Iowa — real data) – Research Methods for Land Economy</title>
+<title>Supervision 5 – Research Methods for Land Economy</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -76,7 +75,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-a3732d25a03fccaf0a7ba6a3c2233265.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-13f3b9144cfbd4bffe19d1212ca92176.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -119,7 +118,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./supervision_5.html"><span class="chapter-title">Supervision 5 — Hedonic House Prices (Ames, Iowa — real data)</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./supervision_5.html"><span class="chapter-title">Supervision 5</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -171,7 +170,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./supervision_5.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">Supervision 5 — Hedonic House Prices (Ames, Iowa — real data)</span></a>
+  <a href="./supervision_5.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">Supervision 5</span></a>
   </div>
 </li>
     </ul>
@@ -184,20 +183,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#learning-goals" id="toc-learning-goals" class="nav-link active" data-scroll-target="#learning-goals">Learning goals</a></li>
-  <li><a href="#step-0-build-the-student-dataset-run-once" id="toc-step-0-build-the-student-dataset-run-once" class="nav-link" data-scroll-target="#step-0-build-the-student-dataset-run-once">Step 0 — Build the student dataset (run once)</a></li>
-  <li><a href="#the-task-do-at-home" id="toc-the-task-do-at-home" class="nav-link" data-scroll-target="#the-task-do-at-home">The task (do at home)</a>
+  <li><a href="#lab-18---hedonic-price-modelling-the-golden-regression-challenge" id="toc-lab-18---hedonic-price-modelling-the-golden-regression-challenge" class="nav-link active" data-scroll-target="#lab-18---hedonic-price-modelling-the-golden-regression-challenge">Lab 18 - Hedonic Price Modelling: The Golden Regression Challenge</a>
   <ul class="collapse">
-  <li><a href="#deliverable-submit-1-day-before-class" id="toc-deliverable-submit-1-day-before-class" class="nav-link" data-scroll-target="#deliverable-submit-1-day-before-class">Deliverable (submit 1 day before class)</a></li>
+  <li><a href="#learning-outcomes" id="toc-learning-outcomes" class="nav-link" data-scroll-target="#learning-outcomes">🎯 Learning Outcomes</a></li>
+  <li><a href="#part-a-data-preparation" id="toc-part-a-data-preparation" class="nav-link" data-scroll-target="#part-a-data-preparation">Part A — Data Preparation</a></li>
+  <li><a href="#part-b-building-the-hedonic-model" id="toc-part-b-building-the-hedonic-model" class="nav-link" data-scroll-target="#part-b-building-the-hedonic-model">Part B — Building the Hedonic Model</a></li>
+  <li><a href="#part-c-the-golden-regression-challenge" id="toc-part-c-the-golden-regression-challenge" class="nav-link" data-scroll-target="#part-c-the-golden-regression-challenge">Part C — The Golden Regression Challenge</a></li>
+  <li><a href="#teaching-notes" id="toc-teaching-notes" class="nav-link" data-scroll-target="#teaching-notes">Teaching Notes</a></li>
   </ul></li>
-  <li><a href="#data-dictionary-student-csv-hedonic_ames.csv" id="toc-data-dictionary-student-csv-hedonic_ames.csv" class="nav-link" data-scroll-target="#data-dictionary-student-csv-hedonic_ames.csv">Data dictionary (student CSV: <code>hedonic_ames.csv</code>)</a></li>
-  <li><a href="#starter-code-r" id="toc-starter-code-r" class="nav-link" data-scroll-target="#starter-code-r">Starter code (R)</a></li>
-  <li><a href="#in-class-flow-what-well-do-together" id="toc-in-class-flow-what-well-do-together" class="nav-link" data-scroll-target="#in-class-flow-what-well-do-together">In-class flow (what we’ll do together)</a>
-  <ul class="collapse">
-  <li><a href="#presenter-selection-staff-only" id="toc-presenter-selection-staff-only" class="nav-link" data-scroll-target="#presenter-selection-staff-only">Presenter selection (staff only)</a></li>
-  </ul></li>
-  <li><a href="#marking-guidance-formative-not-graded" id="toc-marking-guidance-formative-not-graded" class="nav-link" data-scroll-target="#marking-guidance-formative-not-graded">Marking guidance (formative, not graded)</a></li>
-  <li><a href="#submission-details" id="toc-submission-details" class="nav-link" data-scroll-target="#submission-details">Submission details</a></li>
   </ul>
 </nav>
     </div>
@@ -206,19 +199,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-title">Supervision 5 — Hedonic House Prices (Ames, Iowa — real data)</span></h1>
+<h1 class="title"><span class="chapter-title">Supervision 5</span></h1>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
-    <div>
-    <div class="quarto-title-meta-heading">Author</div>
-    <div class="quarto-title-meta-contents">
-             <p>BECS2002 </p>
-          </div>
-  </div>
     
   
     
@@ -229,96 +216,118 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<blockquote class="blockquote">
-<p><strong>Timeline</strong> - <strong>T−7 days:</strong> This Quarto doc creates <code>hedonic_ames.csv</code> from the <em>real</em> Ames Housing dataset (install <code>AmesHousing</code> once). - <strong>T−1 day (by 17:00):</strong> Submit your <code>.R</code> script via Blackboard (no report needed). - <strong>T (in-class):</strong> Selected students present their final model (5–6 mins each). Group discussion of pros/cons.</p>
-</blockquote>
-<section id="learning-goals" class="level2">
-<h2 class="anchored" data-anchor-id="learning-goals">Learning goals</h2>
+<section id="lab-18---hedonic-price-modelling-the-golden-regression-challenge" class="level2">
+<h2 class="anchored" data-anchor-id="lab-18---hedonic-price-modelling-the-golden-regression-challenge">Lab 18 - Hedonic Price Modelling: The Golden Regression Challenge</h2>
+<section id="learning-outcomes" class="level3">
+<h3 class="anchored" data-anchor-id="learning-outcomes">🎯 Learning Outcomes</h3>
+<p>By the end of this supervision, you should be able to:</p>
 <ul>
-<li>Specify and estimate a <strong>hedonic pricing</strong> model for house prices using a <em>real</em> dataset.</li>
-<li>Justify <strong>variable selection</strong> and model-building choices.</li>
-<li>Evaluate model <strong>fit</strong>, <strong>assumptions</strong>, and <strong>interpretability</strong>.</li>
-<li>Communicate results clearly to a non-technical audience.</li>
+<li>Apply the concept of <strong>hedonic pricing</strong> to a real dataset.<br>
+</li>
+<li>Develop and justify a <strong>regression model</strong> explaining variation in house prices.<br>
+</li>
+<li>Evaluate competing model specifications and defend modelling choices.<br>
+</li>
+<li>Communicate results clearly to peers and engage in critical discussion.</li>
 </ul>
-<blockquote class="blockquote">
-<p><strong>Note on data</strong>: We use the <strong>Ames Housing</strong> dataset (De Cock, 2011), provided by the R package <code>AmesHousing</code>. It contains individual residential sales with rich structural attributes. The context is U.S.-based (Ames, Iowa), but the hedonic logic is the same.</p>
-</blockquote>
 <hr>
 </section>
-<section id="step-0-build-the-student-dataset-run-once" class="level2">
-<h2 class="anchored" data-anchor-id="step-0-build-the-student-dataset-run-once">Step 0 — Build the student dataset (run once)</h2>
+<section id="part-a-data-preparation" class="level3">
+<h3 class="anchored" data-anchor-id="part-a-data-preparation">Part A — Data Preparation</h3>
+<p>In this supervision, we will use the <strong>Ames Housing</strong> dataset (De Cock, 2011), a real dataset widely used in econometrics and data science to study housing markets. It contains information on residential properties in Ames, Iowa, USA, including price, structural features, and neighbourhood characteristics.</p>
 <blockquote class="blockquote">
-<p>This code loads the dataset from the R package and writes a cleaned CSV: <strong><code>hedonic_ames.csv</code></strong>. Staff can run this once and share the CSV with students, or students can run it themselves.</p>
+<p><em>Note: Although the dataset is U.S.-based, the economic reasoning behind hedonic pricing is fully applicable to UK housing markets.</em></p>
 </blockquote>
+<p>The following R code generates a cleaned dataset called <strong><code>hedonic_ames.csv</code></strong>. Run this once before starting your analysis.</p>
 <div class="cell">
-<details open="" class="code-fold">
-<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Packages</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">requireNamespace</span>(<span class="st">"AmesHousing"</span>, <span class="at">quietly =</span> <span class="cn">TRUE</span>)) {</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">install.packages</span>(<span class="st">"AmesHousing"</span>)</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(AmesHousing)</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(janitor)</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stringr)</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Load full Ames data</span></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>ames <span class="ot">&lt;-</span> AmesHousing<span class="sc">::</span><span class="fu">make_ames</span>()</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Minimal cleaning + variable selection for hedonic teaching ---------</span></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Keep interpretable structural and locational proxies</span></span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> ames <span class="sc">%&gt;%</span></span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>  janitor<span class="sc">::</span><span class="fu">clean_names</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">transmute</span>(</span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>    <span class="co"># target</span></span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>    sale_price,</span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>    <span class="co"># structural size &amp; rooms</span></span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>    gr_liv_area, total_bsmt_sf, lot_area,</span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>    bedroom_abv_gr, full_bath, half_bath, kitchen_abv_gr,</span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>    <span class="co"># quality/condition</span></span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>    overall_qual, overall_cond, year_built, year_remod_add,</span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>    exter_qual, kitchen_qual, central_air,</span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>    <span class="co"># garage &amp; fireplaces</span></span>
-<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>    garage_cars, garage_area, fireplace_qu,</span>
-<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>    <span class="co"># building &amp; neighborhood</span></span>
-<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>    bldg_type, house_style, neighborhood, <span class="at">overall =</span> overall_qual,</span>
-<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>    <span class="co"># simple conveniences</span></span>
-<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>    ms_zoning, foundation</span>
-<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Convert a few to factors</span></span>
-<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(</span>
-<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>    <span class="at">central_air =</span> <span class="fu">factor</span>(central_air, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"N"</span>,<span class="st">"Y"</span>)),</span>
-<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>    <span class="at">exter_qual =</span> <span class="fu">factor</span>(exter_qual, <span class="at">ordered =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>    <span class="at">kitchen_qual =</span> <span class="fu">factor</span>(kitchen_qual, <span class="at">ordered =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>    <span class="at">fireplace_qu =</span> <span class="fu">factor</span>(fireplace_qu, <span class="at">ordered =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>    <span class="at">bldg_type =</span> <span class="fu">factor</span>(bldg_type),</span>
-<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>    <span class="at">house_style =</span> <span class="fu">factor</span>(house_style),</span>
-<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>    <span class="at">neighborhood =</span> <span class="fu">factor</span>(neighborhood),</span>
-<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>    <span class="at">ms_zoning =</span> <span class="fu">factor</span>(ms_zoning),</span>
-<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>    <span class="at">foundation =</span> <span class="fu">factor</span>(foundation),</span>
-<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>    <span class="co"># engineered features</span></span>
-<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>    <span class="at">baths_total =</span> full_bath <span class="sc">+</span> <span class="fl">0.5</span> <span class="sc">*</span> half_bath,</span>
-<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a>    <span class="at">age =</span> <span class="fu">pmax</span>(<span class="dv">0</span>, <span class="dv">2010</span> <span class="sc">-</span> year_built),           <span class="co"># 2010 is the end of the series</span></span>
-<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a>    <span class="at">remod_age =</span> <span class="fu">pmax</span>(<span class="dv">0</span>, <span class="dv">2010</span> <span class="sc">-</span> year_remod_add)</span>
-<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Basic sanity filters (trim extreme outliers)</span></span>
-<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(sale_price <span class="sc">&gt;</span> <span class="dv">20000</span>, sale_price <span class="sc">&lt;</span> <span class="dv">600000</span>, gr_liv_area <span class="sc">&gt;</span> <span class="dv">300</span>, lot_area <span class="sc">&lt;</span> <span class="dv">100000</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a>  tidyr<span class="sc">::</span><span class="fu">drop_na</span>(sale_price, gr_liv_area, bedroom_abv_gr, baths_total, overall_qual)</span>
-<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a><span class="co"># Shuffle and add an id</span></span>
-<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">42</span>)</span>
-<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span> dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">listing_id =</span> dplyr<span class="sc">::</span><span class="fu">row_number</span>()) <span class="sc">%&gt;%</span> dplyr<span class="sc">::</span><span class="fu">relocate</span>(listing_id)</span>
-<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a><span class="co"># Save CSV for students</span></span>
-<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a>readr<span class="sc">::</span><span class="fu">write_csv</span>(df, <span class="st">"hedonic_ames.csv"</span>)</span>
-<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a><span class="co"># Quick peek</span></span>
-<span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a>dplyr<span class="sc">::</span><span class="fu">glimpse</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(AmesHousing)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'AmesHousing' was built under R version 4.4.3</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'dplyr' was built under R version 4.4.3</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Attaching package: 'dplyr'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following objects are masked from 'package:stats':
+
+    filter, lag</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following objects are masked from 'package:base':
+
+    intersect, setdiff, setequal, union</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(janitor)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'janitor' was built under R version 4.4.3</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Attaching package: 'janitor'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following objects are masked from 'package:stats':
+
+    chisq.test, fisher.test</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stringr)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Load full Ames data</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>ames <span class="ot">&lt;-</span> AmesHousing<span class="sc">::</span><span class="fu">make_ames</span>()</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Minimal cleaning and selection</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> ames <span class="sc">%&gt;%</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>  janitor<span class="sc">::</span><span class="fu">clean_names</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">transmute</span>(</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>    sale_price,</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>    gr_liv_area, total_bsmt_sf, lot_area,</span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>    bedroom_abv_gr, full_bath, half_bath, kitchen_abv_gr,</span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>    overall_qual, overall_cond, year_built, year_remod_add,</span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>    exter_qual, kitchen_qual, central_air,</span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>    garage_cars, garage_area, fireplace_qu,</span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>    bldg_type, house_style, neighborhood,</span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>    ms_zoning, foundation</span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(</span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">central_air =</span> <span class="fu">factor</span>(central_air, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"N"</span>,<span class="st">"Y"</span>)),</span>
+<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">exter_qual =</span> <span class="fu">factor</span>(exter_qual, <span class="at">ordered =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">kitchen_qual =</span> <span class="fu">factor</span>(kitchen_qual, <span class="at">ordered =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">fireplace_qu =</span> <span class="fu">factor</span>(fireplace_qu, <span class="at">ordered =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a>    <span class="at">bldg_type =</span> <span class="fu">factor</span>(bldg_type),</span>
+<span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a>    <span class="at">house_style =</span> <span class="fu">factor</span>(house_style),</span>
+<span id="cb12-26"><a href="#cb12-26" aria-hidden="true" tabindex="-1"></a>    <span class="at">neighborhood =</span> <span class="fu">factor</span>(neighborhood),</span>
+<span id="cb12-27"><a href="#cb12-27" aria-hidden="true" tabindex="-1"></a>    <span class="at">ms_zoning =</span> <span class="fu">factor</span>(ms_zoning),</span>
+<span id="cb12-28"><a href="#cb12-28" aria-hidden="true" tabindex="-1"></a>    <span class="at">foundation =</span> <span class="fu">factor</span>(foundation),</span>
+<span id="cb12-29"><a href="#cb12-29" aria-hidden="true" tabindex="-1"></a>    <span class="at">baths_total =</span> full_bath <span class="sc">+</span> <span class="fl">0.5</span> <span class="sc">*</span> half_bath,</span>
+<span id="cb12-30"><a href="#cb12-30" aria-hidden="true" tabindex="-1"></a>    <span class="at">age =</span> <span class="fu">pmax</span>(<span class="dv">0</span>, <span class="dv">2010</span> <span class="sc">-</span> year_built),</span>
+<span id="cb12-31"><a href="#cb12-31" aria-hidden="true" tabindex="-1"></a>    <span class="at">remod_age =</span> <span class="fu">pmax</span>(<span class="dv">0</span>, <span class="dv">2010</span> <span class="sc">-</span> year_remod_add)</span>
+<span id="cb12-32"><a href="#cb12-32" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb12-33"><a href="#cb12-33" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(</span>
+<span id="cb12-34"><a href="#cb12-34" aria-hidden="true" tabindex="-1"></a>    sale_price <span class="sc">&gt;</span> <span class="dv">20000</span>, sale_price <span class="sc">&lt;</span> <span class="dv">600000</span>, </span>
+<span id="cb12-35"><a href="#cb12-35" aria-hidden="true" tabindex="-1"></a>    gr_liv_area <span class="sc">&gt;</span> <span class="dv">300</span>, lot_area <span class="sc">&lt;</span> <span class="dv">100000</span></span>
+<span id="cb12-36"><a href="#cb12-36" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb12-37"><a href="#cb12-37" aria-hidden="true" tabindex="-1"></a>  tidyr<span class="sc">::</span><span class="fu">drop_na</span>(sale_price, gr_liv_area, bedroom_abv_gr, baths_total, overall_qual)</span>
+<span id="cb12-38"><a href="#cb12-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-39"><a href="#cb12-39" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">42</span>)</span>
+<span id="cb12-40"><a href="#cb12-40" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span> dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">listing_id =</span> dplyr<span class="sc">::</span><span class="fu">row_number</span>()) <span class="sc">%&gt;%</span> dplyr<span class="sc">::</span><span class="fu">relocate</span>(listing_id)</span>
+<span id="cb12-41"><a href="#cb12-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-42"><a href="#cb12-42" aria-hidden="true" tabindex="-1"></a>readr<span class="sc">::</span><span class="fu">write_csv</span>(df, <span class="st">"hedonic_ames.csv"</span>)</span>
+<span id="cb12-43"><a href="#cb12-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-44"><a href="#cb12-44" aria-hidden="true" tabindex="-1"></a><span class="co"># Quick check</span></span>
+<span id="cb12-45"><a href="#cb12-45" aria-hidden="true" tabindex="-1"></a>dplyr<span class="sc">::</span><span class="fu">glimpse</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Rows: 2,918
-Columns: 28
+Columns: 27
 $ listing_id     &lt;int&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, …
 $ sale_price     &lt;int&gt; 215000, 105000, 172000, 244000, 189900, 195500, 213500,…
 $ gr_liv_area    &lt;int&gt; 1656, 896, 1329, 2110, 1629, 1604, 1338, 1280, 1616, 18…
@@ -341,7 +350,6 @@ $ fireplace_qu   &lt;ord&gt; Good, No_Fireplace, No_Fireplace, Typical, Typical,
 $ bldg_type      &lt;fct&gt; OneFam, OneFam, OneFam, OneFam, OneFam, OneFam, TwnhsE,…
 $ house_style    &lt;fct&gt; One_Story, One_Story, One_Story, One_Story, Two_Story, …
 $ neighborhood   &lt;fct&gt; North_Ames, North_Ames, North_Ames, North_Ames, Gilbert…
-$ overall        &lt;fct&gt; Above_Average, Average, Above_Average, Good, Average, A…
 $ ms_zoning      &lt;fct&gt; Residential_Low_Density, Residential_High_Density, Resi…
 $ foundation     &lt;fct&gt; CBlock, CBlock, CBlock, CBlock, PConc, PConc, PConc, PC…
 $ baths_total    &lt;dbl&gt; 1.0, 1.0, 1.5, 2.5, 2.5, 2.5, 2.0, 2.0, 2.0, 2.5, 2.5, …
@@ -351,128 +359,61 @@ $ remod_age      &lt;dbl&gt; 50, 49, 52, 42, 12, 12, 9, 18, 14, 11, 16, 3, 12, 2
 </div>
 <hr>
 </section>
-<section id="the-task-do-at-home" class="level2">
-<h2 class="anchored" data-anchor-id="the-task-do-at-home">The task (do at home)</h2>
-<p>Using the dataset <strong><code>hedonic_ames.csv</code></strong>, build a regression model to explain variation in <strong><code>sale_price</code></strong> using suitable structural and neighbourhood attributes. You may transform variables (e.g., logs), create interactions, or try regularised models (e.g., LASSO), but your <em>final</em> choice should be well-justified and interpretable.</p>
-<section id="deliverable-submit-1-day-before-class" class="level3">
-<h3 class="anchored" data-anchor-id="deliverable-submit-1-day-before-class">Deliverable (submit 1 day before class)</h3>
-<p>Upload a single <strong><code>.R</code> script</strong> containing: 1. Your <strong>final model</strong> (clearly named). 2. A short <strong>comment block</strong> describing your <strong>variable selection process</strong> (e.g., theory-driven shortlist → EDA → nested models → cross-validation). 3. A brief note on <strong>pros/cons</strong> of your chosen specification.</p>
-<p>We will select a subset of students to <strong>present in class</strong> (5–6 mins).</p>
-<hr>
+<section id="part-b-building-the-hedonic-model" class="level3">
+<h3 class="anchored" data-anchor-id="part-b-building-the-hedonic-model">Part B — Building the Hedonic Model</h3>
+<section id="task-overview" class="level4">
+<h4 class="anchored" data-anchor-id="task-overview">Task Overview</h4>
+<p>You are asked to <strong>build and justify your own hedonic price model</strong> using the dataset <code>hedonic_ames.csv</code>.<br>
+Your model should explain the variation in <strong><code>sale_price</code></strong> using relevant structural and locational characteristics.</p>
+<p>Your submission should include:</p>
+<ol type="1">
+<li>Your <strong>final regression model</strong>, clearly identified in your R script.<br>
+</li>
+<li>A short <strong>comment block</strong> describing your <strong>variable selection process</strong> (theory-driven, data-driven, or hybrid).<br>
+</li>
+<li>A concise reflection on the <strong>advantages and limitations</strong> of your model.</li>
+</ol>
 </section>
-</section>
-<section id="data-dictionary-student-csv-hedonic_ames.csv" class="level2">
-<h2 class="anchored" data-anchor-id="data-dictionary-student-csv-hedonic_ames.csv">Data dictionary (student CSV: <code>hedonic_ames.csv</code>)</h2>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 50%">
-<col style="width: 50%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Variable</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>listing_id</td>
-<td>Row identifier</td>
-</tr>
-<tr class="even">
-<td>sale_price</td>
-<td>Sale price in USD (target)</td>
-</tr>
-<tr class="odd">
-<td>gr_liv_area</td>
-<td>Above-ground living area (sq ft)</td>
-</tr>
-<tr class="even">
-<td>total_bsmt_sf</td>
-<td>Basement area (sq ft)</td>
-</tr>
-<tr class="odd">
-<td>lot_area</td>
-<td>Lot size (sq ft)</td>
-</tr>
-<tr class="even">
-<td>bedroom_abv_gr</td>
-<td>Bedrooms (above ground)</td>
-</tr>
-<tr class="odd">
-<td>full_bath, half_bath</td>
-<td>Number of bathrooms (counts)</td>
-</tr>
-<tr class="even">
-<td>kitchen_abv_gr</td>
-<td>Number of kitchens</td>
-</tr>
-<tr class="odd">
-<td>baths_total</td>
-<td><code>full_bath + 0.5*half_bath</code></td>
-</tr>
-<tr class="even">
-<td>overall_qual, overall_cond</td>
-<td>Overall quality/condition (ordinal 1–10)</td>
-</tr>
-<tr class="odd">
-<td>year_built, year_remod_add</td>
-<td>Construction &amp; last remodel year</td>
-</tr>
-<tr class="even">
-<td>age, remod_age</td>
-<td>2010 minus year built/remodel (engineered)</td>
-</tr>
-<tr class="odd">
-<td>exter_qual, kitchen_qual, fireplace_qu</td>
-<td>Quality ratings (ordered factors)</td>
-</tr>
-<tr class="even">
-<td>central_air</td>
-<td>Has central air (Y/N)</td>
-</tr>
-<tr class="odd">
-<td>garage_cars, garage_area</td>
-<td>Garage capacity (cars) and area (sq ft)</td>
-</tr>
-<tr class="even">
-<td>bldg_type, house_style, neighborhood</td>
-<td>Categorical attributes</td>
-</tr>
-<tr class="odd">
-<td>ms_zoning, foundation</td>
-<td>Zoning and foundation type</td>
-</tr>
-</tbody>
-</table>
-<hr>
-</section>
-<section id="starter-code-r" class="level2">
-<h2 class="anchored" data-anchor-id="starter-code-r">Starter code (R)</h2>
+<section id="suggested-workflow" class="level4">
+<h4 class="anchored" data-anchor-id="suggested-workflow">Suggested Workflow</h4>
 <div class="cell">
-<details open="" class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr); <span class="fu">library</span>(dplyr); <span class="fu">library</span>(ggplot2); <span class="fu">library</span>(broom); <span class="fu">library</span>(modelsummary)</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 1) Load data (ensure you've run Step 0 once to create the CSV)</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">"hedonic_ames.csv"</span>)</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co"># 2) Transformations</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span> dplyr<span class="sc">::</span><span class="fu">mutate</span>(</span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">ln_price =</span> <span class="fu">log</span>(sale_price),</span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">ln_area  =</span> <span class="fu">log</span>(gr_liv_area),</span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">ln_lot   =</span> <span class="fu">log</span>(lot_area)</span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="co"># 3) Baseline hedonic (illustrative; replace with your own spec)</span></span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>m0 <span class="ot">&lt;-</span> <span class="fu">lm</span>(ln_price <span class="sc">~</span> ln_area <span class="sc">+</span> bedroom_abv_gr <span class="sc">+</span> baths_total <span class="sc">+</span> total_bsmt_sf <span class="sc">+</span></span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>           garage_cars <span class="sc">+</span> central_air <span class="sc">+</span> overall_qual <span class="sc">+</span> overall_cond <span class="sc">+</span></span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>           exter_qual <span class="sc">+</span> kitchen_qual <span class="sc">+</span> fireplace_qu <span class="sc">+</span></span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>           bldg_type <span class="sc">+</span> house_style <span class="sc">+</span> neighborhood,</span>
-<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>         <span class="at">data =</span> df)</span>
-<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>modelsummary<span class="sc">::</span><span class="fu">modelsummary</span>(<span class="fu">list</span>(<span class="st">"Baseline"</span> <span class="ot">=</span> m0))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr); <span class="fu">library</span>(dplyr); <span class="fu">library</span>(ggplot2); <span class="fu">library</span>(broom); <span class="fu">library</span>(modelsummary)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'ggplot2' was built under R version 4.4.3</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'broom' was built under R version 4.4.3</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'modelsummary' was built under R version 4.4.3</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Load data</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"hedonic_ames.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Rows: 2918 Columns: 27
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr (11): overall_qual, overall_cond, exter_qual, kitchen_qual, central_air,...
+dbl (16): listing_id, sale_price, gr_liv_area, total_bsmt_sf, lot_area, bedr...
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. Transform variables (example)</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">ln_price =</span> <span class="fu">log</span>(sale_price),</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">ln_area  =</span> <span class="fu">log</span>(gr_liv_area),</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">ln_lot   =</span> <span class="fu">log</span>(lot_area)</span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. Baseline hedonic model (example)</span></span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>m0 <span class="ot">&lt;-</span> <span class="fu">lm</span>(ln_price <span class="sc">~</span> ln_area <span class="sc">+</span> bedroom_abv_gr <span class="sc">+</span> baths_total <span class="sc">+</span> total_bsmt_sf <span class="sc">+</span></span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a>           garage_cars <span class="sc">+</span> central_air <span class="sc">+</span> overall_qual <span class="sc">+</span> overall_cond <span class="sc">+</span></span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a>           exter_qual <span class="sc">+</span> kitchen_qual <span class="sc">+</span> fireplace_qu <span class="sc">+</span></span>
+<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a>           bldg_type <span class="sc">+</span> house_style <span class="sc">+</span> neighborhood,</span>
+<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a>         <span class="at">data =</span> df)</span>
+<span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-15"><a href="#cb20-15" aria-hidden="true" tabindex="-1"></a>modelsummary<span class="sc">::</span><span class="fu">modelsummary</span>(<span class="fu">list</span>(<span class="st">"Baseline"</span> <span class="ot">=</span> m0))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <!-- preamble start -->
 
@@ -1198,57 +1139,105 @@ $ remod_age      &lt;dbl&gt; 50, 49, 52, 42, 12, 12, 9, 18, 14, 11, 16, 3, 12, 2
     </div>
 <!-- hack to avoid NA insertion in last line -->
 </div>
-<details open="" class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 4) Diagnostics you could consider</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>)); <span class="fu">plot</span>(m0); <span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="supervision_5_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
 </div>
 <blockquote class="blockquote">
-<p><strong>Ideas to try:</strong> interactions (e.g., <code>overall_qual:ln_area</code>), non-linear terms (splines for area/age), or LASSO for screening before refitting an interpretable OLS.</p>
+<p>You are encouraged to experiment with transformations, interactions (e.g., <code>overall_qual:ln_area</code>), and diagnostic checks. Consider theoretical coherence and interpretability when finalising your model.</p>
 </blockquote>
 <hr>
 </section>
-<section id="in-class-flow-what-well-do-together" class="level2">
-<h2 class="anchored" data-anchor-id="in-class-flow-what-well-do-together">In-class flow (what we’ll do together)</h2>
-<ol type="1">
-<li><strong>Mini-brief (5 mins):</strong> Recap hedonic logic and evaluation criteria.</li>
-<li><strong>Student presentations (5–6 mins each):</strong> <em>Final model</em>, <em>variable selection</em>, <em>pros/cons</em>.</li>
-<li><strong>Group discussion (time-boxed):</strong> Compare specifications; surface general lessons.</li>
-<li><strong>Wrap-up (5 mins):</strong> What would you try next? (spatial terms? non-linearities? robustness checks?)</li>
-</ol>
-<section id="presenter-selection-staff-only" class="level3">
-<h3 class="anchored" data-anchor-id="presenter-selection-staff-only">Presenter selection (staff only)</h3>
-<p>Students will submit code <strong>by 17:00 the day before</strong>. The instructor will sample 6–8 diverse specs (different model styles, feature sets, and performance levels) to maximise learning in class.</p>
+</section>
+<section id="part-c-the-golden-regression-challenge" class="level3">
+<h3 class="anchored" data-anchor-id="part-c-the-golden-regression-challenge">Part C — The Golden Regression Challenge</h3>
+<p>This supervision introduces a friendly competition: <strong>who can design the best hedonic price model?</strong><br>
+Your goal is to balance <strong>theory, interpretability, and performance</strong> — not just maximise ( R^2 ).</p>
+<section id="model-competition-criteria" class="level4">
+<h4 class="anchored" data-anchor-id="model-competition-criteria">🏆 Model Competition Criteria</h4>
+<p>Each model will be assessed based on:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 48%">
+<col style="width: 52%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Criterion</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Theoretical Consistency</strong></td>
+<td>Does the model align with economic logic (e.g., diminishing returns to size)?</td>
+</tr>
+<tr class="even">
+<td><strong>Specification Quality</strong></td>
+<td>Are relevant variables included, with clear reasoning for inclusion/exclusion?</td>
+</tr>
+<tr class="odd">
+<td><strong>Interpretability</strong></td>
+<td>Are coefficients easy to explain to a non-technical audience?</td>
+</tr>
+<tr class="even">
+<td><strong>Diagnostics &amp; Fit</strong></td>
+<td>Are residuals and assumptions checked appropriately?</td>
+</tr>
+<tr class="odd">
+<td><strong>Presentation &amp; Clarity</strong></td>
+<td>Is the code organised, commented, and results clearly communicated?</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="the-golden-regression-medal" class="level4">
+<h4 class="anchored" data-anchor-id="the-golden-regression-medal">🏅 The Golden Regression Medal</h4>
+<p>The most balanced and insightful model — not necessarily the one with the highest ( R^2 ) — will receive the <strong>Golden Regression Medal</strong>, a symbolic award crafted from real chocolate to honour econometric creativity and rigour.</p>
+<blockquote class="blockquote">
+<p><em>The sweetest prize for the sharpest model.</em> 🍫</p>
+</blockquote>
+<p>Winners will briefly present their model in class, explaining their specification process, key findings, and what makes their model stand out.</p>
 <hr>
 </section>
 </section>
-<section id="marking-guidance-formative-not-graded" class="level2">
-<h2 class="anchored" data-anchor-id="marking-guidance-formative-not-graded">Marking guidance (formative, not graded)</h2>
+<section id="teaching-notes" class="level3">
+<h3 class="anchored" data-anchor-id="teaching-notes">Teaching Notes</h3>
 <ul>
-<li><strong>Specification &amp; theory fit (40%)</strong> – Does the model reflect sensible hedonic reasoning?</li>
-<li><strong>Method &amp; justification (30%)</strong> – Are choices (transforms/selection) explained and defensible?</li>
-<li><strong>Diagnostics (20%)</strong> – Are key assumptions checked and discussed?</li>
-<li><strong>Communication (10%)</strong> – Is the final model and its implications clear?</li>
+<li><strong>Purpose:</strong> Reinforce understanding of hedonic modelling through practical, student-led model design.<br>
+</li>
+<li><strong>Suggested timing:</strong>
+<ul>
+<li>10 mins — Recap on hedonic pricing and discussion of expected signs.<br>
+</li>
+<li>25–30 mins — Student model work or team comparison.<br>
+</li>
+<li>20 mins — Model presentations and peer discussion.<br>
+</li>
+<li>5 mins — Announcement of the Golden Regression Medal winner.</li>
+</ul></li>
+<li><strong>Instructor guidance:</strong>
+<ul>
+<li>Encourage students to justify variable choices theoretically before testing them empirically.<br>
+</li>
+<li>Emphasise that interpretability and clarity outweigh brute statistical performance.<br>
+</li>
+<li>Select diverse models for presentation to illustrate different modelling strategies.<br>
+</li>
+<li>Optionally, showcase one well-specified example model at the end for reflection.</li>
+</ul></li>
+<li><strong>Extension ideas:</strong>
+<ul>
+<li>Compare log-linear vs.&nbsp;linear specifications.<br>
+</li>
+<li>Discuss omitted variable bias or potential endogeneity (briefly).<br>
+</li>
+<li>Ask students how they might adapt the model for the UK housing market.</li>
+</ul></li>
 </ul>
 <hr>
+<p>🏁 <em>End of lab 18</em> 🛑 Remember to save your script 💾</p>
+<hr>
+
+
 </section>
-<section id="submission-details" class="level2">
-<h2 class="anchored" data-anchor-id="submission-details">Submission details</h2>
-<ul>
-<li>Submit <strong>one <code>.R</code> file</strong> named <code>studentid_supervision5.R</code>.</li>
-<li>Include: (i) final model; (ii) notes on selection process; (iii) pros/cons.</li>
-<li>Deadline: <strong>17:00, the day before supervision</strong>.</li>
-</ul>
-
-
 </section>
 
 </main> <!-- /main -->

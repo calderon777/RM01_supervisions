@@ -1,36 +1,29 @@
 ---
-title: "Supervision 5 — Hedonic House Prices (Ames, Iowa — real data)"
-author: "BECS2002"
-format:
-  html:
-    theme: cosmo
-    toc: true
-    code-fold: show
-execute:
-  echo: true
-  warning: false
-  message: false
----
-
-> **Timeline**
-> - **T−7 days:** This Quarto doc creates `hedonic_ames.csv` from the *real* Ames Housing dataset (install `AmesHousing` once).
-> - **T−1 day (by 17:00):** Submit your `.R` script via Blackboard (no report needed).
-> - **T (in-class):** Selected students present their final model (5–6 mins each). Group discussion of pros/cons.
-
-## Learning goals
-
-- Specify and estimate a **hedonic pricing** model for house prices using a *real* dataset.
-- Justify **variable selection** and model-building choices.
-- Evaluate model **fit**, **assumptions**, and **interpretability**.
-- Communicate results clearly to a non-technical audience.
-
-> **Note on data**: We use the **Ames Housing** dataset (De Cock, 2011), provided by the R package `AmesHousing`. It contains individual residential sales with rich structural attributes. The context is U.S.-based (Ames, Iowa), but the hedonic logic is the same.
+title: "Supervision 5"
+format: html
 
 ---
 
-## Step 0 — Build the student dataset (run once)
+## Lab 18 - Hedonic Price Modelling: The Golden Regression Challenge
 
-> This code loads the dataset from the R package and writes a cleaned CSV: **`hedonic_ames.csv`**. Staff can run this once and share the CSV with students, or students can run it themselves.
+### 🎯 Learning Outcomes
+
+By the end of this supervision, you should be able to:
+
+- Apply the concept of **hedonic pricing** to a real dataset.  
+- Develop and justify a **regression model** explaining variation in house prices.  
+- Evaluate competing model specifications and defend modelling choices.  
+- Communicate results clearly to peers and engage in critical discussion.  
+
+---
+
+### Part A — Data Preparation
+
+In this supervision, we will use the **Ames Housing** dataset (De Cock, 2011), a real dataset widely used in econometrics and data science to study housing markets. It contains information on residential properties in Ames, Iowa, USA, including price, structural features, and neighbourhood characteristics.
+
+> *Note: Although the dataset is U.S.-based, the economic reasoning behind hedonic pricing is fully applicable to UK housing markets.*
+
+The following R code generates a cleaned dataset called **`hedonic_ames.csv`**. Run this once before starting your analysis.
 
 ```{r}
 # Packages
@@ -46,27 +39,19 @@ library(stringr)
 # Load full Ames data
 ames <- AmesHousing::make_ames()
 
-# Minimal cleaning + variable selection for hedonic teaching ---------
-# Keep interpretable structural and locational proxies
+# Minimal cleaning and selection
 df <- ames %>%
   janitor::clean_names() %>%
   dplyr::transmute(
-    # target
     sale_price,
-    # structural size & rooms
     gr_liv_area, total_bsmt_sf, lot_area,
     bedroom_abv_gr, full_bath, half_bath, kitchen_abv_gr,
-    # quality/condition
     overall_qual, overall_cond, year_built, year_remod_add,
     exter_qual, kitchen_qual, central_air,
-    # garage & fireplaces
     garage_cars, garage_area, fireplace_qu,
-    # building & neighborhood
-    bldg_type, house_style, neighborhood, overall = overall_qual,
-    # simple conveniences
+    bldg_type, house_style, neighborhood,
     ms_zoning, foundation
   ) %>%
-  # Convert a few to factors
   dplyr::mutate(
     central_air = factor(central_air, levels = c("N","Y")),
     exter_qual = factor(exter_qual, ordered = TRUE),
@@ -77,83 +62,56 @@ df <- ames %>%
     neighborhood = factor(neighborhood),
     ms_zoning = factor(ms_zoning),
     foundation = factor(foundation),
-    # engineered features
     baths_total = full_bath + 0.5 * half_bath,
-    age = pmax(0, 2010 - year_built),           # 2010 is the end of the series
+    age = pmax(0, 2010 - year_built),
     remod_age = pmax(0, 2010 - year_remod_add)
   ) %>%
-  # Basic sanity filters (trim extreme outliers)
-  dplyr::filter(sale_price > 20000, sale_price < 600000, gr_liv_area > 300, lot_area < 100000) %>%
+  dplyr::filter(
+    sale_price > 20000, sale_price < 600000, 
+    gr_liv_area > 300, lot_area < 100000
+  ) %>%
   tidyr::drop_na(sale_price, gr_liv_area, bedroom_abv_gr, baths_total, overall_qual)
 
-# Shuffle and add an id
 set.seed(42)
 df <- df %>% dplyr::mutate(listing_id = dplyr::row_number()) %>% dplyr::relocate(listing_id)
 
-# Save CSV for students
 readr::write_csv(df, "hedonic_ames.csv")
 
-# Quick peek
+# Quick check
 dplyr::glimpse(df)
 ```
 
 ---
 
-## The task (do at home)
+### Part B — Building the Hedonic Model
 
-Using the dataset **`hedonic_ames.csv`**, build a regression model to explain variation in **`sale_price`** using suitable structural and neighbourhood attributes. You may transform variables (e.g., logs), create interactions, or try regularised models (e.g., LASSO), but your *final* choice should be well-justified and interpretable.
+#### Task Overview
 
-### Deliverable (submit 1 day before class)
+You are asked to **build and justify your own hedonic price model** using the dataset `hedonic_ames.csv`.  
+Your model should explain the variation in **`sale_price`** using relevant structural and locational characteristics.  
 
-Upload a single **`.R` script** containing:
-1. Your **final model** (clearly named).
-2. A short **comment block** describing your **variable selection process** (e.g., theory-driven shortlist → EDA → nested models → cross-validation).
-3. A brief note on **pros/cons** of your chosen specification.
+Your submission should include:
 
-We will select a subset of students to **present in class** (5–6 mins).
+1. Your **final regression model**, clearly identified in your R script.  
+2. A short **comment block** describing your **variable selection process** (theory-driven, data-driven, or hybrid).  
+3. A concise reflection on the **advantages and limitations** of your model.  
 
----
-
-## Data dictionary (student CSV: `hedonic_ames.csv`)
-
-| Variable | Description |
-|---|---|
-| listing_id | Row identifier |
-| sale_price | Sale price in USD (target) |
-| gr_liv_area | Above-ground living area (sq ft) |
-| total_bsmt_sf | Basement area (sq ft) |
-| lot_area | Lot size (sq ft) |
-| bedroom_abv_gr | Bedrooms (above ground) |
-| full_bath, half_bath | Number of bathrooms (counts) |
-| kitchen_abv_gr | Number of kitchens |
-| baths_total | `full_bath + 0.5*half_bath` |
-| overall_qual, overall_cond | Overall quality/condition (ordinal 1–10) |
-| year_built, year_remod_add | Construction & last remodel year |
-| age, remod_age | 2010 minus year built/remodel (engineered) |
-| exter_qual, kitchen_qual, fireplace_qu | Quality ratings (ordered factors) |
-| central_air | Has central air (Y/N) |
-| garage_cars, garage_area | Garage capacity (cars) and area (sq ft) |
-| bldg_type, house_style, neighborhood | Categorical attributes |
-| ms_zoning, foundation | Zoning and foundation type |
-
----
-
-## Starter code (R)
+#### Suggested Workflow
 
 ```{r}
 library(readr); library(dplyr); library(ggplot2); library(broom); library(modelsummary)
 
-# 1) Load data (ensure you've run Step 0 once to create the CSV)
-df <- readr::read_csv("hedonic_ames.csv")
+# 1. Load data
+df <- read_csv("hedonic_ames.csv")
 
-# 2) Transformations
-df <- df %>% dplyr::mutate(
+# 2. Transform variables (example)
+df <- df %>% mutate(
   ln_price = log(sale_price),
   ln_area  = log(gr_liv_area),
   ln_lot   = log(lot_area)
 )
 
-# 3) Baseline hedonic (illustrative; replace with your own spec)
+# 3. Baseline hedonic model (example)
 m0 <- lm(ln_price ~ ln_area + bedroom_abv_gr + baths_total + total_bsmt_sf +
            garage_cars + central_air + overall_qual + overall_cond +
            exter_qual + kitchen_qual + fireplace_qu +
@@ -161,38 +119,62 @@ m0 <- lm(ln_price ~ ln_area + bedroom_abv_gr + baths_total + total_bsmt_sf +
          data = df)
 
 modelsummary::modelsummary(list("Baseline" = m0))
-
-# 4) Diagnostics you could consider
-par(mfrow=c(2,2)); plot(m0); par(mfrow=c(1,1))
 ```
 
-> **Ideas to try:** interactions (e.g., `overall_qual:ln_area`), non-linear terms (splines for area/age), or LASSO for screening before refitting an interpretable OLS.
+> You are encouraged to experiment with transformations, interactions (e.g., `overall_qual:ln_area`), and diagnostic checks. Consider theoretical coherence and interpretability when finalising your model.
 
 ---
 
-## In-class flow (what we'll do together)
+### Part C — The Golden Regression Challenge
 
-1. **Mini-brief (5 mins):** Recap hedonic logic and evaluation criteria.
-2. **Student presentations (5–6 mins each):** *Final model*, *variable selection*, *pros/cons*.
-3. **Group discussion (time-boxed):** Compare specifications; surface general lessons.
-4. **Wrap-up (5 mins):** What would you try next? (spatial terms? non-linearities? robustness checks?)
+This supervision introduces a friendly competition: **who can design the best hedonic price model?**  
+Your goal is to balance **theory, interpretability, and performance** — not just maximise \( R^2 \).  
 
-### Presenter selection (staff only)
-Students will submit code **by 17:00 the day before**. The instructor will sample 6–8 diverse specs (different model styles, feature sets, and performance levels) to maximise learning in class.
+#### 🏆 Model Competition Criteria
+
+Each model will be assessed based on:  
+
+| Criterion | Description |
+|------------|-------------|
+| **Theoretical Consistency** | Does the model align with economic logic (e.g., diminishing returns to size)? |
+| **Specification Quality** | Are relevant variables included, with clear reasoning for inclusion/exclusion? |
+| **Interpretability** | Are coefficients easy to explain to a non-technical audience? |
+| **Diagnostics & Fit** | Are residuals and assumptions checked appropriately? |
+| **Presentation & Clarity** | Is the code organised, commented, and results clearly communicated? |
+
+#### 🏅 The Golden Regression Medal
+
+The most balanced and insightful model — not necessarily the one with the highest \( R^2 \) — will receive the **Golden Regression Medal**, a symbolic award crafted from real chocolate to honour econometric creativity and rigour.  
+
+> *The sweetest prize for the sharpest model.* 🍫  
+
+Winners will briefly present their model in class, explaining their specification process, key findings, and what makes their model stand out.  
 
 ---
 
-## Marking guidance (formative, not graded)
+### Teaching Notes
 
-- **Specification & theory fit (40%)** – Does the model reflect sensible hedonic reasoning?
-- **Method & justification (30%)** – Are choices (transforms/selection) explained and defensible?
-- **Diagnostics (20%)** – Are key assumptions checked and discussed?
-- **Communication (10%)** – Is the final model and its implications clear?
+- **Purpose:** Reinforce understanding of hedonic modelling through practical, student-led model design.  
+- **Suggested timing:**  
+  - 10 mins — Recap on hedonic pricing and discussion of expected signs.  
+  - 25–30 mins — Student model work or team comparison.  
+  - 20 mins — Model presentations and peer discussion.  
+  - 5 mins — Announcement of the Golden Regression Medal winner.  
+
+- **Instructor guidance:**  
+  - Encourage students to justify variable choices theoretically before testing them empirically.  
+  - Emphasise that interpretability and clarity outweigh brute statistical performance.  
+  - Select diverse models for presentation to illustrate different modelling strategies.  
+  - Optionally, showcase one well-specified example model at the end for reflection.  
+
+- **Extension ideas:**  
+  - Compare log-linear vs. linear specifications.  
+  - Discuss omitted variable bias or potential endogeneity (briefly).  
+  - Ask students how they might adapt the model for the UK housing market.  
 
 ---
 
-## Submission details
+🏁  *End of lab 18*
+🛑 Remember to save your script 💾
 
-- Submit **one `.R` file** named `studentid_supervision5.R`.
-- Include: (i) final model; (ii) notes on selection process; (iii) pros/cons.
-- Deadline: **17:00, the day before supervision**.
+---
