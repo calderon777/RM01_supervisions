@@ -1230,3 +1230,8 @@ Gujarati, D. N., Porter, D. C., & Gunasekar, S. (2017). Basic Econometrics (5th 
 Stock, J. H., & Watson, M. W. (2020). Introduction to Econometrics (4th ed.). Pearson. pp. 97–121, 145–165. (For hypothesis testing, p-values, and model diagnostics.)
 
 ---
+
+### Formative Test (This test does NOT carry any marks)
+
+![Click to start the MCQs test!](/pics/formative_assessment_1.PNG)
+*or link: [MCQs test ](https://forms.microsoft.com/Pages/ResponsePage.aspx?id=RQSlSfq9eUut41R7TzmG6e2v58mrCWNIjQV8bfnU-6tUMDEyV0lGR01JV1BIMEFSTVc1VEZWWkJFRS4u)*
