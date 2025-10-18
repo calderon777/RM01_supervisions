@@ -1,12 +1,19 @@
 ---
 title: "Supervision 5"
 format: html
+execute:
+  echo: true
+  warning: false
+  message: false
 
 ---
 
 ## Lab 18 - Hedonic Price Modelling: The Golden Regression Challenge
 
-### 🎯 Learning Outcomes
+> This supervision is **live now**. Students have several days to complete the task.  
+> Submissions are evaluated **automatically** using an AI‑assisted rubric plus model metrics. See **Submission** for exact deliverables.
+
+### 🎯  Learning Outcomes
 
 By the end of this supervision, you should be able to:
 
@@ -17,19 +24,21 @@ By the end of this supervision, you should be able to:
 
 ---
 
-### Part A — Data Preparation
+## Part A — Data Preparation
 
 In this supervision, we will use the **Ames Housing** dataset (De Cock, 2011), a real dataset widely used in econometrics and data science to study housing markets. It contains information on residential properties in Ames, Iowa, USA, including price, structural features, and neighbourhood characteristics.
 
-> *Note: Although the dataset is U.S.-based, the economic reasoning behind hedonic pricing is fully applicable to UK housing markets.*
-
-The following R code generates a cleaned dataset called **`hedonic_ames.csv`**. Run this once before starting your analysis.
+Run the following once to produce **`hedonic_ames.csv`** for your analysis.
 
 ```{r}
-# Packages
-if (!requireNamespace("AmesHousing", quietly = TRUE)) {
-  install.packages("AmesHousing")
-}
+# Install if you have NOT done so.
+# Installl de following package once
+# install.packages("AmesHousing")
+# install.packages("dplyr")
+# install.packages("readr")
+# install.packages("janitor")
+# install.packages("stringr")
+
 library(AmesHousing)
 library(dplyr)
 library(readr)
@@ -39,7 +48,7 @@ library(stringr)
 # Load full Ames data
 ames <- AmesHousing::make_ames()
 
-# Minimal cleaning and selection
+# Minimal cleaning and engineered features
 df <- ames %>%
   janitor::clean_names() %>%
   dplyr::transmute(
@@ -67,7 +76,7 @@ df <- ames %>%
     remod_age = pmax(0, 2010 - year_remod_add)
   ) %>%
   dplyr::filter(
-    sale_price > 20000, sale_price < 600000, 
+    sale_price > 20000, sale_price < 600000,
     gr_liv_area > 300, lot_area < 100000
   ) %>%
   tidyr::drop_na(sale_price, gr_liv_area, bedroom_abv_gr, baths_total, overall_qual)
@@ -76,105 +85,138 @@ set.seed(42)
 df <- df %>% dplyr::mutate(listing_id = dplyr::row_number()) %>% dplyr::relocate(listing_id)
 
 readr::write_csv(df, "hedonic_ames.csv")
-
-# Quick check
 dplyr::glimpse(df)
 ```
 
 ---
 
-### Part B — Building the Hedonic Model
+### Part B — Task
 
-#### Task Overview
+#### Build Your Hedonic Model
 
-You are asked to **build and justify your own hedonic price model** using the dataset `hedonic_ames.csv`.  
-Your model should explain the variation in **`sale_price`** using relevant structural and locational characteristics.  
+Using **`hedonic_ames.csv`**, specify, estimate, and justify an **OLS** hedonic model explaining **`sale_price`**.  
+You may transform variables (e.g., `log(sale_price)`, `log(gr_liv_area)`), include interactions, and compare alternative specifications.  
+Aim for **theoretical consistency**, **parsimony**, and **interpretability**.
 
-Your submission should include:
-
-1. Your **final regression model**, clearly identified in your R script.  
-2. A short **comment block** describing your **variable selection process** (theory-driven, data-driven, or hybrid).  
-3. A concise reflection on the **advantages and limitations** of your model.  
-
-#### Suggested Workflow
+#### Starter code (illustrative; replace with your own specification)
 
 ```{r}
-library(readr); library(dplyr); library(ggplot2); library(broom); library(modelsummary)
+# Installl de following package once
+# install.packages(c("readr","dplyr","broom","car","tseries"))
+
+library(readr)
+library(dplyr)
+library(broom)
+library(modelsummary)
+library(car)
+library(tseries)
 
 # 1. Load data
-df <- read_csv("hedonic_ames.csv")
+df <- readr::read_csv("hedonic_ames.csv")
 
 # 2. Transform variables (example)
-df <- df %>% mutate(
+df <- df %>% dplyr::mutate(
   ln_price = log(sale_price),
   ln_area  = log(gr_liv_area),
   ln_lot   = log(lot_area)
 )
 
-# 3. Baseline hedonic model (example)
+# Example baseline Hedonic Model (YOU SHOULD CHANGE/IMPROVE THIS)
 m0 <- lm(ln_price ~ ln_area + bedroom_abv_gr + baths_total + total_bsmt_sf +
            garage_cars + central_air + overall_qual + overall_cond +
            exter_qual + kitchen_qual + fireplace_qu +
            bldg_type + house_style + neighborhood,
          data = df)
 
-modelsummary::modelsummary(list("Baseline" = m0))
+# Core metrics & diagnostics to report in your table
+gl  <- broom::glance(m0)         # adj.r.squared, AIC, sigma (≈ RMSE on log scale)
+vif_mean <- mean(car::vif(m0))
+jb_p <- tryCatch(tseries::jarque.bera.test(resid(m0))$p.value, error=function(e) NA_real_)
+
+# Minimal plain‑text table you can paste into your report.txt
+metrics <- tibble::tibble(
+  metric = c("Adjusted R2","AIC","RMSE (sigma)","VIF mean","JB p-value"),
+  value  = c(gl$adj.r.squared, gl$AIC, gl$sigma, vif_mean, jb_p)
+)
+print(metrics)
 ```
 
-> You are encouraged to experiment with transformations, interactions (e.g., `overall_qual:ln_area`), and diagnostic checks. Consider theoretical coherence and interpretability when finalising your model.
+> You may create graphs in your analysis, **but do not include images in the report** (text and tables only).
 
 ---
 
-### Part C — The Golden Regression Challenge
+### Part C — Competition, Criteria & Automated Assessment
 
-This supervision introduces a friendly competition: **who can design the best hedonic price model?**  
-Your goal is to balance **theory, interpretability, and performance** — not just maximise \( R^2 \).  
+#### The Golden Regression Challenge
 
-#### 🏆 Model Competition Criteria
+Your model competes on **quality and clarity**, not just raw fit.  
+Evaluation is **automated** using an AI‑assisted rubric plus model metrics.
 
-Each model will be assessed based on:  
+### Judging Criteria (used by the automation)
 
-| Criterion | Description |
-|------------|-------------|
-| **Theoretical Consistency** | Does the model align with economic logic (e.g., diminishing returns to size)? |
-| **Specification Quality** | Are relevant variables included, with clear reasoning for inclusion/exclusion? |
-| **Interpretability** | Are coefficients easy to explain to a non-technical audience? |
-| **Diagnostics & Fit** | Are residuals and assumptions checked appropriately? |
-| **Presentation & Clarity** | Is the code organised, commented, and results clearly communicated? |
+1. **Theoretical consistency** — expected signs and economic reasoning.  
+2. **Specification quality** — relevant variables, parsimony, no redundancy.  
+3. **Interpretability** — meaningful coefficients, multicollinearity controlled.  
+4. **Diagnostics and fit** — Adjusted R², AIC, RMSE, residual checks.  
+5. **Explanation of results** — clear, concise, audience‑appropriate summary.
 
-#### 🏅 The Golden Regression Medal
+### Scoring (overview)
 
-The most balanced and insightful model — not necessarily the one with the highest \( R^2 \) — will receive the **Golden Regression Medal**, a symbolic award crafted from real chocolate to honour econometric creativity and rigour.  
-
-> *The sweetest prize for the sharpest model.* 🍫  
-
-Winners will briefly present their model in class, explaining their specification process, key findings, and what makes their model stand out.  
+- The AI reads a short **plain‑text report** (see template below) and assigns **1–5** on each criterion.  
+- Model metrics (e.g., **Adjusted R²**, **AIC**, **RMSE**, **VIF mean**) complement the rubric.  
+- A composite score ranks entries; the winner receives the **🏅 Golden Regression Medal**.
 
 ---
 
-### Teaching Notes
+## Submission
 
-- **Purpose:** Reinforce understanding of hedonic modelling through practical, student-led model design.  
-- **Suggested timing:**  
-  - 10 mins — Recap on hedonic pricing and discussion of expected signs.  
-  - 25–30 mins — Student model work or team comparison.  
-  - 20 mins — Model presentations and peer discussion.  
-  - 5 mins — Announcement of the Golden Regression Medal winner.  
+Submit **exactly two files** via the designated Microsoft Form:
 
-- **Instructor guidance:**  
-  - Encourage students to justify variable choices theoretically before testing them empirically.  
-  - Emphasise that interpretability and clarity outweigh brute statistical performance.  
-  - Select diverse models for presentation to illustrate different modelling strategies.  
-  - Optionally, showcase one well-specified example model at the end for reflection.  
+1) **`model.R`** — your complete, runnable R script (self‑contained).  
+2) **`report.txt`** (or `.md`) — **text‑only**, following the template below. No images; include a small metrics table.
 
-- **Extension ideas:**  
-  - Compare log-linear vs. linear specifications.  
-  - Discuss omitted variable bias or potential endogeneity (briefly).  
-  - Ask students how they might adapt the model for the UK housing market.  
+**Report template (copy into `report.txt`):**
+
+```
+Golden Regression Challenge — Report
+
+Student email: XXXXXXX
+Model name: e.g., ln(price) ~ ln(area) + overall_qual + neighborhood + ...
+
+1) Theoretical consistency (≤150 words)
+[Explain theoretical links and expected signs; note any justified deviations.]
+
+2) Specification quality (≤150 words)
+[Why these variables? Parsimony; omitted variables considered.]
+
+3) Interpretability (≤150 words)
+[Coefficient meaning; multicollinearity; any scaling/elasticities.]
+
+4) Diagnostics and fit (≤150 words + table)
+Provide the following table (plain text):
+
+| Metric           | Value |
+|------------------|-------|
+| Adjusted R2      | 0.84  |
+| AIC              | 1458.2|
+| RMSE (sigma)     | 0.21  |
+| VIF mean         | 2.1   |
+| JB p-value       | 0.22  |
+
+5) Explanation of results (≤150 words)
+[1–3 major takeaways for a non-technical audience.]
+```
+
+**Notes**  
+- Reports exceeding the structure/word caps may receive reduced clarity scores.  
+- Do **not** include plots or screenshots in the report. Keep it text‑only.  
+- Your identity is recorded at submission; the AI receives only the report text.
+
 
 ---
 
-🏁  *End of lab 18*
+🏁  *End of lab  18*
 🛑 Remember to save your script 💾
 
 ---
+

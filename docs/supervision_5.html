@@ -186,11 +186,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#lab-18---hedonic-price-modelling-the-golden-regression-challenge" id="toc-lab-18---hedonic-price-modelling-the-golden-regression-challenge" class="nav-link active" data-scroll-target="#lab-18---hedonic-price-modelling-the-golden-regression-challenge">Lab 18 - Hedonic Price Modelling: The Golden Regression Challenge</a>
   <ul class="collapse">
   <li><a href="#learning-outcomes" id="toc-learning-outcomes" class="nav-link" data-scroll-target="#learning-outcomes">🎯 Learning Outcomes</a></li>
-  <li><a href="#part-a-data-preparation" id="toc-part-a-data-preparation" class="nav-link" data-scroll-target="#part-a-data-preparation">Part A — Data Preparation</a></li>
-  <li><a href="#part-b-building-the-hedonic-model" id="toc-part-b-building-the-hedonic-model" class="nav-link" data-scroll-target="#part-b-building-the-hedonic-model">Part B — Building the Hedonic Model</a></li>
-  <li><a href="#part-c-the-golden-regression-challenge" id="toc-part-c-the-golden-regression-challenge" class="nav-link" data-scroll-target="#part-c-the-golden-regression-challenge">Part C — The Golden Regression Challenge</a></li>
-  <li><a href="#teaching-notes" id="toc-teaching-notes" class="nav-link" data-scroll-target="#teaching-notes">Teaching Notes</a></li>
   </ul></li>
+  <li><a href="#part-a-data-preparation" id="toc-part-a-data-preparation" class="nav-link" data-scroll-target="#part-a-data-preparation">Part A — Data Preparation</a>
+  <ul class="collapse">
+  <li><a href="#part-b-task" id="toc-part-b-task" class="nav-link" data-scroll-target="#part-b-task">Part B — Task</a></li>
+  <li><a href="#part-c-competition-criteria-automated-assessment" id="toc-part-c-competition-criteria-automated-assessment" class="nav-link" data-scroll-target="#part-c-competition-criteria-automated-assessment">Part C — Competition, Criteria &amp; Automated Assessment</a></li>
+  <li><a href="#judging-criteria-used-by-the-automation" id="toc-judging-criteria-used-by-the-automation" class="nav-link" data-scroll-target="#judging-criteria-used-by-the-automation">Judging Criteria (used by the automation)</a></li>
+  <li><a href="#scoring-overview" id="toc-scoring-overview" class="nav-link" data-scroll-target="#scoring-overview">Scoring (overview)</a></li>
+  </ul></li>
+  <li><a href="#submission" id="toc-submission" class="nav-link" data-scroll-target="#submission">Submission</a></li>
   </ul>
 </nav>
     </div>
@@ -218,6 +222,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="lab-18---hedonic-price-modelling-the-golden-regression-challenge" class="level2">
 <h2 class="anchored" data-anchor-id="lab-18---hedonic-price-modelling-the-golden-regression-challenge">Lab 18 - Hedonic Price Modelling: The Golden Regression Challenge</h2>
+<blockquote class="blockquote">
+<p>This supervision is <strong>live now</strong>. Students have several days to complete the task.<br>
+Submissions are evaluated <strong>automatically</strong> using an AI‑assisted rubric plus model metrics. See <strong>Submission</strong> for exact deliverables.</p>
+</blockquote>
 <section id="learning-outcomes" class="level3">
 <h3 class="anchored" data-anchor-id="learning-outcomes">🎯 Learning Outcomes</h3>
 <p>By the end of this supervision, you should be able to:</p>
@@ -232,99 +240,67 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 <hr>
 </section>
-<section id="part-a-data-preparation" class="level3">
-<h3 class="anchored" data-anchor-id="part-a-data-preparation">Part A — Data Preparation</h3>
+</section>
+<section id="part-a-data-preparation" class="level2">
+<h2 class="anchored" data-anchor-id="part-a-data-preparation">Part A — Data Preparation</h2>
 <p>In this supervision, we will use the <strong>Ames Housing</strong> dataset (De Cock, 2011), a real dataset widely used in econometrics and data science to study housing markets. It contains information on residential properties in Ames, Iowa, USA, including price, structural features, and neighbourhood characteristics.</p>
-<blockquote class="blockquote">
-<p><em>Note: Although the dataset is U.S.-based, the economic reasoning behind hedonic pricing is fully applicable to UK housing markets.</em></p>
-</blockquote>
-<p>The following R code generates a cleaned dataset called <strong><code>hedonic_ames.csv</code></strong>. Run this once before starting your analysis.</p>
+<p>Run the following once to produce <strong><code>hedonic_ames.csv</code></strong> for your analysis.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Packages</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">requireNamespace</span>(<span class="st">"AmesHousing"</span>, <span class="at">quietly =</span> <span class="cn">TRUE</span>)) {</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">install.packages</span>(<span class="st">"AmesHousing"</span>)</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(AmesHousing)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: package 'AmesHousing' was built under R version 4.4.3</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: package 'dplyr' was built under R version 4.4.3</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>
-Attaching package: 'dplyr'</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>The following objects are masked from 'package:stats':
-
-    filter, lag</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>The following objects are masked from 'package:base':
-
-    intersect, setdiff, setequal, union</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(janitor)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: package 'janitor' was built under R version 4.4.3</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>
-Attaching package: 'janitor'</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>The following objects are masked from 'package:stats':
-
-    chisq.test, fisher.test</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stringr)</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Load full Ames data</span></span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>ames <span class="ot">&lt;-</span> AmesHousing<span class="sc">::</span><span class="fu">make_ames</span>()</span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Minimal cleaning and selection</span></span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> ames <span class="sc">%&gt;%</span></span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>  janitor<span class="sc">::</span><span class="fu">clean_names</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">transmute</span>(</span>
-<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>    sale_price,</span>
-<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>    gr_liv_area, total_bsmt_sf, lot_area,</span>
-<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>    bedroom_abv_gr, full_bath, half_bath, kitchen_abv_gr,</span>
-<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>    overall_qual, overall_cond, year_built, year_remod_add,</span>
-<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>    exter_qual, kitchen_qual, central_air,</span>
-<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>    garage_cars, garage_area, fireplace_qu,</span>
-<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>    bldg_type, house_style, neighborhood,</span>
-<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>    ms_zoning, foundation</span>
-<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(</span>
-<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">central_air =</span> <span class="fu">factor</span>(central_air, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"N"</span>,<span class="st">"Y"</span>)),</span>
-<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">exter_qual =</span> <span class="fu">factor</span>(exter_qual, <span class="at">ordered =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">kitchen_qual =</span> <span class="fu">factor</span>(kitchen_qual, <span class="at">ordered =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">fireplace_qu =</span> <span class="fu">factor</span>(fireplace_qu, <span class="at">ordered =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a>    <span class="at">bldg_type =</span> <span class="fu">factor</span>(bldg_type),</span>
-<span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a>    <span class="at">house_style =</span> <span class="fu">factor</span>(house_style),</span>
-<span id="cb12-26"><a href="#cb12-26" aria-hidden="true" tabindex="-1"></a>    <span class="at">neighborhood =</span> <span class="fu">factor</span>(neighborhood),</span>
-<span id="cb12-27"><a href="#cb12-27" aria-hidden="true" tabindex="-1"></a>    <span class="at">ms_zoning =</span> <span class="fu">factor</span>(ms_zoning),</span>
-<span id="cb12-28"><a href="#cb12-28" aria-hidden="true" tabindex="-1"></a>    <span class="at">foundation =</span> <span class="fu">factor</span>(foundation),</span>
-<span id="cb12-29"><a href="#cb12-29" aria-hidden="true" tabindex="-1"></a>    <span class="at">baths_total =</span> full_bath <span class="sc">+</span> <span class="fl">0.5</span> <span class="sc">*</span> half_bath,</span>
-<span id="cb12-30"><a href="#cb12-30" aria-hidden="true" tabindex="-1"></a>    <span class="at">age =</span> <span class="fu">pmax</span>(<span class="dv">0</span>, <span class="dv">2010</span> <span class="sc">-</span> year_built),</span>
-<span id="cb12-31"><a href="#cb12-31" aria-hidden="true" tabindex="-1"></a>    <span class="at">remod_age =</span> <span class="fu">pmax</span>(<span class="dv">0</span>, <span class="dv">2010</span> <span class="sc">-</span> year_remod_add)</span>
-<span id="cb12-32"><a href="#cb12-32" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb12-33"><a href="#cb12-33" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(</span>
-<span id="cb12-34"><a href="#cb12-34" aria-hidden="true" tabindex="-1"></a>    sale_price <span class="sc">&gt;</span> <span class="dv">20000</span>, sale_price <span class="sc">&lt;</span> <span class="dv">600000</span>, </span>
-<span id="cb12-35"><a href="#cb12-35" aria-hidden="true" tabindex="-1"></a>    gr_liv_area <span class="sc">&gt;</span> <span class="dv">300</span>, lot_area <span class="sc">&lt;</span> <span class="dv">100000</span></span>
-<span id="cb12-36"><a href="#cb12-36" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb12-37"><a href="#cb12-37" aria-hidden="true" tabindex="-1"></a>  tidyr<span class="sc">::</span><span class="fu">drop_na</span>(sale_price, gr_liv_area, bedroom_abv_gr, baths_total, overall_qual)</span>
-<span id="cb12-38"><a href="#cb12-38" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-39"><a href="#cb12-39" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">42</span>)</span>
-<span id="cb12-40"><a href="#cb12-40" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span> dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">listing_id =</span> dplyr<span class="sc">::</span><span class="fu">row_number</span>()) <span class="sc">%&gt;%</span> dplyr<span class="sc">::</span><span class="fu">relocate</span>(listing_id)</span>
-<span id="cb12-41"><a href="#cb12-41" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-42"><a href="#cb12-42" aria-hidden="true" tabindex="-1"></a>readr<span class="sc">::</span><span class="fu">write_csv</span>(df, <span class="st">"hedonic_ames.csv"</span>)</span>
-<span id="cb12-43"><a href="#cb12-43" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-44"><a href="#cb12-44" aria-hidden="true" tabindex="-1"></a><span class="co"># Quick check</span></span>
-<span id="cb12-45"><a href="#cb12-45" aria-hidden="true" tabindex="-1"></a>dplyr<span class="sc">::</span><span class="fu">glimpse</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Install if you have NOT done so.</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Installl de following package once</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages("AmesHousing")</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages("dplyr")</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages("readr")</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages("janitor")</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages("stringr")</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(AmesHousing)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(janitor)</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stringr)</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Load full Ames data</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>ames <span class="ot">&lt;-</span> AmesHousing<span class="sc">::</span><span class="fu">make_ames</span>()</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Minimal cleaning and engineered features</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> ames <span class="sc">%&gt;%</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>  janitor<span class="sc">::</span><span class="fu">clean_names</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">transmute</span>(</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>    sale_price,</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>    gr_liv_area, total_bsmt_sf, lot_area,</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>    bedroom_abv_gr, full_bath, half_bath, kitchen_abv_gr,</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>    overall_qual, overall_cond, year_built, year_remod_add,</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>    exter_qual, kitchen_qual, central_air,</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>    garage_cars, garage_area, fireplace_qu,</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>    bldg_type, house_style, neighborhood,</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>    ms_zoning, foundation</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>    <span class="at">central_air =</span> <span class="fu">factor</span>(central_air, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"N"</span>,<span class="st">"Y"</span>)),</span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>    <span class="at">exter_qual =</span> <span class="fu">factor</span>(exter_qual, <span class="at">ordered =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>    <span class="at">kitchen_qual =</span> <span class="fu">factor</span>(kitchen_qual, <span class="at">ordered =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>    <span class="at">fireplace_qu =</span> <span class="fu">factor</span>(fireplace_qu, <span class="at">ordered =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>    <span class="at">bldg_type =</span> <span class="fu">factor</span>(bldg_type),</span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>    <span class="at">house_style =</span> <span class="fu">factor</span>(house_style),</span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>    <span class="at">neighborhood =</span> <span class="fu">factor</span>(neighborhood),</span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>    <span class="at">ms_zoning =</span> <span class="fu">factor</span>(ms_zoning),</span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>    <span class="at">foundation =</span> <span class="fu">factor</span>(foundation),</span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>    <span class="at">baths_total =</span> full_bath <span class="sc">+</span> <span class="fl">0.5</span> <span class="sc">*</span> half_bath,</span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>    <span class="at">age =</span> <span class="fu">pmax</span>(<span class="dv">0</span>, <span class="dv">2010</span> <span class="sc">-</span> year_built),</span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>    <span class="at">remod_age =</span> <span class="fu">pmax</span>(<span class="dv">0</span>, <span class="dv">2010</span> <span class="sc">-</span> year_remod_add)</span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(</span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>    sale_price <span class="sc">&gt;</span> <span class="dv">20000</span>, sale_price <span class="sc">&lt;</span> <span class="dv">600000</span>,</span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a>    gr_liv_area <span class="sc">&gt;</span> <span class="dv">300</span>, lot_area <span class="sc">&lt;</span> <span class="dv">100000</span></span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a>  tidyr<span class="sc">::</span><span class="fu">drop_na</span>(sale_price, gr_liv_area, bedroom_abv_gr, baths_total, overall_qual)</span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">42</span>)</span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span> dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">listing_id =</span> dplyr<span class="sc">::</span><span class="fu">row_number</span>()) <span class="sc">%&gt;%</span> dplyr<span class="sc">::</span><span class="fu">relocate</span>(listing_id)</span>
+<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a>readr<span class="sc">::</span><span class="fu">write_csv</span>(df, <span class="st">"hedonic_ames.csv"</span>)</span>
+<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a>dplyr<span class="sc">::</span><span class="fu">glimpse</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Rows: 2,918
 Columns: 27
@@ -358,886 +334,151 @@ $ remod_age      &lt;dbl&gt; 50, 49, 52, 42, 12, 12, 9, 18, 14, 11, 16, 3, 12, 2
 </div>
 </div>
 <hr>
+<section id="part-b-task" class="level3">
+<h3 class="anchored" data-anchor-id="part-b-task">Part B — Task</h3>
+<section id="build-your-hedonic-model" class="level4">
+<h4 class="anchored" data-anchor-id="build-your-hedonic-model">Build Your Hedonic Model</h4>
+<p>Using <strong><code>hedonic_ames.csv</code></strong>, specify, estimate, and justify an <strong>OLS</strong> hedonic model explaining <strong><code>sale_price</code></strong>.<br>
+You may transform variables (e.g., <code>log(sale_price)</code>, <code>log(gr_liv_area)</code>), include interactions, and compare alternative specifications.<br>
+Aim for <strong>theoretical consistency</strong>, <strong>parsimony</strong>, and <strong>interpretability</strong>.</p>
 </section>
-<section id="part-b-building-the-hedonic-model" class="level3">
-<h3 class="anchored" data-anchor-id="part-b-building-the-hedonic-model">Part B — Building the Hedonic Model</h3>
-<section id="task-overview" class="level4">
-<h4 class="anchored" data-anchor-id="task-overview">Task Overview</h4>
-<p>You are asked to <strong>build and justify your own hedonic price model</strong> using the dataset <code>hedonic_ames.csv</code>.<br>
-Your model should explain the variation in <strong><code>sale_price</code></strong> using relevant structural and locational characteristics.</p>
-<p>Your submission should include:</p>
+<section id="starter-code-illustrative-replace-with-your-own-specification" class="level4">
+<h4 class="anchored" data-anchor-id="starter-code-illustrative-replace-with-your-own-specification">Starter code (illustrative; replace with your own specification)</h4>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Installl de following package once</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages(c("readr","dplyr","broom","car","tseries"))</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(broom)</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(modelsummary)</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(car)</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tseries)</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Load data</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">"hedonic_ames.csv"</span>)</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. Transform variables (example)</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span> dplyr<span class="sc">::</span><span class="fu">mutate</span>(</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>  <span class="at">ln_price =</span> <span class="fu">log</span>(sale_price),</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>  <span class="at">ln_area  =</span> <span class="fu">log</span>(gr_liv_area),</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>  <span class="at">ln_lot   =</span> <span class="fu">log</span>(lot_area)</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Example baseline Hedonic Model (YOU SHOULD CHANGE/IMPROVE THIS)</span></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>m0 <span class="ot">&lt;-</span> <span class="fu">lm</span>(ln_price <span class="sc">~</span> ln_area <span class="sc">+</span> bedroom_abv_gr <span class="sc">+</span> baths_total <span class="sc">+</span> total_bsmt_sf <span class="sc">+</span></span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>           garage_cars <span class="sc">+</span> central_air <span class="sc">+</span> overall_qual <span class="sc">+</span> overall_cond <span class="sc">+</span></span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>           exter_qual <span class="sc">+</span> kitchen_qual <span class="sc">+</span> fireplace_qu <span class="sc">+</span></span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>           bldg_type <span class="sc">+</span> house_style <span class="sc">+</span> neighborhood,</span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>         <span class="at">data =</span> df)</span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a><span class="co"># Core metrics &amp; diagnostics to report in your table</span></span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>gl  <span class="ot">&lt;-</span> broom<span class="sc">::</span><span class="fu">glance</span>(m0)         <span class="co"># adj.r.squared, AIC, sigma (≈ RMSE on log scale)</span></span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>vif_mean <span class="ot">&lt;-</span> <span class="fu">mean</span>(car<span class="sc">::</span><span class="fu">vif</span>(m0))</span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>jb_p <span class="ot">&lt;-</span> <span class="fu">tryCatch</span>(tseries<span class="sc">::</span><span class="fu">jarque.bera.test</span>(<span class="fu">resid</span>(m0))<span class="sc">$</span>p.value, <span class="at">error=</span><span class="cf">function</span>(e) <span class="cn">NA_real_</span>)</span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a><span class="co"># Minimal plain‑text table you can paste into your report.txt</span></span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>metrics <span class="ot">&lt;-</span> tibble<span class="sc">::</span><span class="fu">tibble</span>(</span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a>  <span class="at">metric =</span> <span class="fu">c</span>(<span class="st">"Adjusted R2"</span>,<span class="st">"AIC"</span>,<span class="st">"RMSE (sigma)"</span>,<span class="st">"VIF mean"</span>,<span class="st">"JB p-value"</span>),</span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a>  <span class="at">value  =</span> <span class="fu">c</span>(gl<span class="sc">$</span>adj.r.squared, gl<span class="sc">$</span>AIC, gl<span class="sc">$</span>sigma, vif_mean, jb_p)</span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(metrics)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 5 × 2
+  metric           value
+  &lt;chr&gt;            &lt;dbl&gt;
+1 Adjusted R2      0.896
+2 AIC          -3623.   
+3 RMSE (sigma)     0.128
+4 VIF mean         6.35 
+5 JB p-value       0    </code></pre>
+</div>
+</div>
+<blockquote class="blockquote">
+<p>You may create graphs in your analysis, <strong>but do not include images in the report</strong> (text and tables only).</p>
+</blockquote>
+<hr>
+</section>
+</section>
+<section id="part-c-competition-criteria-automated-assessment" class="level3">
+<h3 class="anchored" data-anchor-id="part-c-competition-criteria-automated-assessment">Part C — Competition, Criteria &amp; Automated Assessment</h3>
+<section id="the-golden-regression-challenge" class="level4">
+<h4 class="anchored" data-anchor-id="the-golden-regression-challenge">The Golden Regression Challenge</h4>
+<p>Your model competes on <strong>quality and clarity</strong>, not just raw fit.<br>
+Evaluation is <strong>automated</strong> using an AI‑assisted rubric plus model metrics.</p>
+</section>
+</section>
+<section id="judging-criteria-used-by-the-automation" class="level3">
+<h3 class="anchored" data-anchor-id="judging-criteria-used-by-the-automation">Judging Criteria (used by the automation)</h3>
 <ol type="1">
-<li>Your <strong>final regression model</strong>, clearly identified in your R script.<br>
+<li><strong>Theoretical consistency</strong> — expected signs and economic reasoning.<br>
 </li>
-<li>A short <strong>comment block</strong> describing your <strong>variable selection process</strong> (theory-driven, data-driven, or hybrid).<br>
+<li><strong>Specification quality</strong> — relevant variables, parsimony, no redundancy.<br>
 </li>
-<li>A concise reflection on the <strong>advantages and limitations</strong> of your model.</li>
+<li><strong>Interpretability</strong> — meaningful coefficients, multicollinearity controlled.<br>
+</li>
+<li><strong>Diagnostics and fit</strong> — Adjusted&nbsp;R², AIC, RMSE, residual checks.<br>
+</li>
+<li><strong>Explanation of results</strong> — clear, concise, audience‑appropriate summary.</li>
 </ol>
 </section>
-<section id="suggested-workflow" class="level4">
-<h4 class="anchored" data-anchor-id="suggested-workflow">Suggested Workflow</h4>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr); <span class="fu">library</span>(dplyr); <span class="fu">library</span>(ggplot2); <span class="fu">library</span>(broom); <span class="fu">library</span>(modelsummary)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: package 'ggplot2' was built under R version 4.4.3</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: package 'broom' was built under R version 4.4.3</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: package 'modelsummary' was built under R version 4.4.3</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Load data</span></span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"hedonic_ames.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Rows: 2918 Columns: 27
-── Column specification ────────────────────────────────────────────────────────
-Delimiter: ","
-chr (11): overall_qual, overall_cond, exter_qual, kitchen_qual, central_air,...
-dbl (16): listing_id, sale_price, gr_liv_area, total_bsmt_sf, lot_area, bedr...
-
-ℹ Use `spec()` to retrieve the full column specification for this data.
-ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. Transform variables (example)</span></span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(</span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">ln_price =</span> <span class="fu">log</span>(sale_price),</span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">ln_area  =</span> <span class="fu">log</span>(gr_liv_area),</span>
-<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">ln_lot   =</span> <span class="fu">log</span>(lot_area)</span>
-<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. Baseline hedonic model (example)</span></span>
-<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>m0 <span class="ot">&lt;-</span> <span class="fu">lm</span>(ln_price <span class="sc">~</span> ln_area <span class="sc">+</span> bedroom_abv_gr <span class="sc">+</span> baths_total <span class="sc">+</span> total_bsmt_sf <span class="sc">+</span></span>
-<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a>           garage_cars <span class="sc">+</span> central_air <span class="sc">+</span> overall_qual <span class="sc">+</span> overall_cond <span class="sc">+</span></span>
-<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a>           exter_qual <span class="sc">+</span> kitchen_qual <span class="sc">+</span> fireplace_qu <span class="sc">+</span></span>
-<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a>           bldg_type <span class="sc">+</span> house_style <span class="sc">+</span> neighborhood,</span>
-<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a>         <span class="at">data =</span> df)</span>
-<span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-15"><a href="#cb20-15" aria-hidden="true" tabindex="-1"></a>modelsummary<span class="sc">::</span><span class="fu">modelsummary</span>(<span class="fu">list</span>(<span class="st">"Baseline"</span> <span class="ot">=</span> m0))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<!-- preamble start -->
-
-    <script>
-
-      function styleCell_512k194wz8sbj8ysfr4r(i, j, css_id) {
-          var table = document.getElementById("tinytable_512k194wz8sbj8ysfr4r");
-          var cell = table.rows[i]?.cells[j];  // Safe navigation to avoid errors
-          if (cell) {
-              console.log(`Styling cell at (${i}, ${j}) with class ${css_id}`);
-              cell.classList.add(css_id);
-          } else {
-              console.warn(`Cell at (${i}, ${j}) not found.`);
-          }
-      }
-      function insertSpanRow(i, colspan, content) {
-        var table = document.getElementById('tinytable_512k194wz8sbj8ysfr4r');
-        var newRow = table.insertRow(i);
-        var newCell = newRow.insertCell(0);
-        newCell.setAttribute("colspan", colspan);
-        // newCell.innerText = content;
-        // this may be unsafe, but innerText does not interpret <br>
-        newCell.innerHTML = content;
-      }
-      function spanCell_512k194wz8sbj8ysfr4r(i, j, rowspan, colspan) {
-        var table = document.getElementById("tinytable_512k194wz8sbj8ysfr4r");
-        const targetRow = table.rows[i];
-        const targetCell = targetRow.cells[j];
-        for (let r = 0; r < rowspan; r++) {
-          // Only start deleting cells to the right for the first row (r == 0)
-          if (r === 0) {
-            // Delete cells to the right of the target cell in the first row
-            for (let c = colspan - 1; c > 0; c--) {
-              if (table.rows[i + r].cells[j + c]) {
-                table.rows[i + r].deleteCell(j + c);
-              }
-            }
-          }
-          // For rows below the first, delete starting from the target column
-          if (r > 0) {
-            for (let c = colspan - 1; c >= 0; c--) {
-              if (table.rows[i + r] && table.rows[i + r].cells[j]) {
-                table.rows[i + r].deleteCell(j);
-              }
-            }
-          }
-        }
-        // Set rowspan and colspan of the target cell
-        targetCell.rowSpan = rowspan;
-        targetCell.colSpan = colspan;
-      }
-      // tinytable span after
-      window.addEventListener('load', function () {
-          var cellsToStyle = [
-            // tinytable style arrays after
-          { positions: [ { i: 156, j: 1 },  ], css_id: 'tinytable_css_mpairkzlotkk59n6db9o',}, 
-          { positions: [ { i: 148, j: 1 },  ], css_id: 'tinytable_css_xo0darhxzje6qt4ljar8',}, 
-          { positions: [ { i: 1, j: 1 }, { i: 2, j: 1 }, { i: 3, j: 1 }, { i: 4, j: 1 }, { i: 5, j: 1 }, { i: 6, j: 1 }, { i: 7, j: 1 }, { i: 8, j: 1 }, { i: 9, j: 1 }, { i: 10, j: 1 }, { i: 11, j: 1 }, { i: 12, j: 1 }, { i: 13, j: 1 }, { i: 14, j: 1 }, { i: 15, j: 1 }, { i: 16, j: 1 }, { i: 17, j: 1 }, { i: 18, j: 1 }, { i: 19, j: 1 }, { i: 20, j: 1 }, { i: 21, j: 1 }, { i: 22, j: 1 }, { i: 23, j: 1 }, { i: 24, j: 1 }, { i: 25, j: 1 }, { i: 26, j: 1 }, { i: 27, j: 1 }, { i: 28, j: 1 }, { i: 29, j: 1 }, { i: 30, j: 1 }, { i: 31, j: 1 }, { i: 32, j: 1 }, { i: 33, j: 1 }, { i: 34, j: 1 }, { i: 35, j: 1 }, { i: 36, j: 1 }, { i: 37, j: 1 }, { i: 38, j: 1 }, { i: 39, j: 1 }, { i: 40, j: 1 }, { i: 41, j: 1 }, { i: 42, j: 1 }, { i: 43, j: 1 }, { i: 44, j: 1 }, { i: 45, j: 1 }, { i: 46, j: 1 }, { i: 47, j: 1 }, { i: 48, j: 1 }, { i: 49, j: 1 }, { i: 50, j: 1 }, { i: 51, j: 1 }, { i: 52, j: 1 }, { i: 53, j: 1 }, { i: 54, j: 1 }, { i: 55, j: 1 }, { i: 56, j: 1 }, { i: 57, j: 1 }, { i: 58, j: 1 }, { i: 59, j: 1 }, { i: 60, j: 1 }, { i: 61, j: 1 }, { i: 62, j: 1 }, { i: 63, j: 1 }, { i: 64, j: 1 }, { i: 65, j: 1 }, { i: 66, j: 1 }, { i: 67, j: 1 }, { i: 68, j: 1 }, { i: 69, j: 1 }, { i: 70, j: 1 }, { i: 71, j: 1 }, { i: 72, j: 1 }, { i: 73, j: 1 }, { i: 74, j: 1 }, { i: 75, j: 1 }, { i: 76, j: 1 }, { i: 77, j: 1 }, { i: 78, j: 1 }, { i: 79, j: 1 }, { i: 80, j: 1 }, { i: 81, j: 1 }, { i: 82, j: 1 }, { i: 83, j: 1 }, { i: 84, j: 1 }, { i: 85, j: 1 }, { i: 86, j: 1 }, { i: 87, j: 1 }, { i: 88, j: 1 }, { i: 89, j: 1 }, { i: 90, j: 1 }, { i: 91, j: 1 }, { i: 92, j: 1 }, { i: 93, j: 1 }, { i: 94, j: 1 }, { i: 95, j: 1 }, { i: 96, j: 1 }, { i: 97, j: 1 }, { i: 98, j: 1 }, { i: 99, j: 1 }, { i: 100, j: 1 }, { i: 101, j: 1 }, { i: 102, j: 1 }, { i: 103, j: 1 }, { i: 104, j: 1 }, { i: 105, j: 1 }, { i: 106, j: 1 }, { i: 107, j: 1 }, { i: 108, j: 1 }, { i: 109, j: 1 }, { i: 110, j: 1 }, { i: 111, j: 1 }, { i: 112, j: 1 }, { i: 113, j: 1 }, { i: 114, j: 1 }, { i: 115, j: 1 }, { i: 116, j: 1 }, { i: 117, j: 1 }, { i: 118, j: 1 }, { i: 119, j: 1 }, { i: 120, j: 1 }, { i: 121, j: 1 }, { i: 122, j: 1 }, { i: 123, j: 1 }, { i: 124, j: 1 }, { i: 125, j: 1 }, { i: 126, j: 1 }, { i: 127, j: 1 }, { i: 128, j: 1 }, { i: 129, j: 1 }, { i: 130, j: 1 }, { i: 131, j: 1 }, { i: 132, j: 1 }, { i: 133, j: 1 }, { i: 134, j: 1 }, { i: 135, j: 1 }, { i: 136, j: 1 }, { i: 137, j: 1 }, { i: 138, j: 1 }, { i: 139, j: 1 }, { i: 140, j: 1 }, { i: 141, j: 1 }, { i: 142, j: 1 }, { i: 143, j: 1 }, { i: 144, j: 1 }, { i: 145, j: 1 }, { i: 146, j: 1 }, { i: 147, j: 1 }, { i: 152, j: 1 }, { i: 149, j: 1 }, { i: 150, j: 1 }, { i: 151, j: 1 }, { i: 153, j: 1 }, { i: 154, j: 1 }, { i: 155, j: 1 },  ], css_id: 'tinytable_css_f968o2hresjofnwlpjek',}, 
-          { positions: [ { i: 0, j: 1 },  ], css_id: 'tinytable_css_g8gcu0gwr1u7f2cb0tu5',}, 
-          { positions: [ { i: 156, j: 0 },  ], css_id: 'tinytable_css_q9r94yddrwypuvgqtzja',}, 
-          { positions: [ { i: 148, j: 0 },  ], css_id: 'tinytable_css_lu5jexmbp01nxordx1uv',}, 
-          { positions: [ { i: 1, j: 0 }, { i: 2, j: 0 }, { i: 3, j: 0 }, { i: 4, j: 0 }, { i: 5, j: 0 }, { i: 6, j: 0 }, { i: 7, j: 0 }, { i: 8, j: 0 }, { i: 9, j: 0 }, { i: 10, j: 0 }, { i: 11, j: 0 }, { i: 12, j: 0 }, { i: 13, j: 0 }, { i: 14, j: 0 }, { i: 15, j: 0 }, { i: 16, j: 0 }, { i: 17, j: 0 }, { i: 18, j: 0 }, { i: 19, j: 0 }, { i: 20, j: 0 }, { i: 21, j: 0 }, { i: 22, j: 0 }, { i: 23, j: 0 }, { i: 24, j: 0 }, { i: 25, j: 0 }, { i: 26, j: 0 }, { i: 27, j: 0 }, { i: 28, j: 0 }, { i: 29, j: 0 }, { i: 30, j: 0 }, { i: 31, j: 0 }, { i: 32, j: 0 }, { i: 33, j: 0 }, { i: 34, j: 0 }, { i: 35, j: 0 }, { i: 36, j: 0 }, { i: 37, j: 0 }, { i: 38, j: 0 }, { i: 39, j: 0 }, { i: 40, j: 0 }, { i: 41, j: 0 }, { i: 42, j: 0 }, { i: 43, j: 0 }, { i: 44, j: 0 }, { i: 45, j: 0 }, { i: 46, j: 0 }, { i: 47, j: 0 }, { i: 48, j: 0 }, { i: 49, j: 0 }, { i: 50, j: 0 }, { i: 51, j: 0 }, { i: 52, j: 0 }, { i: 53, j: 0 }, { i: 54, j: 0 }, { i: 55, j: 0 }, { i: 56, j: 0 }, { i: 57, j: 0 }, { i: 58, j: 0 }, { i: 59, j: 0 }, { i: 60, j: 0 }, { i: 61, j: 0 }, { i: 62, j: 0 }, { i: 63, j: 0 }, { i: 64, j: 0 }, { i: 65, j: 0 }, { i: 66, j: 0 }, { i: 67, j: 0 }, { i: 68, j: 0 }, { i: 69, j: 0 }, { i: 70, j: 0 }, { i: 71, j: 0 }, { i: 72, j: 0 }, { i: 73, j: 0 }, { i: 74, j: 0 }, { i: 75, j: 0 }, { i: 76, j: 0 }, { i: 77, j: 0 }, { i: 78, j: 0 }, { i: 79, j: 0 }, { i: 80, j: 0 }, { i: 81, j: 0 }, { i: 82, j: 0 }, { i: 83, j: 0 }, { i: 84, j: 0 }, { i: 85, j: 0 }, { i: 86, j: 0 }, { i: 87, j: 0 }, { i: 88, j: 0 }, { i: 89, j: 0 }, { i: 90, j: 0 }, { i: 91, j: 0 }, { i: 92, j: 0 }, { i: 93, j: 0 }, { i: 94, j: 0 }, { i: 95, j: 0 }, { i: 96, j: 0 }, { i: 97, j: 0 }, { i: 98, j: 0 }, { i: 99, j: 0 }, { i: 100, j: 0 }, { i: 101, j: 0 }, { i: 102, j: 0 }, { i: 103, j: 0 }, { i: 104, j: 0 }, { i: 105, j: 0 }, { i: 106, j: 0 }, { i: 107, j: 0 }, { i: 108, j: 0 }, { i: 109, j: 0 }, { i: 110, j: 0 }, { i: 111, j: 0 }, { i: 112, j: 0 }, { i: 113, j: 0 }, { i: 114, j: 0 }, { i: 115, j: 0 }, { i: 116, j: 0 }, { i: 117, j: 0 }, { i: 118, j: 0 }, { i: 119, j: 0 }, { i: 120, j: 0 }, { i: 121, j: 0 }, { i: 122, j: 0 }, { i: 123, j: 0 }, { i: 124, j: 0 }, { i: 125, j: 0 }, { i: 126, j: 0 }, { i: 127, j: 0 }, { i: 128, j: 0 }, { i: 129, j: 0 }, { i: 130, j: 0 }, { i: 131, j: 0 }, { i: 132, j: 0 }, { i: 133, j: 0 }, { i: 134, j: 0 }, { i: 135, j: 0 }, { i: 136, j: 0 }, { i: 137, j: 0 }, { i: 138, j: 0 }, { i: 139, j: 0 }, { i: 140, j: 0 }, { i: 141, j: 0 }, { i: 142, j: 0 }, { i: 143, j: 0 }, { i: 144, j: 0 }, { i: 145, j: 0 }, { i: 146, j: 0 }, { i: 147, j: 0 }, { i: 152, j: 0 }, { i: 149, j: 0 }, { i: 150, j: 0 }, { i: 151, j: 0 }, { i: 153, j: 0 }, { i: 154, j: 0 }, { i: 155, j: 0 },  ], css_id: 'tinytable_css_0cd48fpwsovgd5fuxtv5',}, 
-          { positions: [ { i: 0, j: 0 },  ], css_id: 'tinytable_css_1hnh4kzzhqcivfsg8k7s',}, 
-          ];
-
-          // Loop over the arrays to style the cells
-          cellsToStyle.forEach(function (group) {
-              group.positions.forEach(function (cell) {
-                  styleCell_512k194wz8sbj8ysfr4r(cell.i, cell.j, group.css_id);
-              });
-          });
-      });
-    </script>
-
-    <style>
-      /* tinytable css entries after */
-      .table td.tinytable_css_mpairkzlotkk59n6db9o, .table th.tinytable_css_mpairkzlotkk59n6db9o { text-align: center; border-bottom: solid #d3d8dc 0.1em; }
-      .table td.tinytable_css_xo0darhxzje6qt4ljar8, .table th.tinytable_css_xo0darhxzje6qt4ljar8 { text-align: center; border-bottom: solid black 0.05em; }
-      .table td.tinytable_css_f968o2hresjofnwlpjek, .table th.tinytable_css_f968o2hresjofnwlpjek { text-align: center; }
-      .table td.tinytable_css_g8gcu0gwr1u7f2cb0tu5, .table th.tinytable_css_g8gcu0gwr1u7f2cb0tu5 { text-align: center; border-top: solid #d3d8dc 0.1em; border-bottom: solid #d3d8dc 0.05em; }
-      .table td.tinytable_css_q9r94yddrwypuvgqtzja, .table th.tinytable_css_q9r94yddrwypuvgqtzja { text-align: left; border-bottom: solid #d3d8dc 0.1em; }
-      .table td.tinytable_css_lu5jexmbp01nxordx1uv, .table th.tinytable_css_lu5jexmbp01nxordx1uv { text-align: left; border-bottom: solid black 0.05em; }
-      .table td.tinytable_css_0cd48fpwsovgd5fuxtv5, .table th.tinytable_css_0cd48fpwsovgd5fuxtv5 { text-align: left; }
-      .table td.tinytable_css_1hnh4kzzhqcivfsg8k7s, .table th.tinytable_css_1hnh4kzzhqcivfsg8k7s { text-align: left; border-top: solid #d3d8dc 0.1em; border-bottom: solid #d3d8dc 0.05em; }
-    </style>
-    <div class="container">
-      <table class="table table-borderless" id="tinytable_512k194wz8sbj8ysfr4r" style="width: auto; margin-left: auto; margin-right: auto;" data-quarto-disable-processing="true">
-        <thead>
-        
-              <tr>
-                <th scope="col"> </th>
-                <th scope="col">Baseline</th>
-              </tr>
-        </thead>
-        
-        <tbody>
-                <tr>
-                  <td>(Intercept)</td>
-                  <td>8.734</td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td>(0.134)</td>
-                </tr>
-                <tr>
-                  <td>ln_area</td>
-                  <td>0.422</td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td>(0.018)</td>
-                </tr>
-                <tr>
-                  <td>bedroom_abv_gr</td>
-                  <td>-0.016</td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td>(0.004)</td>
-                </tr>
-                <tr>
-                  <td>baths_total</td>
-                  <td>0.043</td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td>(0.007)</td>
-                </tr>
-                <tr>
-                  <td>total_bsmt_sf</td>
-                  <td>0.000</td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td>(0.000)</td>
-                </tr>
-                <tr>
-                  <td>garage_cars</td>
-                  <td>0.053</td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td>(0.005)</td>
-                </tr>
-                <tr>
-                  <td>central_airY</td>
-                  <td>0.086</td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td>(0.012)</td>
-                </tr>
-                <tr>
-                  <td>overall_qualAverage</td>
-                  <td>-0.044</td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td>(0.008)</td>
-                </tr>
-                <tr>
-                  <td>overall_qualBelow_Average</td>
-                  <td>-0.122</td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td>(0.012)</td>
-                </tr>
-                <tr>
-                  <td>overall_qualExcellent</td>
-                  <td>0.237</td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td>(0.021)</td>
-                </tr>
-                <tr>
-                  <td>overall_qualFair</td>
-                  <td>-0.173</td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td>(0.023)</td>
-                </tr>
-                <tr>
-                  <td>overall_qualGood</td>
-                  <td>0.046</td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td>(0.009)</td>
-                </tr>
-                <tr>
-                  <td>overall_qualPoor</td>
-                  <td>-0.249</td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td>(0.041)</td>
-                </tr>
-                <tr>
-                  <td>overall_qualVery_Excellent</td>
-                  <td>0.147</td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td>(0.035)</td>
-                </tr>
-                <tr>
-                  <td>overall_qualVery_Good</td>
-                  <td>0.127</td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td>(0.012)</td>
-                </tr>
-                <tr>
-                  <td>overall_qualVery_Poor</td>
-                  <td>-0.177</td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td>(0.080)</td>
-                </tr>
-                <tr>
-                  <td>overall_condAverage</td>
-                  <td>-0.031</td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td>(0.007)</td>
-                </tr>
-                <tr>
-                  <td>overall_condBelow_Average</td>
-                  <td>-0.105</td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td>(0.015)</td>
-                </tr>
-                <tr>
-                  <td>overall_condExcellent</td>
-                  <td>0.084</td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td>(0.022)</td>
-                </tr>
-                <tr>
-                  <td>overall_condFair</td>
-                  <td>-0.271</td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td>(0.020)</td>
-                </tr>
-                <tr>
-                  <td>overall_condGood</td>
-                  <td>0.047</td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td>(0.009)</td>
-                </tr>
-                <tr>
-                  <td>overall_condPoor</td>
-                  <td>-0.248</td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td>(0.044)</td>
-                </tr>
-                <tr>
-                  <td>overall_condVery_Good</td>
-                  <td>0.055</td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td>(0.013)</td>
-                </tr>
-                <tr>
-                  <td>overall_condVery_Poor</td>
-                  <td>-0.413</td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td>(0.052)</td>
-                </tr>
-                <tr>
-                  <td>exter_qualFair</td>
-                  <td>-0.082</td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td>(0.033)</td>
-                </tr>
-                <tr>
-                  <td>exter_qualGood</td>
-                  <td>-0.042</td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td>(0.020)</td>
-                </tr>
-                <tr>
-                  <td>exter_qualTypical</td>
-                  <td>-0.063</td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td>(0.021)</td>
-                </tr>
-                <tr>
-                  <td>kitchen_qualFair</td>
-                  <td>-0.125</td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td>(0.022)</td>
-                </tr>
-                <tr>
-                  <td>kitchen_qualGood</td>
-                  <td>-0.061</td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td>(0.014)</td>
-                </tr>
-                <tr>
-                  <td>kitchen_qualPoor</td>
-                  <td>-0.012</td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td>(0.133)</td>
-                </tr>
-                <tr>
-                  <td>kitchen_qualTypical</td>
-                  <td>-0.105</td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td>(0.015)</td>
-                </tr>
-                <tr>
-                  <td>fireplace_quFair</td>
-                  <td>-0.037</td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td>(0.026)</td>
-                </tr>
-                <tr>
-                  <td>fireplace_quGood</td>
-                  <td>-0.042</td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td>(0.021)</td>
-                </tr>
-                <tr>
-                  <td>fireplace_quNo_Fireplace</td>
-                  <td>-0.081</td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td>(0.022)</td>
-                </tr>
-                <tr>
-                  <td>fireplace_quPoor</td>
-                  <td>-0.050</td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td>(0.029)</td>
-                </tr>
-                <tr>
-                  <td>fireplace_quTypical</td>
-                  <td>-0.043</td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td>(0.022)</td>
-                </tr>
-                <tr>
-                  <td>bldg_typeOneFam</td>
-                  <td>0.118</td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td>(0.015)</td>
-                </tr>
-                <tr>
-                  <td>bldg_typeTwnhs</td>
-                  <td>-0.018</td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td>(0.024)</td>
-                </tr>
-                <tr>
-                  <td>bldg_typeTwnhsE</td>
-                  <td>0.048</td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td>(0.019)</td>
-                </tr>
-                <tr>
-                  <td>bldg_typeTwoFmCon</td>
-                  <td>0.112</td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td>(0.022)</td>
-                </tr>
-                <tr>
-                  <td>house_styleOne_and_Half_Unf</td>
-                  <td>0.032</td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td>(0.032)</td>
-                </tr>
-                <tr>
-                  <td>house_styleOne_Story</td>
-                  <td>0.066</td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td>(0.011)</td>
-                </tr>
-                <tr>
-                  <td>house_styleSFoyer</td>
-                  <td>0.166</td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td>(0.019)</td>
-                </tr>
-                <tr>
-                  <td>house_styleSLvl</td>
-                  <td>0.072</td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td>(0.015)</td>
-                </tr>
-                <tr>
-                  <td>house_styleTwo_and_Half_Fin</td>
-                  <td>0.032</td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td>(0.048)</td>
-                </tr>
-                <tr>
-                  <td>house_styleTwo_and_Half_Unf</td>
-                  <td>0.034</td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td>(0.028)</td>
-                </tr>
-                <tr>
-                  <td>house_styleTwo_Story</td>
-                  <td>0.020</td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td>(0.010)</td>
-                </tr>
-                <tr>
-                  <td>neighborhoodBlueste</td>
-                  <td>-0.025</td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td>(0.050)</td>
-                </tr>
-                <tr>
-                  <td>neighborhoodBriardale</td>
-                  <td>-0.102</td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td>(0.039)</td>
-                </tr>
-                <tr>
-                  <td>neighborhoodBrookside</td>
-                  <td>-0.120</td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td>(0.031)</td>
-                </tr>
-                <tr>
-                  <td>neighborhoodClear_Creek</td>
-                  <td>0.067</td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td>(0.034)</td>
-                </tr>
-                <tr>
-                  <td>neighborhoodCollege_Creek</td>
-                  <td>0.030</td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td>(0.028)</td>
-                </tr>
-                <tr>
-                  <td>neighborhoodCrawford</td>
-                  <td>0.058</td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td>(0.030)</td>
-                </tr>
-                <tr>
-                  <td>neighborhoodEdwards</td>
-                  <td>-0.101</td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td>(0.029)</td>
-                </tr>
-                <tr>
-                  <td>neighborhoodGilbert</td>
-                  <td>-0.003</td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td>(0.029)</td>
-                </tr>
-                <tr>
-                  <td>neighborhoodGreen_Hills</td>
-                  <td>0.511</td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td>(0.094)</td>
-                </tr>
-                <tr>
-                  <td>neighborhoodGreens</td>
-                  <td>0.102</td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td>(0.054)</td>
-                </tr>
-                <tr>
-                  <td>neighborhoodIowa_DOT_and_Rail_Road</td>
-                  <td>-0.215</td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td>(0.032)</td>
-                </tr>
-                <tr>
-                  <td>neighborhoodLandmark</td>
-                  <td>0.026</td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td>(0.132)</td>
-                </tr>
-                <tr>
-                  <td>neighborhoodMeadow_Village</td>
-                  <td>-0.134</td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td>(0.036)</td>
-                </tr>
-                <tr>
-                  <td>neighborhoodMitchell</td>
-                  <td>-0.007</td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td>(0.030)</td>
-                </tr>
-                <tr>
-                  <td>neighborhoodNorth_Ames</td>
-                  <td>-0.058</td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td>(0.028)</td>
-                </tr>
-                <tr>
-                  <td>neighborhoodNorthpark_Villa</td>
-                  <td>-0.046</td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td>(0.039)</td>
-                </tr>
-                <tr>
-                  <td>neighborhoodNorthridge</td>
-                  <td>0.117</td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td>(0.032)</td>
-                </tr>
-                <tr>
-                  <td>neighborhoodNorthridge_Heights</td>
-                  <td>0.112</td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td>(0.028)</td>
-                </tr>
-                <tr>
-                  <td>neighborhoodNorthwest_Ames</td>
-                  <td>-0.062</td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td>(0.030)</td>
-                </tr>
-                <tr>
-                  <td>neighborhoodOld_Town</td>
-                  <td>-0.203</td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td>(0.030)</td>
-                </tr>
-                <tr>
-                  <td>neighborhoodSawyer</td>
-                  <td>-0.045</td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td>(0.030)</td>
-                </tr>
-                <tr>
-                  <td>neighborhoodSawyer_West</td>
-                  <td>-0.018</td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td>(0.029)</td>
-                </tr>
-                <tr>
-                  <td>neighborhoodSomerset</td>
-                  <td>0.074</td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td>(0.028)</td>
-                </tr>
-                <tr>
-                  <td>neighborhoodSouth_and_West_of_Iowa_State_University</td>
-                  <td>-0.094</td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td>(0.034)</td>
-                </tr>
-                <tr>
-                  <td>neighborhoodStone_Brook</td>
-                  <td>0.151</td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td>(0.032)</td>
-                </tr>
-                <tr>
-                  <td>neighborhoodTimberland</td>
-                  <td>0.047</td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td>(0.031)</td>
-                </tr>
-                <tr>
-                  <td>neighborhoodVeenker</td>
-                  <td>0.035</td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td>(0.037)</td>
-                </tr>
-                <tr>
-                  <td>Num.Obs.</td>
-                  <td>2918</td>
-                </tr>
-                <tr>
-                  <td>R2</td>
-                  <td>0.898</td>
-                </tr>
-                <tr>
-                  <td>R2 Adj.</td>
-                  <td>0.896</td>
-                </tr>
-                <tr>
-                  <td>AIC</td>
-                  <td>-3623.1</td>
-                </tr>
-                <tr>
-                  <td>BIC</td>
-                  <td>-3174.7</td>
-                </tr>
-                <tr>
-                  <td>Log.Lik.</td>
-                  <td>1886.573</td>
-                </tr>
-                <tr>
-                  <td>F</td>
-                  <td>343.905</td>
-                </tr>
-                <tr>
-                  <td>RMSE</td>
-                  <td>0.13</td>
-                </tr>
-        </tbody>
-      </table>
-    </div>
-<!-- hack to avoid NA insertion in last line -->
-</div>
-</div>
-<blockquote class="blockquote">
-<p>You are encouraged to experiment with transformations, interactions (e.g., <code>overall_qual:ln_area</code>), and diagnostic checks. Consider theoretical coherence and interpretability when finalising your model.</p>
-</blockquote>
-<hr>
-</section>
-</section>
-<section id="part-c-the-golden-regression-challenge" class="level3">
-<h3 class="anchored" data-anchor-id="part-c-the-golden-regression-challenge">Part C — The Golden Regression Challenge</h3>
-<p>This supervision introduces a friendly competition: <strong>who can design the best hedonic price model?</strong><br>
-Your goal is to balance <strong>theory, interpretability, and performance</strong> — not just maximise ( R^2 ).</p>
-<section id="model-competition-criteria" class="level4">
-<h4 class="anchored" data-anchor-id="model-competition-criteria">🏆 Model Competition Criteria</h4>
-<p>Each model will be assessed based on:</p>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 48%">
-<col style="width: 52%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Criterion</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><strong>Theoretical Consistency</strong></td>
-<td>Does the model align with economic logic (e.g., diminishing returns to size)?</td>
-</tr>
-<tr class="even">
-<td><strong>Specification Quality</strong></td>
-<td>Are relevant variables included, with clear reasoning for inclusion/exclusion?</td>
-</tr>
-<tr class="odd">
-<td><strong>Interpretability</strong></td>
-<td>Are coefficients easy to explain to a non-technical audience?</td>
-</tr>
-<tr class="even">
-<td><strong>Diagnostics &amp; Fit</strong></td>
-<td>Are residuals and assumptions checked appropriately?</td>
-</tr>
-<tr class="odd">
-<td><strong>Presentation &amp; Clarity</strong></td>
-<td>Is the code organised, commented, and results clearly communicated?</td>
-</tr>
-</tbody>
-</table>
-</section>
-<section id="the-golden-regression-medal" class="level4">
-<h4 class="anchored" data-anchor-id="the-golden-regression-medal">🏅 The Golden Regression Medal</h4>
-<p>The most balanced and insightful model — not necessarily the one with the highest ( R^2 ) — will receive the <strong>Golden Regression Medal</strong>, a symbolic award crafted from real chocolate to honour econometric creativity and rigour.</p>
-<blockquote class="blockquote">
-<p><em>The sweetest prize for the sharpest model.</em> 🍫</p>
-</blockquote>
-<p>Winners will briefly present their model in class, explaining their specification process, key findings, and what makes their model stand out.</p>
-<hr>
-</section>
-</section>
-<section id="teaching-notes" class="level3">
-<h3 class="anchored" data-anchor-id="teaching-notes">Teaching Notes</h3>
+<section id="scoring-overview" class="level3">
+<h3 class="anchored" data-anchor-id="scoring-overview">Scoring (overview)</h3>
 <ul>
-<li><strong>Purpose:</strong> Reinforce understanding of hedonic modelling through practical, student-led model design.<br>
+<li>The AI reads a short <strong>plain‑text report</strong> (see template below) and assigns <strong>1–5</strong> on each criterion.<br>
 </li>
-<li><strong>Suggested timing:</strong>
-<ul>
-<li>10 mins — Recap on hedonic pricing and discussion of expected signs.<br>
+<li>Model metrics (e.g., <strong>Adjusted&nbsp;R²</strong>, <strong>AIC</strong>, <strong>RMSE</strong>, <strong>VIF mean</strong>) complement the rubric.<br>
 </li>
-<li>25–30 mins — Student model work or team comparison.<br>
-</li>
-<li>20 mins — Model presentations and peer discussion.<br>
-</li>
-<li>5 mins — Announcement of the Golden Regression Medal winner.</li>
-</ul></li>
-<li><strong>Instructor guidance:</strong>
-<ul>
-<li>Encourage students to justify variable choices theoretically before testing them empirically.<br>
-</li>
-<li>Emphasise that interpretability and clarity outweigh brute statistical performance.<br>
-</li>
-<li>Select diverse models for presentation to illustrate different modelling strategies.<br>
-</li>
-<li>Optionally, showcase one well-specified example model at the end for reflection.</li>
-</ul></li>
-<li><strong>Extension ideas:</strong>
-<ul>
-<li>Compare log-linear vs.&nbsp;linear specifications.<br>
-</li>
-<li>Discuss omitted variable bias or potential endogeneity (briefly).<br>
-</li>
-<li>Ask students how they might adapt the model for the UK housing market.</li>
-</ul></li>
+<li>A composite score ranks entries; the winner receives the <strong>🏅 Golden Regression Medal</strong>.</li>
 </ul>
+<hr>
+</section>
+</section>
+<section id="submission" class="level2">
+<h2 class="anchored" data-anchor-id="submission">Submission</h2>
+<p>Submit <strong>exactly two files</strong> via the designated Microsoft Form:</p>
+<ol type="1">
+<li><strong><code>model.R</code></strong> — your complete, runnable R script (self‑contained).<br>
+</li>
+<li><strong><code>report.txt</code></strong> (or <code>.md</code>) — <strong>text‑only</strong>, following the template below. No images; include a small metrics table.</li>
+</ol>
+<p><strong>Report template (copy into <code>report.txt</code>):</strong></p>
+<pre><code>Golden Regression Challenge — Report
+
+Student email: XXXXXXX
+Model name: e.g., ln(price) ~ ln(area) + overall_qual + neighborhood + ...
+
+1) Theoretical consistency (≤150 words)
+[Explain theoretical links and expected signs; note any justified deviations.]
+
+2) Specification quality (≤150 words)
+[Why these variables? Parsimony; omitted variables considered.]
+
+3) Interpretability (≤150 words)
+[Coefficient meaning; multicollinearity; any scaling/elasticities.]
+
+4) Diagnostics and fit (≤150 words + table)
+Provide the following table (plain text):
+
+| Metric           | Value |
+|------------------|-------|
+| Adjusted R2      | 0.84  |
+| AIC              | 1458.2|
+| RMSE (sigma)     | 0.21  |
+| VIF mean         | 2.1   |
+| JB p-value       | 0.22  |
+
+5) Explanation of results (≤150 words)
+[1–3 major takeaways for a non-technical audience.]</code></pre>
+<p><strong>Notes</strong><br>
+- Reports exceeding the structure/word caps may receive reduced clarity scores.<br>
+- Do <strong>not</strong> include plots or screenshots in the report. Keep it text‑only.<br>
+- Your identity is recorded at submission; the AI receives only the report text.</p>
 <hr>
 <p>🏁 <em>End of lab 18</em> 🛑 Remember to save your script 💾</p>
 <hr>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
