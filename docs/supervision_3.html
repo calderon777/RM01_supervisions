@@ -235,6 +235,12 @@ window.Quarto = {
   <ul class="collapse">
   <li><a href="#learning-outcomes-3" id="toc-learning-outcomes-3" class="nav-link" data-scroll-target="#learning-outcomes-3">🎯 Learning outcomes</a></li>
   <li><a href="#what-you-should-now-be-able-to-do" id="toc-what-you-should-now-be-able-to-do" class="nav-link" data-scroll-target="#what-you-should-now-be-able-to-do">✅ What you should now be able to do</a></li>
+  <li><a href="#in-class-formative-assessment-variable-selection-housing-prices" id="toc-in-class-formative-assessment-variable-selection-housing-prices" class="nav-link" data-scroll-target="#in-class-formative-assessment-variable-selection-housing-prices">In-Class Formative Assessment: Variable Selection (Housing Prices)</a></li>
+  <li><a href="#dataset-preloaded-or-download-the-housing-dataset" id="toc-dataset-preloaded-or-download-the-housing-dataset" class="nav-link" data-scroll-target="#dataset-preloaded-or-download-the-housing-dataset">📦 Dataset (Preloaded) or Download the housing dataset</a></li>
+  <li><a href="#task" id="toc-task" class="nav-link" data-scroll-target="#task">🧩 Task</a></li>
+  <li><a href="#example-structure-you-can-adapt-quickly" id="toc-example-structure-you-can-adapt-quickly" class="nav-link" data-scroll-target="#example-structure-you-can-adapt-quickly">🧮 Example Structure (you can adapt quickly)</a></li>
+  <li><a href="#what-to-submit-in-class" id="toc-what-to-submit-in-class" class="nav-link" data-scroll-target="#what-to-submit-in-class">🧾 What to Submit (in class)</a></li>
+  <li><a href="#tip" id="toc-tip" class="nav-link" data-scroll-target="#tip">💡 Tip</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -992,6 +998,97 @@ Tip
 <blockquote class="blockquote">
 <p>Next session we’ll compare these selections using a <strong>validation set and cross‑validation</strong>, and then move to <strong>ridge</strong> and <strong>lasso</strong>.</p>
 </blockquote>
+<hr>
+</section>
+<section id="in-class-formative-assessment-variable-selection-housing-prices" class="level3">
+<h3 class="anchored" data-anchor-id="in-class-formative-assessment-variable-selection-housing-prices">In-Class Formative Assessment: Variable Selection (Housing Prices)</h3>
+<section id="duration" class="level4">
+<h4 class="anchored" data-anchor-id="duration">⏱ Duration</h4>
+<p>Approx. <strong>40 minutes (in class)</strong></p>
+<hr>
+</section>
+<section id="objective" class="level4">
+<h4 class="anchored" data-anchor-id="objective">🎯 Objective</h4>
+<p>Apply the <strong>variable selection methods</strong> learned in Supervision 3 to a new dataset on <strong>housing prices</strong>. You will replicate the steps used previously with the <em>Hitters</em> dataset, but this time using the <em>Housing Prices Dataset</em> from Kaggle.</p>
+<p>Your task is to specify, estimate, and evaluate <strong>one or two regression models</strong> explaining house prices.</p>
+<hr>
+</section>
+</section>
+<section id="dataset-preloaded-or-download-the-housing-dataset" class="level3">
+<h3 class="anchored" data-anchor-id="dataset-preloaded-or-download-the-housing-dataset">📦 Dataset (Preloaded) or <a href="data/house_price.csv">Download the housing dataset</a></h3>
+<p>This dataset has already been provided in your RStudio environment.</p>
+<div class="sourceCode" id="cb65"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"RKaggle"</span>)</span>
+<span id="cb65-2"><a href="#cb65-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(RKaggle)</span>
+<span id="cb65-3"><a href="#cb65-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Download and load dataset</span></span>
+<span id="cb65-4"><a href="#cb65-4" aria-hidden="true" tabindex="-1"></a>obj <span class="ot">&lt;-</span> <span class="fu">get_dataset</span>(<span class="st">"yasserh/housing-prices-dataset"</span>)</span>
+<span id="cb65-5"><a href="#cb65-5" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(obj)</span>
+<span id="cb65-6"><a href="#cb65-6" aria-hidden="true" tabindex="-1"></a><span class="fu">View</span>(obj)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Dependent variable:</strong> <code>price</code><br>
+<strong>Predictors include:</strong> <code>area</code>, <code>bedrooms</code>, <code>bathrooms</code>, <code>stories</code>, <code>mainroad</code>, <code>airconditioning</code>, <code>parking</code>, <code>furnishingstatus</code>, etc.</p>
+<hr>
+</section>
+<section id="task" class="level3">
+<h3 class="anchored" data-anchor-id="task">🧩 Task</h3>
+<p>You have <strong>40 minutes</strong> to complete the following:</p>
+<ol type="1">
+<li><strong>Model setup (5 min)</strong>
+<ul>
+<li>Inspect the dataset and identify relevant variables.</li>
+<li>Choose predictors that you expect to influence <code>price</code>.</li>
+</ul></li>
+<li><strong>Model estimation (20 min)</strong>
+<ul>
+<li>Estimate one <strong>OLS model</strong> explaining <code>price</code>.</li>
+<li>Perform <strong>stepwise variable selection</strong> (AIC or BIC).<br>
+</li>
+<li>Optionally include <strong>one interaction term</strong> (e.g., <code>area × stories</code>).</li>
+</ul></li>
+<li><strong>Diagnostics and reporting (15 min)</strong>
+<ul>
+<li>Report the final regression equation.</li>
+<li>Record <strong>Adjusted R²</strong>, <strong>AIC/BIC</strong>, and <strong>RMSE</strong> (if possible).<br>
+</li>
+<li>Briefly comment on which predictors are most influential and whether signs/magnitudes make sense.</li>
+</ul></li>
+</ol>
+<hr>
+</section>
+<section id="example-structure-you-can-adapt-quickly" class="level3">
+<h3 class="anchored" data-anchor-id="example-structure-you-can-adapt-quickly">🧮 Example Structure (you can adapt quickly)</h3>
+<div class="sourceCode" id="cb66"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(MASS)</span>
+<span id="cb66-2"><a href="#cb66-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb66-3"><a href="#cb66-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb66-4"><a href="#cb66-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Example base model</span></span>
+<span id="cb66-5"><a href="#cb66-5" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> obj</span>
+<span id="cb66-6"><a href="#cb66-6" aria-hidden="true" tabindex="-1"></a>model0 <span class="ot">&lt;-</span> <span class="fu">lm</span>(price <span class="sc">~</span> area <span class="sc">+</span> bathrooms <span class="sc">+</span> stories <span class="sc">+</span> airconditioning <span class="sc">+</span> parking, <span class="at">data =</span> df)</span>
+<span id="cb66-7"><a href="#cb66-7" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model0)</span>
+<span id="cb66-8"><a href="#cb66-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb66-9"><a href="#cb66-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Stepwise selection (AIC)</span></span>
+<span id="cb66-10"><a href="#cb66-10" aria-hidden="true" tabindex="-1"></a>step_aic <span class="ot">&lt;-</span> <span class="fu">stepAIC</span>(model0, <span class="at">direction =</span> <span class="st">"both"</span>, <span class="at">trace =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb66-11"><a href="#cb66-11" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(step_aic)</span>
+<span id="cb66-12"><a href="#cb66-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb66-13"><a href="#cb66-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Optional: interaction example</span></span>
+<span id="cb66-14"><a href="#cb66-14" aria-hidden="true" tabindex="-1"></a>model_int <span class="ot">&lt;-</span> <span class="fu">lm</span>(price <span class="sc">~</span> area<span class="sc">*</span>stories <span class="sc">+</span> bathrooms <span class="sc">+</span> airconditioning, <span class="at">data =</span> df)</span>
+<span id="cb66-15"><a href="#cb66-15" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model_int)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<hr>
+</section>
+<section id="what-to-submit-in-class" class="level3">
+<h3 class="anchored" data-anchor-id="what-to-submit-in-class">🧾 What to Submit (in class)</h3>
+<p>At the end of the 40 minutes, post your results on Blackboard or Teams (one slide or short markdown cell): - <strong>Final model equation</strong><br>
+- <strong>Adjusted R², AIC/BIC</strong>, and any other metric you computed<br>
+- <strong>Interpretation of one key variable or interaction term</strong><br>
+- <strong>1–2 sentences</strong> on whether the results make economic sense</p>
+<hr>
+</section>
+<section id="tip" class="level3">
+<h3 class="anchored" data-anchor-id="tip">💡 Tip</h3>
+<ul>
+<li>Use your <strong>Supervision 3 (Hitters)</strong> scripts as a reference.<br>
+</li>
+<li>Keep your model <strong>parsimonious but explanatory</strong>.<br>
+</li>
+<li>Focus on clarity and reasoning — not the number of variables.</li>
+</ul>
 
 
 </section>

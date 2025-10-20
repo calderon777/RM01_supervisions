@@ -1,0 +1,89 @@
+---
+title: "Supervision 3 — In-Class Formative Assessment"
+draft: true
+---
+
+## In-Class Formative Assessment: Variable Selection (Housing Prices)
+
+### ⏱ Duration
+Approx. **40 minutes (in class)**
+
+---
+
+### 🎯 Objective
+Apply the **variable selection methods** learned in Supervision 3 to a new dataset on **housing prices**. You will replicate the steps used previously with the *Hitters* dataset, but this time using the *Housing Prices Dataset* from Kaggle.
+
+Your task is to specify, estimate, and evaluate **one or two regression models** explaining house prices.
+
+---
+
+### 📦 Dataset (Preloaded) or [Download the housing dataset](data/house_price.csv)
+
+This dataset has already been provided in your RStudio environment.
+```r
+install.packages("RKaggle")
+library(RKaggle)
+# Download and load dataset
+house_price_data <- get_dataset("yasserh/housing-prices-dataset")
+str(house_price_data)
+
+```
+**Dependent variable:** `price`  
+**Predictors include:** `area`, `bedrooms`, `bathrooms`, `stories`, `mainroad`, `airconditioning`, `parking`, `furnishingstatus`, etc.
+
+---
+
+### 🧩 Task
+You have **40 minutes** to complete the following:
+
+1. **Model setup (5 min)**  
+   - Inspect the dataset and identify relevant variables.
+   - Choose predictors that you expect to influence `price`.
+
+2. **Model estimation (20 min)**  
+   - Estimate one **OLS model** explaining `price`.
+   - Perform **stepwise variable selection** (AIC or BIC).  
+   - Optionally include **one interaction term** (e.g., `area × stories`).
+
+3. **Diagnostics and reporting (15 min)**  
+   - Report the final regression equation.
+   - Record **Adjusted R²**, **AIC/BIC**, and **RMSE** (if possible).  
+   - Briefly comment on which predictors are most influential and whether signs/magnitudes make sense.
+
+---
+
+### 🧮 Example Structure (you can adapt quickly)
+```r
+library(MASS)
+library(dplyr)
+
+# Example base model
+df <- house_price_data
+model0 <- lm(price ~ area + bathrooms + stories + airconditioning + parking, data = df)
+summary(model0)
+
+# Stepwise selection (AIC)
+step_aic <- stepAIC(model0, direction = "both", trace = FALSE)
+summary(step_aic)
+
+# Optional: interaction example
+model_int <- lm(price ~ area*stories + bathrooms + airconditioning, data = df)
+summary(model_int)
+```
+
+---
+
+### 🧾 What to Submit (in class)
+At the end of the 40 minutes, post your results on Blackboard or Teams (one slide or short markdown cell):
+- **Final model equation**  
+- **Adjusted R², AIC/BIC**, and any other metric you computed  
+- **Interpretation of one key variable or interaction term**  
+- **1–2 sentences** on whether the results make economic sense
+
+---
+
+### 💡 Tip
+- Use your **Supervision 3 (Hitters)** scripts as a reference.  
+- Keep your model **parsimonious but explanatory**.  
+- Focus on clarity and reasoning — not the number of variables.
+
