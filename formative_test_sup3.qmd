@@ -74,11 +74,32 @@ summary(model_int)
 ---
 
 ### 🧾 What to Submit (in class)
-At the end of the 40 minutes, post your results on Blackboard or Teams (one slide or short markdown cell):
+
 - **Final model equation**  
 - **Adjusted R², AIC/BIC**, and any other metric you computed  
 - **Interpretation of one key variable or interaction term**  
 - **1–2 sentences** on whether the results make economic sense
+
+## Submit your in-class results
+
+If the form doesn’t load below, use the backup link:
+[Open the form in a new tab](https://forms.office.com/Pages/ResponsePage.aspx?id=RQSlSfq9eUut41R7TzmG6e2v58mrCWNIjQV8bfnU-6tURFk4S0I3UjRYRVZZSDQyUkg3MlRCSUk0NC4u)
+
+```{=html}
+<div style="position:relative; height:80vh; overflow:hidden;">
+  <iframe
+    src="https://forms.office.com/Pages/ResponsePage.aspx?id=RQSlSfq9eUut41R7TzmG6e2v58mrCWNIjQV8bfnU-6tURFk4S0I3UjRYRVZZSDQyUkg3MlRCSUk0NC4u&embed=true"
+    width="100%"
+    height="100%"
+    style="position:absolute; top:0; left:0; border:0;"
+    title="Supervision 3 — In-Class Formative"
+    allowfullscreen
+    webkitallowfullscreen
+    mozallowfullscreen
+    msallowfullscreen>
+  </iframe>
+</div>
+
 
 ---
 
