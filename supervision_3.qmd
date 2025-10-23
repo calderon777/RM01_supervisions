@@ -352,4 +352,3 @@ data.frame(term = names(final_coef), estimate = as.numeric(final_coef))
 > Next session we’ll compare these selections using a **validation set and cross‑validation**, and then move to **ridge** and **lasso**.
 
 ---
-

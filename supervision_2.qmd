@@ -936,18 +936,42 @@ cat("Decision:", ifelse(t_left < tcr_left, "Reject H0", "Fail to reject H0"), "\
 
 
 #### PART B - The p‑Value Approach
-The p-value is the probability of observing a test statistic at least as extreme as the one computed, assuming the null hypothesis is true.
 
-*Decision rule:* Reject $H_0$​ if $p<αp$
+The p-value represents the probability of observing a t-statistic as extreme as, or more extreme than, the one obtained from the sample, assuming the null hypothesis is true. In other words, it measures how compatible the data are with the null hypothesis. We reject the null hypothesis when the p-value is smaller than the chosen significance level (e.g., 0.05).
+
+For a right-tailed test, the p-value corresponds to the area to the right of the calculated t-statistic.
+For a left-tailed test, it is the area to the left of the calculated t-statistic.
+For a two-tailed test, the total p-value is divided equally between both tails—p/2 in the left tail and p/2 in the right tail.
+
+In R, p-values are obtained using the function pt(t, df), where t is the calculated t-ratio and df is the model’s degrees of freedom. For two-tailed tests, the result should be adjusted to account for both tails, typically using 2*(1 - pt(abs(t), df)).
+
+*Decision rule:* 
+Reject $H_0$​ if $p-value<αp$
+Fail to reject $H_0$​ if $p-value≥αp$
+
+::: {.callout-important}
+### Common Significance Levels
+- **α = 0.05** (most common): We're willing to accept a 5% chance of incorrectly rejecting H₀
+- **α = 0.01** (more conservative): Only 1% chance of Type I error
+- **α = 0.10** (more lenient): Accept 10% chance of error
+
+**The smaller the p-value, the stronger the evidence against H₀**
+:::
 
 **Computing p-Values:**
 $F_t$ stands for the cumulative distribution function (CDF) of the t-distribution.
 
-Right‑tail: $p = 1 - F_t(t)$ 
+Right‑tail: $p = 1 - F_t(t)$ (probability in the upper tail)
 
-Left‑tail: $p = F_t(t)$ 
+Left‑tail: $p = F_t(t)$ (probability in the lower tail) 
 
-Two‑tail: $p = 2 * (1-F_t(|t|)$
+Two‑tail: $p = 2 * (1-F_t(|t|)$ (probability in both tails)
+
+
+**Example 1: Right-Tail Test**
+**Question:** Is the marginal effect of income on food expenditure *greater than* $5.50?
+
+$$H_0: \beta_2 \leq 5.5 \quad \text{vs} \quad H_A: \beta_2 > 5.5$$
 
 ```{r}
 # Right-tail test (H0: β2 ≤ 5.5)
@@ -955,38 +979,79 @@ c <- 5.5
 t <- (b2-c)/seb2
 p_right <- 1-pt(t, df)
 
-cat("Right-tail test:\n")
-cat("  H0: β2 ≤", c, "\n")
-cat("  Test statistic:", round(t, 3), "\n")
-cat("  p-value:", round(p_right, 4), "\n")
-cat("  Decision at α=0.05:", ifelse(p_right < 0.05, "Reject H0", "Fail to reject H0"), "\n\n")
+cat("=== RIGHT-TAIL TEST ===\n")
+cat("H0: β2 ≤", c, "  (effect is at most $5.50)\n")
+cat("HA: β2 >", c, "  (effect exceeds $5.50)\n\n")
+cat("Test statistic:", round(t, 3), "\n")
+cat("p-value:", round(p_right, 4), "\n")
+cat("Decision at α=0.05:", ifelse(p_right < 0.05, "✓ REJECT H0", "✗ FAIL TO REJECT H0"), "\n")
+cat("\nInterpretation:", ifelse(p_right < 0.05, 
+           "Strong evidence that β2 > 5.5 (the effect exceeds $5.50)", "Insufficient evidence that β2 > 5.5"), "\n\n")
+```
 
+**Example 2: Left-Tail Test**
 
+**Question:** Is the marginal effect of income on food expenditure *less than* $15?
+
+$$H_0: \beta_2 \geq 15 \quad \text{vs} \quad H_A: \beta_2 < 15$$
+
+```{r}
 # Left-tail test (H0: β2 ≥ 15)
 c <- 15
 t <- (b2-c)/seb2
 p_left <- pt(t, df)
 
-cat("Left-tail test:\n")
-cat("  H0: β2 ≥", c, "\n")
-cat("  Test statistic:", round(t, 3), "\n")
-cat("  p-value:", round(p_left, 4), "\n")
-cat("  Decision at α=0.05:", ifelse(p_left < 0.05, "Reject H0", "Fail to reject H0"), "\n\n")
+cat("=== LEFT-TAIL TEST ===\n")
+cat("H0: β2 ≥", c, "  (effect is at least $15)\n")
+cat("HA: β2 <", c, "  (effect is below $15)\n\n")
+cat("Test statistic:", round(t, 3), "\n")
+cat("p-value:", round(p_left, 4), "\n")
+cat("Decision at α=0.05:", ifelse(p_left < 0.05, "✓ REJECT H0", "✗ FAIL TO REJECT H0"), "\n")
+cat("\nInterpretation:", 
+    ifelse(p_left < 0.05, 
+           "Strong evidence that β2 < 15 (the effect is below $15)",
+           "Insufficient evidence that β2 < 15"), "\n\n")
+```
 
+**Example 3: Two-Tail Test (Most Common)**
+
+**Question:** Is there *any* relationship between income and food expenditure?
+
+$$H_0: \beta_2 = 0 \quad \text{vs} \quad H_A: \beta_2 \neq 0$$
+
+```{r}
 # Two-tail test (H0: β2 = 0)
 c <- 0  
 t <- (b2-c)/seb2
 p_two <- 2*(1-pt(abs(t), df))
 
-c(p_right=p_right, p_left=p_left, p_two=p_two)
-
-cat("Two-tail test:\n")
-cat("  H0: β2 =", c, "\n")
-cat("  Test statistic:", round(t, 3), "\n")
-cat("  p-value:", format.pval(p_two, digits = 4), "\n")
-cat("  Decision at α=0.05:", ifelse(p_two < 0.05, "Reject H0", "Fail to reject H0"), "\n")
-
+cat("=== TWO-TAIL TEST ===\n")
+cat("H0: β2 = 0  (no relationship)\n")
+cat("HA: β2 ≠ 0  (income affects food expenditure)\n\n")
+cat("Test statistic:", round(t, 3), "\n")
+cat("p-value:", format.pval(p_two, digits = 4), "\n")
+cat("Decision at α=0.05:", ifelse(p_two < 0.05, "✓ REJECT H0", "✗ FAIL TO REJECT H0"), "\n")
+cat("\nInterpretation:", 
+    ifelse(p_two < 0.05, 
+           "Strong evidence of a relationship between income and food expenditure",
+           "Insufficient evidence of a relationship"), "\n\n")
 ```
+
+---
+
+::: {.callout-tip}
+### Summary of All Three Tests
+```{text}
+SUMMARY TABLE
+═══════════════════════════════════════════════════════
+Test Type        | H0          | p-value | Decision
+─────────────────┼─────────────┼─────────┼───────────
+Right-tail (>)   | β2 ≤ 5.5    | %.4f    | if p_right < 0.05, "REJECT"
+Left-tail (<)    | β2 ≥ 15     | %.4f    | if p_left < 0.05, "REJECT"
+Two-tail (≠)     | β2 = 0      | %.4f    | if p_two < 0.05, "REJECT"
+═══════════════════════════════════════════════════════
+```
+:::
 
 💡 Interpretation Guide:
 
@@ -1000,6 +1065,22 @@ $0.05 ≤ p < 0.10$: Weak evidence against $H_0$
 
 ​
 $p ≥ 0.10$: Insufficient evidence against $H_0$
+
+
+⚠️ **Common Student Mistakes to Avoid:**
+
+1. **"p-value is the probability that H₀ is true"** → ❌ WRONG! 
+   - Correct: p-value is the probability of getting our data *if* H₀ were true
+
+2. **"Fail to reject H₀ means H₀ is true"** → ❌ WRONG!
+   - Correct: We simply don't have enough evidence to reject it
+
+3. **"Reject H₀ means HA is proven true"** → ❌ WRONG!
+   - Correct: We have strong evidence *against* H₀, supporting HA
+
+4. **Confusing the direction in one-tailed tests** → Common error!
+   - Right-tail: Testing if parameter is *greater than* c
+   - Left-tail: Testing if parameter is *less than* c
 
 
 #### PART C - Testing Linear Combinations of Parameters
