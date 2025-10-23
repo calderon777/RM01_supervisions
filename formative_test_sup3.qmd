@@ -1,6 +1,6 @@
 ---
 title: "In-Class Exercise Sup 3"
-draft: true
+draft: false
 ---
 
 ## In-Class Formative Assessment: Variable Selection (Housing Prices)

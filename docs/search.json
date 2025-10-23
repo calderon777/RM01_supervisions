@@ -268,5 +268,35 @@
     "crumbs": [
       "<span class='chapter-number'>6</span>  <span class='chapter-title'>Supervision 5</span>"
     ]
+  },
+  {
+    "objectID": "formative_test_sup3.html",
+    "href": "formative_test_sup3.html",
+    "title": "In-Class Exercise Sup 3",
+    "section": "",
+    "text": "In-Class Formative Assessment: Variable Selection (Housing Prices)",
+    "crumbs": [
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>In-Class Exercise Sup 3</span>"
+    ]
+  },
+  {
+    "objectID": "formative_test_sup3.html#in-class-formative-assessment-variable-selection-housing-prices",
+    "href": "formative_test_sup3.html#in-class-formative-assessment-variable-selection-housing-prices",
+    "title": "In-Class Exercise Sup 3",
+    "section": "",
+    "text": "⏱ Duration\nApprox. 40 minutes (in class)\n\n\n\n🎯 Objective\nApply the variable selection methods learned in Supervision 3 to a new dataset on housing prices. You will replicate the steps used previously with the Hitters dataset, but this time using the Housing Prices Dataset from Kaggle.\nYour task is to specify, estimate, and evaluate one or two regression models explaining house prices.\n\n\n\n📦 Dataset (Preloaded) or Download the housing dataset\nThis dataset has already been provided in your RStudio environment.\ninstall.packages(\"RKaggle\")\nlibrary(RKaggle)\n# Download and load dataset\nhouse_price_data &lt;- get_dataset(\"yasserh/housing-prices-dataset\")\nstr(house_price_data)\nDependent variable: price\nPredictors include: area, bedrooms, bathrooms, stories, mainroad, airconditioning, parking, furnishingstatus, etc.\n\n\n\n🧩 Task\nYou have 40 minutes to complete the following:\n\nModel setup (5 min)\n\nInspect the dataset and identify relevant variables.\nChoose predictors that you expect to influence price.\n\nModel estimation (20 min)\n\nEstimate one OLS model explaining price.\nPerform stepwise variable selection (AIC or BIC).\n\nOptionally include one interaction term (e.g., area × stories).\n\nDiagnostics and reporting (15 min)\n\nReport the final regression equation.\nRecord Adjusted R², AIC/BIC, and RMSE (if possible).\n\nBriefly comment on which predictors are most influential and whether signs/magnitudes make sense.\n\n\n\n\n\n🧮 Example Structure (you can adapt quickly)\nlibrary(MASS)\nlibrary(dplyr)\n\n# Example base model\ndf &lt;- house_price_data\nmodel0 &lt;- lm(price ~ area + bathrooms + stories + airconditioning + parking, data = df)\nsummary(model0)\n\n# Stepwise selection (AIC)\nstep_aic &lt;- stepAIC(model0, direction = \"both\", trace = FALSE)\nsummary(step_aic)\n\n# Optional: interaction example\nmodel_int &lt;- lm(price ~ area*stories + bathrooms + airconditioning, data = df)\nsummary(model_int)\n\n\n\n🧾 What to Submit (in class)\n\nFinal model equation\n\nAdjusted R², AIC/BIC, and any other metric you computed\n\nInterpretation of one key variable or interaction term\n\n1–2 sentences on whether the results make economic sense",
+    "crumbs": [
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>In-Class Exercise Sup 3</span>"
+    ]
+  },
+  {
+    "objectID": "formative_test_sup3.html#submit-your-in-class-results",
+    "href": "formative_test_sup3.html#submit-your-in-class-results",
+    "title": "In-Class Exercise Sup 3",
+    "section": "Submit your in-class results",
+    "text": "Submit your in-class results\nIf the form doesn’t load below, use the backup link: Open the form in a new tab\n\n \n\n\n\n💡 Tip\n\nUse your Supervision 3 (Hitters) scripts as a reference.\n\nKeep your model parsimonious but explanatory.\n\nFocus on clarity and reasoning — not the number of variables.",
+    "crumbs": [
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>In-Class Exercise Sup 3</span>"
+    ]
   }
 ]
