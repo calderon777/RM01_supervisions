@@ -326,11 +326,11 @@ window.Quarto = {
 <div class="cell-output cell-output-stderr">
 <pre><code>Loading required package: carData</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example data: cars (mpg = miles per gallon; cyl = cylinders; eng = engine displacement; wgt = weight)</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">"cars"</span>, <span class="at">package =</span> <span class="st">"PoEdata"</span>)</span>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example data: cars (mpg = miles per gallon; cyl = cylinders; disp = engine displacement; wt = weight)</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(mtcars)</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Simple model</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>mod1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(mpg <span class="sc">~</span> cyl, <span class="at">data =</span> cars)</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>mod1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(mpg <span class="sc">~</span> cyl, <span class="at">data =</span> mtcars)</span>
 <span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(<span class="fu">tidy</span>(mod1), <span class="at">caption =</span> <span class="st">"A simple linear 'mpg' model"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <table class="caption-top table table-sm table-striped small">
@@ -347,16 +347,16 @@ window.Quarto = {
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">(Intercept)</td>
-<td style="text-align: right;">42.915505</td>
-<td style="text-align: right;">0.8348668</td>
-<td style="text-align: right;">51.40401</td>
+<td style="text-align: right;">37.88458</td>
+<td style="text-align: right;">2.0738436</td>
+<td style="text-align: right;">18.267808</td>
 <td style="text-align: right;">0</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">cyl</td>
-<td style="text-align: right;">-3.558078</td>
-<td style="text-align: right;">0.1456755</td>
-<td style="text-align: right;">-24.42468</td>
+<td style="text-align: right;">-2.87579</td>
+<td style="text-align: right;">0.3224089</td>
+<td style="text-align: right;">-8.919699</td>
 <td style="text-align: right;">0</td>
 </tr>
 </tbody>
@@ -365,7 +365,7 @@ window.Quarto = {
 </div>
 <p>Now add more regressors:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>mod2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(mpg <span class="sc">~</span> cyl <span class="sc">+</span> eng <span class="sc">+</span> wgt, <span class="at">data =</span> cars)</span>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>mod2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(mpg <span class="sc">~</span> cyl <span class="sc">+</span> disp <span class="sc">+</span> wt, <span class="at">data =</span> mtcars)</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(<span class="fu">tidy</span>(mod2), <span class="at">caption =</span> <span class="st">"Multivariate 'mpg' model"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <table class="caption-top table table-sm table-striped small">
@@ -382,31 +382,31 @@ window.Quarto = {
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">(Intercept)</td>
-<td style="text-align: right;">44.3709616</td>
-<td style="text-align: right;">1.4806851</td>
-<td style="text-align: right;">29.9665086</td>
+<td style="text-align: right;">41.1076776</td>
+<td style="text-align: right;">2.8424260</td>
+<td style="text-align: right;">14.4621802</td>
 <td style="text-align: right;">0.0000000</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">cyl</td>
-<td style="text-align: right;">-0.2677968</td>
-<td style="text-align: right;">0.4130673</td>
-<td style="text-align: right;">-0.6483126</td>
-<td style="text-align: right;">0.5171663</td>
+<td style="text-align: right;">-1.7849435</td>
+<td style="text-align: right;">0.6071105</td>
+<td style="text-align: right;">-2.9400638</td>
+<td style="text-align: right;">0.0065117</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">eng</td>
-<td style="text-align: right;">-0.0126740</td>
-<td style="text-align: right;">0.0082501</td>
-<td style="text-align: right;">-1.5362247</td>
-<td style="text-align: right;">0.1252983</td>
+<td style="text-align: left;">disp</td>
+<td style="text-align: right;">0.0074729</td>
+<td style="text-align: right;">0.0118447</td>
+<td style="text-align: right;">0.6309079</td>
+<td style="text-align: right;">0.5332173</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">wgt</td>
-<td style="text-align: right;">-0.0057079</td>
-<td style="text-align: right;">0.0007139</td>
-<td style="text-align: right;">-7.9951428</td>
-<td style="text-align: right;">0.0000000</td>
+<td style="text-align: left;">wt</td>
+<td style="text-align: right;">-3.6356770</td>
+<td style="text-align: right;">1.0401375</td>
+<td style="text-align: right;">-3.4953811</td>
+<td style="text-align: right;">0.0015955</td>
 </tr>
 </tbody>
 </table>
@@ -445,15 +445,15 @@ Note
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">cyl</td>
-<td style="text-align: right;">10.515508</td>
+<td style="text-align: right;">5.413600</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">eng</td>
-<td style="text-align: right;">15.786455</td>
+<td style="text-align: left;">disp</td>
+<td style="text-align: right;">9.924054</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">wgt</td>
-<td style="text-align: right;">7.788716</td>
+<td style="text-align: left;">wt</td>
+<td style="text-align: right;">4.769703</td>
 </tr>
 </tbody>
 </table>
@@ -471,7 +471,7 @@ Tip
 <div class="callout-body-container callout-body">
 <p><strong>Rules of thumb</strong><br>
 - <strong>VIF &gt; 10</strong> → strong collinearity (commonly used cutoff)<br>
-- <strong>VIF &gt; 5</strong> → moderate collinearity (early warning)</p>
+- <strong>VIF &gt; 5</strong> → moderate collinearity (early warning) These cut-offs are only heuristics. Evaluate VIFs alongside theory, sample size, and model purpose; high VIFs don’t automatically require dropping variables (O’Brien, 2007).</p>
 </div>
 </div>
 </section>
@@ -482,7 +482,7 @@ Tip
 </li>
 <li>Use <strong>PCA</strong> to produce orthogonal components.<br>
 </li>
-<li><strong>Standardise/centre</strong> variables (helps especially with interactions/polynomials).<br>
+<li><strong>Standardise/centre</strong> variables (helps especially with interactions/polynomials (it won’t “fix” genuine overlap among distinct variables).<br>
 </li>
 <li>Use <strong>Ridge regression</strong> if retaining all variables is preferred.<br>
 </li>
@@ -497,6 +497,7 @@ Tip
 <li>Always check <strong>VIFs</strong> when several predictors are conceptually related.</li>
 <li>If VIFs are high, consider <strong>dropping</strong>, <strong>combining</strong>, or <strong>re‑specifying</strong> predictors—and justify choices with theory.</li>
 </ul>
+<p><strong>References</strong> O’Brien, Robert. (2007). A Caution Regarding Rules of Thumb for Variance Inflation Factors. Quality &amp; Quantity. 41. 673-690. 10.1007/s11135-006-9018-6.</p>
 <hr>
 </section>
 </section>
@@ -525,7 +526,7 @@ Tip
 <h3 class="anchored" data-anchor-id="overview">Overview</h3>
 <p>This lab introduces the core idea, why it matters for inference and decision-making, and where it fits in the broader modeling workflow. You will practise the implementation in R, interpret outputs carefully, and connect diagnostics back to modeling decisions.</p>
 <hr>
-<p>The Gauss–Markov theorem assumes <strong>homoskedasticity</strong> (constant error variance <span class="math inline">\(\sigma^2\)</span>). In many economic datasets, variance grows with some regressors (e.g., higher‑income households show more dispersion in expenditure). With heteroskedasticity, OLS coefficients remain unbiased, but <strong>standard errors</strong> and therefore <strong>inference</strong> are wrong unless corrected.</p>
+<p>The Gauss–Markov theorem assumes <strong>homoskedasticity</strong> (constant error variance <span class="math inline">\(\sigma^2\)</span>). In many economic datasets, variance grows with some regressors (e.g., higher‑income households show more dispersion in expenditure). With heteroskedasticity, OLS coefficients remain unbiased, but <strong>standard errors</strong> and therefore, with heteroskedasticity, OLS coefficients remain unbiased (under exogeneity) but the usual SEs are inconsistent—use HC (White) or other robust SEs. For completeness, apart from homoskedasticity, Gauss–Markov (for OLS to be BLUE) also requires linearity in parameters, no perfect collinearity, and exogeneity. Independence/no autocorrelation is also standard in time-series contexts.</p>
 </section>
 <section id="packages-1" class="level3">
 <h3 class="anchored" data-anchor-id="packages-1">🧰 Packages</h3>
@@ -977,21 +978,22 @@ This warning is displayed once per session.</code></pre>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">NOTE</span><span class="co">: preserving your object names a, b, c, d and test types.</span></span>
 <span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="co"># (We only use base::c() below to avoid masking by object 'c')</span></span>
-<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> lmtest<span class="sc">::</span><span class="fu">bgtest</span>(phill.dyn, <span class="at">order=</span><span class="dv">1</span>, <span class="at">type=</span><span class="st">"F"</span>,    <span class="at">fill=</span><span class="dv">0</span>)</span>
-<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> lmtest<span class="sc">::</span><span class="fu">bgtest</span>(phill.dyn, <span class="at">order=</span><span class="dv">1</span>, <span class="at">type=</span><span class="st">"F"</span>,    <span class="at">fill=</span><span class="cn">NA</span>)</span>
-<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a>c <span class="ot">&lt;-</span> lmtest<span class="sc">::</span><span class="fu">bgtest</span>(phill.dyn, <span class="at">order=</span><span class="dv">4</span>, <span class="at">type=</span><span class="st">"Chisq"</span>,<span class="at">fill=</span><span class="dv">0</span>)</span>
-<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> lmtest<span class="sc">::</span><span class="fu">bgtest</span>(phill.dyn, <span class="at">order=</span><span class="dv">4</span>, <span class="at">type=</span><span class="st">"Chisq"</span>,<span class="at">fill=</span><span class="cn">NA</span>)</span>
-<span id="cb39-7"><a href="#cb39-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-8"><a href="#cb39-8" aria-hidden="true" tabindex="-1"></a>dfr <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb39-9"><a href="#cb39-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">Method    =</span> base<span class="sc">::</span><span class="fu">c</span>(<span class="st">"1, F, 0"</span>,<span class="st">"1, F, NA"</span>,<span class="st">"4, Chisq, 0"</span>,<span class="st">"4, Chisq, NA"</span>),</span>
-<span id="cb39-10"><a href="#cb39-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">Statistic =</span> base<span class="sc">::</span><span class="fu">c</span>(<span class="fu">unname</span>(a<span class="sc">$</span>statistic), <span class="fu">unname</span>(b<span class="sc">$</span>statistic), <span class="fu">unname</span>(c<span class="sc">$</span>statistic), <span class="fu">unname</span>(d<span class="sc">$</span>statistic)),</span>
-<span id="cb39-11"><a href="#cb39-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">Parameters=</span> base<span class="sc">::</span><span class="fu">c</span>(<span class="fu">sprintf</span>(<span class="st">"df1=%g, df2=%g"</span>, a<span class="sc">$</span>parameter[<span class="dv">1</span>], a<span class="sc">$</span>parameter[<span class="dv">2</span>]),</span>
-<span id="cb39-12"><a href="#cb39-12" aria-hidden="true" tabindex="-1"></a>                      <span class="fu">sprintf</span>(<span class="st">"df1=%g, df2=%g"</span>, b<span class="sc">$</span>parameter[<span class="dv">1</span>], b<span class="sc">$</span>parameter[<span class="dv">2</span>]),</span>
-<span id="cb39-13"><a href="#cb39-13" aria-hidden="true" tabindex="-1"></a>                      <span class="fu">sprintf</span>(<span class="st">"df=%g"</span>,          c<span class="sc">$</span>parameter),</span>
-<span id="cb39-14"><a href="#cb39-14" aria-hidden="true" tabindex="-1"></a>                      <span class="fu">sprintf</span>(<span class="st">"df=%g"</span>,          d<span class="sc">$</span>parameter)),</span>
-<span id="cb39-15"><a href="#cb39-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">p_value   =</span> base<span class="sc">::</span><span class="fu">c</span>(a<span class="sc">$</span>p.value, b<span class="sc">$</span>p.value, c<span class="sc">$</span>p.value, d<span class="sc">$</span>p.value)</span>
-<span id="cb39-16"><a href="#cb39-16" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb39-17"><a href="#cb39-17" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(dfr, <span class="at">caption =</span> <span class="st">"Breusch–Godfrey test for the Phillips example."</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a><span class="co"># type="F" may be preferable in small samples</span></span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> lmtest<span class="sc">::</span><span class="fu">bgtest</span>(phill.dyn, <span class="at">order=</span><span class="dv">1</span>, <span class="at">type=</span><span class="st">"F"</span>,    <span class="at">fill=</span><span class="dv">0</span>)</span>
+<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> lmtest<span class="sc">::</span><span class="fu">bgtest</span>(phill.dyn, <span class="at">order=</span><span class="dv">1</span>, <span class="at">type=</span><span class="st">"F"</span>,    <span class="at">fill=</span><span class="cn">NA</span>)</span>
+<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a>c <span class="ot">&lt;-</span> lmtest<span class="sc">::</span><span class="fu">bgtest</span>(phill.dyn, <span class="at">order=</span><span class="dv">4</span>, <span class="at">type=</span><span class="st">"Chisq"</span>,<span class="at">fill=</span><span class="dv">0</span>)</span>
+<span id="cb39-7"><a href="#cb39-7" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> lmtest<span class="sc">::</span><span class="fu">bgtest</span>(phill.dyn, <span class="at">order=</span><span class="dv">4</span>, <span class="at">type=</span><span class="st">"Chisq"</span>,<span class="at">fill=</span><span class="cn">NA</span>)</span>
+<span id="cb39-8"><a href="#cb39-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-9"><a href="#cb39-9" aria-hidden="true" tabindex="-1"></a>dfr <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb39-10"><a href="#cb39-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">Method    =</span> base<span class="sc">::</span><span class="fu">c</span>(<span class="st">"1, F, 0"</span>,<span class="st">"1, F, NA"</span>,<span class="st">"4, Chisq, 0"</span>,<span class="st">"4, Chisq, NA"</span>),</span>
+<span id="cb39-11"><a href="#cb39-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">Statistic =</span> base<span class="sc">::</span><span class="fu">c</span>(<span class="fu">unname</span>(a<span class="sc">$</span>statistic), <span class="fu">unname</span>(b<span class="sc">$</span>statistic), <span class="fu">unname</span>(c<span class="sc">$</span>statistic), <span class="fu">unname</span>(d<span class="sc">$</span>statistic)),</span>
+<span id="cb39-12"><a href="#cb39-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">Parameters=</span> base<span class="sc">::</span><span class="fu">c</span>(<span class="fu">sprintf</span>(<span class="st">"df1=%g, df2=%g"</span>, a<span class="sc">$</span>parameter[<span class="dv">1</span>], a<span class="sc">$</span>parameter[<span class="dv">2</span>]),</span>
+<span id="cb39-13"><a href="#cb39-13" aria-hidden="true" tabindex="-1"></a>                      <span class="fu">sprintf</span>(<span class="st">"df1=%g, df2=%g"</span>, b<span class="sc">$</span>parameter[<span class="dv">1</span>], b<span class="sc">$</span>parameter[<span class="dv">2</span>]),</span>
+<span id="cb39-14"><a href="#cb39-14" aria-hidden="true" tabindex="-1"></a>                      <span class="fu">sprintf</span>(<span class="st">"df=%g"</span>,          c<span class="sc">$</span>parameter),</span>
+<span id="cb39-15"><a href="#cb39-15" aria-hidden="true" tabindex="-1"></a>                      <span class="fu">sprintf</span>(<span class="st">"df=%g"</span>,          d<span class="sc">$</span>parameter)),</span>
+<span id="cb39-16"><a href="#cb39-16" aria-hidden="true" tabindex="-1"></a>  <span class="at">p_value   =</span> base<span class="sc">::</span><span class="fu">c</span>(a<span class="sc">$</span>p.value, b<span class="sc">$</span>p.value, c<span class="sc">$</span>p.value, d<span class="sc">$</span>p.value)</span>
+<span id="cb39-17"><a href="#cb39-17" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb39-18"><a href="#cb39-18" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(dfr, <span class="at">caption =</span> <span class="st">"Breusch–Godfrey test for the Phillips example."</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <table class="caption-top table table-sm table-striped small">
 <caption>Breusch–Godfrey test for the Phillips example.</caption>
@@ -1032,7 +1034,7 @@ This warning is displayed once per session.</code></pre>
 </table>
 </div>
 </div>
-<p>Durbin–Watson (legacy but useful for small samples):</p>
+<p>Durbin–Watson (DW targets AR(1) and isn’t valid with a lagged dependent variable(prefer Breusch–Godfrey for more general cases):</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>lmtest<span class="sc">::</span><span class="fu">dwtest</span>(phill.dyn)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">

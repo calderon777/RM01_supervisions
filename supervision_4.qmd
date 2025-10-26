@@ -36,18 +36,18 @@ Collinearity (multicollinearity) among regressors occurs when two or more move c
 # install.packages(c("PoEdata","broom","knitr","car"))  # if needed
 library(PoEdata); library(broom); library(knitr); library(car)
 
-# Example data: cars (mpg = miles per gallon; cyl = cylinders; eng = engine displacement; wgt = weight)
-data("cars", package = "PoEdata")
+# Example data: cars (mpg = miles per gallon; cyl = cylinders; disp = engine displacement; wt = weight)
+data(mtcars)
 
 # Simple model
-mod1 <- lm(mpg ~ cyl, data = cars)
+mod1 <- lm(mpg ~ cyl, data = mtcars)
 kable(tidy(mod1), caption = "A simple linear 'mpg' model")
 ```
 
 Now add more regressors:
 
 ```{r}
-mod2 <- lm(mpg ~ cyl + eng + wgt, data = cars)
+mod2 <- lm(mpg ~ cyl + disp + wt, data = mtcars)
 kable(tidy(mod2), caption = "Multivariate 'mpg' model")
 ```
 
@@ -69,12 +69,13 @@ kable(tab, caption = "Variance inflation factors for the 'mpg' regression model.
 **Rules of thumb**  
 - **VIF > 10** → strong collinearity (commonly used cutoff)  
 - **VIF > 5** → moderate collinearity (early warning)
+These cut-offs are only heuristics. Evaluate VIFs alongside theory, sample size, and model purpose; high VIFs don’t automatically require dropping variables (O'Brien, 2007).
 :::
 
 ### Mitigations (when VIFs are high)
 - Remove or combine collinear variables (e.g., combine **cyl** and **eng** into a power index).  
 - Use **PCA** to produce orthogonal components.  
-- **Standardise/centre** variables (helps especially with interactions/polynomials).  
+- **Standardise/centre** variables (helps especially with interactions/polynomials (it won’t “fix” genuine overlap among distinct variables).  
 - Use **Ridge regression** if retaining all variables is preferred.  
 - Consider **transformations** (e.g., logs).
 
@@ -87,6 +88,8 @@ kable(tab, caption = "Variance inflation factors for the 'mpg' regression model.
 - If VIFs are high, consider **dropping**, **combining**, or **re‑specifying** predictors—and justify choices with theory.
 
 
+**References**
+O'Brien, Robert. (2007). A Caution Regarding Rules of Thumb for Variance Inflation Factors. Quality & Quantity. 41. 673-690. 10.1007/s11135-006-9018-6. 
 
 ---
 
@@ -114,7 +117,7 @@ This lab introduces the core idea, why it matters for inference and decision-mak
 ---
 
 
-The Gauss–Markov theorem assumes **homoskedasticity** (constant error variance $\sigma^2$). In many economic datasets, variance grows with some regressors (e.g., higher‑income households show more dispersion in expenditure). With heteroskedasticity, OLS coefficients remain unbiased, but **standard errors** and therefore **inference** are wrong unless corrected.
+The Gauss–Markov theorem assumes **homoskedasticity** (constant error variance $\sigma^2$). In many economic datasets, variance grows with some regressors (e.g., higher‑income households show more dispersion in expenditure). With heteroskedasticity, OLS coefficients remain unbiased, but **standard errors** and therefore, with heteroskedasticity, OLS coefficients remain unbiased (under exogeneity) but the usual SEs are inconsistent—use HC (White) or other robust SEs. For completeness, apart from homoskedasticity, Gauss–Markov (for OLS to be BLUE) also requires linearity in parameters, no perfect collinearity, and exogeneity. Independence/no autocorrelation is also standard in time-series contexts.
 
 ### 🧰 Packages
 `lmtest`, `broom`, `PoEdata`, `car`, `sandwich`, `knitr`
@@ -316,6 +319,7 @@ Breusch–Godfrey tests (different orders/statistics):
 ```{r}
 # NOTE: preserving your object names a, b, c, d and test types.
 # (We only use base::c() below to avoid masking by object 'c')
+# type="F" may be preferable in small samples
 a <- lmtest::bgtest(phill.dyn, order=1, type="F",    fill=0)
 b <- lmtest::bgtest(phill.dyn, order=1, type="F",    fill=NA)
 c <- lmtest::bgtest(phill.dyn, order=4, type="Chisq",fill=0)
@@ -333,7 +337,7 @@ dfr <- data.frame(
 knitr::kable(dfr, caption = "Breusch–Godfrey test for the Phillips example.")
 ```
 
-Durbin–Watson (legacy but useful for small samples):
+Durbin–Watson (DW targets AR(1) and isn’t valid with a lagged dependent variable(prefer Breusch–Godfrey for more general cases):
 
 ```{r}
 lmtest::dwtest(phill.dyn)
