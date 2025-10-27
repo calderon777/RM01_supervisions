@@ -65,8 +65,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./formative_test_sup4.html" rel="next">
-<link href="./supervision_5.html" rel="prev">
+<link href="./solution_formative_test_sup3.html" rel="next">
+<link href="./formative_test_sup3.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -104,6 +104,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
+<meta name="quarto:status" content="draft">
 
 
 <link rel="stylesheet" href="styles.css">
@@ -113,13 +114,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <body class="nav-sidebar floating quarto-light">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
+  <header id="quarto-header" class="headroom fixed-top"><div id="quarto-draft-alert" class="alert alert-warning"><i class="bi bi-pencil-square"></i>Draft</div>
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./formative_test_sup3.html"><span class="chapter-title">In-Class Exercise Sup 3</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./formative_test_sup4.html"><span class="chapter-title">In-Class Exercise Sup 3</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -176,7 +177,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./formative_test_sup3.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">In-Class Exercise Sup 3</span></a>
+  <a href="./formative_test_sup3.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">In-Class Exercise Sup 3</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -194,19 +195,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#in-class-formative-assessment-variable-selection-housing-prices" id="toc-in-class-formative-assessment-variable-selection-housing-prices" class="nav-link active" data-scroll-target="#in-class-formative-assessment-variable-selection-housing-prices">In-Class Formative Assessment: Variable Selection (Housing Prices)</a>
+  <li><a href="#learning-goals-40-min" id="toc-learning-goals-40-min" class="nav-link active" data-scroll-target="#learning-goals-40-min">Learning goals (40 min)</a>
   <ul class="collapse">
-  <li><a href="#duration" id="toc-duration" class="nav-link" data-scroll-target="#duration">⏱ Duration</a></li>
-  <li><a href="#objective" id="toc-objective" class="nav-link" data-scroll-target="#objective">🎯 Objective</a></li>
-  <li><a href="#dataset-preloaded-or-download-the-housing-dataset" id="toc-dataset-preloaded-or-download-the-housing-dataset" class="nav-link" data-scroll-target="#dataset-preloaded-or-download-the-housing-dataset">📦 Dataset (Preloaded) or Download the housing dataset</a></li>
-  <li><a href="#task" id="toc-task" class="nav-link" data-scroll-target="#task">🧩 Task</a></li>
-  <li><a href="#example-structure-you-can-adapt-quickly" id="toc-example-structure-you-can-adapt-quickly" class="nav-link" data-scroll-target="#example-structure-you-can-adapt-quickly">🧮 Example Structure (you can adapt quickly)</a></li>
-  <li><a href="#what-to-submit-in-class" id="toc-what-to-submit-in-class" class="nav-link" data-scroll-target="#what-to-submit-in-class">🧾 What to Submit (in class)</a></li>
+  <li><a href="#marking-formative" id="toc-marking-formative" class="nav-link" data-scroll-target="#marking-formative">Marking (formative)</a></li>
   </ul></li>
-  <li><a href="#submit-your-in-class-results" id="toc-submit-your-in-class-results" class="nav-link" data-scroll-target="#submit-your-in-class-results">Submit your in-class results</a>
-  <ul class="collapse">
-  <li><a href="#tip" id="toc-tip" class="nav-link" data-scroll-target="#tip">💡 Tip</a></li>
-  </ul></li>
+  <li><a href="#setup" id="toc-setup" class="nav-link" data-scroll-target="#setup">Setup</a></li>
+  <li><a href="#task-1-multicollinearity-25-pts" id="toc-task-1-multicollinearity-25-pts" class="nav-link" data-scroll-target="#task-1-multicollinearity-25-pts">Task 1 — Multicollinearity (25 pts)</a></li>
+  <li><a href="#task-2-autocorrelation-25-pts" id="toc-task-2-autocorrelation-25-pts" class="nav-link" data-scroll-target="#task-2-autocorrelation-25-pts">Task 2 — Autocorrelation (25 pts)</a></li>
+  <li><a href="#task-4-heteroskedasticity-robusthac-se-25-pts" id="toc-task-4-heteroskedasticity-robusthac-se-25-pts" class="nav-link" data-scroll-target="#task-4-heteroskedasticity-robusthac-se-25-pts">Task 4 — Heteroskedasticity &amp; Robust/HAC SE (25 pts)</a></li>
+  <li><a href="#task-5-report-results-final-model-spec-economic-analysis-evaluation-5-min-8-pts" id="toc-task-5-report-results-final-model-spec-economic-analysis-evaluation-5-min-8-pts" class="nav-link" data-scroll-target="#task-5-report-results-final-model-spec-economic-analysis-evaluation-5-min-8-pts">Task 5 — report results: final model spec, economic analysis &amp; evaluation (≈5 min, 8 pts)</a></li>
   </ul>
 </nav>
     </div>
@@ -232,108 +229,264 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="in-class-formative-assessment-variable-selection-housing-prices" class="level2">
-<h2 class="anchored" data-anchor-id="in-class-formative-assessment-variable-selection-housing-prices">In-Class Formative Assessment: Variable Selection (Housing Prices)</h2>
-<section id="duration" class="level3">
-<h3 class="anchored" data-anchor-id="duration">⏱ Duration</h3>
-<p>Approx. <strong>40 minutes (in class)</strong></p>
-<hr>
-</section>
-<section id="objective" class="level3">
-<h3 class="anchored" data-anchor-id="objective">🎯 Objective</h3>
-<p>Apply the <strong>variable selection methods</strong> learned in Supervision 3 to a new dataset on <strong>housing prices</strong>. You will replicate the steps used previously with the <em>Hitters</em> dataset, but this time using the <em>Housing Prices Dataset</em> from Kaggle.</p>
-<p>Your task is to specify, estimate, and evaluate <strong>one or two regression models</strong> explaining house prices.</p>
-<hr>
-</section>
-<section id="dataset-preloaded-or-download-the-housing-dataset" class="level3">
-<h3 class="anchored" data-anchor-id="dataset-preloaded-or-download-the-housing-dataset">📦 Dataset (Preloaded) or <a href="data/house_price.csv">Download the housing dataset</a></h3>
-<p>This dataset has already been provided in your RStudio environment.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"RKaggle"</span>)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(RKaggle)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Download and load dataset</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>house_price_data <span class="ot">&lt;-</span> <span class="fu">get_dataset</span>(<span class="st">"yasserh/housing-prices-dataset"</span>)</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(house_price_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><strong>Dependent variable:</strong> <code>price</code><br>
-<strong>Predictors include:</strong> <code>area</code>, <code>bedrooms</code>, <code>bathrooms</code>, <code>stories</code>, <code>mainroad</code>, <code>airconditioning</code>, <code>parking</code>, <code>furnishingstatus</code>, etc.</p>
-<hr>
-</section>
-<section id="task" class="level3">
-<h3 class="anchored" data-anchor-id="task">🧩 Task</h3>
-<p>You have <strong>40 minutes</strong> to complete the following:</p>
-<ol type="1">
-<li><strong>Model setup (5 min)</strong>
+<section id="learning-goals-40-min" class="level2">
+<h2 class="anchored" data-anchor-id="learning-goals-40-min">Learning goals (40 min)</h2>
 <ul>
-<li>Inspect the dataset and identify relevant variables.</li>
-<li>Choose predictors that you expect to influence <code>price</code>.</li>
-</ul></li>
-<li><strong>Model estimation (20 min)</strong>
-<ul>
-<li>Estimate one <strong>OLS model</strong> explaining <code>price</code>.</li>
-<li>Perform <strong>stepwise variable selection</strong> (AIC or BIC).<br>
-</li>
-<li>Optionally include <strong>one interaction term</strong> (e.g., <code>area × stories</code>).</li>
-</ul></li>
-<li><strong>Diagnostics and reporting (15 min)</strong>
-<ul>
-<li>Report the final regression equation.</li>
-<li>Record <strong>Adjusted R²</strong>, <strong>AIC/BIC</strong>, and <strong>RMSE</strong> (if possible).<br>
-</li>
-<li>Briefly comment on which predictors are most influential and whether signs/magnitudes make sense.</li>
-</ul></li>
-</ol>
-<hr>
-</section>
-<section id="example-structure-you-can-adapt-quickly" class="level3">
-<h3 class="anchored" data-anchor-id="example-structure-you-can-adapt-quickly">🧮 Example Structure (you can adapt quickly)</h3>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(MASS)</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Example base model</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> house_price_data</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>model0 <span class="ot">&lt;-</span> <span class="fu">lm</span>(price <span class="sc">~</span> area <span class="sc">+</span> bathrooms <span class="sc">+</span> stories <span class="sc">+</span> airconditioning <span class="sc">+</span> parking, <span class="at">data =</span> df)</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model0)</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Stepwise selection (AIC)</span></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>step_aic <span class="ot">&lt;-</span> <span class="fu">stepAIC</span>(model0, <span class="at">direction =</span> <span class="st">"both"</span>, <span class="at">trace =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(step_aic)</span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Optional: interaction example</span></span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>model_int <span class="ot">&lt;-</span> <span class="fu">lm</span>(price <span class="sc">~</span> area<span class="sc">*</span>stories <span class="sc">+</span> bathrooms <span class="sc">+</span> airconditioning, <span class="at">data =</span> df)</span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model_int)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<hr>
-</section>
-<section id="what-to-submit-in-class" class="level3">
-<h3 class="anchored" data-anchor-id="what-to-submit-in-class">🧾 What to Submit (in class)</h3>
-<ul>
-<li><strong>Final model equation</strong><br>
-</li>
-<li><strong>Adjusted R², AIC/BIC</strong>, and any other metric you computed<br>
-</li>
-<li><strong>Interpretation of one key variable or interaction term</strong><br>
-</li>
-<li><strong>1–2 sentences</strong> on whether the results make economic sense</li>
+<li>Fit a clear production model with meaningful regressors.</li>
+<li>Diagnose <strong>multicollinearity</strong> (VIF), <strong>autocorrelation</strong> (DW/BG &amp; residual ACF), and <strong>heteroskedasticity</strong> (BP/White).</li>
+<li>Apply <strong>robust/HAC</strong> standard errors for valid inference.</li>
+<li>Communicate findings succinctly.</li>
 </ul>
+<section id="marking-formative" class="level3">
+<h3 class="anchored" data-anchor-id="marking-formative">Marking (formative)</h3>
+<ul>
+<li>Task 1 (multicollinearity) – 25 pts<br>
+</li>
+<li>Task 2 (autocorrelation) – 25 pts<br>
+</li>
+<li>Task 3 (heteroskedasticity &amp; robust SE) – 25 pts<br>
+</li>
+<li>Task 4 (report results: final model spec, economic analysis &amp; evaluation) – 25 pts<br>
+<strong>Total: 100 pts</strong></li>
+</ul>
+<hr>
 </section>
 </section>
-<section id="submit-your-in-class-results" class="level2">
-<h2 class="anchored" data-anchor-id="submit-your-in-class-results">Submit your in-class results</h2>
-<p>If the form doesn’t load below, use the backup link: <a href="https://forms.office.com/Pages/ResponsePage.aspx?id=RQSlSfq9eUut41R7TzmG6e2v58mrCWNIjQV8bfnU-6tURFk4S0I3UjRYRVZZSDQyUkg3MlRCSUk0NC4u">Open the form in a new tab</a></p>
-<div style="position:relative; height:80vh; overflow:hidden;">
-<p><iframe src="https://forms.office.com/Pages/ResponsePage.aspx?id=RQSlSfq9eUut41R7TzmG6e2v58mrCWNIjQV8bfnU-6tURFk4S0I3UjRYRVZZSDQyUkg3MlRCSUk0NC4u&amp;embed=true" width="100%" height="100%" style="position:absolute; top:0; left:0; border:0;" title="Supervision 3 — In-Class Formative" allowfullscreen="" webkitallowfullscreen="" mozallowfullscreen="" msallowfullscreen=""> </iframe></p>
+<section id="setup" class="level2">
+<h2 class="anchored" data-anchor-id="setup">Setup</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Packages (minimal)</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># install the following packages if needed.</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(PoEdata); <span class="fu">library</span>(dplyr); <span class="fu">library</span>(car); <span class="fu">library</span>(lmtest); <span class="fu">library</span>(sandwich)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ol type="1">
+<li>Load <code>rice</code>, order by <code>year</code>.<br>
+</li>
+<li><strong>Drop</strong> the firm identifier (<code>firm</code>).<br>
+</li>
+<li>Preview the data.</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the dataset 'rice' from the PoEdata package (must have library(PoEdata) loaded)</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(rice)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Sort the rows by the time variable so observations are in chronological order</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>rice <span class="ot">&lt;-</span> rice[<span class="fu">order</span>(rice<span class="sc">$</span>year), ]</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Drop the identifier column 'firm' (it's just an ID, not an economic variable)</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>rice <span class="ot">&lt;-</span> <span class="fu">subset</span>(rice, <span class="at">select =</span> <span class="sc">-</span>firm)</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Look at the first 6 rows to get a quick sense of the data</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(rice, <span class="dv">6</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   year  prod area labor  fert
+1  1990  7.87  2.5   160 207.5
+9  1990 10.35  3.8   184 303.5
+17 1990  9.98  3.4   170 252.0
+25 1990  4.83  1.4    68  88.0
+33 1990  8.74  3.6   130 149.8
+41 1990  1.84  0.5    34  21.0</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># List all column names so you know what variables are available</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(rice)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "year"  "prod"  "area"  "labor" "fert" </code></pre>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><strong>Why drop <code>firm</code>?</strong> It’s an identifier, not an economic input. Keep IDs only for estimations involving grouping/panels, not as regressors.</p>
+</div>
+</div>
 </div>
 <hr>
-<section id="tip" class="level3">
-<h3 class="anchored" data-anchor-id="tip">💡 Tip</h3>
-<ul>
-<li>Use your <strong>Supervision 3 (Hitters)</strong> scripts as a reference.<br>
-</li>
-<li>Keep your model <strong>parsimonious but explanatory</strong>.<br>
-</li>
-<li>Focus on clarity and reasoning — not the number of variables.</li>
-</ul>
-
-
 </section>
+<section id="task-1-multicollinearity-25-pts" class="level2">
+<h2 class="anchored" data-anchor-id="task-1-multicollinearity-25-pts">Task 1 — Multicollinearity (25 pts)</h2>
+<p>Fit the <strong>baseline model</strong>: [ ]</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>m <span class="ot">&lt;-</span> <span class="fu">lm</span>(prod <span class="sc">~</span> area <span class="sc">+</span> fert <span class="sc">+</span> labor, <span class="at">data =</span> rice)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = prod ~ area + fert + labor, data = rice)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-9.2849 -0.9268  0.0351  0.9402  8.9061 
+
+Coefficients:
+             Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept) -0.138800   0.201714  -0.688 0.491845    
+area         1.321321   0.208748   6.330 7.57e-10 ***
+fert         0.004591   0.001289   3.562 0.000419 ***
+labor        0.027505   0.003898   7.057 9.27e-12 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 2.106 on 348 degrees of freedom
+Multiple R-squared:  0.8294,    Adjusted R-squared:  0.8279 
+F-statistic:   564 on 3 and 348 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+</div>
+<p>Compute <strong>VIF</strong> and interpret.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">vif</span>(m)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>    area     fert    labor 
+7.266083 3.736222 7.064198 </code></pre>
+</div>
+</div>
+<p><strong>Answer (brief):</strong><br>
+- Is collinearity acceptable? If not, suggest <em>econometric meaningful solutions</em> to high VIF (e.g., use intensity/ratio variables, interaction variables, logs, lags, etc). <em>(2–3 sentences.)</em></p>
+<hr>
+</section>
+<section id="task-2-autocorrelation-25-pts" class="level2">
+<h2 class="anchored" data-anchor-id="task-2-autocorrelation-25-pts">Task 2 — Autocorrelation (25 pts)</h2>
+<p>Run <strong>Durbin–Watson</strong> and <strong>Breusch–Godfrey (AR1)</strong> tests.<br>
+Then <strong>plot the residual ACF</strong> to visualise the pattern. For example, the current model specification:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Durbin–Watson test for first-order autocorrelation in OLS residuals</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="co"># H0: no autocorrelation (rho = 0). DW ~ 2 means no autocorr; DW &lt; 2 = positive autocorr.</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="fu">dwtest</span>(m)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Durbin-Watson test
+
+data:  m
+DW = 1.7928, p-value = 0.02453
+alternative hypothesis: true autocorrelation is greater than 0</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Breusch–Godfrey test for serial correlation of order 1 (more general than DW)</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="co"># H0: no serial correlation up to the specified order.</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="fu">bgtest</span>(m, <span class="at">order =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Breusch-Godfrey test for serial correlation of order up to 1
+
+data:  m
+LM test = 3.711, df = 1, p-value = 0.05406</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract OLS residuals from model m</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>res_m <span class="ot">&lt;-</span> <span class="fu">residuals</span>(m)</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the autocorrelation function of residuals</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Significant spike at lag 1 (outside blue bands) suggests AR(1)-type positive autocorrelation</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="fu">acf</span>(res_m, <span class="at">main =</span> <span class="st">"ACF of OLS residuals (m)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="formative_test_sup4_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><strong>Answer (brief):</strong><br>
+- Do tests indicate autocorrelation? Which sign? What does the residual <strong>ACF</strong> suggest (e.g., AR(1)-type)? How did you fix the issue of autocorrelation?</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><strong>Hint:</strong> DW &lt; 2 → positive serial correlation. A large spike at lag 1 in ACF is consistent with AR(1).</p>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="task-4-heteroskedasticity-robusthac-se-25-pts" class="level2">
+<h2 class="anchored" data-anchor-id="task-4-heteroskedasticity-robusthac-se-25-pts">Task 4 — Heteroskedasticity &amp; Robust/HAC SE (25 pts)</h2>
+<ol type="1">
+<li>Test for heteroskedasticity: <strong>Breusch–Pagan</strong> and a <strong>White-style</strong> auxiliary test.<br>
+</li>
+<li>Report <strong>HAC (Newey–West)</strong> standard errors for valid inference under both heteroskedasticity and autocorrelation.</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># --- Heteroskedasticity tests -----------------------------------------------</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Breusch–Pagan test for heteroskedasticity</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="co"># H0: constant variance (homoskedasticity). Small p-value =&gt; heteroskedasticity present.</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="fu">bptest</span>(m)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    studentized Breusch-Pagan test
+
+data:  m
+BP = 81.47, df = 3, p-value &lt; 2.2e-16</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># "White-style" test: regress squared residuals on fitted and fitted^2 (more general form)</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>fit <span class="ot">&lt;-</span> <span class="fu">fitted</span>(m)</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="fu">bptest</span>(m, <span class="sc">~</span> fit <span class="sc">+</span> <span class="fu">I</span>(fit<span class="sc">^</span><span class="dv">2</span>))  <span class="co"># small p-value =&gt; heteroskedasticity</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    studentized Breusch-Pagan test
+
+data:  m
+BP = 73.769, df = 2, p-value &lt; 2.2e-16</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># --- Robust inference when heteroskedasticity and/or autocorrelation exist ---</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Newey–West (HAC) robust standard errors for valid t-stats/p-values</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Note: This adjusts SEs, not coefficients; residual patterns/tests remain the same.</span></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a><span class="fu">coeftest</span>(m, <span class="at">vcov. =</span> <span class="fu">NeweyWest</span>(m, <span class="at">lag =</span> <span class="dv">1</span>, <span class="at">prewhite =</span> <span class="cn">FALSE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+t test of coefficients:
+
+              Estimate Std. Error t value  Pr(&gt;|t|)    
+(Intercept) -0.1388003  0.1754394 -0.7912    0.4294    
+area         1.3213211  0.3112151  4.2457 2.799e-05 ***
+fert         0.0045905  0.0024470  1.8760    0.0615 .  
+labor        0.0275053  0.0059720  4.6057 5.774e-06 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+</div>
+</div>
+<p><strong>Answer (brief):</strong><br>
+- Are BP/White significant? Compare classical vs HAC p-values: which coefficients remain significant?</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><strong>Note:</strong> Robust/HAC SEs <strong>do not change</strong> the residuals or DW/BG results; they change inference (SEs/p-values).</p>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="task-5-report-results-final-model-spec-economic-analysis-evaluation-5-min-8-pts" class="level2">
+<h2 class="anchored" data-anchor-id="task-5-report-results-final-model-spec-economic-analysis-evaluation-5-min-8-pts">Task 5 — report results: final model spec, economic analysis &amp; evaluation (≈5 min, 8 pts)</h2>
+<p>Summarise: - Your best/final model specification, key diagnostic issues you found (which tests, what they showed), The remedies you applied (variable re-definition, HAC). Why your final inference is valid for decision-making, results analysis and evaluation.</p>
+<hr>
+
+
 </section>
 
 </main> <!-- /main -->
@@ -738,13 +891,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./supervision_5.html" class="pagination-link" aria-label="Supervision 5">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">Supervision 5</span></span>
+      <a href="./formative_test_sup3.html" class="pagination-link" aria-label="In-Class Exercise Sup 3">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">In-Class Exercise Sup 3</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./formative_test_sup4.html" class="pagination-link" aria-label="In-Class Exercise Sup 3">
-        <span class="nav-page-text"><span class="chapter-title">In-Class Exercise Sup 3</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./solution_formative_test_sup3.html" class="pagination-link" aria-label="Solution to In-class Sup3">
+        <span class="nav-page-text"><span class="chapter-title">Solution to In-class Sup3</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

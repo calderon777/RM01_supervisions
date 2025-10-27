@@ -1,0 +1,155 @@
+---
+title: "In-Class Exercise Sup 3"
+draft: true
+format: html
+execute:
+  echo: true
+  warning: false
+  message: false
+---
+
+## Learning goals (40 min)
+- Fit a clear production model with meaningful regressors.
+- Diagnose **multicollinearity** (VIF), **autocorrelation** (DW/BG & residual ACF), and **heteroskedasticity** (BP/White).
+- Apply **robust/HAC** standard errors for valid inference.
+- Communicate findings succinctly.
+
+### Marking (formative)
+- Task 1 (multicollinearity) – 25 pts  
+- Task 2 (autocorrelation) – 25 pts  
+- Task 3 (heteroskedasticity & robust SE) – 25 pts  
+- Task 4 (report results: final model spec, economic analysis & evaluation) – 25 pts  
+**Total: 100 pts**
+
+---
+
+## Setup
+
+```{r}
+# Packages (minimal)
+# install the following packages if needed.
+
+library(PoEdata); library(dplyr); library(car); library(lmtest); library(sandwich)
+```
+
+1) Load `rice`, order by `year`.  
+2) **Drop** the firm identifier (`firm`).  
+3) Preview the data.
+
+```{r}
+# Load the dataset 'rice' from the PoEdata package (must have library(PoEdata) loaded)
+data(rice)
+
+# Sort the rows by the time variable so observations are in chronological order
+rice <- rice[order(rice$year), ]
+
+# Drop the identifier column 'firm' (it's just an ID, not an economic variable)
+rice <- subset(rice, select = -firm)
+
+# Look at the first 6 rows to get a quick sense of the data
+head(rice, 6)
+
+# List all column names so you know what variables are available
+names(rice)
+```
+
+::: {.callout-tip collapse="true"}
+**Why drop `firm`?** It’s an identifier, not an economic input. Keep IDs only for estimations involving grouping/panels, not as regressors.
+:::
+
+---
+
+## Task 1 — Multicollinearity (25 pts)
+
+Fit the **baseline model**:
+\[
+\texttt{prod ~ area + fert + labor}
+\]
+
+```{r}
+m <- lm(prod ~ area + fert + labor, data = rice)
+summary(m)
+```
+
+Compute **VIF** and interpret.
+```{r}
+vif(m)
+```
+
+**Answer (brief):**  
+- Is collinearity acceptable? If not, suggest *econometric meaningful solutions* to high VIF (e.g., use intensity/ratio variables, interaction variables, logs, lags, etc). *(2–3 sentences.)*
+
+---
+
+## Task 2 — Autocorrelation (25 pts)
+
+Run **Durbin–Watson** and **Breusch–Godfrey (AR1)** tests.  
+Then **plot the residual ACF** to visualise the pattern. For example, the current model specification:
+
+```{r}
+# Durbin–Watson test for first-order autocorrelation in OLS residuals
+# H0: no autocorrelation (rho = 0). DW ~ 2 means no autocorr; DW < 2 = positive autocorr.
+dwtest(m)
+
+# Breusch–Godfrey test for serial correlation of order 1 (more general than DW)
+# H0: no serial correlation up to the specified order.
+bgtest(m, order = 1)
+
+# Extract OLS residuals from model m
+res_m <- residuals(m)
+
+# Plot the autocorrelation function of residuals
+# Significant spike at lag 1 (outside blue bands) suggests AR(1)-type positive autocorrelation
+acf(res_m, main = "ACF of OLS residuals (m)")
+```
+
+**Answer (brief):**  
+- Do tests indicate autocorrelation? Which sign? What does the residual **ACF** suggest (e.g., AR(1)-type)? How did you fix the issue of autocorrelation?
+
+::: {.callout-tip collapse="true"}
+**Hint:** DW < 2 → positive serial correlation. A large spike at lag 1 in ACF is consistent with AR(1).
+:::
+
+---
+
+## Task 4 — Heteroskedasticity & Robust/HAC SE (25 pts)
+
+1) Test for heteroskedasticity: **Breusch–Pagan** and a **White-style** auxiliary test.  
+2) Report **HAC (Newey–West)** standard errors for valid inference under both heteroskedasticity and autocorrelation.
+
+```{r}
+# --- Heteroskedasticity tests -----------------------------------------------
+
+# Breusch–Pagan test for heteroskedasticity
+# H0: constant variance (homoskedasticity). Small p-value => heteroskedasticity present.
+bptest(m)
+
+# "White-style" test: regress squared residuals on fitted and fitted^2 (more general form)
+fit <- fitted(m)
+bptest(m, ~ fit + I(fit^2))  # small p-value => heteroskedasticity
+
+# --- Robust inference when heteroskedasticity and/or autocorrelation exist ---
+
+# Newey–West (HAC) robust standard errors for valid t-stats/p-values
+# Note: This adjusts SEs, not coefficients; residual patterns/tests remain the same.
+coeftest(m, vcov. = NeweyWest(m, lag = 1, prewhite = FALSE))
+
+```
+
+**Answer (brief):**  
+- Are BP/White significant? Compare classical vs HAC p-values: which coefficients remain significant?
+
+::: {.callout-tip collapse="true"}
+**Note:** Robust/HAC SEs **do not change** the residuals or DW/BG results; they change inference (SEs/p-values).
+:::
+
+---
+
+## Task 5 — report results: final model spec, economic analysis & evaluation (≈5 min, 8 pts)
+
+Summarise:
+- Your best/final model specification, key diagnostic issues you found (which tests, what they showed), The remedies you applied (variable re-definition, HAC). Why your final inference is valid for decision-making, results analysis and evaluation.
+
+---
+
+
