@@ -16,7 +16,8 @@ book:
     - supervision_4.qmd
     - supervision_5.qmd
     - formative_test_sup3.qmd
-    # later you’ll add supervision_2.qmd, supervision_3.qmd, etc.
+    - solution_formative_test_sup3.qmd
+    # later you’ll add more files... supervision_2.qmd, supervision_3.qmd, etc.
 
 format:
   html:

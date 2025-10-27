@@ -1,0 +1,154 @@
+---
+title: "Variable Selection in Housing Prices — Best Model Summary"
+author: "Camilo Calderon-Morales, PhD"
+date: 2025-10-27
+format:
+  html:
+    toc: true
+    toc-depth: 3
+    code-fold: show
+execute:
+  echo: true
+  warning: false
+  message: false
+---
+
+## Overview
+
+This document reports the best model and key diagnostics based on an **exhaustive subset selection** using `leaps::regsubsets`. It also reproduces the R code used (with a few comment tweaks for clarity) and provides concise answers to:
+
+1) Best model equation  
+2) Model metrics (Adjusted R², BIC, RMSE)  
+3) Interpretation of one key variable  
+4) Whether the results make economic sense  
+
+---
+
+## R Code (reproducible workflow)
+
+```{r}
+# Load libraries
+# If needed: install.packages(c("ISLR", "leaps", "ggplot2", "dplyr", "RKaggle"))
+library(ISLR)
+library(leaps)
+library(ggplot2)
+library(dplyr)
+library(RKaggle)
+
+# Download and load dataset from Kaggle
+house_price_data <- get_dataset("yasserh/housing-prices-dataset")
+
+# Quick structure checks
+str(house_price_data)
+dim(house_price_data)
+sum(is.na(house_price_data$price))
+
+# Brief data description
+cat("Response variable: price (1987 currency units).\n")
+cat("Predictor variables:\n")
+names(house_price_data)[-13]
+
+# Handle missing values (drop any rows with NAs)
+house_price_data <- na.omit(house_price_data)
+dim(house_price_data)
+sum(is.na(house_price_data))
+
+# Ensure categorical variables are treated as factors (for lm consistency)
+chr_cols <- sapply(house_price_data, is.character)
+house_price_data[chr_cols] <- lapply(house_price_data[chr_cols], factor)
+
+# Exhaustive search over all subsets (up to 13 variables)
+regfit.full <- regsubsets(price ~ ., data = house_price_data, nvmax = 13)
+reg.summary <- summary(regfit.full)
+
+# Inspect what is available
+names(reg.summary)
+reg.summary$rsq[1:13]
+head(reg.summary$which, 10)
+
+# Selection plots
+par(mfrow = c(2,2))
+plot(reg.summary$rss, xlab = "Number of Variables", ylab = "RSS", type = "l")
+title("Training RSS (monotonically decreases)")
+
+plot(reg.summary$adjr2, xlab = "Number of Variables", ylab = "Adjusted R^2", type = "l")
+best.adjr2 <- which.max(reg.summary$adjr2)
+points(best.adjr2, reg.summary$adjr2[best.adjr2], col = "red", cex = 2, pch = 20)
+title("Adjusted R^2 (maximize)")
+
+plot(reg.summary$cp, xlab = "Number of Variables", ylab = "Cp", type = "l")
+best.cp <- which.min(reg.summary$cp)
+points(best.cp, reg.summary$cp[best.cp], col = "red", cex = 2, pch = 20)
+title("Mallows Cp (minimize)")
+
+plot(reg.summary$bic, xlab = "Number of Variables", ylab = "BIC", type = "l")
+best.bic <- which.min(reg.summary$bic)
+points(best.bic, reg.summary$bic[best.bic], col = "red", cex = 2, pch = 20)
+title("BIC (minimize)")
+par(mfrow = c(1, 1))
+
+cat("Optimal model sizes (by criterion):\n")
+cat("  Adjusted R^2:", best.adjr2, "variables\n")
+cat("  Cp:          ", best.cp, "variables\n")
+cat("  BIC:         ", best.bic, "variables\n\n")
+
+cat("Note: BIC typically favours more parsimonious models.\n")
+
+# Coefficients of the BIC-optimal model (size = best.bic)
+bic_coefs <- coef(regfit.full, best.bic)
+bic_coefs
+
+# For metrics, fit an lm() with the BIC-selected variables
+form_bic <- price ~ area + bathrooms + stories + mainroad + basement + hotwaterheating + airconditioning + parking + prefarea + furnishingstatus
+model_bic <- lm(form_bic, data = house_price_data)
+
+# Metrics
+adj_r2  <- summary(model_bic)$adj.r.squared
+bic_val <- BIC(model_bic)
+rmse    <- sqrt(mean(residuals(model_bic)^2))
+
+list(Adjusted_R2 = adj_r2, BIC = bic_val, RMSE = rmse)
+
+# Compact coefficient table
+coef_table <- data.frame(term = names(coef(model_bic)),
+                         estimate = as.numeric(coef(model_bic)))
+coef_table
+```
+
+---
+
+## Answers (concise)
+
+### 1) Best model equation
+Using BIC, the selected model is:
+
+\[
+\texttt{price} ~ \texttt{area} + \texttt{bathrooms} + \texttt{stories} + \texttt{mainroad} + \texttt{basement} + \texttt{hotwaterheating} + \texttt{airconditioning} + \texttt{parking} + \texttt{prefarea} + \texttt{furnishingstatus}
+\]
+
+**Coefficient snapshot (from subset selection):**  
+`r capture.output(print(bic_coefs))`
+
+---
+
+### 2) Model metrics
+
+From the fitted BIC-selected model:
+
+- **Adjusted R²:** `r round(adj_r2, 3)`  
+- **BIC:** `r round(bic_val, 1)`  
+- **RMSE:** `r round(rmse, 0)`  
+
+*Note:* The maximum Adjusted R² across all sizes occurs around 12 variables (≈ `r round(max(reg.summary$adjr2), 3)`), but BIC favours the 10-variable model above for parsimony.
+
+---
+
+### 3) Interpretation of a key variable
+
+Consider **area**. Holding other factors constant, the estimated coefficient on `area` is approximately **`r round(unname(bic_coefs["area"]), 1)`**. This implies that each additional unit of floor area increases the predicted price by about that amount, reflecting the strong and intuitive role of size in property valuation. The magnitude is economically plausible and aligns with the positive effects seen for amenities (e.g., **airconditioning**, **prefarea**).
+
+---
+
+### 4) Economic sense?
+
+Yes. Larger homes (area), additional bathrooms and stories, better amenities (air conditioning, hot-water heating), and desirable location (**prefarea**, access to **mainroad**) all **increase** predicted prices, while being **unfurnished** reduces price—precisely what standard housing market theory would anticipate. The model therefore captures realistic drivers of housing values while balancing fit and simplicity via BIC.
