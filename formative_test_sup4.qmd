@@ -1,5 +1,5 @@
 ---
-title: "In-Class Exercise Sup 3"
+title: "In-Class Exercise Sup 4"
 draft: true
 format: html
 execute:
@@ -10,7 +10,7 @@ execute:
 
 ## Learning goals (40 min)
 - Fit a clear production model with meaningful regressors.
-- Diagnose **multicollinearity** (VIF), **autocorrelation** (DW/BG & residual ACF), and **heteroskedasticity** (BP/White).
+- Diagnose **multicollinearity** (VIF), **autocorrelation** (DW/BG & residual ACF), and **heteroskedasticity** (BP/White) and modify/refine the baseline model.
 - Apply **robust/HAC** standard errors for valid inference.
 - Communicate findings succinctly.
 
@@ -24,6 +24,12 @@ execute:
 ---
 
 ## Setup
+
+**Data**: The `rice` dataset contains a time series on rice production from Asian farms (1990-1997). Variables include:
+  - `prod`: output (tons)
+  - `area`: land (hectares)
+  - `fert`: fertilizer (kg)
+  - `labor`: labor hours (person-days)
 
 ```{r}
 # Packages (minimal)
@@ -61,7 +67,7 @@ names(rice)
 
 ## Task 1 — Multicollinearity (25 pts)
 
-Fit the **baseline model**:
+Fit the **baseline model** that you will need to **modify/refine** if needed:
 \[
 \texttt{prod ~ area + fert + labor}
 \]
@@ -76,8 +82,10 @@ Compute **VIF** and interpret.
 vif(m)
 ```
 
-**Answer (brief):**  
-- Is collinearity acceptable? If not, suggest *econometric meaningful solutions* to high VIF (e.g., use intensity/ratio variables, interaction variables, logs, lags, etc). *(2–3 sentences.)*
+**Answer (brief, 150 words max):**  
+1. State the VIF values and threshold used
+2. Identify which variables show problematic collinearity
+3. Suggest ONE specific econometric solution appropriate for this production function
 
 ---
 
@@ -103,8 +111,9 @@ res_m <- residuals(m)
 acf(res_m, main = "ACF of OLS residuals (m)")
 ```
 
-**Answer (brief):**  
-- Do tests indicate autocorrelation? Which sign? What does the residual **ACF** suggest (e.g., AR(1)-type)? How did you fix the issue of autocorrelation?
+**Answer (brief, 150 words max):**  
+- Do tests indicate autocorrelation? Which sign? did you modify/refine the model? 
+- What does the residual **ACF** suggest (e.g., AR(1)-type)? How would you address the issue for inference?
 
 ::: {.callout-tip collapse="true"}
 **Hint:** DW < 2 → positive serial correlation. A large spike at lag 1 in ACF is consistent with AR(1).
@@ -112,7 +121,7 @@ acf(res_m, main = "ACF of OLS residuals (m)")
 
 ---
 
-## Task 4 — Heteroskedasticity & Robust/HAC SE (25 pts)
+## Task 3 — Heteroskedasticity & Robust/HAC SE (25 pts)
 
 1) Test for heteroskedasticity: **Breusch–Pagan** and a **White-style** auxiliary test.  
 2) Report **HAC (Newey–West)** standard errors for valid inference under both heteroskedasticity and autocorrelation.
@@ -133,10 +142,12 @@ bptest(m, ~ fit + I(fit^2))  # small p-value => heteroskedasticity
 # Newey–West (HAC) robust standard errors for valid t-stats/p-values
 # Note: This adjusts SEs, not coefficients; residual patterns/tests remain the same.
 coeftest(m, vcov. = NeweyWest(m, lag = 1, prewhite = FALSE))
+#**White test specification**: The `~ fit + I(fit^2)` is one 
+# version; this is a simplified White test.
 
 ```
 
-**Answer (brief):**  
+**Answer (brief, 150 words max):**  
 - Are BP/White significant? Compare classical vs HAC p-values: which coefficients remain significant?
 
 ::: {.callout-tip collapse="true"}
@@ -145,11 +156,38 @@ coeftest(m, vcov. = NeweyWest(m, lag = 1, prewhite = FALSE))
 
 ---
 
-## Task 5 — report results: final model spec, economic analysis & evaluation (≈5 min, 8 pts)
+## Task 4 — report results: final model spec, economic analysis & evaluation (25 pts)
 
-Summarise:
-- Your best/final model specification, key diagnostic issues you found (which tests, what they showed), The remedies you applied (variable re-definition, HAC). Why your final inference is valid for decision-making, results analysis and evaluation.
+**Summarise (250 words max) (25 pts):** 
+1. Your best/final model specification (equation)
+2. The key diagnostic issues you found (which tests, what they showed)
+3. The remedies you applied (e.g. variable interactions, lags, HAC)
+4. Why your final inference is valid for decision-making, results analysis and evaluation (brief economic interpretation).
 
 ---
+
+## **Submit your answers**
+
+Please submit your completed answers using the embedded form below 
+👇  If the form does not display correctly, you can open it directly using this link:  
+👉 [Open Microsoft Form](https://forms.office.com/Pages/ResponsePage.aspx?id=RQSlSfq9eUut41R7TzmG6e2v58mrCWNIjQV8bfnU-6tUOThTQVBYTlBZSEpJWUxFNUpBNEw3MlA3Ui4u)
+
+<div style="margin-top: 1em; margin-bottom: 1em;">
+<iframe width="640px" height="480px"
+  src="https://forms.office.com/Pages/ResponsePage.aspx?id=RQSlSfq9eUut41R7TzmG6e2v58mrCWNIjQV8bfnU-6tUOThTQVBYTlBZSEpJWUxFNUpBNEw3MlA3Ui4u&embed=true"
+  frameborder="0"
+  marginwidth="0"
+  marginheight="0"
+  style="border: none; max-width:100%; max-height:100vh;"
+  allowfullscreen
+  webkitallowfullscreen
+  mozallowfullscreen
+  msallowfullscreen>
+</iframe>
+</div>
+
+---
+
+
 
 

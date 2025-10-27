@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>In-Class Exercise Sup 3 – Research Methods for Land Economy</title>
+<title>In-Class Exercise Sup 4 – Research Methods for Land Economy</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -120,7 +120,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./formative_test_sup4.html"><span class="chapter-title">In-Class Exercise Sup 3</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./formative_test_sup4.html"><span class="chapter-title">In-Class Exercise Sup 4</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -202,8 +202,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#setup" id="toc-setup" class="nav-link" data-scroll-target="#setup">Setup</a></li>
   <li><a href="#task-1-multicollinearity-25-pts" id="toc-task-1-multicollinearity-25-pts" class="nav-link" data-scroll-target="#task-1-multicollinearity-25-pts">Task 1 — Multicollinearity (25 pts)</a></li>
   <li><a href="#task-2-autocorrelation-25-pts" id="toc-task-2-autocorrelation-25-pts" class="nav-link" data-scroll-target="#task-2-autocorrelation-25-pts">Task 2 — Autocorrelation (25 pts)</a></li>
-  <li><a href="#task-4-heteroskedasticity-robusthac-se-25-pts" id="toc-task-4-heteroskedasticity-robusthac-se-25-pts" class="nav-link" data-scroll-target="#task-4-heteroskedasticity-robusthac-se-25-pts">Task 4 — Heteroskedasticity &amp; Robust/HAC SE (25 pts)</a></li>
-  <li><a href="#task-5-report-results-final-model-spec-economic-analysis-evaluation-5-min-8-pts" id="toc-task-5-report-results-final-model-spec-economic-analysis-evaluation-5-min-8-pts" class="nav-link" data-scroll-target="#task-5-report-results-final-model-spec-economic-analysis-evaluation-5-min-8-pts">Task 5 — report results: final model spec, economic analysis &amp; evaluation (≈5 min, 8 pts)</a></li>
+  <li><a href="#task-3-heteroskedasticity-robusthac-se-25-pts" id="toc-task-3-heteroskedasticity-robusthac-se-25-pts" class="nav-link" data-scroll-target="#task-3-heteroskedasticity-robusthac-se-25-pts">Task 3 — Heteroskedasticity &amp; Robust/HAC SE (25 pts)</a></li>
+  <li><a href="#task-4-report-results-final-model-spec-economic-analysis-evaluation-25-pts" id="toc-task-4-report-results-final-model-spec-economic-analysis-evaluation-25-pts" class="nav-link" data-scroll-target="#task-4-report-results-final-model-spec-economic-analysis-evaluation-25-pts">Task 4 — report results: final model spec, economic analysis &amp; evaluation (25 pts)</a></li>
+  <li><a href="#submit-your-answers" id="toc-submit-your-answers" class="nav-link" data-scroll-target="#submit-your-answers"><strong>Submit your answers</strong></a></li>
   </ul>
 </nav>
     </div>
@@ -212,7 +213,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-title">In-Class Exercise Sup 3</span></h1>
+<h1 class="title"><span class="chapter-title">In-Class Exercise Sup 4</span></h1>
 </div>
 
 
@@ -233,7 +234,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="learning-goals-40-min">Learning goals (40 min)</h2>
 <ul>
 <li>Fit a clear production model with meaningful regressors.</li>
-<li>Diagnose <strong>multicollinearity</strong> (VIF), <strong>autocorrelation</strong> (DW/BG &amp; residual ACF), and <strong>heteroskedasticity</strong> (BP/White).</li>
+<li>Diagnose <strong>multicollinearity</strong> (VIF), <strong>autocorrelation</strong> (DW/BG &amp; residual ACF), and <strong>heteroskedasticity</strong> (BP/White) and modify/refine the baseline model.</li>
 <li>Apply <strong>robust/HAC</strong> standard errors for valid inference.</li>
 <li>Communicate findings succinctly.</li>
 </ul>
@@ -254,6 +255,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="setup" class="level2">
 <h2 class="anchored" data-anchor-id="setup">Setup</h2>
+<p><strong>Data</strong>: The <code>rice</code> dataset contains a time series on rice production from Asian farms (1990-1997). Variables include: - <code>prod</code>: output (tons) - <code>area</code>: land (hectares) - <code>fert</code>: fertilizer (kg) - <code>labor</code>: labor hours (person-days)</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Packages (minimal)</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># install the following packages if needed.</span></span>
@@ -314,7 +316,7 @@ Tip
 </section>
 <section id="task-1-multicollinearity-25-pts" class="level2">
 <h2 class="anchored" data-anchor-id="task-1-multicollinearity-25-pts">Task 1 — Multicollinearity (25 pts)</h2>
-<p>Fit the <strong>baseline model</strong>: [ ]</p>
+<p>Fit the <strong>baseline model</strong> that you will need to <strong>modify/refine</strong> if needed: [ ]</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>m <span class="ot">&lt;-</span> <span class="fu">lm</span>(prod <span class="sc">~</span> area <span class="sc">+</span> fert <span class="sc">+</span> labor, <span class="at">data =</span> rice)</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -349,8 +351,8 @@ F-statistic:   564 on 3 and 348 DF,  p-value: &lt; 2.2e-16</code></pre>
 7.266083 3.736222 7.064198 </code></pre>
 </div>
 </div>
-<p><strong>Answer (brief):</strong><br>
-- Is collinearity acceptable? If not, suggest <em>econometric meaningful solutions</em> to high VIF (e.g., use intensity/ratio variables, interaction variables, logs, lags, etc). <em>(2–3 sentences.)</em></p>
+<p><strong>Answer (brief, 150 words max):</strong><br>
+1. State the VIF values and threshold used 2. Identify which variables show problematic collinearity 3. Suggest ONE specific econometric solution appropriate for this production function</p>
 <hr>
 </section>
 <section id="task-2-autocorrelation-25-pts" class="level2">
@@ -393,8 +395,8 @@ LM test = 3.711, df = 1, p-value = 0.05406</code></pre>
 </div>
 </div>
 </div>
-<p><strong>Answer (brief):</strong><br>
-- Do tests indicate autocorrelation? Which sign? What does the residual <strong>ACF</strong> suggest (e.g., AR(1)-type)? How did you fix the issue of autocorrelation?</p>
+<p><strong>Answer (brief, 150 words max):</strong><br>
+- Do tests indicate autocorrelation? Which sign? did you modify/refine the model? - What does the residual <strong>ACF</strong> suggest (e.g., AR(1)-type)? How would you address the issue for inference?</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -413,8 +415,8 @@ Tip
 </div>
 <hr>
 </section>
-<section id="task-4-heteroskedasticity-robusthac-se-25-pts" class="level2">
-<h2 class="anchored" data-anchor-id="task-4-heteroskedasticity-robusthac-se-25-pts">Task 4 — Heteroskedasticity &amp; Robust/HAC SE (25 pts)</h2>
+<section id="task-3-heteroskedasticity-robusthac-se-25-pts" class="level2">
+<h2 class="anchored" data-anchor-id="task-3-heteroskedasticity-robusthac-se-25-pts">Task 3 — Heteroskedasticity &amp; Robust/HAC SE (25 pts)</h2>
 <ol type="1">
 <li>Test for heteroskedasticity: <strong>Breusch–Pagan</strong> and a <strong>White-style</strong> auxiliary test.<br>
 </li>
@@ -460,8 +462,10 @@ labor        0.0275053  0.0059720  4.6057 5.774e-06 ***
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co">#**White test specification**: The `~ fit + I(fit^2)` is one </span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="co"># version; this is a simplified White test.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p><strong>Answer (brief):</strong><br>
+<p><strong>Answer (brief, 150 words max):</strong><br>
 - Are BP/White significant? Compare classical vs HAC p-values: which coefficients remain significant?</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
@@ -481,9 +485,19 @@ Tip
 </div>
 <hr>
 </section>
-<section id="task-5-report-results-final-model-spec-economic-analysis-evaluation-5-min-8-pts" class="level2">
-<h2 class="anchored" data-anchor-id="task-5-report-results-final-model-spec-economic-analysis-evaluation-5-min-8-pts">Task 5 — report results: final model spec, economic analysis &amp; evaluation (≈5 min, 8 pts)</h2>
-<p>Summarise: - Your best/final model specification, key diagnostic issues you found (which tests, what they showed), The remedies you applied (variable re-definition, HAC). Why your final inference is valid for decision-making, results analysis and evaluation.</p>
+<section id="task-4-report-results-final-model-spec-economic-analysis-evaluation-25-pts" class="level2">
+<h2 class="anchored" data-anchor-id="task-4-report-results-final-model-spec-economic-analysis-evaluation-25-pts">Task 4 — report results: final model spec, economic analysis &amp; evaluation (25 pts)</h2>
+<p><strong>Summarise (250 words max) (25 pts):</strong> 1. Your best/final model specification (equation) 2. The key diagnostic issues you found (which tests, what they showed) 3. The remedies you applied (e.g.&nbsp;variable interactions, lags, HAC) 4. Why your final inference is valid for decision-making, results analysis and evaluation (brief economic interpretation).</p>
+<hr>
+</section>
+<section id="submit-your-answers" class="level2">
+<h2 class="anchored" data-anchor-id="submit-your-answers"><strong>Submit your answers</strong></h2>
+<p>Please submit your completed answers using the embedded form below 👇 If the form does not display correctly, you can open it directly using this link:<br>
+👉 <a href="https://forms.office.com/Pages/ResponsePage.aspx?id=RQSlSfq9eUut41R7TzmG6e2v58mrCWNIjQV8bfnU-6tUOThTQVBYTlBZSEpJWUxFNUpBNEw3MlA3Ui4u">Open Microsoft Form</a></p>
+<div style="margin-top: 1em; margin-bottom: 1em;">
+<iframe width="640px" height="480px" src="https://forms.office.com/Pages/ResponsePage.aspx?id=RQSlSfq9eUut41R7TzmG6e2v58mrCWNIjQV8bfnU-6tUOThTQVBYTlBZSEpJWUxFNUpBNEw3MlA3Ui4u&amp;embed=true" frameborder="0" marginwidth="0" marginheight="0" style="border: none; max-width:100%; max-height:100vh;" allowfullscreen="" webkitallowfullscreen="" mozallowfullscreen="" msallowfullscreen="">
+</iframe>
+</div>
 <hr>
 
 
