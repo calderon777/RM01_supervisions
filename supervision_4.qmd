@@ -153,8 +153,15 @@ plot(food$income, food$food_exp,             # scatterplot of income vs. food ex
      pch = 19, col = "grey")                 # filled points, grey color
 abline(mod1, lwd = 2)                        # add fitted regression line with thicker stroke
 ```
+---
 
 ### Spotting heteroskedasticity with residual plots
+
+Residual plots help detect heteroskedasticity visually. Under homoskedasticity, residuals should scatter randomly around zero with constant spread. Look for:
+
+- Fanning patterns: residuals spread out (or narrow) as x increases
+- Clusters or groups: different variance across subpopulations
+- Non-random patterns: suggests model misspecification
 
 ```{r}
 res  <- residuals(mod1)          # residuals (observed - fitted)
@@ -175,6 +182,16 @@ abline(h = 0, lty = 2)           # reference line at zero residual
 ```
 
 ### Breusch–Pagan test (manual construction)
+The Breusch–Pagan test is a formal test for heteroskedasticity. The null hypothesis is $H_0:$ $\text{homoskedasticity (constant variance)}$.
+
+Test statistic: $\chi^2 = N \cdot R^2_{\text{aux}}$ <br>
+
+where $R^2_{\text{aux}}$ comes from regressing **squared residuals** on the original regressors:
+
+$\hat{e}_i^{\,2}
+= \gamma_0 + \gamma_1 x_{i1} + \gamma_2 x_{i2} + \cdots + \gamma_k x_{ik} + \text{error}$ <br>
+
+Under $H_0$,  $\chi^2 \sim \chi^2_k$ (k = number of regressors, excluding intercept).
 
 ```{r}
 alpha <- 0.05                              # significance level (5%)
@@ -195,16 +212,49 @@ pval   <- 1 - pchisq(chisq, S)              # p-value (probability of observing 
 c(statistic = chisq, crit = chisqcr, p.value = pval)   # show results: test statistic, critical value, p-value
 ```
 
+::: callout-note
+## Interpreting the Breusch–Pagan test
+
+**Decision rule:**
+- If **p-value < 0.05** (or your chosen $\alpha$): reject $H_0$ → evidence against homoskedasticity (i.e., evidence of heteroskedasticity)
+- If **p-value ≥ 0.05**: fail to reject $H_0$ → no strong evidence of heteroskedasticity
+
+Alternatively, compare the test statistic to the critical value:
+- If **$\chi^2$ > critical value**: reject $H_0$
+- If **$\chi^2$ ≤ critical value**: fail to reject $H_0$
+
+In this example, if p-value is small (< 0.05), we have evidence that variance increases with income.
+:::
+
+
 ### White (quadratic) version
 
+White's test extends Breusch–Pagan by including squares and cross-products of regressors in the auxiliary regression. This detects more general forms of heteroskedasticity (not just linear).
+For a model with one regressor $x$:
+
+$\hat{e}_i^{\,2} = \gamma_0 + \gamma_1 x_{i1} + \gamma_2 x^2_{i2} + \text{error}$
+
+Test statistic: $\chi^2 = N \cdot R^2_{\text{aux}}$ ∼ $\chi^2_k$, where $k$ is the number of regressors in the auxiliary regression (excluding the intercept).
+
 ```{r}
-modres2 <- lm(ressq ~ income + I(income^2), data = food)   # auxiliary regression with quadratic term (tests nonlinear heteroskedasticity)
-Rsq2 <- summary(modres2)$r.squared                         # R² from auxiliary regression
-S2   <- summary(modres2)$df[2]                             # degrees of freedom (number of regressors)
-chisq2 <- N * Rsq2                                         # Breusch–Pagan-type chi-square statistic
-pval2  <- 1 - pchisq(chisq2, S2)                           # p-value (right-tail)
+# auxiliary regression with quadratic term (tests nonlinear heteroskedasticity)
+modres2 <- lm(ressq ~ income + I(income^2), data = food)    
+Rsq2 <- summary(modres2)$r.squared          # R² from auxiliary regression
+S2   <- summary(modres2)$df[2]              # degrees of freedom (number of regressors)
+chisq2 <- N * Rsq2                          # Breusch–Pagan-type chi-square statistic
+pval2  <- 1 - pchisq(chisq2, S2)            # p-value (right-tail)
 c(statistic = chisq2, df = S2, p.value = pval2)            # show results
 ```
+
+::: callout-note
+## Interpreting White's test
+
+**Decision rule:**
+- If **p-value < 0.05**: reject $H_0$ → evidence of heteroskedasticity (possibly nonlinear)
+- If **p-value ≥ 0.05**: fail to reject $H_0$ → no strong evidence
+
+White's test is more general than Breusch–Pagan (detects nonlinear heteroskedasticity) but uses more degrees of freedom. In small samples, use Breusch–Pagan if you suspect linear heteroskedasticity, or White if you suspect more complex patterns.
+:::
 
 ### Breusch–Pagan with `bptest()`
 
@@ -214,7 +264,28 @@ c(statistic = chisq2, df = S2, p.value = pval2)            # show results
 kable(tidy(bptest(mod1)), caption = "Breusch–Pagan heteroskedasticity test")   
 ```
 
+::: callout-note
+## Interpreting `bptest()` output
+
+The `bptest()` function reports:
+- **statistic**: the BP test statistic (approximately $\chi^2$ distributed)
+- **p.value**: probability of observing this statistic under $H_0$
+- **parameter**: degrees of freedom
+
+**Decision:** If p-value < 0.05, reject homoskedasticity and consider using robust standard errors.
+:::
+
 ### Goldfeld–Quandt test (indicator split: metro vs rural)
+
+Tests whether error variance differs between two subgroups. Split the sample by a grouping variable or by ordering observations (e.g., by income level).
+
+**Test statistic:**  
+$F = \dfrac{\hat{\sigma}_1^{\,2}}{\hat{\sigma}_2^{\,2}}$ <br>
+
+where $\hat{\sigma}_1^{\,2}$ and $\hat{\sigma}_2^{\,2}$ are estimated error variances from each subsample.
+
+Under $H_0$ (equal variances),  
+$F \sim F_{df_1, df_2}$.
 
 ```{r}
 alpha <- 0.05                           # significance level (5%)
@@ -239,6 +310,19 @@ Fuc <- qf(1 - alpha/2, df1, df0)         # upper critical value (two-tail test)
 
 c(F = fstat, Flc = Flc, Fuc = Fuc)       # display F statistic and critical bounds
 ```
+
+::: callout-note
+## Interpreting the Goldfeld–Quandt test
+
+**Decision rule (two-tailed test):**
+- If $F <$ lower critical value OR $F >$ upper critical value: reject $H_0$ → variances differ
+- If $F$ lies between the two critical values: fail to reject $H_0$
+
+**Decision rule (one-tailed test):**
+- If $F >$ upper critical value (or p-value < 0.05): reject $H_0$ → variance in group 1 is larger
+
+In this metro vs. rural example, a significant F-statistic suggests systematic differences in wage variance between regions.
+:::
 
 Goldfeld–Quandt without an indicator (split by median income):
 
@@ -267,6 +351,17 @@ pval  <- 1 - pf(fstat, dfhi, dfli)              # p-value
 c(F = fstat, Fcrit = Fc, p.value = pval)        # display test statistic, critical value, and p-value
 ```
 
+::: callout-note
+## Interpreting the GQ test (one-tailed)
+
+**Decision rule:**
+- If **p-value < 0.05**: reject $H_0$ → variance increases with income
+- If **F > critical value**: reject $H_0$
+
+This version tests whether high-income households have **more variable** food expenditure than low-income households.
+:::
+
+
 Or use `gqtest()` directly:
 
 ```{r}
@@ -285,7 +380,31 @@ kable(tidy(tst),
       caption = "R function `gqtest()` with the 'food' equation")
 ```
 
+::: callout-note
+## Interpreting `gqtest()` output
+
+The function reports:
+- **statistic**: F-ratio comparing variances
+- **p.value**: one-tailed (tests "greater" alternative by default)
+- **parameter**: degrees of freedom for numerator and denominator
+
+**Decision:** If p-value < 0.05, conclude that variance is significantly larger in the upper group (heteroskedasticity present).
+
+**Note:** `point = 0.5` means observations are split around the median. Adjust this parameter if you want to drop more/fewer central observations.
+:::
+
 ### Heteroskedasticity‑consistent (HC) standard errors
+
+Heteroskedasticity-consistent (robust) standard errors
+When heteroskedasticity is detected, one solution is to use robust standard errors (also called White standard errors or HC standard errors). These adjust the variance-covariance matrix to account for non-constant variance without changing the coefficient estimates.
+
+Key types:
+
+HC0: White's original estimator
+HC1: degrees-of-freedom adjustment (recommended for small samples)
+HC2, HC3: further refinements for leverage and influence
+
+The OLS point estimates remain unchanged—only the standard errors (and thus t-statistics and p-values) are corrected.
 
 ```{r}
 foodeq <- lm(food_exp ~ income, data = food)          # baseline regression
@@ -297,7 +416,6 @@ food.HC1 <- lmtest::coeftest(foodeq, vcov. = cov1)    # apply robust SEs to regr
 
 kable(tidy(food.HC1),                                 # show coefficients with robust SEs
       caption = "Robust (HC1) standard errors in the 'food' equation")
-
 ```
 
 ::: callout-important
