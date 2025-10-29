@@ -424,7 +424,6 @@ Robust (HC) errors **fix inference** under heteroskedasticity, but the **point e
 
 ---
 
-
 ### Summary
 - You applied the technique in R, produced tidy outputs, and interpreted them in context.
 - Keep focusing on clean tables, explicit assumptions, and diagnostics that justify your specification.
