@@ -320,23 +320,29 @@ window.Quarto = {
 <h3 class="anchored" data-anchor-id="packages">🧰 Packages</h3>
 <p><code>PoEdata</code>, <code>broom</code>, <code>knitr</code>, <code>car</code></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages(c("PoEdata","broom","knitr","car"))  # if needed</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(PoEdata); <span class="fu">library</span>(broom); <span class="fu">library</span>(knitr); <span class="fu">library</span>(car)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages(c("PoEdata","broom","knitr","car")) ; install once if not already installed</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(PoEdata)  <span class="co"># example datasets used in the course</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(broom)    <span class="co"># tidier model outputs (tidy/glance/augment)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning: package 'broom' was built under R version 4.4.3</code></pre>
 </div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(knitr)    <span class="co"># neat tables/printing (e.g., kable)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning: package 'knitr' was built under R version 4.4.3</code></pre>
 </div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(car)      <span class="co"># regression diagnostics (e.g., VIF)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Loading required package: carData</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example data: cars (mpg = miles per gallon; cyl = cylinders; disp = engine displacement; wt = weight)</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(mtcars)</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Simple model</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>mod1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(mpg <span class="sc">~</span> cyl, <span class="at">data =</span> mtcars)</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(<span class="fu">tidy</span>(mod1), <span class="at">caption =</span> <span class="st">"A simple linear 'mpg' model"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example data: cars (mpg = miles per gallon; cyl = cylinders; disp = engine displacement; wt = weight)</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(mtcars)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Simple model</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="co"># fit a linear regression: mpg explained by cylinders</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>mod1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(mpg <span class="sc">~</span> cyl, <span class="at">data =</span> mtcars)</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="co"># convert model output to a neat table (broom::tidy + knitr::kable)</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(<span class="fu">tidy</span>(mod1), <span class="at">caption =</span> <span class="st">"A simple linear 'mpg' model"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <table class="caption-top table table-sm table-striped small">
 <caption>A simple linear ‘mpg’ model</caption>
@@ -370,8 +376,10 @@ window.Quarto = {
 </div>
 <p>Now add more regressors:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>mod2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(mpg <span class="sc">~</span> cyl <span class="sc">+</span> disp <span class="sc">+</span> wt, <span class="at">data =</span> mtcars)</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(<span class="fu">tidy</span>(mod2), <span class="at">caption =</span> <span class="st">"Multivariate 'mpg' model"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># fit a multiple regression with 3 predictors (cyl, disp, wt)</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>mod2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(mpg <span class="sc">~</span> cyl <span class="sc">+</span> disp <span class="sc">+</span> wt, <span class="at">data =</span> mtcars)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co"># format the model output into a clean table</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(<span class="fu">tidy</span>(mod2), <span class="at">caption =</span> <span class="st">"Multivariate 'mpg' model"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <table class="caption-top table table-sm table-striped small">
 <caption>Multivariate ‘mpg’ model</caption>
@@ -435,9 +443,11 @@ Note
 <h3 class="anchored" data-anchor-id="variance-inflation-factor-vif">Variance Inflation Factor (VIF)</h3>
 <p>The VIF for regressor <span class="math inline">\(x_k\)</span> is <span class="math inline">\(VIF_k = \dfrac{1}{1-R_k^2}\)</span>, where <span class="math inline">\(R_k^2\)</span> is from regressing <span class="math inline">\(x_k\)</span> on the other regressors.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>v <span class="ot">&lt;-</span> car<span class="sc">::</span><span class="fu">vif</span>(mod2)</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>tab <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">regressor =</span> <span class="fu">names</span>(v), <span class="at">VIF =</span> <span class="fu">as.numeric</span>(v), <span class="at">row.names =</span> <span class="cn">NULL</span>)</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(tab, <span class="at">caption =</span> <span class="st">"Variance inflation factors for the 'mpg' regression model."</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>v <span class="ot">&lt;-</span> car<span class="sc">::</span><span class="fu">vif</span>(mod2)                           <span class="co"># calculate VIF values to diagnose multicollinearity</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>tab <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">regressor =</span> <span class="fu">names</span>(v),       <span class="co"># create a small table with regressor names</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>                  <span class="at">VIF =</span> <span class="fu">as.numeric</span>(v),        <span class="co"># convert VIF values to numeric for display</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>                  <span class="at">row.names =</span> <span class="cn">NULL</span>)           <span class="co"># avoid row names in the table</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(tab, <span class="at">caption =</span> <span class="st">"Variance inflation factors for the 'mpg' regression model."</span>)  <span class="co"># nicely format output</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <table class="caption-top table table-sm table-striped small">
 <caption>Variance inflation factors for the ‘mpg’ regression model.</caption>
@@ -537,8 +547,9 @@ Tip
 <h3 class="anchored" data-anchor-id="packages-1">🧰 Packages</h3>
 <p><code>lmtest</code>, <code>broom</code>, <code>PoEdata</code>, <code>car</code>, <code>sandwich</code>, <code>knitr</code></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages(c("lmtest","broom","PoEdata","car","sandwich","knitr"))  # if needed</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lmtest); <span class="fu">library</span>(broom); <span class="fu">library</span>(PoEdata); <span class="fu">library</span>(car); <span class="fu">library</span>(sandwich); <span class="fu">library</span>(knitr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages(c("lmtest","broom","PoEdata","car","sandwich","knitr"))  # install once if needed</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lmtest)    <span class="co"># tests for regression models (e.g., Breusch-Pagan)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Loading required package: zoo</code></pre>
 </div>
@@ -554,12 +565,20 @@ Attaching package: 'zoo'</code></pre>
 
     as.Date, as.Date.numeric</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">"food"</span>, <span class="at">package=</span><span class="st">"PoEdata"</span>)</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>mod1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(food_exp <span class="sc">~</span> income, <span class="at">data =</span> food)</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Scatter and fitted line</span></span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(food<span class="sc">$</span>income, food<span class="sc">$</span>food_exp, <span class="at">xlab=</span><span class="st">"income"</span>, <span class="at">ylab=</span><span class="st">"food expenditure"</span>, <span class="at">pch=</span><span class="dv">19</span>, <span class="at">col=</span><span class="st">"grey"</span>)</span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(mod1, <span class="at">lwd=</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(broom)     <span class="co"># tidy/glance/augment model outputs</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(PoEdata)   <span class="co"># course datasets</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(car)       <span class="co"># diagnostics (e.g., VIF)</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sandwich)  <span class="co"># robust (heteroskedasticity-consistent) SEs</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(knitr)     <span class="co"># neat tables (kable)</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">"food"</span>, <span class="at">package =</span> <span class="st">"PoEdata"</span>)            <span class="co"># load the 'food' dataset</span></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>mod1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(food_exp <span class="sc">~</span> income, <span class="at">data =</span> food)   <span class="co"># simple OLS: food expenditure explained by income</span></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Scatter and fitted line</span></span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(food<span class="sc">$</span>income, food<span class="sc">$</span>food_exp,             <span class="co"># scatterplot of income vs. food expenditure</span></span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">"income"</span>, <span class="at">ylab =</span> <span class="st">"food expenditure"</span>,</span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>     <span class="at">pch =</span> <span class="dv">19</span>, <span class="at">col =</span> <span class="st">"grey"</span>)                 <span class="co"># filled points, grey color</span></span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(mod1, <span class="at">lwd =</span> <span class="dv">2</span>)                        <span class="co"># add fitted regression line with thicker stroke</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -572,9 +591,14 @@ Attaching package: 'zoo'</code></pre>
 <section id="spotting-heteroskedasticity-with-residual-plots" class="level3">
 <h3 class="anchored" data-anchor-id="spotting-heteroskedasticity-with-residual-plots">Spotting heteroskedasticity with residual plots</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>res <span class="ot">&lt;-</span> <span class="fu">residuals</span>(mod1); yhat <span class="ot">&lt;-</span> <span class="fu">fitted</span>(mod1)</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(food<span class="sc">$</span>income, res, <span class="at">xlab=</span><span class="st">"income"</span>, <span class="at">ylab=</span><span class="st">"residuals"</span>, <span class="at">pch=</span><span class="dv">19</span>, <span class="at">col=</span><span class="st">"grey"</span>)</span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h=</span><span class="dv">0</span>, <span class="at">lty=</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>res  <span class="ot">&lt;-</span> <span class="fu">residuals</span>(mod1)          <span class="co"># residuals (observed - fitted)</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>yhat <span class="ot">&lt;-</span> <span class="fu">fitted</span>(mod1)             <span class="co"># fitted (predicted) values from the model</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Residuals vs. income (check for nonlinearity or changing spread with income)</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(food<span class="sc">$</span>income, res,</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">"income"</span>, <span class="at">ylab =</span> <span class="st">"residuals"</span>,</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>     <span class="at">pch =</span> <span class="dv">19</span>, <span class="at">col =</span> <span class="st">"grey"</span>)</span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h =</span> <span class="dv">0</span>, <span class="at">lty =</span> <span class="dv">2</span>)           <span class="co"># reference line at zero residual</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -582,8 +606,11 @@ Attaching package: 'zoo'</code></pre>
 </figure>
 </div>
 </div>
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(yhat, res, <span class="at">xlab=</span><span class="st">"fitted values"</span>, <span class="at">ylab=</span><span class="st">"residuals"</span>, <span class="at">pch=</span><span class="dv">19</span>, <span class="at">col=</span><span class="st">"grey"</span>)</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h=</span><span class="dv">0</span>, <span class="at">lty=</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Residuals vs. fitted values (diagnose heteroskedasticity/patterns)</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(yhat, res,</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">"fitted values"</span>, <span class="at">ylab =</span> <span class="st">"residuals"</span>,</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>     <span class="at">pch =</span> <span class="dv">19</span>, <span class="at">col =</span> <span class="st">"grey"</span>)</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h =</span> <span class="dv">0</span>, <span class="at">lty =</span> <span class="dv">2</span>)           <span class="co"># reference line at zero residual</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -596,16 +623,22 @@ Attaching package: 'zoo'</code></pre>
 <section id="breuschpagan-test-manual-construction" class="level3">
 <h3 class="anchored" data-anchor-id="breuschpagan-test-manual-construction">Breusch–Pagan test (manual construction)</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>alpha <span class="ot">&lt;-</span> <span class="fl">0.05</span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>ressq <span class="ot">&lt;-</span> <span class="fu">resid</span>(mod1)<span class="sc">^</span><span class="dv">2</span></span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>modres <span class="ot">&lt;-</span> <span class="fu">lm</span>(ressq <span class="sc">~</span> income, <span class="at">data =</span> food)       <span class="co"># auxiliary regression</span></span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>N <span class="ot">&lt;-</span> <span class="fu">nobs</span>(modres)</span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>S <span class="ot">&lt;-</span> <span class="fu">summary</span>(modres)<span class="sc">$</span>df[<span class="dv">2</span>]                       <span class="co"># df for regression (k)</span></span>
-<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>chisqcr <span class="ot">&lt;-</span> <span class="fu">qchisq</span>(<span class="dv">1</span> <span class="sc">-</span> alpha, S)                  <span class="co"># critical value (right-tail)</span></span>
-<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>Rsqres <span class="ot">&lt;-</span> <span class="fu">summary</span>(modres)<span class="sc">$</span>r.squared</span>
-<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>chisq <span class="ot">&lt;-</span> N <span class="sc">*</span> Rsqres</span>
-<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>pval <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">-</span> <span class="fu">pchisq</span>(chisq, S)</span>
-<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="at">statistic =</span> chisq, <span class="at">crit =</span> chisqcr, <span class="at">p.value =</span> pval)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>alpha <span class="ot">&lt;-</span> <span class="fl">0.05</span>                              <span class="co"># significance level (5%)</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>ressq <span class="ot">&lt;-</span> <span class="fu">resid</span>(mod1)<span class="sc">^</span><span class="dv">2</span>                     <span class="co"># squared residuals (used to detect heteroskedasticity)</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>modres <span class="ot">&lt;-</span> <span class="fu">lm</span>(ressq <span class="sc">~</span> income, <span class="at">data =</span> food)  <span class="co"># auxiliary regression: regress squared residuals on income</span></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>N <span class="ot">&lt;-</span> <span class="fu">nobs</span>(modres)                           <span class="co"># number of observations</span></span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>S <span class="ot">&lt;-</span> <span class="fu">summary</span>(modres)<span class="sc">$</span>df[<span class="dv">2</span>]                  <span class="co"># degrees of freedom for regression (k = number of predictors)</span></span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>chisqcr <span class="ot">&lt;-</span> <span class="fu">qchisq</span>(<span class="dv">1</span> <span class="sc">-</span> alpha, S)             <span class="co"># chi-square critical value (right tail)</span></span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a>Rsqres <span class="ot">&lt;-</span> <span class="fu">summary</span>(modres)<span class="sc">$</span>r.squared         <span class="co"># R² from auxiliary regression</span></span>
+<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a>chisq  <span class="ot">&lt;-</span> N <span class="sc">*</span> Rsqres                        <span class="co"># Breusch–Pagan test statistic</span></span>
+<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a>pval   <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">-</span> <span class="fu">pchisq</span>(chisq, S)              <span class="co"># p-value (probability of observing that statistic or larger)</span></span>
+<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="at">statistic =</span> chisq, <span class="at">crit =</span> chisqcr, <span class="at">p.value =</span> pval)   <span class="co"># show results: test statistic, critical value, p-value</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>statistic      crit   p.value 
  7.384424 53.383541  1.000000 </code></pre>
@@ -615,12 +648,12 @@ Attaching package: 'zoo'</code></pre>
 <section id="white-quadratic-version" class="level3">
 <h3 class="anchored" data-anchor-id="white-quadratic-version">White (quadratic) version</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>modres2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(ressq <span class="sc">~</span> income <span class="sc">+</span> <span class="fu">I</span>(income<span class="sc">^</span><span class="dv">2</span>), <span class="at">data =</span> food)</span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>Rsq2 <span class="ot">&lt;-</span> <span class="fu">summary</span>(modres2)<span class="sc">$</span>r.squared</span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>S2 <span class="ot">&lt;-</span> <span class="fu">summary</span>(modres2)<span class="sc">$</span>df[<span class="dv">2</span>]</span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>chisq2 <span class="ot">&lt;-</span> N <span class="sc">*</span> Rsq2</span>
-<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>pval2 <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">-</span> <span class="fu">pchisq</span>(chisq2, S2)</span>
-<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="at">statistic =</span> chisq2, <span class="at">df =</span> S2, <span class="at">p.value =</span> pval2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>modres2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(ressq <span class="sc">~</span> income <span class="sc">+</span> <span class="fu">I</span>(income<span class="sc">^</span><span class="dv">2</span>), <span class="at">data =</span> food)   <span class="co"># auxiliary regression with quadratic term (tests nonlinear heteroskedasticity)</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>Rsq2 <span class="ot">&lt;-</span> <span class="fu">summary</span>(modres2)<span class="sc">$</span>r.squared                         <span class="co"># R² from auxiliary regression</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>S2   <span class="ot">&lt;-</span> <span class="fu">summary</span>(modres2)<span class="sc">$</span>df[<span class="dv">2</span>]                             <span class="co"># degrees of freedom (number of regressors)</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>chisq2 <span class="ot">&lt;-</span> N <span class="sc">*</span> Rsq2                                         <span class="co"># Breusch–Pagan-type chi-square statistic</span></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>pval2  <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">-</span> <span class="fu">pchisq</span>(chisq2, S2)                           <span class="co"># p-value (right-tail)</span></span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="at">statistic =</span> chisq2, <span class="at">df =</span> S2, <span class="at">p.value =</span> pval2)            <span class="co"># show results</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>statistic        df   p.value 
  7.555079 37.000000  1.000000 </code></pre>
@@ -630,7 +663,9 @@ Attaching package: 'zoo'</code></pre>
 <section id="breuschpagan-with-bptest" class="level3">
 <h3 class="anchored" data-anchor-id="breuschpagan-with-bptest">Breusch–Pagan with <code>bptest()</code></h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(<span class="fu">tidy</span>(<span class="fu">bptest</span>(mod1)), <span class="at">caption =</span> <span class="st">"Breusch–Pagan heteroskedasticity test"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># run Breusch–Pagan test and tidy the output</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="co"># display results as a formatted table</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(<span class="fu">tidy</span>(<span class="fu">bptest</span>(mod1)), <span class="at">caption =</span> <span class="st">"Breusch–Pagan heteroskedasticity test"</span>)   </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <table class="caption-top table table-sm table-striped small">
 <caption>Breusch–Pagan heteroskedasticity test</caption>
@@ -657,19 +692,27 @@ Attaching package: 'zoo'</code></pre>
 <section id="goldfeldquandt-test-indicator-split-metro-vs-rural" class="level3">
 <h3 class="anchored" data-anchor-id="goldfeldquandt-test-indicator-split-metro-vs-rural">Goldfeld–Quandt test (indicator split: metro vs rural)</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>alpha <span class="ot">&lt;-</span> <span class="fl">0.05</span></span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">"cps2"</span>, <span class="at">package=</span><span class="st">"PoEdata"</span>)</span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>m <span class="ot">&lt;-</span> cps2[cps2<span class="sc">$</span>metro<span class="sc">==</span><span class="dv">1</span>, ]</span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>r <span class="ot">&lt;-</span> cps2[cps2<span class="sc">$</span>metro<span class="sc">==</span><span class="dv">0</span>, ]</span>
-<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>wg1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(wage <span class="sc">~</span> educ <span class="sc">+</span> exper, <span class="at">data =</span> m)</span>
-<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>wg0 <span class="ot">&lt;-</span> <span class="fu">lm</span>(wage <span class="sc">~</span> educ <span class="sc">+</span> exper, <span class="at">data =</span> r)</span>
-<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>df1 <span class="ot">&lt;-</span> wg1<span class="sc">$</span>df.residual; df0 <span class="ot">&lt;-</span> wg0<span class="sc">$</span>df.residual</span>
-<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>sig1 <span class="ot">&lt;-</span> <span class="fu">summary</span>(wg1)<span class="sc">$</span>sigma<span class="sc">^</span><span class="dv">2</span>; sig0 <span class="ot">&lt;-</span> <span class="fu">summary</span>(wg0)<span class="sc">$</span>sigma<span class="sc">^</span><span class="dv">2</span></span>
-<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>fstat <span class="ot">&lt;-</span> sig1<span class="sc">/</span>sig0</span>
-<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a>Flc <span class="ot">&lt;-</span> <span class="fu">qf</span>(alpha<span class="sc">/</span><span class="dv">2</span>, df1, df0); Fuc <span class="ot">&lt;-</span> <span class="fu">qf</span>(<span class="dv">1</span><span class="sc">-</span>alpha<span class="sc">/</span><span class="dv">2</span>, df1, df0)</span>
-<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="at">F =</span> fstat, <span class="at">Flc =</span> Flc, <span class="at">Fuc =</span> Fuc)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>alpha <span class="ot">&lt;-</span> <span class="fl">0.05</span>                           <span class="co"># significance level (5%)</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">"cps2"</span>, <span class="at">package =</span> <span class="st">"PoEdata"</span>)       <span class="co"># load CPS dataset</span></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>m <span class="ot">&lt;-</span> cps2[cps2<span class="sc">$</span>metro <span class="sc">==</span> <span class="dv">1</span>, ]            <span class="co"># subset: people living in metropolitan areas</span></span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>r <span class="ot">&lt;-</span> cps2[cps2<span class="sc">$</span>metro <span class="sc">==</span> <span class="dv">0</span>, ]            <span class="co"># subset: people NOT living in metropolitan areas</span></span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>wg1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(wage <span class="sc">~</span> educ <span class="sc">+</span> exper, <span class="at">data =</span> m)           <span class="co"># regression for metro group</span></span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>wg0 <span class="ot">&lt;-</span> <span class="fu">lm</span>(wage <span class="sc">~</span> educ <span class="sc">+</span> exper, <span class="at">data =</span> r)           <span class="co"># regression for non-metro group</span></span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a>df1 <span class="ot">&lt;-</span> wg1<span class="sc">$</span>df.residual                   <span class="co"># residual degrees of freedom (metro model)</span></span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a>df0 <span class="ot">&lt;-</span> wg0<span class="sc">$</span>df.residual                   <span class="co"># residual degrees of freedom (non-metro model)</span></span>
+<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a>sig1 <span class="ot">&lt;-</span> <span class="fu">summary</span>(wg1)<span class="sc">$</span>sigma<span class="sc">^</span><span class="dv">2</span>             <span class="co"># estimated error variance metro</span></span>
+<span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a>sig0 <span class="ot">&lt;-</span> <span class="fu">summary</span>(wg0)<span class="sc">$</span>sigma<span class="sc">^</span><span class="dv">2</span>             <span class="co"># estimated error variance non-metro</span></span>
+<span id="cb23-15"><a href="#cb23-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-16"><a href="#cb23-16" aria-hidden="true" tabindex="-1"></a>fstat <span class="ot">&lt;-</span> sig1 <span class="sc">/</span> sig0                     <span class="co"># F-statistic: ratio of variances</span></span>
+<span id="cb23-17"><a href="#cb23-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-18"><a href="#cb23-18" aria-hidden="true" tabindex="-1"></a>Flc <span class="ot">&lt;-</span> <span class="fu">qf</span>(alpha<span class="sc">/</span><span class="dv">2</span>, df1, df0)             <span class="co"># lower critical value from F distribution</span></span>
+<span id="cb23-19"><a href="#cb23-19" aria-hidden="true" tabindex="-1"></a>Fuc <span class="ot">&lt;-</span> <span class="fu">qf</span>(<span class="dv">1</span> <span class="sc">-</span> alpha<span class="sc">/</span><span class="dv">2</span>, df1, df0)         <span class="co"># upper critical value (two-tail test)</span></span>
+<span id="cb23-20"><a href="#cb23-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-21"><a href="#cb23-21" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="at">F =</span> fstat, <span class="at">Flc =</span> Flc, <span class="at">Fuc =</span> Fuc)       <span class="co"># display F statistic and critical bounds</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>        F       Flc       Fuc 
 2.0877623 0.8051984 1.2617297 </code></pre>
@@ -677,21 +720,28 @@ Attaching package: 'zoo'</code></pre>
 </div>
 <p>Goldfeld–Quandt without an indicator (split by median income):</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>alpha <span class="ot">&lt;-</span> <span class="fl">0.05</span></span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>medianincome <span class="ot">&lt;-</span> <span class="fu">median</span>(food<span class="sc">$</span>income)</span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>li <span class="ot">&lt;-</span> food[food<span class="sc">$</span>income <span class="sc">&lt;=</span> medianincome, ]</span>
-<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>hi <span class="ot">&lt;-</span> food[food<span class="sc">$</span>income <span class="sc">&gt;=</span> medianincome, ]</span>
-<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>eqli <span class="ot">&lt;-</span> <span class="fu">lm</span>(food_exp <span class="sc">~</span> income, <span class="at">data =</span> li)</span>
-<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>eqhi <span class="ot">&lt;-</span> <span class="fu">lm</span>(food_exp <span class="sc">~</span> income, <span class="at">data =</span> hi)</span>
-<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>dfli <span class="ot">&lt;-</span> eqli<span class="sc">$</span>df.residual; dfhi <span class="ot">&lt;-</span> eqhi<span class="sc">$</span>df.residual</span>
-<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a>sqli <span class="ot">&lt;-</span> <span class="fu">summary</span>(eqli)<span class="sc">$</span>sigma<span class="sc">^</span><span class="dv">2</span>; sqhi <span class="ot">&lt;-</span> <span class="fu">summary</span>(eqhi)<span class="sc">$</span>sigma<span class="sc">^</span><span class="dv">2</span></span>
-<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a>fstat <span class="ot">&lt;-</span> sqhi<span class="sc">/</span>sqli</span>
-<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a>Fc <span class="ot">&lt;-</span> <span class="fu">qf</span>(<span class="dv">1</span> <span class="sc">-</span> alpha, dfhi, dfli)</span>
-<span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a>pval <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">-</span> <span class="fu">pf</span>(fstat, dfhi, dfli)</span>
-<span id="cb23-15"><a href="#cb23-15" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="at">F =</span> fstat, <span class="at">Fcrit =</span> Fc, <span class="at">p.value =</span> pval)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>alpha <span class="ot">&lt;-</span> <span class="fl">0.05</span>                                   <span class="co"># significance level (5%)</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>medianincome <span class="ot">&lt;-</span> <span class="fu">median</span>(food<span class="sc">$</span>income)             <span class="co"># compute median income</span></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Split sample into low-income and high-income groups</span></span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>li <span class="ot">&lt;-</span> food[food<span class="sc">$</span>income <span class="sc">&lt;=</span> medianincome, ]       <span class="co"># low-income group (&lt;= median)</span></span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>hi <span class="ot">&lt;-</span> food[food<span class="sc">$</span>income <span class="sc">&gt;=</span> medianincome, ]       <span class="co"># high-income group (&gt;= median)</span></span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit the same regression separately in each subgroup</span></span>
+<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a>eqli <span class="ot">&lt;-</span> <span class="fu">lm</span>(food_exp <span class="sc">~</span> income, <span class="at">data =</span> li)        <span class="co"># model for low-income group</span></span>
+<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a>eqhi <span class="ot">&lt;-</span> <span class="fu">lm</span>(food_exp <span class="sc">~</span> income, <span class="at">data =</span> hi)        <span class="co"># model for high-income group</span></span>
+<span id="cb25-12"><a href="#cb25-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-13"><a href="#cb25-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract degrees of freedom and residual variances</span></span>
+<span id="cb25-14"><a href="#cb25-14" aria-hidden="true" tabindex="-1"></a>dfli <span class="ot">&lt;-</span> eqli<span class="sc">$</span>df.residual; dfhi <span class="ot">&lt;-</span> eqhi<span class="sc">$</span>df.residual   <span class="co"># residual degrees of freedom</span></span>
+<span id="cb25-15"><a href="#cb25-15" aria-hidden="true" tabindex="-1"></a>sqli <span class="ot">&lt;-</span> <span class="fu">summary</span>(eqli)<span class="sc">$</span>sigma<span class="sc">^</span><span class="dv">2</span>; sqhi <span class="ot">&lt;-</span> <span class="fu">summary</span>(eqhi)<span class="sc">$</span>sigma<span class="sc">^</span><span class="dv">2</span>  <span class="co"># estimated error variances</span></span>
+<span id="cb25-16"><a href="#cb25-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-17"><a href="#cb25-17" aria-hidden="true" tabindex="-1"></a><span class="co"># F test comparing variances (heteroskedasticity between groups)</span></span>
+<span id="cb25-18"><a href="#cb25-18" aria-hidden="true" tabindex="-1"></a>fstat <span class="ot">&lt;-</span> sqhi <span class="sc">/</span> sqli                            <span class="co"># F statistic: ratio of variances</span></span>
+<span id="cb25-19"><a href="#cb25-19" aria-hidden="true" tabindex="-1"></a>Fc    <span class="ot">&lt;-</span> <span class="fu">qf</span>(<span class="dv">1</span> <span class="sc">-</span> alpha, dfhi, dfli)              <span class="co"># critical value (right-tail test)</span></span>
+<span id="cb25-20"><a href="#cb25-20" aria-hidden="true" tabindex="-1"></a>pval  <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">-</span> <span class="fu">pf</span>(fstat, dfhi, dfli)              <span class="co"># p-value</span></span>
+<span id="cb25-21"><a href="#cb25-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-22"><a href="#cb25-22" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="at">F =</span> fstat, <span class="at">Fcrit =</span> Fc, <span class="at">p.value =</span> pval)        <span class="co"># display test statistic, critical value, and p-value</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>         F      Fcrit    p.value 
 3.61475572 2.21719713 0.00459643 </code></pre>
@@ -699,9 +749,19 @@ Attaching package: 'zoo'</code></pre>
 </div>
 <p>Or use <code>gqtest()</code> directly:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>foodeq <span class="ot">&lt;-</span> <span class="fu">lm</span>(food_exp <span class="sc">~</span> income, <span class="at">data =</span> food)</span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>tst <span class="ot">&lt;-</span> lmtest<span class="sc">::</span><span class="fu">gqtest</span>(foodeq, <span class="at">point =</span> <span class="fl">0.5</span>, <span class="at">alternative =</span> <span class="st">"greater"</span>, <span class="at">order.by =</span> food<span class="sc">$</span>income)</span>
-<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(<span class="fu">tidy</span>(tst), <span class="at">caption =</span> <span class="st">"R function `gqtest()` with the 'food' equation"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>foodeq <span class="ot">&lt;-</span> <span class="fu">lm</span>(food_exp <span class="sc">~</span> income, <span class="at">data =</span> food)          <span class="co"># baseline OLS</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Goldfeld–Quandt test for heteroskedasticity:</span></span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a><span class="co"># - order.by = food$income: sort observations by income</span></span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a><span class="co"># - point = 0.5: split the sample around the middle (drops central portion)</span></span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a><span class="co"># - alternative = "greater": tests whether variance is larger in the upper group</span></span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>tst <span class="ot">&lt;-</span> lmtest<span class="sc">::</span><span class="fu">gqtest</span>(foodeq,</span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>                      <span class="at">point =</span> <span class="fl">0.5</span>,</span>
+<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a>                      <span class="at">alternative =</span> <span class="st">"greater"</span>,</span>
+<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a>                      <span class="at">order.by =</span> food<span class="sc">$</span>income)</span>
+<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a><span class="co"># tidy + nicely format test output</span></span>
+<span id="cb27-12"><a href="#cb27-12" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(<span class="fu">tidy</span>(tst),                              </span>
+<span id="cb27-13"><a href="#cb27-13" aria-hidden="true" tabindex="-1"></a>      <span class="at">caption =</span> <span class="st">"R function `gqtest()` with the 'food' equation"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Multiple parameters; naming those columns df1 and df2.</code></pre>
 </div>
@@ -743,8 +803,9 @@ Attaching package: 'zoo'</code></pre>
 <section id="heteroskedasticityconsistent-hc-standard-errors" class="level3">
 <h3 class="anchored" data-anchor-id="heteroskedasticityconsistent-hc-standard-errors">Heteroskedasticity‑consistent (HC) standard errors</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>foodeq <span class="ot">&lt;-</span> <span class="fu">lm</span>(food_exp <span class="sc">~</span> income, <span class="at">data =</span> food)</span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(<span class="fu">tidy</span>(foodeq), <span class="at">caption =</span> <span class="st">"Regular standard errors in the 'food' equation"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>foodeq <span class="ot">&lt;-</span> <span class="fu">lm</span>(food_exp <span class="sc">~</span> income, <span class="at">data =</span> food)          <span class="co"># baseline regression</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(<span class="fu">tidy</span>(foodeq),                                   <span class="co"># show coefficients with regular SEs</span></span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>      <span class="at">caption =</span> <span class="st">"Regular standard errors in the 'food' equation"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <table class="caption-top table table-sm table-striped small">
 <caption>Regular standard errors in the ‘food’ equation</caption>
@@ -775,9 +836,11 @@ Attaching package: 'zoo'</code></pre>
 </tbody>
 </table>
 </div>
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>cov1 <span class="ot">&lt;-</span> car<span class="sc">::</span><span class="fu">hccm</span>(foodeq, <span class="at">type =</span> <span class="st">"hc1"</span>)</span>
-<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>food.HC1 <span class="ot">&lt;-</span> lmtest<span class="sc">::</span><span class="fu">coeftest</span>(foodeq, <span class="at">vcov. =</span> cov1)</span>
-<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(<span class="fu">tidy</span>(food.HC1), <span class="at">caption =</span> <span class="st">"Robust (HC1) standard errors in the 'food' equation"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>cov1 <span class="ot">&lt;-</span> car<span class="sc">::</span><span class="fu">hccm</span>(foodeq, <span class="at">type =</span> <span class="st">"hc1"</span>)               <span class="co"># compute robust (HC1) covariance matrix</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>food.HC1 <span class="ot">&lt;-</span> lmtest<span class="sc">::</span><span class="fu">coeftest</span>(foodeq, <span class="at">vcov. =</span> cov1)    <span class="co"># apply robust SEs to regression output</span></span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(<span class="fu">tidy</span>(food.HC1),                                 <span class="co"># show coefficients with robust SEs</span></span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>      <span class="at">caption =</span> <span class="st">"Robust (HC1) standard errors in the 'food' equation"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <table class="caption-top table table-sm table-striped small">
 <caption>Robust (HC1) standard errors in the ‘food’ equation</caption>
@@ -864,10 +927,11 @@ Important
 <section id="example-growth-vs-unemployment-okuns-data" class="level3">
 <h3 class="anchored" data-anchor-id="example-growth-vs-unemployment-okuns-data">Example: growth vs unemployment (Okun’s data)</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">"okun"</span>, <span class="at">package=</span><span class="st">"PoEdata"</span>)</span>
-<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>okun.ts <span class="ot">&lt;-</span> <span class="fu">ts</span>(okun, <span class="at">start=</span><span class="fu">c</span>(<span class="dv">1948</span>,<span class="dv">1</span>), <span class="at">frequency=</span><span class="dv">4</span>)</span>
-<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(okun.ts[,<span class="st">"g"</span>], <span class="at">ylab=</span><span class="st">"growth"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">"okun"</span>, <span class="at">package =</span> <span class="st">"PoEdata"</span>)             <span class="co"># load Okun's law quarterly dataset</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>okun.ts <span class="ot">&lt;-</span> <span class="fu">ts</span>(okun, <span class="at">start =</span> <span class="fu">c</span>(<span class="dv">1948</span>, <span class="dv">1</span>), <span class="at">frequency =</span> <span class="dv">4</span>)  <span class="co"># convert to quarterly time-series object</span></span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot time series</span></span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(okun.ts[, <span class="st">"g"</span>], <span class="at">ylab =</span> <span class="st">"growth"</span>)         <span class="co"># real GDP growth over time</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -875,7 +939,7 @@ Important
 </figure>
 </div>
 </div>
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(okun.ts[,<span class="st">"u"</span>], <span class="at">ylab=</span><span class="st">"unemployment"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(okun.ts[, <span class="st">"u"</span>], <span class="at">ylab =</span> <span class="st">"unemployment"</span>)   <span class="co"># unemployment rate over time</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -883,9 +947,14 @@ Important
 </figure>
 </div>
 </div>
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Scatter with lags</span></span>
-<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>ggL1 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">g =</span> okun.ts[,<span class="st">"g"</span>], <span class="at">gL1 =</span> stats<span class="sc">::</span><span class="fu">lag</span>(okun.ts[,<span class="st">"g"</span>], <span class="sc">-</span><span class="dv">1</span>))</span>
-<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(ggL1); <span class="fu">abline</span>(<span class="at">h=</span><span class="fu">mean</span>(ggL1<span class="sc">$</span>gL1, <span class="at">na.rm=</span><span class="cn">TRUE</span>), <span class="at">v=</span><span class="fu">mean</span>(ggL1<span class="sc">$</span>g, <span class="at">na.rm=</span><span class="cn">TRUE</span>), <span class="at">lty=</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Scatter with lags/leads</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>ggL1 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">g   =</span> okun.ts[, <span class="st">"g"</span>],</span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">gL1 =</span> stats<span class="sc">::</span><span class="fu">lag</span>(okun.ts[, <span class="st">"g"</span>], <span class="sc">-</span><span class="dv">1</span>)        <span class="co"># lead by 1 quarter (stats::lag with -1 shifts forward)</span></span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(ggL1)                                    <span class="co"># scatter of g vs. g(+1)</span></span>
+<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h =</span> <span class="fu">mean</span>(ggL1<span class="sc">$</span>gL1, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),      <span class="co"># horizontal line at mean of g(+1)</span></span>
+<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">v =</span> <span class="fu">mean</span>(ggL1<span class="sc">$</span>g,   <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">lty =</span> <span class="dv">2</span>)       <span class="co"># vertical line at mean of g</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -893,8 +962,13 @@ Important
 </figure>
 </div>
 </div>
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>ggL2 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">g =</span> okun.ts[,<span class="st">"g"</span>], <span class="at">gL2 =</span> stats<span class="sc">::</span><span class="fu">lag</span>(okun.ts[,<span class="st">"g"</span>], <span class="sc">-</span><span class="dv">2</span>))</span>
-<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(ggL2); <span class="fu">abline</span>(<span class="at">h=</span><span class="fu">mean</span>(ggL2<span class="sc">$</span>gL2, <span class="at">na.rm=</span><span class="cn">TRUE</span>), <span class="at">v=</span><span class="fu">mean</span>(ggL2<span class="sc">$</span>g, <span class="at">na.rm=</span><span class="cn">TRUE</span>), <span class="at">lty=</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>ggL2 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">g   =</span> okun.ts[, <span class="st">"g"</span>],</span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">gL2 =</span> stats<span class="sc">::</span><span class="fu">lag</span>(okun.ts[, <span class="st">"g"</span>], <span class="sc">-</span><span class="dv">2</span>)        <span class="co"># lead by 2 quarters</span></span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(ggL2)                                    <span class="co"># scatter of g vs. g(+2)</span></span>
+<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h =</span> <span class="fu">mean</span>(ggL2<span class="sc">$</span>gL2, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">v =</span> <span class="fu">mean</span>(ggL2<span class="sc">$</span>g,   <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">lty =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -902,8 +976,8 @@ Important
 </figure>
 </div>
 </div>
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Correlogram</span></span>
-<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="fu">acf</span>(okun.ts[,<span class="st">"g"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Correlogram (autocorrelation function) for growth</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="fu">acf</span>(okun.ts[, <span class="st">"g"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -916,18 +990,18 @@ Important
 <section id="phillips-curve-example-and-bgdw-tests" class="level3">
 <h3 class="anchored" data-anchor-id="phillips-curve-example-and-bgdw-tests">Phillips curve example and BG/DW tests</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dynlm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dynlm)                                 <span class="co"># dynamic linear models for time series</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning: package 'dynlm' was built under R version 4.4.3</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">"phillips_aus"</span>, <span class="at">package=</span><span class="st">"PoEdata"</span>)</span>
-<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>phill.ts <span class="ot">&lt;-</span> <span class="fu">ts</span>(phillips_aus, <span class="at">start=</span><span class="fu">c</span>(<span class="dv">1987</span>,<span class="dv">1</span>), <span class="at">end=</span><span class="fu">c</span>(<span class="dv">2009</span>,<span class="dv">3</span>), <span class="at">frequency=</span><span class="dv">4</span>)</span>
-<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>inflation <span class="ot">&lt;-</span> phill.ts[,<span class="st">"inf"</span>]</span>
-<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>Du <span class="ot">&lt;-</span> <span class="fu">diff</span>(phill.ts[,<span class="st">"u"</span>])</span>
-<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a><span class="co"># FDL model: inf_t = beta1 + beta2 * diff(u_t) + e_t</span></span>
-<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a>phill.dyn <span class="ot">&lt;-</span> <span class="fu">dynlm</span>(inf <span class="sc">~</span> <span class="fu">diff</span>(u), <span class="at">data =</span> phill.ts)</span>
-<span id="cb36-8"><a href="#cb36-8" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(<span class="fu">tidy</span>(phill.dyn), <span class="at">caption=</span><span class="st">"Summary of the `phillips` model"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">"phillips_aus"</span>, <span class="at">package =</span> <span class="st">"PoEdata"</span>)      <span class="co"># Australian Phillips-curve data</span></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>phill.ts <span class="ot">&lt;-</span> <span class="fu">ts</span>(phillips_aus, <span class="at">start =</span> <span class="fu">c</span>(<span class="dv">1987</span>, <span class="dv">1</span>), <span class="at">end =</span> <span class="fu">c</span>(<span class="dv">2009</span>, <span class="dv">3</span>), <span class="at">frequency =</span> <span class="dv">4</span>)  <span class="co"># quarterly ts</span></span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>inflation <span class="ot">&lt;-</span> phill.ts[, <span class="st">"inf"</span>]                 <span class="co"># inflation series</span></span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>Du <span class="ot">&lt;-</span> <span class="fu">diff</span>(phill.ts[, <span class="st">"u"</span>])                    <span class="co"># change in unemployment (∆u_t)</span></span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a><span class="co"># FDL model: inf_t = β1 + β2 * ∆u_t + e_t</span></span>
+<span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a>phill.dyn <span class="ot">&lt;-</span> <span class="fu">dynlm</span>(inf <span class="sc">~</span> <span class="fu">diff</span>(u), <span class="at">data =</span> phill.ts)                 <span class="co"># regress inflation on ∆unemployment</span></span>
+<span id="cb38-8"><a href="#cb38-8" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(<span class="fu">tidy</span>(phill.dyn), <span class="at">caption =</span> <span class="st">"Summary of the `phillips` model"</span>)<span class="co"># tidy+format regression output</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning: The `tidy()` method for objects of class `dynlm` is not maintained by the broom team, and is only supported through the `lm` tidier method. Please be cautious in interpreting and reporting broom output.
 
@@ -963,9 +1037,9 @@ This warning is displayed once per session.</code></pre>
 </tbody>
 </table>
 </div>
-<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Residual plot and correlogram</span></span>
-<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>ehat <span class="ot">&lt;-</span> <span class="fu">resid</span>(phill.dyn)</span>
-<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(ehat); <span class="fu">abline</span>(<span class="at">h=</span><span class="dv">0</span>, <span class="at">lty=</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Residual plot and correlogram (check for serial correlation)</span></span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>ehat <span class="ot">&lt;-</span> <span class="fu">resid</span>(phill.dyn)                       <span class="co"># regression residuals</span></span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(ehat); <span class="fu">abline</span>(<span class="at">h =</span> <span class="dv">0</span>, <span class="at">lty =</span> <span class="dv">2</span>)             <span class="co"># residuals over time, zero reference</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -973,7 +1047,7 @@ This warning is displayed once per session.</code></pre>
 </figure>
 </div>
 </div>
-<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">acf</span>(ehat)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">acf</span>(ehat)                                      <span class="co"># ACF of residuals</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -984,24 +1058,28 @@ This warning is displayed once per session.</code></pre>
 </div>
 <p>Breusch–Godfrey tests (different orders/statistics):</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">NOTE</span><span class="co">: preserving your object names a, b, c, d and test types.</span></span>
-<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a><span class="co"># (We only use base::c() below to avoid masking by object 'c')</span></span>
-<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a><span class="co"># type="F" may be preferable in small samples</span></span>
-<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> lmtest<span class="sc">::</span><span class="fu">bgtest</span>(phill.dyn, <span class="at">order=</span><span class="dv">1</span>, <span class="at">type=</span><span class="st">"F"</span>,    <span class="at">fill=</span><span class="dv">0</span>)</span>
-<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> lmtest<span class="sc">::</span><span class="fu">bgtest</span>(phill.dyn, <span class="at">order=</span><span class="dv">1</span>, <span class="at">type=</span><span class="st">"F"</span>,    <span class="at">fill=</span><span class="cn">NA</span>)</span>
-<span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a>c <span class="ot">&lt;-</span> lmtest<span class="sc">::</span><span class="fu">bgtest</span>(phill.dyn, <span class="at">order=</span><span class="dv">4</span>, <span class="at">type=</span><span class="st">"Chisq"</span>,<span class="at">fill=</span><span class="dv">0</span>)</span>
-<span id="cb40-7"><a href="#cb40-7" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> lmtest<span class="sc">::</span><span class="fu">bgtest</span>(phill.dyn, <span class="at">order=</span><span class="dv">4</span>, <span class="at">type=</span><span class="st">"Chisq"</span>,<span class="at">fill=</span><span class="cn">NA</span>)</span>
-<span id="cb40-8"><a href="#cb40-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb40-9"><a href="#cb40-9" aria-hidden="true" tabindex="-1"></a>dfr <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb40-10"><a href="#cb40-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">Method    =</span> base<span class="sc">::</span><span class="fu">c</span>(<span class="st">"1, F, 0"</span>,<span class="st">"1, F, NA"</span>,<span class="st">"4, Chisq, 0"</span>,<span class="st">"4, Chisq, NA"</span>),</span>
-<span id="cb40-11"><a href="#cb40-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">Statistic =</span> base<span class="sc">::</span><span class="fu">c</span>(<span class="fu">unname</span>(a<span class="sc">$</span>statistic), <span class="fu">unname</span>(b<span class="sc">$</span>statistic), <span class="fu">unname</span>(c<span class="sc">$</span>statistic), <span class="fu">unname</span>(d<span class="sc">$</span>statistic)),</span>
-<span id="cb40-12"><a href="#cb40-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">Parameters=</span> base<span class="sc">::</span><span class="fu">c</span>(<span class="fu">sprintf</span>(<span class="st">"df1=%g, df2=%g"</span>, a<span class="sc">$</span>parameter[<span class="dv">1</span>], a<span class="sc">$</span>parameter[<span class="dv">2</span>]),</span>
-<span id="cb40-13"><a href="#cb40-13" aria-hidden="true" tabindex="-1"></a>                      <span class="fu">sprintf</span>(<span class="st">"df1=%g, df2=%g"</span>, b<span class="sc">$</span>parameter[<span class="dv">1</span>], b<span class="sc">$</span>parameter[<span class="dv">2</span>]),</span>
-<span id="cb40-14"><a href="#cb40-14" aria-hidden="true" tabindex="-1"></a>                      <span class="fu">sprintf</span>(<span class="st">"df=%g"</span>,          c<span class="sc">$</span>parameter),</span>
-<span id="cb40-15"><a href="#cb40-15" aria-hidden="true" tabindex="-1"></a>                      <span class="fu">sprintf</span>(<span class="st">"df=%g"</span>,          d<span class="sc">$</span>parameter)),</span>
-<span id="cb40-16"><a href="#cb40-16" aria-hidden="true" tabindex="-1"></a>  <span class="at">p_value   =</span> base<span class="sc">::</span><span class="fu">c</span>(a<span class="sc">$</span>p.value, b<span class="sc">$</span>p.value, c<span class="sc">$</span>p.value, d<span class="sc">$</span>p.value)</span>
-<span id="cb40-17"><a href="#cb40-17" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb40-18"><a href="#cb40-18" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(dfr, <span class="at">caption =</span> <span class="st">"Breusch–Godfrey test for the Phillips example."</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">NOTE</span><span class="co">: preserving your object names a, b, c, d and test types.</span></span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a><span class="co"># (We only use base::c() below to avoid masking by object 'c')</span></span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a><span class="co"># type = "F" can be preferable in small samples (finite-sample adjustment)</span></span>
+<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> lmtest<span class="sc">::</span><span class="fu">bgtest</span>(phill.dyn, <span class="at">order =</span> <span class="dv">1</span>, <span class="at">type =</span> <span class="st">"F"</span>,     <span class="at">fill =</span> <span class="dv">0</span>)   <span class="co"># BG test AR(1); replace initial NAs by 0</span></span>
+<span id="cb42-6"><a href="#cb42-6" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> lmtest<span class="sc">::</span><span class="fu">bgtest</span>(phill.dyn, <span class="at">order =</span> <span class="dv">1</span>, <span class="at">type =</span> <span class="st">"F"</span>,     <span class="at">fill =</span> <span class="cn">NA</span>)  <span class="co"># BG test AR(1); drop obs with initial NAs</span></span>
+<span id="cb42-7"><a href="#cb42-7" aria-hidden="true" tabindex="-1"></a>c <span class="ot">&lt;-</span> lmtest<span class="sc">::</span><span class="fu">bgtest</span>(phill.dyn, <span class="at">order =</span> <span class="dv">4</span>, <span class="at">type =</span> <span class="st">"Chisq"</span>, <span class="at">fill =</span> <span class="dv">0</span>)   <span class="co"># BG test AR(4); large-sample chi-square; fill 0</span></span>
+<span id="cb42-8"><a href="#cb42-8" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> lmtest<span class="sc">::</span><span class="fu">bgtest</span>(phill.dyn, <span class="at">order =</span> <span class="dv">4</span>, <span class="at">type =</span> <span class="st">"Chisq"</span>, <span class="at">fill =</span> <span class="cn">NA</span>)  <span class="co"># BG test AR(4); drop initial NAs</span></span>
+<span id="cb42-9"><a href="#cb42-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-10"><a href="#cb42-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Collect results into a neat table</span></span>
+<span id="cb42-11"><a href="#cb42-11" aria-hidden="true" tabindex="-1"></a>dfr <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb42-12"><a href="#cb42-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">Method     =</span> base<span class="sc">::</span><span class="fu">c</span>(<span class="st">"1, F, 0"</span>, <span class="st">"1, F, NA"</span>, <span class="st">"4, Chisq, 0"</span>, <span class="st">"4, Chisq, NA"</span>),</span>
+<span id="cb42-13"><a href="#cb42-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">Statistic  =</span> base<span class="sc">::</span><span class="fu">c</span>(<span class="fu">unname</span>(a<span class="sc">$</span>statistic), <span class="fu">unname</span>(b<span class="sc">$</span>statistic),</span>
+<span id="cb42-14"><a href="#cb42-14" aria-hidden="true" tabindex="-1"></a>                       <span class="fu">unname</span>(c<span class="sc">$</span>statistic), <span class="fu">unname</span>(d<span class="sc">$</span>statistic)),      <span class="co"># test statistic values</span></span>
+<span id="cb42-15"><a href="#cb42-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">Parameters =</span> base<span class="sc">::</span><span class="fu">c</span>(<span class="fu">sprintf</span>(<span class="st">"df1=%g, df2=%g"</span>, a<span class="sc">$</span>parameter[<span class="dv">1</span>], a<span class="sc">$</span>parameter[<span class="dv">2</span>]),</span>
+<span id="cb42-16"><a href="#cb42-16" aria-hidden="true" tabindex="-1"></a>                       <span class="fu">sprintf</span>(<span class="st">"df1=%g, df2=%g"</span>, b<span class="sc">$</span>parameter[<span class="dv">1</span>], b<span class="sc">$</span>parameter[<span class="dv">2</span>]),</span>
+<span id="cb42-17"><a href="#cb42-17" aria-hidden="true" tabindex="-1"></a>                       <span class="fu">sprintf</span>(<span class="st">"df=%g"</span>,          c<span class="sc">$</span>parameter),          <span class="co"># chi-square df</span></span>
+<span id="cb42-18"><a href="#cb42-18" aria-hidden="true" tabindex="-1"></a>                       <span class="fu">sprintf</span>(<span class="st">"df=%g"</span>,          d<span class="sc">$</span>parameter)),</span>
+<span id="cb42-19"><a href="#cb42-19" aria-hidden="true" tabindex="-1"></a>  <span class="at">p_value    =</span> base<span class="sc">::</span><span class="fu">c</span>(a<span class="sc">$</span>p.value, b<span class="sc">$</span>p.value, c<span class="sc">$</span>p.value, d<span class="sc">$</span>p.value)     <span class="co"># p-values</span></span>
+<span id="cb42-20"><a href="#cb42-20" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb42-21"><a href="#cb42-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-22"><a href="#cb42-22" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(dfr, <span class="at">caption =</span> <span class="st">"Breusch–Godfrey test for the Phillips example."</span>)  <span class="co"># nicely formatted summary</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <table class="caption-top table table-sm table-striped small">
 <caption>Breusch–Godfrey test for the Phillips example.</caption>
@@ -1044,7 +1122,7 @@ This warning is displayed once per session.</code></pre>
 </div>
 <p>Durbin–Watson (DW targets AR(1) and isn’t valid with a lagged dependent variable(prefer Breusch–Godfrey for more general cases):</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>lmtest<span class="sc">::</span><span class="fu">dwtest</span>(phill.dyn)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>lmtest<span class="sc">::</span><span class="fu">dwtest</span>(phill.dyn)   <span class="co"># Durbin–Watson test for AR(1) autocorrelation in residuals (H0: no autocorrelation)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     Durbin-Watson test
@@ -1093,17 +1171,19 @@ alternative hypothesis: true autocorrelation is greater than 0</code></pre>
 <hr>
 <p>Correct standard errors under autocorrelation (and heteroskedasticity) using <strong>HAC</strong> estimators.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sandwich); <span class="fu">library</span>(lmtest)</span>
-<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>s0 <span class="ot">&lt;-</span> <span class="fu">coeftest</span>(phill.dyn)                              <span class="co"># incorrect under AC</span></span>
-<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a>s1 <span class="ot">&lt;-</span> <span class="fu">coeftest</span>(phill.dyn, <span class="at">vcov.=</span><span class="fu">vcovHAC</span>(phill.dyn))    <span class="co"># HAC</span></span>
-<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a>s2 <span class="ot">&lt;-</span> <span class="fu">coeftest</span>(phill.dyn, <span class="at">vcov.=</span><span class="fu">NeweyWest</span>(phill.dyn))  <span class="co"># Newey–West</span></span>
-<span id="cb43-6"><a href="#cb43-6" aria-hidden="true" tabindex="-1"></a>s3 <span class="ot">&lt;-</span> <span class="fu">coeftest</span>(phill.dyn, <span class="at">vcov.=</span><span class="fu">kernHAC</span>(phill.dyn))    <span class="co"># kernel HAC</span></span>
-<span id="cb43-7"><a href="#cb43-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb43-8"><a href="#cb43-8" aria-hidden="true" tabindex="-1"></a>tbl <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="fu">cbind</span>(s0[<span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">4</span>)], s1[<span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">4</span>)], s2[<span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">4</span>)], s3[<span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">4</span>)]))</span>
-<span id="cb43-9"><a href="#cb43-9" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(tbl) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Incorrect"</span>,<span class="st">"vcovHAC"</span>,<span class="st">"NeweyWest"</span>,<span class="st">"kernHAC"</span>)</span>
-<span id="cb43-10"><a href="#cb43-10" aria-hidden="true" tabindex="-1"></a><span class="fu">row.names</span>(tbl) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"(Intercept)"</span>,<span class="st">"Du"</span>)</span>
-<span id="cb43-11"><a href="#cb43-11" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(tbl, <span class="at">digits=</span><span class="dv">3</span>, <span class="at">caption =</span> <span class="st">"Comparing standard errors for the Phillips model."</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sandwich); <span class="fu">library</span>(lmtest)                        <span class="co"># robust VCOVs + testing tools</span></span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>s0 <span class="ot">&lt;-</span> <span class="fu">coeftest</span>(phill.dyn)                                 <span class="co"># OLS SEs (incorrect if residuals have autocorrelation)</span></span>
+<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a>s1 <span class="ot">&lt;-</span> <span class="fu">coeftest</span>(phill.dyn, <span class="at">vcov. =</span> <span class="fu">vcovHAC</span>(phill.dyn))     <span class="co"># HAC (heteroskedasticity &amp; autocorrelation consistent)</span></span>
+<span id="cb45-5"><a href="#cb45-5" aria-hidden="true" tabindex="-1"></a>s2 <span class="ot">&lt;-</span> <span class="fu">coeftest</span>(phill.dyn, <span class="at">vcov. =</span> <span class="fu">NeweyWest</span>(phill.dyn))   <span class="co"># Newey–West (a common HAC estimator)</span></span>
+<span id="cb45-6"><a href="#cb45-6" aria-hidden="true" tabindex="-1"></a>s3 <span class="ot">&lt;-</span> <span class="fu">coeftest</span>(phill.dyn, <span class="at">vcov. =</span> <span class="fu">kernHAC</span>(phill.dyn))     <span class="co"># kernel-based HAC (Andrews-type)</span></span>
+<span id="cb45-7"><a href="#cb45-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-8"><a href="#cb45-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Collect just the (Std. Error, Pr(&gt;|t|)) rows/cols and compare across methods</span></span>
+<span id="cb45-9"><a href="#cb45-9" aria-hidden="true" tabindex="-1"></a>tbl <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="fu">cbind</span>(s0[<span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">4</span>)], s1[<span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">4</span>)], s2[<span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">4</span>)], s3[<span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">4</span>)]))</span>
+<span id="cb45-10"><a href="#cb45-10" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(tbl) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Incorrect"</span>, <span class="st">"vcovHAC"</span>, <span class="st">"NeweyWest"</span>, <span class="st">"kernHAC"</span>)</span>
+<span id="cb45-11"><a href="#cb45-11" aria-hidden="true" tabindex="-1"></a><span class="fu">row.names</span>(tbl) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"(Intercept)"</span>, <span class="st">"Du"</span>)</span>
+<span id="cb45-12"><a href="#cb45-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-13"><a href="#cb45-13" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(tbl, <span class="at">digits =</span> <span class="dv">3</span>, <span class="at">caption =</span> <span class="st">"Comparing standard errors for the Phillips model."</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <table class="caption-top table table-sm table-striped small">
 <caption>Comparing standard errors for the Phillips model.</caption>
