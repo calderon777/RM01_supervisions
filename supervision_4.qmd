@@ -201,7 +201,7 @@ ressq <- resid(mod1)^2                     # squared residuals (used to detect h
 modres <- lm(ressq ~ income, data = food)  # auxiliary regression: regress squared residuals on income
 
 N <- nobs(modres)                           # number of observations
-S <- summary(modres)$df[2]                  # degrees of freedom for regression (k = number of predictors)
+S <- summary(modres)$df[1]-1                  # degrees of freedom for regression (k = number of predictors)
 
 chisqcr <- qchisq(1 - alpha, S)             # chi-square critical value (right tail)
 
@@ -240,7 +240,7 @@ Test statistic: $\chi^2 = N \cdot R^2_{\text{aux}}$ ∼ $\chi^2_k$, where $k$ is
 # auxiliary regression with quadratic term (tests nonlinear heteroskedasticity)
 modres2 <- lm(ressq ~ income + I(income^2), data = food)    
 Rsq2 <- summary(modres2)$r.squared          # R² from auxiliary regression
-S2   <- summary(modres2)$df[2]              # degrees of freedom (number of regressors)
+S2   <- summary(modres2)$df[1]-1              # degrees of freedom (number of regressors)
 chisq2 <- N * Rsq2                          # Breusch–Pagan-type chi-square statistic
 pval2  <- 1 - pchisq(chisq2, S2)            # p-value (right-tail)
 c(statistic = chisq2, df = S2, p.value = pval2)            # show results
