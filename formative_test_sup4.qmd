@@ -1,6 +1,6 @@
 ---
 title: "In-Class Exercise Sup 4"
-draft: true
+draft: false
 format: html
 execute:
   echo: true

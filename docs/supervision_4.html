@@ -210,6 +210,11 @@ window.Quarto = {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./formative_test_sup4.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">In-Class Exercise Sup 4</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./solution_formative_test_sup3.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Solution to In-class Sup3</span></a>
   </div>
 </li>
@@ -1034,17 +1039,30 @@ Important
 </section>
 <section id="overview-1" class="level3">
 <h3 class="anchored" data-anchor-id="overview-1">Overview</h3>
-<p>This lab situates the technique within the broader econometric workflow, explaining why it matters for inference and decision‑making. You will implement it in R, assess assumptions/diagnostics, and justify specification choices.</p>
-<hr>
-<p>Serial correlation is correlation across time in a series. In regression, <strong>autocorrelated errors</strong> lead to <strong>incorrect standard errors</strong> (and misleading (t)-tests).</p>
+<p>Serial correlation occurs when regression errors are correlated across time periods. In a time series regression, if <span class="math inline">\(e_t\)</span> is correlated with <span class="math inline">\(e_{t-1}\)</span>​, <span class="math inline">\(e_{t-2}\)</span>​, etc., we have serial correlation.</p>
+<p>Serial correlation is correlation across time in a series. In regression, <strong>autocorrelated errors</strong> lead to <strong>incorrect standard errors</strong> (and misleading t-tests). We may incorrectly conclude that coefficients are statistically significant.</p>
+<p><strong>Common causes:</strong></p>
+<ul>
+<li>Omitted variables that vary systematically over time</li>
+<li>Model misspecification (wrong functional form)</li>
+<li>Inertia or persistence in economic variables (e.g., GDP growth tends to persist)</li>
+</ul>
+<p>The fix: Use HAC (heteroskedasticity and autocorrelation consistent) standard errors, or model the autocorrelation structure explicitly (e.g., AR models, dynamic specifications).</p>
+<p>To diagnose whether growth is autocorrelated, we create scatter plots comparing growth at time t with growth at time <span class="math inline">\(t+1\)</span> (lag 1) and <span class="math inline">\(t+2\)</span> (lag 2).</p>
+<p><strong>What to look for:</strong></p>
+<p>Positive correlation (upward diagonal pattern) → high growth tends to follow high growth Negative correlation (downward diagonal pattern) → high growth followed by low growth Random scatter → no autocorrelation</p>
+<p>The reference lines divide the plot at the means, creating four quadrants. With positive autocorrelation, most points fall in the upper-right and lower-left quadrants.</p>
 </section>
 <section id="example-growth-vs-unemployment-okuns-data" class="level3">
 <h3 class="anchored" data-anchor-id="example-growth-vs-unemployment-okuns-data">Example: growth vs unemployment (Okun’s data)</h3>
+<p>The okun dataset contains quarterly US data on:</p>
+<p>g: Real GDP growth rate (percentage change) u: Unemployment rate</p>
+<p>Okun’s Law describes the inverse relationship between GDP growth and changes in unemployment. Before running regressions with time series data, we should check whether the series themselves exhibit autocorrelation.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">"okun"</span>, <span class="at">package =</span> <span class="st">"PoEdata"</span>)             <span class="co"># load Okun's law quarterly dataset</span></span>
-<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>okun.ts <span class="ot">&lt;-</span> <span class="fu">ts</span>(okun, <span class="at">start =</span> <span class="fu">c</span>(<span class="dv">1948</span>, <span class="dv">1</span>), <span class="at">frequency =</span> <span class="dv">4</span>)  <span class="co"># convert to quarterly time-series object</span></span>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">"okun"</span>, <span class="at">package =</span> <span class="st">"PoEdata"</span>)     <span class="co"># load Okun's law quarterly dataset</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>okun.ts <span class="ot">&lt;-</span> <span class="fu">ts</span>(okun, <span class="at">start =</span> <span class="fu">c</span>(<span class="dv">1948</span>, <span class="dv">1</span>), <span class="at">frequency =</span> <span class="dv">4</span>)  <span class="co"># declare the data 'quarterly' time-series object</span></span>
 <span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot time series</span></span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot time series GDP%</span></span>
 <span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(okun.ts[, <span class="st">"g"</span>], <span class="at">ylab =</span> <span class="st">"growth"</span>)         <span class="co"># real GDP growth over time</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
@@ -1090,12 +1108,42 @@ Important
 </figure>
 </div>
 </div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Interpreting lag scatter plots
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>In the lag-1 plot (<span class="math inline">\(g\)</span> vs <span class="math inline">\(g_{t+1}\)</span>):</strong> - If points cluster along an <strong>upward-sloping diagonal</strong>, growth exhibits positive autocorrelation - Most points in <strong>upper-right</strong> and <strong>lower-left</strong> quadrants → when growth is high today, it tends to be high next quarter - This pattern suggests <strong>persistence</strong> or <strong>momentum</strong> in GDP growth</p>
+<p><strong>In the lag-2 plot (<span class="math inline">\(g\)</span> vs <span class="math inline">\(g_{t+2}\)</span>):</strong> - A weaker diagonal pattern suggests autocorrelation diminishes at longer lags - If points become more randomly scattered, correlation decays over time</p>
+<p><strong>Why this matters for regression:</strong> If the <strong>residuals</strong> from your regression show similar patterns, standard errors will be incorrect.</p>
+</div>
+</div>
+<p><strong>The Autocorrelation Function (ACF)</strong></p>
+<p>The ACF provides a formal measure of correlation at different lags:</p>
+<p><span class="math inline">\(\rho_k = \text{Corr}(g_t, g_{t-k}) = \dfrac{\text{Cov}(g_t, g_{t-k})}{\text{Var}(g_t)}\)</span> <br></p>
+<p>where <span class="math inline">\(k\)</span> is the lag (1, 2, 3, …).</p>
+<hr>
+<p><strong>How to read the correlogram:</strong></p>
+<ul>
+<li>Each vertical bar shows <span class="math inline">\(\hat{\rho}_k\)</span> (the estimated correlation at lag <em>k</em>).</li>
+<li>Blue dashed lines: 95% confidence bounds (approximately <span class="math inline">\(\pm \dfrac{2}{\sqrt{n}}\)</span>).</li>
+<li>Bars <strong>outside</strong> the bounds → statistically significant autocorrelation.</li>
+<li>Bars <strong>inside</strong> the bounds → not significantly different from zero.</li>
+</ul>
+<p>Bars outside the bounds → statistically significant autocorrelation Bars inside the bounds → not significantly different from zero</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Correlogram (autocorrelation function) for growth</span></span>
 <span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="fu">acf</span>(okun.ts[, <span class="st">"g"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="supervision_4_files/figure-html/unnamed-chunk-13-5.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="supervision_4_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -1157,7 +1205,7 @@ This warning is displayed once per session.</code></pre>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="supervision_4_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="supervision_4_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -1165,7 +1213,7 @@ This warning is displayed once per session.</code></pre>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="supervision_4_files/figure-html/unnamed-chunk-14-2.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="supervision_4_files/figure-html/unnamed-chunk-15-2.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>

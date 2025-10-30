@@ -451,20 +451,43 @@ Robust (HC) errors **fix inference** under heteroskedasticity, but the **point e
 ---
 
 ### Overview
-This lab situates the technique within the broader econometric workflow, explaining why it matters for inference and decision‑making. You will implement it in R, assess assumptions/diagnostics, and justify specification choices.
 
----
+Serial correlation occurs when regression errors are correlated across time periods. In a time series regression, if $e_t$ is correlated with $e_{t-1}$​, $e_{t-2}$​, etc., we have serial correlation.
 
+Serial correlation is correlation across time in a series. In regression, **autocorrelated errors** lead to **incorrect standard errors** (and misleading t-tests). We may incorrectly conclude that coefficients are statistically significant.
 
-Serial correlation is correlation across time in a series. In regression, **autocorrelated errors** lead to **incorrect standard errors** (and misleading \(t\)-tests).
+**Common causes:**
+
+- Omitted variables that vary systematically over time
+- Model misspecification (wrong functional form)
+- Inertia or persistence in economic variables (e.g., GDP growth tends to persist)
+
+The fix: Use HAC (heteroskedasticity and autocorrelation consistent) standard errors, or model the autocorrelation structure explicitly (e.g., AR models, dynamic specifications).
+
+To diagnose whether growth is autocorrelated, we create scatter plots comparing growth at time t with growth at time $t+1$ (lag 1) and $t+2$ (lag 2).
+
+**What to look for:**
+
+Positive correlation (upward diagonal pattern) → high growth tends to follow high growth
+Negative correlation (downward diagonal pattern) → high growth followed by low growth
+Random scatter → no autocorrelation
+
+The reference lines divide the plot at the means, creating four quadrants. With positive autocorrelation, most points fall in the upper-right and lower-left quadrants.
 
 ### Example: growth vs unemployment (Okun’s data)
 
-```{r}
-data("okun", package = "PoEdata")             # load Okun's law quarterly dataset
-okun.ts <- ts(okun, start = c(1948, 1), frequency = 4)  # convert to quarterly time-series object
+The okun dataset contains quarterly US data on:
 
-# Plot time series
+g: Real GDP growth rate (percentage change)
+u: Unemployment rate
+
+Okun's Law describes the inverse relationship between GDP growth and changes in unemployment. Before running regressions with time series data, we should check whether the series themselves exhibit autocorrelation.
+
+```{r}
+data("okun", package = "PoEdata")     # load Okun's law quarterly dataset
+okun.ts <- ts(okun, start = c(1948, 1), frequency = 4)  # declare the data 'quarterly' time-series object
+
+# Plot time series GDP%
 plot(okun.ts[, "g"], ylab = "growth")         # real GDP growth over time
 plot(okun.ts[, "u"], ylab = "unemployment")   # unemployment rate over time
 
@@ -484,10 +507,50 @@ ggL2 <- data.frame(
 plot(ggL2)                                    # scatter of g vs. g(+2)
 abline(h = mean(ggL2$gL2, na.rm = TRUE),
        v = mean(ggL2$g,   na.rm = TRUE), lty = 2)
+```
 
+::: callout-note
+## Interpreting lag scatter plots
+
+**In the lag-1 plot ($g$ vs $g_{t+1}$):**
+- If points cluster along an **upward-sloping diagonal**, growth exhibits positive autocorrelation
+- Most points in **upper-right** and **lower-left** quadrants → when growth is high today, it tends to be high next quarter
+- This pattern suggests **persistence** or **momentum** in GDP growth
+
+**In the lag-2 plot ($g$ vs $g_{t+2}$):**
+- A weaker diagonal pattern suggests autocorrelation diminishes at longer lags
+- If points become more randomly scattered, correlation decays over time
+
+**Why this matters for regression:** If the **residuals** from your regression show similar patterns, standard errors will be incorrect.
+:::
+
+
+**The Autocorrelation Function (ACF)**
+
+The ACF provides a formal measure of correlation at different lags:
+
+$\rho_k = \text{Corr}(g_t, g_{t-k}) = \dfrac{\text{Cov}(g_t, g_{t-k})}{\text{Var}(g_t)}$ <br>
+
+where $k$ is the lag (1, 2, 3, ...).
+
+---
+
+**How to read the correlogram:**
+
+- Each vertical bar shows $\hat{\rho}_k$ (the estimated correlation at lag *k*).
+- Blue dashed lines: 95% confidence bounds (approximately $\pm \dfrac{2}{\sqrt{n}}$).
+- Bars **outside** the bounds → statistically significant autocorrelation.
+- Bars **inside** the bounds → not significantly different from zero.
+
+
+Bars outside the bounds → statistically significant autocorrelation
+Bars inside the bounds → not significantly different from zero
+
+```{r}
 # Correlogram (autocorrelation function) for growth
 acf(okun.ts[, "g"])
 ```
+
 
 ### Phillips curve example and BG/DW tests
 
