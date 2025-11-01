@@ -107,38 +107,91 @@ Aim for **theoretical consistency**, **parsimony**, and **interpretability**.
 library(readr)
 library(dplyr)
 library(broom)
-library(modelsummary)
 library(car)
+library(lmtest)
 library(tseries)
+library(sandwich)
+library(modelsummary)
 
-# 1. Load data
+# 1. Load data & transform
 df <- readr::read_csv("hedonic_ames.csv")
 
-# 2. Transform variables (example)
-df <- df %>% dplyr::mutate(
-  ln_price = log(sale_price),
-  ln_area  = log(gr_liv_area),
-  ln_lot   = log(lot_area)
-)
+# ---------------------------------------------------
+# 1) Load & transform
+# ---------------------------------------------------
+df <- read_csv("hedonic_ames.csv") %>%
+  mutate(
+    ln_price = log(sale_price),
+    ln_area  = log(gr_liv_area),
+    overall_qual = factor(overall_qual, ordered = TRUE),
+    overall_cond = factor(overall_cond, ordered = TRUE),
+    exter_qual   = factor(exter_qual, ordered = TRUE),
+    kitchen_qual = factor(kitchen_qual, ordered = TRUE),
+    fireplace_qu = factor(fireplace_qu, ordered = TRUE),
+    bldg_type    = factor(bldg_type),
+    house_style  = factor(house_style),
+    neighborhood = factor(neighborhood),
+    baths_total  = full_bath + 0.5 * half_bath
+  )
+
+# ---------------------------------------------------
+# 2) Run regression model
+# ---------------------------------------------------
 
 # Example baseline Hedonic Model (YOU SHOULD CHANGE/IMPROVE THIS)
-m0 <- lm(ln_price ~ ln_area + bedroom_abv_gr + baths_total + total_bsmt_sf +
-           garage_cars + central_air + overall_qual + overall_cond +
-           exter_qual + kitchen_qual + fireplace_qu +
-           bldg_type + house_style + neighborhood,
-         data = df)
+m0 <- lm(
+  ln_price ~ ln_area + bedroom_abv_gr + baths_total + 
+  total_bsmt_sf+ garage_cars + central_air + overall_qual +
+  overall_cond + exter_qual + kitchen_qual + fireplace_qu +
+  bldg_type + house_style + neighborhood,
+  data = df)
 
+# ---------------------------------------------------
+# 3) SUPERVISION 4 DIAGNOSTICS (Correct Order)
+# ---------------------------------------------------
 # Core metrics & diagnostics to report in your table
 gl  <- broom::glance(m0)         # adj.r.squared, AIC, sigma (≈ RMSE on log scale)
-vif_mean <- mean(car::vif(m0))
-jb_p <- tryCatch(tseries::jarque.bera.test(resid(m0))$p.value, error=function(e) NA_real_)
 
-# Minimal plain‑text table you can paste into your report.txt
-metrics <- tibble::tibble(
-  metric = c("Adjusted R2","AIC","RMSE (sigma)","VIF mean","JB p-value"),
-  value  = c(gl$adj.r.squared, gl$AIC, gl$sigma, vif_mean, jb_p)
+## (A) Multicollinearity – Variance Inflation Factor
+vif_values <- car::vif(m0)
+vif_mean <- mean(vif_values)
+
+## (B) Autocorrelation – Breusch–Godfrey test
+bg_test <- lmtest::bgtest(m0, order = 4)
+
+## (C) Heteroskedasticity
+### White test (general heteroskedasticity)
+white_test <- bptest(m0, varformula = ~ fitted(m0) + I(fitted(m0)^2))
+
+### Goldfeld–Quandt test (variance shifts)
+gq_test <- gqtest(m0, order.by = ~ ln_area, data = df, fraction = 2/3)
+
+# ---------------------------------------------------
+# Report model with robust SEs (If test for heteroskedasticity/
+# Autocorrelation rejects the null p<0.05)
+# ---------------------------------------------------
+vcov_HC1 <- vcovHC(m0, type = "HC1")
+
+modelsummary::msummary(
+  list("OLS (HC1 robust SEs)" = m0),
+  vcov = vcov_HC1,
+  gof_map = c("adj.r.squared", "AIC", "sigma")
 )
-print(metrics)
+
+# ---------------------------------------------------
+# Summary table of diagnostics
+# ---------------------------------------------------
+diagnostics <- tibble::tibble(
+  Diagnostic = c(
+    "Mean VIF (multicollinearity)",
+    "BG test p-value (autocorrelation)",
+    "White test p-value (heteroskedasticity)",
+    "Goldfeld–Quandt p-value (heteroskedasticity)"
+  ),
+  Result = c(vif_mean, bg_test$p.value, white_test$p.value, gq_test$p.value)
+)
+
+print(diagnostics)
 ```
 
 > You may create graphs in your analysis, **but do not include images in the report** (text and tables only).
@@ -175,42 +228,51 @@ Submit **exactly two files** via the designated Microsoft Form:
 1) **`model.R`** — your complete, runnable R script (self‑contained).  
 2) **`report.txt`** (or `.md`) — **text‑only**, following the template below. No images; include a small metrics table.
 
-**Report template (copy into `report.txt`):**
+### Submit via Microsoft Form
+
+You can submit your files using the form below. If your browser or preview blocks embedded content, use the direct link provided under the form.
+
+---
+title: "MS Forms embed demo"
+format:
+  html:
+    toc: false
+---
+
+## Feedback form
+
+**Open in a new tab:**  
+[Fill out the form](https://forms.office.com/Pages/ResponsePage.aspx?id=RQSlSfq9eUut41R7TzmG6e2v58mrCWNIjQV8bfnU-6tUNUJVWlBHT1A0SDg1UVFZTVhBQUtBT1Y0UC4u)
+
+::: {.content-visible when-format="html"}
+<!-- Responsive 16:9 embed -->
+<div style="position:relative; padding-top:56.25%; height:0; overflow:hidden; max-width:100%; border:0;">
+  <iframe
+    src="https://forms.office.com/Pages/ResponsePage.aspx?id=RQSlSfq9eUut41R7TzmG6e2v58mrCWNIjQV8bfnU-6tUNUJVWlBHT1A0SDg1UVFZTVhBQUtBT1Y0UC4u&embed=true"
+    style="position:absolute; top:0; left:0; width:100%; height:100%; border:0;"
+    frameborder="0"
+    marginwidth="0"
+    marginheight="0"
+    allowfullscreen
+    webkitallowfullscreen
+    mozallowfullscreen
+    msallowfullscreen>
+  </iframe>
+</div>
+:::
+
+::: {.content-visible unless-format="html"}
+If you’re viewing a PDF or Word version, use this link to open the form:  
+<https://forms.office.com/Pages/ResponsePage.aspx?id=RQSlSfq9eUut41R7TzmG6e2v58mrCWNIjQV8bfnU-6tUNUJVWlBHT1A0SDg1UVFZTVhBQUtBT1Y0UC4u>
+:::
+
 
 ```
-Golden Regression Challenge — Report
 
-Student email: XXXXXXX
-Model name: e.g., ln(price) ~ ln(area) + overall_qual + neighborhood + ...
-
-1) Theoretical consistency (≤150 words)
-[Explain theoretical links and expected signs; note any justified deviations.]
-
-2) Specification quality (≤150 words)
-[Why these variables? Parsimony; omitted variables considered.]
-
-3) Interpretability (≤150 words)
-[Coefficient meaning; multicollinearity; any scaling/elasticities.]
-
-4) Diagnostics and fit (≤150 words + table)
-Provide the following table (plain text):
-
-| Metric           | Value |
-|------------------|-------|
-| Adjusted R2      | 0.84  |
-| AIC              | 1458.2|
-| RMSE (sigma)     | 0.21  |
-| VIF mean         | 2.1   |
-| JB p-value       | 0.22  |
-
-5) Explanation of results (≤150 words)
-[1–3 major takeaways for a non-technical audience.]
-```
 
 **Notes**  
-- Reports exceeding the structure/word caps may receive reduced clarity scores.  
 - Do **not** include plots or screenshots in the report. Keep it text‑only.  
-- Your identity is recorded at submission; the AI receives only the report text.
+- Your identity is recorded at submission.
 
 
 ---
