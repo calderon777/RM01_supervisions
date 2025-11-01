@@ -163,49 +163,46 @@ if (is.matrix(vif_raw)) {
 vif_mean <- mean(vif_values, na.rm = TRUE)
 vif_max  <- max(vif_values, na.rm = TRUE)
 
-# (B) Autocorrelation – Breusch–Godfrey (lag 4)
-bg_test <- lmtest::bgtest(m0, order = 4)
+# As this is a cross-sectional dataset we will not include time-series correlation.
+# Autocorrelation – Breusch–Godfrey (lag 4)
+# bg_test <- lmtest::bgtest(m0, order = 4)
 
-# (C) Heteroskedasticity – White and Goldfeld–Quandt
+# (B) Heteroskedasticity – White and Goldfeld–Quandt
 white_test <- lmtest::bptest(m0, varformula = ~ fitted(m0) + I(fitted(m0)^2))
 gq_test    <- lmtest::gqtest(m0, order.by = ~ ln_area, data = df, fraction = 2/3)
 
 # ---------------------------------------------------
-# 4) Coefficient table with HAC (Newey–West) SEs ONLY
-#    (simple: no prewhitening to avoid errors)
+# 4) Coefficient table with HC1 robust SEs (cross-section)
 # ---------------------------------------------------
 library(sandwich)
 library(lmtest)
 library(broom)
 library(knitr)
 
-vcov_HAC <- sandwich::NeweyWest(m0, lag = 4, prewhite = FALSE, adjust = TRUE)
-
-ct_obj <- lmtest::coeftest(m0, vcov. = vcov_HAC)
+ct_obj <- lmtest::coeftest(m0, vcov. = sandwich::vcovHC(m0, type = "HC1"))
 ct_df  <- broom::tidy(ct_obj)  # safe data.frame for kable
 
 knitr::kable(
   ct_df,
-  digits  = 3,
+  digits   = 3,
   col.names = c("Term", "Estimate", "Std. Error", "Statistic", "Pr(>|t|)"),
-  caption = "OLS with HAC (Newey–West) robust standard errors"
+  caption  = "OLS with HC1 (heteroskedasticity-robust) standard errors"
 )
 
 # ---------------------------------------------------
 # 5) Diagnostics summary table (simple & readable)
+#     (No autocorrelation; cross-sectional focus)
 # ---------------------------------------------------
 diag_tab <- data.frame(
   Diagnostic = c(
     "Mean VIF",
     "Max VIF",
-    "BG test p-value (lag 4)",
     "White test p-value",
     "Goldfeld–Quandt p-value"
   ),
   Result = c(
     round(vif_mean, 3),
     round(vif_max, 3),
-    signif(bg_test$p.value, 3),
     signif(white_test$p.value, 3),
     signif(gq_test$p.value, 3)
   ),
@@ -215,7 +212,7 @@ diag_tab <- data.frame(
 knitr::kable(
   diag_tab,
   digits  = 3,
-  caption = "Diagnostics: multicollinearity, autocorrelation, heteroskedasticity"
+  caption = "Diagnostics: multicollinearity & heteroskedasticity"
 )
 
 ```
@@ -234,7 +231,7 @@ Your model competes on **quality and clarity**, not just raw fit.
 
 1. **Theoretical consistency** — expected signs and economic reasoning.  
 2. **Specification quality** — relevant variables, parsimony, no redundancy.  
-3. **Interpretability** — meaningful coefficients, multicollinearity controlled.  
+3. **Interpretability** — meaningful coefficients, multicollinearity and heteroskedasticity controlled.  
 4. **Diagnostics and fit** — Adjusted R², AIC, RMSE, residual checks.  
 5. **Explanation of results** — clear, concise, audience‑appropriate summary.
 
@@ -246,13 +243,6 @@ Your model competes on **quality and clarity**, not just raw fit.
 ---
 
 ## Submission
-
-Submit **exactly two files** via the designated Microsoft Form:
-
-1) **`model.R`** — your complete, runnable R script (self‑contained).  
-2) **`report.txt`** (or `.md`) — **text‑only**, following the template below. No images; include a small metrics table.
-
-### Submit via Microsoft Form
 
 You can submit your files using the form below. If your browser or preview blocks embedded content, use the direct link provided under the form.
 
