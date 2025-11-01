@@ -1041,7 +1041,7 @@ cat("\nInterpretation:",
 
 ::: {.callout-tip}
 ### Summary of All Three Tests
-```{text}
+```text
 SUMMARY TABLE
 ═══════════════════════════════════════════════════════
 Test Type        | H0          | p-value | Decision

@@ -232,13 +232,6 @@ Submit **exactly two files** via the designated Microsoft Form:
 
 You can submit your files using the form below. If your browser or preview blocks embedded content, use the direct link provided under the form.
 
----
-title: "MS Forms embed demo"
-format:
-  html:
-    toc: false
----
-
 ## Feedback form
 
 **Open in a new tab:**  
