@@ -11,7 +11,7 @@ execute:
 ## Lab 18 - Hedonic Price Modelling: The Golden Regression Challenge
 
 > This supervision is **live now**. Students have several days to complete the task.  
-> Submissions are evaluated **automatically** using an AI‑assisted rubric plus model metrics. See **Submission** for exact deliverables.
+
 
 ### 🎯  Learning Outcomes
 
@@ -137,61 +137,87 @@ df <- read_csv("hedonic_ames.csv") %>%
 # ---------------------------------------------------
 # 2) Run regression model
 # ---------------------------------------------------
-
-# Example baseline Hedonic Model (YOU SHOULD CHANGE/IMPROVE THIS)
 m0 <- lm(
   ln_price ~ ln_area + bedroom_abv_gr + baths_total + 
-  total_bsmt_sf+ garage_cars + central_air + overall_qual +
+  total_bsmt_sf + garage_cars + central_air + overall_qual +
   overall_cond + exter_qual + kitchen_qual + fireplace_qu +
   bldg_type + house_style + neighborhood,
-  data = df)
+  data = df
+)
 
 # ---------------------------------------------------
-# 3) SUPERVISION 4 DIAGNOSTICS (Correct Order)
+# 3) DIAGNOSTICS (same tools/style as Supervision 4)
 # ---------------------------------------------------
-# Core metrics & diagnostics to report in your table
-gl  <- broom::glance(m0)         # adj.r.squared, AIC, sigma (≈ RMSE on log scale)
+library(car)
+library(lmtest)
 
-## (A) Multicollinearity – Variance Inflation Factor
-vif_values <- car::vif(m0)
-vif_mean <- mean(vif_values)
+# (A) Multicollinearity – VIF
+vif_raw <- car::vif(m0)
+# If factors present, car::vif returns GVIF & Df; convert to VIF-equivalent:
+if (is.matrix(vif_raw)) {
+  vif_values <- vif_raw[, "GVIF"]^(1/(2 * vif_raw[, "Df"]))
+  names(vif_values) <- rownames(vif_raw)
+} else {
+  vif_values <- vif_raw
+}
+vif_mean <- mean(vif_values, na.rm = TRUE)
+vif_max  <- max(vif_values, na.rm = TRUE)
 
-## (B) Autocorrelation – Breusch–Godfrey test
+# (B) Autocorrelation – Breusch–Godfrey (lag 4)
 bg_test <- lmtest::bgtest(m0, order = 4)
 
-## (C) Heteroskedasticity
-### White test (general heteroskedasticity)
-white_test <- bptest(m0, varformula = ~ fitted(m0) + I(fitted(m0)^2))
-
-### Goldfeld–Quandt test (variance shifts)
-gq_test <- gqtest(m0, order.by = ~ ln_area, data = df, fraction = 2/3)
+# (C) Heteroskedasticity – White and Goldfeld–Quandt
+white_test <- lmtest::bptest(m0, varformula = ~ fitted(m0) + I(fitted(m0)^2))
+gq_test    <- lmtest::gqtest(m0, order.by = ~ ln_area, data = df, fraction = 2/3)
 
 # ---------------------------------------------------
-# Report model with robust SEs (If test for heteroskedasticity/
-# Autocorrelation rejects the null p<0.05)
+# 4) Coefficient table with HAC (Newey–West) SEs ONLY
+#    (simple: no prewhitening to avoid errors)
 # ---------------------------------------------------
-vcov_HC1 <- vcovHC(m0, type = "HC1")
+library(sandwich)
+library(lmtest)
+library(broom)
+library(knitr)
 
-modelsummary::msummary(
-  list("OLS (HC1 robust SEs)" = m0),
-  vcov = vcov_HC1,
-  gof_map = c("adj.r.squared", "AIC", "sigma")
+vcov_HAC <- sandwich::NeweyWest(m0, lag = 4, prewhite = FALSE, adjust = TRUE)
+
+ct_obj <- lmtest::coeftest(m0, vcov. = vcov_HAC)
+ct_df  <- broom::tidy(ct_obj)  # safe data.frame for kable
+
+knitr::kable(
+  ct_df,
+  digits  = 3,
+  col.names = c("Term", "Estimate", "Std. Error", "Statistic", "Pr(>|t|)"),
+  caption = "OLS with HAC (Newey–West) robust standard errors"
 )
 
 # ---------------------------------------------------
-# Summary table of diagnostics
+# 5) Diagnostics summary table (simple & readable)
 # ---------------------------------------------------
-diagnostics <- tibble::tibble(
+diag_tab <- data.frame(
   Diagnostic = c(
-    "Mean VIF (multicollinearity)",
-    "BG test p-value (autocorrelation)",
-    "White test p-value (heteroskedasticity)",
-    "Goldfeld–Quandt p-value (heteroskedasticity)"
+    "Mean VIF",
+    "Max VIF",
+    "BG test p-value (lag 4)",
+    "White test p-value",
+    "Goldfeld–Quandt p-value"
   ),
-  Result = c(vif_mean, bg_test$p.value, white_test$p.value, gq_test$p.value)
+  Result = c(
+    round(vif_mean, 3),
+    round(vif_max, 3),
+    signif(bg_test$p.value, 3),
+    signif(white_test$p.value, 3),
+    signif(gq_test$p.value, 3)
+  ),
+  check.names = FALSE
 )
 
-print(diagnostics)
+knitr::kable(
+  diag_tab,
+  digits  = 3,
+  caption = "Diagnostics: multicollinearity, autocorrelation, heteroskedasticity"
+)
+
 ```
 
 > You may create graphs in your analysis, **but do not include images in the report** (text and tables only).
@@ -203,7 +229,6 @@ print(diagnostics)
 #### The Golden Regression Challenge
 
 Your model competes on **quality and clarity**, not just raw fit.  
-Evaluation is **automated** using an AI‑assisted rubric plus model metrics.
 
 ### Judging Criteria (used by the automation)
 
@@ -215,8 +240,7 @@ Evaluation is **automated** using an AI‑assisted rubric plus model metrics.
 
 ### Scoring (overview)
 
-- The AI reads a short **plain‑text report** (see template below) and assigns **1–5** on each criterion.  
-- Model metrics (e.g., **Adjusted R²**, **AIC**, **RMSE**, **VIF mean**) complement the rubric.  
+- Model metrics (e.g., **Adjusted R²**, **BIC**, **RMSE**, **VIF mean**) complement the rubric.  
 - A composite score ranks entries; the winner receives the **🏅 Golden Regression Medal**.
 
 ---
@@ -258,9 +282,6 @@ You can submit your files using the form below. If your browser or preview block
 If you’re viewing a PDF or Word version, use this link to open the form:  
 <https://forms.office.com/Pages/ResponsePage.aspx?id=RQSlSfq9eUut41R7TzmG6e2v58mrCWNIjQV8bfnU-6tUNUJVWlBHT1A0SDg1UVFZTVhBQUtBT1Y0UC4u>
 :::
-
-
-```
 
 
 **Notes**  

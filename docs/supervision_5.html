@@ -243,8 +243,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="lab-18---hedonic-price-modelling-the-golden-regression-challenge" class="level2">
 <h2 class="anchored" data-anchor-id="lab-18---hedonic-price-modelling-the-golden-regression-challenge">Lab 18 - Hedonic Price Modelling: The Golden Regression Challenge</h2>
 <blockquote class="blockquote">
-<p>This supervision is <strong>live now</strong>. Students have several days to complete the task.<br>
-Submissions are evaluated <strong>automatically</strong> using an AI‑assisted rubric plus model metrics. See <strong>Submission</strong> for exact deliverables.</p>
+<p>This supervision is <strong>live now</strong>. Students have several days to complete the task.</p>
 </blockquote>
 <section id="learning-outcomes" class="level3">
 <h3 class="anchored" data-anchor-id="learning-outcomes">🎯 Learning Outcomes</h3>
@@ -401,765 +400,658 @@ Aim for <strong>theoretical consistency</strong>, <strong>parsimony</strong>, an
 <span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a><span class="co"># ---------------------------------------------------</span></span>
 <span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a><span class="co"># 2) Run regression model</span></span>
 <span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a><span class="co"># ---------------------------------------------------</span></span>
-<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a><span class="co"># Example baseline Hedonic Model (YOU SHOULD CHANGE/IMPROVE THIS)</span></span>
-<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a>m0 <span class="ot">&lt;-</span> <span class="fu">lm</span>(</span>
-<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a>  ln_price <span class="sc">~</span> ln_area <span class="sc">+</span> bedroom_abv_gr <span class="sc">+</span> baths_total <span class="sc">+</span> </span>
-<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a>  total_bsmt_sf<span class="sc">+</span> garage_cars <span class="sc">+</span> central_air <span class="sc">+</span> overall_qual <span class="sc">+</span></span>
-<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a>  overall_cond <span class="sc">+</span> exter_qual <span class="sc">+</span> kitchen_qual <span class="sc">+</span> fireplace_qu <span class="sc">+</span></span>
-<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a>  bldg_type <span class="sc">+</span> house_style <span class="sc">+</span> neighborhood,</span>
-<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> df)</span>
-<span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-46"><a href="#cb3-46" aria-hidden="true" tabindex="-1"></a><span class="co"># ---------------------------------------------------</span></span>
-<span id="cb3-47"><a href="#cb3-47" aria-hidden="true" tabindex="-1"></a><span class="co"># 3) SUPERVISION 4 DIAGNOSTICS (Correct Order)</span></span>
-<span id="cb3-48"><a href="#cb3-48" aria-hidden="true" tabindex="-1"></a><span class="co"># ---------------------------------------------------</span></span>
-<span id="cb3-49"><a href="#cb3-49" aria-hidden="true" tabindex="-1"></a><span class="co"># Core metrics &amp; diagnostics to report in your table</span></span>
-<span id="cb3-50"><a href="#cb3-50" aria-hidden="true" tabindex="-1"></a>gl  <span class="ot">&lt;-</span> broom<span class="sc">::</span><span class="fu">glance</span>(m0)         <span class="co"># adj.r.squared, AIC, sigma (≈ RMSE on log scale)</span></span>
-<span id="cb3-51"><a href="#cb3-51" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-52"><a href="#cb3-52" aria-hidden="true" tabindex="-1"></a><span class="do">## (A) Multicollinearity – Variance Inflation Factor</span></span>
-<span id="cb3-53"><a href="#cb3-53" aria-hidden="true" tabindex="-1"></a>vif_values <span class="ot">&lt;-</span> car<span class="sc">::</span><span class="fu">vif</span>(m0)</span>
-<span id="cb3-54"><a href="#cb3-54" aria-hidden="true" tabindex="-1"></a>vif_mean <span class="ot">&lt;-</span> <span class="fu">mean</span>(vif_values)</span>
-<span id="cb3-55"><a href="#cb3-55" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-56"><a href="#cb3-56" aria-hidden="true" tabindex="-1"></a><span class="do">## (B) Autocorrelation – Breusch–Godfrey test</span></span>
-<span id="cb3-57"><a href="#cb3-57" aria-hidden="true" tabindex="-1"></a>bg_test <span class="ot">&lt;-</span> lmtest<span class="sc">::</span><span class="fu">bgtest</span>(m0, <span class="at">order =</span> <span class="dv">4</span>)</span>
-<span id="cb3-58"><a href="#cb3-58" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-59"><a href="#cb3-59" aria-hidden="true" tabindex="-1"></a><span class="do">## (C) Heteroskedasticity</span></span>
-<span id="cb3-60"><a href="#cb3-60" aria-hidden="true" tabindex="-1"></a><span class="do">### White test (general heteroskedasticity)</span></span>
-<span id="cb3-61"><a href="#cb3-61" aria-hidden="true" tabindex="-1"></a>white_test <span class="ot">&lt;-</span> <span class="fu">bptest</span>(m0, <span class="at">varformula =</span> <span class="sc">~</span> <span class="fu">fitted</span>(m0) <span class="sc">+</span> <span class="fu">I</span>(<span class="fu">fitted</span>(m0)<span class="sc">^</span><span class="dv">2</span>))</span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a>m0 <span class="ot">&lt;-</span> <span class="fu">lm</span>(</span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a>  ln_price <span class="sc">~</span> ln_area <span class="sc">+</span> bedroom_abv_gr <span class="sc">+</span> baths_total <span class="sc">+</span> </span>
+<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a>  total_bsmt_sf <span class="sc">+</span> garage_cars <span class="sc">+</span> central_air <span class="sc">+</span> overall_qual <span class="sc">+</span></span>
+<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a>  overall_cond <span class="sc">+</span> exter_qual <span class="sc">+</span> kitchen_qual <span class="sc">+</span> fireplace_qu <span class="sc">+</span></span>
+<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a>  bldg_type <span class="sc">+</span> house_style <span class="sc">+</span> neighborhood,</span>
+<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> df</span>
+<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a><span class="co"># ---------------------------------------------------</span></span>
+<span id="cb3-46"><a href="#cb3-46" aria-hidden="true" tabindex="-1"></a><span class="co"># 3) DIAGNOSTICS (same tools/style as Supervision 4)</span></span>
+<span id="cb3-47"><a href="#cb3-47" aria-hidden="true" tabindex="-1"></a><span class="co"># ---------------------------------------------------</span></span>
+<span id="cb3-48"><a href="#cb3-48" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(car)</span>
+<span id="cb3-49"><a href="#cb3-49" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lmtest)</span>
+<span id="cb3-50"><a href="#cb3-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-51"><a href="#cb3-51" aria-hidden="true" tabindex="-1"></a><span class="co"># (A) Multicollinearity – VIF</span></span>
+<span id="cb3-52"><a href="#cb3-52" aria-hidden="true" tabindex="-1"></a>vif_raw <span class="ot">&lt;-</span> car<span class="sc">::</span><span class="fu">vif</span>(m0)</span>
+<span id="cb3-53"><a href="#cb3-53" aria-hidden="true" tabindex="-1"></a><span class="co"># If factors present, car::vif returns GVIF &amp; Df; convert to VIF-equivalent:</span></span>
+<span id="cb3-54"><a href="#cb3-54" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">is.matrix</span>(vif_raw)) {</span>
+<span id="cb3-55"><a href="#cb3-55" aria-hidden="true" tabindex="-1"></a>  vif_values <span class="ot">&lt;-</span> vif_raw[, <span class="st">"GVIF"</span>]<span class="sc">^</span>(<span class="dv">1</span><span class="sc">/</span>(<span class="dv">2</span> <span class="sc">*</span> vif_raw[, <span class="st">"Df"</span>]))</span>
+<span id="cb3-56"><a href="#cb3-56" aria-hidden="true" tabindex="-1"></a>  <span class="fu">names</span>(vif_values) <span class="ot">&lt;-</span> <span class="fu">rownames</span>(vif_raw)</span>
+<span id="cb3-57"><a href="#cb3-57" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> {</span>
+<span id="cb3-58"><a href="#cb3-58" aria-hidden="true" tabindex="-1"></a>  vif_values <span class="ot">&lt;-</span> vif_raw</span>
+<span id="cb3-59"><a href="#cb3-59" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb3-60"><a href="#cb3-60" aria-hidden="true" tabindex="-1"></a>vif_mean <span class="ot">&lt;-</span> <span class="fu">mean</span>(vif_values, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb3-61"><a href="#cb3-61" aria-hidden="true" tabindex="-1"></a>vif_max  <span class="ot">&lt;-</span> <span class="fu">max</span>(vif_values, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
 <span id="cb3-62"><a href="#cb3-62" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-63"><a href="#cb3-63" aria-hidden="true" tabindex="-1"></a><span class="do">### Goldfeld–Quandt test (variance shifts)</span></span>
-<span id="cb3-64"><a href="#cb3-64" aria-hidden="true" tabindex="-1"></a>gq_test <span class="ot">&lt;-</span> <span class="fu">gqtest</span>(m0, <span class="at">order.by =</span> <span class="sc">~</span> ln_area, <span class="at">data =</span> df, <span class="at">fraction =</span> <span class="dv">2</span><span class="sc">/</span><span class="dv">3</span>)</span>
+<span id="cb3-63"><a href="#cb3-63" aria-hidden="true" tabindex="-1"></a><span class="co"># (B) Autocorrelation – Breusch–Godfrey (lag 4)</span></span>
+<span id="cb3-64"><a href="#cb3-64" aria-hidden="true" tabindex="-1"></a>bg_test <span class="ot">&lt;-</span> lmtest<span class="sc">::</span><span class="fu">bgtest</span>(m0, <span class="at">order =</span> <span class="dv">4</span>)</span>
 <span id="cb3-65"><a href="#cb3-65" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-66"><a href="#cb3-66" aria-hidden="true" tabindex="-1"></a><span class="co"># ---------------------------------------------------</span></span>
-<span id="cb3-67"><a href="#cb3-67" aria-hidden="true" tabindex="-1"></a><span class="co"># Report model with robust SEs (If test for heteroskedasticity/</span></span>
-<span id="cb3-68"><a href="#cb3-68" aria-hidden="true" tabindex="-1"></a><span class="co"># Autocorrelation rejects the null p&lt;0.05)</span></span>
-<span id="cb3-69"><a href="#cb3-69" aria-hidden="true" tabindex="-1"></a><span class="co"># ---------------------------------------------------</span></span>
-<span id="cb3-70"><a href="#cb3-70" aria-hidden="true" tabindex="-1"></a>vcov_HC1 <span class="ot">&lt;-</span> <span class="fu">vcovHC</span>(m0, <span class="at">type =</span> <span class="st">"HC1"</span>)</span>
-<span id="cb3-71"><a href="#cb3-71" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-72"><a href="#cb3-72" aria-hidden="true" tabindex="-1"></a>modelsummary<span class="sc">::</span><span class="fu">msummary</span>(</span>
-<span id="cb3-73"><a href="#cb3-73" aria-hidden="true" tabindex="-1"></a>  <span class="fu">list</span>(<span class="st">"OLS (HC1 robust SEs)"</span> <span class="ot">=</span> m0),</span>
-<span id="cb3-74"><a href="#cb3-74" aria-hidden="true" tabindex="-1"></a>  <span class="at">vcov =</span> vcov_HC1,</span>
-<span id="cb3-75"><a href="#cb3-75" aria-hidden="true" tabindex="-1"></a>  <span class="at">gof_map =</span> <span class="fu">c</span>(<span class="st">"adj.r.squared"</span>, <span class="st">"AIC"</span>, <span class="st">"sigma"</span>)</span>
-<span id="cb3-76"><a href="#cb3-76" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-66"><a href="#cb3-66" aria-hidden="true" tabindex="-1"></a><span class="co"># (C) Heteroskedasticity – White and Goldfeld–Quandt</span></span>
+<span id="cb3-67"><a href="#cb3-67" aria-hidden="true" tabindex="-1"></a>white_test <span class="ot">&lt;-</span> lmtest<span class="sc">::</span><span class="fu">bptest</span>(m0, <span class="at">varformula =</span> <span class="sc">~</span> <span class="fu">fitted</span>(m0) <span class="sc">+</span> <span class="fu">I</span>(<span class="fu">fitted</span>(m0)<span class="sc">^</span><span class="dv">2</span>))</span>
+<span id="cb3-68"><a href="#cb3-68" aria-hidden="true" tabindex="-1"></a>gq_test    <span class="ot">&lt;-</span> lmtest<span class="sc">::</span><span class="fu">gqtest</span>(m0, <span class="at">order.by =</span> <span class="sc">~</span> ln_area, <span class="at">data =</span> df, <span class="at">fraction =</span> <span class="dv">2</span><span class="sc">/</span><span class="dv">3</span>)</span>
+<span id="cb3-69"><a href="#cb3-69" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-70"><a href="#cb3-70" aria-hidden="true" tabindex="-1"></a><span class="co"># ---------------------------------------------------</span></span>
+<span id="cb3-71"><a href="#cb3-71" aria-hidden="true" tabindex="-1"></a><span class="co"># 4) Coefficient table with HAC (Newey–West) SEs ONLY</span></span>
+<span id="cb3-72"><a href="#cb3-72" aria-hidden="true" tabindex="-1"></a><span class="co">#    (simple: no prewhitening to avoid errors)</span></span>
+<span id="cb3-73"><a href="#cb3-73" aria-hidden="true" tabindex="-1"></a><span class="co"># ---------------------------------------------------</span></span>
+<span id="cb3-74"><a href="#cb3-74" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sandwich)</span>
+<span id="cb3-75"><a href="#cb3-75" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lmtest)</span>
+<span id="cb3-76"><a href="#cb3-76" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(broom)</span>
+<span id="cb3-77"><a href="#cb3-77" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(knitr)</span>
+<span id="cb3-78"><a href="#cb3-78" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-79"><a href="#cb3-79" aria-hidden="true" tabindex="-1"></a>vcov_HAC <span class="ot">&lt;-</span> sandwich<span class="sc">::</span><span class="fu">NeweyWest</span>(m0, <span class="at">lag =</span> <span class="dv">4</span>, <span class="at">prewhite =</span> <span class="cn">FALSE</span>, <span class="at">adjust =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb3-80"><a href="#cb3-80" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-81"><a href="#cb3-81" aria-hidden="true" tabindex="-1"></a>ct_obj <span class="ot">&lt;-</span> lmtest<span class="sc">::</span><span class="fu">coeftest</span>(m0, <span class="at">vcov. =</span> vcov_HAC)</span>
+<span id="cb3-82"><a href="#cb3-82" aria-hidden="true" tabindex="-1"></a>ct_df  <span class="ot">&lt;-</span> broom<span class="sc">::</span><span class="fu">tidy</span>(ct_obj)  <span class="co"># safe data.frame for kable</span></span>
+<span id="cb3-83"><a href="#cb3-83" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-84"><a href="#cb3-84" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(</span>
+<span id="cb3-85"><a href="#cb3-85" aria-hidden="true" tabindex="-1"></a>  ct_df,</span>
+<span id="cb3-86"><a href="#cb3-86" aria-hidden="true" tabindex="-1"></a>  <span class="at">digits  =</span> <span class="dv">3</span>,</span>
+<span id="cb3-87"><a href="#cb3-87" aria-hidden="true" tabindex="-1"></a>  <span class="at">col.names =</span> <span class="fu">c</span>(<span class="st">"Term"</span>, <span class="st">"Estimate"</span>, <span class="st">"Std. Error"</span>, <span class="st">"Statistic"</span>, <span class="st">"Pr(&gt;|t|)"</span>),</span>
+<span id="cb3-88"><a href="#cb3-88" aria-hidden="true" tabindex="-1"></a>  <span class="at">caption =</span> <span class="st">"OLS with HAC (Newey–West) robust standard errors"</span></span>
+<span id="cb3-89"><a href="#cb3-89" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<!-- preamble start -->
-
-    <script>
-
-      function styleCell_512k194wz8sbj8ysfr4r(i, j, css_id) {
-          var table = document.getElementById("tinytable_512k194wz8sbj8ysfr4r");
-          var cell = table.rows[i]?.cells[j];  // Safe navigation to avoid errors
-          if (cell) {
-              console.log(`Styling cell at (${i}, ${j}) with class ${css_id}`);
-              cell.classList.add(css_id);
-          } else {
-              console.warn(`Cell at (${i}, ${j}) not found.`);
-          }
-      }
-      function insertSpanRow(i, colspan, content) {
-        var table = document.getElementById('tinytable_512k194wz8sbj8ysfr4r');
-        var newRow = table.insertRow(i);
-        var newCell = newRow.insertCell(0);
-        newCell.setAttribute("colspan", colspan);
-        // newCell.innerText = content;
-        // this may be unsafe, but innerText does not interpret <br>
-        newCell.innerHTML = content;
-      }
-      function spanCell_512k194wz8sbj8ysfr4r(i, j, rowspan, colspan) {
-        var table = document.getElementById("tinytable_512k194wz8sbj8ysfr4r");
-        const targetRow = table.rows[i];
-        const targetCell = targetRow.cells[j];
-        for (let r = 0; r < rowspan; r++) {
-          // Only start deleting cells to the right for the first row (r == 0)
-          if (r === 0) {
-            // Delete cells to the right of the target cell in the first row
-            for (let c = colspan - 1; c > 0; c--) {
-              if (table.rows[i + r].cells[j + c]) {
-                table.rows[i + r].deleteCell(j + c);
-              }
-            }
-          }
-          // For rows below the first, delete starting from the target column
-          if (r > 0) {
-            for (let c = colspan - 1; c >= 0; c--) {
-              if (table.rows[i + r] && table.rows[i + r].cells[j]) {
-                table.rows[i + r].deleteCell(j);
-              }
-            }
-          }
-        }
-        // Set rowspan and colspan of the target cell
-        targetCell.rowSpan = rowspan;
-        targetCell.colSpan = colspan;
-      }
-      // tinytable span after
-      window.addEventListener('load', function () {
-          var cellsToStyle = [
-            // tinytable style arrays after
-          { positions: [ { i: 149, j: 1 },  ], css_id: 'tinytable_css_mpairkzlotkk59n6db9o',}, 
-          { positions: [ { i: 148, j: 1 },  ], css_id: 'tinytable_css_xo0darhxzje6qt4ljar8',}, 
-          { positions: [ { i: 1, j: 1 }, { i: 2, j: 1 }, { i: 3, j: 1 }, { i: 4, j: 1 }, { i: 5, j: 1 }, { i: 6, j: 1 }, { i: 7, j: 1 }, { i: 8, j: 1 }, { i: 9, j: 1 }, { i: 10, j: 1 }, { i: 11, j: 1 }, { i: 12, j: 1 }, { i: 13, j: 1 }, { i: 14, j: 1 }, { i: 15, j: 1 }, { i: 16, j: 1 }, { i: 17, j: 1 }, { i: 18, j: 1 }, { i: 19, j: 1 }, { i: 20, j: 1 }, { i: 21, j: 1 }, { i: 22, j: 1 }, { i: 23, j: 1 }, { i: 24, j: 1 }, { i: 25, j: 1 }, { i: 26, j: 1 }, { i: 27, j: 1 }, { i: 28, j: 1 }, { i: 29, j: 1 }, { i: 30, j: 1 }, { i: 31, j: 1 }, { i: 32, j: 1 }, { i: 33, j: 1 }, { i: 34, j: 1 }, { i: 35, j: 1 }, { i: 36, j: 1 }, { i: 37, j: 1 }, { i: 38, j: 1 }, { i: 39, j: 1 }, { i: 40, j: 1 }, { i: 41, j: 1 }, { i: 42, j: 1 }, { i: 43, j: 1 }, { i: 44, j: 1 }, { i: 45, j: 1 }, { i: 46, j: 1 }, { i: 47, j: 1 }, { i: 48, j: 1 }, { i: 49, j: 1 }, { i: 50, j: 1 }, { i: 51, j: 1 }, { i: 52, j: 1 }, { i: 53, j: 1 }, { i: 54, j: 1 }, { i: 55, j: 1 }, { i: 56, j: 1 }, { i: 57, j: 1 }, { i: 58, j: 1 }, { i: 59, j: 1 }, { i: 60, j: 1 }, { i: 61, j: 1 }, { i: 62, j: 1 }, { i: 63, j: 1 }, { i: 64, j: 1 }, { i: 65, j: 1 }, { i: 66, j: 1 }, { i: 67, j: 1 }, { i: 68, j: 1 }, { i: 69, j: 1 }, { i: 70, j: 1 }, { i: 71, j: 1 }, { i: 72, j: 1 }, { i: 73, j: 1 }, { i: 74, j: 1 }, { i: 75, j: 1 }, { i: 76, j: 1 }, { i: 77, j: 1 }, { i: 78, j: 1 }, { i: 79, j: 1 }, { i: 80, j: 1 }, { i: 81, j: 1 }, { i: 82, j: 1 }, { i: 83, j: 1 }, { i: 84, j: 1 }, { i: 85, j: 1 }, { i: 86, j: 1 }, { i: 87, j: 1 }, { i: 88, j: 1 }, { i: 89, j: 1 }, { i: 90, j: 1 }, { i: 91, j: 1 }, { i: 92, j: 1 }, { i: 93, j: 1 }, { i: 94, j: 1 }, { i: 95, j: 1 }, { i: 96, j: 1 }, { i: 97, j: 1 }, { i: 98, j: 1 }, { i: 99, j: 1 }, { i: 100, j: 1 }, { i: 101, j: 1 }, { i: 102, j: 1 }, { i: 103, j: 1 }, { i: 104, j: 1 }, { i: 105, j: 1 }, { i: 106, j: 1 }, { i: 107, j: 1 }, { i: 108, j: 1 }, { i: 109, j: 1 }, { i: 110, j: 1 }, { i: 111, j: 1 }, { i: 112, j: 1 }, { i: 113, j: 1 }, { i: 114, j: 1 }, { i: 115, j: 1 }, { i: 116, j: 1 }, { i: 117, j: 1 }, { i: 118, j: 1 }, { i: 119, j: 1 }, { i: 120, j: 1 }, { i: 121, j: 1 }, { i: 122, j: 1 }, { i: 123, j: 1 }, { i: 124, j: 1 }, { i: 125, j: 1 }, { i: 126, j: 1 }, { i: 127, j: 1 }, { i: 128, j: 1 }, { i: 129, j: 1 }, { i: 130, j: 1 }, { i: 131, j: 1 }, { i: 132, j: 1 }, { i: 133, j: 1 }, { i: 134, j: 1 }, { i: 135, j: 1 }, { i: 136, j: 1 }, { i: 137, j: 1 }, { i: 138, j: 1 }, { i: 139, j: 1 }, { i: 140, j: 1 }, { i: 141, j: 1 }, { i: 142, j: 1 }, { i: 143, j: 1 }, { i: 144, j: 1 }, { i: 145, j: 1 }, { i: 146, j: 1 }, { i: 147, j: 1 },  ], css_id: 'tinytable_css_f968o2hresjofnwlpjek',}, 
-          { positions: [ { i: 0, j: 1 },  ], css_id: 'tinytable_css_g8gcu0gwr1u7f2cb0tu5',}, 
-          { positions: [ { i: 149, j: 0 },  ], css_id: 'tinytable_css_q9r94yddrwypuvgqtzja',}, 
-          { positions: [ { i: 148, j: 0 },  ], css_id: 'tinytable_css_lu5jexmbp01nxordx1uv',}, 
-          { positions: [ { i: 1, j: 0 }, { i: 2, j: 0 }, { i: 3, j: 0 }, { i: 4, j: 0 }, { i: 5, j: 0 }, { i: 6, j: 0 }, { i: 7, j: 0 }, { i: 8, j: 0 }, { i: 9, j: 0 }, { i: 10, j: 0 }, { i: 11, j: 0 }, { i: 12, j: 0 }, { i: 13, j: 0 }, { i: 14, j: 0 }, { i: 15, j: 0 }, { i: 16, j: 0 }, { i: 17, j: 0 }, { i: 18, j: 0 }, { i: 19, j: 0 }, { i: 20, j: 0 }, { i: 21, j: 0 }, { i: 22, j: 0 }, { i: 23, j: 0 }, { i: 24, j: 0 }, { i: 25, j: 0 }, { i: 26, j: 0 }, { i: 27, j: 0 }, { i: 28, j: 0 }, { i: 29, j: 0 }, { i: 30, j: 0 }, { i: 31, j: 0 }, { i: 32, j: 0 }, { i: 33, j: 0 }, { i: 34, j: 0 }, { i: 35, j: 0 }, { i: 36, j: 0 }, { i: 37, j: 0 }, { i: 38, j: 0 }, { i: 39, j: 0 }, { i: 40, j: 0 }, { i: 41, j: 0 }, { i: 42, j: 0 }, { i: 43, j: 0 }, { i: 44, j: 0 }, { i: 45, j: 0 }, { i: 46, j: 0 }, { i: 47, j: 0 }, { i: 48, j: 0 }, { i: 49, j: 0 }, { i: 50, j: 0 }, { i: 51, j: 0 }, { i: 52, j: 0 }, { i: 53, j: 0 }, { i: 54, j: 0 }, { i: 55, j: 0 }, { i: 56, j: 0 }, { i: 57, j: 0 }, { i: 58, j: 0 }, { i: 59, j: 0 }, { i: 60, j: 0 }, { i: 61, j: 0 }, { i: 62, j: 0 }, { i: 63, j: 0 }, { i: 64, j: 0 }, { i: 65, j: 0 }, { i: 66, j: 0 }, { i: 67, j: 0 }, { i: 68, j: 0 }, { i: 69, j: 0 }, { i: 70, j: 0 }, { i: 71, j: 0 }, { i: 72, j: 0 }, { i: 73, j: 0 }, { i: 74, j: 0 }, { i: 75, j: 0 }, { i: 76, j: 0 }, { i: 77, j: 0 }, { i: 78, j: 0 }, { i: 79, j: 0 }, { i: 80, j: 0 }, { i: 81, j: 0 }, { i: 82, j: 0 }, { i: 83, j: 0 }, { i: 84, j: 0 }, { i: 85, j: 0 }, { i: 86, j: 0 }, { i: 87, j: 0 }, { i: 88, j: 0 }, { i: 89, j: 0 }, { i: 90, j: 0 }, { i: 91, j: 0 }, { i: 92, j: 0 }, { i: 93, j: 0 }, { i: 94, j: 0 }, { i: 95, j: 0 }, { i: 96, j: 0 }, { i: 97, j: 0 }, { i: 98, j: 0 }, { i: 99, j: 0 }, { i: 100, j: 0 }, { i: 101, j: 0 }, { i: 102, j: 0 }, { i: 103, j: 0 }, { i: 104, j: 0 }, { i: 105, j: 0 }, { i: 106, j: 0 }, { i: 107, j: 0 }, { i: 108, j: 0 }, { i: 109, j: 0 }, { i: 110, j: 0 }, { i: 111, j: 0 }, { i: 112, j: 0 }, { i: 113, j: 0 }, { i: 114, j: 0 }, { i: 115, j: 0 }, { i: 116, j: 0 }, { i: 117, j: 0 }, { i: 118, j: 0 }, { i: 119, j: 0 }, { i: 120, j: 0 }, { i: 121, j: 0 }, { i: 122, j: 0 }, { i: 123, j: 0 }, { i: 124, j: 0 }, { i: 125, j: 0 }, { i: 126, j: 0 }, { i: 127, j: 0 }, { i: 128, j: 0 }, { i: 129, j: 0 }, { i: 130, j: 0 }, { i: 131, j: 0 }, { i: 132, j: 0 }, { i: 133, j: 0 }, { i: 134, j: 0 }, { i: 135, j: 0 }, { i: 136, j: 0 }, { i: 137, j: 0 }, { i: 138, j: 0 }, { i: 139, j: 0 }, { i: 140, j: 0 }, { i: 141, j: 0 }, { i: 142, j: 0 }, { i: 143, j: 0 }, { i: 144, j: 0 }, { i: 145, j: 0 }, { i: 146, j: 0 }, { i: 147, j: 0 },  ], css_id: 'tinytable_css_0cd48fpwsovgd5fuxtv5',}, 
-          { positions: [ { i: 0, j: 0 },  ], css_id: 'tinytable_css_1hnh4kzzhqcivfsg8k7s',}, 
-          ];
-
-          // Loop over the arrays to style the cells
-          cellsToStyle.forEach(function (group) {
-              group.positions.forEach(function (cell) {
-                  styleCell_512k194wz8sbj8ysfr4r(cell.i, cell.j, group.css_id);
-              });
-          });
-      });
-    </script>
-
-    <style>
-      /* tinytable css entries after */
-      .table td.tinytable_css_mpairkzlotkk59n6db9o, .table th.tinytable_css_mpairkzlotkk59n6db9o { text-align: center; border-bottom: solid #d3d8dc 0.1em; }
-      .table td.tinytable_css_xo0darhxzje6qt4ljar8, .table th.tinytable_css_xo0darhxzje6qt4ljar8 { text-align: center; border-bottom: solid black 0.05em; }
-      .table td.tinytable_css_f968o2hresjofnwlpjek, .table th.tinytable_css_f968o2hresjofnwlpjek { text-align: center; }
-      .table td.tinytable_css_g8gcu0gwr1u7f2cb0tu5, .table th.tinytable_css_g8gcu0gwr1u7f2cb0tu5 { text-align: center; border-top: solid #d3d8dc 0.1em; border-bottom: solid #d3d8dc 0.05em; }
-      .table td.tinytable_css_q9r94yddrwypuvgqtzja, .table th.tinytable_css_q9r94yddrwypuvgqtzja { text-align: left; border-bottom: solid #d3d8dc 0.1em; }
-      .table td.tinytable_css_lu5jexmbp01nxordx1uv, .table th.tinytable_css_lu5jexmbp01nxordx1uv { text-align: left; border-bottom: solid black 0.05em; }
-      .table td.tinytable_css_0cd48fpwsovgd5fuxtv5, .table th.tinytable_css_0cd48fpwsovgd5fuxtv5 { text-align: left; }
-      .table td.tinytable_css_1hnh4kzzhqcivfsg8k7s, .table th.tinytable_css_1hnh4kzzhqcivfsg8k7s { text-align: left; border-top: solid #d3d8dc 0.1em; border-bottom: solid #d3d8dc 0.05em; }
-    </style>
-    <div class="container">
-      <table class="table table-borderless" id="tinytable_512k194wz8sbj8ysfr4r" style="width: auto; margin-left: auto; margin-right: auto;" data-quarto-disable-processing="true">
-        <thead>
-        
-              <tr>
-                <th scope="col"> </th>
-                <th scope="col">OLS (HC1 robust SEs)</th>
-              </tr>
-        </thead>
-        
-        <tbody>
-                <tr>
-                  <td>(Intercept)</td>
-                  <td>8.466</td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td>(0.147)</td>
-                </tr>
-                <tr>
-                  <td>ln_area</td>
-                  <td>0.422</td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td>(0.021)</td>
-                </tr>
-                <tr>
-                  <td>bedroom_abv_gr</td>
-                  <td>-0.016</td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td>(0.006)</td>
-                </tr>
-                <tr>
-                  <td>baths_total</td>
-                  <td>0.043</td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td>(0.008)</td>
-                </tr>
-                <tr>
-                  <td>total_bsmt_sf</td>
-                  <td>0.000</td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td>(0.000)</td>
-                </tr>
-                <tr>
-                  <td>garage_cars</td>
-                  <td>0.053</td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td>(0.005)</td>
-                </tr>
-                <tr>
-                  <td>central_airY</td>
-                  <td>0.086</td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td>(0.016)</td>
-                </tr>
-                <tr>
-                  <td>overall_qual.L</td>
-                  <td>-0.016</td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td>(0.056)</td>
-                </tr>
-                <tr>
-                  <td>overall_qual.Q</td>
-                  <td>-0.033</td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td>(0.048)</td>
-                </tr>
-                <tr>
-                  <td>overall_qual.C</td>
-                  <td>-0.073</td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td>(0.049)</td>
-                </tr>
-                <tr>
-                  <td>overall_qual^4</td>
-                  <td>-0.146</td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td>(0.041)</td>
-                </tr>
-                <tr>
-                  <td>overall_qual^5</td>
-                  <td>-0.259</td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td>(0.037)</td>
-                </tr>
-                <tr>
-                  <td>overall_qual^6</td>
-                  <td>-0.010</td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td>(0.039)</td>
-                </tr>
-                <tr>
-                  <td>overall_qual^7</td>
-                  <td>0.126</td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td>(0.044)</td>
-                </tr>
-                <tr>
-                  <td>overall_qual^8</td>
-                  <td>-0.032</td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td>(0.038)</td>
-                </tr>
-                <tr>
-                  <td>overall_qual^9</td>
-                  <td>0.347</td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td>(0.037)</td>
-                </tr>
-                <tr>
-                  <td>overall_cond.L</td>
-                  <td>-0.222</td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td>(0.043)</td>
-                </tr>
-                <tr>
-                  <td>overall_cond.Q</td>
-                  <td>-0.102</td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td>(0.042)</td>
-                </tr>
-                <tr>
-                  <td>overall_cond.C</td>
-                  <td>-0.133</td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td>(0.042)</td>
-                </tr>
-                <tr>
-                  <td>overall_cond^4</td>
-                  <td>-0.136</td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td>(0.032)</td>
-                </tr>
-                <tr>
-                  <td>overall_cond^5</td>
-                  <td>-0.162</td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td>(0.021)</td>
-                </tr>
-                <tr>
-                  <td>overall_cond^6</td>
-                  <td>-0.096</td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td>(0.035)</td>
-                </tr>
-                <tr>
-                  <td>overall_cond^7</td>
-                  <td>-0.082</td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td>(0.031)</td>
-                </tr>
-                <tr>
-                  <td>overall_cond^8</td>
-                  <td>-0.325</td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td>(0.030)</td>
-                </tr>
-                <tr>
-                  <td>exter_qual.L</td>
-                  <td>-0.033</td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td>(0.018)</td>
-                </tr>
-                <tr>
-                  <td>exter_qual.Q</td>
-                  <td>0.031</td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td>(0.023)</td>
-                </tr>
-                <tr>
-                  <td>exter_qual.C</td>
-                  <td>-0.041</td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td>(0.029)</td>
-                </tr>
-                <tr>
-                  <td>kitchen_qual.L</td>
-                  <td>-0.030</td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td>(0.018)</td>
-                </tr>
-                <tr>
-                  <td>kitchen_qual.Q</td>
-                  <td>0.013</td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td>(0.016)</td>
-                </tr>
-                <tr>
-                  <td>kitchen_qual.C</td>
-                  <td>-0.105</td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td>(0.031)</td>
-                </tr>
-                <tr>
-                  <td>kitchen_qual^4</td>
-                  <td>0.009</td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td>(0.025)</td>
-                </tr>
-                <tr>
-                  <td>fireplace_qu.L</td>
-                  <td>-0.035</td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td>(0.017)</td>
-                </tr>
-                <tr>
-                  <td>fireplace_qu.Q</td>
-                  <td>0.040</td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td>(0.014)</td>
-                </tr>
-                <tr>
-                  <td>fireplace_qu.C</td>
-                  <td>0.002</td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td>(0.015)</td>
-                </tr>
-                <tr>
-                  <td>fireplace_qu^4</td>
-                  <td>-0.005</td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td>(0.015)</td>
-                </tr>
-                <tr>
-                  <td>fireplace_qu^5</td>
-                  <td>-0.023</td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td>(0.009)</td>
-                </tr>
-                <tr>
-                  <td>bldg_typeOneFam</td>
-                  <td>0.118</td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td>(0.018)</td>
-                </tr>
-                <tr>
-                  <td>bldg_typeTwnhs</td>
-                  <td>-0.018</td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td>(0.025)</td>
-                </tr>
-                <tr>
-                  <td>bldg_typeTwnhsE</td>
-                  <td>0.048</td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td>(0.023)</td>
-                </tr>
-                <tr>
-                  <td>bldg_typeTwoFmCon</td>
-                  <td>0.112</td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td>(0.026)</td>
-                </tr>
-                <tr>
-                  <td>house_styleOne_and_Half_Unf</td>
-                  <td>0.032</td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td>(0.026)</td>
-                </tr>
-                <tr>
-                  <td>house_styleOne_Story</td>
-                  <td>0.066</td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td>(0.014)</td>
-                </tr>
-                <tr>
-                  <td>house_styleSFoyer</td>
-                  <td>0.166</td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td>(0.018)</td>
-                </tr>
-                <tr>
-                  <td>house_styleSLvl</td>
-                  <td>0.072</td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td>(0.015)</td>
-                </tr>
-                <tr>
-                  <td>house_styleTwo_and_Half_Fin</td>
-                  <td>0.032</td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td>(0.071)</td>
-                </tr>
-                <tr>
-                  <td>house_styleTwo_and_Half_Unf</td>
-                  <td>0.034</td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td>(0.033)</td>
-                </tr>
-                <tr>
-                  <td>house_styleTwo_Story</td>
-                  <td>0.020</td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td>(0.015)</td>
-                </tr>
-                <tr>
-                  <td>neighborhoodBlueste</td>
-                  <td>-0.025</td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td>(0.046)</td>
-                </tr>
-                <tr>
-                  <td>neighborhoodBriardale</td>
-                  <td>-0.102</td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td>(0.030)</td>
-                </tr>
-                <tr>
-                  <td>neighborhoodBrookside</td>
-                  <td>-0.120</td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td>(0.031)</td>
-                </tr>
-                <tr>
-                  <td>neighborhoodClear_Creek</td>
-                  <td>0.067</td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td>(0.033)</td>
-                </tr>
-                <tr>
-                  <td>neighborhoodCollege_Creek</td>
-                  <td>0.030</td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td>(0.023)</td>
-                </tr>
-                <tr>
-                  <td>neighborhoodCrawford</td>
-                  <td>0.058</td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td>(0.029)</td>
-                </tr>
-                <tr>
-                  <td>neighborhoodEdwards</td>
-                  <td>-0.101</td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td>(0.033)</td>
-                </tr>
-                <tr>
-                  <td>neighborhoodGilbert</td>
-                  <td>-0.003</td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td>(0.025)</td>
-                </tr>
-                <tr>
-                  <td>neighborhoodGreen_Hills</td>
-                  <td>0.511</td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td>(0.051)</td>
-                </tr>
-                <tr>
-                  <td>neighborhoodGreens</td>
-                  <td>0.102</td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td>(0.037)</td>
-                </tr>
-                <tr>
-                  <td>neighborhoodIowa_DOT_and_Rail_Road</td>
-                  <td>-0.215</td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td>(0.035)</td>
-                </tr>
-                <tr>
-                  <td>neighborhoodLandmark</td>
-                  <td>0.026</td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td>(0.027)</td>
-                </tr>
-                <tr>
-                  <td>neighborhoodMeadow_Village</td>
-                  <td>-0.134</td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td>(0.031)</td>
-                </tr>
-                <tr>
-                  <td>neighborhoodMitchell</td>
-                  <td>-0.007</td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td>(0.026)</td>
-                </tr>
-                <tr>
-                  <td>neighborhoodNorth_Ames</td>
-                  <td>-0.058</td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td>(0.026)</td>
-                </tr>
-                <tr>
-                  <td>neighborhoodNorthpark_Villa</td>
-                  <td>-0.046</td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td>(0.027)</td>
-                </tr>
-                <tr>
-                  <td>neighborhoodNorthridge</td>
-                  <td>0.117</td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td>(0.026)</td>
-                </tr>
-                <tr>
-                  <td>neighborhoodNorthridge_Heights</td>
-                  <td>0.112</td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td>(0.026)</td>
-                </tr>
-                <tr>
-                  <td>neighborhoodNorthwest_Ames</td>
-                  <td>-0.062</td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td>(0.026)</td>
-                </tr>
-                <tr>
-                  <td>neighborhoodOld_Town</td>
-                  <td>-0.203</td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td>(0.028)</td>
-                </tr>
-                <tr>
-                  <td>neighborhoodSawyer</td>
-                  <td>-0.045</td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td>(0.028)</td>
-                </tr>
-                <tr>
-                  <td>neighborhoodSawyer_West</td>
-                  <td>-0.018</td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td>(0.026)</td>
-                </tr>
-                <tr>
-                  <td>neighborhoodSomerset</td>
-                  <td>0.074</td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td>(0.023)</td>
-                </tr>
-                <tr>
-                  <td>neighborhoodSouth_and_West_of_Iowa_State_University</td>
-                  <td>-0.094</td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td>(0.035)</td>
-                </tr>
-                <tr>
-                  <td>neighborhoodStone_Brook</td>
-                  <td>0.151</td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td>(0.033)</td>
-                </tr>
-                <tr>
-                  <td>neighborhoodTimberland</td>
-                  <td>0.047</td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td>(0.027)</td>
-                </tr>
-                <tr>
-                  <td>neighborhoodVeenker</td>
-                  <td>0.035</td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td>(0.046)</td>
-                </tr>
-                <tr>
-                  <td>R2 Adj.</td>
-                  <td>0.896</td>
-                </tr>
-        </tbody>
-      </table>
-    </div>
-<!-- hack to avoid NA insertion in last line -->
+<table class="caption-top table table-sm table-striped small">
+<caption>OLS with HAC (Newey–West) robust standard errors</caption>
+<colgroup>
+<col style="width: 51%">
+<col style="width: 8%">
+<col style="width: 10%">
+<col style="width: 9%">
+<col style="width: 18%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Term</th>
+<th style="text-align: right;">Estimate</th>
+<th style="text-align: right;">Std. Error</th>
+<th style="text-align: right;">Statistic</th>
+<th style="text-align: right;">Pr(&gt;|t|)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">(Intercept)</td>
+<td style="text-align: right;">8.466</td>
+<td style="text-align: right;">0.159</td>
+<td style="text-align: right;">53.316</td>
+<td style="text-align: right;">0.000</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ln_area</td>
+<td style="text-align: right;">0.422</td>
+<td style="text-align: right;">0.022</td>
+<td style="text-align: right;">19.157</td>
+<td style="text-align: right;">0.000</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">bedroom_abv_gr</td>
+<td style="text-align: right;">-0.016</td>
+<td style="text-align: right;">0.006</td>
+<td style="text-align: right;">-2.545</td>
+<td style="text-align: right;">0.011</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">baths_total</td>
+<td style="text-align: right;">0.043</td>
+<td style="text-align: right;">0.009</td>
+<td style="text-align: right;">5.082</td>
+<td style="text-align: right;">0.000</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">total_bsmt_sf</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">2.930</td>
+<td style="text-align: right;">0.003</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">garage_cars</td>
+<td style="text-align: right;">0.053</td>
+<td style="text-align: right;">0.006</td>
+<td style="text-align: right;">9.051</td>
+<td style="text-align: right;">0.000</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">central_airY</td>
+<td style="text-align: right;">0.086</td>
+<td style="text-align: right;">0.016</td>
+<td style="text-align: right;">5.547</td>
+<td style="text-align: right;">0.000</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">overall_qual.L</td>
+<td style="text-align: right;">-0.016</td>
+<td style="text-align: right;">0.060</td>
+<td style="text-align: right;">-0.267</td>
+<td style="text-align: right;">0.790</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">overall_qual.Q</td>
+<td style="text-align: right;">-0.033</td>
+<td style="text-align: right;">0.048</td>
+<td style="text-align: right;">-0.676</td>
+<td style="text-align: right;">0.499</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">overall_qual.C</td>
+<td style="text-align: right;">-0.073</td>
+<td style="text-align: right;">0.051</td>
+<td style="text-align: right;">-1.443</td>
+<td style="text-align: right;">0.149</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">overall_qual^4</td>
+<td style="text-align: right;">-0.146</td>
+<td style="text-align: right;">0.043</td>
+<td style="text-align: right;">-3.371</td>
+<td style="text-align: right;">0.001</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">overall_qual^5</td>
+<td style="text-align: right;">-0.259</td>
+<td style="text-align: right;">0.038</td>
+<td style="text-align: right;">-6.802</td>
+<td style="text-align: right;">0.000</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">overall_qual^6</td>
+<td style="text-align: right;">-0.010</td>
+<td style="text-align: right;">0.044</td>
+<td style="text-align: right;">-0.222</td>
+<td style="text-align: right;">0.825</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">overall_qual^7</td>
+<td style="text-align: right;">0.126</td>
+<td style="text-align: right;">0.049</td>
+<td style="text-align: right;">2.567</td>
+<td style="text-align: right;">0.010</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">overall_qual^8</td>
+<td style="text-align: right;">-0.032</td>
+<td style="text-align: right;">0.041</td>
+<td style="text-align: right;">-0.776</td>
+<td style="text-align: right;">0.438</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">overall_qual^9</td>
+<td style="text-align: right;">0.347</td>
+<td style="text-align: right;">0.039</td>
+<td style="text-align: right;">8.980</td>
+<td style="text-align: right;">0.000</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">overall_cond.L</td>
+<td style="text-align: right;">-0.222</td>
+<td style="text-align: right;">0.043</td>
+<td style="text-align: right;">-5.196</td>
+<td style="text-align: right;">0.000</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">overall_cond.Q</td>
+<td style="text-align: right;">-0.102</td>
+<td style="text-align: right;">0.042</td>
+<td style="text-align: right;">-2.406</td>
+<td style="text-align: right;">0.016</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">overall_cond.C</td>
+<td style="text-align: right;">-0.133</td>
+<td style="text-align: right;">0.042</td>
+<td style="text-align: right;">-3.178</td>
+<td style="text-align: right;">0.002</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">overall_cond^4</td>
+<td style="text-align: right;">-0.136</td>
+<td style="text-align: right;">0.032</td>
+<td style="text-align: right;">-4.221</td>
+<td style="text-align: right;">0.000</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">overall_cond^5</td>
+<td style="text-align: right;">-0.162</td>
+<td style="text-align: right;">0.022</td>
+<td style="text-align: right;">-7.467</td>
+<td style="text-align: right;">0.000</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">overall_cond^6</td>
+<td style="text-align: right;">-0.096</td>
+<td style="text-align: right;">0.035</td>
+<td style="text-align: right;">-2.759</td>
+<td style="text-align: right;">0.006</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">overall_cond^7</td>
+<td style="text-align: right;">-0.082</td>
+<td style="text-align: right;">0.032</td>
+<td style="text-align: right;">-2.603</td>
+<td style="text-align: right;">0.009</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">overall_cond^8</td>
+<td style="text-align: right;">-0.325</td>
+<td style="text-align: right;">0.030</td>
+<td style="text-align: right;">-10.802</td>
+<td style="text-align: right;">0.000</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">exter_qual.L</td>
+<td style="text-align: right;">-0.033</td>
+<td style="text-align: right;">0.018</td>
+<td style="text-align: right;">-1.794</td>
+<td style="text-align: right;">0.073</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">exter_qual.Q</td>
+<td style="text-align: right;">0.031</td>
+<td style="text-align: right;">0.026</td>
+<td style="text-align: right;">1.205</td>
+<td style="text-align: right;">0.228</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">exter_qual.C</td>
+<td style="text-align: right;">-0.041</td>
+<td style="text-align: right;">0.032</td>
+<td style="text-align: right;">-1.295</td>
+<td style="text-align: right;">0.195</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">kitchen_qual.L</td>
+<td style="text-align: right;">-0.030</td>
+<td style="text-align: right;">0.018</td>
+<td style="text-align: right;">-1.649</td>
+<td style="text-align: right;">0.099</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">kitchen_qual.Q</td>
+<td style="text-align: right;">0.013</td>
+<td style="text-align: right;">0.016</td>
+<td style="text-align: right;">0.845</td>
+<td style="text-align: right;">0.398</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">kitchen_qual.C</td>
+<td style="text-align: right;">-0.105</td>
+<td style="text-align: right;">0.031</td>
+<td style="text-align: right;">-3.340</td>
+<td style="text-align: right;">0.001</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">kitchen_qual^4</td>
+<td style="text-align: right;">0.009</td>
+<td style="text-align: right;">0.025</td>
+<td style="text-align: right;">0.371</td>
+<td style="text-align: right;">0.711</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">fireplace_qu.L</td>
+<td style="text-align: right;">-0.035</td>
+<td style="text-align: right;">0.017</td>
+<td style="text-align: right;">-2.025</td>
+<td style="text-align: right;">0.043</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">fireplace_qu.Q</td>
+<td style="text-align: right;">0.040</td>
+<td style="text-align: right;">0.015</td>
+<td style="text-align: right;">2.675</td>
+<td style="text-align: right;">0.008</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">fireplace_qu.C</td>
+<td style="text-align: right;">0.002</td>
+<td style="text-align: right;">0.015</td>
+<td style="text-align: right;">0.144</td>
+<td style="text-align: right;">0.885</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">fireplace_qu^4</td>
+<td style="text-align: right;">-0.005</td>
+<td style="text-align: right;">0.015</td>
+<td style="text-align: right;">-0.353</td>
+<td style="text-align: right;">0.724</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">fireplace_qu^5</td>
+<td style="text-align: right;">-0.023</td>
+<td style="text-align: right;">0.009</td>
+<td style="text-align: right;">-2.578</td>
+<td style="text-align: right;">0.010</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">bldg_typeOneFam</td>
+<td style="text-align: right;">0.118</td>
+<td style="text-align: right;">0.020</td>
+<td style="text-align: right;">6.032</td>
+<td style="text-align: right;">0.000</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">bldg_typeTwnhs</td>
+<td style="text-align: right;">-0.018</td>
+<td style="text-align: right;">0.028</td>
+<td style="text-align: right;">-0.644</td>
+<td style="text-align: right;">0.520</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">bldg_typeTwnhsE</td>
+<td style="text-align: right;">0.048</td>
+<td style="text-align: right;">0.026</td>
+<td style="text-align: right;">1.845</td>
+<td style="text-align: right;">0.065</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">bldg_typeTwoFmCon</td>
+<td style="text-align: right;">0.112</td>
+<td style="text-align: right;">0.029</td>
+<td style="text-align: right;">3.905</td>
+<td style="text-align: right;">0.000</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">house_styleOne_and_Half_Unf</td>
+<td style="text-align: right;">0.032</td>
+<td style="text-align: right;">0.028</td>
+<td style="text-align: right;">1.147</td>
+<td style="text-align: right;">0.251</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">house_styleOne_Story</td>
+<td style="text-align: right;">0.066</td>
+<td style="text-align: right;">0.014</td>
+<td style="text-align: right;">4.626</td>
+<td style="text-align: right;">0.000</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">house_styleSFoyer</td>
+<td style="text-align: right;">0.166</td>
+<td style="text-align: right;">0.019</td>
+<td style="text-align: right;">8.846</td>
+<td style="text-align: right;">0.000</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">house_styleSLvl</td>
+<td style="text-align: right;">0.072</td>
+<td style="text-align: right;">0.015</td>
+<td style="text-align: right;">4.854</td>
+<td style="text-align: right;">0.000</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">house_styleTwo_and_Half_Fin</td>
+<td style="text-align: right;">0.032</td>
+<td style="text-align: right;">0.072</td>
+<td style="text-align: right;">0.440</td>
+<td style="text-align: right;">0.660</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">house_styleTwo_and_Half_Unf</td>
+<td style="text-align: right;">0.034</td>
+<td style="text-align: right;">0.033</td>
+<td style="text-align: right;">1.041</td>
+<td style="text-align: right;">0.298</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">house_styleTwo_Story</td>
+<td style="text-align: right;">0.020</td>
+<td style="text-align: right;">0.015</td>
+<td style="text-align: right;">1.355</td>
+<td style="text-align: right;">0.176</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">neighborhoodBlueste</td>
+<td style="text-align: right;">-0.025</td>
+<td style="text-align: right;">0.053</td>
+<td style="text-align: right;">-0.476</td>
+<td style="text-align: right;">0.634</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">neighborhoodBriardale</td>
+<td style="text-align: right;">-0.102</td>
+<td style="text-align: right;">0.036</td>
+<td style="text-align: right;">-2.880</td>
+<td style="text-align: right;">0.004</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">neighborhoodBrookside</td>
+<td style="text-align: right;">-0.120</td>
+<td style="text-align: right;">0.039</td>
+<td style="text-align: right;">-3.097</td>
+<td style="text-align: right;">0.002</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">neighborhoodClear_Creek</td>
+<td style="text-align: right;">0.067</td>
+<td style="text-align: right;">0.039</td>
+<td style="text-align: right;">1.712</td>
+<td style="text-align: right;">0.087</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">neighborhoodCollege_Creek</td>
+<td style="text-align: right;">0.030</td>
+<td style="text-align: right;">0.031</td>
+<td style="text-align: right;">0.978</td>
+<td style="text-align: right;">0.328</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">neighborhoodCrawford</td>
+<td style="text-align: right;">0.058</td>
+<td style="text-align: right;">0.038</td>
+<td style="text-align: right;">1.553</td>
+<td style="text-align: right;">0.120</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">neighborhoodEdwards</td>
+<td style="text-align: right;">-0.101</td>
+<td style="text-align: right;">0.040</td>
+<td style="text-align: right;">-2.549</td>
+<td style="text-align: right;">0.011</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">neighborhoodGilbert</td>
+<td style="text-align: right;">-0.003</td>
+<td style="text-align: right;">0.033</td>
+<td style="text-align: right;">-0.085</td>
+<td style="text-align: right;">0.933</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">neighborhoodGreen_Hills</td>
+<td style="text-align: right;">0.511</td>
+<td style="text-align: right;">0.055</td>
+<td style="text-align: right;">9.347</td>
+<td style="text-align: right;">0.000</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">neighborhoodGreens</td>
+<td style="text-align: right;">0.102</td>
+<td style="text-align: right;">0.038</td>
+<td style="text-align: right;">2.640</td>
+<td style="text-align: right;">0.008</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">neighborhoodIowa_DOT_and_Rail_Road</td>
+<td style="text-align: right;">-0.215</td>
+<td style="text-align: right;">0.042</td>
+<td style="text-align: right;">-5.154</td>
+<td style="text-align: right;">0.000</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">neighborhoodLandmark</td>
+<td style="text-align: right;">0.026</td>
+<td style="text-align: right;">0.034</td>
+<td style="text-align: right;">0.782</td>
+<td style="text-align: right;">0.434</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">neighborhoodMeadow_Village</td>
+<td style="text-align: right;">-0.134</td>
+<td style="text-align: right;">0.037</td>
+<td style="text-align: right;">-3.584</td>
+<td style="text-align: right;">0.000</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">neighborhoodMitchell</td>
+<td style="text-align: right;">-0.007</td>
+<td style="text-align: right;">0.033</td>
+<td style="text-align: right;">-0.208</td>
+<td style="text-align: right;">0.835</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">neighborhoodNorth_Ames</td>
+<td style="text-align: right;">-0.058</td>
+<td style="text-align: right;">0.033</td>
+<td style="text-align: right;">-1.764</td>
+<td style="text-align: right;">0.078</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">neighborhoodNorthpark_Villa</td>
+<td style="text-align: right;">-0.046</td>
+<td style="text-align: right;">0.032</td>
+<td style="text-align: right;">-1.440</td>
+<td style="text-align: right;">0.150</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">neighborhoodNorthridge</td>
+<td style="text-align: right;">0.117</td>
+<td style="text-align: right;">0.032</td>
+<td style="text-align: right;">3.640</td>
+<td style="text-align: right;">0.000</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">neighborhoodNorthridge_Heights</td>
+<td style="text-align: right;">0.112</td>
+<td style="text-align: right;">0.033</td>
+<td style="text-align: right;">3.401</td>
+<td style="text-align: right;">0.001</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">neighborhoodNorthwest_Ames</td>
+<td style="text-align: right;">-0.062</td>
+<td style="text-align: right;">0.033</td>
+<td style="text-align: right;">-1.872</td>
+<td style="text-align: right;">0.061</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">neighborhoodOld_Town</td>
+<td style="text-align: right;">-0.203</td>
+<td style="text-align: right;">0.035</td>
+<td style="text-align: right;">-5.829</td>
+<td style="text-align: right;">0.000</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">neighborhoodSawyer</td>
+<td style="text-align: right;">-0.045</td>
+<td style="text-align: right;">0.035</td>
+<td style="text-align: right;">-1.280</td>
+<td style="text-align: right;">0.201</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">neighborhoodSawyer_West</td>
+<td style="text-align: right;">-0.018</td>
+<td style="text-align: right;">0.032</td>
+<td style="text-align: right;">-0.569</td>
+<td style="text-align: right;">0.570</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">neighborhoodSomerset</td>
+<td style="text-align: right;">0.074</td>
+<td style="text-align: right;">0.030</td>
+<td style="text-align: right;">2.471</td>
+<td style="text-align: right;">0.014</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">neighborhoodSouth_and_West_of_Iowa_State_University</td>
+<td style="text-align: right;">-0.094</td>
+<td style="text-align: right;">0.040</td>
+<td style="text-align: right;">-2.366</td>
+<td style="text-align: right;">0.018</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">neighborhoodStone_Brook</td>
+<td style="text-align: right;">0.151</td>
+<td style="text-align: right;">0.043</td>
+<td style="text-align: right;">3.476</td>
+<td style="text-align: right;">0.001</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">neighborhoodTimberland</td>
+<td style="text-align: right;">0.047</td>
+<td style="text-align: right;">0.034</td>
+<td style="text-align: right;">1.380</td>
+<td style="text-align: right;">0.168</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">neighborhoodVeenker</td>
+<td style="text-align: right;">0.035</td>
+<td style="text-align: right;">0.046</td>
+<td style="text-align: right;">0.775</td>
+<td style="text-align: right;">0.438</td>
+</tr>
+</tbody>
+</table>
 </div>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ---------------------------------------------------</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Summary table of diagnostics</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 5) Diagnostics summary table (simple &amp; readable)</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co"># ---------------------------------------------------</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>diagnostics <span class="ot">&lt;-</span> tibble<span class="sc">::</span><span class="fu">tibble</span>(</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>diag_tab <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
 <span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">Diagnostic =</span> <span class="fu">c</span>(</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Mean VIF (multicollinearity)"</span>,</span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">"BG test p-value (autocorrelation)"</span>,</span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">"White test p-value (heteroskedasticity)"</span>,</span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Goldfeld–Quandt p-value (heteroskedasticity)"</span></span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>  ),</span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">Result =</span> <span class="fu">c</span>(vif_mean, bg_test<span class="sc">$</span>p.value, white_test<span class="sc">$</span>p.value, gq_test<span class="sc">$</span>p.value)</span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(diagnostics)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 4 × 2
-  Diagnostic                                     Result
-  &lt;chr&gt;                                           &lt;dbl&gt;
-1 Mean VIF (multicollinearity)                 6.35e+ 0
-2 BG test p-value (autocorrelation)            5.00e- 5
-3 White test p-value (heteroskedasticity)      2.57e-36
-4 Goldfeld–Quandt p-value (heteroskedasticity) 2.03e- 3</code></pre>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Mean VIF"</span>,</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Max VIF"</span>,</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">"BG test p-value (lag 4)"</span>,</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">"White test p-value"</span>,</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Goldfeld–Quandt p-value"</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">Result =</span> <span class="fu">c</span>(</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">round</span>(vif_mean, <span class="dv">3</span>),</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">round</span>(vif_max, <span class="dv">3</span>),</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">signif</span>(bg_test<span class="sc">$</span>p.value, <span class="dv">3</span>),</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">signif</span>(white_test<span class="sc">$</span>p.value, <span class="dv">3</span>),</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>    <span class="fu">signif</span>(gq_test<span class="sc">$</span>p.value, <span class="dv">3</span>)</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>  <span class="at">check.names =</span> <span class="cn">FALSE</span></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(</span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>  diag_tab,</span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>  <span class="at">digits  =</span> <span class="dv">3</span>,</span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>  <span class="at">caption =</span> <span class="st">"Diagnostics: multicollinearity, autocorrelation, heteroskedasticity"</span></span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<caption>Diagnostics: multicollinearity, autocorrelation, heteroskedasticity</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Diagnostic</th>
+<th style="text-align: right;">Result</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Mean VIF</td>
+<td style="text-align: right;">1.418</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Max VIF</td>
+<td style="text-align: right;">2.471</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">BG test p-value (lag 4)</td>
+<td style="text-align: right;">0.000</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">White test p-value</td>
+<td style="text-align: right;">0.000</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Goldfeld–Quandt p-value</td>
+<td style="text-align: right;">0.002</td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 <blockquote class="blockquote">
@@ -1172,8 +1064,7 @@ Aim for <strong>theoretical consistency</strong>, <strong>parsimony</strong>, an
 <h3 class="anchored" data-anchor-id="part-c-competition-criteria-automated-assessment">Part C — Competition, Criteria &amp; Automated Assessment</h3>
 <section id="the-golden-regression-challenge" class="level4">
 <h4 class="anchored" data-anchor-id="the-golden-regression-challenge">The Golden Regression Challenge</h4>
-<p>Your model competes on <strong>quality and clarity</strong>, not just raw fit.<br>
-Evaluation is <strong>automated</strong> using an AI‑assisted rubric plus model metrics.</p>
+<p>Your model competes on <strong>quality and clarity</strong>, not just raw fit.</p>
 </section>
 </section>
 <section id="judging-criteria-used-by-the-automation" class="level3">
@@ -1193,9 +1084,7 @@ Evaluation is <strong>automated</strong> using an AI‑assisted rubric plus mode
 <section id="scoring-overview" class="level3">
 <h3 class="anchored" data-anchor-id="scoring-overview">Scoring (overview)</h3>
 <ul>
-<li>The AI reads a short <strong>plain‑text report</strong> (see template below) and assigns <strong>1–5</strong> on each criterion.<br>
-</li>
-<li>Model metrics (e.g., <strong>Adjusted&nbsp;R²</strong>, <strong>AIC</strong>, <strong>RMSE</strong>, <strong>VIF mean</strong>) complement the rubric.<br>
+<li>Model metrics (e.g., <strong>Adjusted&nbsp;R²</strong>, <strong>BIC</strong>, <strong>RMSE</strong>, <strong>VIF mean</strong>) complement the rubric.<br>
 </li>
 <li>A composite score ranks entries; the winner receives the <strong>🏅 Golden Regression Medal</strong>.</li>
 </ul>
@@ -1223,7 +1112,6 @@ Evaluation is <strong>automated</strong> using an AI‑assisted rubric plus mode
 <div style="position:relative; padding-top:56.25%; height:0; overflow:hidden; max-width:100%; border:0;">
 <p><iframe src="https://forms.office.com/Pages/ResponsePage.aspx?id=RQSlSfq9eUut41R7TzmG6e2v58mrCWNIjQV8bfnU-6tUNUJVWlBHT1A0SDg1UVFZTVhBQUtBT1Y0UC4u&amp;embed=true" style="position:absolute; top:0; left:0; width:100%; height:100%; border:0;" frameborder="0" marginwidth="0" marginheight="0" allowfullscreen="" webkitallowfullscreen="" mozallowfullscreen="" msallowfullscreen=""> </iframe></p>
 </div>
-<p>```</p>
 <p><strong>Notes</strong><br>
 - Do <strong>not</strong> include plots or screenshots in the report. Keep it text‑only.<br>
 - Your identity is recorded at submission.</p>
