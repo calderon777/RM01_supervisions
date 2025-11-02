@@ -1,0 +1,162 @@
+---
+title: "In‑Class Test Supervision 4 — Indicative Solution"
+format:
+  html:
+    toc: true
+    toc-depth: 2
+    code-fold: false
+execute:
+  echo: true
+  warning: false
+  message: false
+editor: visual
+---
+
+## Overview
+
+This document reproduces the analysis with **concise `#` comments inside each R chunk** so students see *why* each step is taken.
+
+---
+
+## 0) Packages
+
+```{r}
+# Minimal package set for this workflow
+pkgs <- c("PoEdata","car","lmtest","sandwich","dplyr","zoo")
+
+# Install any missing packages (safe check)
+to_install <- pkgs[!sapply(pkgs, requireNamespace, quietly = TRUE)]
+if (length(to_install)) install.packages(to_install, repos = "https://cloud.r-project.org")
+
+# Load libraries
+library(PoEdata)     # provides 'rice' dataset
+library(car)         # VIF for multicollinearity
+library(lmtest)      # dwtest, bgtest, bptest
+library(sandwich)    # robust variance estimators (HC)
+library(dplyr)       # arrange, mutate, lag
+```
+
+## 1) Data
+
+```{r}
+# Load and time-order the data
+data(rice)                                  # bring 'rice' into the workspace
+rice <- rice[order(rice$year), ]            # ensure time order for lags and DW/BG tests
+
+# Baseline production function
+form <- prod ~ area + fert + labor + firm   # 'firm' is an identifier; expect little role
+```
+
+## 2) Baseline OLS
+
+```{r}
+# Estimate baseline OLS
+m <- lm(form, data = rice)
+
+# Inspect fit and signs/magnitudes
+cat("\n=== OLS summary ===\n"); print(summary(m))
+```
+
+## 3) Multicollinearity (VIF)
+
+```{r}
+# Diagnose collinearity: rule of thumb VIF > 5 (moderate), > 10 (high)
+cat("\n=== Multicollinearity (VIF) ===\n"); print(vif(m))
+```
+
+## 4) Reduce collinearity via transformation
+
+```{r}
+# Construct labor per area to reduce collinearity between labor and area
+rice$labor_density <- rice$labor / rice$area   # density transformation
+
+# Refit a more parsimonious model (drop 'firm' id)
+m2 <- lm(prod ~ area + fert + labor_density, data = rice)
+
+# Check VIFs fall meaningfully
+cat("\n=== VIF after transformation (m2) ===\n"); print(vif(m2))
+
+# Compare fit (R^2) and significance with baseline
+cat("\n=== OLS summary (m2) ===\n"); print(summary(m2))
+```
+
+## 4a) Autocorrelation diagnostics
+
+```{r}
+# Durbin–Watson (focus on AR(1) positive autocorrelation under default alt)
+cat("\n=== Autocorrelation on m2 ===\n")
+cat("Durbin–Watson:\n"); print(dwtest(m2))
+
+# Breusch–Godfrey (general serial correlation; here AR(1) for comparability)
+cat("\nBreusch–Godfrey (AR1):\n"); print(bgtest(m2, order = 1))
+
+# Note: p < 0.05 indicates evidence of autocorrelation
+```
+
+### Create lag and plot correlograms
+
+```{r}
+# Create lag of dependent variable for dynamic model
+rice <- rice |>
+  arrange(year) |>
+  mutate(prod_lag = dplyr::lag(prod))   # first observation becomes NA by construction
+
+# ACF/PACF of residuals (visual check)
+acf(m2$residuals, main = "ACF of OLS residuals (m2)")    # spikes suggest serial correlation
+pacf(m2$residuals, main = "PACF of OLS residuals (m2)")
+
+# Align sample by dropping rows with NA lag
+rice_lag <- na.omit(rice)               # keep complete cases for dynamic models
+```
+
+## 4b) Dynamic model and log–log refinement
+
+```{r}
+# Dynamic level model: include the lagged dependent variable
+m3 <- lm(prod ~ prod_lag + area + fert + labor_density, data = rice_lag)
+cat("\n=== Dynamic model in levels (m3) ===\n"); print(summary(m3))
+cat("\nDW on m3:\n"); print(dwtest(m3))
+cat("\nBG(AR1) on m3:\n"); print(bgtest(m3, order = 1))
+
+# Log–log specification: interpretable elasticities, often stabilizes variance
+best <- lm(log(prod) ~ log(prod_lag) + log(area) + log(fert) + log(labor_density),
+           data = rice_lag)
+
+# Multicollinearity check in final model
+cat("\n=== VIF (final log–log model) ===\n"); print(vif(best))
+
+# Final model summary: coefficients are elasticities
+cat("\n=== Final model (log–log) summary ===\n"); print(summary(best))
+
+# Autocorrelation checks on final model (expect no serial correlation)
+cat("\nDW on final model:\n"); print(dwtest(best))
+cat("\nBG(AR1) on final model:\n"); print(bgtest(best, order = 1))
+```
+
+## 5) Heteroskedasticity tests
+
+```{r}
+# Breusch–Pagan: H0 = homoskedasticity
+cat("\n=== Heteroskedasticity ===\n")
+cat("Breusch–Pagan:\n"); print(bptest(best))
+
+# White-type (auxiliary regression on fitted and fitted^2)
+cat("\nWhite-type (fitted & fitted^2):\n")
+print(bptest(best, ~ fitted(best) + I(fitted(best)^2), data = rice_lag))
+```
+
+## 6) Robust inference (HC1)
+
+```{r}
+# Use heteroskedasticity-consistent (HC1) standard errors for inference
+# HAC is not needed because DW/BG suggest no serial correlation in the final model.
+cat("\n=== Coefficients with robust (HC1) SE ===\n")
+print(lmtest::coeftest(best, vcov = sandwich::vcovHC(best, type = "HC1")))
+```
+
+## Short interpretation notes (for students)
+
+- **Collinearity:** Replacing `labor` with `labor_density` reduced VIFs (improves stability of estimates).
+- **Autocorrelation:** Final log–log model (`best`) passes DW/BG (no serial correlation).
+- **Heteroskedasticity:** BP/White indicate non-constant variance → report **robust SEs**.
+- **Elasticities:** In the log–log model, coefficients read as % changes (e.g., 0.82 on `log(area)` ≈ 1% ↑ area → 0.82% ↑ output, ceteris paribus).

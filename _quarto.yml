@@ -18,6 +18,7 @@ book:
     - formative_test_sup3.qmd
     - formative_test_sup4.qmd
     - solution_formative_test_sup3.qmd
+    - solution_formative_test_sup4.qmd
     # later you’ll add more files... supervision_2.qmd, supervision_3.qmd, etc.
 
 format:
