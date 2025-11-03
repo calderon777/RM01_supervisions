@@ -106,6 +106,35 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="styles.css">
 <link rel="stylesheet" href="icons.css">
@@ -409,6 +438,7 @@ Multiple R-squared:  0.8137,    Adjusted R-squared:  0.8121
 F-statistic: 506.6 on 3 and 348 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
 </div>
+<p>Answer (VIF): Using a VIF threshold of 5 (NOte 5–10 considered moderate, &gt;10 high), the baseline model reports VIFs of area = 7.27, fert = 3.74, and labor = 7.06, indicating moderate multicollinearity for area and labor. The source is conceptual overlap between cultivated area and the scale of labor. Remedy: I replace labor with labor_density = labor/area to orthogonalise scale and intensity. In the revised model, VIFs fall to area = 3.74, fert = 3.61, labor_density = 1.10, which are comfortably below the threshold.</p>
 </section>
 <section id="a-autocorrelation-diagnostics" class="level2">
 <h2 class="anchored" data-anchor-id="a-autocorrelation-diagnostics">4a) Autocorrelation diagnostics</h2>
@@ -458,6 +488,7 @@ LM test = 6.1838, df = 1, p-value = 0.01289</code></pre>
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Note: p &lt; 0.05 indicates evidence of autocorrelation</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
+<p>Answer (autocorrelation): The initial diagnostics on the revised level model show positive serial correlation: DW ≈ 1.74 (p ≈ 0.006) and BG(1) p ≈ 0.013. The ACF/PACF of residuals suggest an AR(1) pattern with some evidence consistent with possible AR(2) dynamics. I therefore consider dynamic specifications and a log–log transformation (which often stabilises variance and improves dynamics).</p>
 <section id="create-lag-and-plot-correlograms" class="level3">
 <h3 class="anchored" data-anchor-id="create-lag-and-plot-correlograms">Create lag and plot correlograms</h3>
 <div class="cell">
@@ -647,6 +678,7 @@ data:  best
 LM test = 0.048045, df = 1, p-value = 0.8265</code></pre>
 </div>
 </div>
+<p>Answer (autocorrelation – final model): In the preferred log–log model with log(prod_lag), both tests indicate no residual serial correlation: DW ≈ 2.02 (p ≈ 0.55) and BG(1) p ≈ 0.83. This, together with acceptable VIFs (≤~4.7), supports using the log–log model for inference and interpretation as elasticities.</p>
 </section>
 <section id="heteroskedasticity-tests" class="level2">
 <h2 class="anchored" data-anchor-id="heteroskedasticity-tests">5) Heteroskedasticity tests</h2>
@@ -726,7 +758,33 @@ log(labor_density)  0.444306   0.089841  4.9455 1.187e-06 ***
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </div>
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb61"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"</span><span class="sc">\n</span><span class="st">=== Coefficients with HAC (Newey–West, lag = 1) ===</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+=== Coefficients with HAC (Newey–West, lag = 1) ===</code></pre>
 </div>
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(lmtest<span class="sc">::</span><span class="fu">coeftest</span>(best, <span class="at">vcov. =</span> sandwich<span class="sc">::</span><span class="fu">NeweyWest</span>(best, <span class="at">lag =</span> <span class="dv">1</span>, <span class="at">prewhite =</span> <span class="cn">FALSE</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+t test of coefficients:
+
+                    Estimate Std. Error t value  Pr(&gt;|t|)    
+(Intercept)        -1.478192   0.331960 -4.4529 1.145e-05 ***
+log(prod_lag)      -0.053045   0.024527 -2.1627  0.031249 *  
+log(area)           0.823241   0.077409 10.6350 &lt; 2.2e-16 ***
+log(fert)           0.200076   0.065352  3.0615  0.002375 ** 
+log(labor_density)  0.444306   0.085679  5.1857 3.670e-07 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+</div>
+</div>
+<p>Answer (heteroskedasticity &amp; inference): Both BP and White-type tests reject homoskedasticity, so I report HC1 and also HAC (Newey–West) inference. Comparing p‑values across classical vs HC1 vs HAC, the significance pattern is robust: at the 5% level, log(area), log(fert), and log(labor_density) remain significant; log(prod_lag) also remains significant at ≈5% (small negative carryover). Hence, substantive conclusions are unchanged by robust/HAC corrections.</p>
 </section>
 <section id="short-interpretation-notes-for-students" class="level2">
 <h2 class="anchored" data-anchor-id="short-interpretation-notes-for-students">Short interpretation notes (for students)</h2>
@@ -736,6 +794,8 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 <li><strong>Heteroskedasticity:</strong> BP/White indicate non-constant variance → report <strong>robust SEs</strong>.</li>
 <li><strong>Elasticities:</strong> In the log–log model, coefficients read as % changes (e.g., 0.82 on <code>log(area)</code> ≈ 1% ↑ area → 0.82% ↑ output, ceteris paribus).</li>
 </ul>
+<p>Final report: The preferred specification is a log–log production function with a dynamic term: <span class="math inline">\(log(\text{prod}_t) = \alpha + \beta1 \log(\text{prod}{t-1}) + \beta_2 \log(\text{area}_t) + \beta_3 \log(\text{fert}_t) +\)</span> <span class="math inline">\(\beta_4 \log(\text{labor/area}t) + u_t\)</span></p>
+<p>Diagnostics follow textbook order. Multicollinearity: baseline VIFs were moderate (area ≈ 7.27, labor ≈ 7.06), so I replaced labor with labor density, reducing VIFs to ≤~3.74. Autocorrelation: the revised level model exhibited positive AR(1) serial correlation (DW ≈ 1.74; BG p ≈ 0.013; ACF consistent with AR(1) and possible AR(2)), which motivated adding a lagged dependent variable and moving to a log–log form. In the final model, DW ≈ 2.02 and BG(1) p ≈ 0.83 indicate no remaining autocorrelation. Heteroskedasticity: both BP and White-type tests reject homoskedasticity, so I report HC1 and HAC (Newey–West) standard errors; inference is unchanged. Interpretation: Coefficients are elasticities. Output elasticity w.r.t. cultivated area is ≈0.82, fertiliser ≈0.20, and labor density ≈0.44: a 1% rise in each raises output by roughly 0.82%, 0.20%, and 0.44%, respectively. The small negative coefficient on (<span class="math inline">\(\log(\text{prod}{t-1}\)</span>)) suggests modest mean reversion after shocks. Overall, the transformed specification is well‑behaved and economically interpretable, with robust inference to heteroskedasticity and HAC corrections.</p>
 
 
 </section>

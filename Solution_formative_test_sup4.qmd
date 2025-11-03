@@ -83,6 +83,8 @@ cat("\n=== VIF after transformation (m2) ===\n"); print(vif(m2))
 cat("\n=== OLS summary (m2) ===\n"); print(summary(m2))
 ```
 
+Answer (VIF): Using a VIF threshold of 5 (NOte 5–10 considered moderate, >10 high), the baseline model reports VIFs of area = 7.27, fert = 3.74, and labor = 7.06, indicating moderate multicollinearity for area and labor. The source is conceptual overlap between cultivated area and the scale of labor. Remedy: I replace labor with labor_density = labor/area to orthogonalise scale and intensity. In the revised model, VIFs fall to area = 3.74, fert = 3.61, labor_density = 1.10, which are comfortably below the threshold.
+
 ## 4a) Autocorrelation diagnostics
 
 ```{r}
@@ -95,6 +97,8 @@ cat("\nBreusch–Godfrey (AR1):\n"); print(bgtest(m2, order = 1))
 
 # Note: p < 0.05 indicates evidence of autocorrelation
 ```
+
+Answer (autocorrelation): The initial diagnostics on the revised level model show positive serial correlation: DW ≈ 1.74 (p ≈ 0.006) and BG(1) p ≈ 0.013. The ACF/PACF of residuals suggest an AR(1) pattern with some evidence consistent with possible AR(2) dynamics. I therefore consider dynamic specifications and a log–log transformation (which often stabilises variance and improves dynamics).
 
 ### Create lag and plot correlograms
 
@@ -136,6 +140,8 @@ cat("\nDW on final model:\n"); print(dwtest(best))
 cat("\nBG(AR1) on final model:\n"); print(bgtest(best, order = 1))
 ```
 
+Answer (autocorrelation – final model): In the preferred log–log model with log(prod_lag), both tests indicate no residual serial correlation: DW ≈ 2.02 (p ≈ 0.55) and BG(1) p ≈ 0.83. This, together with acceptable VIFs (≤~4.7), supports using the log–log model for inference and interpretation as elasticities.
+
 ## 5) Heteroskedasticity tests
 
 ```{r}
@@ -155,7 +161,12 @@ print(bptest(best, ~ fitted(best) + I(fitted(best)^2), data = rice_lag))
 # HAC is not needed because DW/BG suggest no serial correlation in the final model.
 cat("\n=== Coefficients with robust (HC1) SE ===\n")
 print(lmtest::coeftest(best, vcov = sandwich::vcovHC(best, type = "HC1")))
+
+cat("\n=== Coefficients with HAC (Newey–West, lag = 1) ===\n")
+print(lmtest::coeftest(best, vcov. = sandwich::NeweyWest(best, lag = 1, prewhite = FALSE)))
 ```
+
+Answer (heteroskedasticity & inference): Both BP and White-type tests reject homoskedasticity, so I report HC1 and also HAC (Newey–West) inference. Comparing p‑values across classical vs HC1 vs HAC, the significance pattern is robust: at the 5% level, log(area), log(fert), and log(labor_density) remain significant; log(prod_lag) also remains significant at ≈5% (small negative carryover). Hence, substantive conclusions are unchanged by robust/HAC corrections.
 
 ## Short interpretation notes (for students)
 
@@ -163,3 +174,7 @@ print(lmtest::coeftest(best, vcov = sandwich::vcovHC(best, type = "HC1")))
 -   **Autocorrelation:** Final log–log model (`best`) passes DW/BG (no serial correlation).
 -   **Heteroskedasticity:** BP/White indicate non-constant variance → report **robust SEs**.
 -   **Elasticities:** In the log–log model, coefficients read as % changes (e.g., 0.82 on `log(area)` ≈ 1% ↑ area → 0.82% ↑ output, ceteris paribus).
+
+Final report: The preferred specification is a log–log production function with a dynamic term: $log(\text{prod}_t) = \alpha + \beta1 \log(\text{prod}{t-1}) + \beta_2 \log(\text{area}_t) + \beta_3 \log(\text{fert}_t) +$ $\beta_4 \log(\text{labor/area}t) + u_t$ 
+
+Diagnostics follow textbook order. Multicollinearity: baseline VIFs were moderate (area ≈ 7.27, labor ≈ 7.06), so I replaced labor with labor density, reducing VIFs to ≤~3.74. Autocorrelation: the revised level model exhibited positive AR(1) serial correlation (DW ≈ 1.74; BG p ≈ 0.013; ACF consistent with AR(1) and possible AR(2)), which motivated adding a lagged dependent variable and moving to a log–log form. In the final model, DW ≈ 2.02 and BG(1) p ≈ 0.83 indicate no remaining autocorrelation. Heteroskedasticity: both BP and White-type tests reject homoskedasticity, so I report HC1 and HAC (Newey–West) standard errors; inference is unchanged. Interpretation: Coefficients are elasticities. Output elasticity w.r.t. cultivated area is ≈0.82, fertiliser ≈0.20, and labor density ≈0.44: a 1% rise in each raises output by roughly 0.82%, 0.20%, and 0.44%, respectively. The small negative coefficient on ($\log(\text{prod}{t-1}$)) suggests modest mean reversion after shocks. Overall, the transformed specification is well‑behaved and economically interpretable, with robust inference to heteroskedasticity and HAC corrections.
