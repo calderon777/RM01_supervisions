@@ -6,8 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Camilo Calderon-Morales, PhD">
+<meta name="dcterms.date" content="2025-10-27">
 
-<title>In‑Class Test Supervision 4 — Indicative Solution – Research Methods for Land Economy</title>
+<title>Solution to in‑class Sup 4 – Research Methods for Land Economy</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -118,7 +120,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./solution_formative_test_sup4.html"><span class="chapter-title">In‑Class Test Supervision 4 — Indicative Solution</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./solution_formative_test_sup4.html"><span class="chapter-title">Solution to in‑class Sup 4</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -190,7 +192,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./solution_formative_test_sup4.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">In‑Class Test Supervision 4 — Indicative Solution</span></a>
+  <a href="./solution_formative_test_sup4.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">Solution to in‑class Sup 4</span></a>
   </div>
 </li>
     </ul>
@@ -202,14 +204,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">Table of contents</h2>
    
-  <ul class="collapse">
+  <ul>
   <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a></li>
   <li><a href="#packages" id="toc-packages" class="nav-link" data-scroll-target="#packages">0) Packages</a></li>
   <li><a href="#data" id="toc-data" class="nav-link" data-scroll-target="#data">1) Data</a></li>
   <li><a href="#baseline-ols" id="toc-baseline-ols" class="nav-link" data-scroll-target="#baseline-ols">2) Baseline OLS</a></li>
   <li><a href="#multicollinearity-vif" id="toc-multicollinearity-vif" class="nav-link" data-scroll-target="#multicollinearity-vif">3) Multicollinearity (VIF)</a></li>
   <li><a href="#reduce-collinearity-via-transformation" id="toc-reduce-collinearity-via-transformation" class="nav-link" data-scroll-target="#reduce-collinearity-via-transformation">4) Reduce collinearity via transformation</a></li>
-  <li><a href="#a-autocorrelation-diagnostics" id="toc-a-autocorrelation-diagnostics" class="nav-link" data-scroll-target="#a-autocorrelation-diagnostics">4a) Autocorrelation diagnostics</a></li>
+  <li><a href="#a-autocorrelation-diagnostics" id="toc-a-autocorrelation-diagnostics" class="nav-link" data-scroll-target="#a-autocorrelation-diagnostics">4a) Autocorrelation diagnostics</a>
+  <ul class="collapse">
+  <li><a href="#create-lag-and-plot-correlograms" id="toc-create-lag-and-plot-correlograms" class="nav-link" data-scroll-target="#create-lag-and-plot-correlograms">Create lag and plot correlograms</a></li>
+  </ul></li>
   <li><a href="#b-dynamic-model-and-loglog-refinement" id="toc-b-dynamic-model-and-loglog-refinement" class="nav-link" data-scroll-target="#b-dynamic-model-and-loglog-refinement">4b) Dynamic model and log–log refinement</a></li>
   <li><a href="#heteroskedasticity-tests" id="toc-heteroskedasticity-tests" class="nav-link" data-scroll-target="#heteroskedasticity-tests">5) Heteroskedasticity tests</a></li>
   <li><a href="#robust-inference-hc1" id="toc-robust-inference-hc1" class="nav-link" data-scroll-target="#robust-inference-hc1">6) Robust inference (HC1)</a></li>
@@ -222,14 +227,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-title">In‑Class Test Supervision 4 — Indicative Solution</span></h1>
+<h1 class="title"><span class="chapter-title">Solution to in‑class Sup 4</span></h1>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Camilo Calderon-Morales, PhD </p>
+          </div>
+  </div>
     
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">October 27, 2025</p>
+    </div>
+  </div>
   
     
   </div>
@@ -242,11 +259,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="overview" class="level2">
 <h2 class="anchored" data-anchor-id="overview">Overview</h2>
 <p>This document reproduces the analysis with <strong>concise <code>#</code> comments inside each R chunk</strong> so students see <em>why</em> each step is taken.</p>
+<p><strong>Work flow:</strong> run baseline model 1 &gt; VIF test &gt; fix model if high multicolinearity &gt; Test autocorrelation from previous step &gt; fix the model if high autocorrelation &gt; Test for heteroskedasticity &gt; fix the model if high heteroskedasticity.</p>
 <hr>
 </section>
 <section id="packages" class="level2">
 <h2 class="anchored" data-anchor-id="packages">0) Packages</h2>
 <div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Minimal package set for this workflow</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>pkgs <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"PoEdata"</span>,<span class="st">"car"</span>,<span class="st">"lmtest"</span>,<span class="st">"sandwich"</span>,<span class="st">"dplyr"</span>,<span class="st">"zoo"</span>)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -260,27 +280,34 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lmtest)      <span class="co"># dwtest, bgtest, bptest</span></span>
 <span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sandwich)    <span class="co"># robust variance estimators (HC)</span></span>
 <span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)       <span class="co"># arrange, mutate, lag</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 </section>
 <section id="data" class="level2">
 <h2 class="anchored" data-anchor-id="data">1) Data</h2>
 <div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load and time-order the data</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(rice)                                  <span class="co"># bring 'rice' into the workspace</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>rice <span class="ot">&lt;-</span> rice[<span class="fu">order</span>(rice<span class="sc">$</span>year), ]            <span class="co"># ensure time order for lags and DW/BG tests</span></span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Baseline production function</span></span>
 <span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>form <span class="ot">&lt;-</span> prod <span class="sc">~</span> area <span class="sc">+</span> fert <span class="sc">+</span> labor <span class="sc">+</span> firm   <span class="co"># 'firm' is an identifier; expect little role</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 </section>
 <section id="baseline-ols" class="level2">
 <h2 class="anchored" data-anchor-id="baseline-ols">2) Baseline OLS</h2>
 <div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Estimate baseline OLS</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>m <span class="ot">&lt;-</span> <span class="fu">lm</span>(form, <span class="at">data =</span> rice)</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Inspect fit and signs/magnitudes</span></span>
 <span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"</span><span class="sc">\n</span><span class="st">=== OLS summary ===</span><span class="sc">\n</span><span class="st">"</span>); <span class="fu">print</span>(<span class="fu">summary</span>(m))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 === OLS summary ===</code></pre>
@@ -313,8 +340,11 @@ F-statistic: 421.8 on 4 and 347 DF,  p-value: &lt; 2.2e-16</code></pre>
 <section id="multicollinearity-vif" class="level2">
 <h2 class="anchored" data-anchor-id="multicollinearity-vif">3) Multicollinearity (VIF)</h2>
 <div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Diagnose collinearity: rule of thumb VIF &gt; 5 (moderate), &gt; 10 (high)</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"</span><span class="sc">\n</span><span class="st">=== Multicollinearity (VIF) ===</span><span class="sc">\n</span><span class="st">"</span>); <span class="fu">print</span>(<span class="fu">vif</span>(m))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 === Multicollinearity (VIF) ===</code></pre>
@@ -328,6 +358,8 @@ F-statistic: 421.8 on 4 and 347 DF,  p-value: &lt; 2.2e-16</code></pre>
 <section id="reduce-collinearity-via-transformation" class="level2">
 <h2 class="anchored" data-anchor-id="reduce-collinearity-via-transformation">4) Reduce collinearity via transformation</h2>
 <div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Construct labor per area to reduce collinearity between labor and area</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>rice<span class="sc">$</span>labor_density <span class="ot">&lt;-</span> rice<span class="sc">$</span>labor <span class="sc">/</span> rice<span class="sc">$</span>area   <span class="co"># density transformation</span></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -336,6 +368,7 @@ F-statistic: 421.8 on 4 and 347 DF,  p-value: &lt; 2.2e-16</code></pre>
 <span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Check VIFs fall meaningfully</span></span>
 <span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"</span><span class="sc">\n</span><span class="st">=== VIF after transformation (m2) ===</span><span class="sc">\n</span><span class="st">"</span>); <span class="fu">print</span>(<span class="fu">vif</span>(m2))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 === VIF after transformation (m2) ===</code></pre>
@@ -344,8 +377,11 @@ F-statistic: 421.8 on 4 and 347 DF,  p-value: &lt; 2.2e-16</code></pre>
 <pre><code>         area          fert labor_density 
      3.739741      3.606256      1.098055 </code></pre>
 </div>
+<details open="" class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Compare fit (R^2) and significance with baseline</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"</span><span class="sc">\n</span><span class="st">=== OLS summary (m2) ===</span><span class="sc">\n</span><span class="st">"</span>); <span class="fu">print</span>(<span class="fu">summary</span>(m2))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 === OLS summary (m2) ===</code></pre>
@@ -377,13 +413,19 @@ F-statistic: 506.6 on 3 and 348 DF,  p-value: &lt; 2.2e-16</code></pre>
 <section id="a-autocorrelation-diagnostics" class="level2">
 <h2 class="anchored" data-anchor-id="a-autocorrelation-diagnostics">4a) Autocorrelation diagnostics</h2>
 <div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Durbin–Watson (focus on AR(1) positive autocorrelation under default alt)</span></span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"</span><span class="sc">\n</span><span class="st">=== Autocorrelation on m2 ===</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 === Autocorrelation on m2 ===</code></pre>
 </div>
+<details open="" class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Durbin–Watson:</span><span class="sc">\n</span><span class="st">"</span>); <span class="fu">print</span>(<span class="fu">dwtest</span>(m2))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Durbin–Watson:</code></pre>
 </div>
@@ -395,8 +437,11 @@ data:  m2
 DW = 1.7352, p-value = 0.005977
 alternative hypothesis: true autocorrelation is greater than 0</code></pre>
 </div>
+<details open="" class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Breusch–Godfrey (general serial correlation; here AR(1) for comparability)</span></span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"</span><span class="sc">\n</span><span class="st">Breusch–Godfrey (AR1):</span><span class="sc">\n</span><span class="st">"</span>); <span class="fu">print</span>(<span class="fu">bgtest</span>(m2, <span class="at">order =</span> <span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Breusch–Godfrey (AR1):</code></pre>
@@ -408,11 +453,16 @@ Breusch–Godfrey (AR1):</code></pre>
 data:  m2
 LM test = 6.1838, df = 1, p-value = 0.01289</code></pre>
 </div>
+<details open="" class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Note: p &lt; 0.05 indicates evidence of autocorrelation</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <section id="create-lag-and-plot-correlograms" class="level3">
 <h3 class="anchored" data-anchor-id="create-lag-and-plot-correlograms">Create lag and plot correlograms</h3>
 <div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create lag of dependent variable for dynamic model</span></span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>rice <span class="ot">&lt;-</span> rice <span class="sc">|&gt;</span></span>
 <span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(year) <span class="sc">|&gt;</span></span>
@@ -420,6 +470,7 @@ LM test = 6.1838, df = 1, p-value = 0.01289</code></pre>
 <span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a><span class="co"># ACF/PACF of residuals (visual check)</span></span>
 <span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a><span class="fu">acf</span>(m2<span class="sc">$</span>residuals, <span class="at">main =</span> <span class="st">"ACF of OLS residuals (m2)"</span>)    <span class="co"># spikes suggest serial correlation</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -427,7 +478,10 @@ LM test = 6.1838, df = 1, p-value = 0.01289</code></pre>
 </figure>
 </div>
 </div>
+<details open="" class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pacf</span>(m2<span class="sc">$</span>residuals, <span class="at">main =</span> <span class="st">"PACF of OLS residuals (m2)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -435,17 +489,23 @@ LM test = 6.1838, df = 1, p-value = 0.01289</code></pre>
 </figure>
 </div>
 </div>
+<details open="" class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Align sample by dropping rows with NA lag</span></span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>rice_lag <span class="ot">&lt;-</span> <span class="fu">na.omit</span>(rice)               <span class="co"># keep complete cases for dynamic models</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 </section>
 </section>
 <section id="b-dynamic-model-and-loglog-refinement" class="level2">
 <h2 class="anchored" data-anchor-id="b-dynamic-model-and-loglog-refinement">4b) Dynamic model and log–log refinement</h2>
 <div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Dynamic level model: include the lagged dependent variable</span></span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>m3 <span class="ot">&lt;-</span> <span class="fu">lm</span>(prod <span class="sc">~</span> prod_lag <span class="sc">+</span> area <span class="sc">+</span> fert <span class="sc">+</span> labor_density, <span class="at">data =</span> rice_lag)</span>
 <span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"</span><span class="sc">\n</span><span class="st">=== Dynamic model in levels (m3) ===</span><span class="sc">\n</span><span class="st">"</span>); <span class="fu">print</span>(<span class="fu">summary</span>(m3))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 === Dynamic model in levels (m3) ===</code></pre>
@@ -473,7 +533,10 @@ Residual standard error: 2.204 on 346 degrees of freedom
 Multiple R-squared:  0.8142,    Adjusted R-squared:  0.8121 
 F-statistic: 379.2 on 4 and 346 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
+<details open="" class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"</span><span class="sc">\n</span><span class="st">DW on m3:</span><span class="sc">\n</span><span class="st">"</span>); <span class="fu">print</span>(<span class="fu">dwtest</span>(m3))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 DW on m3:</code></pre>
@@ -486,7 +549,10 @@ data:  m3
 DW = 1.7778, p-value = 0.01758
 alternative hypothesis: true autocorrelation is greater than 0</code></pre>
 </div>
+<details open="" class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"</span><span class="sc">\n</span><span class="st">BG(AR1) on m3:</span><span class="sc">\n</span><span class="st">"</span>); <span class="fu">print</span>(<span class="fu">bgtest</span>(m3, <span class="at">order =</span> <span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 BG(AR1) on m3:</code></pre>
@@ -498,12 +564,15 @@ BG(AR1) on m3:</code></pre>
 data:  m3
 LM test = 5.1696, df = 1, p-value = 0.02299</code></pre>
 </div>
+<details open="" class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Log–log specification: interpretable elasticities, often stabilizes variance</span></span>
 <span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>best <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="fu">log</span>(prod) <span class="sc">~</span> <span class="fu">log</span>(prod_lag) <span class="sc">+</span> <span class="fu">log</span>(area) <span class="sc">+</span> <span class="fu">log</span>(fert) <span class="sc">+</span> <span class="fu">log</span>(labor_density),</span>
 <span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">data =</span> rice_lag)</span>
 <span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Multicollinearity check in final model</span></span>
 <span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"</span><span class="sc">\n</span><span class="st">=== VIF (final log–log model) ===</span><span class="sc">\n</span><span class="st">"</span>); <span class="fu">print</span>(<span class="fu">vif</span>(best))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 === VIF (final log–log model) ===</code></pre>
@@ -512,8 +581,11 @@ LM test = 5.1696, df = 1, p-value = 0.02299</code></pre>
 <pre><code>     log(prod_lag)          log(area)          log(fert) log(labor_density) 
           1.115383           4.698116           4.274338           1.221126 </code></pre>
 </div>
+<details open="" class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Final model summary: coefficients are elasticities</span></span>
 <span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"</span><span class="sc">\n</span><span class="st">=== Final model (log–log) summary ===</span><span class="sc">\n</span><span class="st">"</span>); <span class="fu">print</span>(<span class="fu">summary</span>(best))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 === Final model (log–log) summary ===</code></pre>
@@ -542,8 +614,11 @@ Residual standard error: 0.3396 on 346 degrees of freedom
 Multiple R-squared:  0.8502,    Adjusted R-squared:  0.8485 
 F-statistic: 491.1 on 4 and 346 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
+<details open="" class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Autocorrelation checks on final model (expect no serial correlation)</span></span>
 <span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"</span><span class="sc">\n</span><span class="st">DW on final model:</span><span class="sc">\n</span><span class="st">"</span>); <span class="fu">print</span>(<span class="fu">dwtest</span>(best))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 DW on final model:</code></pre>
@@ -556,7 +631,10 @@ data:  best
 DW = 2.0162, p-value = 0.5545
 alternative hypothesis: true autocorrelation is greater than 0</code></pre>
 </div>
+<details open="" class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"</span><span class="sc">\n</span><span class="st">BG(AR1) on final model:</span><span class="sc">\n</span><span class="st">"</span>); <span class="fu">print</span>(<span class="fu">bgtest</span>(best, <span class="at">order =</span> <span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 BG(AR1) on final model:</code></pre>
@@ -573,13 +651,19 @@ LM test = 0.048045, df = 1, p-value = 0.8265</code></pre>
 <section id="heteroskedasticity-tests" class="level2">
 <h2 class="anchored" data-anchor-id="heteroskedasticity-tests">5) Heteroskedasticity tests</h2>
 <div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Breusch–Pagan: H0 = homoskedasticity</span></span>
 <span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"</span><span class="sc">\n</span><span class="st">=== Heteroskedasticity ===</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 === Heteroskedasticity ===</code></pre>
 </div>
+<details open="" class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Breusch–Pagan:</span><span class="sc">\n</span><span class="st">"</span>); <span class="fu">print</span>(<span class="fu">bptest</span>(best))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Breusch–Pagan:</code></pre>
 </div>
@@ -590,13 +674,19 @@ LM test = 0.048045, df = 1, p-value = 0.8265</code></pre>
 data:  best
 BP = 20.065, df = 4, p-value = 0.0004848</code></pre>
 </div>
+<details open="" class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="co"># White-type (auxiliary regression on fitted and fitted^2)</span></span>
 <span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"</span><span class="sc">\n</span><span class="st">White-type (fitted &amp; fitted^2):</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 White-type (fitted &amp; fitted^2):</code></pre>
 </div>
+<details open="" class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">bptest</span>(best, <span class="sc">~</span> <span class="fu">fitted</span>(best) <span class="sc">+</span> <span class="fu">I</span>(<span class="fu">fitted</span>(best)<span class="sc">^</span><span class="dv">2</span>), <span class="at">data =</span> rice_lag))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     studentized Breusch-Pagan test
@@ -609,14 +699,20 @@ BP = 24.196, df = 2, p-value = 5.572e-06</code></pre>
 <section id="robust-inference-hc1" class="level2">
 <h2 class="anchored" data-anchor-id="robust-inference-hc1">6) Robust inference (HC1)</h2>
 <div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Use heteroskedasticity-consistent (HC1) standard errors for inference</span></span>
 <span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a><span class="co"># HAC is not needed because DW/BG suggest no serial correlation in the final model.</span></span>
 <span id="cb57-3"><a href="#cb57-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"</span><span class="sc">\n</span><span class="st">=== Coefficients with robust (HC1) SE ===</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 === Coefficients with robust (HC1) SE ===</code></pre>
 </div>
+<details open="" class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb59"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(lmtest<span class="sc">::</span><span class="fu">coeftest</span>(best, <span class="at">vcov =</span> sandwich<span class="sc">::</span><span class="fu">vcovHC</span>(best, <span class="at">type =</span> <span class="st">"HC1"</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 t test of coefficients:

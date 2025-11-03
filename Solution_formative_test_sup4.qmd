@@ -1,20 +1,23 @@
 ---
-title: "In‑Class Test Supervision 4 — Indicative Solution"
+title: "Solution to in‑class Sup 4"
+author: "Camilo Calderon-Morales, PhD"
+date: 2025-10-27
 format:
   html:
     toc: true
-    toc-depth: 2
-    code-fold: false
+    toc-depth: 3
+    code-fold: show
 execute:
   echo: true
   warning: false
   message: false
-editor: visual
 ---
 
 ## Overview
 
 This document reproduces the analysis with **concise `#` comments inside each R chunk** so students see *why* each step is taken.
+
+**Work flow:** run baseline model 1 \> VIF test \> fix model if high multicolinearity \> Test autocorrelation from previous step \> fix the model if high autocorrelation \> Test for heteroskedasticity \> fix the model if high heteroskedasticity.
 
 ---
 
@@ -156,7 +159,7 @@ print(lmtest::coeftest(best, vcov = sandwich::vcovHC(best, type = "HC1")))
 
 ## Short interpretation notes (for students)
 
-- **Collinearity:** Replacing `labor` with `labor_density` reduced VIFs (improves stability of estimates).
-- **Autocorrelation:** Final log–log model (`best`) passes DW/BG (no serial correlation).
-- **Heteroskedasticity:** BP/White indicate non-constant variance → report **robust SEs**.
-- **Elasticities:** In the log–log model, coefficients read as % changes (e.g., 0.82 on `log(area)` ≈ 1% ↑ area → 0.82% ↑ output, ceteris paribus).
+-   **Collinearity:** Replacing `labor` with `labor_density` reduced VIFs (improves stability of estimates).
+-   **Autocorrelation:** Final log–log model (`best`) passes DW/BG (no serial correlation).
+-   **Heteroskedasticity:** BP/White indicate non-constant variance → report **robust SEs**.
+-   **Elasticities:** In the log–log model, coefficients read as % changes (e.g., 0.82 on `log(area)` ≈ 1% ↑ area → 0.82% ↑ output, ceteris paribus).

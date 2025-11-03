@@ -432,111 +432,111 @@
   {
     "objectID": "solution_formative_test_sup4.html",
     "href": "solution_formative_test_sup4.html",
-    "title": "In‑Class Test Supervision 4 — Indicative Solution",
+    "title": "Solution to in‑class Sup 4",
     "section": "",
-    "text": "Overview\nThis document reproduces the analysis with concise # comments inside each R chunk so students see why each step is taken.",
+    "text": "Overview\nThis document reproduces the analysis with concise # comments inside each R chunk so students see why each step is taken.\nWork flow: run baseline model 1 &gt; VIF test &gt; fix model if high multicolinearity &gt; Test autocorrelation from previous step &gt; fix the model if high autocorrelation &gt; Test for heteroskedasticity &gt; fix the model if high heteroskedasticity.",
     "crumbs": [
-      "<span class='chapter-number'>10</span>  <span class='chapter-title'>In‑Class Test Supervision 4 — Indicative Solution</span>"
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Solution to in‑class Sup 4</span>"
     ]
   },
   {
     "objectID": "solution_formative_test_sup4.html#packages",
     "href": "solution_formative_test_sup4.html#packages",
-    "title": "In‑Class Test Supervision 4 — Indicative Solution",
+    "title": "Solution to in‑class Sup 4",
     "section": "0) Packages",
-    "text": "0) Packages\n\n# Minimal package set for this workflow\npkgs &lt;- c(\"PoEdata\",\"car\",\"lmtest\",\"sandwich\",\"dplyr\",\"zoo\")\n\n# Install any missing packages (safe check)\nto_install &lt;- pkgs[!sapply(pkgs, requireNamespace, quietly = TRUE)]\nif (length(to_install)) install.packages(to_install, repos = \"https://cloud.r-project.org\")\n\n# Load libraries\nlibrary(PoEdata)     # provides 'rice' dataset\nlibrary(car)         # VIF for multicollinearity\nlibrary(lmtest)      # dwtest, bgtest, bptest\nlibrary(sandwich)    # robust variance estimators (HC)\nlibrary(dplyr)       # arrange, mutate, lag",
+    "text": "0) Packages\n\n\nCode\n# Minimal package set for this workflow\npkgs &lt;- c(\"PoEdata\",\"car\",\"lmtest\",\"sandwich\",\"dplyr\",\"zoo\")\n\n# Install any missing packages (safe check)\nto_install &lt;- pkgs[!sapply(pkgs, requireNamespace, quietly = TRUE)]\nif (length(to_install)) install.packages(to_install, repos = \"https://cloud.r-project.org\")\n\n# Load libraries\nlibrary(PoEdata)     # provides 'rice' dataset\nlibrary(car)         # VIF for multicollinearity\nlibrary(lmtest)      # dwtest, bgtest, bptest\nlibrary(sandwich)    # robust variance estimators (HC)\nlibrary(dplyr)       # arrange, mutate, lag",
     "crumbs": [
-      "<span class='chapter-number'>10</span>  <span class='chapter-title'>In‑Class Test Supervision 4 — Indicative Solution</span>"
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Solution to in‑class Sup 4</span>"
     ]
   },
   {
     "objectID": "solution_formative_test_sup4.html#data",
     "href": "solution_formative_test_sup4.html#data",
-    "title": "In‑Class Test Supervision 4 — Indicative Solution",
+    "title": "Solution to in‑class Sup 4",
     "section": "1) Data",
-    "text": "1) Data\n\n# Load and time-order the data\ndata(rice)                                  # bring 'rice' into the workspace\nrice &lt;- rice[order(rice$year), ]            # ensure time order for lags and DW/BG tests\n\n# Baseline production function\nform &lt;- prod ~ area + fert + labor + firm   # 'firm' is an identifier; expect little role",
+    "text": "1) Data\n\n\nCode\n# Load and time-order the data\ndata(rice)                                  # bring 'rice' into the workspace\nrice &lt;- rice[order(rice$year), ]            # ensure time order for lags and DW/BG tests\n\n# Baseline production function\nform &lt;- prod ~ area + fert + labor + firm   # 'firm' is an identifier; expect little role",
     "crumbs": [
-      "<span class='chapter-number'>10</span>  <span class='chapter-title'>In‑Class Test Supervision 4 — Indicative Solution</span>"
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Solution to in‑class Sup 4</span>"
     ]
   },
   {
     "objectID": "solution_formative_test_sup4.html#baseline-ols",
     "href": "solution_formative_test_sup4.html#baseline-ols",
-    "title": "In‑Class Test Supervision 4 — Indicative Solution",
+    "title": "Solution to in‑class Sup 4",
     "section": "2) Baseline OLS",
-    "text": "2) Baseline OLS\n\n# Estimate baseline OLS\nm &lt;- lm(form, data = rice)\n\n# Inspect fit and signs/magnitudes\ncat(\"\\n=== OLS summary ===\\n\"); print(summary(m))\n\n\n=== OLS summary ===\n\n\n\nCall:\nlm(formula = form, data = rice)\n\nResiduals:\n    Min      1Q  Median      3Q     Max \n-9.2718 -0.9266  0.0356  0.9459  8.9075 \n\nCoefficients:\n             Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept) -0.108138   0.318994  -0.339 0.734818    \narea         1.321087   0.209052   6.319 8.06e-10 ***\nfert         0.004583   0.001292   3.547 0.000442 ***\nlabor        0.027476   0.003911   7.026 1.13e-11 ***\nfirm        -0.001137   0.009158  -0.124 0.901232    \n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 2.109 on 347 degrees of freedom\nMultiple R-squared:  0.8294,    Adjusted R-squared:  0.8275 \nF-statistic: 421.8 on 4 and 347 DF,  p-value: &lt; 2.2e-16",
+    "text": "2) Baseline OLS\n\n\nCode\n# Estimate baseline OLS\nm &lt;- lm(form, data = rice)\n\n# Inspect fit and signs/magnitudes\ncat(\"\\n=== OLS summary ===\\n\"); print(summary(m))\n\n\n\n=== OLS summary ===\n\n\n\nCall:\nlm(formula = form, data = rice)\n\nResiduals:\n    Min      1Q  Median      3Q     Max \n-9.2718 -0.9266  0.0356  0.9459  8.9075 \n\nCoefficients:\n             Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept) -0.108138   0.318994  -0.339 0.734818    \narea         1.321087   0.209052   6.319 8.06e-10 ***\nfert         0.004583   0.001292   3.547 0.000442 ***\nlabor        0.027476   0.003911   7.026 1.13e-11 ***\nfirm        -0.001137   0.009158  -0.124 0.901232    \n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 2.109 on 347 degrees of freedom\nMultiple R-squared:  0.8294,    Adjusted R-squared:  0.8275 \nF-statistic: 421.8 on 4 and 347 DF,  p-value: &lt; 2.2e-16",
     "crumbs": [
-      "<span class='chapter-number'>10</span>  <span class='chapter-title'>In‑Class Test Supervision 4 — Indicative Solution</span>"
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Solution to in‑class Sup 4</span>"
     ]
   },
   {
     "objectID": "solution_formative_test_sup4.html#multicollinearity-vif",
     "href": "solution_formative_test_sup4.html#multicollinearity-vif",
-    "title": "In‑Class Test Supervision 4 — Indicative Solution",
+    "title": "Solution to in‑class Sup 4",
     "section": "3) Multicollinearity (VIF)",
-    "text": "3) Multicollinearity (VIF)\n\n# Diagnose collinearity: rule of thumb VIF &gt; 5 (moderate), &gt; 10 (high)\ncat(\"\\n=== Multicollinearity (VIF) ===\\n\"); print(vif(m))\n\n\n=== Multicollinearity (VIF) ===\n\n\n    area     fert    labor     firm \n7.266675 3.744241 7.090750 1.070505",
+    "text": "3) Multicollinearity (VIF)\n\n\nCode\n# Diagnose collinearity: rule of thumb VIF &gt; 5 (moderate), &gt; 10 (high)\ncat(\"\\n=== Multicollinearity (VIF) ===\\n\"); print(vif(m))\n\n\n\n=== Multicollinearity (VIF) ===\n\n\n    area     fert    labor     firm \n7.266675 3.744241 7.090750 1.070505",
     "crumbs": [
-      "<span class='chapter-number'>10</span>  <span class='chapter-title'>In‑Class Test Supervision 4 — Indicative Solution</span>"
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Solution to in‑class Sup 4</span>"
     ]
   },
   {
     "objectID": "solution_formative_test_sup4.html#reduce-collinearity-via-transformation",
     "href": "solution_formative_test_sup4.html#reduce-collinearity-via-transformation",
-    "title": "In‑Class Test Supervision 4 — Indicative Solution",
+    "title": "Solution to in‑class Sup 4",
     "section": "4) Reduce collinearity via transformation",
-    "text": "4) Reduce collinearity via transformation\n\n# Construct labor per area to reduce collinearity between labor and area\nrice$labor_density &lt;- rice$labor / rice$area   # density transformation\n\n# Refit a more parsimonious model (drop 'firm' id)\nm2 &lt;- lm(prod ~ area + fert + labor_density, data = rice)\n\n# Check VIFs fall meaningfully\ncat(\"\\n=== VIF after transformation (m2) ===\\n\"); print(vif(m2))\n\n\n=== VIF after transformation (m2) ===\n\n\n         area          fert labor_density \n     3.739741      3.606256      1.098055 \n\n# Compare fit (R^2) and significance with baseline\ncat(\"\\n=== OLS summary (m2) ===\\n\"); print(summary(m2))\n\n\n=== OLS summary (m2) ===\n\n\n\nCall:\nlm(formula = prod ~ area + fert + labor_density, data = rice)\n\nResiduals:\n    Min      1Q  Median      3Q     Max \n-9.7160 -0.9525  0.0347  1.0138  9.2159 \n\nCoefficients:\n               Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept)   -1.794885   0.500123  -3.589  0.00038 ***\narea           2.581396   0.156507  16.494  &lt; 2e-16 ***\nfert           0.006033   0.001323   4.560 7.10e-06 ***\nlabor_density  0.031629   0.007850   4.029 6.87e-05 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 2.201 on 348 degrees of freedom\nMultiple R-squared:  0.8137,    Adjusted R-squared:  0.8121 \nF-statistic: 506.6 on 3 and 348 DF,  p-value: &lt; 2.2e-16",
+    "text": "4) Reduce collinearity via transformation\n\n\nCode\n# Construct labor per area to reduce collinearity between labor and area\nrice$labor_density &lt;- rice$labor / rice$area   # density transformation\n\n# Refit a more parsimonious model (drop 'firm' id)\nm2 &lt;- lm(prod ~ area + fert + labor_density, data = rice)\n\n# Check VIFs fall meaningfully\ncat(\"\\n=== VIF after transformation (m2) ===\\n\"); print(vif(m2))\n\n\n\n=== VIF after transformation (m2) ===\n\n\n         area          fert labor_density \n     3.739741      3.606256      1.098055 \n\n\nCode\n# Compare fit (R^2) and significance with baseline\ncat(\"\\n=== OLS summary (m2) ===\\n\"); print(summary(m2))\n\n\n\n=== OLS summary (m2) ===\n\n\n\nCall:\nlm(formula = prod ~ area + fert + labor_density, data = rice)\n\nResiduals:\n    Min      1Q  Median      3Q     Max \n-9.7160 -0.9525  0.0347  1.0138  9.2159 \n\nCoefficients:\n               Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept)   -1.794885   0.500123  -3.589  0.00038 ***\narea           2.581396   0.156507  16.494  &lt; 2e-16 ***\nfert           0.006033   0.001323   4.560 7.10e-06 ***\nlabor_density  0.031629   0.007850   4.029 6.87e-05 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 2.201 on 348 degrees of freedom\nMultiple R-squared:  0.8137,    Adjusted R-squared:  0.8121 \nF-statistic: 506.6 on 3 and 348 DF,  p-value: &lt; 2.2e-16",
     "crumbs": [
-      "<span class='chapter-number'>10</span>  <span class='chapter-title'>In‑Class Test Supervision 4 — Indicative Solution</span>"
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Solution to in‑class Sup 4</span>"
     ]
   },
   {
     "objectID": "solution_formative_test_sup4.html#a-autocorrelation-diagnostics",
     "href": "solution_formative_test_sup4.html#a-autocorrelation-diagnostics",
-    "title": "In‑Class Test Supervision 4 — Indicative Solution",
+    "title": "Solution to in‑class Sup 4",
     "section": "4a) Autocorrelation diagnostics",
-    "text": "4a) Autocorrelation diagnostics\n\n# Durbin–Watson (focus on AR(1) positive autocorrelation under default alt)\ncat(\"\\n=== Autocorrelation on m2 ===\\n\")\n\n\n=== Autocorrelation on m2 ===\n\ncat(\"Durbin–Watson:\\n\"); print(dwtest(m2))\n\nDurbin–Watson:\n\n\n\n    Durbin-Watson test\n\ndata:  m2\nDW = 1.7352, p-value = 0.005977\nalternative hypothesis: true autocorrelation is greater than 0\n\n# Breusch–Godfrey (general serial correlation; here AR(1) for comparability)\ncat(\"\\nBreusch–Godfrey (AR1):\\n\"); print(bgtest(m2, order = 1))\n\n\nBreusch–Godfrey (AR1):\n\n\n\n    Breusch-Godfrey test for serial correlation of order up to 1\n\ndata:  m2\nLM test = 6.1838, df = 1, p-value = 0.01289\n\n# Note: p &lt; 0.05 indicates evidence of autocorrelation\n\n\nCreate lag and plot correlograms\n\n# Create lag of dependent variable for dynamic model\nrice &lt;- rice |&gt;\n  arrange(year) |&gt;\n  mutate(prod_lag = dplyr::lag(prod))   # first observation becomes NA by construction\n\n# ACF/PACF of residuals (visual check)\nacf(m2$residuals, main = \"ACF of OLS residuals (m2)\")    # spikes suggest serial correlation\n\n\n\n\n\n\n\npacf(m2$residuals, main = \"PACF of OLS residuals (m2)\")\n\n\n\n\n\n\n\n# Align sample by dropping rows with NA lag\nrice_lag &lt;- na.omit(rice)               # keep complete cases for dynamic models",
+    "text": "4a) Autocorrelation diagnostics\n\n\nCode\n# Durbin–Watson (focus on AR(1) positive autocorrelation under default alt)\ncat(\"\\n=== Autocorrelation on m2 ===\\n\")\n\n\n\n=== Autocorrelation on m2 ===\n\n\nCode\ncat(\"Durbin–Watson:\\n\"); print(dwtest(m2))\n\n\nDurbin–Watson:\n\n\n\n    Durbin-Watson test\n\ndata:  m2\nDW = 1.7352, p-value = 0.005977\nalternative hypothesis: true autocorrelation is greater than 0\n\n\nCode\n# Breusch–Godfrey (general serial correlation; here AR(1) for comparability)\ncat(\"\\nBreusch–Godfrey (AR1):\\n\"); print(bgtest(m2, order = 1))\n\n\n\nBreusch–Godfrey (AR1):\n\n\n\n    Breusch-Godfrey test for serial correlation of order up to 1\n\ndata:  m2\nLM test = 6.1838, df = 1, p-value = 0.01289\n\n\nCode\n# Note: p &lt; 0.05 indicates evidence of autocorrelation\n\n\n\nCreate lag and plot correlograms\n\n\nCode\n# Create lag of dependent variable for dynamic model\nrice &lt;- rice |&gt;\n  arrange(year) |&gt;\n  mutate(prod_lag = dplyr::lag(prod))   # first observation becomes NA by construction\n\n# ACF/PACF of residuals (visual check)\nacf(m2$residuals, main = \"ACF of OLS residuals (m2)\")    # spikes suggest serial correlation\n\n\n\n\n\n\n\n\n\nCode\npacf(m2$residuals, main = \"PACF of OLS residuals (m2)\")\n\n\n\n\n\n\n\n\n\nCode\n# Align sample by dropping rows with NA lag\nrice_lag &lt;- na.omit(rice)               # keep complete cases for dynamic models",
     "crumbs": [
-      "<span class='chapter-number'>10</span>  <span class='chapter-title'>In‑Class Test Supervision 4 — Indicative Solution</span>"
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Solution to in‑class Sup 4</span>"
     ]
   },
   {
     "objectID": "solution_formative_test_sup4.html#b-dynamic-model-and-loglog-refinement",
     "href": "solution_formative_test_sup4.html#b-dynamic-model-and-loglog-refinement",
-    "title": "In‑Class Test Supervision 4 — Indicative Solution",
+    "title": "Solution to in‑class Sup 4",
     "section": "4b) Dynamic model and log–log refinement",
-    "text": "4b) Dynamic model and log–log refinement\n\n# Dynamic level model: include the lagged dependent variable\nm3 &lt;- lm(prod ~ prod_lag + area + fert + labor_density, data = rice_lag)\ncat(\"\\n=== Dynamic model in levels (m3) ===\\n\"); print(summary(m3))\n\n\n=== Dynamic model in levels (m3) ===\n\n\n\nCall:\nlm(formula = prod ~ prod_lag + area + fert + labor_density, data = rice_lag)\n\nResiduals:\n    Min      1Q  Median      3Q     Max \n-9.5972 -0.9054  0.0746  0.9975  9.1886 \n\nCoefficients:\n               Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept)   -1.857053   0.504532  -3.681 0.000270 ***\nprod_lag       0.025986   0.024865   1.045 0.296725    \narea           2.536997   0.162464  15.616  &lt; 2e-16 ***\nfert           0.006149   0.001330   4.624 5.33e-06 ***\nlabor_density  0.030997   0.007892   3.928 0.000104 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 2.204 on 346 degrees of freedom\nMultiple R-squared:  0.8142,    Adjusted R-squared:  0.8121 \nF-statistic: 379.2 on 4 and 346 DF,  p-value: &lt; 2.2e-16\n\ncat(\"\\nDW on m3:\\n\"); print(dwtest(m3))\n\n\nDW on m3:\n\n\n\n    Durbin-Watson test\n\ndata:  m3\nDW = 1.7778, p-value = 0.01758\nalternative hypothesis: true autocorrelation is greater than 0\n\ncat(\"\\nBG(AR1) on m3:\\n\"); print(bgtest(m3, order = 1))\n\n\nBG(AR1) on m3:\n\n\n\n    Breusch-Godfrey test for serial correlation of order up to 1\n\ndata:  m3\nLM test = 5.1696, df = 1, p-value = 0.02299\n\n# Log–log specification: interpretable elasticities, often stabilizes variance\nbest &lt;- lm(log(prod) ~ log(prod_lag) + log(area) + log(fert) + log(labor_density),\n           data = rice_lag)\n\n# Multicollinearity check in final model\ncat(\"\\n=== VIF (final log–log model) ===\\n\"); print(vif(best))\n\n\n=== VIF (final log–log model) ===\n\n\n     log(prod_lag)          log(area)          log(fert) log(labor_density) \n          1.115383           4.698116           4.274338           1.221126 \n\n# Final model summary: coefficients are elasticities\ncat(\"\\n=== Final model (log–log) summary ===\\n\"); print(summary(best))\n\n\n=== Final model (log–log) summary ===\n\n\n\nCall:\nlm(formula = log(prod) ~ log(prod_lag) + log(area) + log(fert) + \n    log(labor_density), data = rice_lag)\n\nResiduals:\n     Min       1Q   Median       3Q      Max \n-1.74604 -0.19002  0.05003  0.22904  1.40457 \n\nCoefficients:\n                   Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept)        -1.47819    0.25611  -5.772 1.74e-08 ***\nlog(prod_lag)      -0.05305    0.02197  -2.414   0.0163 *  \nlog(area)           0.82324    0.04947  16.640  &lt; 2e-16 ***\nlog(fert)           0.20008    0.03826   5.230 2.94e-07 ***\nlog(labor_density)  0.44431    0.06676   6.655 1.11e-10 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 0.3396 on 346 degrees of freedom\nMultiple R-squared:  0.8502,    Adjusted R-squared:  0.8485 \nF-statistic: 491.1 on 4 and 346 DF,  p-value: &lt; 2.2e-16\n\n# Autocorrelation checks on final model (expect no serial correlation)\ncat(\"\\nDW on final model:\\n\"); print(dwtest(best))\n\n\nDW on final model:\n\n\n\n    Durbin-Watson test\n\ndata:  best\nDW = 2.0162, p-value = 0.5545\nalternative hypothesis: true autocorrelation is greater than 0\n\ncat(\"\\nBG(AR1) on final model:\\n\"); print(bgtest(best, order = 1))\n\n\nBG(AR1) on final model:\n\n\n\n    Breusch-Godfrey test for serial correlation of order up to 1\n\ndata:  best\nLM test = 0.048045, df = 1, p-value = 0.8265",
+    "text": "4b) Dynamic model and log–log refinement\n\n\nCode\n# Dynamic level model: include the lagged dependent variable\nm3 &lt;- lm(prod ~ prod_lag + area + fert + labor_density, data = rice_lag)\ncat(\"\\n=== Dynamic model in levels (m3) ===\\n\"); print(summary(m3))\n\n\n\n=== Dynamic model in levels (m3) ===\n\n\n\nCall:\nlm(formula = prod ~ prod_lag + area + fert + labor_density, data = rice_lag)\n\nResiduals:\n    Min      1Q  Median      3Q     Max \n-9.5972 -0.9054  0.0746  0.9975  9.1886 \n\nCoefficients:\n               Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept)   -1.857053   0.504532  -3.681 0.000270 ***\nprod_lag       0.025986   0.024865   1.045 0.296725    \narea           2.536997   0.162464  15.616  &lt; 2e-16 ***\nfert           0.006149   0.001330   4.624 5.33e-06 ***\nlabor_density  0.030997   0.007892   3.928 0.000104 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 2.204 on 346 degrees of freedom\nMultiple R-squared:  0.8142,    Adjusted R-squared:  0.8121 \nF-statistic: 379.2 on 4 and 346 DF,  p-value: &lt; 2.2e-16\n\n\nCode\ncat(\"\\nDW on m3:\\n\"); print(dwtest(m3))\n\n\n\nDW on m3:\n\n\n\n    Durbin-Watson test\n\ndata:  m3\nDW = 1.7778, p-value = 0.01758\nalternative hypothesis: true autocorrelation is greater than 0\n\n\nCode\ncat(\"\\nBG(AR1) on m3:\\n\"); print(bgtest(m3, order = 1))\n\n\n\nBG(AR1) on m3:\n\n\n\n    Breusch-Godfrey test for serial correlation of order up to 1\n\ndata:  m3\nLM test = 5.1696, df = 1, p-value = 0.02299\n\n\nCode\n# Log–log specification: interpretable elasticities, often stabilizes variance\nbest &lt;- lm(log(prod) ~ log(prod_lag) + log(area) + log(fert) + log(labor_density),\n           data = rice_lag)\n\n# Multicollinearity check in final model\ncat(\"\\n=== VIF (final log–log model) ===\\n\"); print(vif(best))\n\n\n\n=== VIF (final log–log model) ===\n\n\n     log(prod_lag)          log(area)          log(fert) log(labor_density) \n          1.115383           4.698116           4.274338           1.221126 \n\n\nCode\n# Final model summary: coefficients are elasticities\ncat(\"\\n=== Final model (log–log) summary ===\\n\"); print(summary(best))\n\n\n\n=== Final model (log–log) summary ===\n\n\n\nCall:\nlm(formula = log(prod) ~ log(prod_lag) + log(area) + log(fert) + \n    log(labor_density), data = rice_lag)\n\nResiduals:\n     Min       1Q   Median       3Q      Max \n-1.74604 -0.19002  0.05003  0.22904  1.40457 \n\nCoefficients:\n                   Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept)        -1.47819    0.25611  -5.772 1.74e-08 ***\nlog(prod_lag)      -0.05305    0.02197  -2.414   0.0163 *  \nlog(area)           0.82324    0.04947  16.640  &lt; 2e-16 ***\nlog(fert)           0.20008    0.03826   5.230 2.94e-07 ***\nlog(labor_density)  0.44431    0.06676   6.655 1.11e-10 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 0.3396 on 346 degrees of freedom\nMultiple R-squared:  0.8502,    Adjusted R-squared:  0.8485 \nF-statistic: 491.1 on 4 and 346 DF,  p-value: &lt; 2.2e-16\n\n\nCode\n# Autocorrelation checks on final model (expect no serial correlation)\ncat(\"\\nDW on final model:\\n\"); print(dwtest(best))\n\n\n\nDW on final model:\n\n\n\n    Durbin-Watson test\n\ndata:  best\nDW = 2.0162, p-value = 0.5545\nalternative hypothesis: true autocorrelation is greater than 0\n\n\nCode\ncat(\"\\nBG(AR1) on final model:\\n\"); print(bgtest(best, order = 1))\n\n\n\nBG(AR1) on final model:\n\n\n\n    Breusch-Godfrey test for serial correlation of order up to 1\n\ndata:  best\nLM test = 0.048045, df = 1, p-value = 0.8265",
     "crumbs": [
-      "<span class='chapter-number'>10</span>  <span class='chapter-title'>In‑Class Test Supervision 4 — Indicative Solution</span>"
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Solution to in‑class Sup 4</span>"
     ]
   },
   {
     "objectID": "solution_formative_test_sup4.html#heteroskedasticity-tests",
     "href": "solution_formative_test_sup4.html#heteroskedasticity-tests",
-    "title": "In‑Class Test Supervision 4 — Indicative Solution",
+    "title": "Solution to in‑class Sup 4",
     "section": "5) Heteroskedasticity tests",
-    "text": "5) Heteroskedasticity tests\n\n# Breusch–Pagan: H0 = homoskedasticity\ncat(\"\\n=== Heteroskedasticity ===\\n\")\n\n\n=== Heteroskedasticity ===\n\ncat(\"Breusch–Pagan:\\n\"); print(bptest(best))\n\nBreusch–Pagan:\n\n\n\n    studentized Breusch-Pagan test\n\ndata:  best\nBP = 20.065, df = 4, p-value = 0.0004848\n\n# White-type (auxiliary regression on fitted and fitted^2)\ncat(\"\\nWhite-type (fitted & fitted^2):\\n\")\n\n\nWhite-type (fitted & fitted^2):\n\nprint(bptest(best, ~ fitted(best) + I(fitted(best)^2), data = rice_lag))\n\n\n    studentized Breusch-Pagan test\n\ndata:  best\nBP = 24.196, df = 2, p-value = 5.572e-06",
+    "text": "5) Heteroskedasticity tests\n\n\nCode\n# Breusch–Pagan: H0 = homoskedasticity\ncat(\"\\n=== Heteroskedasticity ===\\n\")\n\n\n\n=== Heteroskedasticity ===\n\n\nCode\ncat(\"Breusch–Pagan:\\n\"); print(bptest(best))\n\n\nBreusch–Pagan:\n\n\n\n    studentized Breusch-Pagan test\n\ndata:  best\nBP = 20.065, df = 4, p-value = 0.0004848\n\n\nCode\n# White-type (auxiliary regression on fitted and fitted^2)\ncat(\"\\nWhite-type (fitted & fitted^2):\\n\")\n\n\n\nWhite-type (fitted & fitted^2):\n\n\nCode\nprint(bptest(best, ~ fitted(best) + I(fitted(best)^2), data = rice_lag))\n\n\n\n    studentized Breusch-Pagan test\n\ndata:  best\nBP = 24.196, df = 2, p-value = 5.572e-06",
     "crumbs": [
-      "<span class='chapter-number'>10</span>  <span class='chapter-title'>In‑Class Test Supervision 4 — Indicative Solution</span>"
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Solution to in‑class Sup 4</span>"
     ]
   },
   {
     "objectID": "solution_formative_test_sup4.html#robust-inference-hc1",
     "href": "solution_formative_test_sup4.html#robust-inference-hc1",
-    "title": "In‑Class Test Supervision 4 — Indicative Solution",
+    "title": "Solution to in‑class Sup 4",
     "section": "6) Robust inference (HC1)",
-    "text": "6) Robust inference (HC1)\n\n# Use heteroskedasticity-consistent (HC1) standard errors for inference\n# HAC is not needed because DW/BG suggest no serial correlation in the final model.\ncat(\"\\n=== Coefficients with robust (HC1) SE ===\\n\")\n\n\n=== Coefficients with robust (HC1) SE ===\n\nprint(lmtest::coeftest(best, vcov = sandwich::vcovHC(best, type = \"HC1\")))\n\n\nt test of coefficients:\n\n                    Estimate Std. Error t value  Pr(&gt;|t|)    \n(Intercept)        -1.478192   0.351465 -4.2058 3.317e-05 ***\nlog(prod_lag)      -0.053045   0.023119 -2.2944  0.022363 *  \nlog(area)           0.823241   0.079032 10.4166 &lt; 2.2e-16 ***\nlog(fert)           0.200076   0.066501  3.0086  0.002817 ** \nlog(labor_density)  0.444306   0.089841  4.9455 1.187e-06 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1",
+    "text": "6) Robust inference (HC1)\n\n\nCode\n# Use heteroskedasticity-consistent (HC1) standard errors for inference\n# HAC is not needed because DW/BG suggest no serial correlation in the final model.\ncat(\"\\n=== Coefficients with robust (HC1) SE ===\\n\")\n\n\n\n=== Coefficients with robust (HC1) SE ===\n\n\nCode\nprint(lmtest::coeftest(best, vcov = sandwich::vcovHC(best, type = \"HC1\")))\n\n\n\nt test of coefficients:\n\n                    Estimate Std. Error t value  Pr(&gt;|t|)    \n(Intercept)        -1.478192   0.351465 -4.2058 3.317e-05 ***\nlog(prod_lag)      -0.053045   0.023119 -2.2944  0.022363 *  \nlog(area)           0.823241   0.079032 10.4166 &lt; 2.2e-16 ***\nlog(fert)           0.200076   0.066501  3.0086  0.002817 ** \nlog(labor_density)  0.444306   0.089841  4.9455 1.187e-06 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1",
     "crumbs": [
-      "<span class='chapter-number'>10</span>  <span class='chapter-title'>In‑Class Test Supervision 4 — Indicative Solution</span>"
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Solution to in‑class Sup 4</span>"
     ]
   },
   {
     "objectID": "solution_formative_test_sup4.html#short-interpretation-notes-for-students",
     "href": "solution_formative_test_sup4.html#short-interpretation-notes-for-students",
-    "title": "In‑Class Test Supervision 4 — Indicative Solution",
+    "title": "Solution to in‑class Sup 4",
     "section": "Short interpretation notes (for students)",
     "text": "Short interpretation notes (for students)\n\nCollinearity: Replacing labor with labor_density reduced VIFs (improves stability of estimates).\nAutocorrelation: Final log–log model (best) passes DW/BG (no serial correlation).\nHeteroskedasticity: BP/White indicate non-constant variance → report robust SEs.\nElasticities: In the log–log model, coefficients read as % changes (e.g., 0.82 on log(area) ≈ 1% ↑ area → 0.82% ↑ output, ceteris paribus).",
     "crumbs": [
-      "<span class='chapter-number'>10</span>  <span class='chapter-title'>In‑Class Test Supervision 4 — Indicative Solution</span>"
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Solution to in‑class Sup 4</span>"
     ]
   }
 ]
