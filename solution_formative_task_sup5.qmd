@@ -1,0 +1,189 @@
+---
+title: "Hedonic Models — Diagnostics & Best Practice (Student Handout)"
+format:
+  html:
+    toc: true
+    toc-depth: 2
+  pdf: default
+execute:
+  echo: true
+  warning: false
+  message: false
+editor: visual
+---
+
+## 🎯 Purpose
+This handout explains **what diagnostics matter in hedonic pricing models**, why we **use HC1 robust standard errors**, and why **autocorrelation/HAC are not relevant** for our cross-sectional housing dataset. It also gives you a **clear workflow** and short **code snippets** you can reuse.
+
+---
+
+## 🧭 Workflow for Cross‑Sectional Hedonic Models
+
+```{=html}
+<div style="border:1px solid #ddd; padding:1rem; border-radius:8px; background:#fafafa">
+<ol style="margin:0 0 0 1.25rem">
+  <li><strong>Import & explore</strong> the data (summary, histograms, missing values).</li>
+  <li><strong>Select variables</strong> using economic reasoning (see Supervision 3).</li>
+  <li><strong>Estimate</strong> the model with <code>lm()</code> (log-price is standard).</li>
+  <li><strong>Diagnose</strong> assumptions:
+    <ul>
+      <li><strong>Multicollinearity</strong> → VIF</li>
+      <li><strong>Heteroskedasticity</strong> → White test (Breusch–Pagan)</li>
+      <li><em>Optional (time/panel only):</em> Autocorrelation (BG test)</li>
+    </ul>
+  </li>
+  <li><strong>Correct inference</strong> with <strong>HC1 robust SEs</strong> (cross‑section default).</li>
+  <li><strong>Visual checks</strong>: residuals vs fitted, normal Q–Q.</li>
+  <li><strong>Interpret</strong> coefficients and tell the economic story.</li>
+</ol>
+</div>
+```
+
+> **Key takeaway:** Hedonic models here are **cross‑sectional**. We use **HC1** robust SEs. **HAC/Newey–West** and autocorrelation tests are for **time series or panel** data, not for this dataset.
+
+---
+
+## 📦 Data Load (edit the path)
+
+```{r}
+# Replace with your dataset path
+# It should include: ln_price, ln_area, bedroom_abv_gr, baths_total, etc.
+df <- read.csv("your_data.csv")
+head(df)
+```
+
+---
+
+## 📈 Baseline Hedonic Model
+
+```{r}
+# Example baseline — adjust as needed
+m0 <- lm(
+  ln_price ~ ln_area + bedroom_abv_gr + baths_total +
+    total_bsmt_sf + garage_cars + central_air + overall_qual +
+    overall_cond + exter_qual + kitchen_qual + fireplace_qu +
+    bldg_type + house_style + neighborhood,
+  data = df
+)
+
+# Quick fit stats
+library(broom); library(knitr)
+knitr::kable(
+  broom::glance(m0)[, c("adj.r.squared", "AIC", "sigma")],
+  caption = "Model fit: Adjusted R², AIC, sigma (log scale)"
+)
+```
+
+---
+
+## 🔎 Diagnostics That Matter (Cross‑Section)
+
+### A) Multicollinearity — VIF
+
+```{r}
+library(car)
+# VIF returns GVIF for factors; convert to VIF-equivalent when needed
+vif_safe <- function(model) {
+  v <- car::vif(model)
+  if (is.matrix(v)) v <- v[, "GVIF"]^(1 / (2 * v[, "Df"]))
+  v
+}
+
+vifs <- vif_safe(m0)
+mean_vif <- mean(vifs, na.rm = TRUE)
+max_vif  <- max(vifs, na.rm = TRUE)
+
+knitr::kable(
+  data.frame(Variable = names(vifs), VIF = as.numeric(vifs)),
+  digits = 3,
+  caption = "Variance Inflation Factors (VIF)"
+)
+```
+
+**Rules of thumb:** VIF < 5 usually fine; 5–10 investigate; >10 consider removing/re‑coding or combining variables.
+
+### B) Heteroskedasticity — White/Breusch–Pagan
+
+```{r}
+library(lmtest)
+white_test <- bptest(m0, varformula = ~ fitted(m0) + I(fitted(m0)^2))
+knitr::kable(
+  data.frame(`White test p-value` = signif(white_test$p.value, 3)),
+  caption = "Heteroskedasticity test (White/BP)"
+)
+```
+
+> If p-value < 0.05 → heteroskedasticity present → use **HC1 robust SEs**.
+
+---
+
+## 🧮 Correct Inference — HC1 Robust Standard Errors
+
+```{r}
+library(sandwich); library(lmtest)
+ct_hc1 <- lmtest::coeftest(m0, vcov. = sandwich::vcovHC(m0, type = "HC1"))
+knitr::kable(
+  broom::tidy(ct_hc1),
+  digits = 3,
+  col.names = c("Term", "Estimate", "Std. Error", "t", "p-value"),
+  caption = "OLS with HC1 (heteroskedasticity‑robust) standard errors"
+)
+```
+
+> We **do not** use HAC/Newey–West here because there is no time ordering in cross‑sectional data.
+
+---
+
+## 👀 Visual Diagnostics (Good Academic Practice)
+
+```{r, fig.height=4, fig.width=10}
+par(mfrow = c(1, 2))
+plot(m0, which = 1)  # Residuals vs Fitted (linearity & variance)
+plot(m0, which = 2)  # Normal Q–Q (error distribution)
+```
+
+**Interpretation hints:**
+- Left plot: no curve or funnel → linearity & constant variance ok; patterns → consider transforms or interactions.
+- Right plot: points near line → residuals roughly normal; big tails → consider log transforms or outlier checks.
+
+---
+
+## ✍️ Short Write‑Up (150–250 words)
+Answer briefly:
+1. Which characteristics significantly affect price? Do the signs make economic sense?
+2. Did HC1 change any inferences compared to classical SEs? Why?
+3. Any collinearity concerns (based on VIF)? What would you drop/combine?
+4. Do residual plots suggest non‑linearity or heteroskedasticity?
+
+---
+
+## (Optional) Variable Selection (Link to Supervision 3)
+Use only if multicollinearity is high or the model is unwieldy.
+
+```{r, eval=FALSE}
+# Stepwise can be used cautiously and combined with theory
+m_step <- step(m0, trace = 0)
+ct_hc1_step <- lmtest::coeftest(m_step, vcov. = sandwich::vcovHC(m_step, type = "HC1"))
+knitr::kable(broom::tidy(ct_hc1_step), digits = 3, caption = "Stepwise model with HC1 robust SEs")
+```
+
+> Always justify inclusion/exclusion with **economic reasoning**, not just AIC.
+
+---
+
+## (Optional, for Time/Panel Data) Autocorrelation
+_Not used for this cross‑section. Shown only for comparison with time‑series workflows._
+
+```{r, eval=FALSE}
+# bgtest requires time or panel structure; do not run on this cross‑section
+# bgtest(m0, order = 4)
+```
+
+---
+
+## ✅ Key Takeaways
+- This dataset is **cross‑sectional** → **HC1** robust SEs are appropriate.
+- Focus diagnostics on **VIF** and **White test**, plus **residual visuals**.
+- Autocorrelation tests and **HAC** are for **time/panel** data and are **not** used here.
+- Combine **theory** and **evidence** (Sup 3 + Sup 4) to justify your final model.
+
