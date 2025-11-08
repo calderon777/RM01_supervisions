@@ -27,10 +27,10 @@ By the end of this lab you will be able to:
 
 ### 📦 Setup & Data
 
-We reuse the dataset prepared in Supervision 5 (e.g. `hedonic_ames.csv`). Make sure your **working directory** contains that file (or change the path accordingly).
+We reuse the dataset prepared in Supervision 5 (we call the dataset `df`, see the section"Data Preparation"). 
 
 ```r
-# If a package is missing on your machine, run install.packages("pkgname")
+# If a package is missing on your machine, run install.packages("package name")
 # Example: install.packages("readr")
 
 # Load core packages used in this lab
@@ -46,37 +46,8 @@ library(sandwich)  # robust (HC) variance
 library(lmtest)    # coeftest with robust SE
 library(pROC)      # ROC and AUC
 
-# ---- Load the data ----
+# ---- Load the data using Supervision 5 - Section: data preparation
 # Adjust the path if your file is elsewhere.
-data_path <- "hedonic_ames.csv"
-
-if (!file.exists(data_path)) {
-  stop(paste0("File not found: ", data_path, "\nPlease place 'hedonic_ames.csv' in your working directory or set 'data_path' to the correct location."))
-}
-
-df <- read_csv(data_path)
-
-# ---- Minimal cleaning / variable construction to match Supervision 5 RHS ----
-# The following lines mirror the typical hedonic controls used previously.
-# If your column names differ, adapt the code accordingly.
-
-df <- df %>%
-  mutate(
-    # Continuous transformations
-    ln_price = log(sale_price),
-    ln_area  = log(gr_liv_area),
-    # Ordinal/factor encodings (ordered where appropriate)
-    overall_qual = factor(overall_qual, ordered = TRUE),
-    overall_cond = factor(overall_cond, ordered = TRUE),
-    exter_qual   = factor(exter_qual,   ordered = TRUE),
-    kitchen_qual = factor(kitchen_qual, ordered = TRUE),
-    fireplace_qu = factor(fireplace_qu, ordered = TRUE),
-    bldg_type    = factor(bldg_type),
-    house_style  = factor(house_style),
-    neighborhood = factor(neighborhood),
-    # Bathrooms: total as full + 0.5 * half (common teaching convention)
-    baths_total  = full_bath + 0.5 * half_bath
-  )
 
 # Quick preview
 dplyr::glimpse(df)
