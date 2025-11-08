@@ -1,0 +1,284 @@
+---
+title: "Supervision 6"
+format: html
+execute:
+  echo: true
+  warning: false
+  message: false
+---
+
+## Lab 19 — Qualitative Dependent Variables: Logit vs Probit on the Hedonic Model
+
+> This supervision builds directly on **Supervision 5**. We will keep the *same* hedonic right-hand-side (RHS) variables, but transform the **dependent variable** into **High vs Low Price** using the sample median. You will fit **logit** and **probit** models, interpret **marginal effects**, and assess **predictive performance**.
+
+---
+
+### 🎯 Learning Outcomes
+
+By the end of this lab you will be able to:
+
+1. Transform a continuous target into a **binary** target using the **median**.
+2. Fit **Logit** and **Probit** models in R with the same hedonic covariates used previously.
+3. Interpret **Average Marginal Effects (AMEs)** in probability terms.
+4. Compare model performance via **ROC curves** and **AUC**.
+5. Build **confusion matrices** at a chosen threshold and compute basic metrics.
+
+---
+
+### 📦 Setup & Data
+
+We reuse the dataset prepared in Supervision 5 (e.g. `hedonic_ames.csv`). Make sure your **working directory** contains that file (or change the path accordingly).
+
+```r
+# If a package is missing on your machine, run install.packages("pkgname")
+# Example: install.packages("readr")
+
+# Load core packages used in this lab
+library(readr)     # reading data
+library(dplyr)     # data manipulation
+library(ggplot2)   # plotting
+
+# Optional/advanced packages for inference and diagnostics
+# If missing, install as needed:
+# install.packages(c("margins", "sandwich", "lmtest", "pROC"))
+library(margins)   # marginal effects
+library(sandwich)  # robust (HC) variance
+library(lmtest)    # coeftest with robust SE
+library(pROC)      # ROC and AUC
+
+# ---- Load the data ----
+# Adjust the path if your file is elsewhere.
+data_path <- "hedonic_ames.csv"
+
+if (!file.exists(data_path)) {
+  stop(paste0("File not found: ", data_path, "\nPlease place 'hedonic_ames.csv' in your working directory or set 'data_path' to the correct location."))
+}
+
+df <- read_csv(data_path)
+
+# ---- Minimal cleaning / variable construction to match Supervision 5 RHS ----
+# The following lines mirror the typical hedonic controls used previously.
+# If your column names differ, adapt the code accordingly.
+
+df <- df %>%
+  mutate(
+    # Continuous transformations
+    ln_price = log(sale_price),
+    ln_area  = log(gr_liv_area),
+    # Ordinal/factor encodings (ordered where appropriate)
+    overall_qual = factor(overall_qual, ordered = TRUE),
+    overall_cond = factor(overall_cond, ordered = TRUE),
+    exter_qual   = factor(exter_qual,   ordered = TRUE),
+    kitchen_qual = factor(kitchen_qual, ordered = TRUE),
+    fireplace_qu = factor(fireplace_qu, ordered = TRUE),
+    bldg_type    = factor(bldg_type),
+    house_style  = factor(house_style),
+    neighborhood = factor(neighborhood),
+    # Bathrooms: total as full + 0.5 * half (common teaching convention)
+    baths_total  = full_bath + 0.5 * half_bath
+  )
+
+# Quick preview
+dplyr::glimpse(df)
+```
+
+---
+
+### 🧠 From Continuous to Binary: Define High vs Low Price
+
+We create a binary target equal to **1** if `sale_price` is **at least** the sample median and **0** otherwise. The median splits the sample into two balanced groups.
+
+```r
+# Compute the sample median of the sale price
+price_med <- median(df$sale_price, na.rm = TRUE)
+
+# Create the binary dependent variable
+df <- df %>% mutate(high_price = as.integer(sale_price >= price_med))
+
+# Check class balance
+table(df$high_price)
+prop.table(table(df$high_price))
+```
+
+---
+
+### 🧩 Model Specification (same RHS as Supervision 5)
+
+We keep the hedonic RHS unchanged. Only the outcome changed (continuous -> binary).
+
+```r
+# Hedonic formula reused for binary models
+f_bin <- high_price ~ ln_area + bedroom_abv_gr + baths_total +
+  total_bsmt_sf + garage_cars + central_air + overall_qual +
+  overall_cond + exter_qual + kitchen_qual + fireplace_qu +
+  bldg_type + house_style + neighborhood
+```
+
+---
+
+### ⚙️ Estimation: Logit & Probit
+
+We estimate both **logit** and **probit** via `glm()` by changing the link function. Coefficient signs and significance are typically very similar; logit coefficients are usually ~1.6× probit coefficients (scale difference).
+
+```r
+# Logit model
+logit_model  <- glm(f_bin, data = df, family = binomial(link = "logit"))
+
+# Probit model
+probit_model <- glm(f_bin, data = df, family = binomial(link = "probit"))
+
+# Summaries (classical SEs)
+summary(logit_model)
+summary(probit_model)
+
+# Information criteria for a quick comparison
+AIC(logit_model, probit_model)
+BIC(logit_model, probit_model)
+```
+
+**Robust Standard Errors (recommended for cross-sections)**
+
+```r
+# HC1 robust SEs using sandwich + lmtest
+coeftest(logit_model,  vcov. = vcovHC(logit_model,  type = "HC1"))
+coeftest(probit_model, vcov. = vcovHC(probit_model, type = "HC1"))
+```
+
+---
+
+### 📈 Interpreting Effects with Marginal Effects (AMEs)
+
+Raw coefficients are on latent/odds scales. **Average Marginal Effects (AMEs)** translate them to **percentage-point changes in probability** for a one-unit change in each predictor.
+
+```r
+# Average Marginal Effects for both models
+me_logit  <- margins(logit_model)
+me_probit <- margins(probit_model)
+
+summary(me_logit)
+summary(me_probit)
+
+# Tip for reporting:
+# "A 0.01 increase in ln_area (~1% more area) changes the probability of being high-priced by X percentage points (AME)."
+```
+
+---
+
+### 🔮 Predicted Probabilities & Agreement Between Models
+
+```r
+# Predicted probabilities from each model
+df <- df %>%
+  mutate(
+    p_logit  = predict(logit_model,  type = "response"),
+    p_probit = predict(probit_model, type = "response")
+  )
+
+# Compare probability predictions
+cor(df$p_logit, df$p_probit, use = "complete.obs")
+summary(df$p_logit)
+summary(df$p_probit)
+```
+
+---
+
+### 🧪 Classification Diagnostics: ROC & AUC
+
+We evaluate ranking performance via **ROC curves** and **AUC**.
+
+```r
+# ROC objects (treating 1 as the positive class)
+roc_logit  <- roc(df$high_price, df$p_logit)
+roc_probit <- roc(df$high_price, df$p_probit)
+
+# AUC values
+auc(roc_logit)
+auc(roc_probit)
+
+# Simple ROC plots with ggplot2
+autoplot_roc <- function(roc_obj, title){
+  # Build a data frame with TPR (sensitivity) and FPR (1 - specificity)
+  plot_df <- data.frame(
+    tpr = roc_obj$sensitivities,
+    fpr = 1 - roc_obj$specificities
+  )
+  ggplot(plot_df, aes(x = fpr, y = tpr)) +
+    geom_line() +
+    geom_abline(slope = 1, intercept = 0, linetype = 2) +
+    labs(x = "False Positive Rate", y = "True Positive Rate", title = title)
+}
+
+autoplot_roc(roc_logit,  paste0("ROC – Logit (AUC = ", round(auc(roc_logit), 3), ")"))
+autoplot_roc(roc_probit, paste0("ROC – Probit (AUC = ", round(auc(roc_probit), 3), ")"))
+```
+
+---
+
+### ✂️ Choosing a Threshold & Confusion Matrices
+
+Classification requires a threshold on predicted probabilities. The **Youden J** criterion often gives a better cut-off than the naïve 0.5.
+
+```r
+# Optimal thresholds by Youden's J
+thr_logit  <- coords(roc_logit,  x = "best", best.method = "youden", transpose = TRUE)["threshold"]
+thr_probit <- coords(roc_probit, x = "best", best.method = "youden", transpose = TRUE)["threshold"]
+
+thr_logit; thr_probit
+
+# Helper to compute a confusion matrix and basic metrics without extra packages
+confusion_metrics <- function(y_true, y_prob, thr = 0.5) {
+  y_pred <- ifelse(y_prob >= thr, 1L, 0L)
+  TP <- sum(y_pred == 1 & y_true == 1, na.rm = TRUE)
+  TN <- sum(y_pred == 0 & y_true == 0, na.rm = TRUE)
+  FP <- sum(y_pred == 1 & y_true == 0, na.rm = TRUE)
+  FN <- sum(y_pred == 0 & y_true == 1, na.rm = TRUE)
+  acc <- (TP + TN) / (TP + TN + FP + FN)
+  tpr <- TP / (TP + FN)  # sensitivity / recall
+  tnr <- TN / (TN + FP)  # specificity
+  ppv <- TP / (TP + FP)  # precision
+  npv <- TN / (TN + FN)
+  list(
+    threshold = thr,
+    matrix = matrix(c(TN, FP, FN, TP), nrow = 2,
+                    dimnames = list("Predicted" = c("0","1"), "Actual" = c("0","1"))),
+    accuracy = acc, sensitivity = tpr, specificity = tnr, precision = ppv, npv = npv
+  )
+}
+
+# Confusion matrices at 0.5 and at the optimal Youden threshold
+cm_logit_05 <- confusion_metrics(df$high_price, df$p_logit,  thr = 0.5)
+cm_probit_05 <- confusion_metrics(df$high_price, df$p_probit, thr = 0.5)
+cm_logit_opt <- confusion_metrics(df$high_price, df$p_logit,  thr = as.numeric(thr_logit))
+cm_probit_opt <- confusion_metrics(df$high_price, df$p_probit, thr = as.numeric(thr_probit))
+
+cm_logit_05
+cm_probit_05
+cm_logit_opt
+cm_probit_opt
+```
+
+---
+
+### 📝 What to Report (suggested structure)
+
+1. **Model setup**: how the binary target was defined; why the median.
+2. **Estimation**: logit & probit results; include **robust SE** tables.
+3. **Interpretation**: **AMEs** for key variables (e.g., `ln_area`, `overall_qual`, `baths_total`).
+4. **Performance**: AUC for both models; comment on similarity/differences.
+5. **Classification**: confusion matrices at 0.5 and at the Youden-optimal threshold; discuss trade-offs.
+6. **Reflection**: when would you prefer logit vs probit? (Hint: results are usually very similar; choice often driven by convention or interpretability.)
+
+---
+
+### ✅ Checklist Before You Submit
+
+- [ ] Code runs from top to bottom **without manual edits**.
+- [ ] All variables in your RHS are present/constructed.
+- [ ] You report **robust SEs** and **AMEs**.
+- [ ] You include **AUC** and describe **threshold choice**.
+- [ ] Your interpretations are in **probability** (percentage-point) terms.
+
+---
+
+🏁 *End of Supervision 6*  
+🛑 Remember to save your script 💾
