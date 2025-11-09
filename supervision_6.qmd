@@ -25,7 +25,21 @@ By the end of this lab you will be able to:
 
 ---
 
+✔️ **Step-by-step workflow**
 
+- The sections follow a logical sequence:
+
+- Data setup
+
+- Binary transformation
+
+- Model estimation
+
+- Interpretation
+
+- Forecasting → performance evaluation
+
+---
 
 
 ### 📦 Setup & Data
@@ -150,6 +164,37 @@ table(df$high_price)
 prop.table(table(df$high_price))
 ```
 
+::: callout-note
+### ✨ Why logit & probit exist (the *aha!* moment)
+
+OLS fails when the dependent variable is 0/1 because predicted values can be <0 or >1.
+Instead of predicting price category directly, logit and probit assume:
+
+> There is an **unobserved (latent) index** of "housing quality/value"
+> and we only observe whether it crosses a threshold.
+
+$y_i^* = X_i \beta + \varepsilon_i
+\quad\rightarrow\quad
+y_i = \begin{cases}
+1 & \text{if } y_i^* > 0 \\
+0 & \text{otherwise}
+\end{cases}$
+
+The difference is the distribution of the error term $\varepsilon$:
+
+| Model | Assumption for \( \varepsilon \) | Effect |
+|--------|----------------------------------|--------|
+| **Logit** | Logistic distribution | Coefficients scale with *odds*. |
+| **Probit** | Normal distribution | Coefficients on *z-score* scale. |
+
+Because logistic and normal are very similar:
+
+> **Logit coefficient ≈ 1.6 × probit coefficient**
+
+But both produce nearly **identical predicted probabilities and classification**.
+:::
+
+
 ---
 
 ### 🧩 Model Specification (same RHS as Supervision 5)
@@ -166,35 +211,162 @@ f_bin <- high_price ~ ln_area + bedroom_abv_gr + baths_total +
 
 ---
 
-### ⚙️ Estimation: Logit & Probit
 
-We estimate both **logit** and **probit** via `glm()` by changing the link function. Coefficient signs and significance are typically very similar; logit coefficients are usually ~1.6× probit coefficients (scale difference).
+
+### ⚙️ Estimation (fit only) + 🪓 Backward Selection (BIC)
+
+We now estimate the latent model using `glm()`:
+
+$P(y = 1 \mid X) = \text{link}^{-1}(X\beta)$
+
+- `logit` → inverse-logit (`plogis()`): returns a probability via *odds*
+- `probit` → normal CDF (`pnorm()`): returns a probability via *z-score*
+
+Logit uses the logistic CDF **(cumulative distribution function)**; probit uses the (scaled) normal CDF. They almost overlap, which is why results are so similar and logit ≈ 1.6 × probit in scale. Let's compare the CDFs:
 
 ```{r}
-# Logit model
-logit_model  <- glm(f_bin, data = df, family = binomial(link = "logit"))
+# Logistic vs Probit (variance-matched) — super short CDF plot
+sd_match <- pi / sqrt(3)              # match Normal variance to Logistic
+curve(plogis(x), from=-6, to=6, lwd=2, xlab="Latent index (x)", ylab="CDF",
+      main="CDF: Logistic vs Normal (variance-matched)")
+curve(pnorm(x, sd=sd_match), from=-6, to=6, lwd=2, lty=2, add=TRUE)
+legend("topleft", c("Logistic (logit)", "Normal scaled (probit)"),
+       lwd=2, lty=c(1,2), bty="n")
+```
 
-# Probit model
-probit_model <- glm(f_bin, data = df, family = binomial(link = "probit"))
+In the next chunk we **suppress printing** baseline models to avoid overwhelming output (too many variables). However, we run **backward stepwise (BIC)** and present a compact, readable table of that selected model. Coefficient signs and significance are typically very similar; logit coefficients are usually ~1.6× probit coefficients (scale difference).
 
-# Summaries (classical SEs)
-summary(logit_model)
-summary(probit_model)
+```{r}
+# --- Packages used in this chunk -------------------------------------------
+library(dplyr)      # data wrangling
+library(broom)      # tidy model outputs (term, estimate, std.error, statistic, p.value)
+library(stringr)    # clean up long variable names
+library(gt)         # neat tables
+library(lmtest)     # coeftest() with robust SEs
+library(sandwich)   # vcovHC() for robust (HC) variance
 
-# Information criteria for a quick comparison
-AIC(logit_model, probit_model)
-BIC(logit_model, probit_model)
+# --- Convert ordered factors to plain factors --------------------------------
+# Why? Ordered factors produce polynomial contrasts (.L, .Q, ...) that are hard to interpret.
+# Using plain factors yields standard dummies and lets step() drop/keep whole factors cleanly.
+df <- df |>
+  mutate(
+    overall_qual = as.factor(overall_qual),
+    overall_cond = as.factor(overall_cond),
+    exter_qual   = as.factor(exter_qual),
+    kitchen_qual = as.factor(kitchen_qual),
+    fireplace_qu = as.factor(fireplace_qu),
+    central_air  = as.factor(central_air)  # ensure "Y"/"N" is categorical
+  )
+
+# --- Fit full LOGIT & PROBIT (we suppress long summaries for readability) ----
+logit_full  <- glm(f_bin, data = df, family = binomial("logit"))
+probit_full <- glm(f_bin, data = df, family = binomial("probit"))
+
+# --- Backward stepwise with BIC (k = log(n)) on both models ------------------
+# BIC penalizes complexity more than AIC -> typically a leaner, more generalizable model.
+k_bic <- log(nrow(df))
+logit_bic  <- step(logit_full,  direction = "backward", k = k_bic, trace = 0)
+probit_bic <- step(probit_full, direction = "backward", k = k_bic, trace = 0)
+
+# --- Quick fit comparison (lower is better) ----------------------------------
+bic_tab <- tibble(
+  model = c("logit_bic", "probit_bic"),
+  AIC   = c(AIC(logit_bic),  AIC(probit_bic)),
+  BIC   = c(BIC(logit_bic),  BIC(probit_bic))
+)
+bic_tab  # glance: which BIC-selected model scores better?
+
+# --- Keep BOTH models for downstream sections --------------------------------
+main_logit <- logit_bic   # LOGIT (BIC-selected)
+main_probit <- probit_bic  # PROBIT (BIC-selected)
+
+# --- Also clarify which one is "best" by BIC ---------------------------------
+best_model <- if (BIC(logit_bic) < BIC(probit_bic)) {
+  message("✅ BIC selects the LOGIT model as best (more parsimonious).")
+  logit_bic
+} else {
+  message("✅ BIC selects the PROBIT model as best (more parsimonious).")
+  probit_bic
+}
+
+# --- Helper: compact robust-SE table for any glm -----------------------------
+make_compact_table <- function(mod, title_text) {
+  # Robust HC1 variance-covariance and tidy coefficients
+  rob_vcov <- sandwich::vcovHC(mod, type = "HC1")
+  out <- broom::tidy(lmtest::coeftest(mod, vcov. = rob_vcov)) |>
+    filter(term != "(Intercept)") |>
+    arrange(p.value) |>
+    # Friendlier labels for students (extend as needed)
+    mutate(
+      term = term |>
+        str_replace("^ln_area$", "ln(living area)") |>
+        str_replace("^baths_total$", "Total baths") |>
+        str_replace("^garage_cars$", "Garage capacity") |>
+        str_replace("^central_airY$", "Central air: Yes") |>
+        str_replace("^bldg_type", "Bldg type: ") |>
+        str_replace("^house_style", "Style: ") |>
+        str_replace("^neighborhood", "Nbh: ")
+    ) |>
+    slice_head(n = 20) |>
+    mutate(
+      estimate  = round(estimate, 4),
+      std.error = round(std.error, 4),
+      statistic = round(statistic, 4),
+      p.value   = round(p.value, 4)
+    )
+
+  # Render a gt table (no exotic functions to avoid errors)
+  out |>
+    gt() |>
+    tab_header(title = title_text) |>
+    cols_label(
+      term = "Term", estimate = "Coef", std.error = "Robust SE",
+      statistic = "z", p.value = "p"
+    ) |>
+    tab_options(table.width = pct(100), data_row.padding = px(3))
+}
+
+# --- Print compact tables for BOTH models ------------------------------------
+make_compact_table(main_logit, "Logit (BIC-selected): Key Terms — Robust SEs")
+make_compact_table(main_probit, "Probit (BIC-selected): Key Terms — Robust SEs  📌 We will also use this downstream")
+
+# --- (Optional) Kept vs Dropped list for transparency ------------------------
+# Uncomment to show what BIC dropped vs. kept for each model.
+# kept1   <- attr(terms(main_logit), "term.labels"); full1 <- attr(terms(logit_full),  "term.labels")
+# kept2   <- attr(terms(main_probit), "term.labels"); full2 <- attr(terms(probit_full), "term.labels")
+# dropped1 <- setdiff(full1, kept1); dropped2 <- setdiff(full2, kept2)
+# tibble(model = "LOGIT", status = "Kept", term = kept1) |>
+#   bind_rows(tibble(model = "LOGIT", status = "Dropped", term = dropped1)) |>
+#   bind_rows(tibble(model = "PROBIT", status = "Kept", term = kept2)) |>
+#   bind_rows(tibble(model = "PROBIT", status = "Dropped", term = dropped2)) |>
+#   arrange(model, status, term) |>
+#   gt() |>
+#   tab_header(title = "Backward BIC: Kept vs Dropped Terms (Logit & Probit)") |>
+#   tab_options(table.width = pct(100))
 ```
 
 **Robust Standard Errors (recommended for cross-sections)**
 
 ```{r}
 # HC1 robust SEs using sandwich + lmtest
-coeftest(logit_model,  vcov. = vcovHC(logit_model,  type = "HC1"))
-coeftest(probit_model, vcov. = vcovHC(probit_model, type = "HC1"))
+coeftest(main_logit,  vcov. = vcovHC(main_logit,  type = "HC1"))
+coeftest(main_probit, vcov. = vcovHC(main_probit, type = "HC1"))
 ```
 
 ---
+
+::: callout-tip
+### Why marginal effects?  
+Logit/probit coefficients are **not** changes in probability — they change the *latent index*.
+
+Marginal effects compute:
+
+> “Holding everything else constant, how does  $P(y=1)$ change when $x$ increases by 1?”
+
+That is why AMEs are interpretable in **percentage points**.
+:::
+
+
 
 ### 📈 Interpreting Effects with Marginal Effects (AMEs)
 
@@ -202,8 +374,8 @@ Raw coefficients are on latent/odds scales. **Average Marginal Effects (AMEs)** 
 
 ```{r}
 # Average Marginal Effects for both models
-me_logit  <- margins(logit_model)
-me_probit <- margins(probit_model)
+me_logit  <- margins(main_logit)
+me_probit <- margins(main_probit)
 
 summary(me_logit)
 summary(me_probit)
@@ -220,8 +392,8 @@ summary(me_probit)
 # Predicted probabilities from each model
 df <- df %>%
   mutate(
-    p_logit  = predict(logit_model,  type = "response"),
-    p_probit = predict(probit_model, type = "response")
+    p_logit  = predict(main_logit,  type = "response"),
+    p_probit = predict(main_probit, type = "response")
   )
 
 # Compare probability predictions
@@ -320,7 +492,7 @@ cm_probit_opt
 
 ---
 
-### ✅ Checklist Before You Submit
+### ✅ Checklist
 
 - [ ] Code runs from top to bottom **without manual edits**.
 - [ ] All variables in your RHS are present/constructed.
