@@ -406,7 +406,20 @@ summary(df$p_probit)
 
 ### 🧪 Classification Diagnostics: ROC & AUC
 
+An ROC (Receiver Operating Characteristic) curve is a graph that shows a classifier's performance by plotting the true positive rate against the false positive rate at various threshold settings. The AUC (Area Under the Curve) is a single summary metric that measures how well a model can distinguish between classes, with a higher value indicating better performance. A perfect classifier has an AUC of \(1.0\), while a random classifier has an AUC of \(0.5\). 
+
 We evaluate ranking performance via **ROC curves** and **AUC**.
+
+::: callout-note
+### ROC intuition
+
+ROC doesn’t evaluate the predicted **probability**, but the **ranking quality**.
+
+> “Among all pairs of houses, how often does the model rank the expensive one higher?”
+
+- AUC = 0.5 → random odds
+- AUC = 1.0 → perfect ranking
+:::
 
 ```{r}
 # ROC objects (treating 1 as the positive class)
@@ -478,6 +491,13 @@ cm_probit_05
 cm_logit_opt
 cm_probit_opt
 ```
+
+::: callout-success
+### Final takeaway
+- Logit and probit tell the *same economic story*
+- AMEs let us interpret effects in **percentage points**
+- ROC/Youden threshold evaluates predictive/classification performance
+:::
 
 ---
 

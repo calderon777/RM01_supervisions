@@ -254,6 +254,7 @@ window.Quarto = {
   <li><a href="#predicted-probabilities-agreement-between-models" id="toc-predicted-probabilities-agreement-between-models" class="nav-link" data-scroll-target="#predicted-probabilities-agreement-between-models">🔮 Predicted Probabilities &amp; Agreement Between Models</a></li>
   <li><a href="#classification-diagnostics-roc-auc" id="toc-classification-diagnostics-roc-auc" class="nav-link" data-scroll-target="#classification-diagnostics-roc-auc">🧪 Classification Diagnostics: ROC &amp; AUC</a></li>
   <li><a href="#choosing-a-threshold-confusion-matrices" id="toc-choosing-a-threshold-confusion-matrices" class="nav-link" data-scroll-target="#choosing-a-threshold-confusion-matrices">✂️ Choosing a Threshold &amp; Confusion Matrices</a></li>
+  <li><a href="#final-takeaway" id="toc-final-takeaway" class="nav-link" data-scroll-target="#final-takeaway">Final takeaway</a></li>
   <li><a href="#what-to-report-suggested-structure" id="toc-what-to-report-suggested-structure" class="nav-link" data-scroll-target="#what-to-report-suggested-structure">📝 What to Report (suggested structure)</a></li>
   <li><a href="#checklist" id="toc-checklist" class="nav-link" data-scroll-target="#checklist">✅ Checklist</a></li>
   </ul></li>
@@ -2021,7 +2022,28 @@ Why marginal effects?
 </section>
 <section id="classification-diagnostics-roc-auc" class="level3">
 <h3 class="anchored" data-anchor-id="classification-diagnostics-roc-auc">🧪 Classification Diagnostics: ROC &amp; AUC</h3>
+<p>An ROC (Receiver Operating Characteristic) curve is a graph that shows a classifier’s performance by plotting the true positive rate against the false positive rate at various threshold settings. The AUC (Area Under the Curve) is a single summary metric that measures how well a model can distinguish between classes, with a higher value indicating better performance. A perfect classifier has an AUC of (1.0), while a random classifier has an AUC of (0.5).&nbsp;</p>
 <p>We evaluate ranking performance via <strong>ROC curves</strong> and <strong>AUC</strong>.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+ROC intuition
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>ROC doesn’t evaluate the predicted <strong>probability</strong>, but the <strong>ranking quality</strong>.</p>
+<blockquote class="blockquote">
+<p>“Among all pairs of houses, how often does the model rank the expensive one higher?”</p>
+</blockquote>
+<ul>
+<li>AUC = 0.5 → random odds</li>
+<li>AUC = 1.0 → perfect ranking</li>
+</ul>
+</div>
+</div>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ROC objects (treating 1 as the positive class)</span></span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>roc_logit  <span class="ot">&lt;-</span> <span class="fu">roc</span>(df<span class="sc">$</span>high_price, df<span class="sc">$</span>p_logit)</span>
@@ -2216,8 +2238,16 @@ $npv
 [1] 0.9231853</code></pre>
 </div>
 </div>
-<hr>
 </section>
+<section id="final-takeaway" class="level3 callout-success">
+<h3 class="anchored" data-anchor-id="final-takeaway">Final takeaway</h3>
+<ul>
+<li>Logit and probit tell the <em>same economic story</em></li>
+<li>AMEs let us interpret effects in <strong>percentage points</strong></li>
+<li>ROC/Youden threshold evaluates predictive/classification performance</li>
+</ul>
+</section>
+<hr>
 <section id="what-to-report-suggested-structure" class="level3">
 <h3 class="anchored" data-anchor-id="what-to-report-suggested-structure">📝 What to Report (suggested structure)</h3>
 <ol type="1">
