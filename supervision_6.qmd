@@ -98,6 +98,7 @@ library(ggplot2)   # plotting
 library(margins)   # marginal effects
 library(sandwich)  # robust (HC) variance
 library(lmtest)    # coeftest with robust SE
+#git addinstall.packages("pROC", repos = "https://cloud.r-project.org")
 library(pROC)      # ROC and AUC
 
 # ---- Load the data using Supervision 5 - Section: data preparation
