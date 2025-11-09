@@ -80,6 +80,28 @@ df <- df %>% mutate(listing_id = row_number()) %>% relocate(listing_id)
 
 write_csv(df, "hedonic_ames.csv")
 glimpse(df)
+
+# 1. Load data & transform
+df <- readr::read_csv("hedonic_ames.csv")
+
+# ---------------------------------------------------
+# 1) Load & transform
+# ---------------------------------------------------
+df <- read_csv("hedonic_ames.csv") %>%
+  mutate(
+    ln_price = log(sale_price),
+    ln_area  = log(gr_liv_area),
+    overall_qual = factor(overall_qual, ordered = TRUE),
+    overall_cond = factor(overall_cond, ordered = TRUE),
+    exter_qual   = factor(exter_qual, ordered = TRUE),
+    kitchen_qual = factor(kitchen_qual, ordered = TRUE),
+    fireplace_qu = factor(fireplace_qu, ordered = TRUE),
+    bldg_type    = factor(bldg_type),
+    house_style  = factor(house_style),
+    neighborhood = factor(neighborhood),
+    baths_total  = full_bath + 0.5 * half_bath
+  )
+
 ```
 
 
@@ -116,7 +138,7 @@ dplyr::glimpse(df)
 
 We create a binary target equal to **1** if `sale_price` is **at least** the sample median and **0** otherwise. The median splits the sample into two balanced groups.
 
-```r
+```{r}
 # Compute the sample median of the sale price
 price_med <- median(df$sale_price, na.rm = TRUE)
 
@@ -134,7 +156,7 @@ prop.table(table(df$high_price))
 
 We keep the hedonic RHS unchanged. Only the outcome changed (continuous -> binary).
 
-```r
+```{r}
 # Hedonic formula reused for binary models
 f_bin <- high_price ~ ln_area + bedroom_abv_gr + baths_total +
   total_bsmt_sf + garage_cars + central_air + overall_qual +
