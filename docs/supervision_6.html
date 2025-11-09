@@ -374,121 +374,1226 @@ $ ln_area        &lt;dbl&gt; 7.412160, 6.797940, 7.192182, 7.654443, 7.395722, 7
 <section id="estimation-logit-probit" class="level3">
 <h3 class="anchored" data-anchor-id="estimation-logit-probit">⚙️ Estimation: Logit &amp; Probit</h3>
 <p>We estimate both <strong>logit</strong> and <strong>probit</strong> via <code>glm()</code> by changing the link function. Coefficient signs and significance are typically very similar; logit coefficients are usually ~1.6× probit coefficients (scale difference).</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Logit model</span></span>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Logit model</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>logit_model  <span class="ot">&lt;-</span> <span class="fu">glm</span>(f_bin, <span class="at">data =</span> df, <span class="at">family =</span> <span class="fu">binomial</span>(<span class="at">link =</span> <span class="st">"logit"</span>))</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Probit model</span></span>
 <span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>probit_model <span class="ot">&lt;-</span> <span class="fu">glm</span>(f_bin, <span class="at">data =</span> df, <span class="at">family =</span> <span class="fu">binomial</span>(<span class="at">link =</span> <span class="st">"probit"</span>))</span>
 <span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Summaries (classical SEs)</span></span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(logit_model)</span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(probit_model)</span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Information criteria for a quick comparison</span></span>
-<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="fu">AIC</span>(logit_model, probit_model)</span>
-<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="fu">BIC</span>(logit_model, probit_model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(logit_model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+glm(formula = f_bin, family = binomial(link = "logit"), data = df)
+
+Coefficients:
+                                                      Estimate Std. Error
+(Intercept)                                         -5.612e+01  2.252e+03
+ln_area                                              6.049e+00  7.395e-01
+bedroom_abv_gr                                      -2.652e-01  1.638e-01
+baths_total                                          1.473e+00  2.406e-01
+total_bsmt_sf                                        2.470e-03  4.437e-04
+garage_cars                                          7.409e-01  1.847e-01
+central_airY                                         1.145e+00  5.804e-01
+overall_qual.L                                      -1.918e+00  2.371e+03
+overall_qual.Q                                       2.503e+00  2.546e+03
+overall_qual.C                                      -7.873e+00  2.311e+03
+overall_qual^4                                      -1.122e+01  1.677e+03
+overall_qual^5                                      -2.412e+00  1.379e+03
+overall_qual^6                                       2.314e+00  9.901e+02
+overall_qual^7                                      -2.170e+00  9.815e+02
+overall_qual^8                                       1.880e+00  1.345e+03
+overall_qual^9                                       1.239e+01  1.129e+03
+overall_cond.L                                      -9.067e+00  1.516e+03
+overall_cond.Q                                      -5.455e+00  1.562e+03
+overall_cond.C                                      -4.531e+00  1.307e+03
+overall_cond^4                                      -5.069e+00  9.188e+02
+overall_cond^5                                      -4.540e+00  5.430e+02
+overall_cond^6                                      -2.632e+00  2.640e+02
+overall_cond^7                                      -3.526e+00  1.003e+02
+overall_cond^8                                      -6.145e+00  2.591e+01
+exter_qual.L                                        -9.917e+00  5.290e+02
+exter_qual.Q                                         6.821e+00  3.943e+02
+exter_qual.C                                        -3.330e+00  1.763e+02
+kitchen_qual.L                                      -3.591e+00  3.401e+03
+kitchen_qual.Q                                       3.477e+00  2.874e+03
+kitchen_qual.C                                       4.674e+00  6.801e+03
+kitchen_qual^4                                       5.594e+00  5.141e+03
+fireplace_qu.L                                      -6.882e-01  1.200e+00
+fireplace_qu.Q                                       1.540e+00  1.084e+00
+fireplace_qu.C                                      -5.656e-02  8.303e-01
+fireplace_qu^4                                       2.162e-01  5.607e-01
+fireplace_qu^5                                      -5.480e-01  3.024e-01
+bldg_typeOneFam                                      2.861e+00  5.178e-01
+bldg_typeTwnhs                                       5.442e-01  7.973e-01
+bldg_typeTwnhsE                                      1.621e+00  7.196e-01
+bldg_typeTwoFmCon                                    2.789e+00  8.011e-01
+house_styleOne_and_Half_Unf                         -1.394e+01  2.134e+03
+house_styleOne_Story                                 8.010e-01  4.160e-01
+house_styleSFoyer                                    2.651e+00  6.417e-01
+house_styleSLvl                                      1.920e+00  4.828e-01
+house_styleTwo_and_Half_Fin                          1.937e+00  1.941e+00
+house_styleTwo_and_Half_Unf                          1.343e+00  8.512e-01
+house_styleTwo_Story                                 7.532e-01  3.600e-01
+neighborhoodBlueste                                 -6.926e-01  1.418e+00
+neighborhoodBriardale                               -1.576e+01  1.721e+03
+neighborhoodBrookside                               -1.469e+00  1.063e+00
+neighborhoodClear_Creek                              2.173e-02  1.134e+00
+neighborhoodCollege_Creek                           -2.065e-02  9.810e-01
+neighborhoodCrawford                                -1.798e-01  1.028e+00
+neighborhoodEdwards                                 -1.748e+00  9.919e-01
+neighborhoodGilbert                                  4.797e-01  1.049e+00
+neighborhoodGreen_Hills                              2.096e+01  6.450e+03
+neighborhoodGreens                                   3.478e-01  1.769e+00
+neighborhoodIowa_DOT_and_Rail_Road                  -2.570e+00  1.207e+00
+neighborhoodLandmark                                -1.752e+01  1.075e+04
+neighborhoodMeadow_Village                          -1.909e+01  1.315e+03
+neighborhoodMitchell                                -2.755e-01  9.849e-01
+neighborhoodNorth_Ames                              -1.688e+00  9.554e-01
+neighborhoodNorthpark_Villa                         -2.014e+01  1.980e+03
+neighborhoodNorthridge                               1.148e+01  1.048e+03
+neighborhoodNorthridge_Heights                       7.281e-01  1.194e+00
+neighborhoodNorthwest_Ames                          -1.327e+00  9.925e-01
+neighborhoodOld_Town                                -3.981e+00  1.061e+00
+neighborhoodSawyer                                  -1.846e+00  1.008e+00
+neighborhoodSawyer_West                             -1.140e+00  9.750e-01
+neighborhoodSomerset                                 4.806e-01  9.264e-01
+neighborhoodSouth_and_West_of_Iowa_State_University -1.504e+00  1.120e+00
+neighborhoodStone_Brook                             -2.656e-01  1.617e+00
+neighborhoodTimberland                               6.671e-01  1.252e+00
+neighborhoodVeenker                                 -5.600e-01  1.508e+00
+                                                    z value Pr(&gt;|z|)    
+(Intercept)                                          -0.025 0.980124    
+ln_area                                               8.180 2.84e-16 ***
+bedroom_abv_gr                                       -1.619 0.105457    
+baths_total                                           6.123 9.20e-10 ***
+total_bsmt_sf                                         5.567 2.58e-08 ***
+garage_cars                                           4.011 6.04e-05 ***
+central_airY                                          1.972 0.048620 *  
+overall_qual.L                                       -0.001 0.999355    
+overall_qual.Q                                        0.001 0.999216    
+overall_qual.C                                       -0.003 0.997282    
+overall_qual^4                                       -0.007 0.994659    
+overall_qual^5                                       -0.002 0.998604    
+overall_qual^6                                        0.002 0.998136    
+overall_qual^7                                       -0.002 0.998236    
+overall_qual^8                                        0.001 0.998884    
+overall_qual^9                                        0.011 0.991241    
+overall_cond.L                                       -0.006 0.995229    
+overall_cond.Q                                       -0.003 0.997213    
+overall_cond.C                                       -0.003 0.997233    
+overall_cond^4                                       -0.006 0.995598    
+overall_cond^5                                       -0.008 0.993329    
+overall_cond^6                                       -0.010 0.992043    
+overall_cond^7                                       -0.035 0.971942    
+overall_cond^8                                       -0.237 0.812547    
+exter_qual.L                                         -0.019 0.985043    
+exter_qual.Q                                          0.017 0.986197    
+exter_qual.C                                         -0.019 0.984935    
+kitchen_qual.L                                       -0.001 0.999158    
+kitchen_qual.Q                                        0.001 0.999035    
+kitchen_qual.C                                        0.001 0.999452    
+kitchen_qual^4                                        0.001 0.999132    
+fireplace_qu.L                                       -0.573 0.566353    
+fireplace_qu.Q                                        1.421 0.155414    
+fireplace_qu.C                                       -0.068 0.945692    
+fireplace_qu^4                                        0.386 0.699826    
+fireplace_qu^5                                       -1.812 0.070006 .  
+bldg_typeOneFam                                       5.525 3.29e-08 ***
+bldg_typeTwnhs                                        0.683 0.494879    
+bldg_typeTwnhsE                                       2.253 0.024267 *  
+bldg_typeTwoFmCon                                     3.481 0.000499 ***
+house_styleOne_and_Half_Unf                          -0.007 0.994787    
+house_styleOne_Story                                  1.926 0.054154 .  
+house_styleSFoyer                                     4.132 3.60e-05 ***
+house_styleSLvl                                       3.977 6.99e-05 ***
+house_styleTwo_and_Half_Fin                           0.998 0.318235    
+house_styleTwo_and_Half_Unf                           1.578 0.114498    
+house_styleTwo_Story                                  2.092 0.036407 *  
+neighborhoodBlueste                                  -0.488 0.625271    
+neighborhoodBriardale                                -0.009 0.992694    
+neighborhoodBrookside                                -1.382 0.167004    
+neighborhoodClear_Creek                               0.019 0.984706    
+neighborhoodCollege_Creek                            -0.021 0.983202    
+neighborhoodCrawford                                 -0.175 0.861157    
+neighborhoodEdwards                                  -1.762 0.078025 .  
+neighborhoodGilbert                                   0.457 0.647501    
+neighborhoodGreen_Hills                               0.003 0.997407    
+neighborhoodGreens                                    0.197 0.844133    
+neighborhoodIowa_DOT_and_Rail_Road                   -2.130 0.033172 *  
+neighborhoodLandmark                                 -0.002 0.998700    
+neighborhoodMeadow_Village                           -0.015 0.988421    
+neighborhoodMitchell                                 -0.280 0.779700    
+neighborhoodNorth_Ames                               -1.767 0.077245 .  
+neighborhoodNorthpark_Villa                          -0.010 0.991881    
+neighborhoodNorthridge                                0.011 0.991260    
+neighborhoodNorthridge_Heights                        0.610 0.542067    
+neighborhoodNorthwest_Ames                           -1.337 0.181170    
+neighborhoodOld_Town                                 -3.752 0.000176 ***
+neighborhoodSawyer                                   -1.831 0.067165 .  
+neighborhoodSawyer_West                              -1.169 0.242295    
+neighborhoodSomerset                                  0.519 0.603918    
+neighborhoodSouth_and_West_of_Iowa_State_University  -1.342 0.179574    
+neighborhoodStone_Brook                              -0.164 0.869553    
+neighborhoodTimberland                                0.533 0.594279    
+neighborhoodVeenker                                  -0.371 0.710369    
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+(Dispersion parameter for binomial family taken to be 1)
+
+    Null deviance: 4044.81  on 2917  degrees of freedom
+Residual deviance:  937.63  on 2844  degrees of freedom
+AIC: 1085.6
+
+Number of Fisher Scoring iterations: 18</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(probit_model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+glm(formula = f_bin, family = binomial(link = "probit"), data = df)
+
+Coefficients:
+                                                      Estimate Std. Error
+(Intercept)                                         -2.747e+01  5.279e+02
+ln_area                                              3.043e+00  3.825e-01
+bedroom_abv_gr                                      -1.251e-01  8.493e-02
+baths_total                                          8.707e-01  1.275e-01
+total_bsmt_sf                                        1.277e-03  2.272e-04
+garage_cars                                          3.577e-01  9.407e-02
+central_airY                                         5.978e-01  2.996e-01
+overall_qual.L                                       3.446e-01  5.519e+02
+overall_qual.Q                                       1.402e+00  5.914e+02
+overall_qual.C                                      -1.998e+00  5.336e+02
+overall_qual^4                                      -2.149e+00  3.874e+02
+overall_qual^5                                       4.215e-01  3.120e+02
+overall_qual^6                                       6.177e-01  2.179e+02
+overall_qual^7                                      -2.085e+00  2.106e+02
+overall_qual^8                                      -1.024e+00  2.914e+02
+overall_qual^9                                       2.898e+00  2.435e+02
+overall_cond.L                                      -2.955e+00  3.321e+02
+overall_cond.Q                                      -8.538e-01  3.420e+02
+overall_cond.C                                      -5.623e-01  2.862e+02
+overall_cond^4                                      -1.451e+00  2.012e+02
+overall_cond^5                                      -1.713e+00  1.189e+02
+overall_cond^6                                      -1.085e+00  5.782e+01
+overall_cond^7                                      -1.856e+00  2.196e+01
+overall_cond^8                                      -3.282e+00  5.701e+00
+exter_qual.L                                        -3.234e+00  1.070e+02
+exter_qual.Q                                         1.954e+00  7.978e+01
+exter_qual.C                                        -9.815e-01  3.568e+01
+kitchen_qual.L                                      -4.436e-01  8.002e+02
+kitchen_qual.Q                                       6.257e-01  6.763e+02
+kitchen_qual.C                                      -3.814e-01  1.600e+03
+kitchen_qual^4                                       8.604e-01  1.210e+03
+fireplace_qu.L                                      -3.265e-01  6.306e-01
+fireplace_qu.Q                                       7.399e-01  5.686e-01
+fireplace_qu.C                                       6.415e-02  4.381e-01
+fireplace_qu^4                                       1.322e-01  2.980e-01
+fireplace_qu^5                                      -2.703e-01  1.607e-01
+bldg_typeOneFam                                      1.423e+00  2.648e-01
+bldg_typeTwnhs                                       2.146e-01  4.212e-01
+bldg_typeTwnhsE                                      8.427e-01  3.718e-01
+bldg_typeTwoFmCon                                    1.383e+00  4.116e-01
+house_styleOne_and_Half_Unf                         -3.232e+00  4.809e+02
+house_styleOne_Story                                 4.395e-01  2.169e-01
+house_styleSFoyer                                    1.496e+00  3.348e-01
+house_styleSLvl                                      1.020e+00  2.552e-01
+house_styleTwo_and_Half_Fin                          9.725e-01  9.630e-01
+house_styleTwo_and_Half_Unf                          6.915e-01  4.447e-01
+house_styleTwo_Story                                 4.181e-01  1.899e-01
+neighborhoodBlueste                                 -4.937e-02  7.324e-01
+neighborhoodBriardale                               -4.462e+00  3.635e+02
+neighborhoodBrookside                               -6.537e-01  5.511e-01
+neighborhoodClear_Creek                              1.901e-01  5.828e-01
+neighborhoodCollege_Creek                            1.012e-01  4.961e-01
+neighborhoodCrawford                                 1.139e-01  5.306e-01
+neighborhoodEdwards                                 -7.027e-01  5.103e-01
+neighborhoodGilbert                                  3.816e-01  5.290e-01
+neighborhoodGreen_Hills                              6.901e+00  1.464e+03
+neighborhoodGreens                                   9.563e-01  8.971e-01
+neighborhoodIowa_DOT_and_Rail_Road                  -1.263e+00  6.185e-01
+neighborhoodLandmark                                -4.776e+00  2.531e+03
+neighborhoodMeadow_Village                          -7.042e+00  2.792e+02
+neighborhoodMitchell                                 4.110e-03  5.094e-01
+neighborhoodNorth_Ames                              -7.463e-01  4.911e-01
+neighborhoodNorthpark_Villa                         -6.694e+00  4.301e+02
+neighborhoodNorthridge                               2.732e+00  2.203e+02
+neighborhoodNorthridge_Heights                       5.118e-01  6.099e-01
+neighborhoodNorthwest_Ames                          -6.013e-01  5.095e-01
+neighborhoodOld_Town                                -1.902e+00  5.420e-01
+neighborhoodSawyer                                  -8.167e-01  5.205e-01
+neighborhoodSawyer_West                             -4.862e-01  5.018e-01
+neighborhoodSomerset                                 2.148e-01  4.772e-01
+neighborhoodSouth_and_West_of_Iowa_State_University -5.339e-01  5.798e-01
+neighborhoodStone_Brook                              4.634e-01  8.197e-01
+neighborhoodTimberland                               3.954e-01  6.279e-01
+neighborhoodVeenker                                 -1.476e-02  7.597e-01
+                                                    z value Pr(&gt;|z|)    
+(Intercept)                                          -0.052 0.958505    
+ln_area                                               7.955 1.78e-15 ***
+bedroom_abv_gr                                       -1.473 0.140868    
+baths_total                                           6.830 8.47e-12 ***
+total_bsmt_sf                                         5.623 1.88e-08 ***
+garage_cars                                           3.803 0.000143 ***
+central_airY                                          1.996 0.045965 *  
+overall_qual.L                                        0.001 0.999502    
+overall_qual.Q                                        0.002 0.998109    
+overall_qual.C                                       -0.004 0.997013    
+overall_qual^4                                       -0.006 0.995573    
+overall_qual^5                                        0.001 0.998922    
+overall_qual^6                                        0.003 0.997738    
+overall_qual^7                                       -0.010 0.992101    
+overall_qual^8                                       -0.004 0.997196    
+overall_qual^9                                        0.012 0.990504    
+overall_cond.L                                       -0.009 0.992902    
+overall_cond.Q                                       -0.002 0.998008    
+overall_cond.C                                       -0.002 0.998432    
+overall_cond^4                                       -0.007 0.994248    
+overall_cond^5                                       -0.014 0.988510    
+overall_cond^6                                       -0.019 0.985034    
+overall_cond^7                                       -0.085 0.932644    
+overall_cond^8                                       -0.576 0.564806    
+exter_qual.L                                         -0.030 0.975900    
+exter_qual.Q                                          0.024 0.980455    
+exter_qual.C                                         -0.028 0.978056    
+kitchen_qual.L                                       -0.001 0.999558    
+kitchen_qual.Q                                        0.001 0.999262    
+kitchen_qual.C                                        0.000 0.999810    
+kitchen_qual^4                                        0.001 0.999433    
+fireplace_qu.L                                       -0.518 0.604625    
+fireplace_qu.Q                                        1.301 0.193120    
+fireplace_qu.C                                        0.146 0.883578    
+fireplace_qu^4                                        0.444 0.657205    
+fireplace_qu^5                                       -1.682 0.092487 .  
+bldg_typeOneFam                                       5.375 7.65e-08 ***
+bldg_typeTwnhs                                        0.509 0.610431    
+bldg_typeTwnhsE                                       2.266 0.023429 *  
+bldg_typeTwoFmCon                                     3.361 0.000778 ***
+house_styleOne_and_Half_Unf                          -0.007 0.994638    
+house_styleOne_Story                                  2.026 0.042766 *  
+house_styleSFoyer                                     4.469 7.85e-06 ***
+house_styleSLvl                                       3.996 6.44e-05 ***
+house_styleTwo_and_Half_Fin                           1.010 0.312560    
+house_styleTwo_and_Half_Unf                           1.555 0.119955    
+house_styleTwo_Story                                  2.201 0.027707 *  
+neighborhoodBlueste                                  -0.067 0.946260    
+neighborhoodBriardale                                -0.012 0.990206    
+neighborhoodBrookside                                -1.186 0.235580    
+neighborhoodClear_Creek                               0.326 0.744296    
+neighborhoodCollege_Creek                             0.204 0.838431    
+neighborhoodCrawford                                  0.215 0.830092    
+neighborhoodEdwards                                  -1.377 0.168513    
+neighborhoodGilbert                                   0.721 0.470673    
+neighborhoodGreen_Hills                               0.005 0.996239    
+neighborhoodGreens                                    1.066 0.286419    
+neighborhoodIowa_DOT_and_Rail_Road                   -2.043 0.041080 *  
+neighborhoodLandmark                                 -0.002 0.998494    
+neighborhoodMeadow_Village                           -0.025 0.979880    
+neighborhoodMitchell                                  0.008 0.993563    
+neighborhoodNorth_Ames                               -1.520 0.128578    
+neighborhoodNorthpark_Villa                          -0.016 0.987583    
+neighborhoodNorthridge                                0.012 0.990108    
+neighborhoodNorthridge_Heights                        0.839 0.401363    
+neighborhoodNorthwest_Ames                           -1.180 0.237929    
+neighborhoodOld_Town                                 -3.510 0.000448 ***
+neighborhoodSawyer                                   -1.569 0.116615    
+neighborhoodSawyer_West                              -0.969 0.332590    
+neighborhoodSomerset                                  0.450 0.652685    
+neighborhoodSouth_and_West_of_Iowa_State_University  -0.921 0.357164    
+neighborhoodStone_Brook                               0.565 0.571860    
+neighborhoodTimberland                                0.630 0.528950    
+neighborhoodVeenker                                  -0.019 0.984495    
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+(Dispersion parameter for binomial family taken to be 1)
+
+    Null deviance: 4044.81  on 2917  degrees of freedom
+Residual deviance:  953.78  on 2844  degrees of freedom
+AIC: 1101.8
+
+Number of Fisher Scoring iterations: 18</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Information criteria for a quick comparison</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">AIC</span>(logit_model, probit_model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>             df      AIC
+logit_model  74 1085.633
+probit_model 74 1101.777</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">BIC</span>(logit_model, probit_model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>             df      BIC
+logit_model  74 1528.053
+probit_model 74 1544.197</code></pre>
+</div>
+</div>
 <p><strong>Robust Standard Errors (recommended for cross-sections)</strong></p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># HC1 robust SEs using sandwich + lmtest</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">coeftest</span>(logit_model,  <span class="at">vcov. =</span> <span class="fu">vcovHC</span>(logit_model,  <span class="at">type =</span> <span class="st">"HC1"</span>))</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="fu">coeftest</span>(probit_model, <span class="at">vcov. =</span> <span class="fu">vcovHC</span>(probit_model, <span class="at">type =</span> <span class="st">"HC1"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># HC1 robust SEs using sandwich + lmtest</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">coeftest</span>(logit_model,  <span class="at">vcov. =</span> <span class="fu">vcovHC</span>(logit_model,  <span class="at">type =</span> <span class="st">"HC1"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+z test of coefficients:
+
+                                                       Estimate  Std. Error
+(Intercept)                                         -5.6116e+01  7.7488e+00
+ln_area                                              6.0485e+00  8.5255e-01
+bedroom_abv_gr                                      -2.6523e-01  1.7717e-01
+baths_total                                          1.4728e+00  2.7030e-01
+total_bsmt_sf                                        2.4703e-03  5.1119e-04
+garage_cars                                          7.4087e-01  2.0701e-01
+central_airY                                         1.1445e+00  5.6264e-01
+overall_qual.L                                      -1.9176e+00  1.5985e+00
+overall_qual.Q                                       2.5027e+00  2.0016e+00
+overall_qual.C                                      -7.8732e+00  1.9830e+00
+overall_qual^4                                      -1.1225e+01  1.5998e+00
+overall_qual^5                                      -2.4122e+00  1.1911e+00
+overall_qual^6                                       2.3136e+00  1.0820e+00
+overall_qual^7                                      -2.1702e+00  1.3709e+00
+overall_qual^8                                       1.8802e+00  1.3500e+00
+overall_qual^9                                       1.2391e+01  1.1798e+00
+overall_cond.L                                      -9.0666e+00  9.7179e-01
+overall_cond.Q                                      -5.4548e+00  1.3113e+00
+overall_cond.C                                      -4.5314e+00  9.6114e-01
+overall_cond^4                                      -5.0687e+00  1.1929e+00
+overall_cond^5                                      -4.5398e+00  5.4668e-01
+overall_cond^6                                      -2.6325e+00  1.3360e+00
+overall_cond^7                                      -3.5263e+00  7.5322e-01
+overall_cond^8                                      -6.1447e+00  1.5881e+00
+exter_qual.L                                        -9.9165e+00  7.3592e-01
+exter_qual.Q                                         6.8213e+00  1.2252e+00
+exter_qual.C                                        -3.3296e+00  1.5614e+00
+kitchen_qual.L                                      -3.5905e+00  6.8829e+00
+kitchen_qual.Q                                       3.4773e+00  5.7969e+00
+kitchen_qual.C                                       4.6745e+00  1.3220e+01
+kitchen_qual^4                                       5.5937e+00  1.0487e+01
+fireplace_qu.L                                      -6.8816e-01  6.2178e-01
+fireplace_qu.Q                                       1.5405e+00  5.5791e-01
+fireplace_qu.C                                      -5.6558e-02  5.6942e-01
+fireplace_qu^4                                       2.1619e-01  4.9939e-01
+fireplace_qu^5                                      -5.4799e-01  2.9916e-01
+bldg_typeOneFam                                      2.8607e+00  6.2778e-01
+bldg_typeTwnhs                                       5.4423e-01  8.9562e-01
+bldg_typeTwnhsE                                      1.6212e+00  8.4392e-01
+bldg_typeTwoFmCon                                    2.7889e+00  9.3340e-01
+house_styleOne_and_Half_Unf                         -1.3940e+01  5.9951e-01
+house_styleOne_Story                                 8.0096e-01  4.6225e-01
+house_styleSFoyer                                    2.6514e+00  6.7931e-01
+house_styleSLvl                                      1.9198e+00  5.4815e-01
+house_styleTwo_and_Half_Fin                          1.9374e+00  1.4027e+00
+house_styleTwo_and_Half_Unf                          1.3434e+00  8.2767e-01
+house_styleTwo_Story                                 7.5324e-01  3.5688e-01
+neighborhoodBlueste                                 -6.9263e-01  1.4085e+00
+neighborhoodBriardale                               -1.5758e+01  1.0177e+00
+neighborhoodBrookside                               -1.4685e+00  1.1366e+00
+neighborhoodClear_Creek                              2.1729e-02  1.2806e+00
+neighborhoodCollege_Creek                           -2.0655e-02  1.0630e+00
+neighborhoodCrawford                                -1.7982e-01  1.1252e+00
+neighborhoodEdwards                                 -1.7481e+00  1.0964e+00
+neighborhoodGilbert                                  4.7965e-01  1.1571e+00
+neighborhoodGreen_Hills                              2.0962e+01  1.4993e+00
+neighborhoodGreens                                   3.4784e-01  1.6367e+00
+neighborhoodIowa_DOT_and_Rail_Road                  -2.5701e+00  1.2941e+00
+neighborhoodLandmark                                -1.7521e+01  1.4788e+00
+neighborhoodMeadow_Village                          -1.9089e+01  1.5392e+00
+neighborhoodMitchell                                -2.7547e-01  1.0951e+00
+neighborhoodNorth_Ames                              -1.6880e+00  1.0579e+00
+neighborhoodNorthpark_Villa                         -2.0144e+01  9.9260e-01
+neighborhoodNorthridge                               1.1479e+01  1.1811e+00
+neighborhoodNorthridge_Heights                       7.2813e-01  1.2155e+00
+neighborhoodNorthwest_Ames                          -1.3271e+00  1.1159e+00
+neighborhoodOld_Town                                -3.9813e+00  1.1582e+00
+neighborhoodSawyer                                  -1.8455e+00  1.1301e+00
+neighborhoodSawyer_West                             -1.1400e+00  1.0606e+00
+neighborhoodSomerset                                 4.8059e-01  9.7392e-01
+neighborhoodSouth_and_West_of_Iowa_State_University -1.5038e+00  1.2894e+00
+neighborhoodStone_Brook                             -2.6556e-01  1.7075e+00
+neighborhoodTimberland                               6.6710e-01  1.4842e+00
+neighborhoodVeenker                                 -5.5998e-01  1.4681e+00
+                                                     z value  Pr(&gt;|z|)    
+(Intercept)                                          -7.2419 4.424e-13 ***
+ln_area                                               7.0946 1.297e-12 ***
+bedroom_abv_gr                                       -1.4970 0.1343876    
+baths_total                                           5.4489 5.069e-08 ***
+total_bsmt_sf                                         4.8325 1.348e-06 ***
+garage_cars                                           3.5789 0.0003451 ***
+central_airY                                          2.0342 0.0419282 *  
+overall_qual.L                                       -1.1996 0.2302891    
+overall_qual.Q                                        1.2503 0.2111746    
+overall_qual.C                                       -3.9703 7.178e-05 ***
+overall_qual^4                                       -7.0162 2.280e-12 ***
+overall_qual^5                                       -2.0252 0.0428470 *  
+overall_qual^6                                        2.1383 0.0324885 *  
+overall_qual^7                                       -1.5830 0.1134146    
+overall_qual^8                                        1.3928 0.1636836    
+overall_qual^9                                       10.5033 &lt; 2.2e-16 ***
+overall_cond.L                                       -9.3298 &lt; 2.2e-16 ***
+overall_cond.Q                                       -4.1598 3.185e-05 ***
+overall_cond.C                                       -4.7146 2.421e-06 ***
+overall_cond^4                                       -4.2489 2.148e-05 ***
+overall_cond^5                                       -8.3044 &lt; 2.2e-16 ***
+overall_cond^6                                       -1.9703 0.0487988 *  
+overall_cond^7                                       -4.6817 2.845e-06 ***
+overall_cond^8                                       -3.8693 0.0001091 ***
+exter_qual.L                                        -13.4750 &lt; 2.2e-16 ***
+exter_qual.Q                                          5.5674 2.585e-08 ***
+exter_qual.C                                         -2.1324 0.0329706 *  
+kitchen_qual.L                                       -0.5217 0.6019060    
+kitchen_qual.Q                                        0.5999 0.5485967    
+kitchen_qual.C                                        0.3536 0.7236482    
+kitchen_qual^4                                        0.5334 0.5937674    
+fireplace_qu.L                                       -1.1068 0.2683966    
+fireplace_qu.Q                                        2.7612 0.0057598 ** 
+fireplace_qu.C                                       -0.0993 0.9208799    
+fireplace_qu^4                                        0.4329 0.6650736    
+fireplace_qu^5                                       -1.8318 0.0669866 .  
+bldg_typeOneFam                                       4.5569 5.192e-06 ***
+bldg_typeTwnhs                                        0.6077 0.5434186    
+bldg_typeTwnhsE                                       1.9210 0.0547308 .  
+bldg_typeTwoFmCon                                     2.9879 0.0028094 ** 
+house_styleOne_and_Half_Unf                         -23.2521 &lt; 2.2e-16 ***
+house_styleOne_Story                                  1.7327 0.0831430 .  
+house_styleSFoyer                                     3.9031 9.496e-05 ***
+house_styleSLvl                                       3.5022 0.0004614 ***
+house_styleTwo_and_Half_Fin                           1.3812 0.1672201    
+house_styleTwo_and_Half_Unf                           1.6231 0.1045709    
+house_styleTwo_Story                                  2.1106 0.0348043 *  
+neighborhoodBlueste                                  -0.4917 0.6228971    
+neighborhoodBriardale                               -15.4845 &lt; 2.2e-16 ***
+neighborhoodBrookside                                -1.2921 0.1963296    
+neighborhoodClear_Creek                               0.0170 0.9864618    
+neighborhoodCollege_Creek                            -0.0194 0.9844973    
+neighborhoodCrawford                                 -0.1598 0.8730301    
+neighborhoodEdwards                                  -1.5944 0.1108553    
+neighborhoodGilbert                                   0.4145 0.6784970    
+neighborhoodGreen_Hills                              13.9808 &lt; 2.2e-16 ***
+neighborhoodGreens                                    0.2125 0.8316950    
+neighborhoodIowa_DOT_and_Rail_Road                   -1.9861 0.0470237 *  
+neighborhoodLandmark                                -11.8483 &lt; 2.2e-16 ***
+neighborhoodMeadow_Village                          -12.4021 &lt; 2.2e-16 ***
+neighborhoodMitchell                                 -0.2516 0.8013857    
+neighborhoodNorth_Ames                               -1.5956 0.1105697    
+neighborhoodNorthpark_Villa                         -20.2939 &lt; 2.2e-16 ***
+neighborhoodNorthridge                                9.7188 &lt; 2.2e-16 ***
+neighborhoodNorthridge_Heights                        0.5990 0.5491587    
+neighborhoodNorthwest_Ames                           -1.1892 0.2343496    
+neighborhoodOld_Town                                 -3.4376 0.0005869 ***
+neighborhoodSawyer                                   -1.6331 0.1024580    
+neighborhoodSawyer_West                              -1.0749 0.2824197    
+neighborhoodSomerset                                  0.4935 0.6216883    
+neighborhoodSouth_and_West_of_Iowa_State_University  -1.1663 0.2435124    
+neighborhoodStone_Brook                              -0.1555 0.8764092    
+neighborhoodTimberland                                0.4495 0.6531019    
+neighborhoodVeenker                                  -0.3814 0.7028899    
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">coeftest</span>(probit_model, <span class="at">vcov. =</span> <span class="fu">vcovHC</span>(probit_model, <span class="at">type =</span> <span class="st">"HC1"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+z test of coefficients:
+
+                                                       Estimate  Std. Error
+(Intercept)                                         -2.7465e+01  3.5158e+00
+ln_area                                              3.0426e+00  4.7398e-01
+bedroom_abv_gr                                      -1.2506e-01  9.3221e-02
+baths_total                                          8.7072e-01  1.5319e-01
+total_bsmt_sf                                        1.2775e-03  2.8044e-04
+garage_cars                                          3.5772e-01  1.1433e-01
+central_airY                                         5.9782e-01  2.7062e-01
+overall_qual.L                                       3.4458e-01  6.9697e-01
+overall_qual.Q                                       1.4017e+00  8.2263e-01
+overall_qual.C                                      -1.9976e+00  7.9469e-01
+overall_qual^4                                      -2.1495e+00  7.2287e-01
+overall_qual^5                                       4.2151e-01  6.2418e-01
+overall_qual^6                                       6.1769e-01  5.3326e-01
+overall_qual^7                                      -2.0846e+00  6.9125e-01
+overall_qual^8                                      -1.0242e+00  6.7276e-01
+overall_qual^9                                       2.8982e+00  6.2322e-01
+overall_cond.L                                      -2.9547e+00  3.5689e-01
+overall_cond.Q                                      -8.5378e-01  5.4934e-01
+overall_cond.C                                      -5.6227e-01  4.0936e-01
+overall_cond^4                                      -1.4506e+00  5.6817e-01
+overall_cond^5                                      -1.7125e+00  2.5191e-01
+overall_cond^6                                      -1.0846e+00  6.9104e-01
+overall_cond^7                                      -1.8564e+00  4.0086e-01
+overall_cond^8                                      -3.2824e+00  7.7662e-01
+exter_qual.L                                        -3.2335e+00  3.1753e-01
+exter_qual.Q                                         1.9545e+00  5.8044e-01
+exter_qual.C                                        -9.8148e-01  7.4187e-01
+kitchen_qual.L                                      -4.4362e-01         NaN
+kitchen_qual.Q                                       6.2571e-01         NaN
+kitchen_qual.C                                      -3.8138e-01         NaN
+kitchen_qual^4                                       8.6039e-01         NaN
+fireplace_qu.L                                      -3.2652e-01  3.3869e-01
+fireplace_qu.Q                                       7.3993e-01  3.0307e-01
+fireplace_qu.C                                       6.4146e-02  3.1205e-01
+fireplace_qu^4                                       1.3223e-01  2.7238e-01
+fireplace_qu^5                                      -2.7030e-01  1.6344e-01
+bldg_typeOneFam                                      1.4234e+00  3.4177e-01
+bldg_typeTwnhs                                       2.1461e-01  5.1833e-01
+bldg_typeTwnhsE                                      8.4265e-01  4.8291e-01
+bldg_typeTwoFmCon                                    1.3832e+00  4.5633e-01
+house_styleOne_and_Half_Unf                         -3.2318e+00  2.8107e-01
+house_styleOne_Story                                 4.3953e-01  2.4170e-01
+house_styleSFoyer                                    1.4962e+00  3.6242e-01
+house_styleSLvl                                      1.0198e+00  2.9608e-01
+house_styleTwo_and_Half_Fin                          9.7253e-01  6.8935e-01
+house_styleTwo_and_Half_Unf                          6.9154e-01  3.8995e-01
+house_styleTwo_Story                                 4.1807e-01  1.8312e-01
+neighborhoodBlueste                                 -4.9369e-02  7.7589e-01
+neighborhoodBriardale                               -4.4618e+00  5.3119e-01
+neighborhoodBrookside                               -6.5369e-01  6.0712e-01
+neighborhoodClear_Creek                              1.9009e-01  6.7436e-01
+neighborhoodCollege_Creek                            1.0116e-01  5.6456e-01
+neighborhoodCrawford                                 1.1386e-01  6.0182e-01
+neighborhoodEdwards                                 -7.0271e-01  5.9107e-01
+neighborhoodGilbert                                  3.8162e-01  6.1595e-01
+neighborhoodGreen_Hills                              6.9007e+00  6.5140e-01
+neighborhoodGreens                                   9.5631e-01  9.1111e-01
+neighborhoodIowa_DOT_and_Rail_Road                  -1.2634e+00  6.5835e-01
+neighborhoodLandmark                                -4.7757e+00  6.1520e-01
+neighborhoodMeadow_Village                          -7.0415e+00  6.6390e-01
+neighborhoodMitchell                                 4.1097e-03  5.8453e-01
+neighborhoodNorth_Ames                              -7.4631e-01  5.7058e-01
+neighborhoodNorthpark_Villa                         -6.6942e+00  4.9752e-01
+neighborhoodNorthridge                               2.7319e+00  6.0856e-01
+neighborhoodNorthridge_Heights                       5.1179e-01  6.2101e-01
+neighborhoodNorthwest_Ames                          -6.0129e-01  6.0182e-01
+neighborhoodOld_Town                                -1.9023e+00  6.1289e-01
+neighborhoodSawyer                                  -8.1674e-01  6.0853e-01
+neighborhoodSawyer_West                             -4.8623e-01  5.6422e-01
+neighborhoodSomerset                                 2.1477e-01  5.4353e-01
+neighborhoodSouth_and_West_of_Iowa_State_University -5.3387e-01  6.9499e-01
+neighborhoodStone_Brook                              4.6340e-01  9.1547e-01
+neighborhoodTimberland                               3.9536e-01  7.9307e-01
+neighborhoodVeenker                                 -1.4764e-02  7.5149e-01
+                                                     z value  Pr(&gt;|z|)    
+(Intercept)                                          -7.8119 5.634e-15 ***
+ln_area                                               6.4193 1.369e-10 ***
+bedroom_abv_gr                                       -1.3416 0.1797390    
+baths_total                                           5.6838 1.317e-08 ***
+total_bsmt_sf                                         4.5553 5.231e-06 ***
+garage_cars                                           3.1290 0.0017543 ** 
+central_airY                                          2.2091 0.0271702 *  
+overall_qual.L                                        0.4944 0.6210249    
+overall_qual.Q                                        1.7039 0.0884000 .  
+overall_qual.C                                       -2.5137 0.0119480 *  
+overall_qual^4                                       -2.9735 0.0029439 ** 
+overall_qual^5                                        0.6753 0.4994826    
+overall_qual^6                                        1.1583 0.2467295    
+overall_qual^7                                       -3.0156 0.0025643 ** 
+overall_qual^8                                       -1.5224 0.1279161    
+overall_qual^9                                        4.6504 3.313e-06 ***
+overall_cond.L                                       -8.2789 &lt; 2.2e-16 ***
+overall_cond.Q                                       -1.5542 0.1201370    
+overall_cond.C                                       -1.3735 0.1695862    
+overall_cond^4                                       -2.5531 0.0106754 *  
+overall_cond^5                                       -6.7981 1.060e-11 ***
+overall_cond^6                                       -1.5695 0.1165378    
+overall_cond^7                                       -4.6311 3.638e-06 ***
+overall_cond^8                                       -4.2266 2.373e-05 ***
+exter_qual.L                                        -10.1834 &lt; 2.2e-16 ***
+exter_qual.Q                                          3.3672 0.0007593 ***
+exter_qual.C                                         -1.3230 0.1858435    
+kitchen_qual.L                                           NaN       NaN    
+kitchen_qual.Q                                           NaN       NaN    
+kitchen_qual.C                                           NaN       NaN    
+kitchen_qual^4                                           NaN       NaN    
+fireplace_qu.L                                       -0.9641 0.3350071    
+fireplace_qu.Q                                        2.4415 0.0146268 *  
+fireplace_qu.C                                        0.2056 0.8371303    
+fireplace_qu^4                                        0.4855 0.6273511    
+fireplace_qu^5                                       -1.6538 0.0981713 .  
+bldg_typeOneFam                                       4.1648 3.116e-05 ***
+bldg_typeTwnhs                                        0.4140 0.6788442    
+bldg_typeTwnhsE                                       1.7450 0.0809923 .  
+bldg_typeTwoFmCon                                     3.0312 0.0024361 ** 
+house_styleOne_and_Half_Unf                         -11.4985 &lt; 2.2e-16 ***
+house_styleOne_Story                                  1.8185 0.0689865 .  
+house_styleSFoyer                                     4.1283 3.654e-05 ***
+house_styleSLvl                                       3.4443 0.0005725 ***
+house_styleTwo_and_Half_Fin                           1.4108 0.1583054    
+house_styleTwo_and_Half_Unf                           1.7734 0.0761634 .  
+house_styleTwo_Story                                  2.2830 0.0224275 *  
+neighborhoodBlueste                                  -0.0636 0.9492661    
+neighborhoodBriardale                                -8.3996 &lt; 2.2e-16 ***
+neighborhoodBrookside                                -1.0767 0.2816088    
+neighborhoodClear_Creek                               0.2819 0.7780355    
+neighborhoodCollege_Creek                             0.1792 0.8577919    
+neighborhoodCrawford                                  0.1892 0.8499478    
+neighborhoodEdwards                                  -1.1889 0.2344888    
+neighborhoodGilbert                                   0.6196 0.5355462    
+neighborhoodGreen_Hills                              10.5937 &lt; 2.2e-16 ***
+neighborhoodGreens                                    1.0496 0.2939008    
+neighborhoodIowa_DOT_and_Rail_Road                   -1.9190 0.0549808 .  
+neighborhoodLandmark                                 -7.7628 8.310e-15 ***
+neighborhoodMeadow_Village                          -10.6063 &lt; 2.2e-16 ***
+neighborhoodMitchell                                  0.0070 0.9943903    
+neighborhoodNorth_Ames                               -1.3080 0.1908774    
+neighborhoodNorthpark_Villa                         -13.4553 &lt; 2.2e-16 ***
+neighborhoodNorthridge                                4.4891 7.154e-06 ***
+neighborhoodNorthridge_Heights                        0.8241 0.4098708    
+neighborhoodNorthwest_Ames                           -0.9991 0.3177372    
+neighborhoodOld_Town                                 -3.1038 0.0019105 ** 
+neighborhoodSawyer                                   -1.3422 0.1795466    
+neighborhoodSawyer_West                              -0.8618 0.3888127    
+neighborhoodSomerset                                  0.3951 0.6927475    
+neighborhoodSouth_and_West_of_Iowa_State_University  -0.7682 0.4423808    
+neighborhoodStone_Brook                               0.5062 0.6127269    
+neighborhoodTimberland                                0.4985 0.6181169    
+neighborhoodVeenker                                  -0.0196 0.9843254    
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+</div>
+</div>
 <hr>
 </section>
 <section id="interpreting-effects-with-marginal-effects-ames" class="level3">
 <h3 class="anchored" data-anchor-id="interpreting-effects-with-marginal-effects-ames">📈 Interpreting Effects with Marginal Effects (AMEs)</h3>
 <p>Raw coefficients are on latent/odds scales. <strong>Average Marginal Effects (AMEs)</strong> translate them to <strong>percentage-point changes in probability</strong> for a one-unit change in each predictor.</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Average Marginal Effects for both models</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>me_logit  <span class="ot">&lt;-</span> <span class="fu">margins</span>(logit_model)</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>me_probit <span class="ot">&lt;-</span> <span class="fu">margins</span>(probit_model)</span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(me_logit)</span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(me_probit)</span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Tip for reporting:</span></span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="co"># "A 0.01 increase in ln_area (~1% more area) changes the probability of being high-priced by X percentage points (AME)."</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Average Marginal Effects for both models</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>me_logit  <span class="ot">&lt;-</span> <span class="fu">margins</span>(logit_model)</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>me_probit <span class="ot">&lt;-</span> <span class="fu">margins</span>(probit_model)</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(me_logit)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                                              factor     AME       SE       z
+                                         baths_total  0.0702   0.0110  6.3550
+                                      bedroom_abv_gr -0.0126   0.0078 -1.6233
+                                     bldg_typeOneFam  0.1444   0.0293  4.9222
+                                      bldg_typeTwnhs  0.0299   0.0441  0.6790
+                                     bldg_typeTwnhsE  0.0854   0.0394  2.1706
+                                   bldg_typeTwoFmCon  0.1411   0.0402  3.5082
+                                        central_airY  0.0555   0.0288  1.9270
+                                      exter_qualFair -0.4148   1.2503 -0.3318
+                                      exter_qualGood -0.4132   1.2483 -0.3310
+                                   exter_qualTypical -0.4432   1.2482 -0.3551
+                                    fireplace_quFair -0.0860   0.1142 -0.7532
+                                    fireplace_quGood -0.0826   0.1121 -0.7365
+                            fireplace_quNo_Fireplace -0.1245   0.1121 -1.1110
+                                    fireplace_quPoor -0.0906   0.1151 -0.7870
+                                 fireplace_quTypical -0.0515   0.1122 -0.4586
+                                         garage_cars  0.0353   0.0087  4.0714
+                         house_styleOne_and_Half_Unf -0.4041   5.1249 -0.0788
+                                house_styleOne_Story  0.0386   0.0202  1.9149
+                                   house_styleSFoyer  0.1326   0.0328  4.0459
+                                     house_styleSLvl  0.0940   0.0240  3.9165
+                         house_styleTwo_and_Half_Fin  0.0949   0.0997  0.9518
+                         house_styleTwo_and_Half_Unf  0.0651   0.0421  1.5456
+                                house_styleTwo_Story  0.0363   0.0178  2.0393
+                                    kitchen_qualFair -0.1442   0.0625 -2.3061
+                                    kitchen_qualGood -0.0601   0.0415 -1.4493
+                                    kitchen_qualPoor -0.4815 181.6398 -0.0027
+                                 kitchen_qualTypical -0.0811   0.0418 -1.9413
+                                             ln_area  0.2881   0.0332  8.6856
+                                 neighborhoodBlueste -0.0442   0.0908 -0.4875
+                               neighborhoodBriardale -0.5431   3.4206 -0.1588
+                               neighborhoodBrookside -0.0938   0.0694 -1.3510
+                             neighborhoodClear_Creek  0.0014   0.0727  0.0192
+                           neighborhoodCollege_Creek -0.0013   0.0629 -0.0211
+                                neighborhoodCrawford -0.0115   0.0660 -0.1745
+                                 neighborhoodEdwards -0.1118   0.0650 -1.7200
+                                 neighborhoodGilbert  0.0309   0.0673  0.4582
+                             neighborhoodGreen_Hills  0.4077  11.1441  0.0366
+                                  neighborhoodGreens  0.0224   0.1138  0.1964
+                  neighborhoodIowa_DOT_and_Rail_Road -0.1656   0.0803 -2.0621
+                                neighborhoodLandmark -0.5465  22.4532 -0.0243
+                          neighborhoodMeadow_Village -0.5504   4.3041 -0.1279
+                                neighborhoodMitchell -0.0176   0.0633 -0.2786
+                              neighborhoodNorth_Ames -0.1079   0.0625 -1.7266
+                         neighborhoodNorthpark_Villa -0.5537   7.1520 -0.0774
+                              neighborhoodNorthridge  0.3900   2.2844  0.1707
+                      neighborhoodNorthridge_Heights  0.0469   0.0770  0.6094
+                          neighborhoodNorthwest_Ames -0.0847   0.0641 -1.3209
+                                neighborhoodOld_Town -0.2581   0.0698 -3.6983
+                                  neighborhoodSawyer -0.1181   0.0660 -1.7891
+                             neighborhoodSawyer_West -0.0728   0.0628 -1.1578
+                                neighborhoodSomerset  0.0309   0.0594  0.5201
+ neighborhoodSouth_and_West_of_Iowa_State_University -0.0960   0.0730 -1.3157
+                             neighborhoodStone_Brook -0.0170   0.1034 -0.1644
+                              neighborhoodTimberland  0.0430   0.0804  0.5339
+                                 neighborhoodVeenker -0.0358   0.0964 -0.3713
+                                 overall_condAverage -0.0145   0.0110 -1.3189
+                           overall_condBelow_Average -0.0289   0.0256 -1.1279
+                               overall_condExcellent  0.0430   0.0398  1.0807
+                                    overall_condFair -0.2742   0.0683 -4.0160
+                                    overall_condGood  0.0355   0.0137  2.5914
+                                    overall_condPoor -0.3211   0.0739 -4.3430
+                               overall_condVery_Good  0.0346   0.0199  1.7401
+                               overall_condVery_Poor -0.4492   6.4011 -0.0702
+                                 overall_qualAverage -0.0492   0.0136 -3.6280
+                           overall_qualBelow_Average -0.0723   0.0332 -2.1791
+                               overall_qualExcellent -0.1057   0.0797 -1.3261
+                                    overall_qualFair -0.4570   2.1347 -0.2141
+                                    overall_qualGood  0.0218   0.0153  1.4240
+                                    overall_qualPoor -0.3924  62.8360 -0.0062
+                          overall_qualVery_Excellent  0.3108  59.5735  0.0052
+                               overall_qualVery_Good  0.1586   0.0562  2.8228
+                               overall_qualVery_Poor -0.4385  42.7954 -0.0102
+                                       total_bsmt_sf  0.0001   0.0000  5.7324
+      p     lower    upper
+ 0.0000    0.0485   0.0918
+ 0.1045   -0.0279   0.0026
+ 0.0000    0.0869   0.2019
+ 0.4972   -0.0565   0.1163
+ 0.0300    0.0083   0.1626
+ 0.0005    0.0623   0.2199
+ 0.0540   -0.0009   0.1119
+ 0.7400   -2.8653   2.0357
+ 0.7406   -2.8598   2.0334
+ 0.7225   -2.8897   2.0033
+ 0.4513   -0.3098   0.1378
+ 0.4614   -0.3024   0.1372
+ 0.2666   -0.3441   0.0951
+ 0.4313   -0.3162   0.1350
+ 0.6465   -0.2714   0.1685
+ 0.0000    0.0183   0.0523
+ 0.9372  -10.4487   9.6405
+ 0.0555   -0.0009   0.0782
+ 0.0001    0.0684   0.1969
+ 0.0001    0.0470   0.1411
+ 0.3412   -0.1006   0.2904
+ 0.1222   -0.0174   0.1476
+ 0.0414    0.0014   0.0712
+ 0.0211   -0.2668  -0.0216
+ 0.1473   -0.1415   0.0212
+ 0.9979 -356.4890 355.5261
+ 0.0522   -0.1629   0.0008
+ 0.0000    0.2231   0.3531
+ 0.6259   -0.2221   0.1336
+ 0.8738   -7.2473   6.1610
+ 0.1767   -0.2298   0.0423
+ 0.9847   -0.1411   0.1438
+ 0.9832   -0.1246   0.1220
+ 0.8615   -0.1409   0.1179
+ 0.0854   -0.2392   0.0156
+ 0.6468   -0.1011   0.1628
+ 0.9708  -21.4343  22.2497
+ 0.8443   -0.2008   0.2455
+ 0.0392   -0.3230  -0.0082
+ 0.9806  -44.5540  43.4609
+ 0.8983   -8.9861   7.8854
+ 0.7805   -0.1417   0.1064
+ 0.0842   -0.2304   0.0146
+ 0.9383  -14.5713  13.4640
+ 0.8644   -4.0873   4.8674
+ 0.5423   -0.1039   0.1977
+ 0.1865   -0.2104   0.0410
+ 0.0002   -0.3949  -0.1213
+ 0.0736   -0.2475   0.0113
+ 0.2469   -0.1959   0.0504
+ 0.6030   -0.0856   0.1474
+ 0.1883   -0.2391   0.0470
+ 0.8694   -0.2197   0.1857
+ 0.5934   -0.1147   0.2006
+ 0.7104   -0.2247   0.1531
+ 0.1872   -0.0360   0.0070
+ 0.2594   -0.0792   0.0213
+ 0.2798   -0.0350   0.1209
+ 0.0001   -0.4080  -0.1404
+ 0.0096    0.0087   0.0624
+ 0.0000   -0.4661  -0.1762
+ 0.0818   -0.0044   0.0737
+ 0.9441  -12.9951  12.0967
+ 0.0003   -0.0758  -0.0226
+ 0.0293   -0.1373  -0.0073
+ 0.1848   -0.2619   0.0505
+ 0.8305   -4.6410   3.7270
+ 0.1544   -0.0082   0.0519
+ 0.9950 -123.5487 122.7639
+ 0.9958 -116.4512 117.0728
+ 0.0048    0.0485   0.2688
+ 0.9918  -84.3160  83.4390
+ 0.0000    0.0001   0.0002</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(me_probit)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                                              factor     AME       SE       z
+                                         baths_total  0.0795   0.0113  7.0671
+                                      bedroom_abv_gr -0.0114   0.0077 -1.4751
+                                     bldg_typeOneFam  0.1358   0.0279  4.8624
+                                      bldg_typeTwnhs  0.0220   0.0433  0.5075
+                                     bldg_typeTwnhsE  0.0829   0.0379  2.1870
+                                   bldg_typeTwoFmCon  0.1321   0.0391  3.3786
+                                        central_airY  0.0555   0.0285  1.9503
+                                      exter_qualFair -0.3634   5.7135 -0.0636
+                                      exter_qualGood -0.3761   5.7130 -0.0658
+                                   exter_qualTypical -0.4124   5.7130 -0.0722
+                                    fireplace_quFair -0.0719   0.1112 -0.6467
+                                    fireplace_quGood -0.0674   0.1091 -0.6178
+                            fireplace_quNo_Fireplace -0.1121   0.1089 -1.0294
+                                    fireplace_quPoor -0.0848   0.1124 -0.7539
+                                 fireplace_quTypical -0.0389   0.1092 -0.3566
+                                         garage_cars  0.0327   0.0085  3.8407
+                         house_styleOne_and_Half_Unf -0.3007  31.7737 -0.0095
+                                house_styleOne_Story  0.0406   0.0202  2.0115
+                                   house_styleSFoyer  0.1429   0.0325  4.3929
+                                     house_styleSLvl  0.0953   0.0243  3.9222
+                         house_styleTwo_and_Half_Fin  0.0907   0.0929  0.9766
+                         house_styleTwo_and_Half_Unf  0.0640   0.0418  1.5313
+                                house_styleTwo_Story  0.0386   0.0181  2.1383
+                                    kitchen_qualFair -0.1485   0.0629 -2.3610
+                                    kitchen_qualGood -0.0547   0.0412 -1.3284
+                                    kitchen_qualPoor -0.1284 249.8306 -0.0005
+                                 kitchen_qualTypical -0.0784   0.0415 -1.8917
+                                             ln_area  0.2778   0.0335  8.2916
+                                 neighborhoodBlueste -0.0059   0.0882 -0.0674
+                               neighborhoodBriardale -0.4575  18.8275 -0.0243
+                               neighborhoodBrookside -0.0789   0.0676 -1.1670
+                             neighborhoodClear_Creek  0.0229   0.0699  0.3270
+                           neighborhoodCollege_Creek  0.0122   0.0596  0.2042
+                                neighborhoodCrawford  0.0137   0.0637  0.2151
+                                 neighborhoodEdwards -0.0849   0.0626 -1.3557
+                                 neighborhoodGilbert  0.0459   0.0636  0.7226
+                             neighborhoodGreen_Hills  0.4229   7.8259  0.0540
+                                  neighborhoodGreens  0.1151   0.1076  1.0697
+                  neighborhoodIowa_DOT_and_Rail_Road -0.1538   0.0771 -1.9934
+                                neighborhoodLandmark -0.4726 111.7913 -0.0042
+                          neighborhoodMeadow_Village -0.5286   3.5773 -0.1478
+                                neighborhoodMitchell  0.0005   0.0613  0.0081
+                              neighborhoodNorth_Ames -0.0902   0.0603 -1.4958
+                         neighborhoodNorthpark_Villa -0.5239   6.2835 -0.0834
+                              neighborhoodNorthridge  0.3041  18.1977  0.0167
+                      neighborhoodNorthridge_Heights  0.0616   0.0735  0.8385
+                          neighborhoodNorthwest_Ames -0.0726   0.0619 -1.1725
+                                neighborhoodOld_Town -0.2320   0.0676 -3.4345
+                                  neighborhoodSawyer -0.0988   0.0640 -1.5440
+                             neighborhoodSawyer_West -0.0586   0.0608 -0.9644
+                                neighborhoodSomerset  0.0258   0.0574  0.4503
+ neighborhoodSouth_and_West_of_Iowa_State_University -0.0644   0.0707 -0.9102
+                             neighborhoodStone_Brook  0.0558   0.0988  0.5646
+                              neighborhoodTimberland  0.0476   0.0754  0.6311
+                                 neighborhoodVeenker -0.0018   0.0914 -0.0194
+                                 overall_condAverage -0.0124   0.0114 -1.0860
+                           overall_condBelow_Average -0.0219   0.0255 -0.8587
+                               overall_condExcellent  0.0455   0.0418  1.0897
+                                    overall_condFair -0.2792   0.0700 -3.9894
+                                    overall_condGood  0.0371   0.0178  2.0891
+                                    overall_condPoor -0.3419   0.0938 -3.6452
+                               overall_condVery_Good  0.0290   0.0218  1.3295
+                               overall_condVery_Poor -0.3774  33.4124 -0.0113
+                                 overall_qualAverage -0.0527   0.0139 -3.7837
+                           overall_qualBelow_Average -0.0734   0.0321 -2.2912
+                               overall_qualExcellent -0.0997   0.0774 -1.2888
+                                    overall_qualFair -0.4379   6.1000 -0.0718
+                                    overall_qualGood  0.0256   0.0156  1.6348
+                                    overall_qualPoor -0.0336  54.9617 -0.0006
+                          overall_qualVery_Excellent -0.0104  29.7864 -0.0004
+                               overall_qualVery_Good  0.0976   0.0443  2.2057
+                               overall_qualVery_Poor -0.1649 125.3517 -0.0013
+                                       total_bsmt_sf  0.0001   0.0000  5.7455
+      p     lower    upper
+ 0.0000    0.0575   0.1016
+ 0.1402   -0.0266   0.0038
+ 0.0000    0.0810   0.1905
+ 0.6118   -0.0629   0.1069
+ 0.0287    0.0086   0.1571
+ 0.0007    0.0555   0.2088
+ 0.0511   -0.0003   0.1114
+ 0.9493  -11.5616  10.8348
+ 0.9475  -11.5735  10.8212
+ 0.9424  -11.6098  10.7849
+ 0.5178   -0.2899   0.1460
+ 0.5367   -0.2813   0.1464
+ 0.3033   -0.3256   0.1014
+ 0.4509   -0.3051   0.1356
+ 0.7214   -0.2529   0.1751
+ 0.0001    0.0160   0.0493
+ 0.9924  -62.5760  61.9745
+ 0.0443    0.0010   0.0802
+ 0.0000    0.0791   0.2066
+ 0.0001    0.0477   0.1429
+ 0.3288   -0.0914   0.2728
+ 0.1257   -0.0179   0.1460
+ 0.0325    0.0032   0.0740
+ 0.0182   -0.2717  -0.0252
+ 0.1841   -0.1353   0.0260
+ 0.9996 -489.7874 489.5307
+ 0.0585   -0.1597   0.0028
+ 0.0000    0.2122   0.3435
+ 0.9463   -0.1787   0.1668
+ 0.9806  -37.3587  36.4436
+ 0.2432   -0.2115   0.0536
+ 0.7437   -0.1142   0.1600
+ 0.8382   -0.1047   0.1290
+ 0.8297   -0.1111   0.1385
+ 0.1752   -0.2077   0.0378
+ 0.4699   -0.0787   0.1705
+ 0.9569  -14.9156  15.7615
+ 0.2848   -0.0958   0.3260
+ 0.0462   -0.3049  -0.0026
+ 0.9966 -219.5795 218.6343
+ 0.8825   -7.5399   6.4828
+ 0.9936   -0.1196   0.1206
+ 0.1347   -0.2084   0.0280
+ 0.9335  -12.8394  11.7915
+ 0.9867  -35.3628  35.9710
+ 0.4018   -0.0824   0.2057
+ 0.2410   -0.1939   0.0487
+ 0.0006   -0.3645  -0.0996
+ 0.1226   -0.2243   0.0266
+ 0.3349   -0.1778   0.0605
+ 0.6525   -0.0866   0.1383
+ 0.3627   -0.2031   0.0743
+ 0.5723   -0.1379   0.2495
+ 0.5280   -0.1002   0.1954
+ 0.9845   -0.1809   0.1774
+ 0.2775   -0.0349   0.0100
+ 0.3905   -0.0719   0.0281
+ 0.2758   -0.0363   0.1274
+ 0.0001   -0.4163  -0.1420
+ 0.0367    0.0023   0.0719
+ 0.0003   -0.5257  -0.1580
+ 0.1837   -0.0137   0.0717
+ 0.9910  -65.8645  65.1098
+ 0.0002   -0.0800  -0.0254
+ 0.0220   -0.1363  -0.0106
+ 0.1975   -0.2513   0.0519
+ 0.9428  -12.3937  11.5179
+ 0.1021   -0.0051   0.0562
+ 0.9995 -107.7566 107.6893
+ 0.9997  -58.3906  58.3697
+ 0.0274    0.0109   0.1844
+ 0.9990 -245.8498 245.5199
+ 0.0000    0.0001   0.0002</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Tip for reporting:</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="co"># "A 0.01 increase in ln_area (~1% more area) changes the probability of being high-priced by X percentage points (AME)."</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <hr>
 </section>
 <section id="predicted-probabilities-agreement-between-models" class="level3">
 <h3 class="anchored" data-anchor-id="predicted-probabilities-agreement-between-models">🔮 Predicted Probabilities &amp; Agreement Between Models</h3>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Predicted probabilities from each model</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span></span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">p_logit  =</span> <span class="fu">predict</span>(logit_model,  <span class="at">type =</span> <span class="st">"response"</span>),</span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">p_probit =</span> <span class="fu">predict</span>(probit_model, <span class="at">type =</span> <span class="st">"response"</span>)</span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Compare probability predictions</span></span>
-<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(df<span class="sc">$</span>p_logit, df<span class="sc">$</span>p_probit, <span class="at">use =</span> <span class="st">"complete.obs"</span>)</span>
-<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(df<span class="sc">$</span>p_logit)</span>
-<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(df<span class="sc">$</span>p_probit)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Predicted probabilities from each model</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">p_logit  =</span> <span class="fu">predict</span>(logit_model,  <span class="at">type =</span> <span class="st">"response"</span>),</span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">p_probit =</span> <span class="fu">predict</span>(probit_model, <span class="at">type =</span> <span class="st">"response"</span>)</span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Compare probability predictions</span></span>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(df<span class="sc">$</span>p_logit, df<span class="sc">$</span>p_probit, <span class="at">use =</span> <span class="st">"complete.obs"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.9991683</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(df<span class="sc">$</span>p_logit)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+0.00000 0.01168 0.52859 0.50583 0.98987 1.00000 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(df<span class="sc">$</span>p_probit)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>    Min.  1st Qu.   Median     Mean  3rd Qu.     Max. 
+0.000000 0.008788 0.516892 0.504997 0.991552 1.000000 </code></pre>
+</div>
+</div>
 <hr>
 </section>
 <section id="classification-diagnostics-roc-auc" class="level3">
 <h3 class="anchored" data-anchor-id="classification-diagnostics-roc-auc">🧪 Classification Diagnostics: ROC &amp; AUC</h3>
 <p>We evaluate ranking performance via <strong>ROC curves</strong> and <strong>AUC</strong>.</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ROC objects (treating 1 as the positive class)</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>roc_logit  <span class="ot">&lt;-</span> <span class="fu">roc</span>(df<span class="sc">$</span>high_price, df<span class="sc">$</span>p_logit)</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>roc_probit <span class="ot">&lt;-</span> <span class="fu">roc</span>(df<span class="sc">$</span>high_price, df<span class="sc">$</span>p_probit)</span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="co"># AUC values</span></span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="fu">auc</span>(roc_logit)</span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="fu">auc</span>(roc_probit)</span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Simple ROC plots with ggplot2</span></span>
-<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>autoplot_roc <span class="ot">&lt;-</span> <span class="cf">function</span>(roc_obj, title){</span>
-<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Build a data frame with TPR (sensitivity) and FPR (1 - specificity)</span></span>
-<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>  plot_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">tpr =</span> roc_obj<span class="sc">$</span>sensitivities,</span>
-<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">fpr =</span> <span class="dv">1</span> <span class="sc">-</span> roc_obj<span class="sc">$</span>specificities</span>
-<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(plot_df, <span class="fu">aes</span>(<span class="at">x =</span> fpr, <span class="at">y =</span> tpr)) <span class="sc">+</span></span>
-<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>() <span class="sc">+</span></span>
-<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_abline</span>(<span class="at">slope =</span> <span class="dv">1</span>, <span class="at">intercept =</span> <span class="dv">0</span>, <span class="at">linetype =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
-<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"False Positive Rate"</span>, <span class="at">y =</span> <span class="st">"True Positive Rate"</span>, <span class="at">title =</span> title)</span>
-<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a><span class="fu">autoplot_roc</span>(roc_logit,  <span class="fu">paste0</span>(<span class="st">"ROC – Logit (AUC = "</span>, <span class="fu">round</span>(<span class="fu">auc</span>(roc_logit), <span class="dv">3</span>), <span class="st">")"</span>))</span>
-<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a><span class="fu">autoplot_roc</span>(roc_probit, <span class="fu">paste0</span>(<span class="st">"ROC – Probit (AUC = "</span>, <span class="fu">round</span>(<span class="fu">auc</span>(roc_probit), <span class="dv">3</span>), <span class="st">")"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ROC objects (treating 1 as the positive class)</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>roc_logit  <span class="ot">&lt;-</span> <span class="fu">roc</span>(df<span class="sc">$</span>high_price, df<span class="sc">$</span>p_logit)</span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>roc_probit <span class="ot">&lt;-</span> <span class="fu">roc</span>(df<span class="sc">$</span>high_price, df<span class="sc">$</span>p_probit)</span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a><span class="co"># AUC values</span></span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a><span class="fu">auc</span>(roc_logit)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Area under the curve: 0.9841</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">auc</span>(roc_probit)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Area under the curve: 0.9841</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Simple ROC plots with ggplot2</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>autoplot_roc <span class="ot">&lt;-</span> <span class="cf">function</span>(roc_obj, title){</span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Build a data frame with TPR (sensitivity) and FPR (1 - specificity)</span></span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>  plot_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">tpr =</span> roc_obj<span class="sc">$</span>sensitivities,</span>
+<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">fpr =</span> <span class="dv">1</span> <span class="sc">-</span> roc_obj<span class="sc">$</span>specificities</span>
+<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb35-8"><a href="#cb35-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(plot_df, <span class="fu">aes</span>(<span class="at">x =</span> fpr, <span class="at">y =</span> tpr)) <span class="sc">+</span></span>
+<span id="cb35-9"><a href="#cb35-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb35-10"><a href="#cb35-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_abline</span>(<span class="at">slope =</span> <span class="dv">1</span>, <span class="at">intercept =</span> <span class="dv">0</span>, <span class="at">linetype =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb35-11"><a href="#cb35-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"False Positive Rate"</span>, <span class="at">y =</span> <span class="st">"True Positive Rate"</span>, <span class="at">title =</span> title)</span>
+<span id="cb35-12"><a href="#cb35-12" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb35-13"><a href="#cb35-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-14"><a href="#cb35-14" aria-hidden="true" tabindex="-1"></a><span class="fu">autoplot_roc</span>(roc_logit,  <span class="fu">paste0</span>(<span class="st">"ROC – Logit (AUC = "</span>, <span class="fu">round</span>(<span class="fu">auc</span>(roc_logit), <span class="dv">3</span>), <span class="st">")"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="supervision_6_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">autoplot_roc</span>(roc_probit, <span class="fu">paste0</span>(<span class="st">"ROC – Probit (AUC = "</span>, <span class="fu">round</span>(<span class="fu">auc</span>(roc_probit), <span class="dv">3</span>), <span class="st">")"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="supervision_6_files/figure-html/unnamed-chunk-9-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
 <hr>
 </section>
 <section id="choosing-a-threshold-confusion-matrices" class="level3">
 <h3 class="anchored" data-anchor-id="choosing-a-threshold-confusion-matrices">✂️ Choosing a Threshold &amp; Confusion Matrices</h3>
 <p>Classification requires a threshold on predicted probabilities. The <strong>Youden J</strong> criterion often gives a better cut-off than the naïve 0.5.</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Optimal thresholds by Youden's J</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>thr_logit  <span class="ot">&lt;-</span> <span class="fu">coords</span>(roc_logit,  <span class="at">x =</span> <span class="st">"best"</span>, <span class="at">best.method =</span> <span class="st">"youden"</span>, <span class="at">transpose =</span> <span class="cn">TRUE</span>)[<span class="st">"threshold"</span>]</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>thr_probit <span class="ot">&lt;-</span> <span class="fu">coords</span>(roc_probit, <span class="at">x =</span> <span class="st">"best"</span>, <span class="at">best.method =</span> <span class="st">"youden"</span>, <span class="at">transpose =</span> <span class="cn">TRUE</span>)[<span class="st">"threshold"</span>]</span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>thr_logit; thr_probit</span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Helper to compute a confusion matrix and basic metrics without extra packages</span></span>
-<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>confusion_metrics <span class="ot">&lt;-</span> <span class="cf">function</span>(y_true, y_prob, <span class="at">thr =</span> <span class="fl">0.5</span>) {</span>
-<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>  y_pred <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(y_prob <span class="sc">&gt;=</span> thr, <span class="dv">1</span>L, <span class="dv">0</span>L)</span>
-<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>  TP <span class="ot">&lt;-</span> <span class="fu">sum</span>(y_pred <span class="sc">==</span> <span class="dv">1</span> <span class="sc">&amp;</span> y_true <span class="sc">==</span> <span class="dv">1</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>  TN <span class="ot">&lt;-</span> <span class="fu">sum</span>(y_pred <span class="sc">==</span> <span class="dv">0</span> <span class="sc">&amp;</span> y_true <span class="sc">==</span> <span class="dv">0</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>  FP <span class="ot">&lt;-</span> <span class="fu">sum</span>(y_pred <span class="sc">==</span> <span class="dv">1</span> <span class="sc">&amp;</span> y_true <span class="sc">==</span> <span class="dv">0</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>  FN <span class="ot">&lt;-</span> <span class="fu">sum</span>(y_pred <span class="sc">==</span> <span class="dv">0</span> <span class="sc">&amp;</span> y_true <span class="sc">==</span> <span class="dv">1</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>  acc <span class="ot">&lt;-</span> (TP <span class="sc">+</span> TN) <span class="sc">/</span> (TP <span class="sc">+</span> TN <span class="sc">+</span> FP <span class="sc">+</span> FN)</span>
-<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>  tpr <span class="ot">&lt;-</span> TP <span class="sc">/</span> (TP <span class="sc">+</span> FN)  <span class="co"># sensitivity / recall</span></span>
-<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>  tnr <span class="ot">&lt;-</span> TN <span class="sc">/</span> (TN <span class="sc">+</span> FP)  <span class="co"># specificity</span></span>
-<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>  ppv <span class="ot">&lt;-</span> TP <span class="sc">/</span> (TP <span class="sc">+</span> FP)  <span class="co"># precision</span></span>
-<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a>  npv <span class="ot">&lt;-</span> TN <span class="sc">/</span> (TN <span class="sc">+</span> FN)</span>
-<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">list</span>(</span>
-<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">threshold =</span> thr,</span>
-<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">matrix =</span> <span class="fu">matrix</span>(<span class="fu">c</span>(TN, FP, FN, TP), <span class="at">nrow =</span> <span class="dv">2</span>,</span>
-<span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a>                    <span class="at">dimnames =</span> <span class="fu">list</span>(<span class="st">"Predicted"</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"0"</span>,<span class="st">"1"</span>), <span class="st">"Actual"</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"0"</span>,<span class="st">"1"</span>))),</span>
-<span id="cb13-23"><a href="#cb13-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">accuracy =</span> acc, <span class="at">sensitivity =</span> tpr, <span class="at">specificity =</span> tnr, <span class="at">precision =</span> ppv, <span class="at">npv =</span> npv</span>
-<span id="cb13-24"><a href="#cb13-24" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb13-25"><a href="#cb13-25" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb13-26"><a href="#cb13-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-27"><a href="#cb13-27" aria-hidden="true" tabindex="-1"></a><span class="co"># Confusion matrices at 0.5 and at the optimal Youden threshold</span></span>
-<span id="cb13-28"><a href="#cb13-28" aria-hidden="true" tabindex="-1"></a>cm_logit_05 <span class="ot">&lt;-</span> <span class="fu">confusion_metrics</span>(df<span class="sc">$</span>high_price, df<span class="sc">$</span>p_logit,  <span class="at">thr =</span> <span class="fl">0.5</span>)</span>
-<span id="cb13-29"><a href="#cb13-29" aria-hidden="true" tabindex="-1"></a>cm_probit_05 <span class="ot">&lt;-</span> <span class="fu">confusion_metrics</span>(df<span class="sc">$</span>high_price, df<span class="sc">$</span>p_probit, <span class="at">thr =</span> <span class="fl">0.5</span>)</span>
-<span id="cb13-30"><a href="#cb13-30" aria-hidden="true" tabindex="-1"></a>cm_logit_opt <span class="ot">&lt;-</span> <span class="fu">confusion_metrics</span>(df<span class="sc">$</span>high_price, df<span class="sc">$</span>p_logit,  <span class="at">thr =</span> <span class="fu">as.numeric</span>(thr_logit))</span>
-<span id="cb13-31"><a href="#cb13-31" aria-hidden="true" tabindex="-1"></a>cm_probit_opt <span class="ot">&lt;-</span> <span class="fu">confusion_metrics</span>(df<span class="sc">$</span>high_price, df<span class="sc">$</span>p_probit, <span class="at">thr =</span> <span class="fu">as.numeric</span>(thr_probit))</span>
-<span id="cb13-32"><a href="#cb13-32" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-33"><a href="#cb13-33" aria-hidden="true" tabindex="-1"></a>cm_logit_05</span>
-<span id="cb13-34"><a href="#cb13-34" aria-hidden="true" tabindex="-1"></a>cm_probit_05</span>
-<span id="cb13-35"><a href="#cb13-35" aria-hidden="true" tabindex="-1"></a>cm_logit_opt</span>
-<span id="cb13-36"><a href="#cb13-36" aria-hidden="true" tabindex="-1"></a>cm_probit_opt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Optimal thresholds by Youden's J</span></span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>thr_logit  <span class="ot">&lt;-</span> <span class="fu">coords</span>(roc_logit,  <span class="at">x =</span> <span class="st">"best"</span>, <span class="at">best.method =</span> <span class="st">"youden"</span>, <span class="at">transpose =</span> <span class="cn">TRUE</span>)[<span class="st">"threshold"</span>]</span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>thr_probit <span class="ot">&lt;-</span> <span class="fu">coords</span>(roc_probit, <span class="at">x =</span> <span class="st">"best"</span>, <span class="at">best.method =</span> <span class="st">"youden"</span>, <span class="at">transpose =</span> <span class="cn">TRUE</span>)[<span class="st">"threshold"</span>]</span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a>thr_logit; thr_probit</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>threshold 
+0.4143073 </code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>threshold 
+0.6236288 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Helper to compute a confusion matrix and basic metrics without extra packages</span></span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>confusion_metrics <span class="ot">&lt;-</span> <span class="cf">function</span>(y_true, y_prob, <span class="at">thr =</span> <span class="fl">0.5</span>) {</span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>  y_pred <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(y_prob <span class="sc">&gt;=</span> thr, <span class="dv">1</span>L, <span class="dv">0</span>L)</span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>  TP <span class="ot">&lt;-</span> <span class="fu">sum</span>(y_pred <span class="sc">==</span> <span class="dv">1</span> <span class="sc">&amp;</span> y_true <span class="sc">==</span> <span class="dv">1</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a>  TN <span class="ot">&lt;-</span> <span class="fu">sum</span>(y_pred <span class="sc">==</span> <span class="dv">0</span> <span class="sc">&amp;</span> y_true <span class="sc">==</span> <span class="dv">0</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a>  FP <span class="ot">&lt;-</span> <span class="fu">sum</span>(y_pred <span class="sc">==</span> <span class="dv">1</span> <span class="sc">&amp;</span> y_true <span class="sc">==</span> <span class="dv">0</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb40-7"><a href="#cb40-7" aria-hidden="true" tabindex="-1"></a>  FN <span class="ot">&lt;-</span> <span class="fu">sum</span>(y_pred <span class="sc">==</span> <span class="dv">0</span> <span class="sc">&amp;</span> y_true <span class="sc">==</span> <span class="dv">1</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb40-8"><a href="#cb40-8" aria-hidden="true" tabindex="-1"></a>  acc <span class="ot">&lt;-</span> (TP <span class="sc">+</span> TN) <span class="sc">/</span> (TP <span class="sc">+</span> TN <span class="sc">+</span> FP <span class="sc">+</span> FN)</span>
+<span id="cb40-9"><a href="#cb40-9" aria-hidden="true" tabindex="-1"></a>  tpr <span class="ot">&lt;-</span> TP <span class="sc">/</span> (TP <span class="sc">+</span> FN)  <span class="co"># sensitivity / recall</span></span>
+<span id="cb40-10"><a href="#cb40-10" aria-hidden="true" tabindex="-1"></a>  tnr <span class="ot">&lt;-</span> TN <span class="sc">/</span> (TN <span class="sc">+</span> FP)  <span class="co"># specificity</span></span>
+<span id="cb40-11"><a href="#cb40-11" aria-hidden="true" tabindex="-1"></a>  ppv <span class="ot">&lt;-</span> TP <span class="sc">/</span> (TP <span class="sc">+</span> FP)  <span class="co"># precision</span></span>
+<span id="cb40-12"><a href="#cb40-12" aria-hidden="true" tabindex="-1"></a>  npv <span class="ot">&lt;-</span> TN <span class="sc">/</span> (TN <span class="sc">+</span> FN)</span>
+<span id="cb40-13"><a href="#cb40-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">list</span>(</span>
+<span id="cb40-14"><a href="#cb40-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">threshold =</span> thr,</span>
+<span id="cb40-15"><a href="#cb40-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">matrix =</span> <span class="fu">matrix</span>(<span class="fu">c</span>(TN, FP, FN, TP), <span class="at">nrow =</span> <span class="dv">2</span>,</span>
+<span id="cb40-16"><a href="#cb40-16" aria-hidden="true" tabindex="-1"></a>                    <span class="at">dimnames =</span> <span class="fu">list</span>(<span class="st">"Predicted"</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"0"</span>,<span class="st">"1"</span>), <span class="st">"Actual"</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"0"</span>,<span class="st">"1"</span>))),</span>
+<span id="cb40-17"><a href="#cb40-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">accuracy =</span> acc, <span class="at">sensitivity =</span> tpr, <span class="at">specificity =</span> tnr, <span class="at">precision =</span> ppv, <span class="at">npv =</span> npv</span>
+<span id="cb40-18"><a href="#cb40-18" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb40-19"><a href="#cb40-19" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb40-20"><a href="#cb40-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-21"><a href="#cb40-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Confusion matrices at 0.5 and at the optimal Youden threshold</span></span>
+<span id="cb40-22"><a href="#cb40-22" aria-hidden="true" tabindex="-1"></a>cm_logit_05 <span class="ot">&lt;-</span> <span class="fu">confusion_metrics</span>(df<span class="sc">$</span>high_price, df<span class="sc">$</span>p_logit,  <span class="at">thr =</span> <span class="fl">0.5</span>)</span>
+<span id="cb40-23"><a href="#cb40-23" aria-hidden="true" tabindex="-1"></a>cm_probit_05 <span class="ot">&lt;-</span> <span class="fu">confusion_metrics</span>(df<span class="sc">$</span>high_price, df<span class="sc">$</span>p_probit, <span class="at">thr =</span> <span class="fl">0.5</span>)</span>
+<span id="cb40-24"><a href="#cb40-24" aria-hidden="true" tabindex="-1"></a>cm_logit_opt <span class="ot">&lt;-</span> <span class="fu">confusion_metrics</span>(df<span class="sc">$</span>high_price, df<span class="sc">$</span>p_logit,  <span class="at">thr =</span> <span class="fu">as.numeric</span>(thr_logit))</span>
+<span id="cb40-25"><a href="#cb40-25" aria-hidden="true" tabindex="-1"></a>cm_probit_opt <span class="ot">&lt;-</span> <span class="fu">confusion_metrics</span>(df<span class="sc">$</span>high_price, df<span class="sc">$</span>p_probit, <span class="at">thr =</span> <span class="fu">as.numeric</span>(thr_probit))</span>
+<span id="cb40-26"><a href="#cb40-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-27"><a href="#cb40-27" aria-hidden="true" tabindex="-1"></a>cm_logit_05</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>$threshold
+[1] 0.5
+
+$matrix
+         Actual
+Predicted    0    1
+        0 1344  100
+        1   98 1376
+
+$accuracy
+[1] 0.9321453
+
+$sensitivity
+[1] 0.9322493
+
+$specificity
+[1] 0.9320388
+
+$precision
+[1] 0.9335142
+
+$npv
+[1] 0.9307479</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>cm_probit_05</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>$threshold
+[1] 0.5
+
+$matrix
+         Actual
+Predicted    0    1
+        0 1348  103
+        1   94 1373
+
+$accuracy
+[1] 0.932488
+
+$sensitivity
+[1] 0.9302168
+
+$specificity
+[1] 0.9348128
+
+$precision
+[1] 0.9359237
+
+$npv
+[1] 0.9290145</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>cm_logit_opt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>$threshold
+[1] 0.4143073
+
+$matrix
+         Actual
+Predicted    0    1
+        0 1326   73
+        1  116 1403
+
+$accuracy
+[1] 0.9352296
+
+$sensitivity
+[1] 0.950542
+
+$specificity
+[1] 0.9195562
+
+$precision
+[1] 0.923634
+
+$npv
+[1] 0.9478199</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>cm_probit_opt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>$threshold
+[1] 0.6236288
+
+$matrix
+         Actual
+Predicted    0    1
+        0 1385  137
+        1   57 1339
+
+$accuracy
+[1] 0.9335161
+
+$sensitivity
+[1] 0.9071816
+
+$specificity
+[1] 0.9604716
+
+$precision
+[1] 0.9591691
+
+$npv
+[1] 0.9099869</code></pre>
+</div>
+</div>
 <hr>
 </section>
 <section id="what-to-report-suggested-structure" class="level3">

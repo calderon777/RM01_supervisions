@@ -170,7 +170,7 @@ f_bin <- high_price ~ ln_area + bedroom_abv_gr + baths_total +
 
 We estimate both **logit** and **probit** via `glm()` by changing the link function. Coefficient signs and significance are typically very similar; logit coefficients are usually ~1.6× probit coefficients (scale difference).
 
-```r
+```{r}
 # Logit model
 logit_model  <- glm(f_bin, data = df, family = binomial(link = "logit"))
 
@@ -188,7 +188,7 @@ BIC(logit_model, probit_model)
 
 **Robust Standard Errors (recommended for cross-sections)**
 
-```r
+```{r}
 # HC1 robust SEs using sandwich + lmtest
 coeftest(logit_model,  vcov. = vcovHC(logit_model,  type = "HC1"))
 coeftest(probit_model, vcov. = vcovHC(probit_model, type = "HC1"))
@@ -200,7 +200,7 @@ coeftest(probit_model, vcov. = vcovHC(probit_model, type = "HC1"))
 
 Raw coefficients are on latent/odds scales. **Average Marginal Effects (AMEs)** translate them to **percentage-point changes in probability** for a one-unit change in each predictor.
 
-```r
+```{r}
 # Average Marginal Effects for both models
 me_logit  <- margins(logit_model)
 me_probit <- margins(probit_model)
@@ -216,7 +216,7 @@ summary(me_probit)
 
 ### 🔮 Predicted Probabilities & Agreement Between Models
 
-```r
+```{r}
 # Predicted probabilities from each model
 df <- df %>%
   mutate(
@@ -236,7 +236,7 @@ summary(df$p_probit)
 
 We evaluate ranking performance via **ROC curves** and **AUC**.
 
-```r
+```{r}
 # ROC objects (treating 1 as the positive class)
 roc_logit  <- roc(df$high_price, df$p_logit)
 roc_probit <- roc(df$high_price, df$p_probit)
@@ -268,7 +268,7 @@ autoplot_roc(roc_probit, paste0("ROC – Probit (AUC = ", round(auc(roc_probit),
 
 Classification requires a threshold on predicted probabilities. The **Youden J** criterion often gives a better cut-off than the naïve 0.5.
 
-```r
+```{r}
 # Optimal thresholds by Youden's J
 thr_logit  <- coords(roc_logit,  x = "best", best.method = "youden", transpose = TRUE)["threshold"]
 thr_probit <- coords(roc_probit, x = "best", best.method = "youden", transpose = TRUE)["threshold"]
