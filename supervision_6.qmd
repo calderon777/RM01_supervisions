@@ -25,11 +25,65 @@ By the end of this lab you will be able to:
 
 ---
 
+
+
+
 ### 📦 Setup & Data
 
-We reuse the dataset prepared in Supervision 5 (we call the dataset `df`, see the section"Data Preparation"). 
+We reuse the dataset prepared in Supervision 5 (we called the dataset `df`, see Sup 5 - "Data Preparation"). 
 
-```r
+```{r}
+#| include: false
+
+library(AmesHousing)
+library(dplyr)
+library(readr)
+library(janitor)
+library(stringr)
+
+ames <- AmesHousing::make_ames()
+
+df <- ames %>%
+  janitor::clean_names() %>%
+  dplyr::transmute(
+    sale_price,
+    gr_liv_area, total_bsmt_sf, lot_area,
+    bedroom_abv_gr, full_bath, half_bath, kitchen_abv_gr,
+    overall_qual, overall_cond, year_built, year_remod_add,
+    exter_qual, kitchen_qual, central_air,
+    garage_cars, garage_area, fireplace_qu,
+    bldg_type, house_style, neighborhood,
+    ms_zoning, foundation
+  ) %>%
+  dplyr::mutate(
+    central_air = factor(central_air, levels = c("N","Y")),
+    exter_qual = factor(exter_qual, ordered = TRUE),
+    kitchen_qual = factor(kitchen_qual, ordered = TRUE),
+    fireplace_qu = factor(fireplace_qu, ordered = TRUE),
+    bldg_type = factor(bldg_type),
+    house_style = factor(house_style),
+    neighborhood = factor(neighborhood),
+    ms_zoning = factor(ms_zoning),
+    foundation = factor(foundation),
+    baths_total = full_bath + 0.5 * half_bath,
+    age = pmax(0, 2010 - year_built),
+    remod_age = pmax(0, 2010 - year_remod_add)
+  ) %>%
+  dplyr::filter(
+    sale_price > 20000, sale_price < 600000,
+    gr_liv_area > 300, lot_area < 100000
+  ) %>%
+  tidyr::drop_na(sale_price, gr_liv_area, bedroom_abv_gr, baths_total, overall_qual)
+
+set.seed(42)
+df <- df %>% mutate(listing_id = row_number()) %>% relocate(listing_id)
+
+write_csv(df, "hedonic_ames.csv")
+glimpse(df)
+```
+
+
+```{r}
 # If a package is missing on your machine, run install.packages("package name")
 # Example: install.packages("readr")
 
@@ -52,6 +106,8 @@ library(pROC)      # ROC and AUC
 # Quick preview
 dplyr::glimpse(df)
 ```
+
+
 
 ---
 

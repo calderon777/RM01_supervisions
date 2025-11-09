@@ -273,8 +273,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="setup-data" class="level3">
 <h3 class="anchored" data-anchor-id="setup-data">📦 Setup &amp; Data</h3>
-<p>We reuse the dataset prepared in Supervision 5 (we call the dataset <code>df</code>, see the section”Data Preparation”).</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># If a package is missing on your machine, run install.packages("package name")</span></span>
+<p>We reuse the dataset prepared in Supervision 5 (we called the dataset <code>df</code>, see Sup 5 - “Data Preparation”).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># If a package is missing on your machine, run install.packages("package name")</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Example: install.packages("readr")</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Load core packages used in this lab</span></span>
@@ -295,150 +296,182 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Quick preview</span></span>
 <span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>dplyr<span class="sc">::</span><span class="fu">glimpse</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 2,918
+Columns: 27
+$ listing_id     &lt;int&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, …
+$ sale_price     &lt;int&gt; 215000, 105000, 172000, 244000, 189900, 195500, 213500,…
+$ gr_liv_area    &lt;int&gt; 1656, 896, 1329, 2110, 1629, 1604, 1338, 1280, 1616, 18…
+$ total_bsmt_sf  &lt;dbl&gt; 1080, 882, 1329, 2110, 928, 926, 1338, 1280, 1595, 994,…
+$ lot_area       &lt;int&gt; 31770, 11622, 14267, 11160, 13830, 9978, 4920, 5005, 53…
+$ bedroom_abv_gr &lt;int&gt; 3, 2, 3, 3, 3, 3, 2, 2, 2, 3, 3, 3, 3, 2, 1, 4, 4, 1, 2…
+$ full_bath      &lt;int&gt; 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 1, 3, 2, 1, 1…
+$ half_bath      &lt;int&gt; 0, 0, 1, 1, 1, 1, 0, 0, 0, 1, 1, 0, 1, 1, 1, 1, 0, 1, 0…
+$ kitchen_abv_gr &lt;int&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1…
+$ overall_qual   &lt;fct&gt; Above_Average, Average, Above_Average, Good, Average, A…
+$ overall_cond   &lt;fct&gt; Average, Above_Average, Above_Average, Average, Average…
+$ year_built     &lt;int&gt; 1960, 1961, 1958, 1968, 1997, 1998, 2001, 1992, 1995, 1…
+$ year_remod_add &lt;int&gt; 1960, 1961, 1958, 1968, 1998, 1998, 2001, 1992, 1996, 1…
+$ exter_qual     &lt;ord&gt; Typical, Typical, Typical, Good, Typical, Typical, Good…
+$ kitchen_qual   &lt;ord&gt; Typical, Typical, Good, Excellent, Typical, Good, Good,…
+$ central_air    &lt;fct&gt; Y, Y, Y, Y, Y, Y, Y, Y, Y, Y, Y, Y, Y, Y, Y, Y, Y, Y, Y…
+$ garage_cars    &lt;dbl&gt; 2, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 2, 3, 2…
+$ garage_area    &lt;dbl&gt; 528, 730, 312, 522, 482, 470, 582, 506, 608, 442, 440, …
+$ fireplace_qu   &lt;ord&gt; Good, No_Fireplace, No_Fireplace, Typical, Typical, Goo…
+$ bldg_type      &lt;fct&gt; OneFam, OneFam, OneFam, OneFam, OneFam, OneFam, TwnhsE,…
+$ house_style    &lt;fct&gt; One_Story, One_Story, One_Story, One_Story, Two_Story, …
+$ neighborhood   &lt;fct&gt; North_Ames, North_Ames, North_Ames, North_Ames, Gilbert…
+$ ms_zoning      &lt;fct&gt; Residential_Low_Density, Residential_High_Density, Resi…
+$ foundation     &lt;fct&gt; CBlock, CBlock, CBlock, CBlock, PConc, PConc, PConc, PC…
+$ baths_total    &lt;dbl&gt; 1.0, 1.0, 1.5, 2.5, 2.5, 2.5, 2.0, 2.0, 2.0, 2.5, 2.5, …
+$ age            &lt;dbl&gt; 50, 49, 52, 42, 13, 12, 9, 18, 15, 11, 17, 18, 12, 20, …
+$ remod_age      &lt;dbl&gt; 50, 49, 52, 42, 12, 12, 9, 18, 14, 11, 16, 3, 12, 20, 2…</code></pre>
+</div>
+</div>
 <hr>
 </section>
 <section id="from-continuous-to-binary-define-high-vs-low-price" class="level3">
 <h3 class="anchored" data-anchor-id="from-continuous-to-binary-define-high-vs-low-price">🧠 From Continuous to Binary: Define High vs Low Price</h3>
 <p>We create a binary target equal to <strong>1</strong> if <code>sale_price</code> is <strong>at least</strong> the sample median and <strong>0</strong> otherwise. The median splits the sample into two balanced groups.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute the sample median of the sale price</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>price_med <span class="ot">&lt;-</span> <span class="fu">median</span>(df<span class="sc">$</span>sale_price, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the binary dependent variable</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">high_price =</span> <span class="fu">as.integer</span>(sale_price <span class="sc">&gt;=</span> price_med))</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Check class balance</span></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(df<span class="sc">$</span>high_price)</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="fu">prop.table</span>(<span class="fu">table</span>(df<span class="sc">$</span>high_price))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute the sample median of the sale price</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>price_med <span class="ot">&lt;-</span> <span class="fu">median</span>(df<span class="sc">$</span>sale_price, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the binary dependent variable</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">high_price =</span> <span class="fu">as.integer</span>(sale_price <span class="sc">&gt;=</span> price_med))</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Check class balance</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(df<span class="sc">$</span>high_price)</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="fu">prop.table</span>(<span class="fu">table</span>(df<span class="sc">$</span>high_price))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <hr>
 </section>
 <section id="model-specification-same-rhs-as-supervision-5" class="level3">
 <h3 class="anchored" data-anchor-id="model-specification-same-rhs-as-supervision-5">🧩 Model Specification (same RHS as Supervision 5)</h3>
 <p>We keep the hedonic RHS unchanged. Only the outcome changed (continuous -&gt; binary).</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Hedonic formula reused for binary models</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>f_bin <span class="ot">&lt;-</span> high_price <span class="sc">~</span> ln_area <span class="sc">+</span> bedroom_abv_gr <span class="sc">+</span> baths_total <span class="sc">+</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  total_bsmt_sf <span class="sc">+</span> garage_cars <span class="sc">+</span> central_air <span class="sc">+</span> overall_qual <span class="sc">+</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  overall_cond <span class="sc">+</span> exter_qual <span class="sc">+</span> kitchen_qual <span class="sc">+</span> fireplace_qu <span class="sc">+</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  bldg_type <span class="sc">+</span> house_style <span class="sc">+</span> neighborhood</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Hedonic formula reused for binary models</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>f_bin <span class="ot">&lt;-</span> high_price <span class="sc">~</span> ln_area <span class="sc">+</span> bedroom_abv_gr <span class="sc">+</span> baths_total <span class="sc">+</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  total_bsmt_sf <span class="sc">+</span> garage_cars <span class="sc">+</span> central_air <span class="sc">+</span> overall_qual <span class="sc">+</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  overall_cond <span class="sc">+</span> exter_qual <span class="sc">+</span> kitchen_qual <span class="sc">+</span> fireplace_qu <span class="sc">+</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  bldg_type <span class="sc">+</span> house_style <span class="sc">+</span> neighborhood</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <hr>
 </section>
 <section id="estimation-logit-probit" class="level3">
 <h3 class="anchored" data-anchor-id="estimation-logit-probit">⚙️ Estimation: Logit &amp; Probit</h3>
 <p>We estimate both <strong>logit</strong> and <strong>probit</strong> via <code>glm()</code> by changing the link function. Coefficient signs and significance are typically very similar; logit coefficients are usually ~1.6× probit coefficients (scale difference).</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Logit model</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>logit_model  <span class="ot">&lt;-</span> <span class="fu">glm</span>(f_bin, <span class="at">data =</span> df, <span class="at">family =</span> <span class="fu">binomial</span>(<span class="at">link =</span> <span class="st">"logit"</span>))</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Probit model</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>probit_model <span class="ot">&lt;-</span> <span class="fu">glm</span>(f_bin, <span class="at">data =</span> df, <span class="at">family =</span> <span class="fu">binomial</span>(<span class="at">link =</span> <span class="st">"probit"</span>))</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Summaries (classical SEs)</span></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(logit_model)</span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(probit_model)</span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Information criteria for a quick comparison</span></span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="fu">AIC</span>(logit_model, probit_model)</span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="fu">BIC</span>(logit_model, probit_model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Logit model</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>logit_model  <span class="ot">&lt;-</span> <span class="fu">glm</span>(f_bin, <span class="at">data =</span> df, <span class="at">family =</span> <span class="fu">binomial</span>(<span class="at">link =</span> <span class="st">"logit"</span>))</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Probit model</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>probit_model <span class="ot">&lt;-</span> <span class="fu">glm</span>(f_bin, <span class="at">data =</span> df, <span class="at">family =</span> <span class="fu">binomial</span>(<span class="at">link =</span> <span class="st">"probit"</span>))</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Summaries (classical SEs)</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(logit_model)</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(probit_model)</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Information criteria for a quick comparison</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="fu">AIC</span>(logit_model, probit_model)</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="fu">BIC</span>(logit_model, probit_model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><strong>Robust Standard Errors (recommended for cross-sections)</strong></p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># HC1 robust SEs using sandwich + lmtest</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">coeftest</span>(logit_model,  <span class="at">vcov. =</span> <span class="fu">vcovHC</span>(logit_model,  <span class="at">type =</span> <span class="st">"HC1"</span>))</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">coeftest</span>(probit_model, <span class="at">vcov. =</span> <span class="fu">vcovHC</span>(probit_model, <span class="at">type =</span> <span class="st">"HC1"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># HC1 robust SEs using sandwich + lmtest</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">coeftest</span>(logit_model,  <span class="at">vcov. =</span> <span class="fu">vcovHC</span>(logit_model,  <span class="at">type =</span> <span class="st">"HC1"</span>))</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="fu">coeftest</span>(probit_model, <span class="at">vcov. =</span> <span class="fu">vcovHC</span>(probit_model, <span class="at">type =</span> <span class="st">"HC1"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <hr>
 </section>
 <section id="interpreting-effects-with-marginal-effects-ames" class="level3">
 <h3 class="anchored" data-anchor-id="interpreting-effects-with-marginal-effects-ames">📈 Interpreting Effects with Marginal Effects (AMEs)</h3>
 <p>Raw coefficients are on latent/odds scales. <strong>Average Marginal Effects (AMEs)</strong> translate them to <strong>percentage-point changes in probability</strong> for a one-unit change in each predictor.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Average Marginal Effects for both models</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>me_logit  <span class="ot">&lt;-</span> <span class="fu">margins</span>(logit_model)</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>me_probit <span class="ot">&lt;-</span> <span class="fu">margins</span>(probit_model)</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(me_logit)</span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(me_probit)</span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Tip for reporting:</span></span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="co"># "A 0.01 increase in ln_area (~1% more area) changes the probability of being high-priced by X percentage points (AME)."</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Average Marginal Effects for both models</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>me_logit  <span class="ot">&lt;-</span> <span class="fu">margins</span>(logit_model)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>me_probit <span class="ot">&lt;-</span> <span class="fu">margins</span>(probit_model)</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(me_logit)</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(me_probit)</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Tip for reporting:</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="co"># "A 0.01 increase in ln_area (~1% more area) changes the probability of being high-priced by X percentage points (AME)."</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <hr>
 </section>
 <section id="predicted-probabilities-agreement-between-models" class="level3">
 <h3 class="anchored" data-anchor-id="predicted-probabilities-agreement-between-models">🔮 Predicted Probabilities &amp; Agreement Between Models</h3>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Predicted probabilities from each model</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">p_logit  =</span> <span class="fu">predict</span>(logit_model,  <span class="at">type =</span> <span class="st">"response"</span>),</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">p_probit =</span> <span class="fu">predict</span>(probit_model, <span class="at">type =</span> <span class="st">"response"</span>)</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Compare probability predictions</span></span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(df<span class="sc">$</span>p_logit, df<span class="sc">$</span>p_probit, <span class="at">use =</span> <span class="st">"complete.obs"</span>)</span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(df<span class="sc">$</span>p_logit)</span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(df<span class="sc">$</span>p_probit)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Predicted probabilities from each model</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">p_logit  =</span> <span class="fu">predict</span>(logit_model,  <span class="at">type =</span> <span class="st">"response"</span>),</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">p_probit =</span> <span class="fu">predict</span>(probit_model, <span class="at">type =</span> <span class="st">"response"</span>)</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Compare probability predictions</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(df<span class="sc">$</span>p_logit, df<span class="sc">$</span>p_probit, <span class="at">use =</span> <span class="st">"complete.obs"</span>)</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(df<span class="sc">$</span>p_logit)</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(df<span class="sc">$</span>p_probit)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <hr>
 </section>
 <section id="classification-diagnostics-roc-auc" class="level3">
 <h3 class="anchored" data-anchor-id="classification-diagnostics-roc-auc">🧪 Classification Diagnostics: ROC &amp; AUC</h3>
 <p>We evaluate ranking performance via <strong>ROC curves</strong> and <strong>AUC</strong>.</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ROC objects (treating 1 as the positive class)</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>roc_logit  <span class="ot">&lt;-</span> <span class="fu">roc</span>(df<span class="sc">$</span>high_price, df<span class="sc">$</span>p_logit)</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>roc_probit <span class="ot">&lt;-</span> <span class="fu">roc</span>(df<span class="sc">$</span>high_price, df<span class="sc">$</span>p_probit)</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="co"># AUC values</span></span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="fu">auc</span>(roc_logit)</span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="fu">auc</span>(roc_probit)</span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Simple ROC plots with ggplot2</span></span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>autoplot_roc <span class="ot">&lt;-</span> <span class="cf">function</span>(roc_obj, title){</span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Build a data frame with TPR (sensitivity) and FPR (1 - specificity)</span></span>
-<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>  plot_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">tpr =</span> roc_obj<span class="sc">$</span>sensitivities,</span>
-<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">fpr =</span> <span class="dv">1</span> <span class="sc">-</span> roc_obj<span class="sc">$</span>specificities</span>
-<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(plot_df, <span class="fu">aes</span>(<span class="at">x =</span> fpr, <span class="at">y =</span> tpr)) <span class="sc">+</span></span>
-<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>() <span class="sc">+</span></span>
-<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_abline</span>(<span class="at">slope =</span> <span class="dv">1</span>, <span class="at">intercept =</span> <span class="dv">0</span>, <span class="at">linetype =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
-<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"False Positive Rate"</span>, <span class="at">y =</span> <span class="st">"True Positive Rate"</span>, <span class="at">title =</span> title)</span>
-<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a><span class="fu">autoplot_roc</span>(roc_logit,  <span class="fu">paste0</span>(<span class="st">"ROC – Logit (AUC = "</span>, <span class="fu">round</span>(<span class="fu">auc</span>(roc_logit), <span class="dv">3</span>), <span class="st">")"</span>))</span>
-<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a><span class="fu">autoplot_roc</span>(roc_probit, <span class="fu">paste0</span>(<span class="st">"ROC – Probit (AUC = "</span>, <span class="fu">round</span>(<span class="fu">auc</span>(roc_probit), <span class="dv">3</span>), <span class="st">")"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ROC objects (treating 1 as the positive class)</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>roc_logit  <span class="ot">&lt;-</span> <span class="fu">roc</span>(df<span class="sc">$</span>high_price, df<span class="sc">$</span>p_logit)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>roc_probit <span class="ot">&lt;-</span> <span class="fu">roc</span>(df<span class="sc">$</span>high_price, df<span class="sc">$</span>p_probit)</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="co"># AUC values</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="fu">auc</span>(roc_logit)</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="fu">auc</span>(roc_probit)</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Simple ROC plots with ggplot2</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>autoplot_roc <span class="ot">&lt;-</span> <span class="cf">function</span>(roc_obj, title){</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Build a data frame with TPR (sensitivity) and FPR (1 - specificity)</span></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>  plot_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">tpr =</span> roc_obj<span class="sc">$</span>sensitivities,</span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">fpr =</span> <span class="dv">1</span> <span class="sc">-</span> roc_obj<span class="sc">$</span>specificities</span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(plot_df, <span class="fu">aes</span>(<span class="at">x =</span> fpr, <span class="at">y =</span> tpr)) <span class="sc">+</span></span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_abline</span>(<span class="at">slope =</span> <span class="dv">1</span>, <span class="at">intercept =</span> <span class="dv">0</span>, <span class="at">linetype =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"False Positive Rate"</span>, <span class="at">y =</span> <span class="st">"True Positive Rate"</span>, <span class="at">title =</span> title)</span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a><span class="fu">autoplot_roc</span>(roc_logit,  <span class="fu">paste0</span>(<span class="st">"ROC – Logit (AUC = "</span>, <span class="fu">round</span>(<span class="fu">auc</span>(roc_logit), <span class="dv">3</span>), <span class="st">")"</span>))</span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a><span class="fu">autoplot_roc</span>(roc_probit, <span class="fu">paste0</span>(<span class="st">"ROC – Probit (AUC = "</span>, <span class="fu">round</span>(<span class="fu">auc</span>(roc_probit), <span class="dv">3</span>), <span class="st">")"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <hr>
 </section>
 <section id="choosing-a-threshold-confusion-matrices" class="level3">
 <h3 class="anchored" data-anchor-id="choosing-a-threshold-confusion-matrices">✂️ Choosing a Threshold &amp; Confusion Matrices</h3>
 <p>Classification requires a threshold on predicted probabilities. The <strong>Youden J</strong> criterion often gives a better cut-off than the naïve 0.5.</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Optimal thresholds by Youden's J</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>thr_logit  <span class="ot">&lt;-</span> <span class="fu">coords</span>(roc_logit,  <span class="at">x =</span> <span class="st">"best"</span>, <span class="at">best.method =</span> <span class="st">"youden"</span>, <span class="at">transpose =</span> <span class="cn">TRUE</span>)[<span class="st">"threshold"</span>]</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>thr_probit <span class="ot">&lt;-</span> <span class="fu">coords</span>(roc_probit, <span class="at">x =</span> <span class="st">"best"</span>, <span class="at">best.method =</span> <span class="st">"youden"</span>, <span class="at">transpose =</span> <span class="cn">TRUE</span>)[<span class="st">"threshold"</span>]</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>thr_logit; thr_probit</span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Helper to compute a confusion matrix and basic metrics without extra packages</span></span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>confusion_metrics <span class="ot">&lt;-</span> <span class="cf">function</span>(y_true, y_prob, <span class="at">thr =</span> <span class="fl">0.5</span>) {</span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>  y_pred <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(y_prob <span class="sc">&gt;=</span> thr, <span class="dv">1</span>L, <span class="dv">0</span>L)</span>
-<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>  TP <span class="ot">&lt;-</span> <span class="fu">sum</span>(y_pred <span class="sc">==</span> <span class="dv">1</span> <span class="sc">&amp;</span> y_true <span class="sc">==</span> <span class="dv">1</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>  TN <span class="ot">&lt;-</span> <span class="fu">sum</span>(y_pred <span class="sc">==</span> <span class="dv">0</span> <span class="sc">&amp;</span> y_true <span class="sc">==</span> <span class="dv">0</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>  FP <span class="ot">&lt;-</span> <span class="fu">sum</span>(y_pred <span class="sc">==</span> <span class="dv">1</span> <span class="sc">&amp;</span> y_true <span class="sc">==</span> <span class="dv">0</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>  FN <span class="ot">&lt;-</span> <span class="fu">sum</span>(y_pred <span class="sc">==</span> <span class="dv">0</span> <span class="sc">&amp;</span> y_true <span class="sc">==</span> <span class="dv">1</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>  acc <span class="ot">&lt;-</span> (TP <span class="sc">+</span> TN) <span class="sc">/</span> (TP <span class="sc">+</span> TN <span class="sc">+</span> FP <span class="sc">+</span> FN)</span>
-<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>  tpr <span class="ot">&lt;-</span> TP <span class="sc">/</span> (TP <span class="sc">+</span> FN)  <span class="co"># sensitivity / recall</span></span>
-<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>  tnr <span class="ot">&lt;-</span> TN <span class="sc">/</span> (TN <span class="sc">+</span> FP)  <span class="co"># specificity</span></span>
-<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>  ppv <span class="ot">&lt;-</span> TP <span class="sc">/</span> (TP <span class="sc">+</span> FP)  <span class="co"># precision</span></span>
-<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>  npv <span class="ot">&lt;-</span> TN <span class="sc">/</span> (TN <span class="sc">+</span> FN)</span>
-<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">list</span>(</span>
-<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">threshold =</span> thr,</span>
-<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">matrix =</span> <span class="fu">matrix</span>(<span class="fu">c</span>(TN, FP, FN, TP), <span class="at">nrow =</span> <span class="dv">2</span>,</span>
-<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a>                    <span class="at">dimnames =</span> <span class="fu">list</span>(<span class="st">"Predicted"</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"0"</span>,<span class="st">"1"</span>), <span class="st">"Actual"</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"0"</span>,<span class="st">"1"</span>))),</span>
-<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">accuracy =</span> acc, <span class="at">sensitivity =</span> tpr, <span class="at">specificity =</span> tnr, <span class="at">precision =</span> ppv, <span class="at">npv =</span> npv</span>
-<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a><span class="co"># Confusion matrices at 0.5 and at the optimal Youden threshold</span></span>
-<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a>cm_logit_05 <span class="ot">&lt;-</span> <span class="fu">confusion_metrics</span>(df<span class="sc">$</span>high_price, df<span class="sc">$</span>p_logit,  <span class="at">thr =</span> <span class="fl">0.5</span>)</span>
-<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a>cm_probit_05 <span class="ot">&lt;-</span> <span class="fu">confusion_metrics</span>(df<span class="sc">$</span>high_price, df<span class="sc">$</span>p_probit, <span class="at">thr =</span> <span class="fl">0.5</span>)</span>
-<span id="cb9-30"><a href="#cb9-30" aria-hidden="true" tabindex="-1"></a>cm_logit_opt <span class="ot">&lt;-</span> <span class="fu">confusion_metrics</span>(df<span class="sc">$</span>high_price, df<span class="sc">$</span>p_logit,  <span class="at">thr =</span> <span class="fu">as.numeric</span>(thr_logit))</span>
-<span id="cb9-31"><a href="#cb9-31" aria-hidden="true" tabindex="-1"></a>cm_probit_opt <span class="ot">&lt;-</span> <span class="fu">confusion_metrics</span>(df<span class="sc">$</span>high_price, df<span class="sc">$</span>p_probit, <span class="at">thr =</span> <span class="fu">as.numeric</span>(thr_probit))</span>
-<span id="cb9-32"><a href="#cb9-32" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-33"><a href="#cb9-33" aria-hidden="true" tabindex="-1"></a>cm_logit_05</span>
-<span id="cb9-34"><a href="#cb9-34" aria-hidden="true" tabindex="-1"></a>cm_probit_05</span>
-<span id="cb9-35"><a href="#cb9-35" aria-hidden="true" tabindex="-1"></a>cm_logit_opt</span>
-<span id="cb9-36"><a href="#cb9-36" aria-hidden="true" tabindex="-1"></a>cm_probit_opt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Optimal thresholds by Youden's J</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>thr_logit  <span class="ot">&lt;-</span> <span class="fu">coords</span>(roc_logit,  <span class="at">x =</span> <span class="st">"best"</span>, <span class="at">best.method =</span> <span class="st">"youden"</span>, <span class="at">transpose =</span> <span class="cn">TRUE</span>)[<span class="st">"threshold"</span>]</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>thr_probit <span class="ot">&lt;-</span> <span class="fu">coords</span>(roc_probit, <span class="at">x =</span> <span class="st">"best"</span>, <span class="at">best.method =</span> <span class="st">"youden"</span>, <span class="at">transpose =</span> <span class="cn">TRUE</span>)[<span class="st">"threshold"</span>]</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>thr_logit; thr_probit</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Helper to compute a confusion matrix and basic metrics without extra packages</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>confusion_metrics <span class="ot">&lt;-</span> <span class="cf">function</span>(y_true, y_prob, <span class="at">thr =</span> <span class="fl">0.5</span>) {</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>  y_pred <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(y_prob <span class="sc">&gt;=</span> thr, <span class="dv">1</span>L, <span class="dv">0</span>L)</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>  TP <span class="ot">&lt;-</span> <span class="fu">sum</span>(y_pred <span class="sc">==</span> <span class="dv">1</span> <span class="sc">&amp;</span> y_true <span class="sc">==</span> <span class="dv">1</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>  TN <span class="ot">&lt;-</span> <span class="fu">sum</span>(y_pred <span class="sc">==</span> <span class="dv">0</span> <span class="sc">&amp;</span> y_true <span class="sc">==</span> <span class="dv">0</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>  FP <span class="ot">&lt;-</span> <span class="fu">sum</span>(y_pred <span class="sc">==</span> <span class="dv">1</span> <span class="sc">&amp;</span> y_true <span class="sc">==</span> <span class="dv">0</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>  FN <span class="ot">&lt;-</span> <span class="fu">sum</span>(y_pred <span class="sc">==</span> <span class="dv">0</span> <span class="sc">&amp;</span> y_true <span class="sc">==</span> <span class="dv">1</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>  acc <span class="ot">&lt;-</span> (TP <span class="sc">+</span> TN) <span class="sc">/</span> (TP <span class="sc">+</span> TN <span class="sc">+</span> FP <span class="sc">+</span> FN)</span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>  tpr <span class="ot">&lt;-</span> TP <span class="sc">/</span> (TP <span class="sc">+</span> FN)  <span class="co"># sensitivity / recall</span></span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>  tnr <span class="ot">&lt;-</span> TN <span class="sc">/</span> (TN <span class="sc">+</span> FP)  <span class="co"># specificity</span></span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>  ppv <span class="ot">&lt;-</span> TP <span class="sc">/</span> (TP <span class="sc">+</span> FP)  <span class="co"># precision</span></span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>  npv <span class="ot">&lt;-</span> TN <span class="sc">/</span> (TN <span class="sc">+</span> FN)</span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">list</span>(</span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">threshold =</span> thr,</span>
+<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">matrix =</span> <span class="fu">matrix</span>(<span class="fu">c</span>(TN, FP, FN, TP), <span class="at">nrow =</span> <span class="dv">2</span>,</span>
+<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a>                    <span class="at">dimnames =</span> <span class="fu">list</span>(<span class="st">"Predicted"</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"0"</span>,<span class="st">"1"</span>), <span class="st">"Actual"</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"0"</span>,<span class="st">"1"</span>))),</span>
+<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">accuracy =</span> acc, <span class="at">sensitivity =</span> tpr, <span class="at">specificity =</span> tnr, <span class="at">precision =</span> ppv, <span class="at">npv =</span> npv</span>
+<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb10-26"><a href="#cb10-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-27"><a href="#cb10-27" aria-hidden="true" tabindex="-1"></a><span class="co"># Confusion matrices at 0.5 and at the optimal Youden threshold</span></span>
+<span id="cb10-28"><a href="#cb10-28" aria-hidden="true" tabindex="-1"></a>cm_logit_05 <span class="ot">&lt;-</span> <span class="fu">confusion_metrics</span>(df<span class="sc">$</span>high_price, df<span class="sc">$</span>p_logit,  <span class="at">thr =</span> <span class="fl">0.5</span>)</span>
+<span id="cb10-29"><a href="#cb10-29" aria-hidden="true" tabindex="-1"></a>cm_probit_05 <span class="ot">&lt;-</span> <span class="fu">confusion_metrics</span>(df<span class="sc">$</span>high_price, df<span class="sc">$</span>p_probit, <span class="at">thr =</span> <span class="fl">0.5</span>)</span>
+<span id="cb10-30"><a href="#cb10-30" aria-hidden="true" tabindex="-1"></a>cm_logit_opt <span class="ot">&lt;-</span> <span class="fu">confusion_metrics</span>(df<span class="sc">$</span>high_price, df<span class="sc">$</span>p_logit,  <span class="at">thr =</span> <span class="fu">as.numeric</span>(thr_logit))</span>
+<span id="cb10-31"><a href="#cb10-31" aria-hidden="true" tabindex="-1"></a>cm_probit_opt <span class="ot">&lt;-</span> <span class="fu">confusion_metrics</span>(df<span class="sc">$</span>high_price, df<span class="sc">$</span>p_probit, <span class="at">thr =</span> <span class="fu">as.numeric</span>(thr_probit))</span>
+<span id="cb10-32"><a href="#cb10-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-33"><a href="#cb10-33" aria-hidden="true" tabindex="-1"></a>cm_logit_05</span>
+<span id="cb10-34"><a href="#cb10-34" aria-hidden="true" tabindex="-1"></a>cm_probit_05</span>
+<span id="cb10-35"><a href="#cb10-35" aria-hidden="true" tabindex="-1"></a>cm_logit_opt</span>
+<span id="cb10-36"><a href="#cb10-36" aria-hidden="true" tabindex="-1"></a>cm_probit_opt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <hr>
 </section>
 <section id="what-to-report-suggested-structure" class="level3">
