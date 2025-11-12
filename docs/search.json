@@ -302,351 +302,351 @@
   {
     "objectID": "supervision_7.html",
     "href": "supervision_7.html",
-    "title": "Supervision 7: Qualitative Research in Practice",
+    "title": "Supervision 7",
     "section": "",
-    "text": "🧭 Session Overview\nDuration: 90–120 minutes\nMode: In-person, small groups (3–5)\nPrerequisites: - Supervision 5 (platform skills: Qualtrics, Prolific/MTurk, consent flows) - Lab 5 (hands-on platform setup)\nPurpose: Bridge from distributing surveys (Lab 5) to designing questions that elicit valid, credible qualitative data, especially on potentially sensitive topics. This supervision emphasizes qualitative research approaches within survey design.\nKey Transition: You now know how to build and deploy a survey. Today we focus on what to ask and how to ask it—particularly when seeking rich, nuanced responses rather than simple numerical scales.",
+    "text": "🧭 Session Overview\nPrerequisites: - Platform skills: Qualtrics, Prolific/MTurk, consent flows\nPurpose: Bridge from distributing surveys to designing questions that elicit valid, credible qualitative data_, especially on potentially sensitive topics. This supervision emphasizes qualitative research approaches within survey design.\nKey Transition: You now know how to build and deploy a survey. Today we focus on what to ask and how to ask it—particularly when seeking rich, nuanced responses rather than simple numerical scales.",
     "crumbs": [
-      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Supervision 7: Qualitative Research in Practice</span>"
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Supervision 7</span>"
     ]
   },
   {
     "objectID": "supervision_7.html#core-materials",
     "href": "supervision_7.html#core-materials",
-    "title": "Supervision 7: Qualitative Research in Practice",
+    "title": "Supervision 7",
     "section": "Core Materials",
     "text": "Core Materials\n\nEVS 2017 Master Questionnaire (English):\nhttps://access.gesis.org/dbk/69554?download_purpose=-99\nEVS data & documentation hub:\nhttps://europeanvaluesstudy.eu/methodology-data-documentation/survey-2017/full-release-evs2017/",
     "crumbs": [
-      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Supervision 7: Qualitative Research in Practice</span>"
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Supervision 7</span>"
     ]
   },
   {
     "objectID": "supervision_7.html#optional-background",
     "href": "supervision_7.html#optional-background",
-    "title": "Supervision 7: Qualitative Research in Practice",
+    "title": "Supervision 7",
     "section": "Optional Background",
     "text": "Optional Background\n\nEVS/WVS joint release: https://europeanvaluesstudy.eu/methodology-data-documentation/survey-2017/joint-evs-wvs/",
     "crumbs": [
-      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Supervision 7: Qualitative Research in Practice</span>"
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Supervision 7</span>"
     ]
   },
   {
     "objectID": "supervision_7.html#platform-reminder",
     "href": "supervision_7.html#platform-reminder",
-    "title": "Supervision 7: Qualitative Research in Practice",
+    "title": "Supervision 7",
     "section": "Platform Reminder",
     "text": "Platform Reminder\n\nYour Qualtrics account (from Lab 5)\nEVS questionnaire as exemplar of large-scale survey design\n\n\n💡 Why EVS? This authentic instrument demonstrates how major cross-national studies navigate sensitive topics, cultural variation, and measurement challenges. We’ll use it to examine both strengths and limitations.",
     "crumbs": [
-      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Supervision 7: Qualitative Research in Practice</span>"
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Supervision 7</span>"
     ]
   },
   {
     "objectID": "supervision_7.html#part-1-mini-lecture-15-min",
     "href": "supervision_7.html#part-1-mini-lecture-15-min",
-    "title": "Supervision 7: Qualitative Research in Practice",
+    "title": "Supervision 7",
     "section": "Part 1: Mini-Lecture (15 min)",
     "text": "Part 1: Mini-Lecture (15 min)",
     "crumbs": [
-      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Supervision 7: Qualitative Research in Practice</span>"
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Supervision 7</span>"
     ]
   },
   {
     "objectID": "supervision_7.html#qualitative-vs.-quantitative-questions-in-surveys",
     "href": "supervision_7.html#qualitative-vs.-quantitative-questions-in-surveys",
-    "title": "Supervision 7: Qualitative Research in Practice",
+    "title": "Supervision 7",
     "section": "1.1 Qualitative vs. Quantitative Questions in Surveys",
     "text": "1.1 Qualitative vs. Quantitative Questions in Surveys\n\nQuantitative Approach\n\nStructure: Closed-ended, fixed response categories\nOutput: Numerical data for statistical analysis\nExample: “On a scale of 1-5, how satisfied are you with…?”\nStrength: Comparable, analyzable at scale\nLimitation: May miss nuance, context, unexpected perspectives\n\n\n\nQualitative Approach\n\nStructure: Open-ended, narrative responses, or scenario-based\nOutput: Text data requiring thematic/content analysis\nExample: “Describe a situation where you felt satisfied/dissatisfied…”\nStrength: Rich detail, unexpected insights, contextual understanding\nLimitation: Time-intensive to analyze; harder to generalize numerically\n\n\n\nWhen to Choose Each\n\nQuantitative: Testing hypotheses, measuring prevalence, comparing groups\nQualitative: Exploring meanings, understanding processes, generating hypotheses\nMixed: Often most powerful—use qualitative to inform quantitative scales or explain quantitative patterns",
     "crumbs": [
-      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Supervision 7: Qualitative Research in Practice</span>"
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Supervision 7</span>"
     ]
   },
   {
     "objectID": "supervision_7.html#representativity-external-validity",
     "href": "supervision_7.html#representativity-external-validity",
-    "title": "Supervision 7: Qualitative Research in Practice",
+    "title": "Supervision 7",
     "section": "1.2 Representativity → External Validity",
     "text": "1.2 Representativity → External Validity\n\nCore Concept\nRepresentativity means your sample composition resembles your target population on characteristics that matter for your inference.\n\n\nWhy It Matters\n\nThreat: If key groups are under/over-represented, results may not generalize (external validity risk)\nExample: Surveying only landlords when you need tenant perspectives too\nReal Estate Context: Property investors vs. owner-occupiers vs. renters may have systematically different views on housing policy\n\n\n\nPragmatic Reality\n\nPerfect representativity is unattainable\nGoal: Credible coverage + transparent documentation of limitations\nYour RM01 surveys: Consider who you’re reaching via Prolific/MTurk/personal networks",
     "crumbs": [
-      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Supervision 7: Qualitative Research in Practice</span>"
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Supervision 7</span>"
     ]
   },
   {
     "objectID": "supervision_7.html#survey-weights-high-level-understanding",
     "href": "supervision_7.html#survey-weights-high-level-understanding",
-    "title": "Supervision 7: Qualitative Research in Practice",
+    "title": "Supervision 7",
     "section": "1.3 Survey Weights (High-Level Understanding)",
     "text": "1.3 Survey Weights (High-Level Understanding)\nYou won’t compute weights in this course, but understand their purpose:\n\nDesign Weights\n\nPurpose: Correct unequal selection probabilities from sampling design\nExample: If rural respondents had 1/3 the chance of selection, weight them 3× higher\n\n\n\nPost-Stratification Weights\n\nPurpose: After fieldwork, adjust to population benchmarks (e.g., age×sex×region)\nUse case: Your Prolific sample skews young? Reweight to match UK census margins\nLimitation: Weighting reduces certain biases but cannot fix poor question design\n\n\n\nKey Takeaway\nRepresentative sampling + good weights help external validity.\nGood question design helps internal validity (measuring what you intend to measure).\nYou need both.",
     "crumbs": [
-      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Supervision 7: Qualitative Research in Practice</span>"
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Supervision 7</span>"
     ]
   },
   {
     "objectID": "supervision_7.html#question-formulation-pitfalls",
     "href": "supervision_7.html#question-formulation-pitfalls",
-    "title": "Supervision 7: Qualitative Research in Practice",
+    "title": "Supervision 7",
     "section": "1.4 Question Formulation Pitfalls",
     "text": "1.4 Question Formulation Pitfalls\n\nLeading/Loaded Wording\n❌ “Don’t you agree that affordable housing is essential?”\n✅ “To what extent do you think affordable housing is important?”\n\n\nDouble-Barrelled Questions\n\n✅ Heuristic: If a question contains and, it is probably double‑barrelled. ❌ “How satisfied are you with your income and job security?”\n✅ Split into two questions—income satisfaction and job security are distinct constructs\n\n\n\nAmbiguity & Vagueness\n❌ “How often do you visit properties?” (What’s “often”? Personal viewings? Client viewings?)\n✅ “In the past month, approximately how many property viewings did you conduct?”\n\n\nSocial Desirability Bias\n\nRisk: Respondents answer what sounds “good” rather than truthfully\nTopics: Income, discriminatory attitudes, rule compliance, controversial opinions\nStrategy: Indirect elicitation (see next section)",
     "crumbs": [
-      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Supervision 7: Qualitative Research in Practice</span>"
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Supervision 7</span>"
     ]
   },
   {
     "objectID": "supervision_7.html#sensitive-topics-direct-vs.-indirect-elicitation",
     "href": "supervision_7.html#sensitive-topics-direct-vs.-indirect-elicitation",
-    "title": "Supervision 7: Qualitative Research in Practice",
+    "title": "Supervision 7",
     "section": "1.5 Sensitive Topics: Direct vs. Indirect Elicitation",
     "text": "1.5 Sensitive Topics: Direct vs. Indirect Elicitation\n\nDirect Questions\n\nApproach: Straightforward, explicit\nExample: “Have you ever discriminated against a tenant on the basis of ethnicity?”\nPro: Simple, transparent\nCon: Likely underreporting due to social desirability\n\n\n\nIndirect Approaches\n\nQualitative Techniques\n\nThird-person framing: “How common do you think ethnic discrimination is among landlords in your area?”\nProjective prompts: “Imagine a landlord who prefers not to rent to certain ethnic groups. What might their reasoning be?”\nVignettes/scenarios: Present a hypothetical situation; ask for interpretation or advice\nList experiments (concept): Compare item counts between control/treatment groups to infer prevalence without individual disclosure\n\n\n\nExample: Immigration Attitudes\n\nDirect: “Do you support stricter immigration controls?” (May trigger socially desirable response)\nIndirect: Present vignette of immigrant family seeking housing; ask open-ended: “What factors should a landlord consider when evaluating this application?”\n\n\n\n\nWhen to Use Indirect Methods\n\nStigmatized behaviors or attitudes\nIllegal/unethical practices\nTopics where respondent may fear judgment\nExploratory research where you want honest, detailed narratives",
     "crumbs": [
-      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Supervision 7: Qualitative Research in Practice</span>"
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Supervision 7</span>"
     ]
   },
   {
     "objectID": "supervision_7.html#part-2-activity-a-25-min-rewriting-sensitive-questions",
     "href": "supervision_7.html#part-2-activity-a-25-min-rewriting-sensitive-questions",
-    "title": "Supervision 7: Qualitative Research in Practice",
+    "title": "Supervision 7",
     "section": "Part 2: Activity A (25 min) – Rewriting Sensitive Questions",
     "text": "Part 2: Activity A (25 min) – Rewriting Sensitive Questions",
     "crumbs": [
-      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Supervision 7: Qualitative Research in Practice</span>"
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Supervision 7</span>"
     ]
   },
   {
     "objectID": "supervision_7.html#task-overview",
     "href": "supervision_7.html#task-overview",
-    "title": "Supervision 7: Qualitative Research in Practice",
+    "title": "Supervision 7",
     "section": "Task Overview",
     "text": "Task Overview\nWorking in pairs, choose one sensitive theme below. For your chosen theme:\n\nDraft a direct question (quantitative or closed-ended)\nDraft an indirect/qualitative alternative using one or more of:\n\nVignette with open-ended follow-up\nProjective/third-person framing\nScenario-based question\n\nCompare: What kind of data would each approach yield? What are the trade-offs?",
     "crumbs": [
-      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Supervision 7: Qualitative Research in Practice</span>"
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Supervision 7</span>"
     ]
   },
   {
     "objectID": "supervision_7.html#themes-pick-one",
     "href": "supervision_7.html#themes-pick-one",
-    "title": "Supervision 7: Qualitative Research in Practice",
+    "title": "Supervision 7",
     "section": "Themes (Pick One)",
     "text": "Themes (Pick One)\n\nWe analyze wording and data quality — not beliefs or personal views.\n\n\nA. Immigration & Housing\nContext: Attitudes toward immigrant access to housing/social housing\n\n\nB. Regulatory Compliance\nContext: Landlords’ adherence to safety regulations, licensing, tax reporting\n\n\nC. Political Tolerance\nContext: Acceptance of diverse political views in community/workplace\n\n\nD. Gender Norms at Work\nContext: Beliefs about women in property development/construction leadership\n\n\nE. Religious Practice & Real Estate\nContext: Religious considerations in property transactions, development decisions",
     "crumbs": [
-      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Supervision 7: Qualitative Research in Practice</span>"
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Supervision 7</span>"
     ]
   },
   {
     "objectID": "supervision_7.html#deliverable",
     "href": "supervision_7.html#deliverable",
-    "title": "Supervision 7: Qualitative Research in Practice",
+    "title": "Supervision 7",
     "section": "Deliverable",
     "text": "Deliverable\nPrepare to share both versions (2 minutes per pair): - Direct question - Indirect alternative - One insight about what changes between approaches",
     "crumbs": [
-      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Supervision 7: Qualitative Research in Practice</span>"
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Supervision 7</span>"
     ]
   },
   {
     "objectID": "supervision_7.html#quality-checklist",
     "href": "supervision_7.html#quality-checklist",
-    "title": "Supervision 7: Qualitative Research in Practice",
+    "title": "Supervision 7",
     "section": "Quality Checklist",
     "text": "Quality Checklist\n\n✅ Neutral wording (no leading language)?\n✅ Single construct (not double-barrelled)?\n✅ Clear, defined terms (no ambiguous “often,” “regularly”)?\n✅ Acknowledges social desirability pressure?\n✅ Indirect version genuinely reduces pressure while still addressing topic?",
     "crumbs": [
-      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Supervision 7: Qualitative Research in Practice</span>"
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Supervision 7</span>"
     ]
   },
   {
     "objectID": "supervision_7.html#part-3-activity-b-40-min-evs-question-audit",
     "href": "supervision_7.html#part-3-activity-b-40-min-evs-question-audit",
-    "title": "Supervision 7: Qualitative Research in Practice",
+    "title": "Supervision 7",
     "section": "Part 3: Activity B (40 min) – EVS Question Audit",
     "text": "Part 3: Activity B (40 min) – EVS Question Audit",
     "crumbs": [
-      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Supervision 7: Qualitative Research in Practice</span>"
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Supervision 7</span>"
     ]
   },
   {
     "objectID": "supervision_7.html#overview",
     "href": "supervision_7.html#overview",
-    "title": "Supervision 7: Qualitative Research in Practice",
+    "title": "Supervision 7",
     "section": "Overview",
     "text": "Overview\nThe European Values Study surveys thousands of respondents across Europe on values, beliefs, and attitudes. We’ll audit how EVS handles sensitive/complex topics and consider qualitative improvements.",
     "crumbs": [
-      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Supervision 7: Qualitative Research in Practice</span>"
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Supervision 7</span>"
     ]
   },
   {
     "objectID": "supervision_7.html#step-1-form-groups-choose-subtopic-5-min",
     "href": "supervision_7.html#step-1-form-groups-choose-subtopic-5-min",
-    "title": "Supervision 7: Qualitative Research in Practice",
+    "title": "Supervision 7",
     "section": "Step 1: Form Groups & Choose Subtopic (5 min)",
     "text": "Step 1: Form Groups & Choose Subtopic (5 min)\nGroups of 3–5. Each group selects one subtopic:\n\nReligion & Morality (e.g., items on religiosity, moral absolutes)\nFamily & Gender Equality (e.g., women’s roles, work-family balance)\nPolitics, Democracy & Trust (e.g., institutional trust, political engagement)\nNational Identity, Migration & Diversity (e.g., immigration attitudes, national pride)\nWork, Economy & Inequality (e.g., income fairness, job values)\nEnvironment & Climate Attitudes (e.g., willingness to sacrifice for environment)",
     "crumbs": [
-      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Supervision 7: Qualitative Research in Practice</span>"
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Supervision 7</span>"
     ]
   },
   {
     "objectID": "supervision_7.html#step-2-locate-select-items-10-min",
     "href": "supervision_7.html#step-2-locate-select-items-10-min",
-    "title": "Supervision 7: Qualitative Research in Practice",
+    "title": "Supervision 7",
     "section": "Step 2: Locate & Select Items (10 min)",
     "text": "Step 2: Locate & Select Items (10 min)\n\nOpen the EVS 2017 Master Questionnaire (link above)\nFind the section(s) relevant to your subtopic\nSelect 2–3 items (not 3–5—we’re prioritizing depth over breadth)\nScreenshot or note item codes for reference",
     "crumbs": [
-      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Supervision 7: Qualitative Research in Practice</span>"
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Supervision 7</span>"
     ]
   },
   {
     "objectID": "supervision_7.html#step-3-analyze-each-item-15-min",
     "href": "supervision_7.html#step-3-analyze-each-item-15-min",
-    "title": "Supervision 7: Qualitative Research in Practice",
+    "title": "Supervision 7",
     "section": "Step 3: Analyze Each Item (15 min)",
     "text": "Step 3: Analyze Each Item (15 min)\nFor each selected item, consider:\n\nWording Analysis\n\nIs language neutral or leading/loaded?\nAny double-barrelled issues (two concepts in one question)?\nAre terms clearly defined or ambiguous?\n\n\n\nElicitation Strategy\n\nDirect or indirect approach?\nWhat assumptions does the question make?\nWhat might respondents be reluctant to reveal?\n\n\n\nResponse Format\n\nClosed scales (e.g., 1–10, agree/disagree)?\nDoes the format constrain nuanced responses?\nWould open-ended follow-ups add value?\n\n\n\nQualitative Potential\n\nHow might you reframe this as an open-ended question?\nCould a vignette or scenario elicit richer data?\nWould third-person framing reduce social desirability pressure?",
     "crumbs": [
-      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Supervision 7: Qualitative Research in Practice</span>"
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Supervision 7</span>"
     ]
   },
   {
     "objectID": "supervision_7.html#step-4-propose-improvements-10-min",
     "href": "supervision_7.html#step-4-propose-improvements-10-min",
-    "title": "Supervision 7: Qualitative Research in Practice",
+    "title": "Supervision 7",
     "section": "Step 4: Propose Improvements (10 min)",
     "text": "Step 4: Propose Improvements (10 min)\nFor one of your selected items, draft: - Improved qualitative version (open-ended, vignette, or projective) - Brief rationale (what does your version capture that the original doesn’t?)",
     "crumbs": [
-      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Supervision 7: Qualitative Research in Practice</span>"
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Supervision 7</span>"
     ]
   },
   {
     "objectID": "supervision_7.html#group-output-template",
     "href": "supervision_7.html#group-output-template",
-    "title": "Supervision 7: Qualitative Research in Practice",
+    "title": "Supervision 7",
     "section": "Group Output Template",
     "text": "Group Output Template\nPrepare 3–5 bullet points to share with class:\n\nEVS item citation (short quote or paraphrase + item code if available)\nStrengths (1–2): What does EVS do well here?\nLimitations (1–2): What’s constrained or problematic?\nYour improved qualitative question\nSensitivity/ethical considerations (if relevant)\n\n\nExample Output\n\nEVS Item V185: “On this list are various groups of people. Could you please mention any that you would not like to have as neighbours?”\nStrengths:\n- Indirect approach reduces pressure to deny prejudice\n- List format allows multiple selections\nLimitations:\n- Still fairly direct (asks about personal preferences)\n- Closed list may miss relevant groups\n- Doesn’t capture reasoning or context\nImproved qualitative version:\n“Think about your neighbourhood. What kinds of qualities or characteristics do you think make for a good neighbour? What kinds of situations might create tension between neighbours?”\n(Follow-up probe: “Can you give an example of a situation you’ve observed or heard about?”)\nRationale: Shifts focus to abstract qualities and situations rather than demographic groups, reducing defensiveness while still revealing underlying attitudes. Open-ended format invites storytelling and context.",
     "crumbs": [
-      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Supervision 7: Qualitative Research in Practice</span>"
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Supervision 7</span>"
     ]
   },
   {
     "objectID": "supervision_7.html#sharing-10-min",
     "href": "supervision_7.html#sharing-10-min",
-    "title": "Supervision 7: Qualitative Research in Practice",
+    "title": "Supervision 7",
     "section": "Sharing (10 min)",
     "text": "Sharing (10 min)\nEach group presents one key insight from their EVS audit: - How does question wording shape the data you get? - What do you gain (or lose) moving from quantitative to qualitative?",
     "crumbs": [
-      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Supervision 7: Qualitative Research in Practice</span>"
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Supervision 7</span>"
     ]
   },
   {
     "objectID": "supervision_7.html#synthesis-5-min",
     "href": "supervision_7.html#synthesis-5-min",
-    "title": "Supervision 7: Qualitative Research in Practice",
+    "title": "Supervision 7",
     "section": "Synthesis (5 min)",
     "text": "Synthesis (5 min)\nSupervisor highlights cross-cutting themes: - Trade-offs between standardization and nuance - Role of context in qualitative responses - Ethical considerations in sensitive topic research - Application to real estate/land economy contexts",
     "crumbs": [
-      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Supervision 7: Qualitative Research in Practice</span>"
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Supervision 7</span>"
     ]
   },
   {
     "objectID": "supervision_7.html#reflection-prompt",
     "href": "supervision_7.html#reflection-prompt",
-    "title": "Supervision 7: Qualitative Research in Practice",
+    "title": "Supervision 7",
     "section": "Reflection Prompt",
     "text": "Reflection Prompt\n\n“What will you do differently when designing your own survey questions for RM01?”\n\nWrite 3–5 sentences addressing: - One specific wording pitfall you’ll avoid - One context where you’ll use qualitative (open-ended) questions - One sensitive topic you’ll approach indirectly (if relevant to your project)\nSave this reflection with your RM01 project notes.",
     "crumbs": [
-      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Supervision 7: Qualitative Research in Practice</span>"
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Supervision 7</span>"
     ]
   },
   {
     "objectID": "supervision_7.html#optional-peer-exchange",
     "href": "supervision_7.html#optional-peer-exchange",
-    "title": "Supervision 7: Qualitative Research in Practice",
+    "title": "Supervision 7",
     "section": "Optional: Peer Exchange",
     "text": "Optional: Peer Exchange\nIf time permits, share your reflection with one other student and discuss: - Are your projects facing similar design challenges? - Could you pilot questions on each other before wider distribution?",
     "crumbs": [
-      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Supervision 7: Qualitative Research in Practice</span>"
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Supervision 7</span>"
     ]
   },
   {
     "objectID": "supervision_7.html#task-audit-your-own-rm01-survey-draft",
     "href": "supervision_7.html#task-audit-your-own-rm01-survey-draft",
-    "title": "Supervision 7: Qualitative Research in Practice",
+    "title": "Supervision 7",
     "section": "Task: Audit Your Own RM01 Survey Draft",
     "text": "Task: Audit Your Own RM01 Survey Draft\nReview three questions from your own survey design:\n\nCheck for pitfalls:\n\nLeading/loaded language? → Neutralize\nDouble-barrelled? → Split into separate items\nVague terms? → Define or provide examples\n\nConsider elicitation strategy:\n\nIs any topic sensitive enough to warrant indirect approach?\nWould a qualitative (open-ended) version add value?\nCould you mix quantitative and qualitative for richer data?\n\nRevise and document:\n\nShow original version\nShow revised version\nExplain your reasoning (1–2 sentences per change)\n\n\nUpload before next session for optional peer review.",
     "crumbs": [
-      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Supervision 7: Qualitative Research in Practice</span>"
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Supervision 7</span>"
     ]
   },
   {
     "objectID": "supervision_7.html#a.-question-wording-checklist",
     "href": "supervision_7.html#a.-question-wording-checklist",
-    "title": "Supervision 7: Qualitative Research in Practice",
+    "title": "Supervision 7",
     "section": "A. Question Wording Checklist",
     "text": "A. Question Wording Checklist\n\n\n\n❌ Avoid\n✅ Aim For\n\n\n\n\nLeading/loaded phrasing\nNeutral, balanced language\n\n\nDouble-barrelled (two ideas at once)\nSingle construct per question\n\n\nVague terms (“often,” “regularly”)\nSpecific timeframes, quantities\n\n\nOverly long/complex stems\nConcise, clear phrasing\n\n\nJargon or technical terms\nPlain language (or define terms)\n\n\nAssume respondent knowledge\nInclude context if needed",
     "crumbs": [
-      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Supervision 7: Qualitative Research in Practice</span>"
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Supervision 7</span>"
     ]
   },
   {
     "objectID": "supervision_7.html#b.-indirect-elicitation-techniques",
     "href": "supervision_7.html#b.-indirect-elicitation-techniques",
-    "title": "Supervision 7: Qualitative Research in Practice",
+    "title": "Supervision 7",
     "section": "B. Indirect Elicitation Techniques",
     "text": "B. Indirect Elicitation Techniques\n\nFor Qualitative Survey Design\n\n\n\n\n\n\n\n\nTechnique\nDescription\nExample\n\n\n\n\nThird-person\nAsk about others, not respondent\n“How do landlords in your area typically handle tenant disputes?”\n\n\nProjective\nRespondent interprets someone else’s behavior\n“Imagine a developer who opposes affordable housing. What might their concerns be?”\n\n\nVignette\nPresent scenario; ask for reaction/advice\n“Sarah is a single mother applying to rent. [Details]. If you were the landlord, what factors would you consider?”\n\n\nBest-worst scaling\nForce trade-offs between options\n“Which of these housing features would you prioritize? Which would you sacrifice?”\n\n\nFree listing\nOpen brainstorming before rating\n“List all the factors that influence your property investment decisions.” (Then follow with structured questions)\n\n\n\n\n\nFor Quantitative Prevalence Estimates (Conceptual—Not Implemented in This Course)\n\n\n\n\n\n\n\n\nTechnique\nPurpose\nHow It Works\n\n\n\n\nList experiment\nEstimate prevalence of sensitive behavior\nControl group sees innocuous list; treatment group sees same list + sensitive item. Difference in means estimates prevalence.\n\n\nRandomized response\nProtect individual privacy while estimating prevalence\nRespondent flips coin privately; answers YES if heads (regardless of truth), answers truthfully if tails. Randomness protects individuals; statistics recover population rate.",
     "crumbs": [
-      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Supervision 7: Qualitative Research in Practice</span>"
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Supervision 7</span>"
     ]
   },
   {
     "objectID": "supervision_7.html#c.-representativity-validity",
     "href": "supervision_7.html#c.-representativity-validity",
-    "title": "Supervision 7: Qualitative Research in Practice",
+    "title": "Supervision 7",
     "section": "C. Representativity & Validity",
     "text": "C. Representativity & Validity\n\nKey Relationships\nRepresentativity → External Validity\n    ↓\nCan we generalize findings beyond our sample?\n\nGood Question Design → Internal Validity  \n    ↓\nAre we measuring what we intend to measure?\n\n\nSurvey Weights (Context Only)\n\nDesign weights: Correct for unequal selection probabilities\nPost-stratification weights: Align sample to population benchmarks\nNote: Weighting helps external validity but cannot fix poor measurement\n\n\n\nFor Your RM01 Projects\nConsider: - Target population: Who are you trying to understand? - Sampling frame: Who can you actually reach (Prolific, MTurk, professional networks)? - Coverage gaps: Who’s missing? Document these as limitations. - Generalizability claims: Be precise about scope of inference",
     "crumbs": [
-      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Supervision 7: Qualitative Research in Practice</span>"
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Supervision 7</span>"
     ]
   },
   {
     "objectID": "supervision_7.html#d.-connecting-to-lab-5-platform-skills",
     "href": "supervision_7.html#d.-connecting-to-lab-5-platform-skills",
-    "title": "Supervision 7: Qualitative Research in Practice",
+    "title": "Supervision 7",
     "section": "D. Connecting to Lab 5 Platform Skills",
     "text": "D. Connecting to Lab 5 Platform Skills\n\nLab 5 Taught You:\n\nSet up Qualtrics surveys\nConfigure consent flows\nCreate Prolific/MTurk accounts\nUnderstand fee structures\n\n\n\nSupervision 7 Builds On This:\n\nWhat questions to put in your Qualtrics survey\nHow to word those questions to get valid data\nWhen to use qualitative vs. quantitative approaches\nHow to handle sensitive topics ethically\n\n\n\nIntegration Task (If Time Permits)\nOpen your Qualtrics account and: 1. Create one quantitative question (scale/multiple choice) 2. Create one qualitative question (open text with clear prompt) 3. Set up branch logic so qualitative question only appears if quantitative response meets certain criteria (e.g., “If dissatisfied, please explain why:”)",
     "crumbs": [
-      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Supervision 7: Qualitative Research in Practice</span>"
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Supervision 7</span>"
     ]
   },
   {
     "objectID": "supervision_7.html#survey-design-classics",
     "href": "supervision_7.html#survey-design-classics",
-    "title": "Supervision 7: Qualitative Research in Practice",
+    "title": "Supervision 7",
     "section": "Survey Design Classics",
     "text": "Survey Design Classics\n\nFowler, F. J. (2014). Survey Research Methods (5th ed.). SAGE.\nTourangeau, R., & Yan, T. (2007). “Sensitive questions in surveys.” Psychological Bulletin, 133(5), 859-883.",
     "crumbs": [
-      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Supervision 7: Qualitative Research in Practice</span>"
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Supervision 7</span>"
     ]
   },
   {
     "objectID": "supervision_7.html#qualitative-survey-methods",
     "href": "supervision_7.html#qualitative-survey-methods",
-    "title": "Supervision 7: Qualitative Research in Practice",
+    "title": "Supervision 7",
     "section": "Qualitative Survey Methods",
     "text": "Qualitative Survey Methods\n\nBraun, V., & Clarke, V. (2006). “Using thematic analysis in psychology.” Qualitative Research in Psychology, 3(2), 77-101.",
     "crumbs": [
-      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Supervision 7: Qualitative Research in Practice</span>"
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Supervision 7</span>"
     ]
   },
   {
     "objectID": "supervision_7.html#sensitive-topics",
     "href": "supervision_7.html#sensitive-topics",
-    "title": "Supervision 7: Qualitative Research in Practice",
+    "title": "Supervision 7",
     "section": "Sensitive Topics",
     "text": "Sensitive Topics\n\nLee, R. M., & Renzetti, C. M. (1993). “The problems of researching sensitive topics.” American Behavioral Scientist, 33(5), 510-528.",
     "crumbs": [
-      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Supervision 7: Qualitative Research in Practice</span>"
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Supervision 7</span>"
     ]
   },
   {
     "objectID": "supervision_7.html#evswvs-methodology",
     "href": "supervision_7.html#evswvs-methodology",
-    "title": "Supervision 7: Qualitative Research in Practice",
+    "title": "Supervision 7",
     "section": "EVS/WVS Methodology",
     "text": "EVS/WVS Methodology\n\nEVS (2020). European Values Study 2017: Method Report. GESIS.\n\n\nEnd of Supervision 7\nNext supervision: [Topic TBD—likely analysis of qualitative survey data or pilot testing findings]",
     "crumbs": [
-      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Supervision 7: Qualitative Research in Practice</span>"
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Supervision 7</span>"
     ]
   },
   {

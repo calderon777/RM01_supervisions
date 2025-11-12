@@ -1,5 +1,5 @@
 ---
-title: "Supervision 7: Qualitative Research in Practice"
+title: "Supervision 7"
 subtitle: "Designing Survey Questions That Elicit Valid, Credible Data"
 format: html
 execute:
@@ -10,13 +10,10 @@ execute:
 
 # 🧭 Session Overview
 
-**Duration:** 90–120 minutes  
-**Mode:** In-person, small groups (3–5)  
 **Prerequisites:** 
-- Supervision 5 (platform skills: Qualtrics, Prolific/MTurk, consent flows)
-- Lab 5 (hands-on platform setup)
+- Platform skills: Qualtrics, Prolific/MTurk, consent flows
 
-**Purpose:** Bridge from _distributing surveys_ (Lab 5) to _designing questions that elicit valid, credible qualitative data_, especially on potentially sensitive topics. This supervision emphasizes **qualitative research approaches** within survey design.
+**Purpose:** Bridge from distributing surveys to designing questions that elicit valid, credible qualitative data_, especially on potentially sensitive topics. This supervision emphasizes **qualitative research approaches** within survey design.
 
 **Key Transition:** You now know *how* to build and deploy a survey. Today we focus on *what* to ask and *how* to ask it—particularly when seeking rich, nuanced responses rather than simple numerical scales.
 
