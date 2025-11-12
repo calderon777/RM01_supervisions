@@ -407,7 +407,8 @@ $ ln_area        &lt;dbl&gt; 7.412160, 6.797940, 7.192182, 7.654443, 7.395722, 7
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>OLS fails when the dependent variable is 0/1 because predicted values can be &lt;0 or &gt;1. Instead of predicting price category directly, logit and probit assume:</p>
+<p>OLS fails when the dependent variable is 0/1 because predicted values can be &lt;0 or &gt;1.</p>
+<p>Instead of predicting price category directly, logit and probit assume:</p>
 <blockquote class="blockquote">
 <p>There is an <strong>unobserved (latent) index</strong> of “housing quality/value” and we only observe whether it crosses a threshold.</p>
 </blockquote>
@@ -1920,6 +1921,7 @@ Why marginal effects?
 <section id="interpreting-effects-with-marginal-effects-ames" class="level3">
 <h3 class="anchored" data-anchor-id="interpreting-effects-with-marginal-effects-ames">📈 Interpreting Effects with Marginal Effects (AMEs)</h3>
 <p>Raw coefficients are on latent/odds scales. <strong>Average Marginal Effects (AMEs)</strong> translate them to <strong>percentage-point changes in probability</strong> for a one-unit change in each predictor.</p>
+<p>Logit/probit coefficients are not probabilities—they shift the latent score, not <span class="math inline">\(P(Y=1)\)</span> directly. Marginal effects translate results into probability terms: “by how many percentage points does <span class="math inline">\(P(Y=1)\)</span> change when a variable increases by one unit, holding others constant?” Average Marginal Effects (AMEs) average this change over all observations, so the numbers can be read directly in percentage-point terms. Use AMEs for clear, substantive interpretation.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Average Marginal Effects for both models</span></span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>me_logit  <span class="ot">&lt;-</span> <span class="fu">margins</span>(main_logit)</span>
@@ -2044,6 +2046,7 @@ ROC intuition
 </ul>
 </div>
 </div>
+<p>A ROC curve evaluates how well the model ranks positives above negatives across all possible thresholds. It does not measure overall “percent correct,” but the trade-off between true positive rate (sensitivity) and false positive rate as the cutoff moves. The AUC summarizes ranking ability from 0.5 (random) to 1.0 (perfect). Two models can have similar accuracy at one cutoff yet different AUCs, which is why ROC/AUC is informative.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ROC objects (treating 1 as the positive class)</span></span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>roc_logit  <span class="ot">&lt;-</span> <span class="fu">roc</span>(df<span class="sc">$</span>high_price, df<span class="sc">$</span>p_logit)</span>
@@ -2093,6 +2096,7 @@ ROC intuition
 <section id="choosing-a-threshold-confusion-matrices" class="level3">
 <h3 class="anchored" data-anchor-id="choosing-a-threshold-confusion-matrices">✂️ Choosing a Threshold &amp; Confusion Matrices</h3>
 <p>Classification requires a threshold on predicted probabilities. The <strong>Youden J</strong> criterion often gives a better cut-off than the naïve 0.5.</p>
+<p>Choosing a single cutoff is a separate decision from estimating probabilities. The default 0.5 is arbitrary and may be sub-optimal when the costs of false positives and false negatives differ. The Youden J statistic selects the threshold that maximizes sensitivity + specificity − 1, giving a balanced operating point. We will compare results at 0.5 and at the Youden-optimal threshold</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Optimal thresholds by Youden's J</span></span>
 <span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>thr_logit  <span class="ot">&lt;-</span> <span class="fu">coords</span>(roc_logit,  <span class="at">x =</span> <span class="st">"best"</span>, <span class="at">best.method =</span> <span class="st">"youden"</span>, <span class="at">transpose =</span> <span class="cn">TRUE</span>)[<span class="st">"threshold"</span>]</span>
@@ -2107,6 +2111,10 @@ ROC intuition
 <pre><code>threshold 
 0.4479988 </code></pre>
 </div>
+</div>
+<p>A confusion matrix maps predictions to actuals and classifies outcomes into four cells: True Positive (correct 1), False Positive (false alarm), False Negative (missed 1), and True Negative (correct 0). Sensitivity = TP/(TP+FN) is a rate “how many actual true positives we catch from all true positives?”</p>
+<p>Specificity = TN/(TN+FP) asks “how many actual 0s did we avoid flagging?”</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Helper to compute a confusion matrix and basic metrics without extra packages</span></span>
 <span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>confusion_metrics <span class="ot">&lt;-</span> <span class="cf">function</span>(y_true, y_prob, <span class="at">thr =</span> <span class="fl">0.5</span>) {</span>
 <span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>  y_pred <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(y_prob <span class="sc">&gt;=</span> thr, <span class="dv">1</span>L, <span class="dv">0</span>L)</span>
@@ -2118,7 +2126,7 @@ ROC intuition
 <span id="cb38-9"><a href="#cb38-9" aria-hidden="true" tabindex="-1"></a>  tpr <span class="ot">&lt;-</span> TP <span class="sc">/</span> (TP <span class="sc">+</span> FN)  <span class="co"># sensitivity / recall</span></span>
 <span id="cb38-10"><a href="#cb38-10" aria-hidden="true" tabindex="-1"></a>  tnr <span class="ot">&lt;-</span> TN <span class="sc">/</span> (TN <span class="sc">+</span> FP)  <span class="co"># specificity</span></span>
 <span id="cb38-11"><a href="#cb38-11" aria-hidden="true" tabindex="-1"></a>  ppv <span class="ot">&lt;-</span> TP <span class="sc">/</span> (TP <span class="sc">+</span> FP)  <span class="co"># precision</span></span>
-<span id="cb38-12"><a href="#cb38-12" aria-hidden="true" tabindex="-1"></a>  npv <span class="ot">&lt;-</span> TN <span class="sc">/</span> (TN <span class="sc">+</span> FN)</span>
+<span id="cb38-12"><a href="#cb38-12" aria-hidden="true" tabindex="-1"></a>  npv <span class="ot">&lt;-</span> TN <span class="sc">/</span> (TN <span class="sc">+</span> FN)  <span class="co"># negative predicted value</span></span>
 <span id="cb38-13"><a href="#cb38-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">list</span>(</span>
 <span id="cb38-14"><a href="#cb38-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">threshold =</span> thr,</span>
 <span id="cb38-15"><a href="#cb38-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">matrix =</span> <span class="fu">matrix</span>(<span class="fu">c</span>(TN, FP, FN, TP), <span class="at">nrow =</span> <span class="dv">2</span>,</span>

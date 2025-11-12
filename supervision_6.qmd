@@ -168,6 +168,7 @@ prop.table(table(df$high_price))
 ### ✨ Why logit & probit exist (the *aha!* moment)
 
 OLS fails when the dependent variable is 0/1 because predicted values can be <0 or >1.
+
 Instead of predicting price category directly, logit and probit assume:
 
 > There is an **unobserved (latent) index** of "housing quality/value"
@@ -195,6 +196,7 @@ But both produce nearly **identical predicted probabilities and classification**
 :::
 
 
+
 ---
 
 ### 🧩 Model Specification (same RHS as Supervision 5)
@@ -210,7 +212,6 @@ f_bin <- high_price ~ ln_area + bedroom_abv_gr + baths_total +
 ```
 
 ---
-
 
 
 ### ⚙️ Estimation (fit only) + 🪓 Backward Selection (BIC)
@@ -372,6 +373,8 @@ That is why AMEs are interpretable in **percentage points**.
 
 Raw coefficients are on latent/odds scales. **Average Marginal Effects (AMEs)** translate them to **percentage-point changes in probability** for a one-unit change in each predictor.
 
+Logit/probit coefficients are not probabilities—they shift the latent score, not $P(Y=1)$ directly. Marginal effects translate results into probability terms: “by how many percentage points does $P(Y=1)$ change when a variable increases by one unit, holding others constant?” Average Marginal Effects (AMEs) average this change over all observations, so the numbers can be read directly in percentage-point terms. Use AMEs for clear, substantive interpretation.
+
 ```{r}
 # Average Marginal Effects for both models
 me_logit  <- margins(main_logit)
@@ -421,6 +424,8 @@ ROC doesn’t evaluate the predicted **probability**, but the **ranking quality*
 - AUC = 1.0 → perfect ranking
 :::
 
+A ROC curve evaluates how well the model ranks positives above negatives across all possible thresholds. It does not measure overall “percent correct,” but the trade-off between true positive rate (sensitivity) and false positive rate as the cutoff moves. The AUC summarizes ranking ability from 0.5 (random) to 1.0 (perfect). Two models can have similar accuracy at one cutoff yet different AUCs, which is why ROC/AUC is informative.
+
 ```{r}
 # ROC objects (treating 1 as the positive class)
 roc_logit  <- roc(df$high_price, df$p_logit)
@@ -453,13 +458,22 @@ autoplot_roc(roc_probit, paste0("ROC – Probit (AUC = ", round(auc(roc_probit),
 
 Classification requires a threshold on predicted probabilities. The **Youden J** criterion often gives a better cut-off than the naïve 0.5.
 
+Choosing a single cutoff is a separate decision from estimating probabilities. The default 0.5 is arbitrary and may be sub-optimal when the costs of false positives and false negatives differ. The Youden J statistic selects the threshold that maximizes sensitivity + specificity − 1, giving a balanced operating point. We will compare results at 0.5 and at the Youden-optimal threshold
+
 ```{r}
 # Optimal thresholds by Youden's J
 thr_logit  <- coords(roc_logit,  x = "best", best.method = "youden", transpose = TRUE)["threshold"]
 thr_probit <- coords(roc_probit, x = "best", best.method = "youden", transpose = TRUE)["threshold"]
 
 thr_logit; thr_probit
+```
 
+A confusion matrix maps predictions to actuals and classifies outcomes into four cells: True Positive (correct 1), False Positive (false alarm), False Negative (missed 1), and True Negative (correct 0). 
+Sensitivity = TP/(TP+FN) is a rate “how many actual true positives we catch from all true positives?” 
+
+Specificity = TN/(TN+FP) asks “how many actual 0s did we avoid flagging?” 
+
+```{r}
 # Helper to compute a confusion matrix and basic metrics without extra packages
 confusion_metrics <- function(y_true, y_prob, thr = 0.5) {
   y_pred <- ifelse(y_prob >= thr, 1L, 0L)
@@ -471,7 +485,7 @@ confusion_metrics <- function(y_true, y_prob, thr = 0.5) {
   tpr <- TP / (TP + FN)  # sensitivity / recall
   tnr <- TN / (TN + FP)  # specificity
   ppv <- TP / (TP + FP)  # precision
-  npv <- TN / (TN + FN)
+  npv <- TN / (TN + FN)  # negative predicted value
   list(
     threshold = thr,
     matrix = matrix(c(TN, FP, FN, TP), nrow = 2,
