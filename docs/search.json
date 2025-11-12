@@ -300,13 +300,363 @@
     ]
   },
   {
+    "objectID": "supervision_7.html",
+    "href": "supervision_7.html",
+    "title": "Supervision 7: Qualitative Research in Practice",
+    "section": "",
+    "text": "🧭 Session Overview\nDuration: 90–120 minutes\nMode: In-person, small groups (3–5)\nPrerequisites: - Supervision 5 (platform skills: Qualtrics, Prolific/MTurk, consent flows) - Lab 5 (hands-on platform setup)\nPurpose: Bridge from distributing surveys (Lab 5) to designing questions that elicit valid, credible qualitative data, especially on potentially sensitive topics. This supervision emphasizes qualitative research approaches within survey design.\nKey Transition: You now know how to build and deploy a survey. Today we focus on what to ask and how to ask it—particularly when seeking rich, nuanced responses rather than simple numerical scales.",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Supervision 7: Qualitative Research in Practice</span>"
+    ]
+  },
+  {
+    "objectID": "supervision_7.html#core-materials",
+    "href": "supervision_7.html#core-materials",
+    "title": "Supervision 7: Qualitative Research in Practice",
+    "section": "Core Materials",
+    "text": "Core Materials\n\nEVS 2017 Master Questionnaire (English):\nhttps://access.gesis.org/dbk/69554?download_purpose=-99\nEVS data & documentation hub:\nhttps://europeanvaluesstudy.eu/methodology-data-documentation/survey-2017/full-release-evs2017/",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Supervision 7: Qualitative Research in Practice</span>"
+    ]
+  },
+  {
+    "objectID": "supervision_7.html#optional-background",
+    "href": "supervision_7.html#optional-background",
+    "title": "Supervision 7: Qualitative Research in Practice",
+    "section": "Optional Background",
+    "text": "Optional Background\n\nEVS/WVS joint release: https://europeanvaluesstudy.eu/methodology-data-documentation/survey-2017/joint-evs-wvs/",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Supervision 7: Qualitative Research in Practice</span>"
+    ]
+  },
+  {
+    "objectID": "supervision_7.html#platform-reminder",
+    "href": "supervision_7.html#platform-reminder",
+    "title": "Supervision 7: Qualitative Research in Practice",
+    "section": "Platform Reminder",
+    "text": "Platform Reminder\n\nYour Qualtrics account (from Lab 5)\nEVS questionnaire as exemplar of large-scale survey design\n\n\n💡 Why EVS? This authentic instrument demonstrates how major cross-national studies navigate sensitive topics, cultural variation, and measurement challenges. We’ll use it to examine both strengths and limitations.",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Supervision 7: Qualitative Research in Practice</span>"
+    ]
+  },
+  {
+    "objectID": "supervision_7.html#part-1-mini-lecture-15-min",
+    "href": "supervision_7.html#part-1-mini-lecture-15-min",
+    "title": "Supervision 7: Qualitative Research in Practice",
+    "section": "Part 1: Mini-Lecture (15 min)",
+    "text": "Part 1: Mini-Lecture (15 min)",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Supervision 7: Qualitative Research in Practice</span>"
+    ]
+  },
+  {
+    "objectID": "supervision_7.html#qualitative-vs.-quantitative-questions-in-surveys",
+    "href": "supervision_7.html#qualitative-vs.-quantitative-questions-in-surveys",
+    "title": "Supervision 7: Qualitative Research in Practice",
+    "section": "1.1 Qualitative vs. Quantitative Questions in Surveys",
+    "text": "1.1 Qualitative vs. Quantitative Questions in Surveys\n\nQuantitative Approach\n\nStructure: Closed-ended, fixed response categories\nOutput: Numerical data for statistical analysis\nExample: “On a scale of 1-5, how satisfied are you with…?”\nStrength: Comparable, analyzable at scale\nLimitation: May miss nuance, context, unexpected perspectives\n\n\n\nQualitative Approach\n\nStructure: Open-ended, narrative responses, or scenario-based\nOutput: Text data requiring thematic/content analysis\nExample: “Describe a situation where you felt satisfied/dissatisfied…”\nStrength: Rich detail, unexpected insights, contextual understanding\nLimitation: Time-intensive to analyze; harder to generalize numerically\n\n\n\nWhen to Choose Each\n\nQuantitative: Testing hypotheses, measuring prevalence, comparing groups\nQualitative: Exploring meanings, understanding processes, generating hypotheses\nMixed: Often most powerful—use qualitative to inform quantitative scales or explain quantitative patterns",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Supervision 7: Qualitative Research in Practice</span>"
+    ]
+  },
+  {
+    "objectID": "supervision_7.html#representativity-external-validity",
+    "href": "supervision_7.html#representativity-external-validity",
+    "title": "Supervision 7: Qualitative Research in Practice",
+    "section": "1.2 Representativity → External Validity",
+    "text": "1.2 Representativity → External Validity\n\nCore Concept\nRepresentativity means your sample composition resembles your target population on characteristics that matter for your inference.\n\n\nWhy It Matters\n\nThreat: If key groups are under/over-represented, results may not generalize (external validity risk)\nExample: Surveying only landlords when you need tenant perspectives too\nReal Estate Context: Property investors vs. owner-occupiers vs. renters may have systematically different views on housing policy\n\n\n\nPragmatic Reality\n\nPerfect representativity is unattainable\nGoal: Credible coverage + transparent documentation of limitations\nYour RM01 surveys: Consider who you’re reaching via Prolific/MTurk/personal networks",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Supervision 7: Qualitative Research in Practice</span>"
+    ]
+  },
+  {
+    "objectID": "supervision_7.html#survey-weights-high-level-understanding",
+    "href": "supervision_7.html#survey-weights-high-level-understanding",
+    "title": "Supervision 7: Qualitative Research in Practice",
+    "section": "1.3 Survey Weights (High-Level Understanding)",
+    "text": "1.3 Survey Weights (High-Level Understanding)\nYou won’t compute weights in this course, but understand their purpose:\n\nDesign Weights\n\nPurpose: Correct unequal selection probabilities from sampling design\nExample: If rural respondents had 1/3 the chance of selection, weight them 3× higher\n\n\n\nPost-Stratification Weights\n\nPurpose: After fieldwork, adjust to population benchmarks (e.g., age×sex×region)\nUse case: Your Prolific sample skews young? Reweight to match UK census margins\nLimitation: Weighting reduces certain biases but cannot fix poor question design\n\n\n\nKey Takeaway\nRepresentative sampling + good weights help external validity.\nGood question design helps internal validity (measuring what you intend to measure).\nYou need both.",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Supervision 7: Qualitative Research in Practice</span>"
+    ]
+  },
+  {
+    "objectID": "supervision_7.html#question-formulation-pitfalls",
+    "href": "supervision_7.html#question-formulation-pitfalls",
+    "title": "Supervision 7: Qualitative Research in Practice",
+    "section": "1.4 Question Formulation Pitfalls",
+    "text": "1.4 Question Formulation Pitfalls\n\nLeading/Loaded Wording\n❌ “Don’t you agree that affordable housing is essential?”\n✅ “To what extent do you think affordable housing is important?”\n\n\nDouble-Barrelled Questions\n\n✅ Heuristic: If a question contains and, it is probably double‑barrelled. ❌ “How satisfied are you with your income and job security?”\n✅ Split into two questions—income satisfaction and job security are distinct constructs\n\n\n\nAmbiguity & Vagueness\n❌ “How often do you visit properties?” (What’s “often”? Personal viewings? Client viewings?)\n✅ “In the past month, approximately how many property viewings did you conduct?”\n\n\nSocial Desirability Bias\n\nRisk: Respondents answer what sounds “good” rather than truthfully\nTopics: Income, discriminatory attitudes, rule compliance, controversial opinions\nStrategy: Indirect elicitation (see next section)",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Supervision 7: Qualitative Research in Practice</span>"
+    ]
+  },
+  {
+    "objectID": "supervision_7.html#sensitive-topics-direct-vs.-indirect-elicitation",
+    "href": "supervision_7.html#sensitive-topics-direct-vs.-indirect-elicitation",
+    "title": "Supervision 7: Qualitative Research in Practice",
+    "section": "1.5 Sensitive Topics: Direct vs. Indirect Elicitation",
+    "text": "1.5 Sensitive Topics: Direct vs. Indirect Elicitation\n\nDirect Questions\n\nApproach: Straightforward, explicit\nExample: “Have you ever discriminated against a tenant on the basis of ethnicity?”\nPro: Simple, transparent\nCon: Likely underreporting due to social desirability\n\n\n\nIndirect Approaches\n\nQualitative Techniques\n\nThird-person framing: “How common do you think ethnic discrimination is among landlords in your area?”\nProjective prompts: “Imagine a landlord who prefers not to rent to certain ethnic groups. What might their reasoning be?”\nVignettes/scenarios: Present a hypothetical situation; ask for interpretation or advice\nList experiments (concept): Compare item counts between control/treatment groups to infer prevalence without individual disclosure\n\n\n\nExample: Immigration Attitudes\n\nDirect: “Do you support stricter immigration controls?” (May trigger socially desirable response)\nIndirect: Present vignette of immigrant family seeking housing; ask open-ended: “What factors should a landlord consider when evaluating this application?”\n\n\n\n\nWhen to Use Indirect Methods\n\nStigmatized behaviors or attitudes\nIllegal/unethical practices\nTopics where respondent may fear judgment\nExploratory research where you want honest, detailed narratives",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Supervision 7: Qualitative Research in Practice</span>"
+    ]
+  },
+  {
+    "objectID": "supervision_7.html#part-2-activity-a-25-min-rewriting-sensitive-questions",
+    "href": "supervision_7.html#part-2-activity-a-25-min-rewriting-sensitive-questions",
+    "title": "Supervision 7: Qualitative Research in Practice",
+    "section": "Part 2: Activity A (25 min) – Rewriting Sensitive Questions",
+    "text": "Part 2: Activity A (25 min) – Rewriting Sensitive Questions",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Supervision 7: Qualitative Research in Practice</span>"
+    ]
+  },
+  {
+    "objectID": "supervision_7.html#task-overview",
+    "href": "supervision_7.html#task-overview",
+    "title": "Supervision 7: Qualitative Research in Practice",
+    "section": "Task Overview",
+    "text": "Task Overview\nWorking in pairs, choose one sensitive theme below. For your chosen theme:\n\nDraft a direct question (quantitative or closed-ended)\nDraft an indirect/qualitative alternative using one or more of:\n\nVignette with open-ended follow-up\nProjective/third-person framing\nScenario-based question\n\nCompare: What kind of data would each approach yield? What are the trade-offs?",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Supervision 7: Qualitative Research in Practice</span>"
+    ]
+  },
+  {
+    "objectID": "supervision_7.html#themes-pick-one",
+    "href": "supervision_7.html#themes-pick-one",
+    "title": "Supervision 7: Qualitative Research in Practice",
+    "section": "Themes (Pick One)",
+    "text": "Themes (Pick One)\n\nWe analyze wording and data quality — not beliefs or personal views.\n\n\nA. Immigration & Housing\nContext: Attitudes toward immigrant access to housing/social housing\n\n\nB. Regulatory Compliance\nContext: Landlords’ adherence to safety regulations, licensing, tax reporting\n\n\nC. Political Tolerance\nContext: Acceptance of diverse political views in community/workplace\n\n\nD. Gender Norms at Work\nContext: Beliefs about women in property development/construction leadership\n\n\nE. Religious Practice & Real Estate\nContext: Religious considerations in property transactions, development decisions",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Supervision 7: Qualitative Research in Practice</span>"
+    ]
+  },
+  {
+    "objectID": "supervision_7.html#deliverable",
+    "href": "supervision_7.html#deliverable",
+    "title": "Supervision 7: Qualitative Research in Practice",
+    "section": "Deliverable",
+    "text": "Deliverable\nPrepare to share both versions (2 minutes per pair): - Direct question - Indirect alternative - One insight about what changes between approaches",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Supervision 7: Qualitative Research in Practice</span>"
+    ]
+  },
+  {
+    "objectID": "supervision_7.html#quality-checklist",
+    "href": "supervision_7.html#quality-checklist",
+    "title": "Supervision 7: Qualitative Research in Practice",
+    "section": "Quality Checklist",
+    "text": "Quality Checklist\n\n✅ Neutral wording (no leading language)?\n✅ Single construct (not double-barrelled)?\n✅ Clear, defined terms (no ambiguous “often,” “regularly”)?\n✅ Acknowledges social desirability pressure?\n✅ Indirect version genuinely reduces pressure while still addressing topic?",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Supervision 7: Qualitative Research in Practice</span>"
+    ]
+  },
+  {
+    "objectID": "supervision_7.html#part-3-activity-b-40-min-evs-question-audit",
+    "href": "supervision_7.html#part-3-activity-b-40-min-evs-question-audit",
+    "title": "Supervision 7: Qualitative Research in Practice",
+    "section": "Part 3: Activity B (40 min) – EVS Question Audit",
+    "text": "Part 3: Activity B (40 min) – EVS Question Audit",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Supervision 7: Qualitative Research in Practice</span>"
+    ]
+  },
+  {
+    "objectID": "supervision_7.html#overview",
+    "href": "supervision_7.html#overview",
+    "title": "Supervision 7: Qualitative Research in Practice",
+    "section": "Overview",
+    "text": "Overview\nThe European Values Study surveys thousands of respondents across Europe on values, beliefs, and attitudes. We’ll audit how EVS handles sensitive/complex topics and consider qualitative improvements.",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Supervision 7: Qualitative Research in Practice</span>"
+    ]
+  },
+  {
+    "objectID": "supervision_7.html#step-1-form-groups-choose-subtopic-5-min",
+    "href": "supervision_7.html#step-1-form-groups-choose-subtopic-5-min",
+    "title": "Supervision 7: Qualitative Research in Practice",
+    "section": "Step 1: Form Groups & Choose Subtopic (5 min)",
+    "text": "Step 1: Form Groups & Choose Subtopic (5 min)\nGroups of 3–5. Each group selects one subtopic:\n\nReligion & Morality (e.g., items on religiosity, moral absolutes)\nFamily & Gender Equality (e.g., women’s roles, work-family balance)\nPolitics, Democracy & Trust (e.g., institutional trust, political engagement)\nNational Identity, Migration & Diversity (e.g., immigration attitudes, national pride)\nWork, Economy & Inequality (e.g., income fairness, job values)\nEnvironment & Climate Attitudes (e.g., willingness to sacrifice for environment)",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Supervision 7: Qualitative Research in Practice</span>"
+    ]
+  },
+  {
+    "objectID": "supervision_7.html#step-2-locate-select-items-10-min",
+    "href": "supervision_7.html#step-2-locate-select-items-10-min",
+    "title": "Supervision 7: Qualitative Research in Practice",
+    "section": "Step 2: Locate & Select Items (10 min)",
+    "text": "Step 2: Locate & Select Items (10 min)\n\nOpen the EVS 2017 Master Questionnaire (link above)\nFind the section(s) relevant to your subtopic\nSelect 2–3 items (not 3–5—we’re prioritizing depth over breadth)\nScreenshot or note item codes for reference",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Supervision 7: Qualitative Research in Practice</span>"
+    ]
+  },
+  {
+    "objectID": "supervision_7.html#step-3-analyze-each-item-15-min",
+    "href": "supervision_7.html#step-3-analyze-each-item-15-min",
+    "title": "Supervision 7: Qualitative Research in Practice",
+    "section": "Step 3: Analyze Each Item (15 min)",
+    "text": "Step 3: Analyze Each Item (15 min)\nFor each selected item, consider:\n\nWording Analysis\n\nIs language neutral or leading/loaded?\nAny double-barrelled issues (two concepts in one question)?\nAre terms clearly defined or ambiguous?\n\n\n\nElicitation Strategy\n\nDirect or indirect approach?\nWhat assumptions does the question make?\nWhat might respondents be reluctant to reveal?\n\n\n\nResponse Format\n\nClosed scales (e.g., 1–10, agree/disagree)?\nDoes the format constrain nuanced responses?\nWould open-ended follow-ups add value?\n\n\n\nQualitative Potential\n\nHow might you reframe this as an open-ended question?\nCould a vignette or scenario elicit richer data?\nWould third-person framing reduce social desirability pressure?",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Supervision 7: Qualitative Research in Practice</span>"
+    ]
+  },
+  {
+    "objectID": "supervision_7.html#step-4-propose-improvements-10-min",
+    "href": "supervision_7.html#step-4-propose-improvements-10-min",
+    "title": "Supervision 7: Qualitative Research in Practice",
+    "section": "Step 4: Propose Improvements (10 min)",
+    "text": "Step 4: Propose Improvements (10 min)\nFor one of your selected items, draft: - Improved qualitative version (open-ended, vignette, or projective) - Brief rationale (what does your version capture that the original doesn’t?)",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Supervision 7: Qualitative Research in Practice</span>"
+    ]
+  },
+  {
+    "objectID": "supervision_7.html#group-output-template",
+    "href": "supervision_7.html#group-output-template",
+    "title": "Supervision 7: Qualitative Research in Practice",
+    "section": "Group Output Template",
+    "text": "Group Output Template\nPrepare 3–5 bullet points to share with class:\n\nEVS item citation (short quote or paraphrase + item code if available)\nStrengths (1–2): What does EVS do well here?\nLimitations (1–2): What’s constrained or problematic?\nYour improved qualitative question\nSensitivity/ethical considerations (if relevant)\n\n\nExample Output\n\nEVS Item V185: “On this list are various groups of people. Could you please mention any that you would not like to have as neighbours?”\nStrengths:\n- Indirect approach reduces pressure to deny prejudice\n- List format allows multiple selections\nLimitations:\n- Still fairly direct (asks about personal preferences)\n- Closed list may miss relevant groups\n- Doesn’t capture reasoning or context\nImproved qualitative version:\n“Think about your neighbourhood. What kinds of qualities or characteristics do you think make for a good neighbour? What kinds of situations might create tension between neighbours?”\n(Follow-up probe: “Can you give an example of a situation you’ve observed or heard about?”)\nRationale: Shifts focus to abstract qualities and situations rather than demographic groups, reducing defensiveness while still revealing underlying attitudes. Open-ended format invites storytelling and context.",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Supervision 7: Qualitative Research in Practice</span>"
+    ]
+  },
+  {
+    "objectID": "supervision_7.html#sharing-10-min",
+    "href": "supervision_7.html#sharing-10-min",
+    "title": "Supervision 7: Qualitative Research in Practice",
+    "section": "Sharing (10 min)",
+    "text": "Sharing (10 min)\nEach group presents one key insight from their EVS audit: - How does question wording shape the data you get? - What do you gain (or lose) moving from quantitative to qualitative?",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Supervision 7: Qualitative Research in Practice</span>"
+    ]
+  },
+  {
+    "objectID": "supervision_7.html#synthesis-5-min",
+    "href": "supervision_7.html#synthesis-5-min",
+    "title": "Supervision 7: Qualitative Research in Practice",
+    "section": "Synthesis (5 min)",
+    "text": "Synthesis (5 min)\nSupervisor highlights cross-cutting themes: - Trade-offs between standardization and nuance - Role of context in qualitative responses - Ethical considerations in sensitive topic research - Application to real estate/land economy contexts",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Supervision 7: Qualitative Research in Practice</span>"
+    ]
+  },
+  {
+    "objectID": "supervision_7.html#reflection-prompt",
+    "href": "supervision_7.html#reflection-prompt",
+    "title": "Supervision 7: Qualitative Research in Practice",
+    "section": "Reflection Prompt",
+    "text": "Reflection Prompt\n\n“What will you do differently when designing your own survey questions for RM01?”\n\nWrite 3–5 sentences addressing: - One specific wording pitfall you’ll avoid - One context where you’ll use qualitative (open-ended) questions - One sensitive topic you’ll approach indirectly (if relevant to your project)\nSave this reflection with your RM01 project notes.",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Supervision 7: Qualitative Research in Practice</span>"
+    ]
+  },
+  {
+    "objectID": "supervision_7.html#optional-peer-exchange",
+    "href": "supervision_7.html#optional-peer-exchange",
+    "title": "Supervision 7: Qualitative Research in Practice",
+    "section": "Optional: Peer Exchange",
+    "text": "Optional: Peer Exchange\nIf time permits, share your reflection with one other student and discuss: - Are your projects facing similar design challenges? - Could you pilot questions on each other before wider distribution?",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Supervision 7: Qualitative Research in Practice</span>"
+    ]
+  },
+  {
+    "objectID": "supervision_7.html#task-audit-your-own-rm01-survey-draft",
+    "href": "supervision_7.html#task-audit-your-own-rm01-survey-draft",
+    "title": "Supervision 7: Qualitative Research in Practice",
+    "section": "Task: Audit Your Own RM01 Survey Draft",
+    "text": "Task: Audit Your Own RM01 Survey Draft\nReview three questions from your own survey design:\n\nCheck for pitfalls:\n\nLeading/loaded language? → Neutralize\nDouble-barrelled? → Split into separate items\nVague terms? → Define or provide examples\n\nConsider elicitation strategy:\n\nIs any topic sensitive enough to warrant indirect approach?\nWould a qualitative (open-ended) version add value?\nCould you mix quantitative and qualitative for richer data?\n\nRevise and document:\n\nShow original version\nShow revised version\nExplain your reasoning (1–2 sentences per change)\n\n\nUpload before next session for optional peer review.",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Supervision 7: Qualitative Research in Practice</span>"
+    ]
+  },
+  {
+    "objectID": "supervision_7.html#a.-question-wording-checklist",
+    "href": "supervision_7.html#a.-question-wording-checklist",
+    "title": "Supervision 7: Qualitative Research in Practice",
+    "section": "A. Question Wording Checklist",
+    "text": "A. Question Wording Checklist\n\n\n\n❌ Avoid\n✅ Aim For\n\n\n\n\nLeading/loaded phrasing\nNeutral, balanced language\n\n\nDouble-barrelled (two ideas at once)\nSingle construct per question\n\n\nVague terms (“often,” “regularly”)\nSpecific timeframes, quantities\n\n\nOverly long/complex stems\nConcise, clear phrasing\n\n\nJargon or technical terms\nPlain language (or define terms)\n\n\nAssume respondent knowledge\nInclude context if needed",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Supervision 7: Qualitative Research in Practice</span>"
+    ]
+  },
+  {
+    "objectID": "supervision_7.html#b.-indirect-elicitation-techniques",
+    "href": "supervision_7.html#b.-indirect-elicitation-techniques",
+    "title": "Supervision 7: Qualitative Research in Practice",
+    "section": "B. Indirect Elicitation Techniques",
+    "text": "B. Indirect Elicitation Techniques\n\nFor Qualitative Survey Design\n\n\n\n\n\n\n\n\nTechnique\nDescription\nExample\n\n\n\n\nThird-person\nAsk about others, not respondent\n“How do landlords in your area typically handle tenant disputes?”\n\n\nProjective\nRespondent interprets someone else’s behavior\n“Imagine a developer who opposes affordable housing. What might their concerns be?”\n\n\nVignette\nPresent scenario; ask for reaction/advice\n“Sarah is a single mother applying to rent. [Details]. If you were the landlord, what factors would you consider?”\n\n\nBest-worst scaling\nForce trade-offs between options\n“Which of these housing features would you prioritize? Which would you sacrifice?”\n\n\nFree listing\nOpen brainstorming before rating\n“List all the factors that influence your property investment decisions.” (Then follow with structured questions)\n\n\n\n\n\nFor Quantitative Prevalence Estimates (Conceptual—Not Implemented in This Course)\n\n\n\n\n\n\n\n\nTechnique\nPurpose\nHow It Works\n\n\n\n\nList experiment\nEstimate prevalence of sensitive behavior\nControl group sees innocuous list; treatment group sees same list + sensitive item. Difference in means estimates prevalence.\n\n\nRandomized response\nProtect individual privacy while estimating prevalence\nRespondent flips coin privately; answers YES if heads (regardless of truth), answers truthfully if tails. Randomness protects individuals; statistics recover population rate.",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Supervision 7: Qualitative Research in Practice</span>"
+    ]
+  },
+  {
+    "objectID": "supervision_7.html#c.-representativity-validity",
+    "href": "supervision_7.html#c.-representativity-validity",
+    "title": "Supervision 7: Qualitative Research in Practice",
+    "section": "C. Representativity & Validity",
+    "text": "C. Representativity & Validity\n\nKey Relationships\nRepresentativity → External Validity\n    ↓\nCan we generalize findings beyond our sample?\n\nGood Question Design → Internal Validity  \n    ↓\nAre we measuring what we intend to measure?\n\n\nSurvey Weights (Context Only)\n\nDesign weights: Correct for unequal selection probabilities\nPost-stratification weights: Align sample to population benchmarks\nNote: Weighting helps external validity but cannot fix poor measurement\n\n\n\nFor Your RM01 Projects\nConsider: - Target population: Who are you trying to understand? - Sampling frame: Who can you actually reach (Prolific, MTurk, professional networks)? - Coverage gaps: Who’s missing? Document these as limitations. - Generalizability claims: Be precise about scope of inference",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Supervision 7: Qualitative Research in Practice</span>"
+    ]
+  },
+  {
+    "objectID": "supervision_7.html#d.-connecting-to-lab-5-platform-skills",
+    "href": "supervision_7.html#d.-connecting-to-lab-5-platform-skills",
+    "title": "Supervision 7: Qualitative Research in Practice",
+    "section": "D. Connecting to Lab 5 Platform Skills",
+    "text": "D. Connecting to Lab 5 Platform Skills\n\nLab 5 Taught You:\n\nSet up Qualtrics surveys\nConfigure consent flows\nCreate Prolific/MTurk accounts\nUnderstand fee structures\n\n\n\nSupervision 7 Builds On This:\n\nWhat questions to put in your Qualtrics survey\nHow to word those questions to get valid data\nWhen to use qualitative vs. quantitative approaches\nHow to handle sensitive topics ethically\n\n\n\nIntegration Task (If Time Permits)\nOpen your Qualtrics account and: 1. Create one quantitative question (scale/multiple choice) 2. Create one qualitative question (open text with clear prompt) 3. Set up branch logic so qualitative question only appears if quantitative response meets certain criteria (e.g., “If dissatisfied, please explain why:”)",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Supervision 7: Qualitative Research in Practice</span>"
+    ]
+  },
+  {
+    "objectID": "supervision_7.html#survey-design-classics",
+    "href": "supervision_7.html#survey-design-classics",
+    "title": "Supervision 7: Qualitative Research in Practice",
+    "section": "Survey Design Classics",
+    "text": "Survey Design Classics\n\nFowler, F. J. (2014). Survey Research Methods (5th ed.). SAGE.\nTourangeau, R., & Yan, T. (2007). “Sensitive questions in surveys.” Psychological Bulletin, 133(5), 859-883.",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Supervision 7: Qualitative Research in Practice</span>"
+    ]
+  },
+  {
+    "objectID": "supervision_7.html#qualitative-survey-methods",
+    "href": "supervision_7.html#qualitative-survey-methods",
+    "title": "Supervision 7: Qualitative Research in Practice",
+    "section": "Qualitative Survey Methods",
+    "text": "Qualitative Survey Methods\n\nBraun, V., & Clarke, V. (2006). “Using thematic analysis in psychology.” Qualitative Research in Psychology, 3(2), 77-101.",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Supervision 7: Qualitative Research in Practice</span>"
+    ]
+  },
+  {
+    "objectID": "supervision_7.html#sensitive-topics",
+    "href": "supervision_7.html#sensitive-topics",
+    "title": "Supervision 7: Qualitative Research in Practice",
+    "section": "Sensitive Topics",
+    "text": "Sensitive Topics\n\nLee, R. M., & Renzetti, C. M. (1993). “The problems of researching sensitive topics.” American Behavioral Scientist, 33(5), 510-528.",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Supervision 7: Qualitative Research in Practice</span>"
+    ]
+  },
+  {
+    "objectID": "supervision_7.html#evswvs-methodology",
+    "href": "supervision_7.html#evswvs-methodology",
+    "title": "Supervision 7: Qualitative Research in Practice",
+    "section": "EVS/WVS Methodology",
+    "text": "EVS/WVS Methodology\n\nEVS (2020). European Values Study 2017: Method Report. GESIS.\n\n\nEnd of Supervision 7\nNext supervision: [Topic TBD—likely analysis of qualitative survey data or pilot testing findings]",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Supervision 7: Qualitative Research in Practice</span>"
+    ]
+  },
+  {
     "objectID": "formative_test_sup3.html",
     "href": "formative_test_sup3.html",
     "title": "In-Class Exercise Sup 3",
     "section": "",
     "text": "In-Class Formative Assessment: Variable Selection (Housing Prices)",
     "crumbs": [
-      "<span class='chapter-number'>8</span>  <span class='chapter-title'>In-Class Exercise Sup 3</span>"
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>In-Class Exercise Sup 3</span>"
     ]
   },
   {
@@ -316,7 +666,7 @@
     "section": "",
     "text": "⏱ Duration\nApprox. 40 minutes (in class)\n\n\n\n🎯 Objective\nApply the variable selection methods learned in Supervision 3 to a new dataset on housing prices. You will replicate the steps used previously with the Hitters dataset, but this time using the Housing Prices Dataset from Kaggle.\nYour task is to specify, estimate, and evaluate one or two regression models explaining house prices.\n\n\n\n📦 Dataset (Preloaded) or Download the housing dataset\nThis dataset has already been provided in your RStudio environment.\ninstall.packages(\"RKaggle\")\nlibrary(RKaggle)\n# Download and load dataset\nhouse_price_data &lt;- get_dataset(\"yasserh/housing-prices-dataset\")\nstr(house_price_data)\nDependent variable: price\nPredictors include: area, bedrooms, bathrooms, stories, mainroad, airconditioning, parking, furnishingstatus, etc.\n\n\n\n🧩 Task\nYou have 40 minutes to complete the following:\n\nModel setup (5 min)\n\nInspect the dataset and identify relevant variables.\nChoose predictors that you expect to influence price.\n\nModel estimation (20 min)\n\nEstimate one OLS model explaining price.\nPerform stepwise variable selection (AIC or BIC).\n\nOptionally include one interaction term (e.g., area × stories).\n\nDiagnostics and reporting (15 min)\n\nReport the final regression equation.\nRecord Adjusted R², AIC/BIC, and RMSE (if possible).\n\nBriefly comment on which predictors are most influential and whether signs/magnitudes make sense.\n\n\n\n\n\n🧮 Example Structure (you can adapt quickly)\nlibrary(MASS)\nlibrary(dplyr)\n\n# Example base model\ndf &lt;- house_price_data\nmodel0 &lt;- lm(price ~ area + bathrooms + stories + airconditioning + parking, data = df)\nsummary(model0)\n\n# Stepwise selection (AIC)\nstep_aic &lt;- stepAIC(model0, direction = \"both\", trace = FALSE)\nsummary(step_aic)\n\n# Optional: interaction example\nmodel_int &lt;- lm(price ~ area*stories + bathrooms + airconditioning, data = df)\nsummary(model_int)\n\n\n\n🧾 What to Submit (in class)\n\nFinal model equation\n\nAdjusted R², AIC/BIC, and any other metric you computed\n\nInterpretation of one key variable or interaction term\n\n1–2 sentences on whether the results make economic sense",
     "crumbs": [
-      "<span class='chapter-number'>8</span>  <span class='chapter-title'>In-Class Exercise Sup 3</span>"
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>In-Class Exercise Sup 3</span>"
     ]
   },
   {
@@ -326,7 +676,7 @@
     "section": "Submit your in-class results",
     "text": "Submit your in-class results\nIf the form doesn’t load below, use the backup link: Open the form in a new tab\n\n \n\n\n\n💡 Tip\n\nUse your Supervision 3 (Hitters) scripts as a reference.\n\nKeep your model parsimonious but explanatory.\n\nFocus on clarity and reasoning — not the number of variables.",
     "crumbs": [
-      "<span class='chapter-number'>8</span>  <span class='chapter-title'>In-Class Exercise Sup 3</span>"
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>In-Class Exercise Sup 3</span>"
     ]
   },
   {
@@ -336,7 +686,7 @@
     "section": "",
     "text": "Learning goals (40 min)",
     "crumbs": [
-      "<span class='chapter-number'>9</span>  <span class='chapter-title'>In-Class Exercise Sup 4</span>"
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>In-Class Exercise Sup 4</span>"
     ]
   },
   {
@@ -346,7 +696,7 @@
     "section": "",
     "text": "Fit a clear production model with meaningful regressors.\nDiagnose multicollinearity (VIF), autocorrelation (DW/BG & residual ACF), and heteroskedasticity (BP/White) and modify/refine the baseline model.\nApply robust/HAC standard errors for valid inference.\nCommunicate findings succinctly.\n\n\nMarking (formative)\n\nTask 1 (multicollinearity) – 25 pts\n\nTask 2 (autocorrelation) – 25 pts\n\nTask 3 (heteroskedasticity & robust SE) – 25 pts\n\nTask 4 (report results: final model spec, economic analysis & evaluation) – 25 pts\nTotal: 100 pts",
     "crumbs": [
-      "<span class='chapter-number'>9</span>  <span class='chapter-title'>In-Class Exercise Sup 4</span>"
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>In-Class Exercise Sup 4</span>"
     ]
   },
   {
@@ -356,7 +706,7 @@
     "section": "Setup",
     "text": "Setup\nData: The rice dataset contains a time series on rice production from Asian farms (1990-1997). Variables include: - prod: output (tons) - area: land (hectares) - fert: fertilizer (kg) - labor: labor hours (person-days)\n\n# Packages (minimal)\n# install the following packages if needed.\n\nlibrary(PoEdata); library(dplyr); library(car); library(lmtest); library(sandwich)\n\n\nLoad rice, order by year.\n\nDrop the firm identifier (firm).\n\nPreview the data.\n\n\n# Load the dataset 'rice' from the PoEdata package (must have library(PoEdata) loaded)\ndata(rice)\n\n# Sort the rows by the time variable so observations are in chronological order\nrice &lt;- rice[order(rice$year), ]\n\n# Drop the identifier column 'firm' (it's just an ID, not an economic variable)\nrice &lt;- subset(rice, select = -firm)\n\n# Look at the first 6 rows to get a quick sense of the data\nhead(rice, 6)\n\n   year  prod area labor  fert\n1  1990  7.87  2.5   160 207.5\n9  1990 10.35  3.8   184 303.5\n17 1990  9.98  3.4   170 252.0\n25 1990  4.83  1.4    68  88.0\n33 1990  8.74  3.6   130 149.8\n41 1990  1.84  0.5    34  21.0\n\n# List all column names so you know what variables are available\nnames(rice)\n\n[1] \"year\"  \"prod\"  \"area\"  \"labor\" \"fert\" \n\n\n\n\n\n\n\n\nTip\n\n\n\n\n\nWhy drop firm? It’s an identifier, not an economic input. Keep IDs only for estimations involving grouping/panels, not as regressors.",
     "crumbs": [
-      "<span class='chapter-number'>9</span>  <span class='chapter-title'>In-Class Exercise Sup 4</span>"
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>In-Class Exercise Sup 4</span>"
     ]
   },
   {
@@ -366,7 +716,7 @@
     "section": "Task 1 — Multicollinearity (25 pts)",
     "text": "Task 1 — Multicollinearity (25 pts)\nFit the baseline model that you will need to modify/refine if needed: [ ]\n\nm &lt;- lm(prod ~ area + fert + labor, data = rice)\nsummary(m)\n\n\nCall:\nlm(formula = prod ~ area + fert + labor, data = rice)\n\nResiduals:\n    Min      1Q  Median      3Q     Max \n-9.2849 -0.9268  0.0351  0.9402  8.9061 \n\nCoefficients:\n             Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept) -0.138800   0.201714  -0.688 0.491845    \narea         1.321321   0.208748   6.330 7.57e-10 ***\nfert         0.004591   0.001289   3.562 0.000419 ***\nlabor        0.027505   0.003898   7.057 9.27e-12 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 2.106 on 348 degrees of freedom\nMultiple R-squared:  0.8294,    Adjusted R-squared:  0.8279 \nF-statistic:   564 on 3 and 348 DF,  p-value: &lt; 2.2e-16\n\n\nCompute VIF and interpret.\n\nvif(m)\n\n    area     fert    labor \n7.266083 3.736222 7.064198 \n\n\nAnswer (brief, 150 words max):\n1. State the VIF values and threshold used 2. Identify which variables show problematic collinearity 3. Suggest ONE specific econometric solution appropriate for this production function",
     "crumbs": [
-      "<span class='chapter-number'>9</span>  <span class='chapter-title'>In-Class Exercise Sup 4</span>"
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>In-Class Exercise Sup 4</span>"
     ]
   },
   {
@@ -376,7 +726,7 @@
     "section": "Task 2 — Autocorrelation (25 pts)",
     "text": "Task 2 — Autocorrelation (25 pts)\nRun Durbin–Watson and Breusch–Godfrey (AR1) tests.\nThen plot the residual ACF to visualise the pattern. For example, the current model specification:\n\n# Durbin–Watson test for first-order autocorrelation in OLS residuals\n# H0: no autocorrelation (rho = 0). DW ~ 2 means no autocorr; DW &lt; 2 = positive autocorr.\ndwtest(m)\n\n\n    Durbin-Watson test\n\ndata:  m\nDW = 1.7928, p-value = 0.02453\nalternative hypothesis: true autocorrelation is greater than 0\n\n# Breusch–Godfrey test for serial correlation of order 1 (more general than DW)\n# H0: no serial correlation up to the specified order.\nbgtest(m, order = 1)\n\n\n    Breusch-Godfrey test for serial correlation of order up to 1\n\ndata:  m\nLM test = 3.711, df = 1, p-value = 0.05406\n\n# Extract OLS residuals from model m\nres_m &lt;- residuals(m)\n\n# Plot the autocorrelation function of residuals\n# Significant spike at lag 1 (outside blue bands) suggests AR(1)-type positive autocorrelation\nacf(res_m, main = \"ACF of OLS residuals (m)\")\n\n\n\n\n\n\n\n\nAnswer (brief, 150 words max):\n- Do tests indicate autocorrelation? Which sign? did you modify/refine the model? - What does the residual ACF suggest (e.g., AR(1)-type)? How would you address the issue for inference?\n\n\n\n\n\n\nTip\n\n\n\n\n\nHint: DW &lt; 2 → positive serial correlation. A large spike at lag 1 in ACF is consistent with AR(1).",
     "crumbs": [
-      "<span class='chapter-number'>9</span>  <span class='chapter-title'>In-Class Exercise Sup 4</span>"
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>In-Class Exercise Sup 4</span>"
     ]
   },
   {
@@ -386,7 +736,7 @@
     "section": "Task 3 — Heteroskedasticity & Robust/HAC SE (25 pts)",
     "text": "Task 3 — Heteroskedasticity & Robust/HAC SE (25 pts)\n\nTest for heteroskedasticity: Breusch–Pagan and a White-style auxiliary test.\n\nReport HAC (Newey–West) standard errors for valid inference under both heteroskedasticity and autocorrelation.\n\n\n# --- Heteroskedasticity tests -----------------------------------------------\n\n# Breusch–Pagan test for heteroskedasticity\n# H0: constant variance (homoskedasticity). Small p-value =&gt; heteroskedasticity present.\nbptest(m)\n\n\n    studentized Breusch-Pagan test\n\ndata:  m\nBP = 81.47, df = 3, p-value &lt; 2.2e-16\n\n# \"White-style\" test: regress squared residuals on fitted and fitted^2 (more general form)\nfit &lt;- fitted(m)\nbptest(m, ~ fit + I(fit^2))  # small p-value =&gt; heteroskedasticity\n\n\n    studentized Breusch-Pagan test\n\ndata:  m\nBP = 73.769, df = 2, p-value &lt; 2.2e-16\n\n# --- Robust inference when heteroskedasticity and/or autocorrelation exist ---\n\n# Newey–West (HAC) robust standard errors for valid t-stats/p-values\n# Note: This adjusts SEs, not coefficients; residual patterns/tests remain the same.\ncoeftest(m, vcov. = NeweyWest(m, lag = 1, prewhite = FALSE))\n\n\nt test of coefficients:\n\n              Estimate Std. Error t value  Pr(&gt;|t|)    \n(Intercept) -0.1388003  0.1754394 -0.7912    0.4294    \narea         1.3213211  0.3112151  4.2457 2.799e-05 ***\nfert         0.0045905  0.0024470  1.8760    0.0615 .  \nlabor        0.0275053  0.0059720  4.6057 5.774e-06 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\n#**White test specification**: The `~ fit + I(fit^2)` is one \n# version; this is a simplified White test.\n\nAnswer (brief, 150 words max):\n- Are BP/White significant? Compare classical vs HAC p-values: which coefficients remain significant?\n\n\n\n\n\n\nTip\n\n\n\n\n\nNote: Robust/HAC SEs do not change the residuals or DW/BG results; they change inference (SEs/p-values).",
     "crumbs": [
-      "<span class='chapter-number'>9</span>  <span class='chapter-title'>In-Class Exercise Sup 4</span>"
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>In-Class Exercise Sup 4</span>"
     ]
   },
   {
@@ -396,7 +746,7 @@
     "section": "Task 4 — report results: final model spec, economic analysis & evaluation (25 pts)",
     "text": "Task 4 — report results: final model spec, economic analysis & evaluation (25 pts)\nSummarise (250 words max) (25 pts): 1. Your best/final model specification (equation) 2. The key diagnostic issues you found (which tests, what they showed) 3. The remedies you applied (e.g. variable interactions, lags, HAC) 4. Why your final inference is valid for decision-making, results analysis and evaluation (brief economic interpretation).",
     "crumbs": [
-      "<span class='chapter-number'>9</span>  <span class='chapter-title'>In-Class Exercise Sup 4</span>"
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>In-Class Exercise Sup 4</span>"
     ]
   },
   {
@@ -406,7 +756,7 @@
     "section": "Submit your answers",
     "text": "Submit your answers\nPlease submit your completed answers using the embedded form below 👇 If the form does not display correctly, you can open it directly using this link:\n👉 Open Microsoft Form",
     "crumbs": [
-      "<span class='chapter-number'>9</span>  <span class='chapter-title'>In-Class Exercise Sup 4</span>"
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>In-Class Exercise Sup 4</span>"
     ]
   },
   {
@@ -416,7 +766,7 @@
     "section": "",
     "text": "Overview\nThis document reports the best model and key diagnostics based on an exhaustive subset selection using leaps::regsubsets. It also reproduces the R code used (with a few comment tweaks for clarity) and provides concise answers to:",
     "crumbs": [
-      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Solution to In-class Sup3</span>"
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Solution to In-class Sup3</span>"
     ]
   },
   {
@@ -426,7 +776,7 @@
     "section": "",
     "text": "Best model equation\n\nModel metrics (Adjusted R², BIC, RMSE)\n\nInterpretation of one key variable\n\nWhether the results make economic sense",
     "crumbs": [
-      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Solution to In-class Sup3</span>"
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Solution to In-class Sup3</span>"
     ]
   },
   {
@@ -436,7 +786,7 @@
     "section": "R Code (reproducible workflow)",
     "text": "R Code (reproducible workflow)\n\n\nCode\n# Load libraries\n# If needed: install.packages(c(\"ISLR\", \"leaps\", \"ggplot2\", \"dplyr\", \"RKaggle\"))\nlibrary(ISLR)\nlibrary(leaps)\nlibrary(ggplot2)\nlibrary(dplyr)\nlibrary(RKaggle)\n\n# Download and load dataset from Kaggle\nhouse_price_data &lt;- get_dataset(\"yasserh/housing-prices-dataset\")\n\n# Quick structure checks\nstr(house_price_data)\n\n\nspc_tbl_ [545 × 13] (S3: spec_tbl_df/tbl_df/tbl/data.frame)\n $ price           : num [1:545] 13300000 12250000 12250000 12215000 11410000 ...\n $ area            : num [1:545] 7420 8960 9960 7500 7420 7500 8580 16200 8100 5750 ...\n $ bedrooms        : num [1:545] 4 4 3 4 4 3 4 5 4 3 ...\n $ bathrooms       : num [1:545] 2 4 2 2 1 3 3 3 1 2 ...\n $ stories         : num [1:545] 3 4 2 2 2 1 4 2 2 4 ...\n $ mainroad        : chr [1:545] \"yes\" \"yes\" \"yes\" \"yes\" ...\n $ guestroom       : chr [1:545] \"no\" \"no\" \"no\" \"no\" ...\n $ basement        : chr [1:545] \"no\" \"no\" \"yes\" \"yes\" ...\n $ hotwaterheating : chr [1:545] \"no\" \"no\" \"no\" \"no\" ...\n $ airconditioning : chr [1:545] \"yes\" \"yes\" \"no\" \"yes\" ...\n $ parking         : num [1:545] 2 3 2 3 2 2 2 0 2 1 ...\n $ prefarea        : chr [1:545] \"yes\" \"no\" \"yes\" \"yes\" ...\n $ furnishingstatus: chr [1:545] \"furnished\" \"furnished\" \"semi-furnished\" \"furnished\" ...\n - attr(*, \"spec\")=\n  .. cols(\n  ..   price = col_double(),\n  ..   area = col_double(),\n  ..   bedrooms = col_double(),\n  ..   bathrooms = col_double(),\n  ..   stories = col_double(),\n  ..   mainroad = col_character(),\n  ..   guestroom = col_character(),\n  ..   basement = col_character(),\n  ..   hotwaterheating = col_character(),\n  ..   airconditioning = col_character(),\n  ..   parking = col_double(),\n  ..   prefarea = col_character(),\n  ..   furnishingstatus = col_character()\n  .. )\n - attr(*, \"problems\")=&lt;externalptr&gt; \n\n\nCode\ndim(house_price_data)\n\n\n[1] 545  13\n\n\nCode\nsum(is.na(house_price_data$price))\n\n\n[1] 0\n\n\nCode\n# Brief data description\ncat(\"Response variable: price (1987 currency units).\\n\")\n\n\nResponse variable: price (1987 currency units).\n\n\nCode\ncat(\"Predictor variables:\\n\")\n\n\nPredictor variables:\n\n\nCode\nnames(house_price_data)[-13]\n\n\n [1] \"price\"           \"area\"            \"bedrooms\"        \"bathrooms\"      \n [5] \"stories\"         \"mainroad\"        \"guestroom\"       \"basement\"       \n [9] \"hotwaterheating\" \"airconditioning\" \"parking\"         \"prefarea\"       \n\n\nCode\n# Handle missing values (drop any rows with NAs)\nhouse_price_data &lt;- na.omit(house_price_data)\ndim(house_price_data)\n\n\n[1] 545  13\n\n\nCode\nsum(is.na(house_price_data))\n\n\n[1] 0\n\n\nCode\n# Ensure categorical variables are treated as factors (for lm consistency)\nchr_cols &lt;- sapply(house_price_data, is.character)\nhouse_price_data[chr_cols] &lt;- lapply(house_price_data[chr_cols], factor)\n\n# Exhaustive search over all subsets (up to 13 variables)\nregfit.full &lt;- regsubsets(price ~ ., data = house_price_data, nvmax = 13)\nreg.summary &lt;- summary(regfit.full)\n\n# Inspect what is available\nnames(reg.summary)\n\n\n[1] \"which\"  \"rsq\"    \"rss\"    \"adjr2\"  \"cp\"     \"bic\"    \"outmat\" \"obj\"   \n\n\nCode\nreg.summary$rsq[1:13]\n\n\n [1] 0.2872932 0.4650855 0.5446850 0.5815220 0.6149073 0.6365979 0.6520416\n [8] 0.6634325 0.6721634 0.6771562 0.6802180 0.6817071 0.6818018\n\n\nCode\nhead(reg.summary$which, 10)\n\n\n   (Intercept) area bedrooms bathrooms stories mainroadyes guestroomyes\n1         TRUE TRUE    FALSE     FALSE   FALSE       FALSE        FALSE\n2         TRUE TRUE    FALSE      TRUE   FALSE       FALSE        FALSE\n3         TRUE TRUE    FALSE      TRUE   FALSE       FALSE        FALSE\n4         TRUE TRUE    FALSE      TRUE    TRUE       FALSE        FALSE\n5         TRUE TRUE    FALSE      TRUE    TRUE       FALSE        FALSE\n6         TRUE TRUE    FALSE      TRUE    TRUE       FALSE        FALSE\n7         TRUE TRUE    FALSE      TRUE    TRUE       FALSE        FALSE\n8         TRUE TRUE    FALSE      TRUE    TRUE       FALSE        FALSE\n9         TRUE TRUE    FALSE      TRUE    TRUE       FALSE        FALSE\n10        TRUE TRUE    FALSE      TRUE    TRUE        TRUE        FALSE\n   basementyes hotwaterheatingyes airconditioningyes parking prefareayes\n1        FALSE              FALSE              FALSE   FALSE       FALSE\n2        FALSE              FALSE              FALSE   FALSE       FALSE\n3        FALSE              FALSE               TRUE   FALSE       FALSE\n4        FALSE              FALSE               TRUE   FALSE       FALSE\n5        FALSE              FALSE               TRUE   FALSE        TRUE\n6        FALSE              FALSE               TRUE    TRUE        TRUE\n7         TRUE              FALSE               TRUE    TRUE        TRUE\n8         TRUE              FALSE               TRUE    TRUE        TRUE\n9         TRUE               TRUE               TRUE    TRUE        TRUE\n10        TRUE               TRUE               TRUE    TRUE        TRUE\n   furnishingstatussemi-furnished furnishingstatusunfurnished\n1                           FALSE                       FALSE\n2                           FALSE                       FALSE\n3                           FALSE                       FALSE\n4                           FALSE                       FALSE\n5                           FALSE                       FALSE\n6                           FALSE                       FALSE\n7                           FALSE                       FALSE\n8                           FALSE                        TRUE\n9                           FALSE                        TRUE\n10                          FALSE                        TRUE\n\n\nCode\n# Selection plots\npar(mfrow = c(2,2))\nplot(reg.summary$rss, xlab = \"Number of Variables\", ylab = \"RSS\", type = \"l\")\ntitle(\"Training RSS (monotonically decreases)\")\n\nplot(reg.summary$adjr2, xlab = \"Number of Variables\", ylab = \"Adjusted R^2\", type = \"l\")\nbest.adjr2 &lt;- which.max(reg.summary$adjr2)\npoints(best.adjr2, reg.summary$adjr2[best.adjr2], col = \"red\", cex = 2, pch = 20)\ntitle(\"Adjusted R^2 (maximize)\")\n\nplot(reg.summary$cp, xlab = \"Number of Variables\", ylab = \"Cp\", type = \"l\")\nbest.cp &lt;- which.min(reg.summary$cp)\npoints(best.cp, reg.summary$cp[best.cp], col = \"red\", cex = 2, pch = 20)\ntitle(\"Mallows Cp (minimize)\")\n\nplot(reg.summary$bic, xlab = \"Number of Variables\", ylab = \"BIC\", type = \"l\")\nbest.bic &lt;- which.min(reg.summary$bic)\npoints(best.bic, reg.summary$bic[best.bic], col = \"red\", cex = 2, pch = 20)\ntitle(\"BIC (minimize)\")\n\n\n\n\n\n\n\n\n\nCode\npar(mfrow = c(1, 1))\n\ncat(\"Optimal model sizes (by criterion):\\n\")\n\n\nOptimal model sizes (by criterion):\n\n\nCode\ncat(\"  Adjusted R^2:\", best.adjr2, \"variables\\n\")\n\n\n  Adjusted R^2: 12 variables\n\n\nCode\ncat(\"  Cp:          \", best.cp, \"variables\\n\")\n\n\n  Cp:           12 variables\n\n\nCode\ncat(\"  BIC:         \", best.bic, \"variables\\n\\n\")\n\n\n  BIC:          10 variables\n\n\nCode\ncat(\"Note: BIC typically favours more parsimonious models.\\n\")\n\n\nNote: BIC typically favours more parsimonious models.\n\n\nCode\n# Coefficients of the BIC-optimal model (size = best.bic)\nbic_coefs &lt;- coef(regfit.full, best.bic)\nbic_coefs\n\n\n                (Intercept)                        area \n                196289.1411                    252.1058 \n                  bathrooms                     stories \n               1034173.9440                 494356.1424 \n                mainroadyes                 basementyes \n                406815.3534                 459481.4981 \n         hotwaterheatingyes          airconditioningyes \n                859533.5760                 885120.3631 \n                    parking                 prefareayes \n                277731.5878                 667628.2774 \nfurnishingstatusunfurnished \n               -396086.1661 \n\n\nCode\n# For metrics, fit an lm() with the BIC-selected variables\nform_bic &lt;- price ~ area + bathrooms + stories + mainroad + basement + hotwaterheating + airconditioning + parking + prefarea + furnishingstatus\nmodel_bic &lt;- lm(form_bic, data = house_price_data)\n\n# Metrics\nadj_r2  &lt;- summary(model_bic)$adj.r.squared\nbic_val &lt;- BIC(model_bic)\nrmse    &lt;- sqrt(mean(residuals(model_bic)^2))\n\nlist(Adjusted_R2 = adj_r2, BIC = bic_val, RMSE = rmse)\n\n\n$Adjusted_R2\n[1] 0.6706188\n\n$BIC\n[1] 16752.61\n\n$RMSE\n[1] 1061594\n\n\nCode\n# Compact coefficient table\ncoef_table &lt;- data.frame(term = names(coef(model_bic)),\n                         estimate = as.numeric(coef(model_bic)))\ncoef_table\n\n\n                             term     estimate\n1                     (Intercept)  238328.2698\n2                            area     251.7261\n3                       bathrooms 1033284.6065\n4                         stories  493842.4982\n5                     mainroadyes  403925.7767\n6                     basementyes  459016.8636\n7              hotwaterheatingyes  861677.3128\n8              airconditioningyes  880534.6004\n9                         parking  277045.4515\n10                    prefareayes  665796.1037\n11 furnishingstatussemi-furnished  -52738.1140\n12    furnishingstatusunfurnished -430216.1525",
     "crumbs": [
-      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Solution to In-class Sup3</span>"
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Solution to In-class Sup3</span>"
     ]
   },
   {
@@ -446,7 +796,7 @@
     "section": "Answers (concise)",
     "text": "Answers (concise)\n\n1) Best model equation\nUsing BIC, the selected model is:\n[ ~ + + + + + + + + + ]\nCoefficient snapshot (from subset selection):\n(Intercept) area , 196289.1411 252.1058 , bathrooms stories , 1034173.9440 494356.1424 , mainroadyes basementyes , 406815.3534 459481.4981 , hotwaterheatingyes airconditioningyes , 859533.5760 885120.3631 , parking prefareayes , 277731.5878 667628.2774 , furnishingstatusunfurnished , -396086.1661\n\n\n\n2) Model metrics\nFrom the fitted BIC-selected model:\n\nAdjusted R²: 0.671\n\nBIC: 1.67526^{4}\n\nRMSE: 1.061594^{6}\n\nNote: The maximum Adjusted R² across all sizes occurs around 12 variables (≈ 0.675), but BIC favours the 10-variable model above for parsimony.\n\n\n\n3) Interpretation of a key variable\nConsider area. Holding other factors constant, the estimated coefficient on area is approximately 252.1. This implies that each additional unit of floor area increases the predicted price by about that amount, reflecting the strong and intuitive role of size in property valuation. The magnitude is economically plausible and aligns with the positive effects seen for amenities (e.g., airconditioning, prefarea).\n\n\n\n4) Economic sense?\nYes. Larger homes (area), additional bathrooms and stories, better amenities (air conditioning, hot-water heating), and desirable location (prefarea, access to mainroad) all increase predicted prices, while being unfurnished reduces price—precisely what standard housing market theory would anticipate. The model therefore captures realistic drivers of housing values while balancing fit and simplicity via BIC.",
     "crumbs": [
-      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Solution to In-class Sup3</span>"
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Solution to In-class Sup3</span>"
     ]
   },
   {
@@ -456,7 +806,7 @@
     "section": "",
     "text": "Overview\nThis document reproduces the analysis with concise # comments inside each R chunk so students see why each step is taken.\nWork flow: run baseline model 1 &gt; VIF test &gt; fix model if high multicolinearity &gt; Test autocorrelation from previous step &gt; fix the model if high autocorrelation &gt; Test for heteroskedasticity &gt; fix the model if high heteroskedasticity.",
     "crumbs": [
-      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Solution to in‑class Sup 4</span>"
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Solution to in‑class Sup 4</span>"
     ]
   },
   {
@@ -466,7 +816,7 @@
     "section": "0) Packages",
     "text": "0) Packages\n\n\nCode\n# Minimal package set for this workflow\npkgs &lt;- c(\"PoEdata\",\"car\",\"lmtest\",\"sandwich\",\"dplyr\",\"zoo\")\n\n# Install any missing packages (safe check)\nto_install &lt;- pkgs[!sapply(pkgs, requireNamespace, quietly = TRUE)]\nif (length(to_install)) install.packages(to_install, repos = \"https://cloud.r-project.org\")\n\n# Load libraries\nlibrary(PoEdata)     # provides 'rice' dataset\nlibrary(car)         # VIF for multicollinearity\nlibrary(lmtest)      # dwtest, bgtest, bptest\nlibrary(sandwich)    # robust variance estimators (HC)\nlibrary(dplyr)       # arrange, mutate, lag",
     "crumbs": [
-      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Solution to in‑class Sup 4</span>"
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Solution to in‑class Sup 4</span>"
     ]
   },
   {
@@ -476,7 +826,7 @@
     "section": "1) Data",
     "text": "1) Data\n\n\nCode\n# Load and time-order the data\ndata(rice)                                  # bring 'rice' into the workspace\nrice &lt;- rice[order(rice$year), ]            # ensure time order for lags and DW/BG tests\n\n# Baseline production function\nform &lt;- prod ~ area + fert + labor + firm   # 'firm' is an identifier; expect little role",
     "crumbs": [
-      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Solution to in‑class Sup 4</span>"
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Solution to in‑class Sup 4</span>"
     ]
   },
   {
@@ -486,7 +836,7 @@
     "section": "2) Baseline OLS",
     "text": "2) Baseline OLS\n\n\nCode\n# Estimate baseline OLS\nm &lt;- lm(form, data = rice)\n\n# Inspect fit and signs/magnitudes\ncat(\"\\n=== OLS summary ===\\n\"); print(summary(m))\n\n\n\n=== OLS summary ===\n\n\n\nCall:\nlm(formula = form, data = rice)\n\nResiduals:\n    Min      1Q  Median      3Q     Max \n-9.2718 -0.9266  0.0356  0.9459  8.9075 \n\nCoefficients:\n             Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept) -0.108138   0.318994  -0.339 0.734818    \narea         1.321087   0.209052   6.319 8.06e-10 ***\nfert         0.004583   0.001292   3.547 0.000442 ***\nlabor        0.027476   0.003911   7.026 1.13e-11 ***\nfirm        -0.001137   0.009158  -0.124 0.901232    \n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 2.109 on 347 degrees of freedom\nMultiple R-squared:  0.8294,    Adjusted R-squared:  0.8275 \nF-statistic: 421.8 on 4 and 347 DF,  p-value: &lt; 2.2e-16",
     "crumbs": [
-      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Solution to in‑class Sup 4</span>"
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Solution to in‑class Sup 4</span>"
     ]
   },
   {
@@ -496,7 +846,7 @@
     "section": "3) Multicollinearity (VIF)",
     "text": "3) Multicollinearity (VIF)\n\n\nCode\n# Diagnose collinearity: rule of thumb VIF &gt; 5 (moderate), &gt; 10 (high)\ncat(\"\\n=== Multicollinearity (VIF) ===\\n\"); print(vif(m))\n\n\n\n=== Multicollinearity (VIF) ===\n\n\n    area     fert    labor     firm \n7.266675 3.744241 7.090750 1.070505",
     "crumbs": [
-      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Solution to in‑class Sup 4</span>"
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Solution to in‑class Sup 4</span>"
     ]
   },
   {
@@ -506,7 +856,7 @@
     "section": "4) Reduce collinearity via transformation",
     "text": "4) Reduce collinearity via transformation\n\n\nCode\n# Construct labor per area to reduce collinearity between labor and area\nrice$labor_density &lt;- rice$labor / rice$area   # density transformation\n\n# Refit a more parsimonious model (drop 'firm' id)\nm2 &lt;- lm(prod ~ area + fert + labor_density, data = rice)\n\n# Check VIFs fall meaningfully\ncat(\"\\n=== VIF after transformation (m2) ===\\n\"); print(vif(m2))\n\n\n\n=== VIF after transformation (m2) ===\n\n\n         area          fert labor_density \n     3.739741      3.606256      1.098055 \n\n\nCode\n# Compare fit (R^2) and significance with baseline\ncat(\"\\n=== OLS summary (m2) ===\\n\"); print(summary(m2))\n\n\n\n=== OLS summary (m2) ===\n\n\n\nCall:\nlm(formula = prod ~ area + fert + labor_density, data = rice)\n\nResiduals:\n    Min      1Q  Median      3Q     Max \n-9.7160 -0.9525  0.0347  1.0138  9.2159 \n\nCoefficients:\n               Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept)   -1.794885   0.500123  -3.589  0.00038 ***\narea           2.581396   0.156507  16.494  &lt; 2e-16 ***\nfert           0.006033   0.001323   4.560 7.10e-06 ***\nlabor_density  0.031629   0.007850   4.029 6.87e-05 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 2.201 on 348 degrees of freedom\nMultiple R-squared:  0.8137,    Adjusted R-squared:  0.8121 \nF-statistic: 506.6 on 3 and 348 DF,  p-value: &lt; 2.2e-16\n\n\nAnswer (VIF): Using a VIF threshold of 5 (NOte 5–10 considered moderate, &gt;10 high), the baseline model reports VIFs of area = 7.27, fert = 3.74, and labor = 7.06, indicating moderate multicollinearity for area and labor. The source is conceptual overlap between cultivated area and the scale of labor. Remedy: I replace labor with labor_density = labor/area to orthogonalise scale and intensity. In the revised model, VIFs fall to area = 3.74, fert = 3.61, labor_density = 1.10, which are comfortably below the threshold.",
     "crumbs": [
-      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Solution to in‑class Sup 4</span>"
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Solution to in‑class Sup 4</span>"
     ]
   },
   {
@@ -516,7 +866,7 @@
     "section": "4a) Autocorrelation diagnostics",
     "text": "4a) Autocorrelation diagnostics\n\n\nCode\n# Durbin–Watson (focus on AR(1) positive autocorrelation under default alt)\ncat(\"\\n=== Autocorrelation on m2 ===\\n\")\n\n\n\n=== Autocorrelation on m2 ===\n\n\nCode\ncat(\"Durbin–Watson:\\n\"); print(dwtest(m2))\n\n\nDurbin–Watson:\n\n\n\n    Durbin-Watson test\n\ndata:  m2\nDW = 1.7352, p-value = 0.005977\nalternative hypothesis: true autocorrelation is greater than 0\n\n\nCode\n# Breusch–Godfrey (general serial correlation; here AR(1) for comparability)\ncat(\"\\nBreusch–Godfrey (AR1):\\n\"); print(bgtest(m2, order = 1))\n\n\n\nBreusch–Godfrey (AR1):\n\n\n\n    Breusch-Godfrey test for serial correlation of order up to 1\n\ndata:  m2\nLM test = 6.1838, df = 1, p-value = 0.01289\n\n\nCode\n# Note: p &lt; 0.05 indicates evidence of autocorrelation\n\n\nAnswer (autocorrelation): The initial diagnostics on the revised level model show positive serial correlation: DW ≈ 1.74 (p ≈ 0.006) and BG(1) p ≈ 0.013. The ACF/PACF of residuals suggest an AR(1) pattern with some evidence consistent with possible AR(2) dynamics. I therefore consider dynamic specifications and a log–log transformation (which often stabilises variance and improves dynamics).\n\nCreate lag and plot correlograms\n\n\nCode\n# Create lag of dependent variable for dynamic model\nrice &lt;- rice |&gt;\n  arrange(year) |&gt;\n  mutate(prod_lag = dplyr::lag(prod))   # first observation becomes NA by construction\n\n# ACF/PACF of residuals (visual check)\nacf(m2$residuals, main = \"ACF of OLS residuals (m2)\")    # spikes suggest serial correlation\n\n\n\n\n\n\n\n\n\nCode\npacf(m2$residuals, main = \"PACF of OLS residuals (m2)\")\n\n\n\n\n\n\n\n\n\nCode\n# Align sample by dropping rows with NA lag\nrice_lag &lt;- na.omit(rice)               # keep complete cases for dynamic models",
     "crumbs": [
-      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Solution to in‑class Sup 4</span>"
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Solution to in‑class Sup 4</span>"
     ]
   },
   {
@@ -526,7 +876,7 @@
     "section": "4b) Dynamic model and log–log refinement",
     "text": "4b) Dynamic model and log–log refinement\n\n\nCode\n# Dynamic level model: include the lagged dependent variable\nm3 &lt;- lm(prod ~ prod_lag + area + fert + labor_density, data = rice_lag)\ncat(\"\\n=== Dynamic model in levels (m3) ===\\n\"); print(summary(m3))\n\n\n\n=== Dynamic model in levels (m3) ===\n\n\n\nCall:\nlm(formula = prod ~ prod_lag + area + fert + labor_density, data = rice_lag)\n\nResiduals:\n    Min      1Q  Median      3Q     Max \n-9.5972 -0.9054  0.0746  0.9975  9.1886 \n\nCoefficients:\n               Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept)   -1.857053   0.504532  -3.681 0.000270 ***\nprod_lag       0.025986   0.024865   1.045 0.296725    \narea           2.536997   0.162464  15.616  &lt; 2e-16 ***\nfert           0.006149   0.001330   4.624 5.33e-06 ***\nlabor_density  0.030997   0.007892   3.928 0.000104 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 2.204 on 346 degrees of freedom\nMultiple R-squared:  0.8142,    Adjusted R-squared:  0.8121 \nF-statistic: 379.2 on 4 and 346 DF,  p-value: &lt; 2.2e-16\n\n\nCode\ncat(\"\\nDW on m3:\\n\"); print(dwtest(m3))\n\n\n\nDW on m3:\n\n\n\n    Durbin-Watson test\n\ndata:  m3\nDW = 1.7778, p-value = 0.01758\nalternative hypothesis: true autocorrelation is greater than 0\n\n\nCode\ncat(\"\\nBG(AR1) on m3:\\n\"); print(bgtest(m3, order = 1))\n\n\n\nBG(AR1) on m3:\n\n\n\n    Breusch-Godfrey test for serial correlation of order up to 1\n\ndata:  m3\nLM test = 5.1696, df = 1, p-value = 0.02299\n\n\nCode\n# Log–log specification: interpretable elasticities, often stabilizes variance\nbest &lt;- lm(log(prod) ~ log(prod_lag) + log(area) + log(fert) + log(labor_density),\n           data = rice_lag)\n\n# Multicollinearity check in final model\ncat(\"\\n=== VIF (final log–log model) ===\\n\"); print(vif(best))\n\n\n\n=== VIF (final log–log model) ===\n\n\n     log(prod_lag)          log(area)          log(fert) log(labor_density) \n          1.115383           4.698116           4.274338           1.221126 \n\n\nCode\n# Final model summary: coefficients are elasticities\ncat(\"\\n=== Final model (log–log) summary ===\\n\"); print(summary(best))\n\n\n\n=== Final model (log–log) summary ===\n\n\n\nCall:\nlm(formula = log(prod) ~ log(prod_lag) + log(area) + log(fert) + \n    log(labor_density), data = rice_lag)\n\nResiduals:\n     Min       1Q   Median       3Q      Max \n-1.74604 -0.19002  0.05003  0.22904  1.40457 \n\nCoefficients:\n                   Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept)        -1.47819    0.25611  -5.772 1.74e-08 ***\nlog(prod_lag)      -0.05305    0.02197  -2.414   0.0163 *  \nlog(area)           0.82324    0.04947  16.640  &lt; 2e-16 ***\nlog(fert)           0.20008    0.03826   5.230 2.94e-07 ***\nlog(labor_density)  0.44431    0.06676   6.655 1.11e-10 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 0.3396 on 346 degrees of freedom\nMultiple R-squared:  0.8502,    Adjusted R-squared:  0.8485 \nF-statistic: 491.1 on 4 and 346 DF,  p-value: &lt; 2.2e-16\n\n\nCode\n# Autocorrelation checks on final model (expect no serial correlation)\ncat(\"\\nDW on final model:\\n\"); print(dwtest(best))\n\n\n\nDW on final model:\n\n\n\n    Durbin-Watson test\n\ndata:  best\nDW = 2.0162, p-value = 0.5545\nalternative hypothesis: true autocorrelation is greater than 0\n\n\nCode\ncat(\"\\nBG(AR1) on final model:\\n\"); print(bgtest(best, order = 1))\n\n\n\nBG(AR1) on final model:\n\n\n\n    Breusch-Godfrey test for serial correlation of order up to 1\n\ndata:  best\nLM test = 0.048045, df = 1, p-value = 0.8265\n\n\nAnswer (autocorrelation – final model): In the preferred log–log model with log(prod_lag), both tests indicate no residual serial correlation: DW ≈ 2.02 (p ≈ 0.55) and BG(1) p ≈ 0.83. This, together with acceptable VIFs (≤~4.7), supports using the log–log model for inference and interpretation as elasticities.",
     "crumbs": [
-      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Solution to in‑class Sup 4</span>"
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Solution to in‑class Sup 4</span>"
     ]
   },
   {
@@ -536,7 +886,7 @@
     "section": "5) Heteroskedasticity tests",
     "text": "5) Heteroskedasticity tests\n\n\nCode\n# Breusch–Pagan: H0 = homoskedasticity\ncat(\"\\n=== Heteroskedasticity ===\\n\")\n\n\n\n=== Heteroskedasticity ===\n\n\nCode\ncat(\"Breusch–Pagan:\\n\"); print(bptest(best))\n\n\nBreusch–Pagan:\n\n\n\n    studentized Breusch-Pagan test\n\ndata:  best\nBP = 20.065, df = 4, p-value = 0.0004848\n\n\nCode\n# White-type (auxiliary regression on fitted and fitted^2)\ncat(\"\\nWhite-type (fitted & fitted^2):\\n\")\n\n\n\nWhite-type (fitted & fitted^2):\n\n\nCode\nprint(bptest(best, ~ fitted(best) + I(fitted(best)^2), data = rice_lag))\n\n\n\n    studentized Breusch-Pagan test\n\ndata:  best\nBP = 24.196, df = 2, p-value = 5.572e-06",
     "crumbs": [
-      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Solution to in‑class Sup 4</span>"
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Solution to in‑class Sup 4</span>"
     ]
   },
   {
@@ -546,7 +896,7 @@
     "section": "6) Robust inference (HC1)",
     "text": "6) Robust inference (HC1)\n\n\nCode\n# Use heteroskedasticity-consistent (HC1) standard errors for inference\n# HAC is not needed because DW/BG suggest no serial correlation in the final model.\ncat(\"\\n=== Coefficients with robust (HC1) SE ===\\n\")\n\n\n\n=== Coefficients with robust (HC1) SE ===\n\n\nCode\nprint(lmtest::coeftest(best, vcov = sandwich::vcovHC(best, type = \"HC1\")))\n\n\n\nt test of coefficients:\n\n                    Estimate Std. Error t value  Pr(&gt;|t|)    \n(Intercept)        -1.478192   0.351465 -4.2058 3.317e-05 ***\nlog(prod_lag)      -0.053045   0.023119 -2.2944  0.022363 *  \nlog(area)           0.823241   0.079032 10.4166 &lt; 2.2e-16 ***\nlog(fert)           0.200076   0.066501  3.0086  0.002817 ** \nlog(labor_density)  0.444306   0.089841  4.9455 1.187e-06 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\n\nCode\ncat(\"\\n=== Coefficients with HAC (Newey–West, lag = 1) ===\\n\")\n\n\n\n=== Coefficients with HAC (Newey–West, lag = 1) ===\n\n\nCode\nprint(lmtest::coeftest(best, vcov. = sandwich::NeweyWest(best, lag = 1, prewhite = FALSE)))\n\n\n\nt test of coefficients:\n\n                    Estimate Std. Error t value  Pr(&gt;|t|)    \n(Intercept)        -1.478192   0.331960 -4.4529 1.145e-05 ***\nlog(prod_lag)      -0.053045   0.024527 -2.1627  0.031249 *  \nlog(area)           0.823241   0.077409 10.6350 &lt; 2.2e-16 ***\nlog(fert)           0.200076   0.065352  3.0615  0.002375 ** \nlog(labor_density)  0.444306   0.085679  5.1857 3.670e-07 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\n\nAnswer (heteroskedasticity & inference): Both BP and White-type tests reject homoskedasticity, so I report HC1 and also HAC (Newey–West) inference. Comparing p‑values across classical vs HC1 vs HAC, the significance pattern is robust: at the 5% level, log(area), log(fert), and log(labor_density) remain significant; log(prod_lag) also remains significant at ≈5% (small negative carryover). Hence, substantive conclusions are unchanged by robust/HAC corrections.",
     "crumbs": [
-      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Solution to in‑class Sup 4</span>"
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Solution to in‑class Sup 4</span>"
     ]
   },
   {
@@ -556,7 +906,7 @@
     "section": "Short interpretation notes (for students)",
     "text": "Short interpretation notes (for students)\n\nCollinearity: Replacing labor with labor_density reduced VIFs (improves stability of estimates).\nAutocorrelation: Final log–log model (best) passes DW/BG (no serial correlation).\nHeteroskedasticity: BP/White indicate non-constant variance → report robust SEs.\nElasticities: In the log–log model, coefficients read as % changes (e.g., 0.82 on log(area) ≈ 1% ↑ area → 0.82% ↑ output, ceteris paribus).\n\nFinal report: The preferred specification is a log–log production function with a dynamic term: \\(log(\\text{prod}_t) = \\alpha + \\beta1 \\log(\\text{prod}{t-1}) + \\beta_2 \\log(\\text{area}_t) + \\beta_3 \\log(\\text{fert}_t) +\\) \\(\\beta_4 \\log(\\text{labor/area}t) + u_t\\)\nDiagnostics follow textbook order. Multicollinearity: baseline VIFs were moderate (area ≈ 7.27, labor ≈ 7.06), so I replaced labor with labor density, reducing VIFs to ≤~3.74. Autocorrelation: the revised level model exhibited positive AR(1) serial correlation (DW ≈ 1.74; BG p ≈ 0.013; ACF consistent with AR(1) and possible AR(2)), which motivated adding a lagged dependent variable and moving to a log–log form. In the final model, DW ≈ 2.02 and BG(1) p ≈ 0.83 indicate no remaining autocorrelation. Heteroskedasticity: both BP and White-type tests reject homoskedasticity, so I report HC1 and HAC (Newey–West) standard errors; inference is unchanged. Interpretation: Coefficients are elasticities. Output elasticity w.r.t. cultivated area is ≈0.82, fertiliser ≈0.20, and labor density ≈0.44: a 1% rise in each raises output by roughly 0.82%, 0.20%, and 0.44%, respectively. The small negative coefficient on (\\(\\log(\\text{prod}{t-1}\\))) suggests modest mean reversion after shocks. Overall, the transformed specification is well‑behaved and economically interpretable, with robust inference to heteroskedasticity and HAC corrections.",
     "crumbs": [
-      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Solution to in‑class Sup 4</span>"
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Solution to in‑class Sup 4</span>"
     ]
   },
   {
@@ -566,7 +916,7 @@
     "section": "",
     "text": "🎯 Purpose\nThis handout explains what diagnostics matter in hedonic pricing models, why we use HC1 robust standard errors, and why autocorrelation/HAC are not relevant for our cross-sectional housing dataset. It also gives you a clear workflow and short code snippets you can reuse.",
     "crumbs": [
-      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Solution to in‑class Sup 5</span>"
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Solution to in‑class Sup 5</span>"
     ]
   },
   {
@@ -576,7 +926,7 @@
     "section": "🧭 Workflow for Cross‑Sectional Hedonic Models",
     "text": "🧭 Workflow for Cross‑Sectional Hedonic Models\n\n\n  Import & explore the data (summary, histograms, missing values).\n  Select variables using economic reasoning (see Supervision 3).\n  Estimate the model with lm() (log-price is standard).\n  Diagnose assumptions:\n    \n      Multicollinearity → VIF\n      Heteroskedasticity → White test (Breusch–Pagan)\n      Optional (time/panel only): Autocorrelation (BG test)\n    \n  \n  Correct inference with HC1 robust SEs (cross‑section default).\n  Visual checks: residuals vs fitted, normal Q–Q.\n  Interpret coefficients and tell the economic story.\n\n\n\nKey takeaway: Hedonic models here are cross‑sectional. We use HC1 robust SEs. HAC/Newey–West and autocorrelation tests are for time series or panel data, not for this dataset.",
     "crumbs": [
-      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Solution to in‑class Sup 5</span>"
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Solution to in‑class Sup 5</span>"
     ]
   },
   {
@@ -586,7 +936,7 @@
     "section": "🔎 Diagnostics That Matter (Cross‑Section)",
     "text": "🔎 Diagnostics That Matter (Cross‑Section)\n\nA) Multicollinearity — VIF\nMany house attributes are correlated (area, bedrooms, baths).\nRules of thumb: VIF &lt; 5 usually fine; 5–10 investigate; &gt;10 consider removing/re‑coding or combining variables.\n\n\nB) Heteroskedasticity — White/Breusch–Pagan\nCross-sectional housing price data almost always violates homoskedasticity.",
     "crumbs": [
-      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Solution to in‑class Sup 5</span>"
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Solution to in‑class Sup 5</span>"
     ]
   },
   {
@@ -596,7 +946,7 @@
     "section": "🧮 Correct Inference — HC1 Robust Standard Errors",
     "text": "🧮 Correct Inference — HC1 Robust Standard Errors\nHC1 is consistent for cross-sectional data. HAC is consistent for time series.\n\nWe do not use HAC/Newey–West in this exercise because there is no time ordering in cross‑sectional data.",
     "crumbs": [
-      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Solution to in‑class Sup 5</span>"
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Solution to in‑class Sup 5</span>"
     ]
   },
   {
@@ -606,7 +956,7 @@
     "section": "👀 Visual Diagnostics (Good Academic Practice)",
     "text": "👀 Visual Diagnostics (Good Academic Practice)\npar(mfrow = c(1, 2))\nplot(m0, which = 1)  # Residuals vs Fitted (linearity & variance)\nplot(m0, which = 2)  # Normal Q–Q (error distribution)\nInterpretation hints: - Left plot: no curve or funnel → linearity & constant variance ok; patterns → consider transforms or interactions. - Right plot: points near line → residuals roughly normal; big tails → consider log transforms or outlier checks.",
     "crumbs": [
-      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Solution to in‑class Sup 5</span>"
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Solution to in‑class Sup 5</span>"
     ]
   },
   {
@@ -616,7 +966,7 @@
     "section": "(Optional) Variable Selection (Link to Supervision 3)",
     "text": "(Optional) Variable Selection (Link to Supervision 3)\nUse only if multicollinearity is high or the model is unwieldy.\n\nAlways justify inclusion/exclusion with economic reasoning, not just AIC.",
     "crumbs": [
-      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Solution to in‑class Sup 5</span>"
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Solution to in‑class Sup 5</span>"
     ]
   },
   {
@@ -626,7 +976,7 @@
     "section": "(Optional, for Time/Panel Data) Autocorrelation",
     "text": "(Optional, for Time/Panel Data) Autocorrelation",
     "crumbs": [
-      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Solution to in‑class Sup 5</span>"
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Solution to in‑class Sup 5</span>"
     ]
   },
   {
@@ -636,7 +986,7 @@
     "section": "Not used for this cross‑section. Shown only for comparison with time‑series workflows.",
     "text": "Not used for this cross‑section. Shown only for comparison with time‑series workflows.",
     "crumbs": [
-      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Solution to in‑class Sup 5</span>"
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Solution to in‑class Sup 5</span>"
     ]
   },
   {
@@ -646,7 +996,7 @@
     "section": "✅ Key Takeaways",
     "text": "✅ Key Takeaways\n\nThis dataset is cross‑sectional → HC1 robust SEs are appropriate.\nFocus diagnostics on VIF and White test, plus residual visuals.\nAutocorrelation tests and HAC are for time/panel data and are not used here.\nCombine theory and evidence (Sup 3 + Sup 4) to justify your final model.",
     "crumbs": [
-      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Solution to in‑class Sup 5</span>"
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Solution to in‑class Sup 5</span>"
     ]
   }
 ]

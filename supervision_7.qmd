@@ -1,0 +1,482 @@
+---
+title: "Supervision 7: Qualitative Research in Practice"
+subtitle: "Designing Survey Questions That Elicit Valid, Credible Data"
+format: html
+execute:
+  echo: true
+  warning: false
+  message: false
+---
+
+# 🧭 Session Overview
+
+**Duration:** 90–120 minutes  
+**Mode:** In-person, small groups (3–5)  
+**Prerequisites:** 
+- Supervision 5 (platform skills: Qualtrics, Prolific/MTurk, consent flows)
+- Lab 5 (hands-on platform setup)
+
+**Purpose:** Bridge from _distributing surveys_ (Lab 5) to _designing questions that elicit valid, credible qualitative data_, especially on potentially sensitive topics. This supervision emphasizes **qualitative research approaches** within survey design.
+
+**Key Transition:** You now know *how* to build and deploy a survey. Today we focus on *what* to ask and *how* to ask it—particularly when seeking rich, nuanced responses rather than simple numerical scales.
+
+---
+
+# 🎯 Learning Outcomes
+
+By the end of this supervision, you will be able to:
+
+1. **Distinguish** between qualitative and quantitative survey questions and identify when each approach serves your research goals
+2. **Explain** why representativity matters for external validity and describe (at a high level) what survey weights do
+3. **Identify and correct** common wording problems that undermine data quality:
+   - Leading/loaded language
+   - Double-barrelled questions
+   - Ambiguous terms
+   - Social desirability triggers
+4. **Design** both direct and indirect elicitation strategies for sensitive topics
+5. **Critically evaluate** real questionnaire items from the European Values Study (EVS) and propose improved qualitative versions
+6. **Apply** these principles to your own RM01 research design
+
+---
+
+# 🗂 Materials & Resources
+
+## Core Materials
+- **EVS 2017 Master Questionnaire (English):**  
+  <https://access.gesis.org/dbk/69554?download_purpose=-99>
+- **EVS data & documentation hub:**  
+  <https://europeanvaluesstudy.eu/methodology-data-documentation/survey-2017/full-release-evs2017/>
+
+## Optional Background
+- EVS/WVS joint release: <https://europeanvaluesstudy.eu/methodology-data-documentation/survey-2017/joint-evs-wvs/>
+
+## Platform Reminder
+- Your Qualtrics account (from Lab 5)
+- EVS questionnaire as exemplar of large-scale survey design
+
+> 💡 **Why EVS?** This authentic instrument demonstrates how major cross-national studies navigate sensitive topics, cultural variation, and measurement challenges. We'll use it to examine both strengths and limitations.
+
+---
+
+# 🧠 Learn (15 min) — How wording changes data quality
+
+## Part 1: Mini-Lecture (15 min)
+
+## 1.1 Qualitative vs. Quantitative Questions in Surveys
+
+### Quantitative Approach
+- **Structure:** Closed-ended, fixed response categories
+- **Output:** Numerical data for statistical analysis
+- **Example:** "On a scale of 1-5, how satisfied are you with...?"
+- **Strength:** Comparable, analyzable at scale
+- **Limitation:** May miss nuance, context, unexpected perspectives
+
+### Qualitative Approach  
+- **Structure:** Open-ended, narrative responses, or scenario-based
+- **Output:** Text data requiring thematic/content analysis
+- **Example:** "Describe a situation where you felt satisfied/dissatisfied..."
+- **Strength:** Rich detail, unexpected insights, contextual understanding
+- **Limitation:** Time-intensive to analyze; harder to generalize numerically
+
+### When to Choose Each
+- **Quantitative:** Testing hypotheses, measuring prevalence, comparing groups
+- **Qualitative:** Exploring meanings, understanding processes, generating hypotheses
+- **Mixed:** Often most powerful—use qualitative to inform quantitative scales or explain quantitative patterns
+
+---
+
+## 1.2 Representativity → External Validity
+
+### Core Concept
+**Representativity** means your sample composition resembles your **target population** on characteristics that matter for your inference.
+
+### Why It Matters
+- **Threat:** If key groups are under/over-represented, results may not generalize (external validity risk)
+- **Example:** Surveying only landlords when you need tenant perspectives too
+- **Real Estate Context:** Property investors vs. owner-occupiers vs. renters may have systematically different views on housing policy
+
+### Pragmatic Reality
+- Perfect representativity is unattainable
+- **Goal:** Credible coverage + transparent documentation of limitations
+- **Your RM01 surveys:** Consider who you're reaching via Prolific/MTurk/personal networks
+
+---
+
+## 1.3 Survey Weights (High-Level Understanding)
+
+You won't compute weights in this course, but understand their purpose:
+
+### Design Weights
+- **Purpose:** Correct unequal selection probabilities from sampling design
+- **Example:** If rural respondents had 1/3 the chance of selection, weight them 3× higher
+
+### Post-Stratification Weights
+- **Purpose:** After fieldwork, adjust to population benchmarks (e.g., age×sex×region)
+- **Use case:** Your Prolific sample skews young? Reweight to match UK census margins
+- **Limitation:** Weighting reduces certain biases but **cannot fix poor question design**
+
+### Key Takeaway
+Representative sampling + good weights help **external validity**.  
+Good question design helps **internal validity** (measuring what you intend to measure).  
+You need both.
+
+---
+
+## 1.4 Question Formulation Pitfalls
+
+### Leading/Loaded Wording
+❌ "Don't you agree that affordable housing is essential?"  
+✅ "To what extent do you think affordable housing is important?"
+
+### Double-Barrelled Questions
+> ✅ **Heuristic:** If a question contains *and*, it is probably double‑barrelled.
+❌ "How satisfied are you with your income and job security?"  
+✅ Split into two questions—income satisfaction and job security are distinct constructs
+
+### Ambiguity & Vagueness
+❌ "How often do you visit properties?" (What's "often"? Personal viewings? Client viewings?)  
+✅ "In the past month, approximately how many property viewings did you conduct?"
+
+### Social Desirability Bias
+- **Risk:** Respondents answer what sounds "good" rather than truthfully
+- **Topics:** Income, discriminatory attitudes, rule compliance, controversial opinions
+- **Strategy:** Indirect elicitation (see next section)
+
+---
+
+## 1.5 Sensitive Topics: Direct vs. Indirect Elicitation
+
+### Direct Questions
+- **Approach:** Straightforward, explicit
+- **Example:** "Have you ever discriminated against a tenant on the basis of ethnicity?"
+- **Pro:** Simple, transparent
+- **Con:** Likely underreporting due to social desirability
+
+### Indirect Approaches
+
+#### Qualitative Techniques
+1. **Third-person framing:** "How common do you think ethnic discrimination is among landlords in your area?"
+2. **Projective prompts:** "Imagine a landlord who prefers not to rent to certain ethnic groups. What might their reasoning be?"
+3. **Vignettes/scenarios:** Present a hypothetical situation; ask for interpretation or advice
+4. **List experiments** (concept): Compare item counts between control/treatment groups to infer prevalence without individual disclosure
+
+#### Example: Immigration Attitudes
+- **Direct:** "Do you support stricter immigration controls?" (May trigger socially desirable response)
+- **Indirect:** Present vignette of immigrant family seeking housing; ask open-ended: "What factors should a landlord consider when evaluating this application?"
+
+### When to Use Indirect Methods
+- Stigmatized behaviors or attitudes
+- Illegal/unethical practices
+- Topics where respondent may fear judgment
+- Exploratory research where you want honest, detailed narratives
+
+---
+
+# ✏️ Try (25 min) — Rewrite a sensitive question (direct → indirect)
+
+## Part 2: Activity A (25 min) – Rewriting Sensitive Questions
+
+## Task Overview
+Working in **pairs**, choose one sensitive theme below. For your chosen theme:
+
+1. Draft a **direct** question (quantitative or closed-ended)
+2. Draft an **indirect/qualitative** alternative using one or more of:
+   - Vignette with open-ended follow-up
+   - Projective/third-person framing
+   - Scenario-based question
+3. Compare: What kind of data would each approach yield? What are the trade-offs?
+
+## Themes (Pick One)
+> **We analyze wording and data quality — not beliefs or personal views.**
+
+### A. Immigration & Housing
+Context: Attitudes toward immigrant access to housing/social housing
+
+### B. Regulatory Compliance
+Context: Landlords' adherence to safety regulations, licensing, tax reporting
+
+### C. Political Tolerance
+Context: Acceptance of diverse political views in community/workplace
+
+### D. Gender Norms at Work
+Context: Beliefs about women in property development/construction leadership
+
+### E. Religious Practice & Real Estate
+Context: Religious considerations in property transactions, development decisions
+
+## Deliverable
+Prepare to share both versions (2 minutes per pair):
+- Direct question
+- Indirect alternative
+- One insight about what changes between approaches
+
+## Quality Checklist
+- ✅ Neutral wording (no leading language)?
+- ✅ Single construct (not double-barrelled)?
+- ✅ Clear, defined terms (no ambiguous "often," "regularly")?
+- ✅ Acknowledges social desirability pressure?
+- ✅ Indirect version genuinely reduces pressure while still addressing topic?
+
+---
+
+# 🔎 Apply (40 min) — Audit real survey questions (EVS)
+
+## Part 3: Activity B (40 min) – EVS Question Audit
+
+## Overview
+The European Values Study surveys thousands of respondents across Europe on values, beliefs, and attitudes. We'll audit how EVS handles sensitive/complex topics and consider qualitative improvements.
+
+## Step 1: Form Groups & Choose Subtopic (5 min)
+
+**Groups of 3–5.** Each group selects **one subtopic**:
+
+1. **Religion & Morality** (e.g., items on religiosity, moral absolutes)
+2. **Family & Gender Equality** (e.g., women's roles, work-family balance)
+3. **Politics, Democracy & Trust** (e.g., institutional trust, political engagement)
+4. **National Identity, Migration & Diversity** (e.g., immigration attitudes, national pride)
+5. **Work, Economy & Inequality** (e.g., income fairness, job values)
+6. **Environment & Climate Attitudes** (e.g., willingness to sacrifice for environment)
+
+## Step 2: Locate & Select Items (10 min)
+
+1. Open the **EVS 2017 Master Questionnaire** (link above)
+2. Find the section(s) relevant to your subtopic
+3. Select **2–3 items** (not 3–5—we're prioritizing depth over breadth)
+4. Screenshot or note item codes for reference
+
+## Step 3: Analyze Each Item (15 min)
+
+For each selected item, consider:
+
+### Wording Analysis
+- Is language neutral or leading/loaded?
+- Any double-barrelled issues (two concepts in one question)?
+- Are terms clearly defined or ambiguous?
+
+### Elicitation Strategy
+- Direct or indirect approach?
+- What assumptions does the question make?
+- What might respondents be reluctant to reveal?
+
+### Response Format
+- Closed scales (e.g., 1–10, agree/disagree)?
+- Does the format constrain nuanced responses?
+- Would open-ended follow-ups add value?
+
+### Qualitative Potential
+- How might you reframe this as an open-ended question?
+- Could a vignette or scenario elicit richer data?
+- Would third-person framing reduce social desirability pressure?
+
+## Step 4: Propose Improvements (10 min)
+
+For **one** of your selected items, draft:
+- **Improved qualitative version** (open-ended, vignette, or projective)
+- **Brief rationale** (what does your version capture that the original doesn't?)
+
+## Group Output Template
+
+Prepare **3–5 bullet points** to share with class:
+
+1. **EVS item citation** (short quote or paraphrase + item code if available)
+2. **Strengths** (1–2): What does EVS do well here?
+3. **Limitations** (1–2): What's constrained or problematic?
+4. **Your improved qualitative question**
+5. **Sensitivity/ethical considerations** (if relevant)
+
+### Example Output
+
+> **EVS Item V185:** "On this list are various groups of people. Could you please mention any that you would not like to have as neighbours?"  
+> 
+> **Strengths:**  
+> - Indirect approach reduces pressure to deny prejudice  
+> - List format allows multiple selections  
+>
+> **Limitations:**  
+> - Still fairly direct (asks about personal preferences)  
+> - Closed list may miss relevant groups  
+> - Doesn't capture reasoning or context  
+>
+> **Improved qualitative version:**  
+> "Think about your neighbourhood. What kinds of qualities or characteristics do you think make for a good neighbour? What kinds of situations might create tension between neighbours?"  
+> *(Follow-up probe: "Can you give an example of a situation you've observed or heard about?")*
+>
+> **Rationale:** Shifts focus to abstract qualities and situations rather than demographic groups, reducing defensiveness while still revealing underlying attitudes. Open-ended format invites storytelling and context.
+
+---
+
+# 🗣 Part 4: Plenary Discussion (15 min)
+
+## Sharing (10 min)
+Each group presents **one key insight** from their EVS audit:
+- How does question wording shape the data you get?
+- What do you gain (or lose) moving from quantitative to qualitative?
+
+## Synthesis (5 min)
+Supervisor highlights cross-cutting themes:
+- Trade-offs between standardization and nuance
+- Role of context in qualitative responses
+- Ethical considerations in sensitive topic research
+- Application to real estate/land economy contexts
+
+---
+
+# ✍️ Part 5: Personal Reflection (10 min)
+
+## Reflection Prompt
+> **"What will you do differently when designing your own survey questions for RM01?"**
+
+Write 3–5 sentences addressing:
+- One specific wording pitfall you'll avoid
+- One context where you'll use qualitative (open-ended) questions
+- One sensitive topic you'll approach indirectly (if relevant to your project)
+
+**Save this reflection** with your RM01 project notes.
+
+## Optional: Peer Exchange
+If time permits, share your reflection with one other student and discuss:
+- Are your projects facing similar design challenges?
+- Could you pilot questions on each other before wider distribution?
+
+---
+
+# 📦 Optional Extension / Homework
+
+## Task: Audit Your Own RM01 Survey Draft
+Review **three** questions from your own survey design:
+
+1. **Check for pitfalls:**
+   - Leading/loaded language? → Neutralize
+   - Double-barrelled? → Split into separate items
+   - Vague terms? → Define or provide examples
+
+2. **Consider elicitation strategy:**
+   - Is any topic sensitive enough to warrant indirect approach?
+   - Would a qualitative (open-ended) version add value?
+   - Could you mix quantitative and qualitative for richer data?
+
+3. **Revise and document:**
+   - Show original version
+   - Show revised version
+   - Explain your reasoning (1–2 sentences per change)
+
+**Upload** before next session for optional peer review.
+
+---
+
+# 🧰 Appendix: Quick Reference
+
+## A. Question Wording Checklist
+
+| ❌ Avoid | ✅ Aim For |
+|---------|-----------|
+| Leading/loaded phrasing | Neutral, balanced language |
+| Double-barrelled (two ideas at once) | Single construct per question |
+| Vague terms ("often," "regularly") | Specific timeframes, quantities |
+| Overly long/complex stems | Concise, clear phrasing |
+| Jargon or technical terms | Plain language (or define terms) |
+| Assume respondent knowledge | Include context if needed |
+
+## B. Indirect Elicitation Techniques
+
+### For Qualitative Survey Design
+
+| Technique | Description | Example |
+|-----------|-------------|---------|
+| **Third-person** | Ask about others, not respondent | "How do landlords in your area typically handle tenant disputes?" |
+| **Projective** | Respondent interprets someone else's behavior | "Imagine a developer who opposes affordable housing. What might their concerns be?" |
+| **Vignette** | Present scenario; ask for reaction/advice | "Sarah is a single mother applying to rent. [Details]. If you were the landlord, what factors would you consider?" |
+| **Best-worst scaling** | Force trade-offs between options | "Which of these housing features would you prioritize? Which would you sacrifice?" |
+| **Free listing** | Open brainstorming before rating | "List all the factors that influence your property investment decisions." (Then follow with structured questions) |
+
+### For Quantitative Prevalence Estimates (Conceptual—Not Implemented in This Course)
+
+| Technique | Purpose | How It Works |
+|-----------|---------|--------------|
+| **List experiment** | Estimate prevalence of sensitive behavior | Control group sees innocuous list; treatment group sees same list + sensitive item. Difference in means estimates prevalence. |
+| **Randomized response** | Protect individual privacy while estimating prevalence | Respondent flips coin privately; answers YES if heads (regardless of truth), answers truthfully if tails. Randomness protects individuals; statistics recover population rate. |
+
+## C. Representativity & Validity
+
+### Key Relationships
+
+```
+Representativity → External Validity
+    ↓
+Can we generalize findings beyond our sample?
+
+Good Question Design → Internal Validity  
+    ↓
+Are we measuring what we intend to measure?
+```
+
+### Survey Weights (Context Only)
+
+- **Design weights:** Correct for unequal selection probabilities
+- **Post-stratification weights:** Align sample to population benchmarks
+- **Note:** Weighting helps external validity but **cannot fix poor measurement**
+
+### For Your RM01 Projects
+
+Consider:
+- **Target population:** Who are you trying to understand?
+- **Sampling frame:** Who can you actually reach (Prolific, MTurk, professional networks)?
+- **Coverage gaps:** Who's missing? Document these as limitations.
+- **Generalizability claims:** Be precise about scope of inference
+
+## D. Connecting to Lab 5 Platform Skills
+
+### Lab 5 Taught You:
+- Set up Qualtrics surveys
+- Configure consent flows
+- Create Prolific/MTurk accounts
+- Understand fee structures
+
+### Supervision 7 Builds On This:
+- **What questions** to put in your Qualtrics survey
+- **How to word** those questions to get valid data
+- **When to use** qualitative vs. quantitative approaches
+- **How to handle** sensitive topics ethically
+
+### Integration Task (If Time Permits)
+Open your Qualtrics account and:
+1. Create one **quantitative** question (scale/multiple choice)
+2. Create one **qualitative** question (open text with clear prompt)
+3. Set up **branch logic** so qualitative question only appears if quantitative response meets certain criteria (e.g., "If dissatisfied, please explain why:")
+
+---
+
+# ✅ Assessment Criteria (Informal)
+
+Your engagement will be evaluated on:
+
+- **Participation:** Active contribution to Activities A & B
+- **Critical analysis:** Depth of EVS audit (not just description, but evaluation)
+- **Application:** Quality of proposed qualitative alternatives
+  - Neutrality of wording
+  - Appropriateness of indirect techniques
+  - Sensitivity to ethical considerations
+- **Reflection:** Thoughtfulness about applying concepts to your own RM01 research
+
+---
+
+# 📚 Further Reading (Optional)
+
+## Survey Design Classics
+- Fowler, F. J. (2014). *Survey Research Methods* (5th ed.). SAGE.
+- Tourangeau, R., & Yan, T. (2007). "Sensitive questions in surveys." *Psychological Bulletin*, 133(5), 859-883.
+
+## Qualitative Survey Methods
+- Braun, V., & Clarke, V. (2006). "Using thematic analysis in psychology." *Qualitative Research in Psychology*, 3(2), 77-101.
+
+## Sensitive Topics
+- Lee, R. M., & Renzetti, C. M. (1993). "The problems of researching sensitive topics." *American Behavioral Scientist*, 33(5), 510-528.
+
+## EVS/WVS Methodology
+- EVS (2020). *European Values Study 2017: Method Report*. GESIS.
+
+---
+
+**End of Supervision 7**
+
+*Next supervision: [Topic TBD—likely analysis of qualitative survey data or pilot testing findings]*
