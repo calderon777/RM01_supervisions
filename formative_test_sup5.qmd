@@ -1,0 +1,69 @@
+---
+title: "In-Class Exercise Sup 4"
+format:
+  html:
+    toc: true
+    number-sections: false
+---
+
+# Formative Assessment Task (Based on Supervision 6)
+
+This formative task prepares you for the assessed empirical report due later in the module.  
+Your goal is to **write a short analytical report** based on the content, workflow, and outputs of **Supervision 6 (Logit vs Probit Models)**.
+
+You will submit your answer through **Microsoft Forms**:
+
+👉 [Submit your answer here](https://forms.office.com/e/KRrrUtJsYg){.btn .btn-primary target="_blank"}
+
+---
+
+## 🎯 Task Overview
+
+Using the material covered in **Supervision 6** (Logit vs Probit modelling on the hedonic dataset), produce a **concise research-style report** of **300–450 words** that addresses the following:
+
+### **1. Model Setup**
+Describe:
+- How the dependent variable was transformed into a binary indicator (High vs Low Price).
+- Why Logit and Probit models are appropriate for this transformed outcome.
+- The rationale for keeping the hedonic RHS variables from Supervision 5.
+
+### **2. Model Estimation**
+Summarise:
+- The two models estimated (Logit and Probit).
+- The use of **backward selection with BIC** to obtain the final specification.
+- Any key differences between the BIC-selected Logit and Probit models (e.g., dropped covariates).
+
+### **3. Interpretation of Results**
+Explain:
+- The meaning of *marginal effects* in probability terms.
+- Identify **one or two** variables with strong and statistically significant effects and interpret them concisely.
+
+### **4. Predictive Performance**
+Discuss:
+- How ROC curves and AUC were used to compare predictive accuracy.
+- Whether the Logit and Probit models produced similar predicted probabilities.
+- What threshold choice means for classification (using confusion matrices).
+
+### **5. Final Reflection**
+Provide a short reflection (2–3 sentences) on:
+- Which model you would prefer for predicting high-price houses.
+- Whether statistical performance or interpretability guided your preference.
+
+---
+
+## 📝 Notes for Students
+
+- This is **not** a coding task — focus on interpretation and communication.
+- Keep your report structured, clear, and evidence-based.
+- Use your own words and avoid copying directly from supervision notes.
+- Aim for short, well-argued paragraphs rather than long technical descriptions.
+
+---
+
+## 📤 Submission
+
+Submit your response via **Microsoft Forms** using the link below:
+
+🔗 [Formative Task – Supervision 6 Report Submission](https://forms.office.com/e/KRrrUtJsYg){target="_blank"}
+
+Make sure you submit **one response only** and check your work before sending.
