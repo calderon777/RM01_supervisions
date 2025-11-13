@@ -513,6 +513,20 @@ cm_probit_opt
 - ROC/Youden threshold evaluates predictive/classification performance
 :::
 
+## Policy applications
+
+Binary choice modelling is often used by governments or planners when the dependent variable can be framed as a yes/no outcome, for example:
+
+Probability a property is affordable or not affordable
+
+Probability a house is in poor condition
+
+Probability a dwelling meets energy efficiency standards
+
+Probability a house is at risk of flooding
+
+Probability the area is gentrifying
+
 ---
 
 ### 📝 What to Report (suggested structure)
