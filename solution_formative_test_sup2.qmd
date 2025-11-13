@@ -1,0 +1,231 @@
+---
+title: "Solution to Formative Test Sup2"
+author: "Camilo Calderon-Morales, PhD"
+date: 2025-11-13
+format:
+  html:
+    toc: true
+    toc-depth: 3
+    code-fold: show
+execute:
+  echo: true
+  warning: false
+  message: false
+---
+
+## Overview
+
+This document provides the **solutions** to:
+
+> **Formative Test 1 – Linear Regression MCQs**
+
+The quiz was delivered via **MS Forms** and focuses on R, simple linear regression, model diagnostics, and basic time series concepts.
+
+---
+
+## Questions and Answers
+
+### 1. In R, which function reads a CSV file into a data frame?
+
+**Correct answer:** `read.csv()`
+
+---
+
+### 2. AR(1) model:
+
+**Correct answer:**  
+An **autoregressive model of order 1**, where the current value depends on its own first lag, typically written as:
+
+\[
+y_t = c + \phi y_{t-1} + u_t
+\]
+
+---
+
+### 3. The Durbin–Watson test detects:
+
+**Correct answer:** Autocorrelation
+
+---
+
+### 4. Endogeneity can arise due to:
+
+**Correct answer:** Omitted variables
+
+---
+
+### 5. A fitted regression line always passes through:
+
+**Correct answer:** The mean of X and Y (the point \((\bar X, \bar Y)\))
+
+---
+
+### 6. A negative slope suggests:
+
+**Correct answer:** Y decreases as X increases
+
+---
+
+### 7. The AIC is:
+
+**Correct answer:** Model quality penalizing complexity
+
+---
+
+### 8. What does `geom_point()` add to a ggplot?
+
+**Correct answer:** Scatter plot points
+
+---
+
+### 9. In a simple regression, what does the slope represent?
+
+**Correct answer:** The change in Y for a one-unit change in X
+
+---
+
+### 10. In ggplot2, which function can be used to add a regression line to a scatter plot?
+
+**Correct answer:** `geom_smooth(method = "lm")`
+
+---
+
+### 11. Which function fits a linear model in R?
+
+**Correct answer:** `lm()`
+
+---
+
+### 12. If X = income and Y = food expenditure, what does a slope of 0.4 mean?
+
+**Correct answer:**  
+For every £1 increase in income, food expenditure rises by £0.40
+
+---
+
+### 13. Which dplyr function filters rows?
+
+**Correct answer:** `filter()`
+
+---
+
+### 14. A p-value of 0.01 suggests:
+
+**Correct answer:** Strong evidence against the null
+
+---
+
+### 15. Multicollinearity is:
+
+**Correct answer:** A problem in multiple regression, not simple regression
+
+---
+
+### 16. Which function fits a linear model in R?
+
+**Correct answer:** `lm()`
+
+---
+
+### 17. When the regression line fits perfectly, the residuals are:
+
+**Correct answer:** All zero
+
+---
+
+### 18. What happens to R-squared when adding more variables?
+
+**Correct answer:** It always increases or stays the same
+
+---
+
+### 19. When `summary(fit)` shows `Pr(>|t|) < 0.05`, we:
+
+**Correct answer:** Reject the null hypothesis that \(\beta = 0\)
+
+---
+
+### 20. In ggplot2, which function adds points to a plot?
+
+**Correct answer:** `geom_point()`
+
+---
+
+### 21. Adjusted R-squared is preferred when:
+
+**Correct answer:** Comparing models with different numbers of predictors
+
+---
+
+### 22. If residuals show a pattern, it suggests:
+
+**Correct answer:** Model misspecification
+
+---
+
+### 23. Residuals represent:
+
+**Correct answer:** The difference between observed and predicted Y
+
+---
+
+### 24. Stationarity means:
+
+**Correct answer:** Constant mean and variance
+
+---
+
+### 25. Which command displays the regression results summary in R?
+
+**Correct answer:** `summary()`
+
+---
+
+### 26. Why do we add `method = "lm"` inside `geom_smooth()`?
+
+**Correct answer:** To fit a linear model line
+
+---
+
+### 27. In `lm(food ~ income)`, “food” is the:
+
+**Correct answer:** Dependent variable
+
+---
+
+### 28. In a scatter plot with a fitted regression line, large vertical deviations indicate:
+
+**Correct answer:** Large residuals
+
+---
+
+### 29. Heteroskedasticity refers to:
+
+**Correct answer:** Non-constant error variance
+
+---
+
+### 30. One key assumption of OLS is that errors have:
+
+**Correct answer:** All choices are correct  
+(Zero mean, constant variance, and no correlation with X.)
+
+---
+
+### 31. If residuals are not normally distributed, this mainly affects:
+
+**Correct answer:** The validity of hypothesis tests
+
+---
+
+### 32. What does a high R-squared value indicate about the model fit?
+
+**Correct answer:** The model explains a large proportion of the variance in Y
+
+---
+
+### 33. What is the null hypothesis for the slope coefficient in simple regression?
+
+**Correct answer:** \(\beta_1 = 0\)
+
+---
