@@ -760,43 +760,43 @@
     ]
   },
   {
-    "objectID": "formative_test_sup5.html",
-    "href": "formative_test_sup5.html",
-    "title": "In-Class Exercise Sup 4",
+    "objectID": "formative_test_sup6.html",
+    "href": "formative_test_sup6.html",
+    "title": "In-Class Exercise Sup 6",
     "section": "",
     "text": "Formative Assessment Task (Based on Supervision 6)\nThis formative task prepares you for the assessed empirical report due later in the module.\nYour goal is to write a short analytical report based on the content, workflow, and outputs of Supervision 6 (Logit vs Probit Models).\nYou will submit your answer through Microsoft Forms:\n👉 Submit your answer here",
     "crumbs": [
-      "<span class='chapter-number'>11</span>  <span class='chapter-title'>In-Class Exercise Sup 4</span>"
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>In-Class Exercise Sup 6</span>"
     ]
   },
   {
-    "objectID": "formative_test_sup5.html#task-overview",
-    "href": "formative_test_sup5.html#task-overview",
-    "title": "In-Class Exercise Sup 4",
+    "objectID": "formative_test_sup6.html#task-overview",
+    "href": "formative_test_sup6.html#task-overview",
+    "title": "In-Class Exercise Sup 6",
     "section": "🎯 Task Overview",
     "text": "🎯 Task Overview\nUsing the material covered in Supervision 6 (Logit vs Probit modelling on the hedonic dataset), produce a concise research-style report of 300–450 words that addresses the following:\n\n1. Model Setup\nDescribe: - How the dependent variable was transformed into a binary indicator (High vs Low Price). - Why Logit and Probit models are appropriate for this transformed outcome. - The rationale for keeping the hedonic RHS variables from Supervision 5.\n\n\n2. Model Estimation\nSummarise: - The two models estimated (Logit and Probit). - The use of backward selection with BIC to obtain the final specification. - Any key differences between the BIC-selected Logit and Probit models (e.g., dropped covariates).\n\n\n3. Interpretation of Results\nExplain: - The meaning of marginal effects in probability terms. - Identify one or two variables with strong and statistically significant effects and interpret them concisely.\n\n\n4. Predictive Performance\nDiscuss: - How ROC curves and AUC were used to compare predictive accuracy. - Whether the Logit and Probit models produced similar predicted probabilities. - What threshold choice means for classification (using confusion matrices).\n\n\n5. Final Reflection\nProvide a short reflection (2–3 sentences) on: - Which model you would prefer for predicting high-price houses. - Whether statistical performance or interpretability guided your preference.",
     "crumbs": [
-      "<span class='chapter-number'>11</span>  <span class='chapter-title'>In-Class Exercise Sup 4</span>"
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>In-Class Exercise Sup 6</span>"
     ]
   },
   {
-    "objectID": "formative_test_sup5.html#notes-for-students",
-    "href": "formative_test_sup5.html#notes-for-students",
-    "title": "In-Class Exercise Sup 4",
+    "objectID": "formative_test_sup6.html#notes-for-students",
+    "href": "formative_test_sup6.html#notes-for-students",
+    "title": "In-Class Exercise Sup 6",
     "section": "📝 Notes for Students",
     "text": "📝 Notes for Students\n\nThis is not a coding task — focus on interpretation and communication.\nKeep your report structured, clear, and evidence-based.\nUse your own words and avoid copying directly from supervision notes.\nAim for short, well-argued paragraphs rather than long technical descriptions.",
     "crumbs": [
-      "<span class='chapter-number'>11</span>  <span class='chapter-title'>In-Class Exercise Sup 4</span>"
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>In-Class Exercise Sup 6</span>"
     ]
   },
   {
-    "objectID": "formative_test_sup5.html#submission",
-    "href": "formative_test_sup5.html#submission",
-    "title": "In-Class Exercise Sup 4",
+    "objectID": "formative_test_sup6.html#submission",
+    "href": "formative_test_sup6.html#submission",
+    "title": "In-Class Exercise Sup 6",
     "section": "📤 Submission",
     "text": "📤 Submission\nSubmit your response via Microsoft Forms using the link below:\n🔗 Formative Task – Supervision 6 Report Submission\nMake sure you submit one response only and check your work before sending.",
     "crumbs": [
-      "<span class='chapter-number'>11</span>  <span class='chapter-title'>In-Class Exercise Sup 4</span>"
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>In-Class Exercise Sup 6</span>"
     ]
   },
   {

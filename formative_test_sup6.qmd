@@ -1,5 +1,5 @@
 ---
-title: "In-Class Exercise Sup 4"
+title: "In-Class Exercise Sup 6"
 format:
   html:
     toc: true
