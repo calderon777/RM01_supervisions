@@ -22,6 +22,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -198,6 +233,7 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#optional-for-timepanel-data-autocorrelation" id="toc-optional-for-timepanel-data-autocorrelation" class="nav-link" data-scroll-target="#optional-for-timepanel-data-autocorrelation">(Optional, for Time/Panel Data) Autocorrelation</a></li>
   <li><a href="#not-used-for-this-crosssection.-shown-only-for-comparison-with-timeseries-workflows." id="toc-not-used-for-this-crosssection.-shown-only-for-comparison-with-timeseries-workflows." class="nav-link" data-scroll-target="#not-used-for-this-crosssection.-shown-only-for-comparison-with-timeseries-workflows."><em>Not used for this cross‑section. Shown only for comparison with time‑series workflows.</em></a></li>
   <li><a href="#key-takeaways" id="toc-key-takeaways" class="nav-link" data-scroll-target="#key-takeaways">✅ Key Takeaways</a></li>
+  <li><a href="#r-script" id="toc-r-script" class="nav-link" data-scroll-target="#r-script">R script</a></li>
   </ul>
 </nav>
     </div>
@@ -313,6 +349,2064 @@ plot(m0, which = 2)  # Normal Q–Q (error distribution)</code></pre>
 <li>Autocorrelation tests and <strong>HAC</strong> are for <strong>time/panel</strong> data and are <strong>not</strong> used here.</li>
 <li>Combine <strong>theory</strong> and <strong>evidence</strong> (Sup 3 + Sup 4) to justify your final model.</li>
 </ul>
+</section>
+<section id="r-script" class="level2">
+<h2 class="anchored" data-anchor-id="r-script">R script</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ---------------------------------------------------------</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co"># SUPERVISION 5 — INDICATIVE SOLUTION (OLS ONLY)</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Hedonic Pricing Model for Ames Housing Dataset</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># ---------------------------------------------------------</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(broom)</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(car)</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lmtest)</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sandwich)</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(leaps)</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(modelsummary)</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="co"># ---------------------------------------------------------</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Load &amp; Prepare Data</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="co"># ---------------------------------------------------------</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"hedonic_ames.csv"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">ln_price  =</span> <span class="fu">log</span>(sale_price),</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">ln_area   =</span> <span class="fu">log</span>(gr_liv_area),</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">baths_tot =</span> full_bath <span class="sc">+</span> <span class="fl">0.5</span> <span class="sc">*</span> half_bath,</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">overall_qual =</span> <span class="fu">factor</span>(overall_qual, <span class="at">ordered =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>    <span class="at">overall_cond =</span> <span class="fu">factor</span>(overall_cond, <span class="at">ordered =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>    <span class="at">exter_qual   =</span> <span class="fu">factor</span>(exter_qual, <span class="at">ordered =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>    <span class="at">kitchen_qual =</span> <span class="fu">factor</span>(kitchen_qual, <span class="at">ordered =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>    <span class="at">fireplace_qu =</span> <span class="fu">factor</span>(fireplace_qu, <span class="at">ordered =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>    <span class="at">neighborhood =</span> <span class="fu">factor</span>(neighborhood)</span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a><span class="co"># ---------------------------------------------------------</span></span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. Baseline OLS Model (structural attributes)</span></span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a><span class="co"># ---------------------------------------------------------</span></span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>m1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(</span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>  ln_price <span class="sc">~</span> ln_area <span class="sc">+</span> bedroom_abv_gr <span class="sc">+</span> baths_tot <span class="sc">+</span></span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a>    total_bsmt_sf <span class="sc">+</span> garage_cars,</span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> df</span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a><span class="co"># ---------------------------------------------------------</span></span>
+<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a><span class="co"># Multicollinearity: VIF for baseline model</span></span>
+<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a><span class="co"># ---------------------------------------------------------</span></span>
+<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(car)</span>
+<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a>vif_m1 <span class="ot">&lt;-</span> <span class="fu">vif</span>(m1)</span>
+<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a>vif_m1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>       ln_area bedroom_abv_gr      baths_tot  total_bsmt_sf    garage_cars 
+      3.155534       1.530198       2.333348       1.399979       1.629202 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(vif_m1)  <span class="co"># average VIF</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2.009652</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">max</span>(vif_m1)   <span class="co"># worst VIF</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 3.155534</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ---------------------------------------------------------</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. Add quality variables (OLS with factors)</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co"># ---------------------------------------------------------</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>m2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>  ln_price <span class="sc">~</span> ln_area <span class="sc">+</span> bedroom_abv_gr <span class="sc">+</span> baths_tot <span class="sc">+</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    total_bsmt_sf <span class="sc">+</span> garage_cars <span class="sc">+</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>    overall_qual <span class="sc">+</span> exter_qual <span class="sc">+</span> kitchen_qual <span class="sc">+</span> fireplace_qu,</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> df</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="co">#We computed VIFs for the main structural variables.</span></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="co">#Common rules-of-thumb treat VIF values above 5–10 as indicating </span></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a><span class="co">#serious multicollinearity.</span></span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a><span class="co">#In our case, VIFs are moderate, so multicollinearity does not appear</span></span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a><span class="co">#to be a major threat to inference, although some correlation between</span></span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a><span class="co">#size-related variables (e.g. floor area, basement area, </span></span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a><span class="co">#garage capacity) is expected.</span></span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a><span class="co"># ---------------------------------------------------------</span></span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a><span class="co"># 4. Add neighborhood dummies (still OLS)</span></span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a><span class="co"># ---------------------------------------------------------</span></span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a>m3 <span class="ot">&lt;-</span> <span class="fu">lm</span>(</span>
+<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a>  ln_price <span class="sc">~</span> ln_area <span class="sc">+</span> bedroom_abv_gr <span class="sc">+</span> baths_tot <span class="sc">+</span></span>
+<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a>    total_bsmt_sf <span class="sc">+</span> garage_cars <span class="sc">+</span></span>
+<span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a>    overall_qual <span class="sc">+</span> exter_qual <span class="sc">+</span> kitchen_qual <span class="sc">+</span> fireplace_qu <span class="sc">+</span></span>
+<span id="cb8-28"><a href="#cb8-28" aria-hidden="true" tabindex="-1"></a>    neighborhood,</span>
+<span id="cb8-29"><a href="#cb8-29" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> df</span>
+<span id="cb8-30"><a href="#cb8-30" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb8-31"><a href="#cb8-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-32"><a href="#cb8-32" aria-hidden="true" tabindex="-1"></a><span class="co"># ---------------------------------------------------------</span></span>
+<span id="cb8-33"><a href="#cb8-33" aria-hidden="true" tabindex="-1"></a><span class="co"># 5. Best Subset Selection using BIC (numeric variables only)</span></span>
+<span id="cb8-34"><a href="#cb8-34" aria-hidden="true" tabindex="-1"></a><span class="co"># ---------------------------------------------------------</span></span>
+<span id="cb8-35"><a href="#cb8-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-36"><a href="#cb8-36" aria-hidden="true" tabindex="-1"></a>num_df <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span></span>
+<span id="cb8-37"><a href="#cb8-37" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(ln_price, ln_area, bedroom_abv_gr, baths_tot,</span>
+<span id="cb8-38"><a href="#cb8-38" aria-hidden="true" tabindex="-1"></a>         total_bsmt_sf, garage_cars, age, remod_age)</span>
+<span id="cb8-39"><a href="#cb8-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-40"><a href="#cb8-40" aria-hidden="true" tabindex="-1"></a>best <span class="ot">&lt;-</span> <span class="fu">regsubsets</span>(</span>
+<span id="cb8-41"><a href="#cb8-41" aria-hidden="true" tabindex="-1"></a>  ln_price <span class="sc">~</span> ., <span class="at">data =</span> num_df,</span>
+<span id="cb8-42"><a href="#cb8-42" aria-hidden="true" tabindex="-1"></a>  <span class="at">nvmax =</span> <span class="fu">ncol</span>(num_df)<span class="sc">-</span><span class="dv">1</span></span>
+<span id="cb8-43"><a href="#cb8-43" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb8-44"><a href="#cb8-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-45"><a href="#cb8-45" aria-hidden="true" tabindex="-1"></a>best_summary <span class="ot">&lt;-</span> <span class="fu">summary</span>(best)</span>
+<span id="cb8-46"><a href="#cb8-46" aria-hidden="true" tabindex="-1"></a>bic_best <span class="ot">&lt;-</span> <span class="fu">which.min</span>(best_summary<span class="sc">$</span>bic)</span>
+<span id="cb8-47"><a href="#cb8-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-48"><a href="#cb8-48" aria-hidden="true" tabindex="-1"></a>selected_vars <span class="ot">&lt;-</span> <span class="fu">names</span>(<span class="fu">coef</span>(best, bic_best))[<span class="sc">-</span><span class="dv">1</span>]</span>
+<span id="cb8-49"><a href="#cb8-49" aria-hidden="true" tabindex="-1"></a>formula_best <span class="ot">&lt;-</span> <span class="fu">as.formula</span>(</span>
+<span id="cb8-50"><a href="#cb8-50" aria-hidden="true" tabindex="-1"></a>  <span class="fu">paste</span>(<span class="st">"ln_price ~"</span>, <span class="fu">paste</span>(selected_vars, <span class="at">collapse =</span> <span class="st">" + "</span>))</span>
+<span id="cb8-51"><a href="#cb8-51" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb8-52"><a href="#cb8-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-53"><a href="#cb8-53" aria-hidden="true" tabindex="-1"></a>m4 <span class="ot">&lt;-</span> <span class="fu">lm</span>(formula_best, <span class="at">data =</span> num_df)</span>
+<span id="cb8-54"><a href="#cb8-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-55"><a href="#cb8-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-56"><a href="#cb8-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-57"><a href="#cb8-57" aria-hidden="true" tabindex="-1"></a><span class="co"># ---------------------------------------------------------</span></span>
+<span id="cb8-58"><a href="#cb8-58" aria-hidden="true" tabindex="-1"></a><span class="co"># 6. Robust SEs (standard OLS topic in this course)</span></span>
+<span id="cb8-59"><a href="#cb8-59" aria-hidden="true" tabindex="-1"></a><span class="co"># 6. Tests for heteroskedasticity (H0: constant variance)</span></span>
+<span id="cb8-60"><a href="#cb8-60" aria-hidden="true" tabindex="-1"></a><span class="co"># ---------------------------------------------------------</span></span>
+<span id="cb8-61"><a href="#cb8-61" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-62"><a href="#cb8-62" aria-hidden="true" tabindex="-1"></a><span class="co"># Breusch–Pagan / White-type tests (same style as Supervision 4)</span></span>
+<span id="cb8-63"><a href="#cb8-63" aria-hidden="true" tabindex="-1"></a>bp_m1 <span class="ot">&lt;-</span> <span class="fu">bptest</span>(m1, <span class="at">varformula =</span> <span class="sc">~</span> <span class="fu">fitted</span>(m1) <span class="sc">+</span> <span class="fu">I</span>(<span class="fu">fitted</span>(m1)<span class="sc">^</span><span class="dv">2</span>))</span>
+<span id="cb8-64"><a href="#cb8-64" aria-hidden="true" tabindex="-1"></a>bp_m2 <span class="ot">&lt;-</span> <span class="fu">bptest</span>(m2, <span class="at">varformula =</span> <span class="sc">~</span> <span class="fu">fitted</span>(m2) <span class="sc">+</span> <span class="fu">I</span>(<span class="fu">fitted</span>(m2)<span class="sc">^</span><span class="dv">2</span>))</span>
+<span id="cb8-65"><a href="#cb8-65" aria-hidden="true" tabindex="-1"></a>bp_m3 <span class="ot">&lt;-</span> <span class="fu">bptest</span>(m3, <span class="at">varformula =</span> <span class="sc">~</span> <span class="fu">fitted</span>(m3) <span class="sc">+</span> <span class="fu">I</span>(<span class="fu">fitted</span>(m3)<span class="sc">^</span><span class="dv">2</span>))</span>
+<span id="cb8-66"><a href="#cb8-66" aria-hidden="true" tabindex="-1"></a>bp_m4 <span class="ot">&lt;-</span> <span class="fu">bptest</span>(m4, <span class="at">varformula =</span> <span class="sc">~</span> <span class="fu">fitted</span>(m4) <span class="sc">+</span> <span class="fu">I</span>(<span class="fu">fitted</span>(m4)<span class="sc">^</span><span class="dv">2</span>))</span>
+<span id="cb8-67"><a href="#cb8-67" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-68"><a href="#cb8-68" aria-hidden="true" tabindex="-1"></a>bp_m1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    studentized Breusch-Pagan test
+
+data:  m1
+BP = 909.24, df = 2, p-value &lt; 2.2e-16</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>bp_m2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    studentized Breusch-Pagan test
+
+data:  m2
+BP = 235.86, df = 2, p-value &lt; 2.2e-16</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>bp_m3</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    studentized Breusch-Pagan test
+
+data:  m3
+BP = 143.6, df = 2, p-value &lt; 2.2e-16</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>bp_m4</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    studentized Breusch-Pagan test
+
+data:  m4
+BP = 738.91, df = 2, p-value &lt; 2.2e-16</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>rob_m1 <span class="ot">&lt;-</span> <span class="fu">coeftest</span>(m1, <span class="fu">vcovHC</span>(m1, <span class="at">type =</span> <span class="st">"HC1"</span>))</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>rob_m2 <span class="ot">&lt;-</span> <span class="fu">coeftest</span>(m2, <span class="fu">vcovHC</span>(m2, <span class="at">type =</span> <span class="st">"HC1"</span>))</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="co">#There is one very high-leverage observation (almost perfectly fitted).</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="co">#This makes the HC1 robust covariance matrix nearly singular, </span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="co">#so robust SEs for rob_m2 model are not trustworthy</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>rob_m3 <span class="ot">&lt;-</span> <span class="fu">coeftest</span>(m3, <span class="fu">vcovHC</span>(m3, <span class="at">type =</span> <span class="st">"HC1"</span>))</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>rob_m4 <span class="ot">&lt;-</span> <span class="fu">coeftest</span>(m4, <span class="fu">vcovHC</span>(m4, <span class="at">type =</span> <span class="st">"HC1"</span>))</span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a><span class="co"># ---------------------------------------------------------</span></span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a><span class="co"># 7. Compare Models (shorten long coefficient names)</span></span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a><span class="co"># ---------------------------------------------------------</span></span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a>nice_names <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a>  <span class="st">"neighborhoodSouth_and_West_of_Iowa_State_University"</span> <span class="ot">=</span> <span class="st">"Nbh: ISU SW"</span>,</span>
+<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a>  <span class="st">"neighborhoodIowa_DOT_and_Rail_Road"</span>                  <span class="ot">=</span> <span class="st">"Nbh: Iowa DOT/RR"</span></span>
+<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a><span class="co"># edit variable names for a better results table</span></span>
+<span id="cb16-20"><a href="#cb16-20" aria-hidden="true" tabindex="-1"></a><span class="co"># we shorten the "neighborhood" prefix globally for "Nbh:"</span></span>
+<span id="cb16-21"><a href="#cb16-21" aria-hidden="true" tabindex="-1"></a><span class="fu">modelsummary</span>(</span>
+<span id="cb16-22"><a href="#cb16-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">list</span>(</span>
+<span id="cb16-23"><a href="#cb16-23" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Structural Only"</span>         <span class="ot">=</span> m1,</span>
+<span id="cb16-24"><a href="#cb16-24" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Add Quality"</span>             <span class="ot">=</span> m2,</span>
+<span id="cb16-25"><a href="#cb16-25" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Add Neighbourhood"</span>       <span class="ot">=</span> m3,</span>
+<span id="cb16-26"><a href="#cb16-26" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Best BIC (Numeric Only)"</span> <span class="ot">=</span> m4</span>
+<span id="cb16-27"><a href="#cb16-27" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb16-28"><a href="#cb16-28" aria-hidden="true" tabindex="-1"></a>  <span class="at">statistic =</span> <span class="st">"({std.error})"</span>,</span>
+<span id="cb16-29"><a href="#cb16-29" aria-hidden="true" tabindex="-1"></a>  <span class="at">gof_omit  =</span> <span class="st">"AIC|Log.Lik|RMSE"</span>,</span>
+<span id="cb16-30"><a href="#cb16-30" aria-hidden="true" tabindex="-1"></a>  <span class="at">coef_rename =</span> <span class="cf">function</span>(x) {</span>
+<span id="cb16-31"><a href="#cb16-31" aria-hidden="true" tabindex="-1"></a>    x <span class="ot">&lt;-</span> <span class="fu">gsub</span>(<span class="st">"^neighborhood"</span>, <span class="st">"Nbh:"</span>, x)</span>
+<span id="cb16-32"><a href="#cb16-32" aria-hidden="true" tabindex="-1"></a>    x <span class="ot">&lt;-</span> <span class="fu">gsub</span>(<span class="st">"South_and_West_of_Iowa_State_University"</span>, <span class="st">"ISU SW"</span>, x)</span>
+<span id="cb16-33"><a href="#cb16-33" aria-hidden="true" tabindex="-1"></a>    x <span class="ot">&lt;-</span> <span class="fu">gsub</span>(<span class="st">"Iowa_DOT_and_Rail_Road"</span>, <span class="st">"Iowa DOT/RR"</span>, x)</span>
+<span id="cb16-34"><a href="#cb16-34" aria-hidden="true" tabindex="-1"></a>    x</span>
+<span id="cb16-35"><a href="#cb16-35" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb16-36"><a href="#cb16-36" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<!-- preamble start -->
+
+    <script>
+
+      function styleCell_zlfhjnorgixxcs93uq3k(i, j, css_id) {
+          var table = document.getElementById("tinytable_zlfhjnorgixxcs93uq3k");
+          var cell = table.rows[i]?.cells[j];  // Safe navigation to avoid errors
+          if (cell) {
+              console.log(`Styling cell at (${i}, ${j}) with class ${css_id}`);
+              cell.classList.add(css_id);
+          } else {
+              console.warn(`Cell at (${i}, ${j}) not found.`);
+          }
+      }
+      function insertSpanRow(i, colspan, content) {
+        var table = document.getElementById('tinytable_zlfhjnorgixxcs93uq3k');
+        var newRow = table.insertRow(i);
+        var newCell = newRow.insertCell(0);
+        newCell.setAttribute("colspan", colspan);
+        // newCell.innerText = content;
+        // this may be unsafe, but innerText does not interpret <br>
+        newCell.innerHTML = content;
+      }
+      function spanCell_zlfhjnorgixxcs93uq3k(i, j, rowspan, colspan) {
+        var table = document.getElementById("tinytable_zlfhjnorgixxcs93uq3k");
+        const targetRow = table.rows[i];
+        const targetCell = targetRow.cells[j];
+        for (let r = 0; r < rowspan; r++) {
+          // Only start deleting cells to the right for the first row (r == 0)
+          if (r === 0) {
+            // Delete cells to the right of the target cell in the first row
+            for (let c = colspan - 1; c > 0; c--) {
+              if (table.rows[i + r].cells[j + c]) {
+                table.rows[i + r].deleteCell(j + c);
+              }
+            }
+          }
+          // For rows below the first, delete starting from the target column
+          if (r > 0) {
+            for (let c = colspan - 1; c >= 0; c--) {
+              if (table.rows[i + r] && table.rows[i + r].cells[j]) {
+                table.rows[i + r].deleteCell(j);
+              }
+            }
+          }
+        }
+        // Set rowspan and colspan of the target cell
+        targetCell.rowSpan = rowspan;
+        targetCell.colSpan = colspan;
+      }
+      // tinytable span after
+      window.addEventListener('load', function () {
+          var cellsToStyle = [
+            // tinytable style arrays after
+          { positions: [ { i: 117, j: 3 }, { i: 117, j: 1 }, { i: 117, j: 2 }, { i: 117, j: 4 },  ], css_id: 'tinytable_css_uygo7fkizls3v45q8aqe',}, 
+          { positions: [ { i: 112, j: 4 }, { i: 112, j: 3 }, { i: 112, j: 2 }, { i: 112, j: 1 },  ], css_id: 'tinytable_css_ct44wi4xkfcih1uclrrs',}, 
+          { positions: [ { i: 3, j: 1 }, { i: 1, j: 1 }, { i: 2, j: 1 }, { i: 7, j: 1 }, { i: 4, j: 1 }, { i: 5, j: 1 }, { i: 10, j: 1 }, { i: 11, j: 1 }, { i: 8, j: 1 }, { i: 13, j: 1 }, { i: 14, j: 1 }, { i: 15, j: 1 }, { i: 16, j: 1 }, { i: 17, j: 1 }, { i: 18, j: 1 }, { i: 6, j: 1 }, { i: 20, j: 1 }, { i: 21, j: 1 }, { i: 9, j: 1 }, { i: 23, j: 1 }, { i: 24, j: 1 }, { i: 12, j: 1 }, { i: 26, j: 1 }, { i: 27, j: 1 }, { i: 28, j: 1 }, { i: 29, j: 1 }, { i: 30, j: 1 }, { i: 31, j: 1 }, { i: 19, j: 1 }, { i: 33, j: 1 }, { i: 34, j: 1 }, { i: 22, j: 1 }, { i: 36, j: 1 }, { i: 37, j: 1 }, { i: 25, j: 1 }, { i: 39, j: 1 }, { i: 40, j: 1 }, { i: 41, j: 1 }, { i: 42, j: 1 }, { i: 43, j: 1 }, { i: 44, j: 1 }, { i: 45, j: 1 }, { i: 46, j: 1 }, { i: 47, j: 1 }, { i: 48, j: 1 }, { i: 49, j: 1 }, { i: 50, j: 1 }, { i: 51, j: 1 }, { i: 52, j: 1 }, { i: 53, j: 1 }, { i: 54, j: 1 }, { i: 55, j: 1 }, { i: 56, j: 1 }, { i: 57, j: 1 }, { i: 58, j: 1 }, { i: 59, j: 1 }, { i: 60, j: 1 }, { i: 61, j: 1 }, { i: 62, j: 1 }, { i: 63, j: 1 }, { i: 64, j: 1 }, { i: 65, j: 1 }, { i: 66, j: 1 }, { i: 67, j: 1 }, { i: 68, j: 1 }, { i: 69, j: 1 }, { i: 70, j: 1 }, { i: 71, j: 1 }, { i: 32, j: 1 }, { i: 73, j: 1 }, { i: 74, j: 1 }, { i: 35, j: 1 }, { i: 76, j: 1 }, { i: 77, j: 1 }, { i: 38, j: 1 }, { i: 79, j: 1 }, { i: 80, j: 1 }, { i: 81, j: 1 }, { i: 82, j: 1 }, { i: 83, j: 1 }, { i: 84, j: 1 }, { i: 85, j: 1 }, { i: 86, j: 1 }, { i: 87, j: 1 }, { i: 88, j: 1 }, { i: 89, j: 1 }, { i: 90, j: 1 }, { i: 91, j: 1 }, { i: 92, j: 1 }, { i: 93, j: 1 }, { i: 94, j: 1 }, { i: 95, j: 1 }, { i: 96, j: 1 }, { i: 97, j: 1 }, { i: 98, j: 1 }, { i: 99, j: 1 }, { i: 100, j: 1 }, { i: 101, j: 1 }, { i: 102, j: 1 }, { i: 103, j: 1 }, { i: 104, j: 1 }, { i: 105, j: 1 }, { i: 106, j: 1 }, { i: 107, j: 1 }, { i: 108, j: 1 }, { i: 109, j: 1 }, { i: 110, j: 1 }, { i: 111, j: 1 }, { i: 72, j: 1 }, { i: 113, j: 1 }, { i: 114, j: 1 }, { i: 75, j: 1 }, { i: 116, j: 1 }, { i: 2, j: 3 }, { i: 78, j: 1 }, { i: 1, j: 2 }, { i: 2, j: 2 }, { i: 3, j: 2 }, { i: 4, j: 2 }, { i: 5, j: 2 }, { i: 6, j: 2 }, { i: 7, j: 2 }, { i: 8, j: 2 }, { i: 9, j: 2 }, { i: 10, j: 2 }, { i: 11, j: 2 }, { i: 12, j: 2 }, { i: 13, j: 2 }, { i: 14, j: 2 }, { i: 15, j: 2 }, { i: 16, j: 2 }, { i: 17, j: 2 }, { i: 18, j: 2 }, { i: 19, j: 2 }, { i: 20, j: 2 }, { i: 21, j: 2 }, { i: 22, j: 2 }, { i: 23, j: 2 }, { i: 24, j: 2 }, { i: 25, j: 2 }, { i: 26, j: 2 }, { i: 27, j: 2 }, { i: 28, j: 2 }, { i: 29, j: 2 }, { i: 30, j: 2 }, { i: 31, j: 2 }, { i: 32, j: 2 }, { i: 33, j: 2 }, { i: 34, j: 2 }, { i: 35, j: 2 }, { i: 36, j: 2 }, { i: 37, j: 2 }, { i: 38, j: 2 }, { i: 39, j: 2 }, { i: 40, j: 2 }, { i: 41, j: 2 }, { i: 42, j: 2 }, { i: 43, j: 2 }, { i: 44, j: 2 }, { i: 45, j: 2 }, { i: 46, j: 2 }, { i: 47, j: 2 }, { i: 48, j: 2 }, { i: 49, j: 2 }, { i: 50, j: 2 }, { i: 51, j: 2 }, { i: 52, j: 2 }, { i: 53, j: 2 }, { i: 54, j: 2 }, { i: 55, j: 2 }, { i: 56, j: 2 }, { i: 57, j: 2 }, { i: 58, j: 2 }, { i: 59, j: 2 }, { i: 60, j: 2 }, { i: 61, j: 2 }, { i: 62, j: 2 }, { i: 63, j: 2 }, { i: 64, j: 2 }, { i: 65, j: 2 }, { i: 66, j: 2 }, { i: 67, j: 2 }, { i: 68, j: 2 }, { i: 69, j: 2 }, { i: 70, j: 2 }, { i: 71, j: 2 }, { i: 72, j: 2 }, { i: 73, j: 2 }, { i: 74, j: 2 }, { i: 75, j: 2 }, { i: 76, j: 2 }, { i: 77, j: 2 }, { i: 78, j: 2 }, { i: 79, j: 2 }, { i: 80, j: 2 }, { i: 81, j: 2 }, { i: 82, j: 2 }, { i: 83, j: 2 }, { i: 84, j: 2 }, { i: 85, j: 2 }, { i: 86, j: 2 }, { i: 87, j: 2 }, { i: 88, j: 2 }, { i: 89, j: 2 }, { i: 90, j: 2 }, { i: 91, j: 2 }, { i: 92, j: 2 }, { i: 93, j: 2 }, { i: 94, j: 2 }, { i: 95, j: 2 }, { i: 96, j: 2 }, { i: 97, j: 2 }, { i: 98, j: 2 }, { i: 99, j: 2 }, { i: 100, j: 2 }, { i: 101, j: 2 }, { i: 102, j: 2 }, { i: 103, j: 2 }, { i: 104, j: 2 }, { i: 105, j: 2 }, { i: 106, j: 2 }, { i: 107, j: 2 }, { i: 108, j: 2 }, { i: 109, j: 2 }, { i: 110, j: 2 }, { i: 111, j: 2 }, { i: 115, j: 3 }, { i: 113, j: 2 }, { i: 114, j: 2 }, { i: 115, j: 2 }, { i: 116, j: 2 }, { i: 2, j: 4 }, { i: 115, j: 1 }, { i: 1, j: 3 }, { i: 5, j: 4 }, { i: 3, j: 3 }, { i: 4, j: 3 }, { i: 5, j: 3 }, { i: 6, j: 3 }, { i: 7, j: 3 }, { i: 8, j: 3 }, { i: 9, j: 3 }, { i: 10, j: 3 }, { i: 11, j: 3 }, { i: 12, j: 3 }, { i: 13, j: 3 }, { i: 14, j: 3 }, { i: 15, j: 3 }, { i: 16, j: 3 }, { i: 17, j: 3 }, { i: 18, j: 3 }, { i: 19, j: 3 }, { i: 20, j: 3 }, { i: 21, j: 3 }, { i: 22, j: 3 }, { i: 23, j: 3 }, { i: 24, j: 3 }, { i: 25, j: 3 }, { i: 26, j: 3 }, { i: 27, j: 3 }, { i: 28, j: 3 }, { i: 29, j: 3 }, { i: 30, j: 3 }, { i: 31, j: 3 }, { i: 32, j: 3 }, { i: 33, j: 3 }, { i: 34, j: 3 }, { i: 35, j: 3 }, { i: 36, j: 3 }, { i: 37, j: 3 }, { i: 38, j: 3 }, { i: 39, j: 3 }, { i: 40, j: 3 }, { i: 41, j: 3 }, { i: 42, j: 3 }, { i: 43, j: 3 }, { i: 44, j: 3 }, { i: 45, j: 3 }, { i: 46, j: 3 }, { i: 47, j: 3 }, { i: 48, j: 3 }, { i: 49, j: 3 }, { i: 50, j: 3 }, { i: 51, j: 3 }, { i: 52, j: 3 }, { i: 53, j: 3 }, { i: 54, j: 3 }, { i: 55, j: 3 }, { i: 56, j: 3 }, { i: 57, j: 3 }, { i: 58, j: 3 }, { i: 59, j: 3 }, { i: 60, j: 3 }, { i: 61, j: 3 }, { i: 62, j: 3 }, { i: 63, j: 3 }, { i: 64, j: 3 }, { i: 65, j: 3 }, { i: 66, j: 3 }, { i: 67, j: 3 }, { i: 68, j: 3 }, { i: 69, j: 3 }, { i: 70, j: 3 }, { i: 71, j: 3 }, { i: 72, j: 3 }, { i: 73, j: 3 }, { i: 74, j: 3 }, { i: 75, j: 3 }, { i: 76, j: 3 }, { i: 77, j: 3 }, { i: 78, j: 3 }, { i: 79, j: 3 }, { i: 80, j: 3 }, { i: 81, j: 3 }, { i: 82, j: 3 }, { i: 83, j: 3 }, { i: 84, j: 3 }, { i: 85, j: 3 }, { i: 86, j: 3 }, { i: 87, j: 3 }, { i: 88, j: 3 }, { i: 89, j: 3 }, { i: 90, j: 3 }, { i: 91, j: 3 }, { i: 92, j: 3 }, { i: 93, j: 3 }, { i: 94, j: 3 }, { i: 95, j: 3 }, { i: 96, j: 3 }, { i: 97, j: 3 }, { i: 98, j: 3 }, { i: 99, j: 3 }, { i: 100, j: 3 }, { i: 101, j: 3 }, { i: 102, j: 3 }, { i: 103, j: 3 }, { i: 104, j: 3 }, { i: 105, j: 3 }, { i: 106, j: 3 }, { i: 107, j: 3 }, { i: 108, j: 3 }, { i: 109, j: 3 }, { i: 110, j: 3 }, { i: 111, j: 3 }, { i: 115, j: 4 }, { i: 113, j: 3 }, { i: 114, j: 3 }, { i: 37, j: 4 }, { i: 116, j: 3 }, { i: 39, j: 4 }, { i: 40, j: 4 }, { i: 1, j: 4 }, { i: 42, j: 4 }, { i: 3, j: 4 }, { i: 4, j: 4 }, { i: 45, j: 4 }, { i: 6, j: 4 }, { i: 7, j: 4 }, { i: 8, j: 4 }, { i: 9, j: 4 }, { i: 10, j: 4 }, { i: 11, j: 4 }, { i: 12, j: 4 }, { i: 13, j: 4 }, { i: 14, j: 4 }, { i: 15, j: 4 }, { i: 16, j: 4 }, { i: 17, j: 4 }, { i: 18, j: 4 }, { i: 19, j: 4 }, { i: 20, j: 4 }, { i: 21, j: 4 }, { i: 22, j: 4 }, { i: 23, j: 4 }, { i: 24, j: 4 }, { i: 25, j: 4 }, { i: 26, j: 4 }, { i: 27, j: 4 }, { i: 28, j: 4 }, { i: 29, j: 4 }, { i: 30, j: 4 }, { i: 31, j: 4 }, { i: 32, j: 4 }, { i: 33, j: 4 }, { i: 34, j: 4 }, { i: 35, j: 4 }, { i: 36, j: 4 }, { i: 77, j: 4 }, { i: 38, j: 4 }, { i: 79, j: 4 }, { i: 80, j: 4 }, { i: 41, j: 4 }, { i: 82, j: 4 }, { i: 43, j: 4 }, { i: 44, j: 4 }, { i: 85, j: 4 }, { i: 46, j: 4 }, { i: 47, j: 4 }, { i: 48, j: 4 }, { i: 49, j: 4 }, { i: 50, j: 4 }, { i: 51, j: 4 }, { i: 52, j: 4 }, { i: 53, j: 4 }, { i: 54, j: 4 }, { i: 55, j: 4 }, { i: 56, j: 4 }, { i: 57, j: 4 }, { i: 58, j: 4 }, { i: 59, j: 4 }, { i: 60, j: 4 }, { i: 61, j: 4 }, { i: 62, j: 4 }, { i: 63, j: 4 }, { i: 64, j: 4 }, { i: 65, j: 4 }, { i: 66, j: 4 }, { i: 67, j: 4 }, { i: 68, j: 4 }, { i: 69, j: 4 }, { i: 70, j: 4 }, { i: 71, j: 4 }, { i: 72, j: 4 }, { i: 73, j: 4 }, { i: 74, j: 4 }, { i: 75, j: 4 }, { i: 76, j: 4 }, { i: 90, j: 4 }, { i: 78, j: 4 }, { i: 92, j: 4 }, { i: 93, j: 4 }, { i: 81, j: 4 }, { i: 95, j: 4 }, { i: 83, j: 4 }, { i: 84, j: 4 }, { i: 98, j: 4 }, { i: 86, j: 4 }, { i: 87, j: 4 }, { i: 88, j: 4 }, { i: 89, j: 4 }, { i: 103, j: 4 }, { i: 91, j: 4 }, { i: 105, j: 4 }, { i: 106, j: 4 }, { i: 94, j: 4 }, { i: 108, j: 4 }, { i: 96, j: 4 }, { i: 97, j: 4 }, { i: 111, j: 4 }, { i: 99, j: 4 }, { i: 100, j: 4 }, { i: 101, j: 4 }, { i: 102, j: 4 }, { i: 116, j: 4 }, { i: 104, j: 4 }, { i: 109, j: 4 }, { i: 110, j: 4 }, { i: 107, j: 4 }, { i: 113, j: 4 }, { i: 114, j: 4 },  ], css_id: 'tinytable_css_ysjyfswbwedx9emuwre6',}, 
+          { positions: [ { i: 0, j: 1 }, { i: 0, j: 3 }, { i: 0, j: 4 }, { i: 0, j: 2 },  ], css_id: 'tinytable_css_zsygkvhclj0atf4px40n',}, 
+          { positions: [ { i: 117, j: 0 },  ], css_id: 'tinytable_css_nx6bdbg91jeo6lqld38t',}, 
+          { positions: [ { i: 112, j: 0 },  ], css_id: 'tinytable_css_8zyem1tn0et6m097xtrh',}, 
+          { positions: [ { i: 1, j: 0 }, { i: 2, j: 0 }, { i: 3, j: 0 }, { i: 4, j: 0 }, { i: 5, j: 0 }, { i: 6, j: 0 }, { i: 7, j: 0 }, { i: 8, j: 0 }, { i: 9, j: 0 }, { i: 10, j: 0 }, { i: 11, j: 0 }, { i: 12, j: 0 }, { i: 13, j: 0 }, { i: 14, j: 0 }, { i: 15, j: 0 }, { i: 16, j: 0 }, { i: 17, j: 0 }, { i: 18, j: 0 }, { i: 19, j: 0 }, { i: 20, j: 0 }, { i: 21, j: 0 }, { i: 22, j: 0 }, { i: 23, j: 0 }, { i: 24, j: 0 }, { i: 25, j: 0 }, { i: 26, j: 0 }, { i: 27, j: 0 }, { i: 28, j: 0 }, { i: 29, j: 0 }, { i: 30, j: 0 }, { i: 31, j: 0 }, { i: 32, j: 0 }, { i: 33, j: 0 }, { i: 34, j: 0 }, { i: 35, j: 0 }, { i: 36, j: 0 }, { i: 37, j: 0 }, { i: 38, j: 0 }, { i: 39, j: 0 }, { i: 40, j: 0 }, { i: 41, j: 0 }, { i: 42, j: 0 }, { i: 43, j: 0 }, { i: 44, j: 0 }, { i: 45, j: 0 }, { i: 46, j: 0 }, { i: 47, j: 0 }, { i: 48, j: 0 }, { i: 49, j: 0 }, { i: 50, j: 0 }, { i: 51, j: 0 }, { i: 52, j: 0 }, { i: 53, j: 0 }, { i: 54, j: 0 }, { i: 55, j: 0 }, { i: 56, j: 0 }, { i: 57, j: 0 }, { i: 58, j: 0 }, { i: 59, j: 0 }, { i: 60, j: 0 }, { i: 61, j: 0 }, { i: 62, j: 0 }, { i: 63, j: 0 }, { i: 64, j: 0 }, { i: 65, j: 0 }, { i: 66, j: 0 }, { i: 67, j: 0 }, { i: 68, j: 0 }, { i: 69, j: 0 }, { i: 70, j: 0 }, { i: 71, j: 0 }, { i: 72, j: 0 }, { i: 73, j: 0 }, { i: 74, j: 0 }, { i: 75, j: 0 }, { i: 76, j: 0 }, { i: 77, j: 0 }, { i: 78, j: 0 }, { i: 79, j: 0 }, { i: 80, j: 0 }, { i: 81, j: 0 }, { i: 82, j: 0 }, { i: 83, j: 0 }, { i: 84, j: 0 }, { i: 85, j: 0 }, { i: 86, j: 0 }, { i: 87, j: 0 }, { i: 88, j: 0 }, { i: 89, j: 0 }, { i: 90, j: 0 }, { i: 91, j: 0 }, { i: 92, j: 0 }, { i: 93, j: 0 }, { i: 94, j: 0 }, { i: 95, j: 0 }, { i: 96, j: 0 }, { i: 97, j: 0 }, { i: 98, j: 0 }, { i: 99, j: 0 }, { i: 100, j: 0 }, { i: 101, j: 0 }, { i: 102, j: 0 }, { i: 103, j: 0 }, { i: 104, j: 0 }, { i: 105, j: 0 }, { i: 106, j: 0 }, { i: 107, j: 0 }, { i: 108, j: 0 }, { i: 109, j: 0 }, { i: 110, j: 0 }, { i: 111, j: 0 }, { i: 116, j: 0 }, { i: 113, j: 0 }, { i: 114, j: 0 }, { i: 115, j: 0 },  ], css_id: 'tinytable_css_ctfsvuclarvkvpeji1pf',}, 
+          { positions: [ { i: 0, j: 0 },  ], css_id: 'tinytable_css_0op6hzazxvniezhq3uok',}, 
+          ];
+
+          // Loop over the arrays to style the cells
+          cellsToStyle.forEach(function (group) {
+              group.positions.forEach(function (cell) {
+                  styleCell_zlfhjnorgixxcs93uq3k(cell.i, cell.j, group.css_id);
+              });
+          });
+      });
+    </script>
+
+    <style>
+      /* tinytable css entries after */
+      .table td.tinytable_css_uygo7fkizls3v45q8aqe, .table th.tinytable_css_uygo7fkizls3v45q8aqe { text-align: center; border-bottom: solid #d3d8dc 0.1em; }
+      .table td.tinytable_css_ct44wi4xkfcih1uclrrs, .table th.tinytable_css_ct44wi4xkfcih1uclrrs { text-align: center; border-bottom: solid black 0.05em; }
+      .table td.tinytable_css_ysjyfswbwedx9emuwre6, .table th.tinytable_css_ysjyfswbwedx9emuwre6 { text-align: center; }
+      .table td.tinytable_css_zsygkvhclj0atf4px40n, .table th.tinytable_css_zsygkvhclj0atf4px40n { text-align: center; border-top: solid #d3d8dc 0.1em; border-bottom: solid #d3d8dc 0.05em; }
+      .table td.tinytable_css_nx6bdbg91jeo6lqld38t, .table th.tinytable_css_nx6bdbg91jeo6lqld38t { text-align: left; border-bottom: solid #d3d8dc 0.1em; }
+      .table td.tinytable_css_8zyem1tn0et6m097xtrh, .table th.tinytable_css_8zyem1tn0et6m097xtrh { text-align: left; border-bottom: solid black 0.05em; }
+      .table td.tinytable_css_ctfsvuclarvkvpeji1pf, .table th.tinytable_css_ctfsvuclarvkvpeji1pf { text-align: left; }
+      .table td.tinytable_css_0op6hzazxvniezhq3uok, .table th.tinytable_css_0op6hzazxvniezhq3uok { text-align: left; border-top: solid #d3d8dc 0.1em; border-bottom: solid #d3d8dc 0.05em; }
+    </style>
+    <div class="container">
+      <table class="table table-borderless" id="tinytable_zlfhjnorgixxcs93uq3k" style="width: auto; margin-left: auto; margin-right: auto;" data-quarto-disable-processing="true">
+        <thead>
+        
+              <tr>
+                <th scope="col"> </th>
+                <th scope="col">Structural Only</th>
+                <th scope="col">Add Quality</th>
+                <th scope="col">Add Neighbourhood</th>
+                <th scope="col">Best BIC (Numeric Only)</th>
+              </tr>
+        </thead>
+        
+        <tbody>
+                <tr>
+                  <td>(Intercept)</td>
+                  <td>7.758</td>
+                  <td>9.387</td>
+                  <td>9.157</td>
+                  <td>7.450</td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td>(0.128)</td>
+                  <td>(0.121)</td>
+                  <td>(0.119)</td>
+                  <td>(0.115)</td>
+                </tr>
+                <tr>
+                  <td>ln_area</td>
+                  <td>0.518</td>
+                  <td>0.303</td>
+                  <td>0.341</td>
+                  <td>0.632</td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td>(0.021)</td>
+                  <td>(0.018)</td>
+                  <td>(0.018)</td>
+                  <td>(0.019)</td>
+                </tr>
+                <tr>
+                  <td>bedroom_abv_gr</td>
+                  <td>-0.071</td>
+                  <td>-0.012</td>
+                  <td>-0.013</td>
+                  <td>-0.037</td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td>(0.006)</td>
+                  <td>(0.005)</td>
+                  <td>(0.005)</td>
+                  <td>(0.005)</td>
+                </tr>
+                <tr>
+                  <td>baths_tot</td>
+                  <td>0.097</td>
+                  <td>0.038</td>
+                  <td>0.018</td>
+                  <td>-0.041</td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td>(0.009)</td>
+                  <td>(0.008)</td>
+                  <td>(0.008)</td>
+                  <td>(0.009)</td>
+                </tr>
+                <tr>
+                  <td>total_bsmt_sf</td>
+                  <td>0.000</td>
+                  <td>0.000</td>
+                  <td>0.000</td>
+                  <td>0.000</td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td>(0.000)</td>
+                  <td>(0.000)</td>
+                  <td>(0.000)</td>
+                  <td>(0.000)</td>
+                </tr>
+                <tr>
+                  <td>garage_cars</td>
+                  <td>0.148</td>
+                  <td>0.084</td>
+                  <td>0.064</td>
+                  <td>0.096</td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td>(0.006)</td>
+                  <td>(0.005)</td>
+                  <td>(0.005)</td>
+                  <td>(0.006)</td>
+                </tr>
+                <tr>
+                  <td>overall_qual.L</td>
+                  <td></td>
+                  <td>-0.115</td>
+                  <td>-0.160</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td>(0.049)</td>
+                  <td>(0.045)</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>overall_qual.Q</td>
+                  <td></td>
+                  <td>-0.011</td>
+                  <td>-0.079</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td>(0.051)</td>
+                  <td>(0.047)</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>overall_qual.C</td>
+                  <td></td>
+                  <td>-0.129</td>
+                  <td>-0.178</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td>(0.048)</td>
+                  <td>(0.044)</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>overall_qual^4</td>
+                  <td></td>
+                  <td>-0.283</td>
+                  <td>-0.297</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td>(0.037)</td>
+                  <td>(0.034)</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>overall_qual^5</td>
+                  <td></td>
+                  <td>-0.401</td>
+                  <td>-0.383</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td>(0.032)</td>
+                  <td>(0.030)</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>overall_qual^6</td>
+                  <td></td>
+                  <td>-0.078</td>
+                  <td>-0.061</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td>(0.026)</td>
+                  <td>(0.024)</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>overall_qual^7</td>
+                  <td></td>
+                  <td>0.156</td>
+                  <td>0.146</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td>(0.028)</td>
+                  <td>(0.026)</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>overall_qual^8</td>
+                  <td></td>
+                  <td>0.015</td>
+                  <td>0.037</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td>(0.030)</td>
+                  <td>(0.027)</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>overall_qual^9</td>
+                  <td></td>
+                  <td>0.591</td>
+                  <td>0.520</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td>(0.030)</td>
+                  <td>(0.029)</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>exter_qual.L</td>
+                  <td></td>
+                  <td>-0.028</td>
+                  <td>-0.023</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td>(0.018)</td>
+                  <td>(0.016)</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>exter_qual.Q</td>
+                  <td></td>
+                  <td>0.103</td>
+                  <td>0.079</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td>(0.019)</td>
+                  <td>(0.017)</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>exter_qual.C</td>
+                  <td></td>
+                  <td>-0.147</td>
+                  <td>-0.090</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td>(0.022)</td>
+                  <td>(0.021)</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>kitchen_qual.L</td>
+                  <td></td>
+                  <td>-0.115</td>
+                  <td>-0.170</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td>(0.052)</td>
+                  <td>(0.048)</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>kitchen_qual.Q</td>
+                  <td></td>
+                  <td>0.077</td>
+                  <td>0.125</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td>(0.044)</td>
+                  <td>(0.040)</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>kitchen_qual.C</td>
+                  <td></td>
+                  <td>-0.010</td>
+                  <td>0.104</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td>(0.101)</td>
+                  <td>(0.093)</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>kitchen_qual^4</td>
+                  <td></td>
+                  <td>0.154</td>
+                  <td>0.223</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td>(0.077)</td>
+                  <td>(0.071)</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>fireplace_qu.L</td>
+                  <td></td>
+                  <td>-0.040</td>
+                  <td>-0.041</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td>(0.019)</td>
+                  <td>(0.018)</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>fireplace_qu.Q</td>
+                  <td></td>
+                  <td>0.064</td>
+                  <td>0.047</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td>(0.015)</td>
+                  <td>(0.014)</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>fireplace_qu.C</td>
+                  <td></td>
+                  <td>0.015</td>
+                  <td>0.006</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td>(0.018)</td>
+                  <td>(0.017)</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>fireplace_qu^4</td>
+                  <td></td>
+                  <td>-0.022</td>
+                  <td>-0.024</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td>(0.018)</td>
+                  <td>(0.017)</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>fireplace_qu^5</td>
+                  <td></td>
+                  <td>-0.041</td>
+                  <td>-0.034</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td>(0.011)</td>
+                  <td>(0.010)</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>Nbh:Blueste</td>
+                  <td></td>
+                  <td></td>
+                  <td>-0.075</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td>(0.054)</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>Nbh:Briardale</td>
+                  <td></td>
+                  <td></td>
+                  <td>-0.167</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td>(0.040)</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>Nbh:Brookside</td>
+                  <td></td>
+                  <td></td>
+                  <td>-0.038</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td>(0.033)</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>Nbh:Clear_Creek</td>
+                  <td></td>
+                  <td></td>
+                  <td>0.157</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td>(0.036)</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>Nbh:College_Creek</td>
+                  <td></td>
+                  <td></td>
+                  <td>0.102</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td>(0.029)</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>Nbh:Crawford</td>
+                  <td></td>
+                  <td></td>
+                  <td>0.144</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td>(0.032)</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>Nbh:Edwards</td>
+                  <td></td>
+                  <td></td>
+                  <td>-0.038</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td>(0.031)</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>Nbh:Gilbert</td>
+                  <td></td>
+                  <td></td>
+                  <td>0.070</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td>(0.030)</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>Nbh:Green_Hills</td>
+                  <td></td>
+                  <td></td>
+                  <td>0.527</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td>(0.106)</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>Nbh:Greens</td>
+                  <td></td>
+                  <td></td>
+                  <td>0.031</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td>(0.059)</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>Nbh:Iowa DOT/RR</td>
+                  <td></td>
+                  <td></td>
+                  <td>-0.142</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td>(0.034)</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>Nbh:Landmark</td>
+                  <td></td>
+                  <td></td>
+                  <td>-0.032</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td>(0.147)</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>Nbh:Meadow_Village</td>
+                  <td></td>
+                  <td></td>
+                  <td>-0.127</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td>(0.039)</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>Nbh:Mitchell</td>
+                  <td></td>
+                  <td></td>
+                  <td>0.081</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td>(0.032)</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>Nbh:North_Ames</td>
+                  <td></td>
+                  <td></td>
+                  <td>0.035</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td>(0.030)</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>Nbh:Northpark_Villa</td>
+                  <td></td>
+                  <td></td>
+                  <td>-0.059</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td>(0.042)</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>Nbh:Northridge</td>
+                  <td></td>
+                  <td></td>
+                  <td>0.189</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td>(0.034)</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>Nbh:Northridge_Heights</td>
+                  <td></td>
+                  <td></td>
+                  <td>0.142</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td>(0.031)</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>Nbh:Northwest_Ames</td>
+                  <td></td>
+                  <td></td>
+                  <td>0.051</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td>(0.031)</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>Nbh:Old_Town</td>
+                  <td></td>
+                  <td></td>
+                  <td>-0.113</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td>(0.031)</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>Nbh:Sawyer</td>
+                  <td></td>
+                  <td></td>
+                  <td>0.043</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td>(0.032)</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>Nbh:Sawyer_West</td>
+                  <td></td>
+                  <td></td>
+                  <td>0.043</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td>(0.031)</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>Nbh:Somerset</td>
+                  <td></td>
+                  <td></td>
+                  <td>0.106</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td>(0.030)</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>Nbh:ISU SW</td>
+                  <td></td>
+                  <td></td>
+                  <td>-0.050</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td>(0.037)</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>Nbh:Stone_Brook</td>
+                  <td></td>
+                  <td></td>
+                  <td>0.182</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td>(0.035)</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>Nbh:Timberland</td>
+                  <td></td>
+                  <td></td>
+                  <td>0.122</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td>(0.033)</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>Nbh:Veenker</td>
+                  <td></td>
+                  <td></td>
+                  <td>0.120</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td>(0.041)</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>age</td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td>-0.003</td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td>(0.000)</td>
+                </tr>
+                <tr>
+                  <td>remod_age</td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td>-0.003</td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td>(0.000)</td>
+                </tr>
+                <tr>
+                  <td>Num.Obs.</td>
+                  <td>2918</td>
+                  <td>2918</td>
+                  <td>2918</td>
+                  <td>2918</td>
+                </tr>
+                <tr>
+                  <td>R2</td>
+                  <td>0.744</td>
+                  <td>0.843</td>
+                  <td>0.871</td>
+                  <td>0.808</td>
+                </tr>
+                <tr>
+                  <td>R2 Adj.</td>
+                  <td>0.744</td>
+                  <td>0.842</td>
+                  <td>0.869</td>
+                  <td>0.807</td>
+                </tr>
+                <tr>
+                  <td>BIC</td>
+                  <td>-1028.2</td>
+                  <td>-2284.2</td>
+                  <td>-2648.8</td>
+                  <td>-1845.9</td>
+                </tr>
+                <tr>
+                  <td>F</td>
+                  <td>1694.970</td>
+                  <td>597.010</td>
+                  <td>365.830</td>
+                  <td>1747.383</td>
+                </tr>
+        </tbody>
+      </table>
+    </div>
+<!-- hack to avoid NA insertion in last line -->
+</div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co">#results table(...)</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">modelsummary</span>(</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">list</span>(</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Structural Only"</span>         <span class="ot">=</span> m1,</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Add Quality"</span>             <span class="ot">=</span> m2,</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Add Neighbourhood"</span>       <span class="ot">=</span> m3,</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Best BIC (Numeric Only)"</span> <span class="ot">=</span> m4</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">statistic  =</span> <span class="st">"({std.error})"</span>,</span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">gof_omit   =</span> <span class="st">"AIC|Log.Lik|RMSE"</span>,</span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">coef_rename =</span> nice_names</span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<!-- preamble start -->
+
+    <script>
+
+      function styleCell_tewwykbjt055xtwn8p5r(i, j, css_id) {
+          var table = document.getElementById("tinytable_tewwykbjt055xtwn8p5r");
+          var cell = table.rows[i]?.cells[j];  // Safe navigation to avoid errors
+          if (cell) {
+              console.log(`Styling cell at (${i}, ${j}) with class ${css_id}`);
+              cell.classList.add(css_id);
+          } else {
+              console.warn(`Cell at (${i}, ${j}) not found.`);
+          }
+      }
+      function insertSpanRow(i, colspan, content) {
+        var table = document.getElementById('tinytable_tewwykbjt055xtwn8p5r');
+        var newRow = table.insertRow(i);
+        var newCell = newRow.insertCell(0);
+        newCell.setAttribute("colspan", colspan);
+        // newCell.innerText = content;
+        // this may be unsafe, but innerText does not interpret <br>
+        newCell.innerHTML = content;
+      }
+      function spanCell_tewwykbjt055xtwn8p5r(i, j, rowspan, colspan) {
+        var table = document.getElementById("tinytable_tewwykbjt055xtwn8p5r");
+        const targetRow = table.rows[i];
+        const targetCell = targetRow.cells[j];
+        for (let r = 0; r < rowspan; r++) {
+          // Only start deleting cells to the right for the first row (r == 0)
+          if (r === 0) {
+            // Delete cells to the right of the target cell in the first row
+            for (let c = colspan - 1; c > 0; c--) {
+              if (table.rows[i + r].cells[j + c]) {
+                table.rows[i + r].deleteCell(j + c);
+              }
+            }
+          }
+          // For rows below the first, delete starting from the target column
+          if (r > 0) {
+            for (let c = colspan - 1; c >= 0; c--) {
+              if (table.rows[i + r] && table.rows[i + r].cells[j]) {
+                table.rows[i + r].deleteCell(j);
+              }
+            }
+          }
+        }
+        // Set rowspan and colspan of the target cell
+        targetCell.rowSpan = rowspan;
+        targetCell.colSpan = colspan;
+      }
+      // tinytable span after
+      window.addEventListener('load', function () {
+          var cellsToStyle = [
+            // tinytable style arrays after
+          { positions: [ { i: 117, j: 3 }, { i: 117, j: 1 }, { i: 117, j: 2 }, { i: 117, j: 4 },  ], css_id: 'tinytable_css_ys0ou0bh2kf97ezmynrf',}, 
+          { positions: [ { i: 112, j: 4 }, { i: 112, j: 3 }, { i: 112, j: 2 }, { i: 112, j: 1 },  ], css_id: 'tinytable_css_dtw4rbavm8xbgoe6q2nr',}, 
+          { positions: [ { i: 3, j: 1 }, { i: 1, j: 1 }, { i: 2, j: 1 }, { i: 7, j: 1 }, { i: 4, j: 1 }, { i: 5, j: 1 }, { i: 10, j: 1 }, { i: 11, j: 1 }, { i: 8, j: 1 }, { i: 13, j: 1 }, { i: 14, j: 1 }, { i: 15, j: 1 }, { i: 16, j: 1 }, { i: 17, j: 1 }, { i: 18, j: 1 }, { i: 6, j: 1 }, { i: 20, j: 1 }, { i: 21, j: 1 }, { i: 9, j: 1 }, { i: 23, j: 1 }, { i: 24, j: 1 }, { i: 12, j: 1 }, { i: 26, j: 1 }, { i: 27, j: 1 }, { i: 28, j: 1 }, { i: 29, j: 1 }, { i: 30, j: 1 }, { i: 31, j: 1 }, { i: 19, j: 1 }, { i: 33, j: 1 }, { i: 34, j: 1 }, { i: 22, j: 1 }, { i: 36, j: 1 }, { i: 37, j: 1 }, { i: 25, j: 1 }, { i: 39, j: 1 }, { i: 40, j: 1 }, { i: 41, j: 1 }, { i: 42, j: 1 }, { i: 43, j: 1 }, { i: 44, j: 1 }, { i: 45, j: 1 }, { i: 46, j: 1 }, { i: 47, j: 1 }, { i: 48, j: 1 }, { i: 49, j: 1 }, { i: 50, j: 1 }, { i: 51, j: 1 }, { i: 52, j: 1 }, { i: 53, j: 1 }, { i: 54, j: 1 }, { i: 55, j: 1 }, { i: 56, j: 1 }, { i: 57, j: 1 }, { i: 58, j: 1 }, { i: 59, j: 1 }, { i: 60, j: 1 }, { i: 61, j: 1 }, { i: 62, j: 1 }, { i: 63, j: 1 }, { i: 64, j: 1 }, { i: 65, j: 1 }, { i: 66, j: 1 }, { i: 67, j: 1 }, { i: 68, j: 1 }, { i: 69, j: 1 }, { i: 70, j: 1 }, { i: 71, j: 1 }, { i: 32, j: 1 }, { i: 73, j: 1 }, { i: 74, j: 1 }, { i: 35, j: 1 }, { i: 76, j: 1 }, { i: 77, j: 1 }, { i: 38, j: 1 }, { i: 79, j: 1 }, { i: 80, j: 1 }, { i: 81, j: 1 }, { i: 82, j: 1 }, { i: 83, j: 1 }, { i: 84, j: 1 }, { i: 85, j: 1 }, { i: 86, j: 1 }, { i: 87, j: 1 }, { i: 88, j: 1 }, { i: 89, j: 1 }, { i: 90, j: 1 }, { i: 91, j: 1 }, { i: 92, j: 1 }, { i: 93, j: 1 }, { i: 94, j: 1 }, { i: 95, j: 1 }, { i: 96, j: 1 }, { i: 97, j: 1 }, { i: 98, j: 1 }, { i: 99, j: 1 }, { i: 100, j: 1 }, { i: 101, j: 1 }, { i: 102, j: 1 }, { i: 103, j: 1 }, { i: 104, j: 1 }, { i: 105, j: 1 }, { i: 106, j: 1 }, { i: 107, j: 1 }, { i: 108, j: 1 }, { i: 109, j: 1 }, { i: 110, j: 1 }, { i: 111, j: 1 }, { i: 72, j: 1 }, { i: 113, j: 1 }, { i: 114, j: 1 }, { i: 75, j: 1 }, { i: 116, j: 1 }, { i: 2, j: 3 }, { i: 78, j: 1 }, { i: 1, j: 2 }, { i: 2, j: 2 }, { i: 3, j: 2 }, { i: 4, j: 2 }, { i: 5, j: 2 }, { i: 6, j: 2 }, { i: 7, j: 2 }, { i: 8, j: 2 }, { i: 9, j: 2 }, { i: 10, j: 2 }, { i: 11, j: 2 }, { i: 12, j: 2 }, { i: 13, j: 2 }, { i: 14, j: 2 }, { i: 15, j: 2 }, { i: 16, j: 2 }, { i: 17, j: 2 }, { i: 18, j: 2 }, { i: 19, j: 2 }, { i: 20, j: 2 }, { i: 21, j: 2 }, { i: 22, j: 2 }, { i: 23, j: 2 }, { i: 24, j: 2 }, { i: 25, j: 2 }, { i: 26, j: 2 }, { i: 27, j: 2 }, { i: 28, j: 2 }, { i: 29, j: 2 }, { i: 30, j: 2 }, { i: 31, j: 2 }, { i: 32, j: 2 }, { i: 33, j: 2 }, { i: 34, j: 2 }, { i: 35, j: 2 }, { i: 36, j: 2 }, { i: 37, j: 2 }, { i: 38, j: 2 }, { i: 39, j: 2 }, { i: 40, j: 2 }, { i: 41, j: 2 }, { i: 42, j: 2 }, { i: 43, j: 2 }, { i: 44, j: 2 }, { i: 45, j: 2 }, { i: 46, j: 2 }, { i: 47, j: 2 }, { i: 48, j: 2 }, { i: 49, j: 2 }, { i: 50, j: 2 }, { i: 51, j: 2 }, { i: 52, j: 2 }, { i: 53, j: 2 }, { i: 54, j: 2 }, { i: 55, j: 2 }, { i: 56, j: 2 }, { i: 57, j: 2 }, { i: 58, j: 2 }, { i: 59, j: 2 }, { i: 60, j: 2 }, { i: 61, j: 2 }, { i: 62, j: 2 }, { i: 63, j: 2 }, { i: 64, j: 2 }, { i: 65, j: 2 }, { i: 66, j: 2 }, { i: 67, j: 2 }, { i: 68, j: 2 }, { i: 69, j: 2 }, { i: 70, j: 2 }, { i: 71, j: 2 }, { i: 72, j: 2 }, { i: 73, j: 2 }, { i: 74, j: 2 }, { i: 75, j: 2 }, { i: 76, j: 2 }, { i: 77, j: 2 }, { i: 78, j: 2 }, { i: 79, j: 2 }, { i: 80, j: 2 }, { i: 81, j: 2 }, { i: 82, j: 2 }, { i: 83, j: 2 }, { i: 84, j: 2 }, { i: 85, j: 2 }, { i: 86, j: 2 }, { i: 87, j: 2 }, { i: 88, j: 2 }, { i: 89, j: 2 }, { i: 90, j: 2 }, { i: 91, j: 2 }, { i: 92, j: 2 }, { i: 93, j: 2 }, { i: 94, j: 2 }, { i: 95, j: 2 }, { i: 96, j: 2 }, { i: 97, j: 2 }, { i: 98, j: 2 }, { i: 99, j: 2 }, { i: 100, j: 2 }, { i: 101, j: 2 }, { i: 102, j: 2 }, { i: 103, j: 2 }, { i: 104, j: 2 }, { i: 105, j: 2 }, { i: 106, j: 2 }, { i: 107, j: 2 }, { i: 108, j: 2 }, { i: 109, j: 2 }, { i: 110, j: 2 }, { i: 111, j: 2 }, { i: 115, j: 3 }, { i: 113, j: 2 }, { i: 114, j: 2 }, { i: 115, j: 2 }, { i: 116, j: 2 }, { i: 2, j: 4 }, { i: 115, j: 1 }, { i: 1, j: 3 }, { i: 5, j: 4 }, { i: 3, j: 3 }, { i: 4, j: 3 }, { i: 5, j: 3 }, { i: 6, j: 3 }, { i: 7, j: 3 }, { i: 8, j: 3 }, { i: 9, j: 3 }, { i: 10, j: 3 }, { i: 11, j: 3 }, { i: 12, j: 3 }, { i: 13, j: 3 }, { i: 14, j: 3 }, { i: 15, j: 3 }, { i: 16, j: 3 }, { i: 17, j: 3 }, { i: 18, j: 3 }, { i: 19, j: 3 }, { i: 20, j: 3 }, { i: 21, j: 3 }, { i: 22, j: 3 }, { i: 23, j: 3 }, { i: 24, j: 3 }, { i: 25, j: 3 }, { i: 26, j: 3 }, { i: 27, j: 3 }, { i: 28, j: 3 }, { i: 29, j: 3 }, { i: 30, j: 3 }, { i: 31, j: 3 }, { i: 32, j: 3 }, { i: 33, j: 3 }, { i: 34, j: 3 }, { i: 35, j: 3 }, { i: 36, j: 3 }, { i: 37, j: 3 }, { i: 38, j: 3 }, { i: 39, j: 3 }, { i: 40, j: 3 }, { i: 41, j: 3 }, { i: 42, j: 3 }, { i: 43, j: 3 }, { i: 44, j: 3 }, { i: 45, j: 3 }, { i: 46, j: 3 }, { i: 47, j: 3 }, { i: 48, j: 3 }, { i: 49, j: 3 }, { i: 50, j: 3 }, { i: 51, j: 3 }, { i: 52, j: 3 }, { i: 53, j: 3 }, { i: 54, j: 3 }, { i: 55, j: 3 }, { i: 56, j: 3 }, { i: 57, j: 3 }, { i: 58, j: 3 }, { i: 59, j: 3 }, { i: 60, j: 3 }, { i: 61, j: 3 }, { i: 62, j: 3 }, { i: 63, j: 3 }, { i: 64, j: 3 }, { i: 65, j: 3 }, { i: 66, j: 3 }, { i: 67, j: 3 }, { i: 68, j: 3 }, { i: 69, j: 3 }, { i: 70, j: 3 }, { i: 71, j: 3 }, { i: 72, j: 3 }, { i: 73, j: 3 }, { i: 74, j: 3 }, { i: 75, j: 3 }, { i: 76, j: 3 }, { i: 77, j: 3 }, { i: 78, j: 3 }, { i: 79, j: 3 }, { i: 80, j: 3 }, { i: 81, j: 3 }, { i: 82, j: 3 }, { i: 83, j: 3 }, { i: 84, j: 3 }, { i: 85, j: 3 }, { i: 86, j: 3 }, { i: 87, j: 3 }, { i: 88, j: 3 }, { i: 89, j: 3 }, { i: 90, j: 3 }, { i: 91, j: 3 }, { i: 92, j: 3 }, { i: 93, j: 3 }, { i: 94, j: 3 }, { i: 95, j: 3 }, { i: 96, j: 3 }, { i: 97, j: 3 }, { i: 98, j: 3 }, { i: 99, j: 3 }, { i: 100, j: 3 }, { i: 101, j: 3 }, { i: 102, j: 3 }, { i: 103, j: 3 }, { i: 104, j: 3 }, { i: 105, j: 3 }, { i: 106, j: 3 }, { i: 107, j: 3 }, { i: 108, j: 3 }, { i: 109, j: 3 }, { i: 110, j: 3 }, { i: 111, j: 3 }, { i: 115, j: 4 }, { i: 113, j: 3 }, { i: 114, j: 3 }, { i: 37, j: 4 }, { i: 116, j: 3 }, { i: 39, j: 4 }, { i: 40, j: 4 }, { i: 1, j: 4 }, { i: 42, j: 4 }, { i: 3, j: 4 }, { i: 4, j: 4 }, { i: 45, j: 4 }, { i: 6, j: 4 }, { i: 7, j: 4 }, { i: 8, j: 4 }, { i: 9, j: 4 }, { i: 10, j: 4 }, { i: 11, j: 4 }, { i: 12, j: 4 }, { i: 13, j: 4 }, { i: 14, j: 4 }, { i: 15, j: 4 }, { i: 16, j: 4 }, { i: 17, j: 4 }, { i: 18, j: 4 }, { i: 19, j: 4 }, { i: 20, j: 4 }, { i: 21, j: 4 }, { i: 22, j: 4 }, { i: 23, j: 4 }, { i: 24, j: 4 }, { i: 25, j: 4 }, { i: 26, j: 4 }, { i: 27, j: 4 }, { i: 28, j: 4 }, { i: 29, j: 4 }, { i: 30, j: 4 }, { i: 31, j: 4 }, { i: 32, j: 4 }, { i: 33, j: 4 }, { i: 34, j: 4 }, { i: 35, j: 4 }, { i: 36, j: 4 }, { i: 77, j: 4 }, { i: 38, j: 4 }, { i: 79, j: 4 }, { i: 80, j: 4 }, { i: 41, j: 4 }, { i: 82, j: 4 }, { i: 43, j: 4 }, { i: 44, j: 4 }, { i: 85, j: 4 }, { i: 46, j: 4 }, { i: 47, j: 4 }, { i: 48, j: 4 }, { i: 49, j: 4 }, { i: 50, j: 4 }, { i: 51, j: 4 }, { i: 52, j: 4 }, { i: 53, j: 4 }, { i: 54, j: 4 }, { i: 55, j: 4 }, { i: 56, j: 4 }, { i: 57, j: 4 }, { i: 58, j: 4 }, { i: 59, j: 4 }, { i: 60, j: 4 }, { i: 61, j: 4 }, { i: 62, j: 4 }, { i: 63, j: 4 }, { i: 64, j: 4 }, { i: 65, j: 4 }, { i: 66, j: 4 }, { i: 67, j: 4 }, { i: 68, j: 4 }, { i: 69, j: 4 }, { i: 70, j: 4 }, { i: 71, j: 4 }, { i: 72, j: 4 }, { i: 73, j: 4 }, { i: 74, j: 4 }, { i: 75, j: 4 }, { i: 76, j: 4 }, { i: 90, j: 4 }, { i: 78, j: 4 }, { i: 92, j: 4 }, { i: 93, j: 4 }, { i: 81, j: 4 }, { i: 95, j: 4 }, { i: 83, j: 4 }, { i: 84, j: 4 }, { i: 98, j: 4 }, { i: 86, j: 4 }, { i: 87, j: 4 }, { i: 88, j: 4 }, { i: 89, j: 4 }, { i: 103, j: 4 }, { i: 91, j: 4 }, { i: 105, j: 4 }, { i: 106, j: 4 }, { i: 94, j: 4 }, { i: 108, j: 4 }, { i: 96, j: 4 }, { i: 97, j: 4 }, { i: 111, j: 4 }, { i: 99, j: 4 }, { i: 100, j: 4 }, { i: 101, j: 4 }, { i: 102, j: 4 }, { i: 116, j: 4 }, { i: 104, j: 4 }, { i: 109, j: 4 }, { i: 110, j: 4 }, { i: 107, j: 4 }, { i: 113, j: 4 }, { i: 114, j: 4 },  ], css_id: 'tinytable_css_6uum6coy9qw3730w7cz7',}, 
+          { positions: [ { i: 0, j: 1 }, { i: 0, j: 3 }, { i: 0, j: 4 }, { i: 0, j: 2 },  ], css_id: 'tinytable_css_zdm8582v77lix6y0sstw',}, 
+          { positions: [ { i: 117, j: 0 },  ], css_id: 'tinytable_css_0jl1h5mrm9sy6yw52ox2',}, 
+          { positions: [ { i: 112, j: 0 },  ], css_id: 'tinytable_css_pl85haquphpgjdcpe2o3',}, 
+          { positions: [ { i: 1, j: 0 }, { i: 2, j: 0 }, { i: 3, j: 0 }, { i: 4, j: 0 }, { i: 5, j: 0 }, { i: 6, j: 0 }, { i: 7, j: 0 }, { i: 8, j: 0 }, { i: 9, j: 0 }, { i: 10, j: 0 }, { i: 11, j: 0 }, { i: 12, j: 0 }, { i: 13, j: 0 }, { i: 14, j: 0 }, { i: 15, j: 0 }, { i: 16, j: 0 }, { i: 17, j: 0 }, { i: 18, j: 0 }, { i: 19, j: 0 }, { i: 20, j: 0 }, { i: 21, j: 0 }, { i: 22, j: 0 }, { i: 23, j: 0 }, { i: 24, j: 0 }, { i: 25, j: 0 }, { i: 26, j: 0 }, { i: 27, j: 0 }, { i: 28, j: 0 }, { i: 29, j: 0 }, { i: 30, j: 0 }, { i: 31, j: 0 }, { i: 32, j: 0 }, { i: 33, j: 0 }, { i: 34, j: 0 }, { i: 35, j: 0 }, { i: 36, j: 0 }, { i: 37, j: 0 }, { i: 38, j: 0 }, { i: 39, j: 0 }, { i: 40, j: 0 }, { i: 41, j: 0 }, { i: 42, j: 0 }, { i: 43, j: 0 }, { i: 44, j: 0 }, { i: 45, j: 0 }, { i: 46, j: 0 }, { i: 47, j: 0 }, { i: 48, j: 0 }, { i: 49, j: 0 }, { i: 50, j: 0 }, { i: 51, j: 0 }, { i: 52, j: 0 }, { i: 53, j: 0 }, { i: 54, j: 0 }, { i: 55, j: 0 }, { i: 56, j: 0 }, { i: 57, j: 0 }, { i: 58, j: 0 }, { i: 59, j: 0 }, { i: 60, j: 0 }, { i: 61, j: 0 }, { i: 62, j: 0 }, { i: 63, j: 0 }, { i: 64, j: 0 }, { i: 65, j: 0 }, { i: 66, j: 0 }, { i: 67, j: 0 }, { i: 68, j: 0 }, { i: 69, j: 0 }, { i: 70, j: 0 }, { i: 71, j: 0 }, { i: 72, j: 0 }, { i: 73, j: 0 }, { i: 74, j: 0 }, { i: 75, j: 0 }, { i: 76, j: 0 }, { i: 77, j: 0 }, { i: 78, j: 0 }, { i: 79, j: 0 }, { i: 80, j: 0 }, { i: 81, j: 0 }, { i: 82, j: 0 }, { i: 83, j: 0 }, { i: 84, j: 0 }, { i: 85, j: 0 }, { i: 86, j: 0 }, { i: 87, j: 0 }, { i: 88, j: 0 }, { i: 89, j: 0 }, { i: 90, j: 0 }, { i: 91, j: 0 }, { i: 92, j: 0 }, { i: 93, j: 0 }, { i: 94, j: 0 }, { i: 95, j: 0 }, { i: 96, j: 0 }, { i: 97, j: 0 }, { i: 98, j: 0 }, { i: 99, j: 0 }, { i: 100, j: 0 }, { i: 101, j: 0 }, { i: 102, j: 0 }, { i: 103, j: 0 }, { i: 104, j: 0 }, { i: 105, j: 0 }, { i: 106, j: 0 }, { i: 107, j: 0 }, { i: 108, j: 0 }, { i: 109, j: 0 }, { i: 110, j: 0 }, { i: 111, j: 0 }, { i: 116, j: 0 }, { i: 113, j: 0 }, { i: 114, j: 0 }, { i: 115, j: 0 },  ], css_id: 'tinytable_css_8lupsch1kco066q0fxz4',}, 
+          { positions: [ { i: 0, j: 0 },  ], css_id: 'tinytable_css_zgymwzxkygj5gtgr91o4',}, 
+          ];
+
+          // Loop over the arrays to style the cells
+          cellsToStyle.forEach(function (group) {
+              group.positions.forEach(function (cell) {
+                  styleCell_tewwykbjt055xtwn8p5r(cell.i, cell.j, group.css_id);
+              });
+          });
+      });
+    </script>
+
+    <style>
+      /* tinytable css entries after */
+      .table td.tinytable_css_ys0ou0bh2kf97ezmynrf, .table th.tinytable_css_ys0ou0bh2kf97ezmynrf { text-align: center; border-bottom: solid #d3d8dc 0.1em; }
+      .table td.tinytable_css_dtw4rbavm8xbgoe6q2nr, .table th.tinytable_css_dtw4rbavm8xbgoe6q2nr { text-align: center; border-bottom: solid black 0.05em; }
+      .table td.tinytable_css_6uum6coy9qw3730w7cz7, .table th.tinytable_css_6uum6coy9qw3730w7cz7 { text-align: center; }
+      .table td.tinytable_css_zdm8582v77lix6y0sstw, .table th.tinytable_css_zdm8582v77lix6y0sstw { text-align: center; border-top: solid #d3d8dc 0.1em; border-bottom: solid #d3d8dc 0.05em; }
+      .table td.tinytable_css_0jl1h5mrm9sy6yw52ox2, .table th.tinytable_css_0jl1h5mrm9sy6yw52ox2 { text-align: left; border-bottom: solid #d3d8dc 0.1em; }
+      .table td.tinytable_css_pl85haquphpgjdcpe2o3, .table th.tinytable_css_pl85haquphpgjdcpe2o3 { text-align: left; border-bottom: solid black 0.05em; }
+      .table td.tinytable_css_8lupsch1kco066q0fxz4, .table th.tinytable_css_8lupsch1kco066q0fxz4 { text-align: left; }
+      .table td.tinytable_css_zgymwzxkygj5gtgr91o4, .table th.tinytable_css_zgymwzxkygj5gtgr91o4 { text-align: left; border-top: solid #d3d8dc 0.1em; border-bottom: solid #d3d8dc 0.05em; }
+    </style>
+    <div class="container">
+      <table class="table table-borderless" id="tinytable_tewwykbjt055xtwn8p5r" style="width: auto; margin-left: auto; margin-right: auto;" data-quarto-disable-processing="true">
+        <thead>
+        
+              <tr>
+                <th scope="col"> </th>
+                <th scope="col">Structural Only</th>
+                <th scope="col">Add Quality</th>
+                <th scope="col">Add Neighbourhood</th>
+                <th scope="col">Best BIC (Numeric Only)</th>
+              </tr>
+        </thead>
+        
+        <tbody>
+                <tr>
+                  <td>(Intercept)</td>
+                  <td>7.758</td>
+                  <td>9.387</td>
+                  <td>9.157</td>
+                  <td>7.450</td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td>(0.128)</td>
+                  <td>(0.121)</td>
+                  <td>(0.119)</td>
+                  <td>(0.115)</td>
+                </tr>
+                <tr>
+                  <td>ln_area</td>
+                  <td>0.518</td>
+                  <td>0.303</td>
+                  <td>0.341</td>
+                  <td>0.632</td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td>(0.021)</td>
+                  <td>(0.018)</td>
+                  <td>(0.018)</td>
+                  <td>(0.019)</td>
+                </tr>
+                <tr>
+                  <td>bedroom_abv_gr</td>
+                  <td>-0.071</td>
+                  <td>-0.012</td>
+                  <td>-0.013</td>
+                  <td>-0.037</td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td>(0.006)</td>
+                  <td>(0.005)</td>
+                  <td>(0.005)</td>
+                  <td>(0.005)</td>
+                </tr>
+                <tr>
+                  <td>baths_tot</td>
+                  <td>0.097</td>
+                  <td>0.038</td>
+                  <td>0.018</td>
+                  <td>-0.041</td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td>(0.009)</td>
+                  <td>(0.008)</td>
+                  <td>(0.008)</td>
+                  <td>(0.009)</td>
+                </tr>
+                <tr>
+                  <td>total_bsmt_sf</td>
+                  <td>0.000</td>
+                  <td>0.000</td>
+                  <td>0.000</td>
+                  <td>0.000</td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td>(0.000)</td>
+                  <td>(0.000)</td>
+                  <td>(0.000)</td>
+                  <td>(0.000)</td>
+                </tr>
+                <tr>
+                  <td>garage_cars</td>
+                  <td>0.148</td>
+                  <td>0.084</td>
+                  <td>0.064</td>
+                  <td>0.096</td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td>(0.006)</td>
+                  <td>(0.005)</td>
+                  <td>(0.005)</td>
+                  <td>(0.006)</td>
+                </tr>
+                <tr>
+                  <td>overall_qual.L</td>
+                  <td></td>
+                  <td>-0.115</td>
+                  <td>-0.160</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td>(0.049)</td>
+                  <td>(0.045)</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>overall_qual.Q</td>
+                  <td></td>
+                  <td>-0.011</td>
+                  <td>-0.079</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td>(0.051)</td>
+                  <td>(0.047)</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>overall_qual.C</td>
+                  <td></td>
+                  <td>-0.129</td>
+                  <td>-0.178</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td>(0.048)</td>
+                  <td>(0.044)</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>overall_qual^4</td>
+                  <td></td>
+                  <td>-0.283</td>
+                  <td>-0.297</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td>(0.037)</td>
+                  <td>(0.034)</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>overall_qual^5</td>
+                  <td></td>
+                  <td>-0.401</td>
+                  <td>-0.383</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td>(0.032)</td>
+                  <td>(0.030)</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>overall_qual^6</td>
+                  <td></td>
+                  <td>-0.078</td>
+                  <td>-0.061</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td>(0.026)</td>
+                  <td>(0.024)</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>overall_qual^7</td>
+                  <td></td>
+                  <td>0.156</td>
+                  <td>0.146</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td>(0.028)</td>
+                  <td>(0.026)</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>overall_qual^8</td>
+                  <td></td>
+                  <td>0.015</td>
+                  <td>0.037</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td>(0.030)</td>
+                  <td>(0.027)</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>overall_qual^9</td>
+                  <td></td>
+                  <td>0.591</td>
+                  <td>0.520</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td>(0.030)</td>
+                  <td>(0.029)</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>exter_qual.L</td>
+                  <td></td>
+                  <td>-0.028</td>
+                  <td>-0.023</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td>(0.018)</td>
+                  <td>(0.016)</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>exter_qual.Q</td>
+                  <td></td>
+                  <td>0.103</td>
+                  <td>0.079</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td>(0.019)</td>
+                  <td>(0.017)</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>exter_qual.C</td>
+                  <td></td>
+                  <td>-0.147</td>
+                  <td>-0.090</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td>(0.022)</td>
+                  <td>(0.021)</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>kitchen_qual.L</td>
+                  <td></td>
+                  <td>-0.115</td>
+                  <td>-0.170</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td>(0.052)</td>
+                  <td>(0.048)</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>kitchen_qual.Q</td>
+                  <td></td>
+                  <td>0.077</td>
+                  <td>0.125</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td>(0.044)</td>
+                  <td>(0.040)</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>kitchen_qual.C</td>
+                  <td></td>
+                  <td>-0.010</td>
+                  <td>0.104</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td>(0.101)</td>
+                  <td>(0.093)</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>kitchen_qual^4</td>
+                  <td></td>
+                  <td>0.154</td>
+                  <td>0.223</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td>(0.077)</td>
+                  <td>(0.071)</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>fireplace_qu.L</td>
+                  <td></td>
+                  <td>-0.040</td>
+                  <td>-0.041</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td>(0.019)</td>
+                  <td>(0.018)</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>fireplace_qu.Q</td>
+                  <td></td>
+                  <td>0.064</td>
+                  <td>0.047</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td>(0.015)</td>
+                  <td>(0.014)</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>fireplace_qu.C</td>
+                  <td></td>
+                  <td>0.015</td>
+                  <td>0.006</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td>(0.018)</td>
+                  <td>(0.017)</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>fireplace_qu^4</td>
+                  <td></td>
+                  <td>-0.022</td>
+                  <td>-0.024</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td>(0.018)</td>
+                  <td>(0.017)</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>fireplace_qu^5</td>
+                  <td></td>
+                  <td>-0.041</td>
+                  <td>-0.034</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td>(0.011)</td>
+                  <td>(0.010)</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>neighborhoodBlueste</td>
+                  <td></td>
+                  <td></td>
+                  <td>-0.075</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td>(0.054)</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>neighborhoodBriardale</td>
+                  <td></td>
+                  <td></td>
+                  <td>-0.167</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td>(0.040)</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>neighborhoodBrookside</td>
+                  <td></td>
+                  <td></td>
+                  <td>-0.038</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td>(0.033)</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>neighborhoodClear_Creek</td>
+                  <td></td>
+                  <td></td>
+                  <td>0.157</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td>(0.036)</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>neighborhoodCollege_Creek</td>
+                  <td></td>
+                  <td></td>
+                  <td>0.102</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td>(0.029)</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>neighborhoodCrawford</td>
+                  <td></td>
+                  <td></td>
+                  <td>0.144</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td>(0.032)</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>neighborhoodEdwards</td>
+                  <td></td>
+                  <td></td>
+                  <td>-0.038</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td>(0.031)</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>neighborhoodGilbert</td>
+                  <td></td>
+                  <td></td>
+                  <td>0.070</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td>(0.030)</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>neighborhoodGreen_Hills</td>
+                  <td></td>
+                  <td></td>
+                  <td>0.527</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td>(0.106)</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>neighborhoodGreens</td>
+                  <td></td>
+                  <td></td>
+                  <td>0.031</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td>(0.059)</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>Nbh: Iowa DOT/RR</td>
+                  <td></td>
+                  <td></td>
+                  <td>-0.142</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td>(0.034)</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>neighborhoodLandmark</td>
+                  <td></td>
+                  <td></td>
+                  <td>-0.032</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td>(0.147)</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>neighborhoodMeadow_Village</td>
+                  <td></td>
+                  <td></td>
+                  <td>-0.127</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td>(0.039)</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>neighborhoodMitchell</td>
+                  <td></td>
+                  <td></td>
+                  <td>0.081</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td>(0.032)</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>neighborhoodNorth_Ames</td>
+                  <td></td>
+                  <td></td>
+                  <td>0.035</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td>(0.030)</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>neighborhoodNorthpark_Villa</td>
+                  <td></td>
+                  <td></td>
+                  <td>-0.059</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td>(0.042)</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>neighborhoodNorthridge</td>
+                  <td></td>
+                  <td></td>
+                  <td>0.189</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td>(0.034)</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>neighborhoodNorthridge_Heights</td>
+                  <td></td>
+                  <td></td>
+                  <td>0.142</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td>(0.031)</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>neighborhoodNorthwest_Ames</td>
+                  <td></td>
+                  <td></td>
+                  <td>0.051</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td>(0.031)</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>neighborhoodOld_Town</td>
+                  <td></td>
+                  <td></td>
+                  <td>-0.113</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td>(0.031)</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>neighborhoodSawyer</td>
+                  <td></td>
+                  <td></td>
+                  <td>0.043</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td>(0.032)</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>neighborhoodSawyer_West</td>
+                  <td></td>
+                  <td></td>
+                  <td>0.043</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td>(0.031)</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>neighborhoodSomerset</td>
+                  <td></td>
+                  <td></td>
+                  <td>0.106</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td>(0.030)</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>Nbh: ISU SW</td>
+                  <td></td>
+                  <td></td>
+                  <td>-0.050</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td>(0.037)</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>neighborhoodStone_Brook</td>
+                  <td></td>
+                  <td></td>
+                  <td>0.182</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td>(0.035)</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>neighborhoodTimberland</td>
+                  <td></td>
+                  <td></td>
+                  <td>0.122</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td>(0.033)</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>neighborhoodVeenker</td>
+                  <td></td>
+                  <td></td>
+                  <td>0.120</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td>(0.041)</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>age</td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td>-0.003</td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td>(0.000)</td>
+                </tr>
+                <tr>
+                  <td>remod_age</td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td>-0.003</td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td>(0.000)</td>
+                </tr>
+                <tr>
+                  <td>Num.Obs.</td>
+                  <td>2918</td>
+                  <td>2918</td>
+                  <td>2918</td>
+                  <td>2918</td>
+                </tr>
+                <tr>
+                  <td>R2</td>
+                  <td>0.744</td>
+                  <td>0.843</td>
+                  <td>0.871</td>
+                  <td>0.808</td>
+                </tr>
+                <tr>
+                  <td>R2 Adj.</td>
+                  <td>0.744</td>
+                  <td>0.842</td>
+                  <td>0.869</td>
+                  <td>0.807</td>
+                </tr>
+                <tr>
+                  <td>BIC</td>
+                  <td>-1028.2</td>
+                  <td>-2284.2</td>
+                  <td>-2648.8</td>
+                  <td>-1845.9</td>
+                </tr>
+                <tr>
+                  <td>F</td>
+                  <td>1694.970</td>
+                  <td>597.010</td>
+                  <td>365.830</td>
+                  <td>1747.383</td>
+                </tr>
+        </tbody>
+      </table>
+    </div>
+<!-- hack to avoid NA insertion in last line -->
+</div>
+</div>
 
 
 </section>

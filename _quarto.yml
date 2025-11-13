@@ -4,6 +4,7 @@ project:
   resources:
     - data/Scooby.xlsx 
     - data/house_price.csv
+    - data/hedonic_ames.csv
 
 book:
   title: "Research Methods for Land Economy"

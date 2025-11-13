@@ -89,3 +89,183 @@ Use only if multicollinearity is high or the model is unwieldy.
 -   Focus diagnostics on **VIF** and **White test**, plus **residual visuals**.
 -   Autocorrelation tests and **HAC** are for **time/panel** data and are **not** used here.
 -   Combine **theory** and **evidence** (Sup 3 + Sup 4) to justify your final model.
+
+## R script
+
+```{r}
+# ---------------------------------------------------------
+# SUPERVISION 5 — INDICATIVE SOLUTION (OLS ONLY)
+# Hedonic Pricing Model for Ames Housing Dataset
+# ---------------------------------------------------------
+
+library(tidyverse)
+library(broom)
+library(car)
+library(lmtest)
+library(sandwich)
+library(leaps)
+library(modelsummary)
+
+# ---------------------------------------------------------
+# 1. Load & Prepare Data
+# ---------------------------------------------------------
+
+df <- read_csv("hedonic_ames.csv") %>%
+  mutate(
+    ln_price  = log(sale_price),
+    ln_area   = log(gr_liv_area),
+    baths_tot = full_bath + 0.5 * half_bath,
+    overall_qual = factor(overall_qual, ordered = TRUE),
+    overall_cond = factor(overall_cond, ordered = TRUE),
+    exter_qual   = factor(exter_qual, ordered = TRUE),
+    kitchen_qual = factor(kitchen_qual, ordered = TRUE),
+    fireplace_qu = factor(fireplace_qu, ordered = TRUE),
+    neighborhood = factor(neighborhood)
+  )
+
+# ---------------------------------------------------------
+# 2. Baseline OLS Model (structural attributes)
+# ---------------------------------------------------------
+
+m1 <- lm(
+  ln_price ~ ln_area + bedroom_abv_gr + baths_tot +
+    total_bsmt_sf + garage_cars,
+  data = df
+)
+
+# ---------------------------------------------------------
+# Multicollinearity: VIF for baseline model
+# ---------------------------------------------------------
+
+library(car)
+
+vif_m1 <- vif(m1)
+vif_m1
+
+mean(vif_m1)  # average VIF
+max(vif_m1)   # worst VIF
+
+
+# ---------------------------------------------------------
+# 3. Add quality variables (OLS with factors)
+# ---------------------------------------------------------
+
+m2 <- lm(
+  ln_price ~ ln_area + bedroom_abv_gr + baths_tot +
+    total_bsmt_sf + garage_cars +
+    overall_qual + exter_qual + kitchen_qual + fireplace_qu,
+  data = df
+)
+
+#We computed VIFs for the main structural variables.
+#Common rules-of-thumb treat VIF values above 5–10 as indicating 
+#serious multicollinearity.
+#In our case, VIFs are moderate, so multicollinearity does not appear
+#to be a major threat to inference, although some correlation between
+#size-related variables (e.g. floor area, basement area, 
+#garage capacity) is expected.
+
+# ---------------------------------------------------------
+# 4. Add neighborhood dummies (still OLS)
+# ---------------------------------------------------------
+
+m3 <- lm(
+  ln_price ~ ln_area + bedroom_abv_gr + baths_tot +
+    total_bsmt_sf + garage_cars +
+    overall_qual + exter_qual + kitchen_qual + fireplace_qu +
+    neighborhood,
+  data = df
+)
+
+# ---------------------------------------------------------
+# 5. Best Subset Selection using BIC (numeric variables only)
+# ---------------------------------------------------------
+
+num_df <- df %>%
+  select(ln_price, ln_area, bedroom_abv_gr, baths_tot,
+         total_bsmt_sf, garage_cars, age, remod_age)
+
+best <- regsubsets(
+  ln_price ~ ., data = num_df,
+  nvmax = ncol(num_df)-1
+)
+
+best_summary <- summary(best)
+bic_best <- which.min(best_summary$bic)
+
+selected_vars <- names(coef(best, bic_best))[-1]
+formula_best <- as.formula(
+  paste("ln_price ~", paste(selected_vars, collapse = " + "))
+)
+
+m4 <- lm(formula_best, data = num_df)
+
+
+
+# ---------------------------------------------------------
+# 6. Robust SEs (standard OLS topic in this course)
+# 6. Tests for heteroskedasticity (H0: constant variance)
+# ---------------------------------------------------------
+
+# Breusch–Pagan / White-type tests (same style as Supervision 4)
+bp_m1 <- bptest(m1, varformula = ~ fitted(m1) + I(fitted(m1)^2))
+bp_m2 <- bptest(m2, varformula = ~ fitted(m2) + I(fitted(m2)^2))
+bp_m3 <- bptest(m3, varformula = ~ fitted(m3) + I(fitted(m3)^2))
+bp_m4 <- bptest(m4, varformula = ~ fitted(m4) + I(fitted(m4)^2))
+
+bp_m1
+bp_m2
+bp_m3
+bp_m4
+
+rob_m1 <- coeftest(m1, vcovHC(m1, type = "HC1"))
+rob_m2 <- coeftest(m2, vcovHC(m2, type = "HC1"))
+#There is one very high-leverage observation (almost perfectly fitted).
+#This makes the HC1 robust covariance matrix nearly singular, 
+#so robust SEs for rob_m2 model are not trustworthy
+rob_m3 <- coeftest(m3, vcovHC(m3, type = "HC1"))
+rob_m4 <- coeftest(m4, vcovHC(m4, type = "HC1"))
+
+# ---------------------------------------------------------
+# 7. Compare Models (shorten long coefficient names)
+# ---------------------------------------------------------
+
+
+nice_names <- c(
+  "neighborhoodSouth_and_West_of_Iowa_State_University" = "Nbh: ISU SW",
+  "neighborhoodIowa_DOT_and_Rail_Road"                  = "Nbh: Iowa DOT/RR"
+)
+
+# edit variable names for a better results table
+# we shorten the "neighborhood" prefix globally for "Nbh:"
+modelsummary(
+  list(
+    "Structural Only"         = m1,
+    "Add Quality"             = m2,
+    "Add Neighbourhood"       = m3,
+    "Best BIC (Numeric Only)" = m4
+  ),
+  statistic = "({std.error})",
+  gof_omit  = "AIC|Log.Lik|RMSE",
+  coef_rename = function(x) {
+    x <- gsub("^neighborhood", "Nbh:", x)
+    x <- gsub("South_and_West_of_Iowa_State_University", "ISU SW", x)
+    x <- gsub("Iowa_DOT_and_Rail_Road", "Iowa DOT/RR", x)
+    x
+  }
+)
+
+
+#results table(...)
+modelsummary(
+  list(
+    "Structural Only"         = m1,
+    "Add Quality"             = m2,
+    "Add Neighbourhood"       = m3,
+    "Best BIC (Numeric Only)" = m4
+  ),
+  statistic  = "({std.error})",
+  gof_omit   = "AIC|Log.Lik|RMSE",
+  coef_rename = nice_names
+)
+```
