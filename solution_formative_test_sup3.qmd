@@ -1,5 +1,5 @@
 ---
-title: "Solution to In-class Sup3"
+title: "Solution to In-class Sup 3"
 author: "Camilo Calderon-Morales, PhD"
 date: 2025-10-27
 format:
