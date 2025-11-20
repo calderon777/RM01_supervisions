@@ -283,7 +283,7 @@ Prepare **3–5 bullet points** to share with class:
 
 ### Example Output
 
-> **EVS Item V185:** "On this list are various groups of people. Could you please mention any that you would not like to have as neighbours?"  
+> **EVS Q6:** "On this list are various groups of people. Could you please mention any that you would not like to have as neighbours?"  
 > 
 > **Strengths:**  
 > - Indirect approach reduces pressure to deny prejudice  
