@@ -310,7 +310,7 @@ Each group presents **one key insight** from their EVS audit:
 - What do you gain (or lose) moving from quantitative to qualitative?
 
 ## Synthesis (5 min)
-Supervisor highlights cross-cutting themes:
+cross-cutting themes:
 - Trade-offs between standardization and nuance
 - Role of context in qualitative responses
 - Ethical considerations in sensitive topic research
